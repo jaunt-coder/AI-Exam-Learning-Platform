@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="학습 Analytics Dashboard — AI Exam Learning Platform">
+  <title>Analytics Dashboard | AI Exam Learning Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/analytics.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <div>
+        <h1 class="site-title"><a href="index.html" class="site-title-link">AI Exam Learning Platform</a></h1>
+        <p class="site-subtitle">Phase 7.1 — Analytics Dashboard</p>
+      </div>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a href="index.html" class="button button--ghost">홈</a>
+        <a href="pattern.html" class="button button--ghost">Pattern 학습</a>
+        <a href="question.html" class="button button--ghost">문제 풀이</a>
+        <a href="wrong-note.html" class="button button--ghost">오답 노트</a>
+        <a href="ai-tutor.html" class="button button--ghost">AI Tutor</a>
+        <a href="exam.html" class="button button--ghost">모의시험</a>
+        <a href="recommendation.html" class="button button--ghost">학습 추천</a>
+        <a href="analytics.html" class="button button--ghost" aria-current="page">Analytics</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main analytics-main" role="main">
+    <div class="container">
+      <section id="analytics-section" aria-labelledby="analytics-heading" hidden>
+        <header class="section-header">
+          <h2 id="analytics-heading">학습 Analytics Dashboard</h2>
+          <p class="section-desc">LocalStorage 학습 기록을 Pattern·날짜·취약도 관점에서 분석합니다.</p>
+          <p class="analytics-meta" id="analytics-meta"></p>
+        </header>
+
+        <div class="analytics-summary card" id="analytics-summary" aria-live="polite"></div>
+
+        <section class="analytics-block" aria-labelledby="timeline-link-heading">
+          <h3 id="timeline-link-heading">Timeline Analytics</h3>
+          <div id="timeline-nav-link">
+            <a href="analytics-timeline.html" class="button button--secondary">
+              Timeline Dashboard 보기
+            </a>
+            <p class="section-desc">learningEvents 기반 14일 학습 성장·습관 분석</p>
+          </div>
+        </section>
+
+        <section class="analytics-block" aria-labelledby="growth-heading">
+          <h3 id="growth-heading">학습 성장 그래프</h3>
+          <div class="chart-card card">
+            <canvas id="growth-chart" role="img" aria-label="날짜별 풀이량 및 정답률 그래프"></canvas>
+          </div>
+        </section>
+
+        <div class="analytics-grid">
+          <section class="analytics-block" aria-labelledby="weak-heading">
+            <h3 id="weak-heading">취약점 분석 TOP 3</h3>
+            <div class="chart-card card chart-card--compact">
+              <canvas id="weakness-chart" role="img" aria-label="취약 Pattern TOP 3 차트"></canvas>
+            </div>
+            <ul class="weak-top-list" id="weak-top-list" role="list"></ul>
+          </section>
+
+          <section class="analytics-block" aria-labelledby="recommend-quick-heading">
+            <h3 id="recommend-quick-heading">오늘 추천 학습</h3>
+            <p class="section-desc">Recommendation Engine 연동 · 바로가기</p>
+            <ul class="recommend-quick-list" id="recommend-quick-list" role="list"></ul>
+            <a href="recommendation.html" class="button button--secondary">전체 추천 보기</a>
+          </section>
+        </div>
+
+        <section class="analytics-block" aria-labelledby="pattern-table-heading">
+          <h3 id="pattern-table-heading">Pattern 분석</h3>
+          <div class="table-wrap card">
+            <table class="pattern-table" aria-describedby="pattern-table-heading">
+              <thead>
+                <tr>
+                  <th scope="col">Pattern</th>
+                  <th scope="col">정답률</th>
+                  <th scope="col">시도</th>
+                  <th scope="col">마지막 학습</th>
+                  <th scope="col">취약도</th>
+                  <th scope="col">학습</th>
+                </tr>
+              </thead>
+              <tbody id="pattern-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section class="empty-state card" id="empty-state" hidden>
+        <h2>학습 데이터 없음</h2>
+        <p>문제를 풀면 Analytics Dashboard에 학습 현황이 표시됩니다.</p>
+        <a href="question.html" class="button button--primary">문제 풀이 시작</a>
+      </section>
+
+      <div class="loading-state card" id="loading-state">
+        <p>Analytics 분석 중...</p>
+      </div>
+      <div class="error-state card" id="error-state" hidden>
+        <p id="error-message"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2026 AI Exam Learning Platform v2 · DB phase1-v1.0 (Frozen)</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initAnalyticsPage } from './js/analytics-engine.js';
+    initAnalyticsPage();
+  </script>
+</body>
+</html>

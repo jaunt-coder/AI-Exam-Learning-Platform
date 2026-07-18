@@ -8,6 +8,7 @@ const STORAGE_KEYS = {
   WRONG_ANSWERS: 'wrongAnswers',
   BOOKMARKS: 'bookmarks',
   RECENT_STUDY: 'recentStudy',
+  LEARNING_EVENTS: 'learningEvents',
   THEME: 'theme',
   SETTINGS: 'settings',
   EXAM_HISTORY: 'examHistory'

@@ -183,11 +183,130 @@
   color: #fff;
 }
 
-.ai-generate-btn {
-  width: 100%;
+.tutor-lesson-output {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tutor-lesson-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
   margin-bottom: 0.75rem;
 }
 
+.tutor-lesson-meta {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.tutor-section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tutor-nav-btn {
+  font-size: 0.6875rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.tutor-nav-btn:hover {
+  border-color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.06);
+}
+
+.tutor-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  scroll-margin-top: 1rem;
+}
+
+.tutor-section__title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.625rem;
+}
+
+.tutor-section__body {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+.tutor-section__text {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}
+
+.tutor-steps {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.tutor-steps li {
+  margin-bottom: 0.375rem;
+}
+
+.tutor-steps li:last-child {
+  margin-bottom: 0;
+}
+
+.tutor-item-block {
+  margin-bottom: 0.75rem;
+}
+
+.tutor-item-block:last-child {
+  margin-bottom: 0;
+}
+
+.tutor-item-label {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.tutor-item-text {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.tutor-link-list {
+  list-style: none;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.tutor-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.tutor-link:hover {
+  text-decoration: underline;
+}
+
+/* Legacy alias */
 .ai-explanation-output {
   display: flex;
   flex-direction: column;

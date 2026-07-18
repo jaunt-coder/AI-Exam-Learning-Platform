@@ -5,6 +5,7 @@
 
 import { getItem, setItem, STORAGE_KEYS } from './storage.js';
 import { getChoiceLabel } from './data-loader.js';
+import { trackQuestionAnswer } from './learning-event.js';
 
 const PROGRESS_VERSION = 1;
 const WRONG_ANSWERS_VERSION = 1;
@@ -131,7 +132,15 @@ export function removeWrongAnswer(questionId) {
   return store;
 }
 
-export function recordAttempt(question, result) {
+/**
+ * @param {object} question
+ * @param {object} result
+ * @param {object} [options]
+ * @param {boolean} [options.trackLearningEvent] — question_answer 이벤트 기록 (exam 제외)
+ * @param {number} [options.durationSeconds]
+ * @param {boolean} [options.usedTutor]
+ */
+export function recordAttempt(question, result, options = {}) {
   const progress = loadProgress();
   const prev = progress.answered[question.questionId];
 
@@ -154,6 +163,14 @@ export function recordAttempt(question, result) {
 
   saveProgress(progress);
   saveWrongAnswer(question, result);
+
+  if (options.trackLearningEvent) {
+    trackQuestionAnswer(question, result, {
+      durationSeconds: options.durationSeconds,
+      usedTutor: options.usedTutor ?? false,
+    });
+  }
+
   return progress;
 }
 
@@ -177,6 +194,10 @@ export function formatSessionScore(session) {
   return `${session.correct} / ${session.answered} (${pct}%)`;
 }
 
+/**
+ * PDF solution 필드 정제 (정답 검증·내부용 — 학습자 UI 미노출)
+ * AI Tutor v2부터 해설은 ai-tutor-engine.js에서 새로 생성한다.
+ */
 export function getSolutionDisplay(question) {
   const sol = question.solution || {};
   const parts = [];

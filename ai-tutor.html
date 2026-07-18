@@ -22,6 +22,8 @@
         <a href="wrong-note.html" class="button button--ghost">오답 노트</a>
         <a href="ai-tutor.html" class="button button--ghost" aria-current="page">AI Tutor</a>
         <a href="exam.html" class="button button--ghost">모의시험</a>
+        <a href="recommendation.html" class="button button--ghost">학습 추천</a>
+        <a href="analytics.html" class="button button--ghost">Analytics</a>
       </nav>
     </div>
   </header>
@@ -30,8 +32,8 @@
     <div class="container">
       <section id="ai-tutor-section" class="ai-tutor-layout" aria-labelledby="ai-page-heading" hidden>
         <header class="section-header">
-          <h2 id="ai-page-heading">AI 과외 설명</h2>
-          <p class="section-desc">오답 문항을 선택하고, 틀린 보기를 지정하면 맞춤 설명을 생성합니다.</p>
+          <h2 id="ai-page-heading">AI 과외 선생님</h2>
+          <p class="section-desc">PDF 해설이 아닌, 8단계 맞춤 과외 설명을 제공합니다. 오답 보기를 선택하면 왜 틀렸는지 분석합니다.</p>
         </header>
 
         <div class="ai-tutor-layout__grid">
@@ -52,15 +54,14 @@
 
             <div class="ai-tutor-panel ai-tutor-panel--standalone">
               <div class="ai-tutor-header">
-                <span class="ai-tutor-badge">로컬 엔진</span>
+                <span class="ai-tutor-badge">AI 과외 v2</span>
               </div>
               <div class="ai-level-select" role="group" aria-label="설명 수준">
                 <button type="button" class="ai-level-btn is-active" data-level="beginner">기초</button>
                 <button type="button" class="ai-level-btn" data-level="intermediate">표준</button>
                 <button type="button" class="ai-level-btn" data-level="advanced">심화</button>
               </div>
-              <button type="button" class="button button--primary ai-generate-btn" id="ai-generate-btn">AI 설명 생성</button>
-              <div class="ai-explanation-output" id="ai-explanation-output" hidden aria-live="polite"></div>
+              <div class="ai-explanation-output tutor-lesson-output" id="ai-explanation-output" hidden aria-live="polite"></div>
             </div>
 
             <div class="ai-workspace-actions">

@@ -22,6 +22,8 @@
         <a href="wrong-note.html" class="button button--ghost">오답 노트</a>
         <a href="ai-tutor.html" class="button button--ghost">AI Tutor</a>
         <a href="exam.html" class="button button--ghost">모의시험</a>
+        <a href="recommendation.html" class="button button--ghost">학습 추천</a>
+        <a href="analytics.html" class="button button--ghost">Analytics</a>
       </nav>
     </div>
   </header>
@@ -85,32 +87,21 @@
             <p class="wrong-saved-notice" id="wrong-saved-notice" hidden>오답 노트에 저장되었습니다.</p>
           </div>
 
-          <section class="solution-panel" id="solution-panel" hidden aria-labelledby="solution-heading">
-            <h3 id="solution-heading">해설</h3>
-            <pre class="solution-text" id="solution-text"></pre>
-          </section>
-
-          <section class="memory-panel" id="memory-panel" hidden aria-labelledby="memory-heading">
-            <h3 id="memory-heading">암기 Point</h3>
-            <p class="memory-text" id="memory-text"></p>
-          </section>
-
           <section class="ai-tutor-panel" id="ai-tutor-panel" hidden aria-labelledby="ai-tutor-heading">
             <div class="ai-tutor-header">
-              <h3 id="ai-tutor-heading">AI 과외 설명</h3>
-              <span class="ai-tutor-badge">로컬 엔진</span>
+              <h3 id="ai-tutor-heading">AI 과외 선생님</h3>
+              <span class="ai-tutor-badge">로컬 엔진 v2</span>
             </div>
-            <p class="ai-tutor-intro">Pattern·해설·오답 데이터를 바탕으로 맞춤 설명을 생성합니다.</p>
+            <p class="ai-tutor-intro">PDF 해설이 아닌, Pattern·문항 분석 기반 맞춤 과외 설명입니다.</p>
             <div class="ai-level-select" role="group" aria-label="설명 수준">
               <button type="button" class="ai-level-btn is-active" data-level="beginner">기초</button>
               <button type="button" class="ai-level-btn" data-level="intermediate">표준</button>
               <button type="button" class="ai-level-btn" data-level="advanced">심화</button>
             </div>
-            <button type="button" class="button button--primary ai-generate-btn" id="ai-generate-btn">AI 설명 생성</button>
             <p class="ai-tutor-standalone-link" id="ai-standalone-link-wrap" hidden>
-              <a href="#" class="ai-standalone-link" id="ai-standalone-link">AI Tutor 페이지에서 자세히 보기</a>
+              <a href="#" class="ai-standalone-link" id="ai-standalone-link">AI Tutor 페이지에서 전체 보기</a>
             </p>
-            <div class="ai-explanation-output" id="ai-explanation-output" hidden aria-live="polite"></div>
+            <div class="ai-explanation-output tutor-lesson-output" id="ai-explanation-output" hidden aria-live="polite"></div>
           </section>
 
           <div class="form-actions form-actions--after">

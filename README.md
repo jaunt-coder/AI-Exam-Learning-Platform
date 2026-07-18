@@ -110,6 +110,7 @@ Exam → Subject → Chapter → Pattern → Knowledge → Question → Learning
 | `wrongAnswers` | 오답 노트 |
 | `bookmarks` | 즐겨찾기 |
 | `recentStudy` | 최근 학습 |
+| `learningEvents` | 학습 이벤트 (Phase 7.2) |
 | `theme` | 테마 설정 |
 | `settings` | 사용자 설정 |
 | `examHistory` | 시험 기록 |
@@ -125,8 +126,13 @@ Exam → Subject → Chapter → Pattern → Knowledge → Question → Learning
 | **Phase 2** | **Question Solving Engine** | **✅ 완료** |
 | **Phase 3** | **Pattern Learning System** | **✅ 완료** |
 | **Phase 4** | **Wrong Answer System** | **✅ 완료** |
-| **Phase 5** | **AI Explanation** | **✅ 완료** |
+| **Phase 5** | **AI Tutor v2 (AI 과외 선생님)** | **✅ 완료** |
+| **Phase 5.1** | **AI Tutor Quality Enhancement** | **✅ 완료** |
 | **Phase 6** | **Exam Simulation Mode** | **✅ 완료** |
+| **Phase 7** | **Recommendation Engine** | **✅ 완료** |
+| **Phase 7.1** | **Analytics Dashboard** | **✅ 완료** |
+| **Phase 7.2** | **Learning Event Tracking** | **✅ 완료** |
+| **Phase 7.3** | **Learning Timeline Dashboard** | **✅ 완료** |
 
 > 실행 계획: `docs/29-mvp-fast-development-roadmap.md` | 구조·원칙: `docs/00~20`
 
@@ -227,34 +233,85 @@ scripts/validate-phase4-engine.py
 
 **실행:** `python -m http.server 8080` → `/wrong-note.html`
 
-### Phase 5 Output (AI Explanation) — ✅ 완료
+### Phase 5 Output (AI Tutor v2 — AI 과외 선생님) — ✅ 완료
 
 ```
 js/ai-tutor-engine.js
+js/ai-tutor-render.js
 js/ai-tutor.js
 ai-tutor.html
 css/ai-tutor.css
 scripts/validate-phase5-engine.py
 ```
 
-**흐름:** 채점 후 AI 설명 생성 · 오답 시 자동 생성 · 독립 AI Tutor 페이지
+**정책:** PDF `solution` 필드는 정답 검증용만 사용 · 학습자에게 PDF 해설 미노출
+
+**8단계 범용 과외 구조 (수능·CPA·감정평가사·공인중개사 확장 가능)**
+
+| 단계 | 내용 |
+|------|------|
+| ① | 왜 틀렸는가 / 정답 확인 |
+| ② | 올바른 풀이순서 |
+| ③ | 시험장에서 생각하는 순서 |
+| ④ | 암기법 (두문자·비유·시험장 TIP) |
+| ⑤ | 출제자의 함정 (examinerIntent · similarTrap) |
+| ⑥ | 관련 Pattern |
+| ⑦ | 비슷한 문제 |
+| ⑧ | 다음 추천학습 |
+
+**Question별 AI 생성 필드 (로컬 엔진 · UI 레이어)**
+
+`explanation` · `solvingAlgorithm` · `wrongAnswerAnalysis`(보기별) · `examinerIntent` · `memoryTip` · `similarTrap` · `frequentlyConfusedWith`
 
 | 기능 | 상태 |
 |------|------|
-| 문제별 AI 설명 버튼 | ✅ question.html 채점 후 패널 |
-| 입력 (문제·정답·해설·Pattern·오답) | ✅ Frozen DB + gradeAnswer 결과 |
-| 출력 (왜 틀렸는지·핵심 개념·암기 방법) | ✅ 수준별(beginner/intermediate/advanced) |
-| 로컬 규칙 엔진 | ✅ 외부 API 없음 (GitHub Pages 호환) |
-| 독립 AI Tutor 페이지 | ✅ ai-tutor.html (오답 문항 선택) |
+| PDF 해설 출력 폐기 | ✅ question.html solution-panel 제거 |
+| AI 과외 8단계 | ✅ 채점 후 자동 표시 |
+| 보기별 오답 분석 | ✅ wrongAnswerAnalysis |
+| 독립 AI Tutor 페이지 | ✅ ai-tutor.html |
 | data/*.json 수정 | ❌ 금지 |
 
 **실행:** `python -m http.server 8080` → `/question.html` 또는 `/ai-tutor.html`
 
+### Phase 5.1 Output (AI Tutor Quality Enhancement) — ✅ 완료
+
+```
+js/ai-tutor-content/pattern-profiles.js
+js/ai-tutor-content/question-overrides.js
+js/ai-tutor-content/calculation-templates.js
+scripts/tutor-overrides-data.json
+scripts/generate-tutor-overrides.py
+scripts/validate-phase5-1-tutor.py
+```
+
+**구조:** `Question → Question Override → Pattern Profile → Tutor Lesson (8단계)`
+
+| 개선 | 내용 |
+|------|------|
+| Pattern Profile 분리 | Pattern 공통 과외 콘텐츠를 `pattern-profiles.js`로 분리 |
+| Question Override | 32문항 문항별 풀이·보기별 오답 분석 (`question-overrides.js`) |
+| Calculation Template | 계산형 재사용 풀이 골격 (`calculation-templates.js`) |
+| Pattern mismatch | Q011(CVP)·Q012(현금지출) 등 Override로 보정 |
+| 정답 해설 truncate | 200자 제한 제거 — 전체 explanation 표시 |
+
+**품질 게이트 (ACC_INV_001~007, 32문항):**
+
+| 기준 | 목표 | 결과 |
+|------|------|------|
+| 재풀이 가능 문항 | ≥80% | ✅ |
+| 계산형 재풀이 | ≥90% | ✅ |
+| 보기별 wrongAnswerAnalysis | ≥90% | ✅ |
+| Pattern mismatch | Q011/Q012 해결 | ✅ |
+| 8단계 출력 | 유지 | ✅ |
+
 **검증:**
 
 ```bash
+python scripts/validate-phase5-1-tutor.py
 python scripts/validate-phase5-engine.py
 ```
+
+**정책:** `data/*.json` 미변경 · Phase 1 Frozen DB 유지
 
 ### Phase 6 Output (Exam Simulation Mode) — ✅ 완료
 
@@ -290,6 +347,144 @@ scripts/validate-phase6-engine.py
 ```bash
 python scripts/validate-phase6-engine.py
 ```
+
+### Phase 7 Output (Recommendation Engine) — ✅ 완료
+
+```
+recommendation.html
+css/recommendation.css
+js/recommendation-engine.js
+js/recommendation-rules.js
+scripts/validate-phase7-recommendation.py
+```
+
+**흐름:** LocalStorage 학습 기록 + statistics + AI Tutor Override → Recommendation Score → 오늘의 추천·취약 Pattern·복습 문항
+
+| 기능 | 상태 |
+|------|------|
+| 오늘의 추천 학습 | ✅ Pattern Score 상위 3개 |
+| 취약 Pattern 추천 | ✅ 오답·정답률 기반 |
+| 복습 필요 문제 | ✅ 망각 곡선(1·3·7·14·30일) |
+| 추천 이유 표시 | ✅ reasons 배열 UI |
+| AI Tutor 바로가기 | ✅ 문항별 tutor 링크 |
+| data/*.json 수정 | ❌ 금지 |
+| Phase 1 Freeze | ✅ 유지 |
+
+**검증:**
+
+```bash
+python scripts/validate-phase7-recommendation.py
+```
+
+**실행:** `python -m http.server 8080` → `/recommendation.html`
+
+### Phase 7.1 Output (Analytics Dashboard) — ✅ 완료
+
+```
+analytics.html
+css/analytics.css
+js/analytics-engine.js
+js/chart-engine.js
+scripts/validate-phase7-1-analytics.py
+```
+
+**흐름:** LocalStorage(progress/wrongAnswers/recentStudy) + Recommendation → Analytics 리포트 → Dashboard 시각화
+
+| 기능 | 상태 |
+|------|------|
+| 전체 학습 현황 | ✅ 풀이·정답률·오답률·학습 시간 |
+| Pattern 분석 | ✅ 정답률·시도·마지막 학습일·취약도 |
+| 학습 성장 그래프 | ✅ 날짜별 풀이량·정답률 (Canvas) |
+| 취약점 TOP 3 | ✅ 취약도 점수 기반 |
+| Recommendation 연동 | ✅ 오늘 추천 학습 바로가기 |
+| data/*.json 수정 | ❌ 금지 |
+| 기존 엔진 변경 | ❌ 금지 (Analytics Layer만 추가) |
+
+**검증:**
+
+```bash
+python scripts/validate-phase7-1-analytics.py
+```
+
+**실행:** `python -m http.server 8080` → `/analytics.html`
+
+### Phase 7.2 Output (Learning Event Tracking) — ✅ 완료
+
+```
+js/learning-event.js
+js/storage.js (learningEvents key)
+js/question-engine.js (optional trackLearningEvent)
+js/question.js
+js/exam.js
+js/analytics-engine.js
+scripts/validate-phase7-2-learning-events.py
+```
+
+**흐름:** 문제 풀이·AI Tutor·모의시험 → `learningEvents` LocalStorage → `recentStudy` 동기화 → Analytics 실제 학습 시간 반영
+
+| 이벤트 | type | 기록 시점 |
+|--------|------|-----------|
+| 문제 시작 | `question_start` | 문항 풀이 화면 진입 |
+| 답 제출 | `question_answer` | 채점·progress 저장 |
+| AI Tutor 확인 | `tutor_view` | AI 해설 최초 표시 |
+| 모의시험 완료 | `exam_complete` | 시험 제출 |
+
+**이벤트 필드:** `eventId`, `date`, `timestamp`, `type`, `questionId`, `patternId`, `duration`(초), `correct`, `usedTutor`
+
+| 기능 | 상태 |
+|------|------|
+| learningEvents LocalStorage | ✅ |
+| recentStudy 이벤트 기반 동기화 | ✅ |
+| Analytics 실제 학습 시간 | ✅ learningEvents 우선 |
+| 기존 exam progress 연동 | ✅ exam_complete만 이벤트 (중복 방지) |
+| data/*.json 수정 | ❌ 금지 |
+| Phase 1 Freeze | ✅ 유지 |
+
+**검증:**
+
+```bash
+python scripts/validate-phase7-2-learning-events.py
+```
+
+### Phase 7.3 Output (Learning Timeline Dashboard) — ✅ 완료
+
+```
+analytics-timeline.html
+css/timeline.css
+js/timeline-engine.js
+js/analytics-engine.js (Timeline Analytics API 확장)
+analytics.html (Timeline 링크)
+scripts/validate-phase7-3-timeline.py
+```
+
+**흐름:** `learningEvents` LocalStorage → Timeline Analytics 리포트 → Canvas Dashboard
+
+| 기능 | 상태 |
+|------|------|
+| Daily Study Timeline | ✅ 최근 14일 · 날짜별 학습 시간·풀이량 |
+| Accuracy Growth | ✅ 날짜별 정답률 · 3일 이동 평균 |
+| Tutor Usage Analytics | ✅ tutor_view 분석 · AI Tutor 활용 비율 |
+| Learning Habit | ✅ 피크 시간대 · TOP Pattern · 취약 변화 |
+| Canvas 그래프 | ✅ 순수 JS · GitHub Pages 호환 |
+| data/*.json 수정 | ❌ 금지 |
+| question-engine 변경 | ❌ 금지 |
+| Phase 1 Freeze | ✅ 유지 |
+
+**Timeline 리포트 구조:**
+
+- `summary` — 14일 학습 시간·풀이량·평균 정답률·Tutor 활용률
+- `dailyTimeline[]` — `{ date, studyMinutes, answered, tutorViews }`
+- `accuracyTrend[]` — `{ date, answered, correct, accuracy, movingAverage }`
+- `tutorAnalytics` — `{ totalAnswered, tutorViewCount, usageRatio, dailyViews[] }`
+- `habits` — `{ peakHour, topPattern, weakPatternChanges[], hourDistribution[] }`
+
+**검증:**
+
+```bash
+python scripts/validate-phase7-3-timeline.py
+```
+
+**실행:** `python -m http.server 8080` → `/analytics-timeline.html`
 
 ## Legacy Roadmap (docs/20)
 

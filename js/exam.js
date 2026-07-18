@@ -26,6 +26,7 @@ import {
   getExamHistorySummary,
   getLatestExamRecord,
 } from './exam-engine.js';
+import { trackExamComplete } from './learning-event.js';
 
 const state = {
   master: null,
@@ -331,6 +332,7 @@ function finalizeExam(fromTimeout = false) {
   state.session.timedOut = fromTimeout || state.session.timedOut;
   state.lastAnalysis = gradeExamSession(state.session, state.questions, state.patterns);
   submitExamSession(state.session, state.lastAnalysis, state.questions);
+  trackExamComplete(state.session, state.lastAnalysis);
   state.session.status = 'submitted';
   renderResult(state.lastAnalysis);
   showView('result-section');

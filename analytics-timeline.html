@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learning Timeline Dashboard — AI Exam Learning Platform">
+  <title>Timeline Dashboard | AI Exam Learning Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/timeline.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <div>
+        <h1 class="site-title"><a href="index.html" class="site-title-link">AI Exam Learning Platform</a></h1>
+        <p class="site-subtitle">Phase 7.3 — Learning Timeline Dashboard</p>
+      </div>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a href="index.html" class="button button--ghost">홈</a>
+        <a href="pattern.html" class="button button--ghost">Pattern 학습</a>
+        <a href="question.html" class="button button--ghost">문제 풀이</a>
+        <a href="wrong-note.html" class="button button--ghost">오답 노트</a>
+        <a href="ai-tutor.html" class="button button--ghost">AI Tutor</a>
+        <a href="exam.html" class="button button--ghost">모의시험</a>
+        <a href="recommendation.html" class="button button--ghost">학습 추천</a>
+        <a href="analytics.html" class="button button--ghost">Analytics</a>
+        <a href="analytics-timeline.html" class="button button--ghost" aria-current="page">Timeline</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main timeline-main" role="main">
+    <div class="container">
+      <section id="timeline-section" aria-labelledby="timeline-heading" hidden>
+        <header class="section-header">
+          <h2 id="timeline-heading">Learning Timeline Dashboard</h2>
+          <p class="section-desc">learningEvents LocalStorage 기반 · 최근 14일 학습 성장·습관·AI Tutor 분석</p>
+          <p class="timeline-meta" id="timeline-meta"></p>
+          <div class="timeline-nav-row">
+            <a href="analytics.html" class="button button--secondary">Analytics Dashboard</a>
+          </div>
+        </header>
+
+        <div class="timeline-summary card" id="timeline-summary" aria-live="polite"></div>
+
+        <section class="timeline-block" aria-labelledby="daily-timeline-heading">
+          <h3 id="daily-timeline-heading">Daily Study Timeline</h3>
+          <div class="timeline-chart-card card">
+            <canvas id="daily-timeline-chart" role="img" aria-label="최근 14일 날짜별 학습 시간 및 풀이량 그래프"></canvas>
+          </div>
+        </section>
+
+        <div class="timeline-grid">
+          <section class="timeline-block" aria-labelledby="accuracy-heading">
+            <h3 id="accuracy-heading">Accuracy Growth</h3>
+            <div class="timeline-chart-card card">
+              <canvas id="accuracy-growth-chart" role="img" aria-label="날짜별 정답률 및 이동 평균 그래프"></canvas>
+            </div>
+          </section>
+
+          <section class="timeline-block" aria-labelledby="tutor-heading">
+            <h3 id="tutor-heading">Tutor Usage Analytics</h3>
+            <div class="timeline-chart-card card timeline-chart-card--compact">
+              <canvas id="tutor-usage-chart" role="img" aria-label="AI Tutor 일별 조회 및 활용 비율 그래프"></canvas>
+            </div>
+          </section>
+        </div>
+
+        <section class="timeline-block" aria-labelledby="habit-heading">
+          <h3 id="habit-heading">Learning Habit</h3>
+          <div class="habit-grid">
+            <article class="habit-card card">
+              <h4>가장 많이 공부한 시간대</h4>
+              <div id="habit-peak-hour"></div>
+            </article>
+            <article class="habit-card card">
+              <h4>가장 많이 학습한 Pattern</h4>
+              <div id="habit-top-pattern"></div>
+            </article>
+            <article class="habit-card card habit-card--wide">
+              <h4>취약 Pattern 변화 (전반 7일 → 후반 7일)</h4>
+              <ul class="weak-change-list" id="habit-weak-changes" role="list"></ul>
+            </article>
+          </div>
+          <div class="timeline-chart-card card" style="margin-top: 1rem;">
+            <canvas id="hourly-habit-chart" role="img" aria-label="시간대별 학습 활동 분포 그래프"></canvas>
+          </div>
+        </section>
+      </section>
+
+      <section class="empty-state card" id="empty-state" hidden>
+        <h2>학습 이벤트 없음</h2>
+        <p>문제 풀이·AI Tutor·모의시험을 진행하면 Timeline Dashboard에 학습 성장 기록이 표시됩니다.</p>
+        <a href="question.html" class="button button--primary">문제 풀이 시작</a>
+        <a href="analytics.html" class="button button--secondary">Analytics Dashboard</a>
+      </section>
+
+      <div class="loading-state card" id="loading-state">
+        <p>Timeline 분석 중...</p>
+      </div>
+      <div class="error-state card" id="error-state" hidden>
+        <p id="error-message"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2026 AI Exam Learning Platform v2 · DB phase1-v1.0 (Frozen)</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initTimelinePage } from './js/timeline-engine.js';
+    initTimelinePage();
+  </script>
+</body>
+</html>

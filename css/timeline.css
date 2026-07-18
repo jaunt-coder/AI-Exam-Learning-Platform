@@ -1,0 +1,226 @@
+/**
+ * AI Exam Learning Platform v2
+ * Timeline Dashboard Styles — Phase 7.3
+ */
+
+.header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-title-link:hover {
+  color: var(--color-primary);
+}
+
+.header-nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background-color var(--transition);
+}
+
+.button--ghost:hover {
+  background-color: var(--color-bg);
+}
+
+.button--sm {
+  font-size: 0.8125rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.section-desc {
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+
+.timeline-main {
+  padding: 2rem 0 3rem;
+}
+
+.timeline-meta {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+
+.timeline-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.timeline-summary .summary-item {
+  text-align: center;
+}
+
+.timeline-summary .summary-item__value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.timeline-summary .summary-item__value--success {
+  color: var(--color-success);
+}
+
+.timeline-summary .summary-item__value--tutor {
+  color: #7c3aed;
+}
+
+.timeline-summary .summary-item__label {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.timeline-block {
+  margin-bottom: 2.5rem;
+}
+
+.timeline-block h3 {
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.timeline-chart-card {
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.timeline-chart-card canvas {
+  display: block;
+  width: 100%;
+  height: 280px;
+}
+
+.timeline-chart-card--compact canvas {
+  height: 220px;
+}
+
+.timeline-nav-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.habit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.habit-card {
+  padding: 1.25rem;
+  min-height: 140px;
+}
+
+.habit-card h4 {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.habit-card strong {
+  display: block;
+  font-size: 1.0625rem;
+  margin-bottom: 0.35rem;
+}
+
+.habit-meta {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin: 0.35rem 0 0.75rem;
+}
+
+.habit-card--wide {
+  grid-column: span 1;
+}
+
+.weak-change-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.weak-change-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.weak-change-body h4 {
+  font-size: 0.9375rem;
+  margin-bottom: 0.25rem;
+}
+
+.weak-change-delta {
+  color: var(--color-error);
+  font-weight: 700;
+  margin-left: 0.35rem;
+}
+
+@media (max-width: 1024px) {
+  .timeline-grid,
+  .habit-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-summary {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .weak-change-card {
+    flex-wrap: wrap;
+  }
+}

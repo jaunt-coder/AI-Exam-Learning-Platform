@@ -17,14 +17,14 @@ import {
   createSessionScore,
   updateSessionScore,
   formatSessionScore,
-  getSolutionDisplay,
   getResultMessage,
-  getMemoryPoint,
   getWrongAnswerCount,
   filterQuestionsByPattern,
 } from './question-engine.js';
 import { getStatisticsForPattern } from './pattern-engine.js';
-import { generateAiExplanation } from './ai-tutor-engine.js';
+import { generateTutorLesson } from './ai-tutor-engine.js';
+import { renderTutorLesson } from './ai-tutor-render.js';
+import { trackQuestionStart, trackTutorView } from './learning-event.js';
 
 const state = {
   master: null,
@@ -38,6 +38,7 @@ const state = {
   lastQuestion: null,
   lastResult: null,
   aiLevel: 'beginner',
+  tutorViewed: false,
 };
 
 function applyTheme() {
@@ -222,6 +223,9 @@ function renderSolveView(question) {
   state.currentPatternId = question.patternId;
   state.filteredQuestions = pool;
   state.currentIndex = pool.findIndex((q) => q.questionId === question.questionId);
+  state.tutorViewed = false;
+
+  trackQuestionStart(question);
 
   $('back-to-list').href = `question.html?pattern=${encodeURIComponent(question.patternId)}`;
 
@@ -240,8 +244,6 @@ function renderSolveView(question) {
   renderChoices(question);
 
   hide($('result-panel'));
-  hide($('solution-panel'));
-  hide($('memory-panel'));
   hide($('ai-tutor-panel'));
   hide($('ai-explanation-output'));
   $('ai-explanation-output').innerHTML = '';
@@ -254,45 +256,29 @@ function renderSolveView(question) {
   setChoiceStates(null, null, false);
 }
 
-function renderAiExplanation(explanation) {
-  const out = $('ai-explanation-output');
-  out.innerHTML = '';
-
-  explanation.sections.forEach((section) => {
-    const wrap = document.createElement('section');
-    wrap.className = 'ai-section';
-    wrap.dataset.section = section.id;
-
-    const title = document.createElement('h4');
-    title.className = 'ai-section__title';
-    title.textContent = section.title;
-
-    const body = document.createElement('pre');
-    body.className = 'ai-section__body';
-    body.textContent = section.content;
-
-    wrap.append(title, body);
-    out.appendChild(wrap);
-  });
-
-  show(out);
-}
-
 function runAiExplanation() {
   if (!state.lastQuestion || !state.lastResult) return;
 
   const pattern = getPatternById(state.patterns, state.lastQuestion.patternId);
   const stats = getStatisticsForPattern(state.statistics, state.lastQuestion.patternId);
 
-  const explanation = generateAiExplanation({
+  const lesson = generateTutorLesson({
     question: state.lastQuestion,
     pattern,
     result: state.lastResult,
     statistics: stats,
+    allQuestions: state.questions,
+    allPatterns: state.patterns,
     level: state.aiLevel,
   });
 
-  renderAiExplanation(explanation);
+  renderTutorLesson(lesson, $('ai-explanation-output'));
+  show($('ai-explanation-output'));
+
+  if (!state.tutorViewed) {
+    trackTutorView(state.lastQuestion);
+    state.tutorViewed = true;
+  }
 }
 
 function bindAiTutorEvents() {
@@ -300,14 +286,12 @@ function bindAiTutorEvents() {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.ai-level-btn').forEach((b) => b.classList.remove('is-active'));
       btn.classList.add('is-active');
-      state.aiLevel = btn.dataset.level || 'intermediate';
-      if (!$('ai-explanation-output').hidden) {
+      state.aiLevel = btn.dataset.level || 'beginner';
+      if (state.lastQuestion && state.lastResult) {
         runAiExplanation();
       }
     });
   });
-
-  $('ai-generate-btn').addEventListener('click', runAiExplanation);
 }
 
 function showResult(question, result) {
@@ -330,12 +314,7 @@ function showResult(question, result) {
     updateScoreBar();
   }
 
-  $('solution-text').textContent = getSolutionDisplay(question);
-  $('memory-text').textContent = getMemoryPoint(question, pattern);
-
   show(panel);
-  show($('solution-panel'));
-  show($('memory-panel'));
   show($('ai-tutor-panel'));
   hide($('ai-explanation-output'));
   $('ai-explanation-output').innerHTML = '';
@@ -343,6 +322,7 @@ function showResult(question, result) {
   $('submit-btn').hidden = true;
 
   setChoiceStates(result.selectedAnswer, result.correctAnswer, true);
+  runAiExplanation();
 
   if (!result.correct) {
     const link = $('ai-standalone-link');
@@ -355,7 +335,6 @@ function showResult(question, result) {
       link.href = `ai-tutor.html?${params.toString()}`;
       show($('ai-standalone-link-wrap'));
     }
-    runAiExplanation();
   }
 }
 
@@ -393,7 +372,10 @@ function onSubmit(e) {
   if (!selected) return;
 
   const result = gradeAnswer(question, Number(selected.value));
-  recordAttempt(question, result);
+  recordAttempt(question, result, {
+    trackLearningEvent: true,
+    usedTutor: state.tutorViewed,
+  });
   updateSessionScore(state.session, result.correct);
   showResult(question, result);
 }

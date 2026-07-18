@@ -1,6 +1,6 @@
 /**
  * AI Exam Learning Platform v2
- * AI Tutor Page — Phase 5 standalone UI
+ * AI Tutor Page — AI 과외 선생님 v2
  */
 
 import {
@@ -12,7 +12,8 @@ import {
 import { getItem, STORAGE_KEYS } from './storage.js';
 import { getStatisticsForPattern } from './pattern-engine.js';
 import { getWrongAnswerEntries, buildRetryUrl } from './wrong-note-engine.js';
-import { generateAiExplanation } from './ai-tutor-engine.js';
+import { generateTutorLesson } from './ai-tutor-engine.js';
+import { renderTutorLesson } from './ai-tutor-render.js';
 
 const state = {
   questions: [],
@@ -52,31 +53,7 @@ function firstWrongChoice(question) {
   return 1;
 }
 
-function renderAiExplanation(explanation) {
-  const out = $('ai-explanation-output');
-  out.innerHTML = '';
-
-  explanation.sections.forEach((section) => {
-    const wrap = document.createElement('section');
-    wrap.className = 'ai-section';
-    wrap.dataset.section = section.id;
-
-    const title = document.createElement('h4');
-    title.className = 'ai-section__title';
-    title.textContent = section.title;
-
-    const body = document.createElement('pre');
-    body.className = 'ai-section__body';
-    body.textContent = section.content;
-
-    wrap.append(title, body);
-    out.appendChild(wrap);
-  });
-
-  show(out);
-}
-
-function runAiExplanation() {
+function runTutorLesson() {
   const question = getQuestionById(state.questions, state.selectedQuestionId);
   if (!question || !state.selectedWrongChoice) return;
 
@@ -90,15 +67,18 @@ function runAiExplanation() {
     correctAnswer: correct,
   };
 
-  const explanation = generateAiExplanation({
+  const lesson = generateTutorLesson({
     question,
     pattern,
     result,
     statistics: stats,
+    allQuestions: state.questions,
+    allPatterns: state.patterns,
     level: state.aiLevel,
   });
 
-  renderAiExplanation(explanation);
+  renderTutorLesson(lesson, $('ai-explanation-output'));
+  show($('ai-explanation-output'));
 }
 
 function renderChoices(question) {
@@ -123,7 +103,7 @@ function renderChoices(question) {
 
     input.addEventListener('change', () => {
       state.selectedWrongChoice = num;
-      runAiExplanation();
+      runTutorLesson();
     });
 
     label.append(input, document.createTextNode(` ${getChoiceLabel(num)} ${text}`));
@@ -145,7 +125,7 @@ function selectQuestion(questionId) {
 
   const pattern = getPatternById(state.patterns, question.patternId);
   $('ai-workspace-heading').textContent = question.title || question.questionId;
-  $('ai-question-meta').textContent = `${question.questionId} · ${pattern?.name || question.patternId} · ${question.examYear || '-'}년`;
+  $('ai-question-meta').textContent = `${question.questionId} · ${pattern?.name || question.patternId} · ${question.year || '-'}년`;
   $('ai-question-stem').textContent = question.question;
   $('ai-retry-link').href = buildRetryUrl(questionId);
 
@@ -154,7 +134,7 @@ function selectQuestion(questionId) {
   show($('ai-workspace'));
   hide($('ai-explanation-output'));
   $('ai-explanation-output').innerHTML = '';
-  runAiExplanation();
+  runTutorLesson();
 
   const url = new URL(window.location.href);
   url.searchParams.set('id', questionId);
@@ -194,13 +174,11 @@ function bindEvents() {
       document.querySelectorAll('.ai-level-btn').forEach((b) => b.classList.remove('is-active'));
       btn.classList.add('is-active');
       state.aiLevel = btn.dataset.level || 'beginner';
-      if (!$('ai-explanation-output').hidden) {
-        runAiExplanation();
+      if (state.selectedQuestionId) {
+        runTutorLesson();
       }
     });
   });
-
-  $('ai-generate-btn').addEventListener('click', runAiExplanation);
 }
 
 function showError(message) {
