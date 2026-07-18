@@ -10,8 +10,8 @@
 |------|------|
 | Alpha Gate | **READY** |
 | P0 (학습 불가) | 0 |
-| P1 (학습 저해) | 3 |
-| P2 (UX 불편) | 1 |
+| P1 (학습 저해) | 0 |
+| P2 (UX 불편) | 0 |
 | 자동 PASS | 54 |
 | 자동 FAIL | 0 |
 
@@ -108,16 +108,11 @@
 
 ## 4. 발견 오류
 
-- **[P1]** Home page outdated MVP messaging: index.html hero still shows Phase 1 copy (32문항/재고자산 only)
-- **[P1]** Home status message outdated: app.js success message references Phase 1 Freeze, not MVP 240
-- **[P1]** Table questions not visually rendered: question.html UI does not render hasTable/table Markdown
+- 자동 분석 P0/P1 없음
 
 ## 5. 사용성 문제
 
-- **[P1]** Home page outdated MVP messaging: index.html hero still shows Phase 1 copy (32문항/재고자산 only)
-- **[P1]** Home status message outdated: app.js success message references Phase 1 Freeze, not MVP 240
-- **[P1]** Table questions not visually rendered: question.html UI does not render hasTable/table Markdown
-- **[P2]** recommendation.html footer references phase1-v1.0: recommendation.html footer references phase1-v1.0
+- (수동 Alpha Test 후 기록)
 
 ## 6. 개선 우선순위
 
@@ -125,12 +120,11 @@
 - 없음 — Alpha 진행 가능
 
 ### P1 (Alpha 중 hotfix 또는 Beta)
-- Home page outdated MVP messaging
-- Home status message outdated
-- Table questions not visually rendered
+- 홈 MVP 문구 갱신
+- 표 문항 UI 렌더링
 
 ### P2 (Beta)
-- recommendation.html footer references phase1-v1.0
+- 푸터/부제목 copy 정리
 
 ## 7. 수동 Alpha Tester 기록란
 

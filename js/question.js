@@ -86,11 +86,64 @@ function gradeClass(grade) {
 
 function getContextText(question) {
   const stem = question.question || '';
-  const original = question.originalQuestion || '';
+  let original = question.originalQuestion || '';
+  const table = question.table ? String(question.table).trim() : '';
+  if (table && original.includes(table)) {
+    original = original.replace(table, '').trim();
+  }
   if (!original || original.trim() === stem.trim()) return '';
   const ctx = original.replace(stem, '').trim();
   if (!ctx || ctx.length < 20) return '';
+  if (/^\|.+\|$/m.test(ctx) && !ctx.replace(/\|.+\|/g, '').trim()) return '';
   return ctx.length > 1200 ? `${ctx.slice(0, 1200)}…` : ctx;
+}
+
+function parseMarkdownTableRow(line) {
+  return line
+    .trim()
+    .replace(/^\|/, '')
+    .replace(/\|$/, '')
+    .split('|')
+    .map((cell) => cell.trim());
+}
+
+function renderMarkdownTable(markdown) {
+  const lines = String(markdown)
+    .trim()
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const dataRows = lines.filter((line) => !/^\|\s*[-:| ]+\|\s*$/.test(line));
+  if (dataRows.length === 0) return '';
+
+  const rows = dataRows.map(parseMarkdownTableRow).filter((cells) => cells.length > 0);
+  if (rows.length === 0) return '';
+
+  const [headerCells, ...bodyRows] = rows;
+  const thead = headerCells.map((cell) => `<th scope="col">${escapeHtml(cell)}</th>`).join('');
+  const tbody = bodyRows
+    .map(
+      (cells) =>
+        `<tr>${cells.map((cell) => `<td>${escapeHtml(cell)}</td>`).join('')}</tr>`,
+    )
+    .join('');
+
+  return `<table class="question-table"><thead><tr>${thead}</tr></thead><tbody>${tbody}</tbody></table>`;
+}
+
+function renderQuestionTable(question) {
+  const el = $('question-table');
+  if (!el) return;
+
+  const tableMarkdown = question.table ? String(question.table).trim() : '';
+  if (question.hasTable && tableMarkdown) {
+    el.innerHTML = renderMarkdownTable(tableMarkdown);
+    show(el);
+    return;
+  }
+
+  el.innerHTML = '';
+  hide(el);
 }
 
 function renderPatternList() {
@@ -241,6 +294,7 @@ function renderSolveView(question) {
   }
 
   $('question-stem').textContent = question.question;
+  renderQuestionTable(question);
   renderChoices(question);
 
   hide($('result-panel'));

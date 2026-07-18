@@ -23,7 +23,7 @@ function renderHomeStats(questions) {
 
   el.innerHTML = `
     <ul class="stats-list">
-      <li><strong>${questions.length}</strong> PDF 검증 문항</li>
+      <li><strong>${questions.length}</strong> MVP 문항</li>
       <li><strong>${totalAnswered}</strong> 풀이 완료</li>
       <li><strong>${pct}%</strong> 누적 정답률</li>
     </ul>
@@ -34,17 +34,20 @@ async function initApp() {
   applyTheme();
 
   try {
-    const { master, questions, valid, errors } = await loadPhase1Database();
+    const { questions, patterns, valid, errors, dbSet, dbLabel } = await loadPhase1Database();
 
     if (!valid) {
       showPlatformStatus(`Database 검증 실패: ${errors.join(', ')}`, 'error');
       return;
     }
 
-    showPlatformStatus(
-      `Phase 1 DB 로드 완료 · 재고자산 ${questions.length}문항 (phase1-v1.0 Frozen)`,
-      'success'
-    );
+    const patternCount = patterns?.length ?? 0;
+    const statusMessage =
+      dbSet === 'mvp'
+        ? `MVP DB 로드 완료 · 회계학 ${questions.length}문항 · ${patternCount} Pattern`
+        : `${dbLabel} · ${questions.length}문항`;
+
+    showPlatformStatus(statusMessage, 'success');
     renderHomeStats(questions);
   } catch (error) {
     showPlatformStatus(
