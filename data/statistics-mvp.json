@@ -1,0 +1,304 @@
+[
+  {
+    "patternId": "ACC_COST_001",
+    "chapterId": "ACC_COST",
+    "totalCount": 17,
+    "years": [
+      2015,
+      2017,
+      2018,
+      2020,
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2024,
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_COST_002",
+    "chapterId": "ACC_COST",
+    "totalCount": 1,
+    "years": [
+      2024
+    ],
+    "recentYears": [
+      2024
+    ],
+    "priority": "LOW",
+    "grade": "B"
+  },
+  {
+    "patternId": "ACC_EQ_001",
+    "chapterId": "ACC_EQ",
+    "totalCount": 13,
+    "years": [
+      2015,
+      2017,
+      2018,
+      2020,
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2024,
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_FIN_001",
+    "chapterId": "ACC_FIN",
+    "totalCount": 3,
+    "years": [
+      2015,
+      2017,
+      2025
+    ],
+    "recentYears": [
+      2025
+    ],
+    "priority": "MEDIUM",
+    "grade": "A"
+  },
+  {
+    "patternId": "ACC_FIN_002",
+    "chapterId": "ACC_FIN",
+    "totalCount": 11,
+    "years": [
+      2015,
+      2017,
+      2018,
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2024,
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_FS_001",
+    "chapterId": "ACC_FS",
+    "totalCount": 20,
+    "years": [
+      2015,
+      2017,
+      2018,
+      2020,
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2024,
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_GEN_001",
+    "chapterId": "ACC_GEN",
+    "totalCount": 15,
+    "years": [
+      2015,
+      2017,
+      2018,
+      2020,
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2024,
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_INT_001",
+    "chapterId": "ACC_INT",
+    "totalCount": 5,
+    "years": [
+      2015,
+      2017,
+      2020,
+      2024
+    ],
+    "recentYears": [
+      2024
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_INV_001",
+    "chapterId": "ACC_INV",
+    "totalCount": 2,
+    "years": [
+      2015,
+      2018
+    ],
+    "recentYears": [],
+    "priority": "MEDIUM",
+    "grade": "A"
+  },
+  {
+    "patternId": "ACC_INV_003",
+    "chapterId": "ACC_INV",
+    "totalCount": 4,
+    "years": [
+      2015,
+      2025
+    ],
+    "recentYears": [
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_INV_004",
+    "chapterId": "ACC_INV",
+    "totalCount": 13,
+    "years": [
+      2015,
+      2017,
+      2018,
+      2020,
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2024,
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_INV_006",
+    "chapterId": "ACC_INV",
+    "totalCount": 16,
+    "years": [
+      2015,
+      2017,
+      2018,
+      2020,
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2024,
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_INV_007",
+    "chapterId": "ACC_INV",
+    "totalCount": 3,
+    "years": [
+      2018,
+      2024
+    ],
+    "recentYears": [
+      2024
+    ],
+    "priority": "MEDIUM",
+    "grade": "A"
+  },
+  {
+    "patternId": "ACC_LEASE_001",
+    "chapterId": "ACC_LEASE",
+    "totalCount": 2,
+    "years": [
+      2015,
+      2025
+    ],
+    "recentYears": [
+      2025
+    ],
+    "priority": "MEDIUM",
+    "grade": "A"
+  },
+  {
+    "patternId": "ACC_PPE_001",
+    "chapterId": "ACC_PPE",
+    "totalCount": 63,
+    "years": [
+      2015,
+      2017,
+      2018,
+      2020,
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2024,
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_PPE_002",
+    "chapterId": "ACC_PPE",
+    "totalCount": 30,
+    "years": [
+      2015,
+      2017,
+      2018,
+      2020,
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2024,
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_REV_001",
+    "chapterId": "ACC_REV",
+    "totalCount": 19,
+    "years": [
+      2015,
+      2017,
+      2018,
+      2020,
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2024,
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_TAX_001",
+    "chapterId": "ACC_TAX",
+    "totalCount": 3,
+    "years": [
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2024,
+      2025
+    ],
+    "priority": "MEDIUM",
+    "grade": "A"
+  }
+]

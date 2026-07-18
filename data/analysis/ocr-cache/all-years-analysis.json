@@ -1,0 +1,376 @@
+{
+  "generatedAt": "2026-07-19",
+  "years": {
+    "2010": {
+      "exam_file": "2010.hwp",
+      "exam_format": "hwp",
+      "text_pdf": "N/A",
+      "ocr_required": "Y",
+      "markers": 0,
+      "extracted": 0,
+      "five_choices": 0,
+      "choice_rate": 0.0,
+      "answer_json": 0,
+      "answer_linkable": "partial",
+      "grade": "D",
+      "build_ready": "no",
+      "notes": [
+        "배포용 HWP — 본문 추출 불가",
+        "HWP 본문 추출 불가 — PDF 대체 필요",
+        "정답 원본 있음 — JSON/OCR 변환 필요"
+      ],
+      "detail": null
+    },
+    "2011": {
+      "exam_file": "2011.hwp",
+      "exam_format": "hwp",
+      "text_pdf": "N/A",
+      "ocr_required": "Y",
+      "markers": 0,
+      "extracted": 0,
+      "five_choices": 0,
+      "choice_rate": 0.0,
+      "answer_json": 0,
+      "answer_linkable": "partial",
+      "grade": "D",
+      "build_ready": "no",
+      "notes": [
+        "'PrvText not found'",
+        "정답 원본 있음 — JSON/OCR 변환 필요"
+      ],
+      "detail": null
+    },
+    "2012": {
+      "exam_file": "2012.pdf",
+      "exam_format": "pdf",
+      "text_pdf": "Y",
+      "ocr_required": "N",
+      "markers": 40,
+      "extracted": 40,
+      "five_choices": 40,
+      "choice_rate": 100.0,
+      "answer_json": 0,
+      "answer_linkable": "no",
+      "grade": "C",
+      "build_ready": "no",
+      "notes": [
+        "정답 파일 없음"
+      ],
+      "detail": {
+        "markers": 40,
+        "extracted": 40,
+        "five_choices": 40,
+        "used_ocr": false
+      }
+    },
+    "2013": {
+      "exam_file": "2013.hwp",
+      "exam_format": "hwp",
+      "text_pdf": "N/A",
+      "ocr_required": "Y",
+      "markers": 0,
+      "extracted": 0,
+      "five_choices": 0,
+      "choice_rate": 0.0,
+      "answer_json": 0,
+      "answer_linkable": "partial",
+      "grade": "D",
+      "build_ready": "no",
+      "notes": [
+        "'PrvText not found'",
+        "정답 원본 있음 — JSON/OCR 변환 필요"
+      ],
+      "detail": null
+    },
+    "2014": {
+      "exam_file": "2014.hwp",
+      "exam_format": "hwp",
+      "text_pdf": "N/A",
+      "ocr_required": "Y",
+      "markers": 0,
+      "extracted": 0,
+      "five_choices": 0,
+      "choice_rate": 0.0,
+      "answer_json": 0,
+      "answer_linkable": "partial",
+      "grade": "D",
+      "build_ready": "no",
+      "notes": [
+        "배포용 HWP — 본문 추출 불가",
+        "HWP 본문 추출 불가 — PDF 대체 필요",
+        "정답 원본 있음 — JSON/OCR 변환 필요"
+      ],
+      "detail": null
+    },
+    "2015": {
+      "exam_file": "2015.pdf",
+      "exam_format": "pdf",
+      "text_pdf": "Y",
+      "ocr_required": "N",
+      "markers": 40,
+      "extracted": 40,
+      "five_choices": 40,
+      "choice_rate": 100.0,
+      "answer_json": 0,
+      "answer_linkable": "partial",
+      "grade": "B",
+      "build_ready": "no",
+      "notes": [
+        "정답 원본 있음 — JSON/OCR 변환 필요"
+      ],
+      "detail": {
+        "markers": 40,
+        "extracted": 40,
+        "five_choices": 40,
+        "used_ocr": false
+      }
+    },
+    "2016": {
+      "exam_file": "",
+      "exam_format": "",
+      "text_pdf": "N/A",
+      "ocr_required": "N/A",
+      "markers": 0,
+      "extracted": 0,
+      "five_choices": 0,
+      "choice_rate": 0.0,
+      "answer_json": 0,
+      "answer_linkable": "partial",
+      "grade": "F",
+      "build_ready": "no",
+      "notes": [
+        "시험지 원본 없음",
+        "정답 원본만 존재 (2016 등)"
+      ],
+      "detail": null
+    },
+    "2017": {
+      "exam_file": "2017.pdf",
+      "exam_format": "pdf",
+      "text_pdf": "Y",
+      "ocr_required": "N",
+      "markers": 40,
+      "extracted": 40,
+      "five_choices": 40,
+      "choice_rate": 100.0,
+      "answer_json": 40,
+      "answer_linkable": "yes",
+      "grade": "A",
+      "build_ready": "yes",
+      "notes": [],
+      "detail": {
+        "markers": 40,
+        "extracted": 40,
+        "five_choices": 40,
+        "used_ocr": false
+      }
+    },
+    "2018": {
+      "exam_file": "2018.pdf",
+      "exam_format": "pdf",
+      "text_pdf": "Y",
+      "ocr_required": "N",
+      "markers": 40,
+      "extracted": 40,
+      "five_choices": 40,
+      "choice_rate": 100.0,
+      "answer_json": 40,
+      "answer_linkable": "yes",
+      "grade": "A",
+      "build_ready": "yes",
+      "notes": [],
+      "detail": {
+        "markers": 40,
+        "extracted": 40,
+        "five_choices": 40,
+        "used_ocr": false
+      }
+    },
+    "2019": {
+      "exam_file": "2019.hwp",
+      "exam_format": "hwp",
+      "text_pdf": "N/A",
+      "ocr_required": "Y",
+      "markers": 0,
+      "extracted": 0,
+      "five_choices": 0,
+      "choice_rate": 0.0,
+      "answer_json": 40,
+      "answer_linkable": "yes",
+      "grade": "D",
+      "build_ready": "no",
+      "notes": [
+        "배포용 HWP — 본문 추출 불가",
+        "HWP 본문 추출 불가 — PDF 대체 필요"
+      ],
+      "detail": null
+    },
+    "2020": {
+      "exam_file": "2020.pdf",
+      "exam_format": "pdf",
+      "text_pdf": "Y",
+      "ocr_required": "N",
+      "markers": 40,
+      "extracted": 40,
+      "five_choices": 40,
+      "choice_rate": 100.0,
+      "answer_json": 38,
+      "answer_linkable": "partial",
+      "grade": "B",
+      "build_ready": "partial",
+      "notes": [
+        "정답 JSON 38/40"
+      ],
+      "detail": {
+        "markers": 40,
+        "extracted": 40,
+        "five_choices": 40,
+        "used_ocr": false
+      }
+    },
+    "2021": {
+      "exam_file": "2021.pdf",
+      "exam_format": "pdf",
+      "text_pdf": "N",
+      "ocr_required": "Y",
+      "markers": 39,
+      "extracted": 40,
+      "five_choices": 14,
+      "choice_rate": 35.0,
+      "answer_json": 39,
+      "answer_linkable": "partial",
+      "grade": "D",
+      "build_ready": "partial",
+      "notes": [
+        "OCR 텍스트 사용",
+        "문항 마커 39/40 (1개 누락)",
+        "5지 보기 14/40 (35.0%)",
+        "정답 JSON 39/40"
+      ],
+      "detail": {
+        "markers": 39,
+        "extracted": 40,
+        "five_choices": 14,
+        "used_ocr": true
+      }
+    },
+    "2022": {
+      "exam_file": "2022.pdf",
+      "exam_format": "pdf",
+      "text_pdf": "N",
+      "ocr_required": "Y",
+      "markers": 28,
+      "extracted": 37,
+      "five_choices": 20,
+      "choice_rate": 50.0,
+      "answer_json": 40,
+      "answer_linkable": "yes",
+      "grade": "D",
+      "build_ready": "partial",
+      "notes": [
+        "OCR 텍스트 사용",
+        "문항 마커 28/40 (12개 누락)",
+        "5지 보기 20/40 (50.0%)"
+      ],
+      "detail": {
+        "markers": 28,
+        "extracted": 37,
+        "five_choices": 20,
+        "used_ocr": true
+      }
+    },
+    "2023": {
+      "exam_file": "2023.pdf",
+      "exam_format": "pdf",
+      "text_pdf": "N",
+      "ocr_required": "Y",
+      "markers": 31,
+      "extracted": 40,
+      "five_choices": 33,
+      "choice_rate": 82.5,
+      "answer_json": 0,
+      "answer_linkable": "partial",
+      "grade": "D",
+      "build_ready": "no",
+      "notes": [
+        "OCR 텍스트 사용",
+        "문항 마커 31/40 (9개 누락)",
+        "5지 보기 33/40 (82.5%)",
+        "정답 원본 있음 — JSON/OCR 변환 필요"
+      ],
+      "detail": {
+        "markers": 31,
+        "extracted": 40,
+        "five_choices": 33,
+        "used_ocr": true
+      }
+    },
+    "2024": {
+      "exam_file": "2024.pdf",
+      "exam_format": "pdf",
+      "text_pdf": "Y",
+      "ocr_required": "N",
+      "markers": 40,
+      "extracted": 40,
+      "five_choices": 40,
+      "choice_rate": 100.0,
+      "answer_json": 40,
+      "answer_linkable": "yes",
+      "grade": "A",
+      "build_ready": "yes",
+      "notes": [],
+      "detail": {
+        "markers": 40,
+        "extracted": 40,
+        "five_choices": 40,
+        "used_ocr": false
+      }
+    },
+    "2025": {
+      "exam_file": "2025.pdf",
+      "exam_format": "pdf",
+      "text_pdf": "Y",
+      "ocr_required": "N",
+      "markers": 40,
+      "extracted": 40,
+      "five_choices": 40,
+      "choice_rate": 100.0,
+      "answer_json": 26,
+      "answer_linkable": "partial",
+      "grade": "B",
+      "build_ready": "no",
+      "notes": [
+        "정답 JSON 26/40"
+      ],
+      "detail": {
+        "markers": 40,
+        "extracted": 40,
+        "five_choices": 40,
+        "used_ocr": false
+      }
+    },
+    "2026": {
+      "exam_file": "2026.pdf",
+      "exam_format": "pdf",
+      "text_pdf": "Y",
+      "ocr_required": "N",
+      "markers": 40,
+      "extracted": 40,
+      "five_choices": 40,
+      "choice_rate": 100.0,
+      "answer_json": 0,
+      "answer_linkable": "no",
+      "grade": "C",
+      "build_ready": "no",
+      "notes": [
+        "정답 파일 없음"
+      ],
+      "detail": {
+        "markers": 40,
+        "extracted": 40,
+        "five_choices": 40,
+        "used_ocr": false
+      }
+    }
+  }
+}
