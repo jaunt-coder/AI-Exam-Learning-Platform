@@ -1,0 +1,133 @@
+[
+  {
+    "patternId": "ACC_INV_001",
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "name": "기말재고 포함 여부 판단",
+    "grade": "S",
+    "frequency": 5,
+    "years": [
+      2018,
+      2019,
+      2021,
+      2023
+    ],
+    "importance": 85,
+    "relatedQuestions": [
+      "ACC_INV_Q001",
+      "ACC_INV_Q006",
+      "ACC_INV_Q019",
+      "ACC_INV_Q022",
+      "ACC_INV_Q037"
+    ]
+  },
+  {
+    "patternId": "ACC_INV_003",
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "name": "운반비·부대비용과 재고원가",
+    "grade": "A",
+    "frequency": 2,
+    "years": [
+      2019
+    ],
+    "importance": 70,
+    "relatedQuestions": [
+      "ACC_INV_Q011",
+      "ACC_INV_Q012"
+    ]
+  },
+  {
+    "patternId": "ACC_INV_004",
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "name": "매출원가 계산 (PER법)",
+    "grade": "S",
+    "frequency": 14,
+    "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "importance": 95,
+    "relatedQuestions": [
+      "ACC_INV_Q005",
+      "ACC_INV_Q008",
+      "ACC_INV_Q009",
+      "ACC_INV_Q010",
+      "ACC_INV_Q013",
+      "ACC_INV_Q015",
+      "ACC_INV_Q018",
+      "ACC_INV_Q020",
+      "ACC_INV_Q024",
+      "ACC_INV_Q027",
+      "ACC_INV_Q035",
+      "ACC_INV_Q036",
+      "ACC_INV_Q038",
+      "ACC_INV_Q042"
+    ]
+  },
+  {
+    "patternId": "ACC_INV_005",
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "name": "PER vs PR 재고조사법",
+    "grade": "B",
+    "frequency": 1,
+    "years": [
+      2020
+    ],
+    "importance": 65,
+    "relatedQuestions": [
+      "ACC_INV_Q014"
+    ]
+  },
+  {
+    "patternId": "ACC_INV_006",
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "name": "FIFO·총평균법 매출원가",
+    "grade": "S",
+    "frequency": 6,
+    "years": [
+      2018,
+      2021,
+      2022
+    ],
+    "importance": 90,
+    "relatedQuestions": [
+      "ACC_INV_Q002",
+      "ACC_INV_Q004",
+      "ACC_INV_Q021",
+      "ACC_INV_Q023",
+      "ACC_INV_Q025",
+      "ACC_INV_Q031"
+    ]
+  },
+  {
+    "patternId": "ACC_INV_007",
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "name": "LCM·순실현가능가치 평가",
+    "grade": "S",
+    "frequency": 4,
+    "years": [
+      2018,
+      2022,
+      2024,
+      2025
+    ],
+    "importance": 80,
+    "relatedQuestions": [
+      "ACC_INV_Q003",
+      "ACC_INV_Q029",
+      "ACC_INV_Q039",
+      "ACC_INV_Q041"
+    ]
+  }
+]

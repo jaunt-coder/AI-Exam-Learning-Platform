@@ -1,0 +1,66 @@
+---
+description: 개발 워크플로우 및 Phase 단위 개발 규칙
+alwaysApply: true
+---
+
+# Development Workflow
+
+## MVP Execution Plan
+
+실행 우선순위: `docs/29-mvp-fast-development-roadmap.md`
+구조·원칙: `docs/00~20` 유지 (29번은 대체하지 않음)
+
+현재 목표: 감정평가사 회계학 재고자산 Pattern 학습 MVP
+
+## Phase Rule
+
+한 번에 하나의 Phase만 진행. Phase 완료 후 보고 → 다음 Phase 승인.
+Phase 1 완료 전 Frontend 개발 금지.
+
+## Feature Completion Report
+
+1. 구현 내용
+2. 생성/수정 파일
+3. 테스트 결과
+4. 코드 리뷰 PASS/FAIL
+5. 다음 Phase 진행 여부
+
+## File Structure (docs/23, docs/20)
+
+```
+index.html, css/, js/, data/, assets/, docs/
+```
+
+## Data Layer (MVP Phase 1+, docs/29)
+
+```
+data/master-db.json         ← MVP Master DB
+data/pattern-db.json        ← Pattern Database
+data/question-db.json       ← Question Database
+data/statistics.json        ← Statistics
+source/past-exams/          ← 원본 PDF
+```
+
+## JavaScript Rules
+
+- ES6 Modules (`type="module"`)
+- kebab-case 파일명
+- try/catch로 JSON·fetch·Storage 처리
+- JSON 데이터를 JS 내부에 작성 금지
+
+## Commit Format
+
+```
+feat: add inventory pattern learning
+fix: storage validation error
+docs: update question schema
+```
+
+## Document Reference
+
+- `docs/` 전체(00~29) 참조. 상세 우선순위는 `document-priority.mdc` 따름.
+- Schema 충돌 시 임의 변경 금지 → 보고 후 승인.
+
+## Quality Gate
+
+기능 추가 전: docs 확인 → Schema 충돌 검토 → Constitution → Architecture → 구현 → 테스트 → 리뷰

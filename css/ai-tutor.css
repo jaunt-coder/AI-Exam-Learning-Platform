@@ -1,0 +1,235 @@
+/* Phase 5 — AI Tutor standalone page */
+
+.ai-tutor-main {
+  padding-bottom: 3rem;
+}
+
+.ai-tutor-layout__grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.ai-sidebar h3,
+.ai-workspace__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.ai-wrong-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.ai-wrong-item-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.ai-wrong-item-btn:hover,
+.ai-wrong-item-btn.is-active {
+  border-color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.06);
+}
+
+.ai-wrong-item-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.ai-wrong-item__id {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.ai-wrong-item__pattern {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.ai-wrong-item__preview {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-top: 0.375rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ai-question-meta {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.ai-question-stem {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.ai-choice-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.ai-choice-fieldset legend {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.ai-choice-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ai-choice-item label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.ai-choice-item label:has(input:checked) {
+  border-color: var(--color-error);
+  background: rgba(220, 38, 38, 0.06);
+}
+
+.ai-workspace-actions {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.ai-empty-workspace {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-text-muted);
+}
+
+/* Shared AI Tutor panel (also in question.css) */
+.ai-tutor-panel {
+  margin-top: 0.5rem;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), rgba(139, 92, 246, 0.06));
+  border: 1px solid rgba(37, 99, 235, 0.25);
+}
+
+.ai-tutor-panel--standalone {
+  margin-top: 0;
+}
+
+.ai-tutor-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.ai-tutor-badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.15);
+  color: #7c3aed;
+}
+
+.ai-level-select {
+  display: flex;
+  gap: 0.375rem;
+  margin-bottom: 0.75rem;
+}
+
+.ai-level-btn {
+  font-size: 0.8125rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+.ai-level-btn:hover {
+  border-color: var(--color-primary);
+}
+
+.ai-level-btn.is-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.ai-generate-btn {
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.ai-explanation-output {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ai-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.ai-section__title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.ai-section__body {
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  color: var(--color-text);
+}
+
+@media (min-width: 768px) {
+  .ai-tutor-layout__grid {
+    grid-template-columns: minmax(240px, 320px) 1fr;
+  }
+
+  .ai-empty-workspace {
+    grid-column: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ai-tutor-layout__grid {
+    grid-template-columns: minmax(280px, 360px) 1fr;
+  }
+}

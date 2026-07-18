@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="모의시험 — 감정평가사 1차 회계학 재고자산">
+  <title>모의시험 | AI Exam Learning Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/exam.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <div>
+        <h1 class="site-title"><a href="index.html" class="site-title-link">AI Exam Learning Platform</a></h1>
+        <p class="site-subtitle">Phase 6 — Exam Simulation Mode</p>
+      </div>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a href="index.html" class="button button--ghost">홈</a>
+        <a href="pattern.html" class="button button--ghost">Pattern 학습</a>
+        <a href="question.html" class="button button--ghost">문제 풀이</a>
+        <a href="wrong-note.html" class="button button--ghost">오답 노트</a>
+        <a href="ai-tutor.html" class="button button--ghost">AI Tutor</a>
+        <a href="exam.html" class="button button--ghost" aria-current="page">모의시험</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main exam-main" role="main">
+    <div class="container">
+      <!-- 시험 설정 -->
+      <section id="setup-section" class="exam-setup" aria-labelledby="setup-heading" hidden>
+        <header class="section-header">
+          <h2 id="setup-heading">모의시험 설정</h2>
+          <p class="section-desc" id="exam-desc"></p>
+        </header>
+
+        <div class="exam-history-summary card" id="exam-history-summary" aria-live="polite"></div>
+
+        <div class="exam-resume card" id="exam-resume-panel" hidden>
+          <h3>진행 중인 시험</h3>
+          <p id="exam-resume-text"></p>
+          <div class="exam-resume-actions">
+            <button type="button" class="button button--primary" id="resume-exam-btn">이어서 풀기</button>
+            <button type="button" class="button button--secondary" id="abandon-exam-btn">새 시험 시작</button>
+          </div>
+        </div>
+
+        <fieldset class="exam-presets" id="exam-presets">
+          <legend>시험 유형 선택</legend>
+          <div class="preset-list" id="preset-list" role="radiogroup" aria-label="모의시험 유형"></div>
+        </fieldset>
+
+        <div class="exam-setup-actions">
+          <button type="button" class="button button--primary" id="start-exam-btn">모의시험 시작</button>
+        </div>
+      </section>
+
+      <!-- 시험 진행 -->
+      <section id="exam-section" class="exam-taking" aria-labelledby="exam-heading" hidden>
+        <div class="exam-top-bar card">
+          <div class="exam-top-bar__info">
+            <h2 id="exam-heading" class="exam-top-bar__title">모의시험</h2>
+            <p class="exam-progress-text" id="exam-progress-text" aria-live="polite"></p>
+          </div>
+          <div class="exam-timer" id="exam-timer" role="timer" aria-live="polite">
+            <span class="exam-timer__label">남은 시간</span>
+            <span class="exam-timer__value" id="timer-display">00:00</span>
+          </div>
+        </div>
+
+        <div class="exam-layout">
+          <nav class="exam-nav card" aria-label="문항 이동">
+            <h3 class="exam-nav__title">문항 목록</h3>
+            <ol class="exam-nav-grid" id="exam-nav-grid" role="list"></ol>
+            <p class="exam-nav-legend">
+              <span class="nav-dot nav-dot--current"></span> 현재
+              <span class="nav-dot nav-dot--answered"></span> 응답
+              <span class="nav-dot nav-dot--empty"></span> 미응답
+            </p>
+          </nav>
+
+          <article class="exam-question card" id="exam-question-panel">
+            <header class="exam-question-header">
+              <p class="exam-question-meta" id="exam-question-meta"></p>
+              <h3 class="exam-question-stem" id="exam-question-stem"></h3>
+            </header>
+
+            <form id="exam-answer-form" class="exam-answer-form">
+              <fieldset class="choices-fieldset">
+                <legend class="visually-hidden">답안 선택</legend>
+                <ul class="choices-list" id="exam-choices-list" role="list"></ul>
+              </fieldset>
+            </form>
+
+            <div class="exam-question-actions">
+              <button type="button" class="button button--secondary" id="prev-question-btn">이전</button>
+              <button type="button" class="button button--secondary" id="next-question-btn">다음</button>
+              <button type="button" class="button button--primary" id="submit-exam-btn">시험 제출</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 결과 분석 -->
+      <section id="result-section" class="exam-result" aria-labelledby="result-heading" hidden>
+        <header class="section-header">
+          <h2 id="result-heading">시험 결과 분석</h2>
+          <p class="section-desc" id="result-subtitle"></p>
+        </header>
+
+        <div class="result-score-grid" id="result-score-grid"></div>
+
+        <section class="result-patterns card" aria-labelledby="pattern-result-heading">
+          <h3 id="pattern-result-heading">Pattern별 성취도</h3>
+          <ul class="pattern-result-list" id="pattern-result-list" role="list"></ul>
+        </section>
+
+        <section class="result-weak card" aria-labelledby="weak-heading">
+          <h3 id="weak-heading">취약 Pattern</h3>
+          <ul class="weak-pattern-list" id="weak-pattern-list" role="list"></ul>
+        </section>
+
+        <section class="result-recommend card" aria-labelledby="recommend-heading">
+          <h3 id="recommend-heading">복습 추천</h3>
+          <ul class="recommend-list" id="recommend-list" role="list"></ul>
+        </section>
+
+        <div class="result-actions">
+          <button type="button" class="button button--primary" id="retry-exam-btn">새 모의시험</button>
+          <a href="wrong-note.html" class="button button--secondary">오답 노트</a>
+          <a href="pattern.html" class="button button--secondary">Pattern 학습</a>
+        </div>
+      </section>
+
+      <div class="loading-state card" id="loading-state">
+        <p>모의시험 데이터 로딩 중...</p>
+      </div>
+      <div class="error-state card" id="error-state" hidden>
+        <p id="error-message"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2026 AI Exam Learning Platform v2 · DB phase1-v1.0 (Frozen)</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/exam.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "exam": {
+    "examId": "APPRAISER",
+    "name": "감정평가사",
+    "description": "전문자격시험 1차",
+    "years": [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
+  },
+  "subjects": [
+    {
+      "subjectId": "ACC",
+      "name": "회계학",
+      "examId": "APPRAISER",
+      "template": "accounting",
+      "order": 1,
+      "importance": "high"
+    }
+  ],
+  "chapters": [
+    {
+      "chapterId": "ACC_INV",
+      "subjectId": "ACC",
+      "name": "재고자산",
+      "grade": "S",
+      "order": 1,
+      "frequency": 29,
+      "patternIds": [
+        "ACC_INV_001",
+        "ACC_INV_002",
+        "ACC_INV_003",
+        "ACC_INV_004",
+        "ACC_INV_005",
+        "ACC_INV_006",
+        "ACC_INV_007",
+        "ACC_INV_008"
+      ]
+    }
+  ],
+  "dataFiles": {
+    "patterns": "data/pattern-db.json",
+    "questions": "data/question-db.json",
+    "statistics": "data/statistics.json"
+  },
+  "metadata": {
+    "sourceFile": "source/past-exams/2018-2025.pdf",
+    "analysisVersion": "1.0",
+    "analysisDate": "2026-07-18",
+    "mvpPhase": 1,
+    "scope": "회계학 - 재고자산",
+    "yearRange": "2018-2025",
+    "pdfStatus": "not_placed"
+  },
+  "summary": {
+    "totalPatterns": 8,
+    "totalQuestions": 16,
+    "gradeDistribution": {
+      "S": 3,
+      "A": 4,
+      "B": 1
+    },
+    "yearCoverage": [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
+  }
+}

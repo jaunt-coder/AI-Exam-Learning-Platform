@@ -1,0 +1,34 @@
+{
+  "freezeId": "phase1-v1.0",
+  "frozenAt": "2026-07-18",
+  "status": "official",
+  "description": "Phase 1 PDF-verified official database (2018-2025 inventory)",
+  "sourcePdf": "source/past-exams/2018-2025.pdf",
+  "policy": "Immutable reference. Working copies at data/*.json must match this freeze unless Phase 2+ schema migration.",
+  "files": {
+    "master-db.json": {
+      "path": "data/master-db.json",
+      "frozenPath": "data/frozen/phase1-v1.0/master-db.json",
+      "sha256": "db65fca9ee55e2390dd5c438b4c96755defbc4e3aca08a04a53b86f8ac574edb",
+      "bytes": 1240
+    },
+    "pattern-db.json": {
+      "path": "data/pattern-db.json",
+      "frozenPath": "data/frozen/phase1-v1.0/pattern-db.json",
+      "sha256": "f730f22ba33a44bfa1c7eb6c04eadcec2a0f255bbc9ee73fa9b8c19a9479aeed",
+      "bytes": 2606
+    },
+    "question-db.json": {
+      "path": "data/question-db.json",
+      "frozenPath": "data/frozen/phase1-v1.0/question-db.json",
+      "sha256": "93ef67ba4a725d6623134421eaf7ef8234269ded5906b2c7b8cadb823f9d8f3a",
+      "bytes": 138365
+    },
+    "statistics.json": {
+      "path": "data/statistics.json",
+      "frozenPath": "data/frozen/phase1-v1.0/statistics.json",
+      "sha256": "37294c06391c795cd9289ec197826a13ea33e885db11af0cca469129a21dba4e",
+      "bytes": 1525
+    }
+  }
+}

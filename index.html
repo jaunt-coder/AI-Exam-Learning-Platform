@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Exam Learning Platform - 출제 패턴 중심 시험 학습 플랫폼">
+  <title>AI Exam Learning Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container">
+      <h1 class="site-title">AI Exam Learning Platform</h1>
+      <p class="site-subtitle">출제 패턴 중심 AI 시험 학습 플랫폼</p>
+    </div>
+  </header>
+
+  <main class="site-main" role="main">
+    <section class="hero-section" aria-labelledby="hero-heading">
+      <div class="container">
+        <h2 id="hero-heading">재고자산 Pattern 학습</h2>
+        <p class="hero-description">
+          PDF 검증 기출 32문항 · Pattern · 문제 풀이 · AI Tutor · 모의시험
+        </p>
+        <div class="status-card card" id="platform-status" aria-live="polite">
+          <p class="status-label">시스템 상태</p>
+          <p class="status-value" id="status-message">초기화 중...</p>
+        </div>
+        <div class="home-actions card" id="home-actions">
+          <h3 class="home-actions__title">학습 시작</h3>
+          <p class="home-actions__desc">Phase 1 공식 DB(phase1-v1.0) · Pattern 중심 학습</p>
+          <div class="home-stats" id="home-stats" aria-live="polite"></div>
+          <div class="home-buttons">
+            <a href="pattern.html" class="button button--primary">Pattern 학습 Dashboard</a>
+            <a href="question.html" class="button button--secondary">문제 풀이</a>
+            <a href="wrong-note.html" class="button button--secondary">오답 노트</a>
+            <a href="ai-tutor.html" class="button button--secondary">AI Tutor</a>
+            <a href="exam.html" class="button button--secondary">모의시험</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2026 AI Exam Learning Platform v2</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "exam": {
+    "examId": "APPRAISER",
+    "name": "감정평가사",
+    "description": "전문자격시험 1차",
+    "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "subjects": [
+    {
+      "subjectId": "ACC",
+      "name": "회계학",
+      "examId": "APPRAISER",
+      "template": "accounting",
+      "order": 1
+    }
+  ],
+  "chapters": [
+    {
+      "chapterId": "ACC_INV",
+      "subjectId": "ACC",
+      "name": "재고자산",
+      "grade": "S",
+      "order": 1,
+      "patternIds": [
+        "ACC_INV_001",
+        "ACC_INV_003",
+        "ACC_INV_004",
+        "ACC_INV_005",
+        "ACC_INV_006",
+        "ACC_INV_007"
+      ]
+    }
+  ],
+  "metadata": {
+    "sourceFile": "source/past-exams/2018-2025.pdf",
+    "analysisVersion": "2.0",
+    "analysisDate": "2026-07-18",
+    "pdfVerified": true,
+    "mvpPhase": 1,
+    "scope": "회계학 - 재고자산 (PDF 추출)"
+  },
+  "summary": {
+    "totalPatterns": 6,
+    "totalQuestions": 32,
+    "yearCoverage": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  }
+}

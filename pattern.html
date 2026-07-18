@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="재고자산 Pattern 학습 Dashboard — AI Exam Learning Platform">
+  <title>Pattern 학습 | AI Exam Learning Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pattern.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <div>
+        <h1 class="site-title"><a href="index.html" class="site-title-link">AI Exam Learning Platform</a></h1>
+        <p class="site-subtitle">Phase 3 — Pattern Learning System</p>
+      </div>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a href="index.html" class="button button--ghost">홈</a>
+        <a href="pattern.html" class="button button--ghost" aria-current="page">Pattern 학습</a>
+        <a href="question.html" class="button button--ghost">문제 풀이</a>
+        <a href="wrong-note.html" class="button button--ghost">오답 노트</a>
+        <a href="ai-tutor.html" class="button button--ghost">AI Tutor</a>
+        <a href="exam.html" class="button button--ghost">모의시험</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main pattern-main" role="main">
+    <div class="container">
+      <!-- Pattern Dashboard -->
+      <section id="dashboard-section" class="dashboard-section" aria-labelledby="dashboard-heading" hidden>
+        <header class="section-header">
+          <h2 id="dashboard-heading">Pattern Dashboard</h2>
+          <p class="section-desc" id="chapter-title">재고자산 · PDF 검증 기출 Pattern</p>
+        </header>
+
+        <div class="dashboard-summary card" id="dashboard-summary" aria-live="polite"></div>
+
+        <section class="wrong-note-summary" aria-labelledby="wrong-summary-heading">
+          <div class="wrong-summary-header">
+            <h3 id="wrong-summary-heading">Wrong Note 요약 (Pattern별)</h3>
+            <a href="wrong-note.html" class="wrong-note-link">오답 노트 전체 →</a>
+          </div>
+          <div class="wrong-note-grid" id="wrong-note-summary"></div>
+        </section>
+
+        <section aria-labelledby="pattern-list-heading">
+          <h3 id="pattern-list-heading" class="subsection-title">Pattern 목록</h3>
+          <ul class="pattern-dashboard-list" id="pattern-dashboard-list" role="list"></ul>
+        </section>
+      </section>
+
+      <!-- Pattern 상세 -->
+      <section id="detail-section" class="detail-section" aria-labelledby="detail-heading" hidden>
+        <header class="section-header">
+          <nav aria-label="breadcrumb">
+            <a href="pattern.html" class="breadcrumb-link">← Pattern Dashboard</a>
+          </nav>
+          <div class="detail-header" id="detail-header"></div>
+        </header>
+
+        <div class="detail-grid">
+          <article class="card detail-card">
+            <h3>Pattern 설명</h3>
+            <p class="detail-desc" id="detail-description"></p>
+
+            <h3>핵심 학습 포인트</h3>
+            <ul class="learning-points" id="detail-learning-points"></ul>
+
+            <div class="detail-meta" id="detail-meta"></div>
+          </article>
+
+          <aside class="card detail-side">
+            <h3>풀이 진행률</h3>
+            <div class="progress-block" id="detail-progress"></div>
+
+            <h3>Wrong Note</h3>
+            <div class="wrong-note-detail" id="detail-wrong-note"></div>
+
+            <a href="#" class="button button--primary button--block" id="start-solving-btn">문제 풀이 시작</a>
+          </aside>
+        </div>
+
+        <section class="related-questions card" aria-labelledby="related-heading">
+          <h3 id="related-heading">관련 Question</h3>
+          <ul class="related-list" id="related-question-list" role="list"></ul>
+        </section>
+      </section>
+
+      <div class="loading-state card" id="loading-state">
+        <p>Pattern 데이터 로딩 중...</p>
+      </div>
+      <div class="error-state card" id="error-state" hidden>
+        <p id="error-message"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2026 AI Exam Learning Platform v2 · DB phase1-v1.0 (Frozen)</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/pattern.js"></script>
+</body>
+</html>

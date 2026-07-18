@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="재고자산 기출 Pattern 문제 풀이 — AI Exam Learning Platform">
+  <title>문제 풀이 | AI Exam Learning Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/question.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <div>
+        <h1 class="site-title"><a href="index.html" class="site-title-link">AI Exam Learning Platform</a></h1>
+        <p class="site-subtitle">Phase 2–5 — Question · AI Explanation</p>
+      </div>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a href="index.html" class="button button--ghost">홈</a>
+        <a href="pattern.html" class="button button--ghost">Pattern 학습</a>
+        <a href="question.html" class="button button--ghost" aria-current="page">문제 풀이</a>
+        <a href="wrong-note.html" class="button button--ghost">오답 노트</a>
+        <a href="ai-tutor.html" class="button button--ghost">AI Tutor</a>
+        <a href="exam.html" class="button button--ghost">모의시험</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main question-main" role="main">
+    <div class="container">
+      <!-- Pattern 선택 -->
+      <section id="pattern-section" class="pattern-section" aria-labelledby="pattern-heading" hidden>
+        <header class="section-header">
+          <h2 id="pattern-heading">Pattern 선택</h2>
+          <p class="section-desc" id="chapter-desc">재고자산 · PDF 검증 기출 Pattern</p>
+        </header>
+        <div class="score-bar card" aria-live="polite">
+          <span class="score-bar__label">누적 정답률</span>
+          <span class="score-bar__value" id="overall-score">-</span>
+          <span class="score-bar__label score-bar__label--right">오답 노트</span>
+          <span class="score-bar__value" id="wrong-count">0문항</span>
+        </div>
+        <ul class="pattern-list" id="pattern-list" role="list"></ul>
+      </section>
+
+      <!-- Pattern별 문제 목록 -->
+      <section id="question-list-section" class="question-list-section" aria-labelledby="list-heading" hidden>
+        <header class="section-header">
+          <nav aria-label="breadcrumb">
+            <a href="question.html" class="breadcrumb-link">← Pattern 선택</a>
+          </nav>
+          <h2 id="list-heading">문제 목록</h2>
+          <p class="section-desc" id="pattern-desc"></p>
+        </header>
+        <ul class="question-list" id="question-list" role="list"></ul>
+      </section>
+
+      <!-- 문제 풀이 -->
+      <section id="question-solve-section" class="question-solve-section" aria-labelledby="solve-heading" hidden>
+        <header class="section-header">
+          <nav aria-label="breadcrumb">
+            <a href="#" class="breadcrumb-link" id="back-to-list">← 문제 목록</a>
+          </nav>
+          <div class="question-meta" id="question-meta"></div>
+          <h2 id="solve-heading" class="visually-hidden">문제 풀이</h2>
+        </header>
+
+        <article class="card question-card" aria-labelledby="question-stem">
+          <div class="question-context" id="question-context" hidden></div>
+          <p class="question-stem" id="question-stem"></p>
+
+          <form id="answer-form" class="choices-form" novalidate>
+            <fieldset class="choices-fieldset">
+              <legend class="visually-hidden">보기 선택</legend>
+              <ol class="choices-list" id="choices-list"></ol>
+            </fieldset>
+            <div class="form-actions">
+              <button type="submit" class="button button--primary" id="submit-btn">정답 확인</button>
+            </div>
+          </form>
+
+          <div class="result-panel" id="result-panel" hidden role="status" aria-live="polite">
+            <p class="result-message" id="result-message"></p>
+            <p class="session-score" id="session-score"></p>
+            <p class="wrong-saved-notice" id="wrong-saved-notice" hidden>오답 노트에 저장되었습니다.</p>
+          </div>
+
+          <section class="solution-panel" id="solution-panel" hidden aria-labelledby="solution-heading">
+            <h3 id="solution-heading">해설</h3>
+            <pre class="solution-text" id="solution-text"></pre>
+          </section>
+
+          <section class="memory-panel" id="memory-panel" hidden aria-labelledby="memory-heading">
+            <h3 id="memory-heading">암기 Point</h3>
+            <p class="memory-text" id="memory-text"></p>
+          </section>
+
+          <section class="ai-tutor-panel" id="ai-tutor-panel" hidden aria-labelledby="ai-tutor-heading">
+            <div class="ai-tutor-header">
+              <h3 id="ai-tutor-heading">AI 과외 설명</h3>
+              <span class="ai-tutor-badge">로컬 엔진</span>
+            </div>
+            <p class="ai-tutor-intro">Pattern·해설·오답 데이터를 바탕으로 맞춤 설명을 생성합니다.</p>
+            <div class="ai-level-select" role="group" aria-label="설명 수준">
+              <button type="button" class="ai-level-btn is-active" data-level="beginner">기초</button>
+              <button type="button" class="ai-level-btn" data-level="intermediate">표준</button>
+              <button type="button" class="ai-level-btn" data-level="advanced">심화</button>
+            </div>
+            <button type="button" class="button button--primary ai-generate-btn" id="ai-generate-btn">AI 설명 생성</button>
+            <p class="ai-tutor-standalone-link" id="ai-standalone-link-wrap" hidden>
+              <a href="#" class="ai-standalone-link" id="ai-standalone-link">AI Tutor 페이지에서 자세히 보기</a>
+            </p>
+            <div class="ai-explanation-output" id="ai-explanation-output" hidden aria-live="polite"></div>
+          </section>
+
+          <div class="form-actions form-actions--after">
+            <button type="button" class="button button--secondary" id="next-btn" hidden>다음 문제</button>
+          </div>
+        </article>
+      </section>
+
+      <div class="loading-state card" id="loading-state">
+        <p>문제 데이터 로딩 중...</p>
+      </div>
+      <div class="error-state card" id="error-state" hidden>
+        <p id="error-message"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2026 AI Exam Learning Platform v2 · DB phase1-v1.0 (Frozen)</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/question.js"></script>
+</body>
+</html>

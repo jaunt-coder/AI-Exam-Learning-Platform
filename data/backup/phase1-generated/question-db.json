@@ -1,0 +1,631 @@
+[
+  {
+    "questionId": "ACC_INV_Q001",
+    "year": 2023,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_001",
+    "difficulty": "medium",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2023,
+      "round": 1,
+      "questionNumber": 12,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "甲公司는 20×3년 12월 31일을 결산일로 하여 재고자산 실사를 실시하였다. 다음 중 甲公司의 20×3년 12월 31일 기말재고에 포함되지 않는 것은?",
+    "choices": [
+      "甲公司가 판매한 제품 중 고객이 아직 인수하지 않은 것(FOB Shipping Point 조건)",
+      "乙公司에 위탁판매 중인 甲公司 소유의 제품",
+      "丙公司로부터 매입하여 아직 도착하지 않은 상품(FOB Destination 조건, 12/31 선적 완료)",
+      "甲公司 창고에 보관 중인 원재료"
+    ],
+    "answer": 3,
+    "solution": {
+      "summary": "FOB Destination 조건에서 운송 중인 상품은 도착 전까지 매도자(丙公司)의 재고이다.",
+      "algorithm": "1단계: 각 거래의 소유권 이전 시점 확인 → 2단계: 12/31 기준 소유권 보유 여부 판단 → 3단계: 기말재고 포함·제외 결정",
+      "calculationProcess": "FOB Destination: 도착 시 소유권 이전 → 12/31 선적만 완료, 미도착 → 丙公司 재고 → 甲公司 기말재고 제외",
+      "steps": [
+        { "step": 1, "description": "FOB Shipping Point 판매: 선적 시 소유권 이전 → 고객 재고, 甲公司 기말재고 제외" },
+        { "step": 2, "description": "위탁판매: 소유권 甲公司 → 기말재고 포함" },
+        { "step": 3, "description": "FOB Destination 매입: 도착 전 丙公司 재고 → 甲公司 기말재고 제외" },
+        { "step": 4, "description": "자사 창고 원재료: 소유권 甲公司 → 기말재고 포함" }
+      ],
+      "explanation": "기말재고는 결산일 현재 기업이 소유권을 보유한 재화만 포함한다. FOB Destination 조건 매입품은 도착 시점에 소유권이 이전되므로 운송 중인 재화는 매도자의 재고이다.",
+      "wrongAnalysis": [
+        { "wrongType": "FOB 조건 혼동", "reason": "Shipping Point와 Destination의 소유권 이전 시점을 반대로 적용", "correction": "Destination = 도착 시, Shipping Point = 선적 시" },
+        { "wrongType": "위탁판매 오인", "reason": "위탁판매품을 타인 재고로 분류", "correction": "위탁판매는 소유권이 위탁자에게 있으므로 기말재고 포함" }
+      ],
+      "memoryPoint": "소유권 기준 → FOB Destination 매입 미도착 = 매도자 재고 / FOB Shipping Point 판매 선적 = 구매자 재고"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q002",
+    "year": 2020,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_001",
+    "difficulty": "medium",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2020,
+      "round": 1,
+      "questionNumber": 11,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "다음 중 A사의 12월 31일 기말재고에 포함되는 것은?",
+    "choices": [
+      "A사가 B사에 consignment(위탁판매)로 보낸 상품",
+      "C사로부터 FOB Shipping Point 조건으로 매입, 12/30 선적·12/31 운송 중인 상품",
+      "D사에 임가공 중인 A사 소유의 원재료",
+      "E사에 FOB Destination 조건으로 판매, 12/31 도착 전인 상품"
+    ],
+    "answer": 2,
+    "solution": {
+      "summary": "FOB Shipping Point 매입은 선적 시점에 소유권 이전 → 운송 중이어도 A사 재고.",
+      "algorithm": "1단계: 거래 유형 분류 → 2단계: 소유권 이전 조건 확인 → 3단계: 기말재고 판단",
+      "calculationProcess": "위탁판매(A소유)=포함 / FOB SP 매입 선적=포함(정답) / 임가공 원재료(A소유)=포함 / FOB Dest 판매 미도착=A사 재고 아님",
+      "steps": [
+        { "step": 1, "description": "위탁판매: A사 소유 → 포함" },
+        { "step": 2, "description": "FOB SP 매입 선적: A사 소유 → 포함(정답)" },
+        { "step": 3, "description": "임가공 원재료: A사 소유 → 포함" },
+        { "step": 4, "description": "FOB Dest 판매 미도착: E사 소유 → A사 기말재고 제외" }
+      ],
+      "explanation": "FOB Shipping Point는 선적 시 소유권이 매수인에게 이전된다. 12/30 선적 완료 시 12/31 운송 중이어도 A사의 재고자산이다.",
+      "wrongAnalysis": [
+        { "wrongType": "판매·매입 FOB 혼동", "reason": "판매 FOB Dest 미도착을 A사 재고로 오인", "correction": "판매 FOB Dest 미도착 = 아직 A사 재고, 매입 FOB SP 선적 = A사 재고" }
+      ],
+      "memoryPoint": "매입 FOB SP + 선적 완료 = 내 재고 / 판매 FOB Dest + 미도착 = 아직 내 재고"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q003",
+    "year": 2025,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_001",
+    "difficulty": "easy",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2025,
+      "round": 1,
+      "questionNumber": 10,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "재고자산의 정의에 관한 설명으로 옳은 것은?",
+    "choices": [
+      "재고자산은 현금화가 불가능한 자산이다.",
+      "재고자산은 정상적인 영업과정에서 판매 목적으로 보유하는 자산이다.",
+      "재고자산에는 유형자산만 포함된다.",
+      "재고자산은 항상 취득원가로만 평가한다."
+    ],
+    "answer": 2,
+    "solution": {
+      "summary": "재고자산은 정상 영업과정에서 판매·가공·생산·소비 목적으로 보유하는 자산이다.",
+      "algorithm": "1단계: 재고자산 정의 확인 → 2단계: 각 보기와 대조",
+      "calculationProcess": "정의: 판매·생산·가공·소비 목적 보유 자산",
+      "steps": [
+        { "step": 1, "description": "① 현금화 가능(판매 목적) → 오답" },
+        { "step": 2, "description": "② 정의에 부합 → 정답" },
+        { "step": 3, "description": "③ 무형자산도 포함 가능 → 오답" },
+        { "step": 4, "description": "④ LCM 적용 → 오답" }
+      ],
+      "explanation": "K-IFRS 및 감정평가사 회계학에서 재고자산은 정상적인 영업과정에서 판매, 생산, 가공 또는 소비를 위해 보유하는 자산이다.",
+      "wrongAnalysis": [
+        { "wrongType": "평가 방법 오해", "reason": "취득원가만 평가한다고 단정", "correction": "취득원가와 순실현가능가치 중 낮은 금액(LCM) 적용" }
+      ],
+      "memoryPoint": "재고자산 = 영업과정 + 판매·생산·가공·소비 목적 보유"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q004",
+    "year": 2021,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_002",
+    "difficulty": "hard",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2021,
+      "round": 1,
+      "questionNumber": 13,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "P사는 Q사로부터 FOB Shipping Point 조건으로 ₩10,000,000 상당의 상품을 매입하였다. 운반비 ₩500,000은 P사가 부담하였다. 12/28 선적, 12/31 결산일 현재 운송 중이다. P사의 12/31 기말재고에 포함될 금액은?",
+    "choices": [
+      "₩0",
+      "₩10,000,000",
+      "₩10,500,000",
+      "₩500,000"
+    ],
+    "answer": 3,
+    "solution": {
+      "summary": "FOB SP 매입 + 선적 완료 → 매입가 + P사 부담 운반비 = ₩10,500,000",
+      "algorithm": "1단계: FOB 조건 확인 → 2단계: 소유권 이전 시점 → 3단계: 재고원가 산정",
+      "calculationProcess": "매입가 10,000,000 + 운반비 500,000(P사 부담, 재고원가 가산) = 10,500,000",
+      "steps": [
+        { "step": 1, "description": "FOB SP: 12/28 선적 시 소유권 이전 → P사 재고" },
+        { "step": 2, "description": "P사 부담 운반비 → 재고원가에 포함" },
+        { "step": 3, "description": "기말재고 = 10,000,000 + 500,000 = 10,500,000" }
+      ],
+      "explanation": "FOB Shipping Point에서 선적 시 소유권이 이전되므로 운송 중 재화도 P사의 재고이다. P사가 부담한 운반비는 재고 취득원가에 포함한다.",
+      "wrongAnalysis": [
+        { "wrongType": "운반비 처리 오류", "reason": "운반비를 당기비용 처리", "correction": "매수인 부담 운반비는 재고원가 가산" },
+        { "wrongType": "FOB SP 미도착 오인", "reason": "미도착이므로 재고 아님", "correction": "FOB SP는 선적 시점에 재고 인식" }
+      ],
+      "memoryPoint": "FOB SP 매입: 선적 = 재고 인식 + 매수인 부담 운반비 = 재고원가"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q005",
+    "year": 2025,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_002",
+    "difficulty": "hard",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2025,
+      "round": 1,
+      "questionNumber": 14,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "R사가 S사에 FOB Destination 조건으로 ₩8,000,000 상당의 상품을 판매하였다. 12/30 선적, 1/3 도착 예정이다. R사의 12/31 재무상태표에 반영할 처리는?",
+    "choices": [
+      "매출과 매출채권만 인식",
+      "매출원가와 재고자산 감소 인식",
+      "아무 처리도 하지 않음",
+      "선수수익 인식"
+    ],
+    "answer": 3,
+    "solution": {
+      "summary": "FOB Destination 판매 미도착 → 소유권 미이전 → 매출·매출원가 인식 안 함, 재고 유지.",
+      "algorithm": "1단계: FOB Destination 확인 → 2단계: 도착(소유권 이전) 여부 → 3단계: 인식 시점 결정",
+      "calculationProcess": "12/31 미도착 → 소유권 R사 → 재고 유지, 매출 미인식",
+      "steps": [
+        { "step": 1, "description": "FOB Destination: 도착 시 소유권 이전" },
+        { "step": 2, "description": "12/31 미도착 → R사 소유권 유지" },
+        { "step": 3, "description": "매출·매출원가 인식 없음 → 재고 유지" }
+      ],
+      "explanation": "FOB Destination 조건에서는 상품이 구매자에게 도착할 때 소유권이 이전된다. 12/31 현재 운송 중이면 R사의 재고자산이며 매출은 인식하지 않는다.",
+      "wrongAnalysis": [
+        { "wrongType": "선적=매출 오류", "reason": "선적 시 매출 인식", "correction": "FOB Dest는 도착 시 매출 인식" }
+      ],
+      "memoryPoint": "판매 FOB Dest + 미도착 = 매출 X, 재고 O"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q006",
+    "year": 2020,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_003",
+    "difficulty": "medium",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2020,
+      "round": 1,
+      "questionNumber": 15,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "상품 ₩5,000,000 매입 시 발생한 운반비 ₩200,000, 하역비 ₩50,000, 보험료 ₩30,000 중 재고원가에 포함되는 금액은?",
+    "choices": [
+      "₩5,000,000",
+      "₩5,200,000",
+      "₩5,250,000",
+      "₩5,280,000"
+    ],
+    "answer": 4,
+    "solution": {
+      "summary": "재고 취득 관련 운반비·하역비·보험료 전액 재고원가 포함 = ₩5,280,000",
+      "algorithm": "1단계: 매입가 확인 → 2단계: 부대비용 식별 → 3단계: 재고원가 합산",
+      "calculationProcess": "5,000,000 + 200,000 + 50,000 + 30,000 = 5,280,000",
+      "steps": [
+        { "step": 1, "description": "매입가 5,000,000" },
+        { "step": 2, "description": "운반·하역·보험료 = 취득 관련 부대비용" },
+        { "step": 3, "description": "합계 5,280,000" }
+      ],
+      "explanation": "재고자산 취득에 직접 관련된 운반비, 하역비, 보험료는 재고원가에 가산한다.",
+      "wrongAnalysis": [
+        { "wrongType": "부대비용 일부 누락", "reason": "보험료를 당기비용 처리", "correction": "취득 관련 부대비용은 모두 재고원가" }
+      ],
+      "memoryPoint": "재고원가 = 매입가 + 취득 관련 부대비용(운반·하역·보험)"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q007",
+    "year": 2024,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_003",
+    "difficulty": "medium",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2024,
+      "round": 1,
+      "questionNumber": 12,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "다음 중 재고원가에 포함되지 않는 것은?",
+    "choices": [
+      "매입할인",
+      "매입세액(부가가치세)",
+      "운반비",
+      "하역비"
+    ],
+    "answer": 2,
+    "solution": {
+      "summary": "부가가치세는 별도 계정(매입세액) 처리, 재고원가 미포함.",
+      "algorithm": "1단계: 각 항목의 성격 분류 → 2단계: 재고원가 포함 여부 판단",
+      "calculationProcess": "매입할인=원가 차감 / VAT=별도 / 운반·하역=원가 포함",
+      "steps": [
+        { "step": 1, "description": "매입할인: 매입가에서 차감 → 원가에 반영" },
+        { "step": 2, "description": "부가가치세: 별도 계정 → 재고원가 미포함(정답)" },
+        { "step": 3, "description": "운반·하역: 재고원가 포함" }
+      ],
+      "explanation": "부가가치세는 매입세액으로 별도 처리하며 재고원가에 포함하지 않는다. 매입할인은 매입가에서 차감하여 원가에 반영한다.",
+      "wrongAnalysis": [
+        { "wrongType": "매입할인 처리 오류", "reason": "매입할인을 재고원가 미포함으로 분류", "correction": "매입할인은 매입가 차감 → 원가에 반영" }
+      ],
+      "memoryPoint": "VAT = 재고원가 X / 매입할인 = 원가 차감 / 운반·하역 = 원가 포함"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q008",
+    "year": 2018,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_004",
+    "difficulty": "medium",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2018,
+      "round": 1,
+      "questionNumber": 14,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "PER법을 사용하는 기업의 자료: 기초재고 ₩2,000,000, 당기매입 ₩15,000,000, 기말재고 ₩3,000,000. 매출원가는?",
+    "choices": [
+      "₩12,000,000",
+      "₩14,000,000",
+      "₩15,000,000",
+      "₩16,000,000"
+    ],
+    "answer": 2,
+    "solution": {
+      "summary": "매출원가 = 기초재고 + 당기매입 - 기말재고 = 14,000,000",
+      "algorithm": "1단계: PER법 공식 적용 → 2단계: 매출원가 계산",
+      "calculationProcess": "2,000,000 + 15,000,000 - 3,000,000 = 14,000,000",
+      "steps": [
+        { "step": 1, "description": "기초재고 2,000,000" },
+        { "step": 2, "description": "당기매입 15,000,000" },
+        { "step": 3, "description": "기말재고 3,000,000 차감" },
+        { "step": 4, "description": "매출원가 = 14,000,000" }
+      ],
+      "explanation": "PER(주기적) 재고조사법에서 매출원가는 기초재고 + 당기매입 - 기말재고로 계산한다.",
+      "wrongAnalysis": [
+        { "wrongType": "기말재고 가산", "reason": "기말재고를 더함", "correction": "기말재고는 차감" },
+        { "wrongType": "당기매입=매출원가", "reason": "기초·기말 무시", "correction": "기초재고 가산, 기말재고 차감 필수" }
+      ],
+      "memoryPoint": "매출원가 = 기초 + 매입 - 기말 (PER법)"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q009",
+    "year": 2019,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_004",
+    "difficulty": "easy",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2019,
+      "round": 1,
+      "questionNumber": 13,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "기초재고 ₩1,000,000, 당기매입 ₩8,000,000, 매출원가 ₩7,500,000일 때 기말재고는?",
+    "choices": [
+      "₩500,000",
+      "₩1,000,000",
+      "₩1,500,000",
+      "₩2,000,000"
+    ],
+    "answer": 3,
+    "solution": {
+      "summary": "기말재고 = 기초 + 매입 - 매출원가 = 1,500,000",
+      "algorithm": "1단계: 공식 변형 → 2단계: 기말재고 역산",
+      "calculationProcess": "1,000,000 + 8,000,000 - 7,500,000 = 1,500,000",
+      "steps": [
+        { "step": 1, "description": "기말재고 = 기초 + 매입 - 매출원가" },
+        { "step": 2, "description": "1,000,000 + 8,000,000 - 7,500,000 = 1,500,000" }
+      ],
+      "explanation": "재고자산 등식에서 기말재고를 역산할 수 있다.",
+      "wrongAnalysis": [
+        { "wrongType": "부호 오류", "reason": "매출원가를 더함", "correction": "매출원가는 차감" }
+      ],
+      "memoryPoint": "기말재고 = 기초 + 매입 - 매출원가"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q010",
+    "year": 2023,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_004",
+    "difficulty": "medium",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2023,
+      "round": 1,
+      "questionNumber": 16,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "기초재고 ₩4,000,000, 당기매입 ₩20,000,000, 매출 ₩30,000,000, 기말재고 ₩6,000,000일 때 매출총이익은?",
+    "choices": [
+      "₩10,000,000",
+      "₩12,000,000",
+      "₩14,000,000",
+      "₩16,000,000"
+    ],
+    "answer": 2,
+    "solution": {
+      "summary": "매출원가=18,000,000 → 매출총이익=12,000,000",
+      "algorithm": "1단계: 매출원가 계산 → 2단계: 매출총이익 = 매출 - 매출원가",
+      "calculationProcess": "매출원가 = 4,000,000 + 20,000,000 - 6,000,000 = 18,000,000\n매출총이익 = 30,000,000 - 18,000,000 = 12,000,000",
+      "steps": [
+        { "step": 1, "description": "매출원가 = 4,000,000 + 20,000,000 - 6,000,000 = 18,000,000" },
+        { "step": 2, "description": "매출총이익 = 30,000,000 - 18,000,000 = 12,000,000" }
+      ],
+      "explanation": "매출총이익은 매출에서 매출원가를 차감한 금액이다. PER법으로 매출원가를 먼저 계산한다.",
+      "wrongAnalysis": [
+        { "wrongType": "매출원가 미계산", "reason": "당기매입을 매출원가로 사용", "correction": "기초+매입-기말로 매출원가 계산" }
+      ],
+      "memoryPoint": "매출원가 먼저 → 매출총이익 = 매출 - 매출원가"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q011",
+    "year": 2023,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_005",
+    "difficulty": "easy",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2023,
+      "round": 1,
+      "questionNumber": 9,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "PER(주기적 재고조사법)과 PR(실지 재고조사법)에 관한 설명으로 옳은 것은?",
+    "choices": [
+      "PER법은 매입·매출 시마다 재고잔액을 확인한다.",
+      "PR법은 연중 장부기록을 유지하지 않는다.",
+      "PER법은 기말 실사 후 매출원가를 역산한다.",
+      "PR법은 기말재고를 역산하여 산출한다."
+    ],
+    "answer": 3,
+    "solution": {
+      "summary": "PER법은 기말 실사 후 매출원가 역산, PR법은 매 거래마다 잔액 확인.",
+      "algorithm": "1단계: PER·PR 정의 비교 → 2단계: 보기 대조",
+      "calculationProcess": "PER: 연중 장부 → 기말 실사 → 매출원가 역산\nPR: 매 거래 시 잔액 확인",
+      "steps": [
+        { "step": 1, "description": "① PER는 연중 장부 유지 → 오답" },
+        { "step": 2, "description": "② PR도 장부기록 유지 → 오답" },
+        { "step": 3, "description": "③ PER 기말 실사 후 매출원가 역산 → 정답" },
+        { "step": 4, "description": "④ PR는 기말재고 직접 확인 → 오답" }
+      ],
+      "explanation": "PER법은 연중 장부기록을 유지하고 기말 실사로 기말재고를 확정한 후 매출원가를 역산한다. PR법은 매입·매출마다 재고잔액을 확인한다.",
+      "wrongAnalysis": [
+        { "wrongType": "PER·PR 혼동", "reason": "PER를 매 거래 확인으로 오인", "correction": "PER=기말 실사, PR=매 거래 확인" }
+      ],
+      "memoryPoint": "PER = 기말 실사 + 매출원가 역산 / PR = 매 거래 잔액 확인"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q012",
+    "year": 2021,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_006",
+    "difficulty": "hard",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2021,
+      "round": 1,
+      "questionNumber": 16,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "FIFO법 적용: 1/5 매입 100개×₩100, 1/15 매입 200개×₩110, 1/20 매출 250개. 매출원가는?",
+    "choices": [
+      "₩26,500",
+      "₩27,000",
+      "₩27,500",
+      "₩28,000"
+    ],
+    "answer": 3,
+    "solution": {
+      "summary": "FIFO: 100×100 + 150×110 = 27,500",
+      "algorithm": "1단계: 매입 순서 확인 → 2단계: 선입 선출 적용 → 3단계: 매출원가 합산",
+      "calculationProcess": "1/5 매입 100×100=10,000 전량 출고\n1/15 매입 200×110 중 150개 출고=16,500\n합계 27,500",
+      "steps": [
+        { "step": 1, "description": "1/5 매입 100개×100 = 10,000 (전량 매출)" },
+        { "step": 2, "description": "1/15 매입 200개×110 중 150개 = 16,500" },
+        { "step": 3, "description": "매출원가 = 10,000 + 16,500 = 27,500" }
+      ],
+      "explanation": "선입선출법(FIFO)은 먼저 매입한 원가부터 매출원가로 인식한다.",
+      "wrongAnalysis": [
+        { "wrongType": "후입 선출 오류", "reason": "최근 매입가부터 적용", "correction": "FIFO는 먼저 매입한 원가부터" }
+      ],
+      "memoryPoint": "FIFO = 먼저 들어온 원가부터 출고"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q013",
+    "year": 2024,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_006",
+    "difficulty": "hard",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2024,
+      "round": 1,
+      "questionNumber": 15,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "총평균법: 기초 50개×₩200, 매입 150개×₩240, 매출 120개. 매출원가는?",
+    "choices": [
+      "₩27,600",
+      "₩28,800",
+      "₩29,040",
+      "₩30,000"
+    ],
+    "answer": 2,
+    "solution": {
+      "summary": "가중평균 단가 230 × 120 = 27,600",
+      "algorithm": "1단계: 가용 수량·원가 합산 → 2단계: 가중평균 단가 → 3단계: 매출원가",
+      "calculationProcess": "총원가 = 50×200 + 150×240 = 10,000 + 36,000 = 46,000\n총수량 = 200개\n평균단가 = 46,000/200 = 230\n매출원가 = 230×120 = 27,600",
+      "steps": [
+        { "step": 1, "description": "총원가 46,000, 총수량 200" },
+        { "step": 2, "description": "평균단가 230" },
+        { "step": 3, "description": "매출원가 230×120 = 27,600" }
+      ],
+      "explanation": "총평균법은 가용 재고 전체의 가중평균 단가를 산출하여 매출원가에 적용한다.",
+      "wrongAnalysis": [
+        { "wrongType": "기초 단가만 사용", "reason": "200원 단가 적용", "correction": "매입 후 가중평균 단가 산출" }
+      ],
+      "memoryPoint": "총평균 = (기초원가+매입원가) / (기초수량+매입수량)"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q014",
+    "year": 2018,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_007",
+    "difficulty": "medium",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2018,
+      "round": 1,
+      "questionNumber": 16,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "취득원가 ₩500,000, 순매가액 ₩450,000, 추가원가 ₩30,000일 때 재고자산 장부금액은?",
+    "choices": [
+      "₩400,000",
+      "₩420,000",
+      "₩450,000",
+      "₩500,000"
+    ],
+    "answer": 2,
+    "solution": {
+      "summary": "NRV=420,000 < 취득원가 500,000 → LCM 420,000",
+      "algorithm": "1단계: NRV 계산 → 2단계: LCM 적용",
+      "calculationProcess": "NRV = 450,000 - 30,000 = 420,000\nLCM = min(500,000, 420,000) = 420,000",
+      "steps": [
+        { "step": 1, "description": "순실현가능가치 = 450,000 - 30,000 = 420,000" },
+        { "step": 2, "description": "LCM = min(500,000, 420,000) = 420,000" }
+      ],
+      "explanation": "재고자산은 취득원가와 순실현가능가치 중 낮은 금액으로 평가한다(LCM).",
+      "wrongAnalysis": [
+        { "wrongType": "NRV 계산 오류", "reason": "추가원가 미차감", "correction": "NRV = 순매가액 - 추가원가" },
+        { "wrongType": "취득원가 고집", "reason": "500,000 유지", "correction": "NRV < 취득원가 시 NRV 적용" }
+      ],
+      "memoryPoint": "LCM = min(취득원가, 순매가액-추가원가)"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q015",
+    "year": 2025,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_007",
+    "difficulty": "medium",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2025,
+      "round": 1,
+      "questionNumber": 16,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "LCM 적용으로 재고자산 ₩100,000 감소 시 인식할 손실 계정은?",
+    "choices": [
+      "매출원가",
+      "판매비와관리비",
+      "재고자산평가손실",
+      "재고자산감소손실"
+    ],
+    "answer": 4,
+    "solution": {
+      "summary": "LCM 하향 조정 시 재고자산감소손실 인식.",
+      "algorithm": "1단계: LCM 적용 결과 → 2단계: 손실 계정 확인",
+      "calculationProcess": "LCM < 취득원가 → 재고자산감소손실",
+      "steps": [
+        { "step": 1, "description": "LCM 적용으로 재고자산 감소" },
+        { "step": 2, "description": "재고자산감소손실 인식" }
+      ],
+      "explanation": "순실현가능가치 하락으로 재고자산을 LCM 이하로 평가할 때 재고자산감소손실을 인식한다.",
+      "wrongAnalysis": [
+        { "wrongType": "매출원가 혼동", "reason": "매출원가로 처리", "correction": "평가손은 재고자산감소손실" }
+      ],
+      "memoryPoint": "LCM 하향 = 재고자산감소손실"
+    }
+  },
+  {
+    "questionId": "ACC_INV_Q016",
+    "year": 2024,
+    "subjectId": "ACC",
+    "chapterId": "ACC_INV",
+    "patternId": "ACC_INV_008",
+    "difficulty": "medium",
+    "source": {
+      "type": "past_exam",
+      "examId": "APPRAISER",
+      "year": 2024,
+      "round": 1,
+      "questionNumber": 11,
+      "sourceFile": "source/past-exams/2018-2025.pdf"
+    },
+    "question": "상품 ₩3,000,000을 외상매입하고 운반비 ₩100,000을 현금 지급하였다. 재고원가 포함 운반비 처리 분개로 옳은 것은?",
+    "choices": [
+      "(차) 운반비 100,000 / (대) 현금 100,000",
+      "(차) 상품 100,000 / (대) 현금 100,000",
+      "(차) 매입운송비 100,000 / (대) 현금 100,000 (상품 계정 미반영)",
+      "(차) 상품 3,100,000 / (대) 외상매입금 3,000,000, 현금 100,000"
+    ],
+    "answer": 4,
+    "solution": {
+      "summary": "상품 3,000,000 + 운반비 100,000 = 상품 계정 3,100,000",
+      "algorithm": "1단계: 매입가 확인 → 2단계: 운반비 재고원가 포함 → 3단계: 분개 작성",
+      "calculationProcess": "(차) 상품 3,100,000 / (대) 외상매입금 3,000,000, 현금 100,000",
+      "steps": [
+        { "step": 1, "description": "외상매입 3,000,000 → 상품 계정" },
+        { "step": 2, "description": "운반비 100,000 → 상품 계정 가산, 현금 지급" },
+        { "step": 3, "description": "합계 상품 3,100,000" }
+      ],
+      "explanation": "재고 취득 관련 운반비는 상품(재고) 계정에 가산한다. 외상매입과 현금 지급 운반비를 함께 반영한다.",
+      "wrongAnalysis": [
+        { "wrongType": "운반비 비용 처리", "reason": "운반비를 당기비용", "correction": "취득 관련 운반비는 재고원가" }
+      ],
+      "memoryPoint": "매입 + 운반비 = (차) 상품 / (대) 외상매입금 + 현금"
+    }
+  }
+]

@@ -1,0 +1,96 @@
+[
+  {
+    "patternId": "ACC_INV_001",
+    "chapterId": "ACC_INV",
+    "totalCount": 5,
+    "years": [
+      2018,
+      2019,
+      2021,
+      2023
+    ],
+    "recentYears": [
+      2023
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_INV_003",
+    "chapterId": "ACC_INV",
+    "totalCount": 2,
+    "years": [
+      2019
+    ],
+    "recentYears": [],
+    "priority": "MEDIUM",
+    "grade": "A"
+  },
+  {
+    "patternId": "ACC_INV_004",
+    "chapterId": "ACC_INV",
+    "totalCount": 14,
+    "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_INV_005",
+    "chapterId": "ACC_INV",
+    "totalCount": 1,
+    "years": [
+      2020
+    ],
+    "recentYears": [],
+    "priority": "LOW",
+    "grade": "B"
+  },
+  {
+    "patternId": "ACC_INV_006",
+    "chapterId": "ACC_INV",
+    "totalCount": 6,
+    "years": [
+      2018,
+      2021,
+      2022
+    ],
+    "recentYears": [
+      2022
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  },
+  {
+    "patternId": "ACC_INV_007",
+    "chapterId": "ACC_INV",
+    "totalCount": 4,
+    "years": [
+      2018,
+      2022,
+      2024,
+      2025
+    ],
+    "recentYears": [
+      2022,
+      2024,
+      2025
+    ],
+    "priority": "HIGH",
+    "grade": "S"
+  }
+]

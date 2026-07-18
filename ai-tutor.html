@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI 과외 설명 — AI Exam Learning Platform">
+  <title>AI Tutor | AI Exam Learning Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ai-tutor.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <div>
+        <h1 class="site-title"><a href="index.html" class="site-title-link">AI Exam Learning Platform</a></h1>
+        <p class="site-subtitle">Phase 5 — AI Explanation</p>
+      </div>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a href="index.html" class="button button--ghost">홈</a>
+        <a href="pattern.html" class="button button--ghost">Pattern 학습</a>
+        <a href="question.html" class="button button--ghost">문제 풀이</a>
+        <a href="wrong-note.html" class="button button--ghost">오답 노트</a>
+        <a href="ai-tutor.html" class="button button--ghost" aria-current="page">AI Tutor</a>
+        <a href="exam.html" class="button button--ghost">모의시험</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main ai-tutor-main" role="main">
+    <div class="container">
+      <section id="ai-tutor-section" class="ai-tutor-layout" aria-labelledby="ai-page-heading" hidden>
+        <header class="section-header">
+          <h2 id="ai-page-heading">AI 과외 설명</h2>
+          <p class="section-desc">오답 문항을 선택하고, 틀린 보기를 지정하면 맞춤 설명을 생성합니다.</p>
+        </header>
+
+        <div class="ai-tutor-layout__grid">
+          <aside class="ai-sidebar card" aria-labelledby="wrong-pick-heading">
+            <h3 id="wrong-pick-heading">오답 문항</h3>
+            <ul class="ai-wrong-list" id="ai-wrong-list" role="list"></ul>
+          </aside>
+
+          <article class="ai-workspace card" id="ai-workspace" hidden aria-labelledby="ai-workspace-heading">
+            <h3 id="ai-workspace-heading" class="ai-workspace__title">문항 분석</h3>
+            <p class="ai-question-meta" id="ai-question-meta"></p>
+            <p class="ai-question-stem" id="ai-question-stem"></p>
+
+            <fieldset class="ai-choice-fieldset">
+              <legend>틀린 보기 선택</legend>
+              <ul class="ai-choice-list" id="ai-choice-list" role="list"></ul>
+            </fieldset>
+
+            <div class="ai-tutor-panel ai-tutor-panel--standalone">
+              <div class="ai-tutor-header">
+                <span class="ai-tutor-badge">로컬 엔진</span>
+              </div>
+              <div class="ai-level-select" role="group" aria-label="설명 수준">
+                <button type="button" class="ai-level-btn is-active" data-level="beginner">기초</button>
+                <button type="button" class="ai-level-btn" data-level="intermediate">표준</button>
+                <button type="button" class="ai-level-btn" data-level="advanced">심화</button>
+              </div>
+              <button type="button" class="button button--primary ai-generate-btn" id="ai-generate-btn">AI 설명 생성</button>
+              <div class="ai-explanation-output" id="ai-explanation-output" hidden aria-live="polite"></div>
+            </div>
+
+            <div class="ai-workspace-actions">
+              <a href="#" class="button button--secondary" id="ai-retry-link">다시 풀기</a>
+            </div>
+          </article>
+
+          <section class="ai-empty-workspace card" id="ai-empty-workspace">
+            <p>왼쪽에서 오답 문항을 선택하세요.</p>
+          </section>
+        </div>
+      </section>
+
+      <section class="empty-state card" id="empty-state" hidden>
+        <h2>오답 기록 없음</h2>
+        <p>문제를 풀고 틀리면 AI Tutor에서 맞춤 설명을 받을 수 있습니다.</p>
+        <a href="question.html" class="button button--primary">문제 풀이 시작</a>
+      </section>
+
+      <div class="loading-state card" id="loading-state">
+        <p>AI Tutor 데이터 로딩 중...</p>
+      </div>
+      <div class="error-state card" id="error-state" hidden>
+        <p id="error-message"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2026 AI Exam Learning Platform v2 · DB phase1-v1.0 (Frozen)</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/ai-tutor.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+---
+description: AI Exam Learning Platform v2 플랫폼 헌법 — 모든 개발의 최우선 기준
+alwaysApply: true
+---
+
+# Platform Constitution
+
+## Identity
+
+AI Exam Learning Platform — 특정 과목 문제집이 아닌 범용 시험 학습 플랫폼.
+
+## Core Rules
+
+1. **Pattern First** — 기능보다 Pattern 완성 우선
+2. **Master DB** — `data/master/master-db.json`이 Single Source of Truth. Generated 파일 직접 수정 금지
+3. **Subject Independence** — Core Engine은 과목을 모름. 전문성은 Subject Template에서 관리
+4. **No Placeholders** — TODO, 더미 함수, 가짜 데이터 금지
+
+## Tech Stack
+
+HTML5, CSS3, JavaScript ES6+, JSON, LocalStorage, GitHub Pages만 사용.
+
+React, Vue, Angular, TypeScript, Backend, Node.js 서버 금지.
+
+## Development Order
+
+```
+설계 문서 확인 → 데이터 구조 확인 → 구현 → 테스트 → 리뷰 → README 업데이트
+```
+
+## Design Docs Priority
+
+1. `docs/00-platform-constitution.md`
+2. `docs/01-architecture-spec.md`
+3. `docs/02-database-spec.md`
+4. Phase별 관련 spec 문서
+
+## LocalStorage Keys (변경 금지)
+
+progress, wrongAnswers, bookmarks, recentStudy, theme, settings, examHistory
