@@ -501,34 +501,28 @@
   max-width: 840px;
 }
 
-.question-context {
-  font-size: 0.9375rem;
-  color: var(--color-text-muted);
-  white-space: pre-wrap;
-  margin-bottom: 1.25rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--color-border);
-  max-height: 280px;
-  overflow-y: auto;
-}
-
 .question-stem {
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.7;
   margin-bottom: 1.5rem;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .question-table-wrap {
   margin-bottom: 1.5rem;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .question-table {
   width: 100%;
+  min-width: 280px;
   border-collapse: collapse;
   font-size: 0.9375rem;
   line-height: 1.5;
+  table-layout: auto;
 }
 
 .question-table th,
@@ -536,12 +530,27 @@
   border: 1px solid var(--color-border);
   padding: 0.625rem 0.75rem;
   text-align: left;
-  vertical-align: top;
+  vertical-align: middle;
+  word-break: keep-all;
 }
 
 .question-table th {
   background: var(--color-bg);
   font-weight: 700;
+}
+
+.question-table--choice-grid td:first-child,
+.question-table--choice-grid th:first-child {
+  width: 2.5rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.question-table--choice-grid td:not(:first-child),
+.question-table--choice-grid th:not(:first-child) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .question-table tbody tr:nth-child(even) {
@@ -578,6 +587,10 @@
   border-radius: var(--radius);
   cursor: pointer;
   transition: border-color var(--transition), background-color var(--transition);
+}
+
+.choice-label--paired {
+  align-items: center;
 }
 
 .choice-label:hover {
@@ -620,7 +633,32 @@
 
 .choice-text {
   flex: 1;
-  line-height: 1.5;
+  min-width: 0;
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+.choice-label--paired .choice-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem 1rem;
+}
+
+.choice-pair {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.625rem;
+  border-radius: 999px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+[data-theme='dark'] .choice-pair {
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .form-actions {

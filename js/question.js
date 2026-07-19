@@ -25,6 +25,11 @@ import { getStatisticsForPattern } from './pattern-engine.js';
 import { generateTutorLesson } from './ai-tutor-engine.js';
 import { renderTutorLesson } from './ai-tutor-render.js';
 import { trackQuestionStart, trackTutorView } from './learning-event.js';
+import {
+  mountQuestionStem,
+  mountQuestionTable,
+  renderChoiceItems,
+} from './shared-renderer.js';
 
 const state = {
   master: null,
@@ -84,66 +89,8 @@ function gradeClass(grade) {
   return `pattern-grade pattern-grade--${(grade || 'B').toLowerCase()}`;
 }
 
-function getContextText(question) {
-  const stem = question.question || '';
-  let original = question.originalQuestion || '';
-  const table = question.table ? String(question.table).trim() : '';
-  if (table && original.includes(table)) {
-    original = original.replace(table, '').trim();
-  }
-  if (!original || original.trim() === stem.trim()) return '';
-  const ctx = original.replace(stem, '').trim();
-  if (!ctx || ctx.length < 20) return '';
-  if (/^\|.+\|$/m.test(ctx) && !ctx.replace(/\|.+\|/g, '').trim()) return '';
-  return ctx.length > 1200 ? `${ctx.slice(0, 1200)}…` : ctx;
-}
-
-function parseMarkdownTableRow(line) {
-  return line
-    .trim()
-    .replace(/^\|/, '')
-    .replace(/\|$/, '')
-    .split('|')
-    .map((cell) => cell.trim());
-}
-
-function renderMarkdownTable(markdown) {
-  const lines = String(markdown)
-    .trim()
-    .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean);
-  const dataRows = lines.filter((line) => !/^\|\s*[-:| ]+\|\s*$/.test(line));
-  if (dataRows.length === 0) return '';
-
-  const rows = dataRows.map(parseMarkdownTableRow).filter((cells) => cells.length > 0);
-  if (rows.length === 0) return '';
-
-  const [headerCells, ...bodyRows] = rows;
-  const thead = headerCells.map((cell) => `<th scope="col">${escapeHtml(cell)}</th>`).join('');
-  const tbody = bodyRows
-    .map(
-      (cells) =>
-        `<tr>${cells.map((cell) => `<td>${escapeHtml(cell)}</td>`).join('')}</tr>`,
-    )
-    .join('');
-
-  return `<table class="question-table"><thead><tr>${thead}</tr></thead><tbody>${tbody}</tbody></table>`;
-}
-
 function renderQuestionTable(question) {
-  const el = $('question-table');
-  if (!el) return;
-
-  const tableMarkdown = question.table ? String(question.table).trim() : '';
-  if (question.hasTable && tableMarkdown) {
-    el.innerHTML = renderMarkdownTable(tableMarkdown);
-    show(el);
-    return;
-  }
-
-  el.innerHTML = '';
-  hide(el);
+  mountQuestionTable(question, $('question-table'));
 }
 
 function renderPatternList() {
@@ -229,25 +176,11 @@ function renderQuestionMeta(question) {
 }
 
 function renderChoices(question) {
-  const listEl = $('choices-list');
-  listEl.innerHTML = '';
-
-  question.choices.forEach((text, i) => {
-    const num = i + 1;
-    const li = document.createElement('li');
-    li.className = 'choice-item';
-
-    const label = document.createElement('label');
-    label.className = 'choice-label';
-    label.htmlFor = `choice-${num}`;
-    label.innerHTML = `
-      <input type="radio" class="choice-input" name="answer" id="choice-${num}" value="${num}" required>
-      <span class="choice-symbol">${getChoiceLabel(num)}</span>
-      <span class="choice-text">${escapeHtml(text)}</span>
-    `;
-
-    li.appendChild(label);
-    listEl.appendChild(li);
+  renderChoiceItems(question, $('choices-list'), {
+    inputName: 'answer',
+    idPrefix: 'choice',
+    required: true,
+    getChoiceLabel,
   });
 }
 
@@ -284,16 +217,7 @@ function renderSolveView(question) {
 
   renderQuestionMeta(question);
 
-  const ctx = getContextText(question);
-  const ctxEl = $('question-context');
-  if (ctx) {
-    ctxEl.textContent = ctx;
-    show(ctxEl);
-  } else {
-    hide(ctxEl);
-  }
-
-  $('question-stem').textContent = question.question;
+  mountQuestionStem(question, $('question-stem'));
   renderQuestionTable(question);
   renderChoices(question);
 

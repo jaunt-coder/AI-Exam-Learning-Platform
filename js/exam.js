@@ -27,6 +27,11 @@ import {
   getLatestExamRecord,
 } from './exam-engine.js';
 import { trackExamComplete } from './learning-event.js';
+import {
+  mountQuestionStem,
+  mountQuestionTable,
+  renderChoiceItems,
+} from './shared-renderer.js';
 
 const state = {
   master: null,
@@ -262,37 +267,24 @@ function renderCurrentQuestion() {
   const pattern = getPatternById(state.patterns, question.patternId);
   $('exam-question-meta').textContent =
     `${state.session.currentIndex + 1}번 · ${question.questionId} · ${pattern?.name || question.patternId} · ${question.year}년`;
-  $('exam-question-stem').textContent = question.question;
 
-  const list = $('exam-choices-list');
-  list.innerHTML = '';
+  mountQuestionStem(question, $('exam-question-stem'));
+  mountQuestionTable(question, $('exam-question-table'));
+
   const saved = state.session.answers[question.questionId];
-
-  question.choices.forEach((text, i) => {
-    const num = i + 1;
-    const li = document.createElement('li');
-    li.className = 'choice-item';
-
-    const label = document.createElement('label');
-    label.className = 'choice-label';
-    if (saved === num) label.classList.add('is-selected');
-
-    label.innerHTML = `
-      <input type="radio" class="choice-input" name="exam-answer" value="${num}" ${saved === num ? 'checked' : ''}>
-      <span class="choice-symbol">${getChoiceLabel(num)}</span>
-      <span class="choice-text">${escapeHtml(text)}</span>
-    `;
-
-    const input = label.querySelector('input');
-    input.addEventListener('change', () => {
-      saveExamAnswer(state.session, question.questionId, num);
-      document.querySelectorAll('#exam-choices-list .choice-label').forEach((l) => l.classList.remove('is-selected'));
+  renderChoiceItems(question, $('exam-choices-list'), {
+    inputName: 'exam-answer',
+    idPrefix: 'exam-choice',
+    selectedValue: saved ?? null,
+    getChoiceLabel,
+    onSelect: ({ value, label }) => {
+      saveExamAnswer(state.session, question.questionId, value);
+      document.querySelectorAll('#exam-choices-list .choice-label').forEach((item) => {
+        item.classList.remove('is-selected');
+      });
       label.classList.add('is-selected');
       renderExamNav();
-    });
-
-    li.appendChild(label);
-    list.appendChild(li);
+    },
   });
 
   renderExamNav();

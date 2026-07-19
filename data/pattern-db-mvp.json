@@ -22,7 +22,7 @@
     "chapterId": "ACC_EQ",
     "name": "자본·배당",
     "grade": "S",
-    "frequency": 17,
+    "frequency": 16,
     "years": [
       2015,
       2017,
@@ -39,7 +39,6 @@
       "ACC_2017_Q046",
       "ACC_2017_Q062",
       "ACC_2018_Q047",
-      "ACC_2018_Q055",
       "ACC_2018_Q057",
       "ACC_2018_Q061",
       "ACC_2020_Q053",
@@ -82,23 +81,21 @@
     "chapterId": "ACC_FIN",
     "name": "사채·채권",
     "grade": "S",
-    "frequency": 12,
+    "frequency": 11,
     "years": [
       2015,
       2017,
       2018,
-      2020,
       2024,
       2025
     ],
-    "importance": 91,
+    "importance": 88,
     "relatedQuestions": [
       "ACC_2015_Q056",
       "ACC_2015_Q057",
       "ACC_2017_Q064",
       "ACC_2018_Q053",
       "ACC_2018_Q062",
-      "ACC_2020_Q070",
       "ACC_2024_Q051",
       "ACC_2024_Q052",
       "ACC_2024_Q059",
@@ -113,7 +110,7 @@
     "chapterId": "ACC_FS",
     "name": "재무제표 일반",
     "grade": "S",
-    "frequency": 22,
+    "frequency": 23,
     "years": [
       2015,
       2017,
@@ -130,6 +127,7 @@
       "ACC_2015_Q063",
       "ACC_2015_Q064",
       "ACC_2015_Q066",
+      "ACC_2017_Q048",
       "ACC_2017_Q051",
       "ACC_2017_Q058",
       "ACC_2018_Q041",
@@ -154,7 +152,7 @@
     "chapterId": "ACC_GEN",
     "name": "회계학 일반",
     "grade": "S",
-    "frequency": 50,
+    "frequency": 55,
     "years": [
       2015,
       2017,
@@ -166,10 +164,12 @@
     "importance": 95,
     "relatedQuestions": [
       "ACC_2015_Q042",
+      "ACC_2015_Q044",
       "ACC_2015_Q047",
       "ACC_2015_Q053",
       "ACC_2015_Q055",
       "ACC_2015_Q058",
+      "ACC_2015_Q067",
       "ACC_2015_Q069",
       "ACC_2015_Q072",
       "ACC_2015_Q073",
@@ -185,7 +185,9 @@
       "ACC_2017_Q076",
       "ACC_2017_Q079",
       "ACC_2018_Q049",
+      "ACC_2018_Q055",
       "ACC_2018_Q058",
+      "ACC_2018_Q063",
       "ACC_2018_Q065",
       "ACC_2018_Q067",
       "ACC_2018_Q072",
@@ -210,6 +212,7 @@
       "ACC_2024_Q078",
       "ACC_2024_Q080",
       "ACC_2025_Q041",
+      "ACC_2025_Q047",
       "ACC_2025_Q059",
       "ACC_2025_Q074",
       "ACC_2025_Q075",
@@ -223,7 +226,7 @@
     "chapterId": "ACC_INT",
     "name": "무형자산",
     "grade": "S",
-    "frequency": 21,
+    "frequency": 20,
     "years": [
       2015,
       2017,
@@ -243,7 +246,6 @@
       "ACC_2018_Q048",
       "ACC_2018_Q051",
       "ACC_2018_Q060",
-      "ACC_2018_Q063",
       "ACC_2018_Q071",
       "ACC_2020_Q051",
       "ACC_2020_Q062",
@@ -262,15 +264,13 @@
     "subjectId": "ACC",
     "chapterId": "ACC_INV",
     "name": "기말재고 포함 여부 판단",
-    "grade": "A",
-    "frequency": 2,
+    "grade": "B",
+    "frequency": 1,
     "years": [
-      2015,
       2018
     ],
-    "importance": 61,
+    "importance": 58,
     "relatedQuestions": [
-      "ACC_2015_Q044",
       "ACC_2018_Q042"
     ]
   },
@@ -279,15 +279,13 @@
     "subjectId": "ACC",
     "chapterId": "ACC_INV",
     "name": "운반비·부대비용과 재고원가",
-    "grade": "S",
-    "frequency": 4,
+    "grade": "A",
+    "frequency": 3,
     "years": [
-      2015,
       2025
     ],
-    "importance": 67,
+    "importance": 64,
     "relatedQuestions": [
-      "ACC_2015_Q067",
       "ACC_2025_Q051",
       "ACC_2025_Q053",
       "ACC_2025_Q065"
@@ -392,7 +390,7 @@
     "chapterId": "ACC_PPE",
     "name": "유형자산·감가상각",
     "grade": "S",
-    "frequency": 43,
+    "frequency": 42,
     "years": [
       2015,
       2017,
@@ -408,7 +406,6 @@
       "ACC_2015_Q059",
       "ACC_2017_Q041",
       "ACC_2017_Q047",
-      "ACC_2017_Q048",
       "ACC_2017_Q049",
       "ACC_2017_Q052",
       "ACC_2017_Q053",
@@ -465,8 +462,8 @@
     "relatedQuestions": [
       "ACC_2015_Q054",
       "ACC_2020_Q061",
+      "ACC_2020_Q070",
       "ACC_2024_Q058",
-      "ACC_2025_Q047",
       "ACC_2025_Q067"
     ]
   },

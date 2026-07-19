@@ -16,7 +16,7 @@
   {
     "patternId": "ACC_EQ_001",
     "chapterId": "ACC_EQ",
-    "totalCount": 17,
+    "totalCount": 16,
     "years": [
       2015,
       2017,
@@ -52,12 +52,11 @@
   {
     "patternId": "ACC_FIN_002",
     "chapterId": "ACC_FIN",
-    "totalCount": 12,
+    "totalCount": 11,
     "years": [
       2015,
       2017,
       2018,
-      2020,
       2024,
       2025
     ],
@@ -71,7 +70,7 @@
   {
     "patternId": "ACC_FS_001",
     "chapterId": "ACC_FS",
-    "totalCount": 22,
+    "totalCount": 23,
     "years": [
       2015,
       2017,
@@ -90,7 +89,7 @@
   {
     "patternId": "ACC_GEN_001",
     "chapterId": "ACC_GEN",
-    "totalCount": 50,
+    "totalCount": 55,
     "years": [
       2015,
       2017,
@@ -109,7 +108,7 @@
   {
     "patternId": "ACC_INT_001",
     "chapterId": "ACC_INT",
-    "totalCount": 21,
+    "totalCount": 20,
     "years": [
       2015,
       2017,
@@ -128,28 +127,26 @@
   {
     "patternId": "ACC_INV_001",
     "chapterId": "ACC_INV",
-    "totalCount": 2,
+    "totalCount": 1,
     "years": [
-      2015,
       2018
     ],
     "recentYears": [],
-    "priority": "MEDIUM",
-    "grade": "A"
+    "priority": "LOW",
+    "grade": "B"
   },
   {
     "patternId": "ACC_INV_003",
     "chapterId": "ACC_INV",
-    "totalCount": 4,
+    "totalCount": 3,
     "years": [
-      2015,
       2025
     ],
     "recentYears": [
       2025
     ],
-    "priority": "HIGH",
-    "grade": "S"
+    "priority": "MEDIUM",
+    "grade": "A"
   },
   {
     "patternId": "ACC_INV_004",
@@ -216,7 +213,7 @@
   {
     "patternId": "ACC_PPE_001",
     "chapterId": "ACC_PPE",
-    "totalCount": 43,
+    "totalCount": 42,
     "years": [
       2015,
       2017,

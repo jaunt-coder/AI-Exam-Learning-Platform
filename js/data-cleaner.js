@@ -225,7 +225,9 @@ export function cleanDisplayText(text, options = {}) {
   let value = String(text);
 
   value = removeOcrFooter(value);
-  value = value.replace(CHOICE_SYMBOLS, '');
+  if (field !== 'table') {
+    value = value.replace(CHOICE_SYMBOLS, '');
+  }
 
   if (field.startsWith('choices')) {
     value = removeChoiceEndNoise(value);
