@@ -1,9 +1,26 @@
 [
   {
-    "patternId": "ACC_COST_001",
+    "patternId": "ACC_COST_002",
     "subjectId": "ACC",
     "chapterId": "ACC_COST",
-    "name": "원가계산",
+    "name": "관리회계",
+    "grade": "A",
+    "frequency": 2,
+    "years": [
+      2018,
+      2025
+    ],
+    "importance": 61,
+    "relatedQuestions": [
+      "ACC_2018_Q077",
+      "ACC_2025_Q080"
+    ]
+  },
+  {
+    "patternId": "ACC_EQ_001",
+    "subjectId": "ACC",
+    "chapterId": "ACC_EQ",
+    "name": "자본·배당",
     "grade": "S",
     "frequency": 17,
     "years": [
@@ -16,69 +33,22 @@
     ],
     "importance": 95,
     "relatedQuestions": [
-      "ACC_2015_Q073",
-      "ACC_2015_Q074",
-      "ACC_2017_Q072",
-      "ACC_2017_Q074",
-      "ACC_2017_Q079",
-      "ACC_2018_Q072",
-      "ACC_2018_Q073",
-      "ACC_2018_Q077",
-      "ACC_2018_Q078",
-      "ACC_2020_Q071",
-      "ACC_2020_Q075",
-      "ACC_2024_Q074",
-      "ACC_2024_Q080",
-      "ACC_2025_Q075",
-      "ACC_2025_Q076",
-      "ACC_2025_Q078",
-      "ACC_2025_Q080"
-    ]
-  },
-  {
-    "patternId": "ACC_COST_002",
-    "subjectId": "ACC",
-    "chapterId": "ACC_COST",
-    "name": "관리회계",
-    "grade": "B",
-    "frequency": 1,
-    "years": [
-      2024
-    ],
-    "importance": 58,
-    "relatedQuestions": [
-      "ACC_2024_Q078"
-    ]
-  },
-  {
-    "patternId": "ACC_EQ_001",
-    "subjectId": "ACC",
-    "chapterId": "ACC_EQ",
-    "name": "자본·배당",
-    "grade": "S",
-    "frequency": 13,
-    "years": [
-      2015,
-      2017,
-      2018,
-      2020,
-      2024,
-      2025
-    ],
-    "importance": 94,
-    "relatedQuestions": [
       "ACC_2015_Q051",
       "ACC_2015_Q060",
+      "ACC_2015_Q065",
       "ACC_2017_Q046",
       "ACC_2017_Q062",
       "ACC_2018_Q047",
       "ACC_2018_Q055",
+      "ACC_2018_Q057",
+      "ACC_2018_Q061",
       "ACC_2020_Q053",
       "ACC_2020_Q056",
       "ACC_2024_Q046",
       "ACC_2024_Q049",
       "ACC_2025_Q045",
       "ACC_2025_Q061",
+      "ACC_2025_Q062",
       "ACC_2025_Q070"
     ]
   },
@@ -87,17 +57,22 @@
     "subjectId": "ACC",
     "chapterId": "ACC_FIN",
     "name": "금융상품",
-    "grade": "A",
-    "frequency": 3,
+    "grade": "S",
+    "frequency": 7,
     "years": [
       2015,
       2017,
+      2024,
       2025
     ],
-    "importance": 64,
+    "importance": 76,
     "relatedQuestions": [
       "ACC_2015_Q048",
+      "ACC_2015_Q062",
+      "ACC_2015_Q070",
       "ACC_2017_Q043",
+      "ACC_2024_Q054",
+      "ACC_2025_Q054",
       "ACC_2025_Q056"
     ]
   },
@@ -107,21 +82,23 @@
     "chapterId": "ACC_FIN",
     "name": "사채·채권",
     "grade": "S",
-    "frequency": 11,
+    "frequency": 12,
     "years": [
       2015,
       2017,
       2018,
+      2020,
       2024,
       2025
     ],
-    "importance": 88,
+    "importance": 91,
     "relatedQuestions": [
       "ACC_2015_Q056",
       "ACC_2015_Q057",
       "ACC_2017_Q064",
       "ACC_2018_Q053",
       "ACC_2018_Q062",
+      "ACC_2020_Q070",
       "ACC_2024_Q051",
       "ACC_2024_Q052",
       "ACC_2024_Q059",
@@ -136,7 +113,7 @@
     "chapterId": "ACC_FS",
     "name": "재무제표 일반",
     "grade": "S",
-    "frequency": 20,
+    "frequency": 22,
     "years": [
       2015,
       2017,
@@ -147,26 +124,28 @@
     ],
     "importance": 95,
     "relatedQuestions": [
+      "ACC_2015_Q041",
       "ACC_2015_Q046",
       "ACC_2015_Q049",
       "ACC_2015_Q063",
+      "ACC_2015_Q064",
       "ACC_2015_Q066",
       "ACC_2017_Q051",
       "ACC_2017_Q058",
-      "ACC_2017_Q060",
-      "ACC_2017_Q070",
       "ACC_2018_Q041",
       "ACC_2018_Q046",
-      "ACC_2018_Q058",
+      "ACC_2018_Q052",
+      "ACC_2018_Q056",
       "ACC_2020_Q041",
+      "ACC_2020_Q042",
       "ACC_2020_Q044",
       "ACC_2020_Q052",
       "ACC_2020_Q060",
       "ACC_2024_Q041",
+      "ACC_2024_Q042",
+      "ACC_2024_Q045",
       "ACC_2024_Q056",
-      "ACC_2024_Q060",
-      "ACC_2025_Q041",
-      "ACC_2025_Q059"
+      "ACC_2025_Q042"
     ]
   },
   {
@@ -175,7 +154,7 @@
     "chapterId": "ACC_GEN",
     "name": "회계학 일반",
     "grade": "S",
-    "frequency": 15,
+    "frequency": 50,
     "years": [
       2015,
       2017,
@@ -186,21 +165,56 @@
     ],
     "importance": 95,
     "relatedQuestions": [
+      "ACC_2015_Q042",
+      "ACC_2015_Q047",
+      "ACC_2015_Q053",
+      "ACC_2015_Q055",
+      "ACC_2015_Q058",
       "ACC_2015_Q069",
       "ACC_2015_Q072",
-      "ACC_2017_Q047",
+      "ACC_2015_Q073",
+      "ACC_2015_Q074",
+      "ACC_2015_Q077",
+      "ACC_2017_Q045",
       "ACC_2017_Q059",
+      "ACC_2017_Q060",
       "ACC_2017_Q061",
+      "ACC_2017_Q070",
+      "ACC_2017_Q072",
+      "ACC_2017_Q074",
       "ACC_2017_Q076",
+      "ACC_2017_Q079",
       "ACC_2018_Q049",
+      "ACC_2018_Q058",
+      "ACC_2018_Q065",
+      "ACC_2018_Q067",
+      "ACC_2018_Q072",
+      "ACC_2018_Q073",
       "ACC_2018_Q074",
+      "ACC_2018_Q078",
+      "ACC_2020_Q071",
       "ACC_2020_Q072",
       "ACC_2020_Q074",
+      "ACC_2020_Q075",
       "ACC_2020_Q079",
       "ACC_2020_Q080",
       "ACC_2024_Q048",
+      "ACC_2024_Q053",
+      "ACC_2024_Q057",
+      "ACC_2024_Q060",
+      "ACC_2024_Q065",
+      "ACC_2024_Q066",
+      "ACC_2024_Q068",
       "ACC_2024_Q072",
-      "ACC_2025_Q074"
+      "ACC_2024_Q074",
+      "ACC_2024_Q078",
+      "ACC_2024_Q080",
+      "ACC_2025_Q041",
+      "ACC_2025_Q059",
+      "ACC_2025_Q074",
+      "ACC_2025_Q075",
+      "ACC_2025_Q076",
+      "ACC_2025_Q078"
     ]
   },
   {
@@ -209,20 +223,38 @@
     "chapterId": "ACC_INT",
     "name": "무형자산",
     "grade": "S",
-    "frequency": 5,
+    "frequency": 21,
     "years": [
       2015,
       2017,
+      2018,
       2020,
-      2024
+      2024,
+      2025
     ],
-    "importance": 70,
+    "importance": 95,
     "relatedQuestions": [
       "ACC_2015_Q061",
+      "ACC_2015_Q079",
+      "ACC_2015_Q080",
+      "ACC_2017_Q044",
+      "ACC_2017_Q050",
       "ACC_2017_Q063",
+      "ACC_2018_Q048",
+      "ACC_2018_Q051",
+      "ACC_2018_Q060",
+      "ACC_2018_Q063",
+      "ACC_2018_Q071",
       "ACC_2020_Q051",
+      "ACC_2020_Q062",
+      "ACC_2020_Q064",
       "ACC_2020_Q065",
-      "ACC_2024_Q067"
+      "ACC_2020_Q078",
+      "ACC_2024_Q067",
+      "ACC_2025_Q049",
+      "ACC_2025_Q055",
+      "ACC_2025_Q066",
+      "ACC_2025_Q069"
     ]
   },
   {
@@ -266,31 +298,15 @@
     "subjectId": "ACC",
     "chapterId": "ACC_INV",
     "name": "매출원가 계산 (PER법)",
-    "grade": "S",
-    "frequency": 13,
+    "grade": "A",
+    "frequency": 2,
     "years": [
-      2015,
-      2017,
-      2018,
-      2020,
-      2024,
-      2025
+      2020
     ],
-    "importance": 94,
+    "importance": 61,
     "relatedQuestions": [
-      "ACC_2015_Q045",
-      "ACC_2017_Q075",
-      "ACC_2018_Q044",
-      "ACC_2018_Q066",
-      "ACC_2018_Q076",
-      "ACC_2018_Q080",
-      "ACC_2020_Q042",
       "ACC_2020_Q049",
-      "ACC_2020_Q066",
-      "ACC_2024_Q044",
-      "ACC_2025_Q043",
-      "ACC_2025_Q044",
-      "ACC_2025_Q072"
+      "ACC_2020_Q066"
     ]
   },
   {
@@ -299,7 +315,7 @@
     "chapterId": "ACC_INV",
     "name": "FIFO·총평균법 매출원가",
     "grade": "S",
-    "frequency": 16,
+    "frequency": 19,
     "years": [
       2015,
       2017,
@@ -315,14 +331,17 @@
       "ACC_2017_Q069",
       "ACC_2017_Q077",
       "ACC_2017_Q080",
+      "ACC_2018_Q066",
       "ACC_2018_Q068",
       "ACC_2018_Q079",
       "ACC_2020_Q063",
       "ACC_2020_Q073",
       "ACC_2020_Q076",
+      "ACC_2024_Q044",
       "ACC_2024_Q047",
       "ACC_2024_Q073",
       "ACC_2024_Q075",
+      "ACC_2025_Q043",
       "ACC_2025_Q063",
       "ACC_2025_Q073",
       "ACC_2025_Q079"
@@ -336,14 +355,14 @@
     "grade": "A",
     "frequency": 3,
     "years": [
-      2018,
-      2024
+      2024,
+      2025
     ],
     "importance": 64,
     "relatedQuestions": [
-      "ACC_2018_Q067",
       "ACC_2024_Q043",
-      "ACC_2024_Q076"
+      "ACC_2024_Q076",
+      "ACC_2025_Q044"
     ]
   },
   {
@@ -351,15 +370,19 @@
     "subjectId": "ACC",
     "chapterId": "ACC_LEASE",
     "name": "리스",
-    "grade": "A",
-    "frequency": 2,
+    "grade": "S",
+    "frequency": 4,
     "years": [
       2015,
+      2020,
+      2024,
       2025
     ],
-    "importance": 61,
+    "importance": 67,
     "relatedQuestions": [
       "ACC_2015_Q068",
+      "ACC_2020_Q059",
+      "ACC_2024_Q055",
       "ACC_2025_Q052"
     ]
   },
@@ -369,7 +392,7 @@
     "chapterId": "ACC_PPE",
     "name": "유형자산·감가상각",
     "grade": "S",
-    "frequency": 63,
+    "frequency": 43,
     "years": [
       2015,
       2017,
@@ -382,17 +405,11 @@
     "relatedQuestions": [
       "ACC_2015_Q043",
       "ACC_2015_Q050",
-      "ACC_2015_Q054",
-      "ACC_2015_Q055",
       "ACC_2015_Q059",
-      "ACC_2015_Q064",
-      "ACC_2015_Q079",
-      "ACC_2015_Q080",
       "ACC_2017_Q041",
-      "ACC_2017_Q044",
+      "ACC_2017_Q047",
       "ACC_2017_Q048",
       "ACC_2017_Q049",
-      "ACC_2017_Q050",
       "ACC_2017_Q052",
       "ACC_2017_Q053",
       "ACC_2017_Q054",
@@ -403,17 +420,12 @@
       "ACC_2017_Q067",
       "ACC_2018_Q043",
       "ACC_2018_Q045",
-      "ACC_2018_Q048",
       "ACC_2018_Q050",
       "ACC_2018_Q054",
       "ACC_2018_Q059",
-      "ACC_2018_Q060",
-      "ACC_2018_Q063",
       "ACC_2018_Q064",
-      "ACC_2018_Q065",
       "ACC_2018_Q069",
       "ACC_2018_Q070",
-      "ACC_2018_Q071",
       "ACC_2020_Q043",
       "ACC_2020_Q045",
       "ACC_2020_Q046",
@@ -423,26 +435,17 @@
       "ACC_2020_Q055",
       "ACC_2020_Q057",
       "ACC_2020_Q058",
-      "ACC_2020_Q061",
-      "ACC_2020_Q062",
-      "ACC_2020_Q064",
       "ACC_2020_Q067",
       "ACC_2020_Q068",
       "ACC_2020_Q069",
-      "ACC_2020_Q078",
-      "ACC_2024_Q055",
       "ACC_2024_Q062",
       "ACC_2024_Q063",
       "ACC_2024_Q064",
-      "ACC_2024_Q068",
       "ACC_2024_Q069",
       "ACC_2024_Q070",
       "ACC_2025_Q046",
       "ACC_2025_Q048",
-      "ACC_2025_Q049",
-      "ACC_2025_Q050",
-      "ACC_2025_Q066",
-      "ACC_2025_Q067"
+      "ACC_2025_Q050"
     ]
   },
   {
@@ -451,47 +454,20 @@
     "chapterId": "ACC_PPE",
     "name": "재평가·손상",
     "grade": "S",
-    "frequency": 30,
+    "frequency": 5,
     "years": [
       2015,
-      2017,
-      2018,
       2020,
       2024,
       2025
     ],
-    "importance": 95,
+    "importance": 70,
     "relatedQuestions": [
-      "ACC_2015_Q041",
-      "ACC_2015_Q042",
-      "ACC_2015_Q047",
-      "ACC_2015_Q052",
-      "ACC_2015_Q053",
-      "ACC_2015_Q058",
-      "ACC_2015_Q062",
-      "ACC_2015_Q065",
-      "ACC_2015_Q070",
-      "ACC_2017_Q045",
-      "ACC_2018_Q051",
-      "ACC_2018_Q052",
-      "ACC_2018_Q056",
-      "ACC_2018_Q057",
-      "ACC_2018_Q061",
-      "ACC_2020_Q059",
-      "ACC_2020_Q070",
-      "ACC_2024_Q045",
-      "ACC_2024_Q053",
-      "ACC_2024_Q054",
-      "ACC_2024_Q057",
+      "ACC_2015_Q054",
+      "ACC_2020_Q061",
       "ACC_2024_Q058",
-      "ACC_2024_Q065",
-      "ACC_2024_Q066",
       "ACC_2025_Q047",
-      "ACC_2025_Q054",
-      "ACC_2025_Q055",
-      "ACC_2025_Q062",
-      "ACC_2025_Q064",
-      "ACC_2025_Q069"
+      "ACC_2025_Q067"
     ]
   },
   {
@@ -500,7 +476,7 @@
     "chapterId": "ACC_REV",
     "name": "수익인식",
     "grade": "S",
-    "frequency": 19,
+    "frequency": 26,
     "years": [
       2015,
       2017,
@@ -511,24 +487,31 @@
     ],
     "importance": 95,
     "relatedQuestions": [
+      "ACC_2015_Q045",
+      "ACC_2015_Q052",
       "ACC_2015_Q071",
       "ACC_2015_Q076",
-      "ACC_2015_Q077",
       "ACC_2015_Q078",
       "ACC_2017_Q042",
       "ACC_2017_Q068",
       "ACC_2017_Q071",
       "ACC_2017_Q073",
+      "ACC_2017_Q075",
       "ACC_2017_Q078",
+      "ACC_2018_Q044",
       "ACC_2018_Q075",
+      "ACC_2018_Q076",
+      "ACC_2018_Q080",
       "ACC_2020_Q054",
       "ACC_2020_Q077",
       "ACC_2024_Q050",
       "ACC_2024_Q071",
       "ACC_2024_Q079",
       "ACC_2025_Q060",
+      "ACC_2025_Q064",
       "ACC_2025_Q068",
       "ACC_2025_Q071",
+      "ACC_2025_Q072",
       "ACC_2025_Q077"
     ]
   },
@@ -537,17 +520,14 @@
     "subjectId": "ACC",
     "chapterId": "ACC_TAX",
     "name": "법인세",
-    "grade": "A",
-    "frequency": 3,
+    "grade": "B",
+    "frequency": 1,
     "years": [
-      2024,
-      2025
+      2024
     ],
-    "importance": 64,
+    "importance": 58,
     "relatedQuestions": [
-      "ACC_2024_Q042",
-      "ACC_2024_Q077",
-      "ACC_2025_Q042"
+      "ACC_2024_Q077"
     ]
   }
 ]

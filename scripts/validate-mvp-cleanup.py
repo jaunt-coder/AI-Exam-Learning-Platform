@@ -269,7 +269,7 @@ def build_report(
         "",
         f"- 생성일: {date.today().isoformat()}",
         "- 대상: `data/question-db-mvp.json` (원본 JSON 미변경)",
-        "- 레이어: `js/data-cleaner.js` + `js/question-cleanup-overrides.js`",
+        "- 레이어: `js/data-cleaner.js` + `js/accounting-term-dictionary.js` + `js/question-cleanup-overrides.js`",
         "",
         "## Validation Summary",
         "",
@@ -320,6 +320,7 @@ def validate() -> int:
 
     required_js = [
         JS / "data-cleaner.js",
+        JS / "accounting-term-dictionary.js",
         JS / "question-cleanup-overrides.js",
     ]
     for path in required_js:
@@ -329,10 +330,19 @@ def validate() -> int:
             passed.append(f"{path.name} exists")
 
     loader = (JS / "data-loader.js").read_text(encoding="utf-8")
+    cleaner = (JS / "data-cleaner.js").read_text(encoding="utf-8")
     if "applyQuestionCleanup" not in loader:
         failures.append("data-loader.js does not apply cleanup layer")
     else:
         passed.append("data-loader.js integrates cleanup layer")
+    if "applyAccountingTermSpacing" not in cleaner:
+        failures.append("data-cleaner.js missing accounting term spacing")
+    else:
+        passed.append("accounting term dictionary spacing enabled")
+    if "formatDisplayNumbers" not in cleaner:
+        failures.append("data-cleaner.js missing number formatting")
+    else:
+        passed.append("display number formatting enabled")
 
     raw_mtime = QUESTION_DB.stat().st_mtime
     raw = load_questions()

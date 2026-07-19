@@ -1,8 +1,13 @@
 /**
- * MVP Data Cleaner — 표시용 텍스트 정제 레이어
+ * MVP Data Cleaner — Display Cleanup Layer
  * DB JSON(question-db-mvp.json)은 수정하지 않음.
+ * data-loader.js가 MVP 로드 시 메모리에만 적용 → Question/Tutor/Recommendation/Analytics 공통.
  */
 
+import {
+  ACCOUNTING_PREFIXES,
+  ACCOUNTING_TERMS_SORTED,
+} from './accounting-term-dictionary.js';
 import { QUESTION_CLEANUP_OVERRIDES } from './question-cleanup-overrides.js';
 
 const FOOTER_PATTERNS = [
@@ -18,8 +23,11 @@ const FOOTER_PATTERNS = [
 
 const CHOICE_SYMBOLS = /[①②③④⑤]/g;
 const EXCESS_NEWLINES = /\n{3,}/g;
-const NUMBER_TOKEN = /\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?/g;
-const CURRENCY_TOKEN = /W\d{1,3}(?:,\d{3})+(?:\.\d+)?/gi;
+const FORMATTED_NUMBER = /\d{1,3}(?:,\d{3})+(?:\.\d+)?/g;
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 function makeTokenPlaceholder(index) {
   return `@@N${String.fromCharCode(0xe000 + index)}@@`;
@@ -27,14 +35,17 @@ function makeTokenPlaceholder(index) {
 
 function protectNumericTokens(text) {
   const tokens = [];
-  let value = text.replace(CURRENCY_TOKEN, (match) => {
+  let value = text;
+
+  const protect = (match) => {
     tokens.push(match.replace(/\s+/g, ''));
     return makeTokenPlaceholder(tokens.length - 1);
-  });
-  value = value.replace(NUMBER_TOKEN, (match) => {
-    tokens.push(match.replace(/\s+/g, ''));
-    return makeTokenPlaceholder(tokens.length - 1);
-  });
+  };
+
+  value = value.replace(/W\d{1,3}(?:,\d{3})+(?:\.\d+)?/gi, protect);
+  value = value.replace(/\d{1,3}(?:,\d{3})+(?:\.\d+)?/g, protect);
+  value = value.replace(/20[×xX]\d{1,2}/g, protect);
+
   return { value, tokens };
 }
 
@@ -43,6 +54,88 @@ function restoreNumericTokens(text, tokens) {
     const placeholder = makeTokenPlaceholder(index);
     return current.split(placeholder).join(token);
   }, text);
+}
+
+function addCommas(integerPart) {
+  return integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+function formatNumberToken(raw) {
+  const normalized = String(raw).replace(/\s+/g, '');
+  if (!normalized || normalized.includes(',')) {
+    return normalized;
+  }
+  if (/^20[×xX]\d{1,2}$/.test(normalized)) {
+    return normalized.replace(/[xX]/, '×');
+  }
+  const match = normalized.match(/^(\d+)(?:\.(\d+))?$/);
+  if (!match) {
+    return normalized;
+  }
+  const [, integerPart, decimalPart] = match;
+  if (integerPart.length < 4 && !decimalPart) {
+    return normalized;
+  }
+  const formatted = addCommas(integerPart);
+  return decimalPart != null ? `${formatted}.${decimalPart}` : formatted;
+}
+
+/**
+ * @param {string|null|undefined} text
+ * @returns {string}
+ */
+export function formatDisplayNumbers(text) {
+  if (text == null) return '';
+  let value = String(text);
+
+  const protectedYears = [];
+  value = value.replace(/20[×xX]\d{1,2}/g, (match) => {
+    protectedYears.push(match.replace(/[xX]/, '×'));
+    return makeTokenPlaceholder(protectedYears.length - 1);
+  });
+
+  value = value.replace(/W(\d[\d,]*(?:\.\d+)?)/gi, (_, amount) => {
+    const cleaned = amount.replace(/,/g, '');
+    return `W${formatNumberToken(cleaned)}`;
+  });
+
+  value = value.replace(/(\d[\d,]*(?:\.\d+)?)(?=원|천원|백만원|억원)/g, (match) => {
+    const cleaned = match.replace(/,/g, '');
+    return formatNumberToken(cleaned);
+  });
+
+  value = value.replace(/\b(\d{4,})(?!\d|,|\.)/g, (match) => formatNumberToken(match));
+
+  value = protectedYears.reduce((current, token, index) => {
+    return current.split(makeTokenPlaceholder(index)).join(token);
+  }, value);
+
+  return value;
+}
+
+/**
+ * @param {string|null|undefined} text
+ * @returns {string}
+ */
+export function applyAccountingTermSpacing(text) {
+  if (text == null) return '';
+  const protectedTokens = protectNumericTokens(String(text));
+  let value = protectedTokens.value;
+
+  for (const term of ACCOUNTING_TERMS_SORTED) {
+    if (term.length < 2) continue;
+    const escaped = escapeRegExp(term);
+    value = value.replace(new RegExp(`(?<!\\s)(?<=[가-힣])(${escaped})`, 'g'), ' $1');
+  }
+
+  for (const prefix of ACCOUNTING_PREFIXES) {
+    if (prefix.length < 2) continue;
+    const escaped = escapeRegExp(prefix);
+    value = value.replace(new RegExp(`(?<=[가-힣])(${escaped})(?=[가-힣])`, 'g'), ' $1 ');
+  }
+
+  value = value.replace(/\s{2,}/g, ' ');
+  return restoreNumericTokens(value, protectedTokens.tokens);
 }
 
 /**
@@ -58,10 +151,7 @@ export function removeOcrFooter(text) {
   return value.trim();
 }
 
-/**
- * @param {string|null|undefined} text
- * @returns {string}
- */
+/** @deprecated removeOcrFooter alias */
 export function removePageNumbers(text) {
   return removeOcrFooter(text);
 }
@@ -108,7 +198,13 @@ export function fixOcrSpacing(text, options = {}) {
   value = value.replace(/(\))([가-힣A-Za-z0-9])/g, '$1 $2');
   value = value.replace(/([가-힣])(W\d)/g, '$1 $2');
   value = value.replace(/([가-힣])(\d)/g, '$1 $2');
-  value = value.replace(/(\d)([가-힣])/g, '$1 $2');
+  value = value.replace(/(\d)([가-힣])/g, (match, digit, hangul, index, source) => {
+    const tail = source.slice(index + digit.length);
+    if (/^원(?:$|[^가-힣])/.test(tail) || /^천원|^백만원|^억원/.test(tail) || hangul === '㎡' || hangul === '%') {
+      return match;
+    }
+    return `${digit} ${hangul}`;
+  });
   value = value.replace(/(\d)(W)/g, '$1 $2');
   value = value.replace(/\(\s+/g, '(');
   value = value.replace(/\s+\)/g, ')');
@@ -136,10 +232,42 @@ export function cleanDisplayText(text, options = {}) {
   }
 
   value = fixOcrSpacing(value, {
-    preserveParagraphs: options.preserveParagraphs || field === 'originalQuestion',
+    preserveParagraphs: options.preserveParagraphs || field === 'originalQuestion' || field === 'table',
   });
+  value = formatDisplayNumbers(value);
+  value = applyAccountingTermSpacing(value);
 
   return value.trim();
+}
+
+/**
+ * @param {string|null|undefined} text
+ * @returns {{ longestGlued: number, spaceRatio: number, unformattedNumbers: number }}
+ */
+export function measureReadability(text) {
+  if (!text) {
+    return { longestGlued: 0, spaceRatio: 0, unformattedNumbers: 0 };
+  }
+  const sample = String(text);
+  const hangulOnly = sample.replace(/[^\uAC00-\uD7A3\s]/g, '');
+  const hangulTokens = sample
+    .split(/\s+/)
+    .map((token) => token.replace(/[^\uAC00-\uD7A3]/g, ''))
+    .filter(Boolean);
+  const longestGlued = hangulTokens.reduce((max, token) => Math.max(max, token.length), 0);
+  const hangulChars = hangulOnly.replace(/\s/g, '').length;
+  const spaces = (hangulOnly.match(/\s/g) || []).length;
+  const spaceRatio = hangulChars > 0 ? spaces / hangulChars : 0;
+
+  let unformattedNumbers = 0;
+  const withoutFormatted = sample.replace(FORMATTED_NUMBER, '');
+  const plainMatches = withoutFormatted.match(/\d{4,}/g) || [];
+  for (const token of plainMatches) {
+    if (/^20[×xX]\d/.test(token)) continue;
+    unformattedNumbers += 1;
+  }
+
+  return { longestGlued, spaceRatio, unformattedNumbers };
 }
 
 /**
@@ -174,7 +302,10 @@ export function cleanQuestionForDisplay(question) {
   if (override && 'table' in override) {
     cleaned.table = override.table;
   } else if (question.table) {
-    cleaned.table = cleanDisplayText(question.table, { field: 'table' });
+    cleaned.table = cleanDisplayText(question.table, {
+      field: 'table',
+      preserveParagraphs: true,
+    });
   }
 
   if (Array.isArray(question.choices)) {

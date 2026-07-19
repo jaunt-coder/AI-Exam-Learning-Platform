@@ -1,0 +1,259 @@
+{
+  "summary": {
+    "years": 16,
+    "parsed": 434,
+    "fiveChoices": 393,
+    "stemOk": 359,
+    "truncated": 81
+  },
+  "causes": {
+    "linebreak_handling": 11,
+    "choice_start_fail": 66,
+    "table_handling": 1,
+    "question_end_fail": 3
+  },
+  "years": [
+    {
+      "year": 2010,
+      "sourceFile": "2010.hwp",
+      "sourceKind": "hwp",
+      "examPresent": true,
+      "parsed": 0,
+      "fiveChoices": 0,
+      "stemOk": 0,
+      "truncated": 0,
+      "truncationCauses": {},
+      "issues": [
+        "배포용 HWP — 본문 추출 불가"
+      ]
+    },
+    {
+      "year": 2011,
+      "sourceFile": "2011.hwp",
+      "sourceKind": "hwp",
+      "examPresent": true,
+      "parsed": 0,
+      "fiveChoices": 0,
+      "stemOk": 0,
+      "truncated": 0,
+      "truncationCauses": {},
+      "issues": [
+        "'PrvText not found'"
+      ]
+    },
+    {
+      "year": 2012,
+      "sourceFile": "2012.pdf",
+      "sourceKind": "pdf",
+      "examPresent": true,
+      "parsed": 40,
+      "fiveChoices": 40,
+      "stemOk": 40,
+      "truncated": 0,
+      "truncationCauses": {},
+      "issues": [],
+      "usedOcr": false
+    },
+    {
+      "year": 2013,
+      "sourceFile": "2013.hwp",
+      "sourceKind": "hwp",
+      "examPresent": true,
+      "parsed": 0,
+      "fiveChoices": 0,
+      "stemOk": 0,
+      "truncated": 0,
+      "truncationCauses": {},
+      "issues": [
+        "'PrvText not found'"
+      ]
+    },
+    {
+      "year": 2014,
+      "sourceFile": "2014.hwp",
+      "sourceKind": "hwp",
+      "examPresent": true,
+      "parsed": 0,
+      "fiveChoices": 0,
+      "stemOk": 0,
+      "truncated": 0,
+      "truncationCauses": {},
+      "issues": [
+        "배포용 HWP — 본문 추출 불가"
+      ]
+    },
+    {
+      "year": 2015,
+      "sourceFile": "2015.pdf",
+      "sourceKind": "pdf",
+      "examPresent": true,
+      "parsed": 40,
+      "fiveChoices": 40,
+      "stemOk": 40,
+      "truncated": 0,
+      "truncationCauses": {},
+      "issues": [],
+      "usedOcr": false
+    },
+    {
+      "year": 2016,
+      "sourceFile": "",
+      "sourceKind": "",
+      "examPresent": false,
+      "parsed": 0,
+      "fiveChoices": 0,
+      "stemOk": 0,
+      "truncated": 0,
+      "truncationCauses": {},
+      "issues": [
+        "exam missing"
+      ]
+    },
+    {
+      "year": 2017,
+      "sourceFile": "2017.pdf",
+      "sourceKind": "pdf",
+      "examPresent": true,
+      "parsed": 40,
+      "fiveChoices": 40,
+      "stemOk": 39,
+      "truncated": 1,
+      "truncationCauses": {
+        "linebreak_handling": 1
+      },
+      "issues": [],
+      "usedOcr": false
+    },
+    {
+      "year": 2018,
+      "sourceFile": "2018.pdf",
+      "sourceKind": "pdf",
+      "examPresent": true,
+      "parsed": 40,
+      "fiveChoices": 40,
+      "stemOk": 40,
+      "truncated": 0,
+      "truncationCauses": {},
+      "issues": [],
+      "usedOcr": false
+    },
+    {
+      "year": 2019,
+      "sourceFile": "2019.hwp",
+      "sourceKind": "hwp",
+      "examPresent": true,
+      "parsed": 0,
+      "fiveChoices": 0,
+      "stemOk": 0,
+      "truncated": 0,
+      "truncationCauses": {},
+      "issues": [
+        "배포용 HWP — 본문 추출 불가"
+      ]
+    },
+    {
+      "year": 2020,
+      "sourceFile": "2020.pdf",
+      "sourceKind": "pdf",
+      "examPresent": true,
+      "parsed": 40,
+      "fiveChoices": 40,
+      "stemOk": 40,
+      "truncated": 0,
+      "truncationCauses": {},
+      "issues": [],
+      "usedOcr": false
+    },
+    {
+      "year": 2021,
+      "sourceFile": "2021.pdf",
+      "sourceKind": "pdf",
+      "examPresent": true,
+      "parsed": 40,
+      "fiveChoices": 16,
+      "stemOk": 10,
+      "truncated": 30,
+      "truncationCauses": {
+        "choice_start_fail": 28,
+        "table_handling": 1,
+        "linebreak_handling": 1
+      },
+      "issues": [],
+      "usedOcr": true
+    },
+    {
+      "year": 2022,
+      "sourceFile": "2022.pdf",
+      "sourceKind": "pdf",
+      "examPresent": true,
+      "parsed": 35,
+      "fiveChoices": 23,
+      "stemOk": 9,
+      "truncated": 31,
+      "truncationCauses": {
+        "choice_start_fail": 24,
+        "linebreak_handling": 4,
+        "question_end_fail": 3
+      },
+      "issues": [],
+      "usedOcr": true
+    },
+    {
+      "year": 2023,
+      "sourceFile": "2023.pdf",
+      "sourceKind": "pdf",
+      "examPresent": true,
+      "parsed": 39,
+      "fiveChoices": 34,
+      "stemOk": 22,
+      "truncated": 18,
+      "truncationCauses": {
+        "choice_start_fail": 14,
+        "linebreak_handling": 4
+      },
+      "issues": [],
+      "usedOcr": true
+    },
+    {
+      "year": 2024,
+      "sourceFile": "2024.pdf",
+      "sourceKind": "pdf",
+      "examPresent": true,
+      "parsed": 40,
+      "fiveChoices": 40,
+      "stemOk": 39,
+      "truncated": 1,
+      "truncationCauses": {
+        "linebreak_handling": 1
+      },
+      "issues": [],
+      "usedOcr": false
+    },
+    {
+      "year": 2025,
+      "sourceFile": "2025.pdf",
+      "sourceKind": "pdf",
+      "examPresent": true,
+      "parsed": 40,
+      "fiveChoices": 40,
+      "stemOk": 40,
+      "truncated": 0,
+      "truncationCauses": {},
+      "issues": [],
+      "usedOcr": false
+    },
+    {
+      "year": 2026,
+      "sourceFile": "2026.pdf",
+      "sourceKind": "pdf",
+      "examPresent": true,
+      "parsed": 40,
+      "fiveChoices": 40,
+      "stemOk": 40,
+      "truncated": 0,
+      "truncationCauses": {},
+      "issues": [],
+      "usedOcr": false
+    }
+  ]
+}

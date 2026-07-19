@@ -1,0 +1,4442 @@
+{
+  "summary": {
+    "generatedAt": "2026-07-19",
+    "total": 240,
+    "critical_questions": 8,
+    "warning_questions": 124,
+    "verified_count": 0,
+    "issue_counts": {
+      "ocr_glued_hangul": 124,
+      "stem_truncated": 8
+    },
+    "critical_by_year": {
+      "2017": 5,
+      "2018": 1,
+      "2024": 1,
+      "2025": 1
+    },
+    "warning_by_year": {
+      "2015": 36,
+      "2017": 18,
+      "2018": 21,
+      "2020": 20,
+      "2024": 13,
+      "2025": 16
+    }
+  },
+  "questions": [
+    {
+      "questionId": "ACC_2015_Q041",
+      "year": 2015,
+      "questionNumber": 41,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 7,
+      "rawBodyHash": "7fcc00182a04ca90",
+      "stemCoverage": 0.973,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 33자 (원본 20자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q042",
+      "year": 2015,
+      "questionNumber": 42,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 8,
+      "rawBodyHash": "05583028b3ca1605",
+      "stemCoverage": 0.8421,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issue_codes": []
+    },
+    {
+      "questionId": "ACC_2015_Q043",
+      "year": 2015,
+      "questionNumber": 43,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 8,
+      "rawBodyHash": "7408e902b20ec4ee",
+      "stemCoverage": 0.9848,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 35자 (원본 21자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q044",
+      "year": 2015,
+      "questionNumber": 44,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 8,
+      "rawBodyHash": "676e7c46f0a81b7b",
+      "stemCoverage": 0.9893,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 16자 (원본 13자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q045",
+      "year": 2015,
+      "questionNumber": 45,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 8,
+      "rawBodyHash": "35695d713724c587",
+      "stemCoverage": 0.9812,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 35자 (원본 13자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q046",
+      "year": 2015,
+      "questionNumber": 46,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 8,
+      "rawBodyHash": "475c5aeed804122f",
+      "stemCoverage": 0.9844,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 34자 (원본 18자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q047",
+      "year": 2015,
+      "questionNumber": 47,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 9,
+      "rawBodyHash": "abe96e1347b157bd",
+      "stemCoverage": 0.9909,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 20자 (원본 16자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q048",
+      "year": 2015,
+      "questionNumber": 48,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 9,
+      "rawBodyHash": "95a9dc3014073f91",
+      "stemCoverage": 0.9875,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 29자 (원본 13자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q049",
+      "year": 2015,
+      "questionNumber": 49,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 9,
+      "rawBodyHash": "c4ecdbc7d8d0c4fe",
+      "stemCoverage": 0.9876,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 16자 (원본 13자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q050",
+      "year": 2015,
+      "questionNumber": 50,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 9,
+      "rawBodyHash": "6eda48f20de14512",
+      "stemCoverage": 0.9833,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 56자 (원본 20자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q051",
+      "year": 2015,
+      "questionNumber": 51,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 9,
+      "rawBodyHash": "0d025cce382f92e2",
+      "stemCoverage": 0.9879,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 18자 (원본 14자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q052",
+      "year": 2015,
+      "questionNumber": 52,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 10,
+      "rawBodyHash": "5742429616ac7538",
+      "stemCoverage": 0.991,
+      "missingNumbers": [
+        "150",
+        "300"
+      ],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 21자 (원본 17자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q053",
+      "year": 2015,
+      "questionNumber": 53,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 10,
+      "rawBodyHash": "cf39cb8137155d71",
+      "stemCoverage": 0.8889,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 23자 (원본 0자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q054",
+      "year": 2015,
+      "questionNumber": 54,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 10,
+      "rawBodyHash": "af3a7e79ff516d9b",
+      "stemCoverage": 0.9858,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 18자 (원본 14자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q055",
+      "year": 2015,
+      "questionNumber": 55,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 10,
+      "rawBodyHash": "f29a9b85bb27e323",
+      "stemCoverage": 0.9851,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 38자 (원본 20자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q056",
+      "year": 2015,
+      "questionNumber": 56,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 10,
+      "rawBodyHash": "1328dafb91e4a646",
+      "stemCoverage": 0.9667,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2015_Q057",
+      "year": 2015,
+      "questionNumber": 57,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 11,
+      "rawBodyHash": "4312ecaac2ef71aa",
+      "stemCoverage": 0.9908,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 29자 (원본 17자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q058",
+      "year": 2015,
+      "questionNumber": 58,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 11,
+      "rawBodyHash": "f13ec3e83e7726be",
+      "stemCoverage": 0.875,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2015_Q059",
+      "year": 2015,
+      "questionNumber": 59,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 11,
+      "rawBodyHash": "db4caacc8ebf4615",
+      "stemCoverage": 0.9808,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 29자 (원본 17자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q060",
+      "year": 2015,
+      "questionNumber": 60,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 11,
+      "rawBodyHash": "782085fd7452846e",
+      "stemCoverage": 0.9858,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 20자 (원본 16자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q061",
+      "year": 2015,
+      "questionNumber": 61,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 11,
+      "rawBodyHash": "a952c388f8bf40d5",
+      "stemCoverage": 0.9872,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 19자 (원본 14자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q062",
+      "year": 2015,
+      "questionNumber": 62,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 12,
+      "rawBodyHash": "110c76e3a133e7d2",
+      "stemCoverage": 0.9883,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 63자 (원본 20자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q063",
+      "year": 2015,
+      "questionNumber": 63,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 12,
+      "rawBodyHash": "16a5662ad904cf90",
+      "stemCoverage": 0.8929,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 24자 (원본 0자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q064",
+      "year": 2015,
+      "questionNumber": 64,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 12,
+      "rawBodyHash": "870b9cf265350780",
+      "stemCoverage": 0.9902,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 23자 (원본 14자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q065",
+      "year": 2015,
+      "questionNumber": 65,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 12,
+      "rawBodyHash": "954fa26c215c8557",
+      "stemCoverage": 0.9858,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 17자 (원본 0자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q066",
+      "year": 2015,
+      "questionNumber": 66,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 12,
+      "rawBodyHash": "086d9990006f5768",
+      "stemCoverage": 0.9865,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 35자 (원본 12자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q067",
+      "year": 2015,
+      "questionNumber": 67,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 13,
+      "rawBodyHash": "1935398c937127d3",
+      "stemCoverage": 0.9846,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 18자 (원본 0자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q068",
+      "year": 2015,
+      "questionNumber": 68,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 13,
+      "rawBodyHash": "96c6d9b703bb59e4",
+      "stemCoverage": 0.9845,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 28자 (원본 19자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q069",
+      "year": 2015,
+      "questionNumber": 69,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 13,
+      "rawBodyHash": "af0e1a16f2fc7eda",
+      "stemCoverage": 0.984,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 33자 (원본 18자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q070",
+      "year": 2015,
+      "questionNumber": 70,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 13,
+      "rawBodyHash": "c3aa1dc7ca4fead3",
+      "stemCoverage": 0.9838,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 25자 (원본 20자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q071",
+      "year": 2015,
+      "questionNumber": 71,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 13,
+      "rawBodyHash": "894649e4be1afbda",
+      "stemCoverage": 0.9746,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 19자 (원본 15자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q072",
+      "year": 2015,
+      "questionNumber": 72,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "8bb4ef8444a045a1",
+      "stemCoverage": 0.8642,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2015_Q073",
+      "year": 2015,
+      "questionNumber": 73,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "8a618096a5c9c2ec",
+      "stemCoverage": 0.9868,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 58자 (원본 20자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q074",
+      "year": 2015,
+      "questionNumber": 74,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "0a50ce024110647c",
+      "stemCoverage": 0.9913,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 34자 (원본 21자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q075",
+      "year": 2015,
+      "questionNumber": 75,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "09cea83033ac736c",
+      "stemCoverage": 0.9863,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 39자 (원본 20자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q076",
+      "year": 2015,
+      "questionNumber": 76,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "08e850f600f91263",
+      "stemCoverage": 0.975,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 17자 (원본 12자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q077",
+      "year": 2015,
+      "questionNumber": 77,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "cf9c7cb7f12a3d8f",
+      "stemCoverage": 0.9774,
+      "missingNumbers": [
+        "3,570"
+      ],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 17자 (원본 14자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q078",
+      "year": 2015,
+      "questionNumber": 78,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "b2254bea5d2c5f4c",
+      "stemCoverage": 0.987,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 36자 (원본 19자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q079",
+      "year": 2015,
+      "questionNumber": 79,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "15c8970683d33c57",
+      "stemCoverage": 0.9892,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 19자 (원본 16자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q080",
+      "year": 2015,
+      "questionNumber": 80,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "c292021ef9d3414b",
+      "stemCoverage": 0.9866,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 15자 (원본 0자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q041",
+      "year": 2017,
+      "questionNumber": 41,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "a1c336d97490cf1a",
+      "stemCoverage": 0.9032,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q042",
+      "year": 2017,
+      "questionNumber": 42,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "7d53909ec3f886df",
+      "stemCoverage": 0.8571,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issue_codes": []
+    },
+    {
+      "questionId": "ACC_2017_Q043",
+      "year": 2017,
+      "questionNumber": 43,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "9065f5858481abd8",
+      "stemCoverage": 0.982,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 24자 (원본 20자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q044",
+      "year": 2017,
+      "questionNumber": 44,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "a773bae93c8dd209",
+      "stemCoverage": 0.9903,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q045",
+      "year": 2017,
+      "questionNumber": 45,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "861fd9a2d63d063c",
+      "stemCoverage": 0.875,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q046",
+      "year": 2017,
+      "questionNumber": 46,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "155870bbb268e2b5",
+      "stemCoverage": 0.9846,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 27자 (원본 20자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q047",
+      "year": 2017,
+      "questionNumber": 47,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "ba362b6fe8fb50ca",
+      "stemCoverage": 0.48,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 48% (<55%)"
+        }
+      ],
+      "issue_codes": [
+        "stem_truncated"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q048",
+      "year": 2017,
+      "questionNumber": 48,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "64bce32d2f5c2b7d",
+      "stemCoverage": 0.9889,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 46자 (원본 29자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q049",
+      "year": 2017,
+      "questionNumber": 49,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 17,
+      "rawBodyHash": "407235da0b40d7ca",
+      "stemCoverage": 0.9871,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 24자 (원본 18자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q050",
+      "year": 2017,
+      "questionNumber": 50,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 17,
+      "rawBodyHash": "ea32f540ded8fc9e",
+      "stemCoverage": 0.9926,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 24자 (원본 19자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q051",
+      "year": 2017,
+      "questionNumber": 51,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 18,
+      "rawBodyHash": "2d5bcfa860df1469",
+      "stemCoverage": 0.8172,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 30자 (원본 18자)"
+        }
+      ],
+      "issue_codes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q052",
+      "year": 2017,
+      "questionNumber": 52,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 18,
+      "rawBodyHash": "ea1d6866445f68f3",
+      "stemCoverage": 0.986,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 33자 (원본 25자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q053",
+      "year": 2017,
+      "questionNumber": 53,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 19,
+      "rawBodyHash": "059ce4211e703d2f",
+      "stemCoverage": 0.3243,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 32% (<55%)"
+        }
+      ],
+      "issue_codes": [
+        "stem_truncated"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q054",
+      "year": 2017,
+      "questionNumber": 54,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 19,
+      "rawBodyHash": "f657c4e41c67c0d2",
+      "stemCoverage": 0.9886,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 26자 (원본 21자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q055",
+      "year": 2017,
+      "questionNumber": 55,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "644cf08a7a66f9e5",
+      "stemCoverage": 0.9914,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q056",
+      "year": 2017,
+      "questionNumber": 56,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "07f2c381c391813c",
+      "stemCoverage": 0.9808,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q057",
+      "year": 2017,
+      "questionNumber": 57,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "fdadd9449f24d9df",
+      "stemCoverage": 0.8846,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q058",
+      "year": 2017,
+      "questionNumber": 58,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "25139c13d5034324",
+      "stemCoverage": 0.8571,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issue_codes": []
+    },
+    {
+      "questionId": "ACC_2017_Q059",
+      "year": 2017,
+      "questionNumber": 59,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "918fad23cd2a3994",
+      "stemCoverage": 0.9703,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 16자 (원본 0자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q060",
+      "year": 2017,
+      "questionNumber": 60,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "aca4109720c48d5c",
+      "stemCoverage": 0.9,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q061",
+      "year": 2017,
+      "questionNumber": 61,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "d8b1160b8e63de6f",
+      "stemCoverage": 0.8966,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q062",
+      "year": 2017,
+      "questionNumber": 62,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "ca32ac88ae90d0ab",
+      "stemCoverage": 0.4143,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 41% (<55%)"
+        },
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 24자 (원본 17자)"
+        }
+      ],
+      "issue_codes": [
+        "stem_truncated",
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q063",
+      "year": 2017,
+      "questionNumber": 63,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "c4464f74904b4b42",
+      "stemCoverage": 0.4946,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 49% (<55%)"
+        },
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 35자 (원본 21자)"
+        }
+      ],
+      "issue_codes": [
+        "stem_truncated",
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q064",
+      "year": 2017,
+      "questionNumber": 64,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "a90cffba7d266e6b",
+      "stemCoverage": 0.9918,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 29자 (원본 24자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q065",
+      "year": 2017,
+      "questionNumber": 65,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 24,
+      "rawBodyHash": "fabb4153795d05f0",
+      "stemCoverage": 0.9888,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q066",
+      "year": 2017,
+      "questionNumber": 66,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 24,
+      "rawBodyHash": "3933ec78f3d06ee4",
+      "stemCoverage": 0.9848,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q067",
+      "year": 2017,
+      "questionNumber": 67,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "5dfc12d14711ab05",
+      "stemCoverage": 0.9867,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 42자 (원본 28자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q068",
+      "year": 2017,
+      "questionNumber": 68,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "b81b97e361dcb260",
+      "stemCoverage": 0.9773,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 26자 (원본 19자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q069",
+      "year": 2017,
+      "questionNumber": 69,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "6f5657add2dfc61a",
+      "stemCoverage": 0.9879,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 28자 (원본 22자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q070",
+      "year": 2017,
+      "questionNumber": 70,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "4365b2851af1456c",
+      "stemCoverage": 0.8846,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q071",
+      "year": 2017,
+      "questionNumber": 71,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "b57f858aaaf6561b",
+      "stemCoverage": 0.989,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q072",
+      "year": 2017,
+      "questionNumber": 72,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "66e249eb62070c12",
+      "stemCoverage": 0.9806,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 20자 (원본 15자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q073",
+      "year": 2017,
+      "questionNumber": 73,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 27,
+      "rawBodyHash": "2b75a73ca7452237",
+      "stemCoverage": 0.9819,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q074",
+      "year": 2017,
+      "questionNumber": 74,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 27,
+      "rawBodyHash": "89b1c7c749076459",
+      "stemCoverage": 0.9901,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q075",
+      "year": 2017,
+      "questionNumber": 75,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 28,
+      "rawBodyHash": "a7dbcaa00ec35723",
+      "stemCoverage": 0.9934,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q076",
+      "year": 2017,
+      "questionNumber": 76,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 28,
+      "rawBodyHash": "4f867fe7f24562a2",
+      "stemCoverage": 0.9886,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 18자 (원본 13자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q077",
+      "year": 2017,
+      "questionNumber": 77,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 29,
+      "rawBodyHash": "40f5036b2e15ecc4",
+      "stemCoverage": 0.9846,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2017_Q078",
+      "year": 2017,
+      "questionNumber": 78,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 29,
+      "rawBodyHash": "d9e8edb6be6b9bdc",
+      "stemCoverage": 0.4364,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 44% (<55%)"
+        }
+      ],
+      "issue_codes": [
+        "stem_truncated"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q079",
+      "year": 2017,
+      "questionNumber": 79,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 29,
+      "rawBodyHash": "0daa85236ac538a0",
+      "stemCoverage": 0.9904,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 25자 (원본 20자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q080",
+      "year": 2017,
+      "questionNumber": 80,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "sourcePage": 30,
+      "rawBodyHash": "111e49fc862d7916",
+      "stemCoverage": 0.9902,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q041",
+      "year": 2018,
+      "questionNumber": 41,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "84e74449dd272a2c",
+      "stemCoverage": 0.925,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 36자 (원본 32자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q042",
+      "year": 2018,
+      "questionNumber": 42,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "66c3fe3c77916e03",
+      "stemCoverage": 0.9924,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 34자 (원본 23자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q043",
+      "year": 2018,
+      "questionNumber": 43,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "09701135ae6c9bfd",
+      "stemCoverage": 0.99,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 35자 (원본 26자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q044",
+      "year": 2018,
+      "questionNumber": 44,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "29cc4b1dfd1bbf54",
+      "stemCoverage": 0.9771,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q045",
+      "year": 2018,
+      "questionNumber": 45,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "c0d76c9bcfd0a16f",
+      "stemCoverage": 0.9846,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 33자 (원본 17자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q046",
+      "year": 2018,
+      "questionNumber": 46,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "cde20096d15bd1f4",
+      "stemCoverage": 0.9167,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q047",
+      "year": 2018,
+      "questionNumber": 47,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "3fa9755c04799da5",
+      "stemCoverage": 0.9865,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q048",
+      "year": 2018,
+      "questionNumber": 48,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 17,
+      "rawBodyHash": "d3cf456ec878615f",
+      "stemCoverage": 0.9872,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 24자 (원본 19자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q049",
+      "year": 2018,
+      "questionNumber": 49,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 17,
+      "rawBodyHash": "b847103f31aec24d",
+      "stemCoverage": 0.9836,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 40자 (원본 29자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q050",
+      "year": 2018,
+      "questionNumber": 50,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 17,
+      "rawBodyHash": "9612223fe0bae00b",
+      "stemCoverage": 0.9878,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 67자 (원본 30자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q051",
+      "year": 2018,
+      "questionNumber": 51,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 18,
+      "rawBodyHash": "cbb22ce844f68f80",
+      "stemCoverage": 0.9894,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q052",
+      "year": 2018,
+      "questionNumber": 52,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 18,
+      "rawBodyHash": "f98101c5798200ba",
+      "stemCoverage": 0.9894,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 45자 (원본 30자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q053",
+      "year": 2018,
+      "questionNumber": 53,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 19,
+      "rawBodyHash": "e2a2674dddeb3285",
+      "stemCoverage": 0.9919,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 30자 (원본 23자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q054",
+      "year": 2018,
+      "questionNumber": 54,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 19,
+      "rawBodyHash": "699c71ed14599c7d",
+      "stemCoverage": 0.9901,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q055",
+      "year": 2018,
+      "questionNumber": 55,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "ec8e1d50efe69dc5",
+      "stemCoverage": 0.9905,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q056",
+      "year": 2018,
+      "questionNumber": 56,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "31d0ff0a39c79e98",
+      "stemCoverage": 0.9858,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 28자 (원본 15자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q057",
+      "year": 2018,
+      "questionNumber": 57,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "67ed16642eb80969",
+      "stemCoverage": 0.9886,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q058",
+      "year": 2018,
+      "questionNumber": 58,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "0c114b909541004b",
+      "stemCoverage": 0.9032,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q059",
+      "year": 2018,
+      "questionNumber": 59,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "6e0175f4025854ea",
+      "stemCoverage": 0.9821,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q060",
+      "year": 2018,
+      "questionNumber": 60,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "bef651e94029693f",
+      "stemCoverage": 0.9862,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 30자 (원본 27자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q061",
+      "year": 2018,
+      "questionNumber": 61,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "4739fe258d67d035",
+      "stemCoverage": 0.9883,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q062",
+      "year": 2018,
+      "questionNumber": 62,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "f76ccec3414b11ea",
+      "stemCoverage": 0.9827,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q063",
+      "year": 2018,
+      "questionNumber": 63,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "a5402b62292d8a14",
+      "stemCoverage": 0.9824,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q064",
+      "year": 2018,
+      "questionNumber": 64,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "eb68328fae59cd41",
+      "stemCoverage": 0.985,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 46자 (원본 24자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q065",
+      "year": 2018,
+      "questionNumber": 65,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "ead68334e8c30ae4",
+      "stemCoverage": 0.8571,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issue_codes": []
+    },
+    {
+      "questionId": "ACC_2018_Q066",
+      "year": 2018,
+      "questionNumber": 66,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "daa0cc93bbf7cf8c",
+      "stemCoverage": 0.9834,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 38자 (원본 29자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q067",
+      "year": 2018,
+      "questionNumber": 67,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "6d126062b67799f5",
+      "stemCoverage": 0.8571,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issue_codes": []
+    },
+    {
+      "questionId": "ACC_2018_Q068",
+      "year": 2018,
+      "questionNumber": 68,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 24,
+      "rawBodyHash": "cd47c752bc2120bf",
+      "stemCoverage": 0.9891,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 34자 (원본 25자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q069",
+      "year": 2018,
+      "questionNumber": 69,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 24,
+      "rawBodyHash": "7523684a9098828d",
+      "stemCoverage": 0.9818,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 28자 (원본 14자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q070",
+      "year": 2018,
+      "questionNumber": 70,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 24,
+      "rawBodyHash": "e2de45a5bffc58c6",
+      "stemCoverage": 0.9886,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 40자 (원본 29자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q071",
+      "year": 2018,
+      "questionNumber": 71,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "1efe90ace8888790",
+      "stemCoverage": 0.967,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 42자 (원본 18자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q072",
+      "year": 2018,
+      "questionNumber": 72,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "817422af9256d789",
+      "stemCoverage": 0.9835,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q073",
+      "year": 2018,
+      "questionNumber": 73,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "b992bc1216440a3b",
+      "stemCoverage": 0.9876,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 39자 (원본 21자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q074",
+      "year": 2018,
+      "questionNumber": 74,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "07d9ba81a040a944",
+      "stemCoverage": 0.528,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 53% (<55%)"
+        },
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 46자 (원본 31자)"
+        }
+      ],
+      "issue_codes": [
+        "stem_truncated",
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q075",
+      "year": 2018,
+      "questionNumber": 75,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "c7f69621427f43aa",
+      "stemCoverage": 0.9862,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q076",
+      "year": 2018,
+      "questionNumber": 76,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "80bf808a586a7334",
+      "stemCoverage": 0.9884,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q077",
+      "year": 2018,
+      "questionNumber": 77,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 27,
+      "rawBodyHash": "1801a28bd475cdeb",
+      "stemCoverage": 0.9901,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 31자 (원본 21자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q078",
+      "year": 2018,
+      "questionNumber": 78,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 27,
+      "rawBodyHash": "345b07f937065542",
+      "stemCoverage": 0.9852,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 24자 (원본 20자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q079",
+      "year": 2018,
+      "questionNumber": 79,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 28,
+      "rawBodyHash": "d5eb0775d85279f8",
+      "stemCoverage": 0.9825,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2018_Q080",
+      "year": 2018,
+      "questionNumber": 80,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "sourcePage": 28,
+      "rawBodyHash": "e10a1ddffc53c21f",
+      "stemCoverage": 0.9717,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q041",
+      "year": 2020,
+      "questionNumber": 41,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 13,
+      "rawBodyHash": "86a0b697efa9f25c",
+      "stemCoverage": 0.9211,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q042",
+      "year": 2020,
+      "questionNumber": 42,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 13,
+      "rawBodyHash": "c2cc4445e49cfe97",
+      "stemCoverage": 0.8571,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q043",
+      "year": 2020,
+      "questionNumber": 43,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "d34cf7a319a9e1f0",
+      "stemCoverage": 0.9882,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 25자 (원본 18자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q044",
+      "year": 2020,
+      "questionNumber": 44,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "0ce743f699da2aa2",
+      "stemCoverage": 0.9872,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 25자 (원본 17자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q045",
+      "year": 2020,
+      "questionNumber": 45,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "997b848f511620f2",
+      "stemCoverage": 0.9877,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 32자 (원본 27자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q046",
+      "year": 2020,
+      "questionNumber": 46,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "5f98a0716d494d3a",
+      "stemCoverage": 0.9933,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 42자 (원본 29자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q047",
+      "year": 2020,
+      "questionNumber": 47,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "5b39da16f39c8a1a",
+      "stemCoverage": 0.9942,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 31자 (원본 25자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q048",
+      "year": 2020,
+      "questionNumber": 48,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "a4bf3dad4ce97f23",
+      "stemCoverage": 0.9764,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q049",
+      "year": 2020,
+      "questionNumber": 49,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "88a055b6f0088269",
+      "stemCoverage": 0.988,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 31자 (원본 23자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q050",
+      "year": 2020,
+      "questionNumber": 50,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "db41e6a7cf38df01",
+      "stemCoverage": 0.9901,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q051",
+      "year": 2020,
+      "questionNumber": 51,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 17,
+      "rawBodyHash": "995144cb2aaa6bbf",
+      "stemCoverage": 0.9892,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q052",
+      "year": 2020,
+      "questionNumber": 52,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 17,
+      "rawBodyHash": "c5b85650353d31d2",
+      "stemCoverage": 0.9913,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q053",
+      "year": 2020,
+      "questionNumber": 53,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 18,
+      "rawBodyHash": "71834609a4f0f8c0",
+      "stemCoverage": 0.9888,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 21자 (원본 17자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q054",
+      "year": 2020,
+      "questionNumber": 54,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 18,
+      "rawBodyHash": "ae025bdd5e2a4714",
+      "stemCoverage": 0.9919,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 50자 (원본 33자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q055",
+      "year": 2020,
+      "questionNumber": 55,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 19,
+      "rawBodyHash": "2c2363b7f290aa95",
+      "stemCoverage": 0.9888,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q056",
+      "year": 2020,
+      "questionNumber": 56,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 19,
+      "rawBodyHash": "a4d386bfd571488a",
+      "stemCoverage": 0.985,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q057",
+      "year": 2020,
+      "questionNumber": 57,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "ef8d87e081ccf6bf",
+      "stemCoverage": 0.9868,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q058",
+      "year": 2020,
+      "questionNumber": 58,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "e92f09405005ea83",
+      "stemCoverage": 0.9891,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 26자 (원본 23자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q059",
+      "year": 2020,
+      "questionNumber": 59,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "43ed5c6a80d22f72",
+      "stemCoverage": 0.992,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 23자 (원본 20자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q060",
+      "year": 2020,
+      "questionNumber": 60,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "9fde9fcf38a8a2dd",
+      "stemCoverage": 0.9935,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q061",
+      "year": 2020,
+      "questionNumber": 61,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "1a95f93aeea00226",
+      "stemCoverage": 0.9886,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 23자 (원본 19자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q062",
+      "year": 2020,
+      "questionNumber": 62,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "b7724f647eecce58",
+      "stemCoverage": 0.9827,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q063",
+      "year": 2020,
+      "questionNumber": 63,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "13123dbbdd6201bb",
+      "stemCoverage": 0.9877,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q064",
+      "year": 2020,
+      "questionNumber": 64,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "34ff31fc0bd9484a",
+      "stemCoverage": 0.9865,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 33자 (원본 28자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q065",
+      "year": 2020,
+      "questionNumber": 65,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "f7687074eb45443a",
+      "stemCoverage": 0.99,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 23자 (원본 19자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q066",
+      "year": 2020,
+      "questionNumber": 66,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "b2323ff987689df1",
+      "stemCoverage": 0.9841,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 27자 (원본 16자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q067",
+      "year": 2020,
+      "questionNumber": 67,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "30a26e81d3960f5f",
+      "stemCoverage": 0.9864,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 22자 (원본 14자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q068",
+      "year": 2020,
+      "questionNumber": 68,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 24,
+      "rawBodyHash": "d3606acbe7b481e0",
+      "stemCoverage": 0.9915,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 30자 (원본 23자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q069",
+      "year": 2020,
+      "questionNumber": 69,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 24,
+      "rawBodyHash": "b9dd9d13f6862b2e",
+      "stemCoverage": 0.9907,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q070",
+      "year": 2020,
+      "questionNumber": 70,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "f0a09bcc11c68129",
+      "stemCoverage": 0.9868,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q071",
+      "year": 2020,
+      "questionNumber": 71,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "2dfdb49ccf6ed244",
+      "stemCoverage": 0.9871,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q072",
+      "year": 2020,
+      "questionNumber": 72,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "b0f9efeb7fe3a811",
+      "stemCoverage": 0.5584,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issue_codes": []
+    },
+    {
+      "questionId": "ACC_2020_Q073",
+      "year": 2020,
+      "questionNumber": 73,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "dbef6d22dc0dbcc1",
+      "stemCoverage": 0.9891,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q074",
+      "year": 2020,
+      "questionNumber": 74,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 27,
+      "rawBodyHash": "ca74a079fb51f036",
+      "stemCoverage": 0.9943,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 36자 (원본 27자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q075",
+      "year": 2020,
+      "questionNumber": 75,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 27,
+      "rawBodyHash": "1e9f6a877918f3ca",
+      "stemCoverage": 0.6207,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 18자 (원본 0자)"
+        }
+      ],
+      "issue_codes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q076",
+      "year": 2020,
+      "questionNumber": 76,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 28,
+      "rawBodyHash": "b36f0613908ed06d",
+      "stemCoverage": 0.984,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q077",
+      "year": 2020,
+      "questionNumber": 77,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 28,
+      "rawBodyHash": "7206d1b2f60a629f",
+      "stemCoverage": 0.979,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 14자 (원본 0자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q078",
+      "year": 2020,
+      "questionNumber": 78,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 28,
+      "rawBodyHash": "c0d32c765e9649bb",
+      "stemCoverage": 0.9894,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2020_Q079",
+      "year": 2020,
+      "questionNumber": 79,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 29,
+      "rawBodyHash": "a40a8167161f73e3",
+      "stemCoverage": 0.9821,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 26자 (원본 17자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q080",
+      "year": 2020,
+      "questionNumber": 80,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "sourcePage": 29,
+      "rawBodyHash": "1ef50301909e7018",
+      "stemCoverage": 0.991,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q041",
+      "year": 2024,
+      "questionNumber": 41,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 13,
+      "rawBodyHash": "7a8ba790eba68297",
+      "stemCoverage": 0.8929,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q042",
+      "year": 2024,
+      "questionNumber": 42,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 13,
+      "rawBodyHash": "026dbf70010d89e1",
+      "stemCoverage": 0.8571,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q043",
+      "year": 2024,
+      "questionNumber": 43,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "92fb57f45d0a06d9",
+      "stemCoverage": 0.6599,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 33자 (원본 27자)"
+        }
+      ],
+      "issue_codes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q044",
+      "year": 2024,
+      "questionNumber": 44,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "9a042e6e55e15117",
+      "stemCoverage": 0.7289,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issue_codes": []
+    },
+    {
+      "questionId": "ACC_2024_Q045",
+      "year": 2024,
+      "questionNumber": 45,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "aba7d25c62c0321c",
+      "stemCoverage": 0.1388,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 14% (<55%)"
+        }
+      ],
+      "issue_codes": [
+        "stem_truncated"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q046",
+      "year": 2024,
+      "questionNumber": 46,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "92d9a00577ba5236",
+      "stemCoverage": 0.9824,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q047",
+      "year": 2024,
+      "questionNumber": 47,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "7a729967a7b6e922",
+      "stemCoverage": 0.9873,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q048",
+      "year": 2024,
+      "questionNumber": 48,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "54557a5ef18810e8",
+      "stemCoverage": 0.9838,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 35자 (원본 22자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q049",
+      "year": 2024,
+      "questionNumber": 49,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "15afef3872d99249",
+      "stemCoverage": 0.9851,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 24자 (원본 14자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q050",
+      "year": 2024,
+      "questionNumber": 50,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "4e63a5b3344cbd19",
+      "stemCoverage": 0.9913,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 31자 (원본 27자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q051",
+      "year": 2024,
+      "questionNumber": 51,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "018db6d4ddca25a2",
+      "stemCoverage": 0.9874,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q052",
+      "year": 2024,
+      "questionNumber": 52,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 17,
+      "rawBodyHash": "c19d6d8d5d7624fb",
+      "stemCoverage": 0.9934,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q053",
+      "year": 2024,
+      "questionNumber": 53,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 17,
+      "rawBodyHash": "454eaa49b0cda203",
+      "stemCoverage": 0.9917,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q054",
+      "year": 2024,
+      "questionNumber": 54,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 18,
+      "rawBodyHash": "e5d69ca1c132f037",
+      "stemCoverage": 0.9861,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q055",
+      "year": 2024,
+      "questionNumber": 55,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 18,
+      "rawBodyHash": "9030a927ba550227",
+      "stemCoverage": 0.9167,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q056",
+      "year": 2024,
+      "questionNumber": 56,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 18,
+      "rawBodyHash": "7bb0a0a05b1bc3b5",
+      "stemCoverage": 0.9865,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 48자 (원본 30자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q057",
+      "year": 2024,
+      "questionNumber": 57,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 19,
+      "rawBodyHash": "16c89296975d6002",
+      "stemCoverage": 0.9854,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q058",
+      "year": 2024,
+      "questionNumber": 58,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 19,
+      "rawBodyHash": "c587e0da8a956f73",
+      "stemCoverage": 0.9938,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q059",
+      "year": 2024,
+      "questionNumber": 59,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "79ea24a2bb99c18a",
+      "stemCoverage": 0.9895,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q060",
+      "year": 2024,
+      "questionNumber": 60,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "2fc084c2ba575b9f",
+      "stemCoverage": 0.875,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q061",
+      "year": 2024,
+      "questionNumber": 61,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "5aea342080798d34",
+      "stemCoverage": 0.8229,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issue_codes": []
+    },
+    {
+      "questionId": "ACC_2024_Q062",
+      "year": 2024,
+      "questionNumber": 62,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "f348fec4f22ec66a",
+      "stemCoverage": 0.988,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 25자 (원본 22자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q063",
+      "year": 2024,
+      "questionNumber": 63,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "6e7e6ffebe1cabd8",
+      "stemCoverage": 0.9846,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q064",
+      "year": 2024,
+      "questionNumber": 64,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "a09eef53a799369f",
+      "stemCoverage": 0.7061,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 45자 (원본 30자)"
+        }
+      ],
+      "issue_codes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q065",
+      "year": 2024,
+      "questionNumber": 65,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "3a079ca2cadc4139",
+      "stemCoverage": 0.9882,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 24자 (원본 19자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q066",
+      "year": 2024,
+      "questionNumber": 66,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "757aaa965118f08f",
+      "stemCoverage": 0.8571,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q067",
+      "year": 2024,
+      "questionNumber": 67,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "5677e0a04421172f",
+      "stemCoverage": 0.9883,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 56자 (원본 30자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q068",
+      "year": 2024,
+      "questionNumber": 68,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "39e308f2dd9c74cf",
+      "stemCoverage": 0.9318,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 40자 (원본 34자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q069",
+      "year": 2024,
+      "questionNumber": 69,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "bcc5c36dae448431",
+      "stemCoverage": 0.9855,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q070",
+      "year": 2024,
+      "questionNumber": 70,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "3a80fcc1d9f70d9b",
+      "stemCoverage": 0.989,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q071",
+      "year": 2024,
+      "questionNumber": 71,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 24,
+      "rawBodyHash": "9d3a7cc5250d0341",
+      "stemCoverage": 0.9865,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 24자 (원본 19자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q072",
+      "year": 2024,
+      "questionNumber": 72,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 24,
+      "rawBodyHash": "95f1d47972bc30cf",
+      "stemCoverage": 0.9866,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 41자 (원본 34자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q073",
+      "year": 2024,
+      "questionNumber": 73,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 24,
+      "rawBodyHash": "18a9a12c6e1b954d",
+      "stemCoverage": 0.9892,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q074",
+      "year": 2024,
+      "questionNumber": 74,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "a42a07361ce566ba",
+      "stemCoverage": 0.9836,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q075",
+      "year": 2024,
+      "questionNumber": 75,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "7946c18732662d96",
+      "stemCoverage": 0.9875,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q076",
+      "year": 2024,
+      "questionNumber": 76,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "39280c41b5fde933",
+      "stemCoverage": 0.9876,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 31자 (원본 26자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q077",
+      "year": 2024,
+      "questionNumber": 77,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "5a25f65f7c174d78",
+      "stemCoverage": 0.981,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q078",
+      "year": 2024,
+      "questionNumber": 78,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "2da4b38acaf22f3f",
+      "stemCoverage": 0.9776,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q079",
+      "year": 2024,
+      "questionNumber": 79,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "a577bd11572d725e",
+      "stemCoverage": 0.9828,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2024_Q080",
+      "year": 2024,
+      "questionNumber": 80,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "23a23c20c04c1f98",
+      "stemCoverage": 0.8846,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q041",
+      "year": 2025,
+      "questionNumber": 41,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 13,
+      "rawBodyHash": "993acd3f3e6d1007",
+      "stemCoverage": 0.8889,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q042",
+      "year": 2025,
+      "questionNumber": 42,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 13,
+      "rawBodyHash": "b9a84818705fa153",
+      "stemCoverage": 0.8696,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q043",
+      "year": 2025,
+      "questionNumber": 43,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "4ef6991fc8628ac1",
+      "stemCoverage": 0.7818,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 34자 (원본 25자)"
+        }
+      ],
+      "issue_codes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q044",
+      "year": 2025,
+      "questionNumber": 44,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 14,
+      "rawBodyHash": "fc9eae2480891809",
+      "stemCoverage": 0.986,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 26자 (원본 17자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q045",
+      "year": 2025,
+      "questionNumber": 45,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "09501e9f79e54e89",
+      "stemCoverage": 0.5361,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 54% (<55%)"
+        },
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 26자 (원본 22자)"
+        }
+      ],
+      "issue_codes": [
+        "stem_truncated",
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q046",
+      "year": 2025,
+      "questionNumber": 46,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 15,
+      "rawBodyHash": "afccbab83b0ca688",
+      "stemCoverage": 0.6776,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issue_codes": []
+    },
+    {
+      "questionId": "ACC_2025_Q047",
+      "year": 2025,
+      "questionNumber": 47,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "5aad16f7b399a04a",
+      "stemCoverage": 0.9879,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 28자 (원본 21자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q048",
+      "year": 2025,
+      "questionNumber": 48,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "1a69b322835cbb98",
+      "stemCoverage": 0.9906,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q049",
+      "year": 2025,
+      "questionNumber": 49,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 16,
+      "rawBodyHash": "9cf048bae0396bfb",
+      "stemCoverage": 0.8421,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issue_codes": []
+    },
+    {
+      "questionId": "ACC_2025_Q050",
+      "year": 2025,
+      "questionNumber": 50,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 17,
+      "rawBodyHash": "c602505561be535a",
+      "stemCoverage": 0.9875,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 21자 (원본 17자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q051",
+      "year": 2025,
+      "questionNumber": 51,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 17,
+      "rawBodyHash": "98143a3b6cee43ba",
+      "stemCoverage": 0.9873,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 23자 (원본 18자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q052",
+      "year": 2025,
+      "questionNumber": 52,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 17,
+      "rawBodyHash": "58126bf704fce5e5",
+      "stemCoverage": 0.9739,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q053",
+      "year": 2025,
+      "questionNumber": 53,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 18,
+      "rawBodyHash": "e8205d75b973dc1e",
+      "stemCoverage": 0.9898,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q054",
+      "year": 2025,
+      "questionNumber": 54,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 18,
+      "rawBodyHash": "f739be194092f8a3",
+      "stemCoverage": 0.9914,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 25자 (원본 21자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q055",
+      "year": 2025,
+      "questionNumber": 55,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 18,
+      "rawBodyHash": "623e485893309047",
+      "stemCoverage": 0.9845,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q056",
+      "year": 2025,
+      "questionNumber": 56,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 19,
+      "rawBodyHash": "ecff32c1d6a3e23a",
+      "stemCoverage": 0.984,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 24자 (원본 17자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q057",
+      "year": 2025,
+      "questionNumber": 57,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 19,
+      "rawBodyHash": "89da9665d770c95d",
+      "stemCoverage": 0.9858,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 23자 (원본 19자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q058",
+      "year": 2025,
+      "questionNumber": 58,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 19,
+      "rawBodyHash": "6d74a46fae4eeee2",
+      "stemCoverage": 0.6678,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issue_codes": []
+    },
+    {
+      "questionId": "ACC_2025_Q059",
+      "year": 2025,
+      "questionNumber": 59,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "661e40daacb9fd15",
+      "stemCoverage": 0.8966,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q060",
+      "year": 2025,
+      "questionNumber": 60,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "b2e67261b52b6d07",
+      "stemCoverage": 0.6514,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issue_codes": []
+    },
+    {
+      "questionId": "ACC_2025_Q061",
+      "year": 2025,
+      "questionNumber": 61,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 20,
+      "rawBodyHash": "603374072919ecc2",
+      "stemCoverage": 0.9854,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q062",
+      "year": 2025,
+      "questionNumber": 62,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "d4c01749047fe065",
+      "stemCoverage": 0.9858,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 30자 (원본 19자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q063",
+      "year": 2025,
+      "questionNumber": 63,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "53f4bb98c8320a07",
+      "stemCoverage": 0.9893,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 30자 (원본 15자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q064",
+      "year": 2025,
+      "questionNumber": 64,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 21,
+      "rawBodyHash": "26cef3b0cc2eb99e",
+      "stemCoverage": 0.9924,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 33자 (원본 24자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q065",
+      "year": 2025,
+      "questionNumber": 65,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "6d4747c2891124c4",
+      "stemCoverage": 0.9912,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q066",
+      "year": 2025,
+      "questionNumber": 66,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 22,
+      "rawBodyHash": "7dfa28cae837a44a",
+      "stemCoverage": 0.9868,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q067",
+      "year": 2025,
+      "questionNumber": 67,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "58e182425faa08f4",
+      "stemCoverage": 0.9894,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q068",
+      "year": 2025,
+      "questionNumber": 68,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "0ff92e37d018c82e",
+      "stemCoverage": 0.9752,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 34자 (원본 31자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q069",
+      "year": 2025,
+      "questionNumber": 69,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "cfa3395f0aa1439f",
+      "stemCoverage": 0.9881,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q070",
+      "year": 2025,
+      "questionNumber": 70,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 23,
+      "rawBodyHash": "cf612f90cc6f162a",
+      "stemCoverage": 0.963,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q071",
+      "year": 2025,
+      "questionNumber": 71,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 24,
+      "rawBodyHash": "aa97ede14889b84f",
+      "stemCoverage": 0.9852,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q072",
+      "year": 2025,
+      "questionNumber": 72,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 24,
+      "rawBodyHash": "712ea925739b6195",
+      "stemCoverage": 0.9874,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 40자 (원본 30자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q073",
+      "year": 2025,
+      "questionNumber": 73,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "8d6944518e8afb40",
+      "stemCoverage": 0.99,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q074",
+      "year": 2025,
+      "questionNumber": 74,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "caaf29e3fc1e15fd",
+      "stemCoverage": 0.9851,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q075",
+      "year": 2025,
+      "questionNumber": 75,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 25,
+      "rawBodyHash": "0bc92300769d28c6",
+      "stemCoverage": 0.9825,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 31자 (원본 19자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q076",
+      "year": 2025,
+      "questionNumber": 76,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "d5a6bb7e35682f62",
+      "stemCoverage": 0.9211,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q077",
+      "year": 2025,
+      "questionNumber": 77,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "bb62bc6209038dda",
+      "stemCoverage": 0.9717,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q078",
+      "year": 2025,
+      "questionNumber": 78,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 26,
+      "rawBodyHash": "56b54c0f42860600",
+      "stemCoverage": 0.9831,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q079",
+      "year": 2025,
+      "questionNumber": 79,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 27,
+      "rawBodyHash": "0e24702365747d4c",
+      "stemCoverage": 0.985,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [],
+      "issueCodes": []
+    },
+    {
+      "questionId": "ACC_2025_Q080",
+      "year": 2025,
+      "questionNumber": 80,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "sourcePage": 27,
+      "rawBodyHash": "bb716b2efff90496",
+      "stemCoverage": 0.9922,
+      "missingNumbers": [],
+      "missingUnits": [],
+      "verified": false,
+      "issues": [
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 50자 (원본 30자)"
+        }
+      ],
+      "issueCodes": [
+        "ocr_glued_hangul"
+      ]
+    }
+  ]
+}

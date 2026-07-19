@@ -61,7 +61,7 @@ def build_question_record(
         "hasTable": parsed.has_table,
         "hasCalculation": parsed.has_calculation,
         "figure": parsed.has_figure,
-        "table": parsed.table_markdown,
+        "table": parsed.table_markdown or parsed.table_grid,
         "formula": None,
         "source": {
             "type": "original_exam",
@@ -192,7 +192,7 @@ def write_validation_report(
             "",
             "- StudyPiter 2단 합본 PDF 대신 `source/original-exams` 원본(HWP 우선) 사용",
             "- 회계학 41~80번 전체 40문항 추출 구조",
-            "- 표 문제 Markdown 보존, 계산 문제 줄바꿈·수식 유지",
+            "- 표 문제 Markdown/grid 보존, 계산 문제 줄바꿈·수식 유지",
             "- `answers/{year}.json` 및 원본 정답 HWP/PDF 자동 연결",
             "",
         ]

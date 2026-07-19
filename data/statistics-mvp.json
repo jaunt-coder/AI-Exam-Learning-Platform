@@ -1,40 +1,22 @@
 [
   {
-    "patternId": "ACC_COST_001",
-    "chapterId": "ACC_COST",
-    "totalCount": 17,
-    "years": [
-      2015,
-      2017,
-      2018,
-      2020,
-      2024,
-      2025
-    ],
-    "recentYears": [
-      2024,
-      2025
-    ],
-    "priority": "HIGH",
-    "grade": "S"
-  },
-  {
     "patternId": "ACC_COST_002",
     "chapterId": "ACC_COST",
-    "totalCount": 1,
+    "totalCount": 2,
     "years": [
-      2024
+      2018,
+      2025
     ],
     "recentYears": [
-      2024
+      2025
     ],
-    "priority": "LOW",
-    "grade": "B"
+    "priority": "MEDIUM",
+    "grade": "A"
   },
   {
     "patternId": "ACC_EQ_001",
     "chapterId": "ACC_EQ",
-    "totalCount": 13,
+    "totalCount": 17,
     "years": [
       2015,
       2017,
@@ -53,26 +35,29 @@
   {
     "patternId": "ACC_FIN_001",
     "chapterId": "ACC_FIN",
-    "totalCount": 3,
+    "totalCount": 7,
     "years": [
       2015,
       2017,
+      2024,
       2025
     ],
     "recentYears": [
+      2024,
       2025
     ],
-    "priority": "MEDIUM",
-    "grade": "A"
+    "priority": "HIGH",
+    "grade": "S"
   },
   {
     "patternId": "ACC_FIN_002",
     "chapterId": "ACC_FIN",
-    "totalCount": 11,
+    "totalCount": 12,
     "years": [
       2015,
       2017,
       2018,
+      2020,
       2024,
       2025
     ],
@@ -86,7 +71,7 @@
   {
     "patternId": "ACC_FS_001",
     "chapterId": "ACC_FS",
-    "totalCount": 20,
+    "totalCount": 22,
     "years": [
       2015,
       2017,
@@ -105,7 +90,7 @@
   {
     "patternId": "ACC_GEN_001",
     "chapterId": "ACC_GEN",
-    "totalCount": 15,
+    "totalCount": 50,
     "years": [
       2015,
       2017,
@@ -124,15 +109,18 @@
   {
     "patternId": "ACC_INT_001",
     "chapterId": "ACC_INT",
-    "totalCount": 5,
+    "totalCount": 21,
     "years": [
       2015,
       2017,
+      2018,
       2020,
-      2024
+      2024,
+      2025
     ],
     "recentYears": [
-      2024
+      2024,
+      2025
     ],
     "priority": "HIGH",
     "grade": "S"
@@ -166,26 +154,18 @@
   {
     "patternId": "ACC_INV_004",
     "chapterId": "ACC_INV",
-    "totalCount": 13,
+    "totalCount": 2,
     "years": [
-      2015,
-      2017,
-      2018,
-      2020,
-      2024,
-      2025
+      2020
     ],
-    "recentYears": [
-      2024,
-      2025
-    ],
-    "priority": "HIGH",
-    "grade": "S"
+    "recentYears": [],
+    "priority": "MEDIUM",
+    "grade": "A"
   },
   {
     "patternId": "ACC_INV_006",
     "chapterId": "ACC_INV",
-    "totalCount": 16,
+    "totalCount": 19,
     "years": [
       2015,
       2017,
@@ -206,11 +186,12 @@
     "chapterId": "ACC_INV",
     "totalCount": 3,
     "years": [
-      2018,
-      2024
+      2024,
+      2025
     ],
     "recentYears": [
-      2024
+      2024,
+      2025
     ],
     "priority": "MEDIUM",
     "grade": "A"
@@ -218,21 +199,24 @@
   {
     "patternId": "ACC_LEASE_001",
     "chapterId": "ACC_LEASE",
-    "totalCount": 2,
+    "totalCount": 4,
     "years": [
       2015,
+      2020,
+      2024,
       2025
     ],
     "recentYears": [
+      2024,
       2025
     ],
-    "priority": "MEDIUM",
-    "grade": "A"
+    "priority": "HIGH",
+    "grade": "S"
   },
   {
     "patternId": "ACC_PPE_001",
     "chapterId": "ACC_PPE",
-    "totalCount": 63,
+    "totalCount": 43,
     "years": [
       2015,
       2017,
@@ -251,11 +235,9 @@
   {
     "patternId": "ACC_PPE_002",
     "chapterId": "ACC_PPE",
-    "totalCount": 30,
+    "totalCount": 5,
     "years": [
       2015,
-      2017,
-      2018,
       2020,
       2024,
       2025
@@ -270,7 +252,7 @@
   {
     "patternId": "ACC_REV_001",
     "chapterId": "ACC_REV",
-    "totalCount": 19,
+    "totalCount": 26,
     "years": [
       2015,
       2017,
@@ -289,16 +271,14 @@
   {
     "patternId": "ACC_TAX_001",
     "chapterId": "ACC_TAX",
-    "totalCount": 3,
+    "totalCount": 1,
     "years": [
-      2024,
-      2025
+      2024
     ],
     "recentYears": [
-      2024,
-      2025
+      2024
     ],
-    "priority": "MEDIUM",
-    "grade": "A"
+    "priority": "LOW",
+    "grade": "B"
   }
 ]

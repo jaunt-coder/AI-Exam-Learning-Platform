@@ -214,6 +214,7 @@ async function loadDatabaseSet(dbSet, options = {}) {
 
   let questions = normalizeQuestionsPayload(questionPayload);
   if (dbSet.id === DEFAULT_DB_SET) {
+    // Display Cleanup Layer: 표시용 텍스트만 정제 (DB 파일 미변경)
     questions = applyQuestionCleanup(questions);
   }
   const validation = validateDatabasePayload(

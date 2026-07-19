@@ -1,0 +1,34 @@
+{
+  "before": {
+    "total": 240,
+    "stem_truncated": 198,
+    "ocr_footer": 39,
+    "ocr_glued_hangul": 0,
+    "missing_numbers": 2,
+    "missing_units": 84,
+    "table_total": 2,
+    "table_ok": 2,
+    "table_restore_rate": 100.0,
+    "issue_counts": {
+      "stem_truncated": 396,
+      "ocr_footer": 39,
+      "missing_units": 84,
+      "missing_numbers": 2
+    }
+  },
+  "after": {
+    "total": 240,
+    "stem_truncated": 16,
+    "ocr_footer": 0,
+    "ocr_glued_hangul": 124,
+    "missing_numbers": 0,
+    "missing_units": 0,
+    "table_total": 12,
+    "table_ok": 12,
+    "table_restore_rate": 100.0,
+    "issue_counts": {
+      "ocr_glued_hangul": 124,
+      "stem_truncated": 24
+    }
+  }
+}
