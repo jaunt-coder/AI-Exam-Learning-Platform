@@ -294,6 +294,13 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     storageKey: 'learning.mastery.v1',
     servicePath: 'js/mastery-service.js',
   };
+  const weaknessRuntime = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.weakness.v1',
+    servicePath: 'js/weakness-service.js',
+  };
 
   return {
     valid: errors.length === 0,
@@ -302,6 +309,7 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     evidenceReview,
     masteryContract,
     masteryRuntime,
+    weaknessRuntime,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -352,6 +360,13 @@ async function loadDatabaseSet(dbSet, options = {}) {
         storageKey: 'learning.mastery.v1',
         servicePath: 'js/mastery-service.js',
       },
+      weaknessRuntime: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.weakness.v1',
+        servicePath: 'js/weakness-service.js',
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -397,6 +412,13 @@ async function loadDatabaseSet(dbSet, options = {}) {
       connected: true,
       storageKey: 'learning.mastery.v1',
       servicePath: 'js/mastery-service.js',
+    },
+    weaknessRuntime: validation.weaknessRuntime || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.weakness.v1',
+      servicePath: 'js/weakness-service.js',
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,
