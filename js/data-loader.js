@@ -159,8 +159,22 @@ export function effectiveQuestionPatternId(question) {
  * @param {object} data
  * @param {object} [options]
  */
+/**
+ * Non-empty evidence list for Taxonomy V2 contract.
+ * @param {object} pattern
+ * @returns {boolean}
+ */
+function hasApprovedEvidence(pattern) {
+  const approved = pattern?.approvedEvidenceQuestions;
+  if (Array.isArray(approved) && approved.length > 0) return true;
+  const questions = pattern?.evidence?.questions;
+  return Array.isArray(questions) && questions.length > 0;
+}
+
 function validateDatabasePayload(dbSet, data, options = {}) {
   const errors = [];
+  /** Sprint-09H: evidence gaps are warnings (do not fail valid) */
+  const warnings = [];
   const { master, patterns, questions, statistics } = data;
 
   if (!master || typeof master !== 'object') {
@@ -222,6 +236,11 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     if (p.frequency !== cnt) {
       errors.push(`${p.patternId}: frequency(${p.frequency}) != questions(${cnt})`);
     }
+
+    /* Evidence contract — Sprint-09H warning mode (valid 유지) */
+    if ((p.frequency || 0) > 0 && !hasApprovedEvidence(p)) {
+      warnings.push(`[EVIDENCE_GAP] ${p.patternId} evidence missing`);
+    }
   }
 
   if (dbSet.id === 'mvp' && (questions || []).length !== 240) {
@@ -231,6 +250,7 @@ function validateDatabasePayload(dbSet, data, options = {}) {
   return {
     valid: errors.length === 0,
     errors,
+    warnings,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -261,6 +281,7 @@ async function loadDatabaseSet(dbSet, options = {}) {
       statistics: [],
       valid: false,
       errors: [error.message],
+      warnings: [],
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -287,6 +308,7 @@ async function loadDatabaseSet(dbSet, options = {}) {
     statistics,
     valid: validation.valid,
     errors: validation.errors,
+    warnings: validation.warnings || [],
     dbSet: dbSet.id,
     dbLabel: dbSet.label,
     paths: {

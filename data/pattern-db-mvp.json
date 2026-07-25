@@ -14,7 +14,11 @@
     "relatedQuestions": [
       "ACC_2018_Q077",
       "ACC_2025_Q080"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_EQ_001",
@@ -49,7 +53,11 @@
       "ACC_2025_Q061",
       "ACC_2025_Q062",
       "ACC_2025_Q070"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_FIN_001",
@@ -73,7 +81,11 @@
       "ACC_2024_Q054",
       "ACC_2025_Q054",
       "ACC_2025_Q056"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_FIN_002",
@@ -104,7 +116,11 @@
       "ACC_2024_Q061",
       "ACC_2025_Q057",
       "ACC_2025_Q058"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_FS_001",
@@ -146,7 +162,11 @@
       "ACC_2024_Q045",
       "ACC_2024_Q056",
       "ACC_2025_Q042"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_GEN_001",
@@ -213,7 +233,11 @@
       "ACC_2025_Q047",
       "ACC_2025_Q059",
       "ACC_2025_Q078"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_INT_001",
@@ -251,7 +275,11 @@
       "ACC_2025_Q055",
       "ACC_2025_Q066",
       "ACC_2025_Q069"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_INV_001",
@@ -266,7 +294,11 @@
     "importance": 58,
     "relatedQuestions": [
       "ACC_2018_Q042"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_INV_003",
@@ -283,7 +315,11 @@
       "ACC_2025_Q051",
       "ACC_2025_Q053",
       "ACC_2025_Q065"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_INV_004",
@@ -299,7 +335,11 @@
     "relatedQuestions": [
       "ACC_2020_Q049",
       "ACC_2020_Q066"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_INV_006",
@@ -331,7 +371,11 @@
       "ACC_2025_Q043",
       "ACC_2025_Q063",
       "ACC_2025_Q079"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_INV_007",
@@ -348,7 +392,11 @@
     "relatedQuestions": [
       "ACC_2024_Q043",
       "ACC_2025_Q044"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_LEASE_001",
@@ -369,7 +417,11 @@
       "ACC_2020_Q059",
       "ACC_2024_Q055",
       "ACC_2025_Q052"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_PPE_001",
@@ -430,7 +482,11 @@
       "ACC_2025_Q046",
       "ACC_2025_Q048",
       "ACC_2025_Q050"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_PPE_002",
@@ -451,7 +507,11 @@
       "ACC_2020_Q061",
       "ACC_2024_Q058",
       "ACC_2025_Q067"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_REV_001",
@@ -492,7 +552,11 @@
       "ACC_2025_Q068",
       "ACC_2025_Q071",
       "ACC_2025_Q072"
-    ]
+    ],
+    "evidence": {
+      "questions": [],
+      "status": "MISSING_REVIEW"
+    }
   },
   {
     "patternId": "ACC_TAX_001",
@@ -555,7 +619,23 @@
         "ACC_2024_Q073",
         "ACC_2025_Q073"
       ]
-    }
+    },
+    "evidence": {
+      "questions": [
+        "ACC_2018_Q079",
+        "ACC_2020_Q073",
+        "ACC_2024_Q073",
+        "ACC_2025_Q073"
+      ],
+      "source": "human_review",
+      "confidence": "high"
+    },
+    "approvedEvidenceQuestions": [
+      "ACC_2018_Q079",
+      "ACC_2020_Q073",
+      "ACC_2024_Q073",
+      "ACC_2025_Q073"
+    ]
   },
   {
     "patternId": "COST_JOINT_001",
@@ -603,7 +683,21 @@
         "ACC_2024_Q076",
         "ACC_2025_Q074"
       ]
-    }
+    },
+    "evidence": {
+      "questions": [
+        "ACC_2020_Q074",
+        "ACC_2024_Q076",
+        "ACC_2025_Q074"
+      ],
+      "source": "human_review",
+      "confidence": "high"
+    },
+    "approvedEvidenceQuestions": [
+      "ACC_2020_Q074",
+      "ACC_2024_Q076",
+      "ACC_2025_Q074"
+    ]
   },
   {
     "patternId": "COST_STD_001",
@@ -650,7 +744,21 @@
         "ACC_2024_Q074",
         "ACC_2025_Q075"
       ]
-    }
+    },
+    "evidence": {
+      "questions": [
+        "ACC_2020_Q075",
+        "ACC_2024_Q074",
+        "ACC_2025_Q075"
+      ],
+      "source": "human_review",
+      "confidence": "high"
+    },
+    "approvedEvidenceQuestions": [
+      "ACC_2020_Q075",
+      "ACC_2024_Q074",
+      "ACC_2025_Q075"
+    ]
   },
   {
     "patternId": "COST_CVP_001",
@@ -711,7 +819,31 @@
         "ACC_2025_Q076",
         "ACC_2025_Q077"
       ]
-    }
+    },
+    "evidence": {
+      "questions": [
+        "ACC_2018_Q071",
+        "ACC_2018_Q075",
+        "ACC_2018_Q078",
+        "ACC_2020_Q076",
+        "ACC_2024_Q075",
+        "ACC_2024_Q077",
+        "ACC_2025_Q076",
+        "ACC_2025_Q077"
+      ],
+      "source": "human_review",
+      "confidence": "high"
+    },
+    "approvedEvidenceQuestions": [
+      "ACC_2018_Q071",
+      "ACC_2018_Q075",
+      "ACC_2018_Q078",
+      "ACC_2020_Q076",
+      "ACC_2024_Q075",
+      "ACC_2024_Q077",
+      "ACC_2025_Q076",
+      "ACC_2025_Q077"
+    ]
   },
   {
     "patternId": "COST_MFG_001",
@@ -754,6 +886,18 @@
         "ACC_2018_Q076",
         "ACC_2018_Q080"
       ]
-    }
+    },
+    "evidence": {
+      "questions": [
+        "ACC_2018_Q076",
+        "ACC_2018_Q080"
+      ],
+      "source": "human_review",
+      "confidence": "medium"
+    },
+    "approvedEvidenceQuestions": [
+      "ACC_2018_Q076",
+      "ACC_2018_Q080"
+    ]
   }
 ]
