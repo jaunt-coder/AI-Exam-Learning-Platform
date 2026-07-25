@@ -39,42 +39,31 @@ Order: PROCESS → JOINT → STD → CVP → MFG
 
 | Pattern ID | Before | After | Δ |
 |------------|-------:|------:|--:|
-| `ACC_GEN_001` | 55 | 48 | -7 |
-| `ACC_INT_001` | 20 | 19 | -1 |
-| `ACC_INV_006` | 19 | 13 | -6 |
-| `ACC_INV_007` | 3 | 2 | -1 |
-| `ACC_REV_001` | 26 | 22 | -4 |
-| `ACC_TAX_001` | 1 | 0 | -1 |
-| `COST_CVP_001` | 0 | 8 | +8 |
-| `COST_JOINT_001` | 0 | 3 | +3 |
-| `COST_MFG_001` | 0 | 2 | +2 |
-| `COST_PROCESS_001` | 0 | 4 | +4 |
-| `COST_STD_001` | 0 | 3 | +3 |
 
 ### Mapping Table
 
 | questionId | beforePattern | afterPrimaryPattern | relatedPatterns | confidence |
 |------------|---------------|---------------------|-----------------|------------|
-| `ACC_2018_Q079` | `ACC_INV_006` | `COST_PROCESS_001` | `ACC_INV_006` | high |
-| `ACC_2020_Q073` | `ACC_INV_006` | `COST_PROCESS_001` | `ACC_INV_006` | high |
-| `ACC_2024_Q073` | `ACC_INV_006` | `COST_PROCESS_001` | `ACC_INV_006` | high |
-| `ACC_2025_Q073` | `ACC_INV_006` | `COST_PROCESS_001` | `ACC_INV_006` | high |
-| `ACC_2020_Q074` | `ACC_GEN_001` | `COST_JOINT_001` | `ACC_GEN_001` | high |
-| `ACC_2024_Q076` | `ACC_INV_007` | `COST_JOINT_001` | `ACC_INV_007` | high |
-| `ACC_2025_Q074` | `ACC_GEN_001` | `COST_JOINT_001` | `ACC_GEN_001` | high |
-| `ACC_2020_Q075` | `ACC_GEN_001` | `COST_STD_001` | `ACC_GEN_001` | high |
-| `ACC_2024_Q074` | `ACC_GEN_001` | `COST_STD_001` | `ACC_GEN_001` | high |
-| `ACC_2025_Q075` | `ACC_GEN_001` | `COST_STD_001` | `ACC_GEN_001` | high |
-| `ACC_2018_Q071` | `ACC_INT_001` | `COST_CVP_001` | `ACC_INT_001` | high |
-| `ACC_2018_Q075` | `ACC_REV_001` | `COST_CVP_001` | `ACC_REV_001` | high |
-| `ACC_2018_Q078` | `ACC_GEN_001` | `COST_CVP_001` | `ACC_GEN_001` | high |
-| `ACC_2020_Q076` | `ACC_INV_006` | `COST_CVP_001` | `ACC_INV_006` | high |
-| `ACC_2024_Q075` | `ACC_INV_006` | `COST_CVP_001` | `ACC_INV_006` | high |
-| `ACC_2024_Q077` | `ACC_TAX_001` | `COST_CVP_001` | `ACC_TAX_001` | high |
-| `ACC_2025_Q076` | `ACC_GEN_001` | `COST_CVP_001` | `ACC_GEN_001` | high |
-| `ACC_2025_Q077` | `ACC_REV_001` | `COST_CVP_001` | `ACC_REV_001` | high |
-| `ACC_2018_Q076` | `ACC_REV_001` | `COST_MFG_001` | `ACC_REV_001` | medium |
-| `ACC_2018_Q080` | `ACC_REV_001` | `COST_MFG_001` | `ACC_REV_001` | medium |
+| `ACC_2018_Q079` | `COST_PROCESS_001` | `COST_PROCESS_001` | — | high |
+| `ACC_2020_Q073` | `COST_PROCESS_001` | `COST_PROCESS_001` | — | high |
+| `ACC_2024_Q073` | `COST_PROCESS_001` | `COST_PROCESS_001` | — | high |
+| `ACC_2025_Q073` | `COST_PROCESS_001` | `COST_PROCESS_001` | — | high |
+| `ACC_2020_Q074` | `COST_JOINT_001` | `COST_JOINT_001` | — | high |
+| `ACC_2024_Q076` | `COST_JOINT_001` | `COST_JOINT_001` | — | high |
+| `ACC_2025_Q074` | `COST_JOINT_001` | `COST_JOINT_001` | — | high |
+| `ACC_2020_Q075` | `COST_STD_001` | `COST_STD_001` | — | high |
+| `ACC_2024_Q074` | `COST_STD_001` | `COST_STD_001` | — | high |
+| `ACC_2025_Q075` | `COST_STD_001` | `COST_STD_001` | — | high |
+| `ACC_2018_Q071` | `COST_CVP_001` | `COST_CVP_001` | — | high |
+| `ACC_2018_Q075` | `COST_CVP_001` | `COST_CVP_001` | — | high |
+| `ACC_2018_Q078` | `COST_CVP_001` | `COST_CVP_001` | — | high |
+| `ACC_2020_Q076` | `COST_CVP_001` | `COST_CVP_001` | — | high |
+| `ACC_2024_Q075` | `COST_CVP_001` | `COST_CVP_001` | — | high |
+| `ACC_2024_Q077` | `COST_CVP_001` | `COST_CVP_001` | — | high |
+| `ACC_2025_Q076` | `COST_CVP_001` | `COST_CVP_001` | — | high |
+| `ACC_2025_Q077` | `COST_CVP_001` | `COST_CVP_001` | — | high |
+| `ACC_2018_Q076` | `COST_MFG_001` | `COST_MFG_001` | — | medium |
+| `ACC_2018_Q080` | `COST_MFG_001` | `COST_MFG_001` | — | medium |
 
 ---
 
