@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q061",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 61,
+  "page": 22,
+  "stem": "(주)감평의20x1년초유통보통주식수는1,000주(주당액면금액￦1,000), 유통우선\n주식수는200주(주당액면금액￦1,000)이다. 20x1년9월1일에(주)감평은보통주\n1,000주의유상증자를실시하였는데, 발행금액은주당￦1,200이고유상증자직전\n주당공정가치는￦2,000이다. 20x1년도당기순이익은￦280,000이며, 우선주(비누\n적적, 비참가적)의배당률은5%이다. 20x1년도기본주당이익은? (단, 유상증자대금\n은20x1년9월1일전액납입완료되었으며, 유통보통주식수계산시월할계산한다.)",
+  "choices": [
+    "￦135",
+    "￦140",
+    "￦168.75",
+    "￦180",
+    "￦202.5"
+  ],
+  "answer": 4,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "61. (주)감평의20x1년초유통보통주식수는1,000주(주당액면금액￦1,000), 유통우선\n주식수는200주(주당액면금액￦1,000)이다. 20x1년9월1일에(주)감평은보통주\n1,000주의유상증자를실시하였는데, 발행금액은주당￦1,200이고유상증자직전\n주당공정가치는￦2,000이다. 20x1년도당기순이익은￦280,000이며, 우선주(비누\n적적, 비참가적)의배당률은5%이다. 20x1년도기본주당이익은? (단, 유상증자대금\n은20x1년9월1일전액납입완료되었으며, 유통보통주식수계산시월할계산한다.)\n①￦135\n②￦140\n③￦168.75\n④￦180\n⑤￦202.5",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "④",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.515453+00:00",
+    "status": "joined"
+  }
+}

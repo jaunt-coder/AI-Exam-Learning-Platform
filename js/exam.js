@@ -8,6 +8,7 @@ import {
   getQuestionById,
   getPatternById,
   getChoiceLabel,
+  filterInventoryScope,
 } from './data-loader.js';
 import { getItem, STORAGE_KEYS } from './storage.js';
 import {
@@ -443,10 +444,21 @@ async function init() {
     }
 
     state.master = db.master;
-    state.questions = db.questions;
-    state.patterns = db.patterns;
+    const scoped = filterInventoryScope({
+      patterns: db.patterns,
+      questions: db.questions,
+      statistics: db.statistics,
+    });
+    state.questions = scoped.questions;
+    state.patterns = scoped.patterns;
 
-    $('exam-desc').textContent = EXAM_CONFIG.description;
+    if (!state.questions.length) {
+      showError('재고자산(ACC_INV) 문항을 찾을 수 없습니다.');
+      return;
+    }
+
+    $('exam-desc').textContent =
+      `${EXAM_CONFIG.description} · 현재 풀 ${state.questions.length}문항 / Pattern ${state.patterns.length}개`;
     renderHistorySummary();
     renderPresets();
     checkResumePanel();

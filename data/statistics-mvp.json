@@ -52,11 +52,12 @@
   {
     "patternId": "ACC_FIN_002",
     "chapterId": "ACC_FIN",
-    "totalCount": 11,
+    "totalCount": 12,
     "years": [
       2015,
       2017,
       2018,
+      2020,
       2024,
       2025
     ],
@@ -232,7 +233,7 @@
   {
     "patternId": "ACC_PPE_002",
     "chapterId": "ACC_PPE",
-    "totalCount": 5,
+    "totalCount": 4,
     "years": [
       2015,
       2020,

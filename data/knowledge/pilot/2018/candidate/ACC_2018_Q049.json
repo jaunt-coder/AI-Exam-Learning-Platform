@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q049",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 49,
+  "page": 17,
+  "stem": "(주)감평은본사사옥을신축하기위하여토지를취득하였는데이토지에는\n철거예정인창고가있었다. 다음자료를고려할때, 토지의취득원가는?\n토지구입대금\n￦1,000,000\n사옥신축개시이전까지토지임대를통한수익\n25,000\n토지취득세및등기수수료\n70,000\n창고철거비\n10,000\n창고철거시발생한폐자재처분수입\n5,000\n본사사옥설계비\n30,000\n본사사옥공사대금\n800,000",
+  "choices": [
+    "￦1,050,000",
+    "￦1,075,000",
+    "￦1,080,000",
+    "￦1,100,000",
+    "￦1,105,000"
+  ],
+  "answer": 2,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "49. (주)감평은본사사옥을신축하기위하여토지를취득하였는데이토지에는\n철거예정인창고가있었다. 다음자료를고려할때, 토지의취득원가는?\n토지구입대금\n￦1,000,000\n사옥신축개시이전까지토지임대를통한수익\n25,000\n토지취득세및등기수수료\n70,000\n창고철거비\n10,000\n창고철거시발생한폐자재처분수입\n5,000\n본사사옥설계비\n30,000\n본사사옥공사대금\n800,000\n①￦1,050,000\n②￦1,075,000\n③￦1,080,000\n④￦1,100,000\n⑤￦1,105,000",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "②",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.495507+00:00",
+    "status": "joined"
+  }
+}

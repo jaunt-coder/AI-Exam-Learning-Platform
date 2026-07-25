@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q076",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 76,
+  "page": 26,
+  "stem": "정상원가계산을사용하는(주)감평은단일제품을제조ㆍ판매하는기업이다.\n20x1년도의고정제조간접원가총예산액및실제발생액은￦720,000이었다.\n20x1년제품의생산및판매량은다음과같고, 기초및기말재공품은없다.\n기초재고\n40,000단위\n생산량\n140,000단위\n판매량\n160,000단위\n고정제조간접원가배부율은\n120,000단위를\n기준으로\n산정하며,\n이\n배부율은\n매년동일하게적용된다. 한편, 제조원가의원가차이는전액매출원가에서\n조정한다. 변동원가계산에의한영업이익이￦800,000인경우, 전부원가계산\n에의한영업이익은?",
+  "choices": [
+    "￦680,000",
+    "￦700,000",
+    "￦750,000",
+    "￦830,000",
+    "￦920,000\n\n\n\n2018년제29회감정평가사1차-2교시-A-28-27"
+  ],
+  "answer": 1,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "76. 정상원가계산을사용하는(주)감평은단일제품을제조ㆍ판매하는기업이다.\n20x1년도의고정제조간접원가총예산액및실제발생액은￦720,000이었다.\n20x1년제품의생산및판매량은다음과같고, 기초및기말재공품은없다.\n기초재고\n40,000단위\n생산량\n140,000단위\n판매량\n160,000단위\n고정제조간접원가배부율은\n120,000단위를\n기준으로\n산정하며,\n이\n배부율은\n매년동일하게적용된다. 한편, 제조원가의원가차이는전액매출원가에서\n조정한다. 변동원가계산에의한영업이익이￦800,000인경우, 전부원가계산\n에의한영업이익은?\n①￦680,000\n②￦700,000\n③￦750,000\n④￦830,000\n⑤￦920,000\n\n\n\n2018년제29회감정평가사1차-2교시-A-28-27",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "①",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.543379+00:00",
+    "status": "joined"
+  }
+}

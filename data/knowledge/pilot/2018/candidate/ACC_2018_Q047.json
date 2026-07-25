@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q047",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 47,
+  "page": 16,
+  "stem": "(주)감평은20x1년초공장건물을신축하기시작하여20x1년말에완공하였다.\n다음은공장건물의신축을위한(주)감평의지출액과특정차입금및일반차입금\n에대한자료이다.\n구분\n연평균금액\n이자비용\n공장건물에대한지출액\n￦320,000\n특정차입금\n160,000\n￦18,400\n일반차입금\n100,000\n12,000\n20x1년공장건물과관련하여자본화할차입원가는? (단, 이자비용은20x1년중에\n발생한금액이며, 공장건물은차입원가를자본화하는적격자산에해당된다.)",
+  "choices": [
+    "￦12,000",
+    "￦18,400",
+    "￦30,400",
+    "￦31,200",
+    "￦37,600\n\n\n\n2018년제29회감정평가사1차-2교시-A-28-17"
+  ],
+  "answer": 3,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "47. (주)감평은20x1년초공장건물을신축하기시작하여20x1년말에완공하였다.\n다음은공장건물의신축을위한(주)감평의지출액과특정차입금및일반차입금\n에대한자료이다.\n구분\n연평균금액\n이자비용\n공장건물에대한지출액\n￦320,000\n특정차입금\n160,000\n￦18,400\n일반차입금\n100,000\n12,000\n20x1년공장건물과관련하여자본화할차입원가는? (단, 이자비용은20x1년중에\n발생한금액이며, 공장건물은차입원가를자본화하는적격자산에해당된다.)\n①￦12,000\n②￦18,400\n③￦30,400\n④￦31,200\n⑤￦37,600\n\n\n\n2018년제29회감정평가사1차-2교시-A-28-17",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "③",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.492514+00:00",
+    "status": "joined"
+  }
+}

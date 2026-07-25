@@ -34,10 +34,12 @@
       <section id="dashboard-section" class="dashboard-section" aria-labelledby="dashboard-heading" hidden>
         <header class="section-header">
           <h2 id="dashboard-heading">Pattern Dashboard</h2>
-          <p class="section-desc" id="chapter-title">재고자산 · PDF 검증 기출 Pattern</p>
+          <p class="section-desc" id="chapter-title">회계학 · 재고자산(ACC_INV_*) Pattern</p>
         </header>
 
         <div class="dashboard-summary card" id="dashboard-summary" aria-live="polite"></div>
+
+        <section class="study-validation card" id="study-validation-panel" aria-label="학습 기록 확인"></section>
 
         <section class="wrong-note-summary" aria-labelledby="wrong-summary-heading">
           <div class="wrong-summary-header">
@@ -64,11 +66,22 @@
 
         <div class="detail-grid">
           <article class="card detail-card">
-            <h3>Pattern 설명</h3>
+            <h3>출제 Pattern 설명</h3>
             <p class="detail-desc" id="detail-description"></p>
 
-            <h3>핵심 학습 포인트</h3>
-            <ul class="learning-points" id="detail-learning-points"></ul>
+            <section class="pattern-enrichment" aria-labelledby="trigger-heading">
+              <h3 id="trigger-heading">시험 Trigger Keyword</h3>
+              <ul class="trigger-keyword-list" id="detail-trigger-keywords" role="list"></ul>
+            </section>
+
+            <section class="pattern-enrichment" aria-labelledby="judgment-heading">
+              <h3 id="judgment-heading">핵심 판단 기준</h3>
+              <p class="enrichment-flow-hint">Keyword → 판단 기준 → 결론</p>
+              <ol class="judgment-criteria-list" id="detail-judgment-criteria" role="list"></ol>
+            </section>
+
+            <h3>풀이 알고리즘</h3>
+            <ol class="learning-points algorithm-steps" id="detail-algorithm"></ol>
 
             <div class="detail-meta" id="detail-meta"></div>
           </article>

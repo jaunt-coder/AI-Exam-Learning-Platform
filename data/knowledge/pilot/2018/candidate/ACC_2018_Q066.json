@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q066",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 66,
+  "page": 23,
+  "stem": "(주)감평은선입선출법에의한저가기준을적용하여소매재고법으로재고\n자산을평가하고있다. 20x8년도상품재고거래와관련된자료가다음과\n같은경우(주)감평의20x8년도매출원가는?\n원\n가\n매\n가\n기초재고자산\n￦162,000\n￦183,400\n당기매입액\n1,220,000\n1,265,000\n인상액\n260,000\n인하액\n101,000\n인하취소액\n11,000\n당기매출액\n960,000",
+  "choices": [
+    "￦526,720",
+    "￦532,600",
+    "￦849,390",
+    "￦855,280",
+    "￦952,400"
+  ],
+  "answer": 4,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "66. (주)감평은선입선출법에의한저가기준을적용하여소매재고법으로재고\n자산을평가하고있다. 20x8년도상품재고거래와관련된자료가다음과\n같은경우(주)감평의20x8년도매출원가는?\n원\n가\n매\n가\n기초재고자산\n￦162,000\n￦183,400\n당기매입액\n1,220,000\n1,265,000\n인상액\n260,000\n인하액\n101,000\n인하취소액\n11,000\n당기매출액\n960,000\n①￦526,720\n②￦532,600\n③￦849,390\n④￦855,280\n⑤￦952,400",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "④",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.525427+00:00",
+    "status": "joined"
+  }
+}

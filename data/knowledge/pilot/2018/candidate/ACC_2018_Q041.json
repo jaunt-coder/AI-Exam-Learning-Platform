@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q041",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 41,
+  "page": 14,
+  "stem": "재무보고를위한개념체계에서유용한재무정보의질적특성에관한설명으로\n옳은것은?",
+  "choices": [
+    "재무정보가예측가치를갖기위해서그자체가예측치또는예상치일필요는없다.",
+    "계량화된정보가검증가능하기위해서단일점추정치이어야한다.",
+    "완벽하게표현충실성을위해서는서술은완전하고, 검증가능하며, 오류가없어야한다.",
+    "재무정보에예측가치가있다면그재무정보는나타내고자하는현상을충실하게\n표현한다.",
+    "재고자산평가손실의인식은보수주의원칙이적용된것이며, 보수주의는표현\n충실성의한측면으로포함할수있다."
+  ],
+  "answer": 1,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "41. 재무보고를위한개념체계에서유용한재무정보의질적특성에관한설명으로\n옳은것은?\n①재무정보가예측가치를갖기위해서그자체가예측치또는예상치일필요는없다.\n②계량화된정보가검증가능하기위해서단일점추정치이어야한다.\n③완벽하게표현충실성을위해서는서술은완전하고, 검증가능하며, 오류가없어야한다.\n④재무정보에예측가치가있다면그재무정보는나타내고자하는현상을충실하게\n표현한다.\n⑤재고자산평가손실의인식은보수주의원칙이적용된것이며, 보수주의는표현\n충실성의한측면으로포함할수있다.",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "①",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.483540+00:00",
+    "status": "joined"
+  }
+}

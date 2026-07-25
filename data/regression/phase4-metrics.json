@@ -1,0 +1,233 @@
+{
+  "years": [
+    2015,
+    2017,
+    2018,
+    2020,
+    2024,
+    2025
+  ],
+  "questionsExpected": 240,
+  "boundaryBefore": 240,
+  "boundaryAfter": 240,
+  "overall": {
+    "before": {
+      "questions": 240,
+      "expectedMarkers": 1200,
+      "foundMarkers": 1196,
+      "markerRecall": 0.9967,
+      "count5Questions": 236,
+      "countAccuracy": 0.9833,
+      "textCoverage": 0.9908
+    },
+    "after": {
+      "questions": 240,
+      "expectedMarkers": 1200,
+      "foundMarkers": 1200,
+      "markerRecall": 1.0,
+      "count5Questions": 240,
+      "countAccuracy": 1.0,
+      "textCoverage": 0.995
+    }
+  },
+  "target2015": {
+    "ids": [
+      47,
+      52,
+      77,
+      78
+    ],
+    "targetBefore": {
+      "47": false,
+      "52": false,
+      "77": false,
+      "78": false
+    },
+    "targetAfter": {
+      "47": true,
+      "52": true,
+      "77": true,
+      "78": true
+    },
+    "errBefore": 4,
+    "errAfter": 0
+  },
+  "perYear": {
+    "2015": {
+      "pagesBefore": 15,
+      "pagesAfter": 30,
+      "splitNote": "2-up document (gutter ratio~0.486); split 15 sheets -> 30 logical pages",
+      "detectedBefore": 40,
+      "detectedAfter": 40,
+      "missingBefore": [],
+      "missingAfter": [],
+      "before": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 196,
+        "markerRecall": 0.98,
+        "count5Questions": 36,
+        "countAccuracy": 0.9,
+        "textCoverage": 0.95
+      },
+      "after": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 0.975
+      },
+      "targetBefore": {
+        "47": false,
+        "52": false,
+        "77": false,
+        "78": false
+      },
+      "targetAfter": {
+        "47": true,
+        "52": true,
+        "77": true,
+        "78": true
+      },
+      "errBefore": 4,
+      "errAfter": 0
+    },
+    "2017": {
+      "pagesBefore": 30,
+      "pagesAfter": 30,
+      "splitNote": "single-page layout (only 13/30 pages showed a gutter)",
+      "detectedBefore": 40,
+      "detectedAfter": 40,
+      "missingBefore": [],
+      "missingAfter": [],
+      "before": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "after": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      }
+    },
+    "2018": {
+      "pagesBefore": 28,
+      "pagesAfter": 28,
+      "splitNote": "single-page layout (only 2/28 pages showed a gutter)",
+      "detectedBefore": 40,
+      "detectedAfter": 40,
+      "missingBefore": [],
+      "missingAfter": [],
+      "before": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "after": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      }
+    },
+    "2020": {
+      "pagesBefore": 29,
+      "pagesAfter": 29,
+      "splitNote": "single-page layout (only 11/29 pages showed a gutter)",
+      "detectedBefore": 40,
+      "detectedAfter": 40,
+      "missingBefore": [],
+      "missingAfter": [],
+      "before": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "after": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      }
+    },
+    "2024": {
+      "pagesBefore": 26,
+      "pagesAfter": 26,
+      "splitNote": "single-page layout (only 4/26 pages showed a gutter)",
+      "detectedBefore": 40,
+      "detectedAfter": 40,
+      "missingBefore": [],
+      "missingAfter": [],
+      "before": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "after": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      }
+    },
+    "2025": {
+      "pagesBefore": 27,
+      "pagesAfter": 27,
+      "splitNote": "single-page layout (only 1/27 pages showed a gutter)",
+      "detectedBefore": 40,
+      "detectedAfter": 40,
+      "missingBefore": [],
+      "missingAfter": [],
+      "before": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 0.995
+      },
+      "after": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 0.995
+      }
+    }
+  }
+}

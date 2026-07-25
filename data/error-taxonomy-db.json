@@ -1,0 +1,451 @@
+{
+  "schemaVersion": "wo013.3-1.0",
+  "woId": "WO-013.3",
+  "generatedAt": "2026-07-22T17:30:00Z",
+  "agent": "06_Education_Knowledge_Engineer",
+  "scope": {
+    "input": [
+      "data/pattern-master-db.json",
+      "data/pattern-metadata-db.json",
+      "data/golden-pattern-mapping.json"
+    ],
+    "processed": "validation_status=verified only",
+    "excluded": [
+      "pending patterns",
+      "mapped_frequency_verified",
+      "mapped_coarse_bucket",
+      "non-verified Master patterns"
+    ],
+    "design_doc": "docs/student-error-model-design.md"
+  },
+  "rules": [
+    "Do not assume common mistakes",
+    "Do not generate generic exam advice",
+    "Do not create unsupported error categories as verified",
+    "Do not modify question / answer / Pattern Master",
+    "Unknown remains pending",
+    "Every non-pending item must cite evidence_question_id and evidence source"
+  ],
+  "error_type_vocabulary": [
+    {
+      "error_type": "concept_error",
+      "label_ko": "개념 오류",
+      "source": "docs/27-learning-algorithm-spec.md#13"
+    },
+    {
+      "error_type": "calculation_error",
+      "label_ko": "계산 실수",
+      "source": "docs/27-learning-algorithm-spec.md#13"
+    },
+    {
+      "error_type": "reading_error",
+      "label_ko": "조건 해석 실패",
+      "source": "docs/27-learning-algorithm-spec.md#13"
+    },
+    {
+      "error_type": "memory_error",
+      "label_ko": "암기 부족",
+      "source": "docs/27-learning-algorithm-spec.md#13"
+    },
+    {
+      "error_type": "unspecified",
+      "label_ko": "미분류(pending slot)",
+      "source": "docs/student-error-model-design.md#4",
+      "note": "Foundation pending slot only. Not consumable as verified educational knowledge."
+    }
+  ],
+  "summary": {
+    "processed_pattern_count": 6,
+    "verified_error_count": 0,
+    "partial_error_count": 5,
+    "pending_error_count": 11,
+    "total_error_candidates": 16,
+    "unresolved_issue_count": 5
+  },
+  "integrity": {
+    "answers_unchanged": true,
+    "question_ids_unchanged": true,
+    "pattern_master_unchanged": true,
+    "pattern_metadata_unchanged": true,
+    "golden_pattern_mapping_unchanged": true,
+    "no_unsupported_verified_errors": true
+  },
+  "validation": {
+    "no_answer_modification": true,
+    "no_question_id_modification": true,
+    "no_pattern_modification": true,
+    "every_verified_error_has_evidence": true,
+    "unsupported_errors_remain_pending": true,
+    "result": "PASS"
+  },
+  "unresolved_issues": [
+    {
+      "pattern_id": "ACC_INV_003",
+      "issue": "Phase1 relatedQuestions content mismatch vs pattern name (운반비). Error categories for freight/incidental cost cannot be evidenced from Q011/Q012. Inherited from WO-013.2."
+    },
+    {
+      "pattern_id": "ACC_INV_004",
+      "issue": "Some relatedQuestions appear content-mismatched (display/ownership/LCM). Partial errors use only Q008-aligned PER evidence."
+    },
+    {
+      "pattern_id": "ACC_INV_007",
+      "issue": "ACC_INV_Q038 (LCM numeric) tagged ACC_INV_004 in question-db — not used as INV_007 error evidence."
+    },
+    {
+      "pattern_id": "*",
+      "issue": "Phase1 solution.wrongAnalysis is empty for all related questions. No error can be status=verified until SoT wrongAnalysis or Human attestation exists."
+    },
+    {
+      "pattern_id": "ACC_INV_006",
+      "issue": "ACC_INV_Q002 calculationProcess text for choice ⑤ conflicts with likely stem (OCR pollution). FIFO periodic=perpetual statement cannot be promoted even to stable partial without Human stem verify."
+    }
+  ],
+  "patterns_reviewed": [
+    {
+      "pattern_id": "ACC_INV_001",
+      "name": "기말재고 포함 여부 판단",
+      "concept_status": "documented",
+      "solving_algorithm_status": "evidenced",
+      "metadata_common_errors_status": "pending",
+      "golden_mapped_question_ids": ["ACC_2018_Q042"]
+    },
+    {
+      "pattern_id": "ACC_INV_003",
+      "name": "운반비·부대비용과 재고원가",
+      "concept_status": "documented",
+      "solving_algorithm_status": "pending",
+      "metadata_common_errors_status": "pending",
+      "golden_mapped_question_ids": []
+    },
+    {
+      "pattern_id": "ACC_INV_004",
+      "name": "매출원가 계산 (PER법)",
+      "concept_status": "documented",
+      "solving_algorithm_status": "evidenced",
+      "metadata_common_errors_status": "pending",
+      "golden_mapped_question_ids": []
+    },
+    {
+      "pattern_id": "ACC_INV_005",
+      "name": "PER vs PR 재고조사법",
+      "concept_status": "documented",
+      "solving_algorithm_status": "evidenced",
+      "metadata_common_errors_status": "pending",
+      "golden_mapped_question_ids": []
+    },
+    {
+      "pattern_id": "ACC_INV_006",
+      "name": "FIFO·총평균법 매출원가",
+      "concept_status": "documented",
+      "solving_algorithm_status": "evidenced",
+      "metadata_common_errors_status": "pending",
+      "golden_mapped_question_ids": ["ACC_2018_Q068"]
+    },
+    {
+      "pattern_id": "ACC_INV_007",
+      "name": "LCM·순실현가능가치 평가",
+      "concept_status": "documented",
+      "solving_algorithm_status": "evidenced",
+      "metadata_common_errors_status": "pending",
+      "golden_mapped_question_ids": []
+    }
+  ],
+  "errors": [
+    {
+      "error_id": "ERR_ACC_INV_001_01",
+      "pattern_id": "ACC_INV_001",
+      "error_type": "concept_error",
+      "description": "FOB 선적지 조건 판매 운송중 상품 원가를 기말재고에서 차감하지 않아 재고를 과대계상하는 경로. 실사액+적송미판+시송미확정+FOB도착지매입 = 1,330,000(보기④)로 재현된다.",
+      "evidence_question_id": "ACC_INV_Q001",
+      "validation_status": "partial",
+      "choice_refs": ["4"],
+      "related_solving_step": 1,
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_001.solving_algorithm",
+          "excerpt": "소유권·인도조건·위탁·시용 사실을 반영해 가감한다."
+        },
+        {
+          "validation_source": "data/question-db.json#ACC_INV_Q001.originalQuestion",
+          "excerpt": "FOB 선적지 조건으로 판매한 상품(원가 ￦300,000)이 운송 중; 보기 ④ 1,330,000"
+        },
+        {
+          "validation_source": "data/question-db.json#ACC_INV_Q001.solution.calculationProcess",
+          "excerpt": "실사시 재고자산 금액 ￦1,000,000 / 선적지인도조건 판매상품 − / 적송품 +60,000 / 시송품 +70,000"
+        }
+      ],
+      "pending_reason": "SoT wrongAnalysis empty — partial reconstruction only; Human attestation required for verified."
+    },
+    {
+      "error_id": "ERR_ACC_INV_001_02",
+      "pattern_id": "ACC_INV_001",
+      "error_type": "reading_error",
+      "description": "FOB·적송·시송·운송중 조건의 포함/제외 방향을 반대로 읽거나 일부만 반영하는 조건 해석 실패 후보. 개별 보기 금액과의 1:1 경로는 복수 해석이 가능해 확정하지 않음.",
+      "evidence_question_id": "ACC_INV_Q001",
+      "validation_status": "pending",
+      "choice_refs": ["1", "2"],
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_001.common_errors",
+          "excerpt": "wrongAnalysis 공란. 오답 유형을 추정 생성하지 않음."
+        },
+        {
+          "validation_source": "data/golden-pattern-mapping.json#ACC_2018_Q042",
+          "excerpt": "mapping_status=mapped → ACC_INV_001; stem FOB/적송/시송 facts"
+        }
+      ],
+      "pending_reason": "보기①·② 금액에 대한 유일 오적용 경로가 stem만으로 확정되지 않음. 추정 분류 금지."
+    },
+    {
+      "error_id": "ERR_ACC_INV_001_03",
+      "pattern_id": "ACC_INV_001",
+      "error_type": "unspecified",
+      "description": "Golden mapped ACC_2018_Q042에 대한 Pattern-level error taxonomy slot. Phase1 Q001과 동일 fact family이나 Golden 전용 wrongAnalysis/오답경로 증거가 없음.",
+      "evidence_question_id": "ACC_2018_Q042",
+      "validation_status": "pending",
+      "evidence": [
+        {
+          "validation_source": "data/golden-pattern-mapping.json",
+          "excerpt": "ACC_2018_Q042 mapping_status=mapped, pattern_id=ACC_INV_001"
+        }
+      ],
+      "pending_reason": "Golden Pilot에 대한 보기별 오답 증거 미작성."
+    },
+    {
+      "error_id": "ERR_ACC_INV_003_01",
+      "pattern_id": "ACC_INV_003",
+      "error_type": "unspecified",
+      "description": "운반비·부대비용과 재고원가 Pattern의 error foundation slot. 관련 문항이 패턴명과 내용 불일치하여 오답 유형을 정의할 수 없음.",
+      "evidence_question_id": "ACC_INV_Q011",
+      "validation_status": "pending",
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_003",
+          "excerpt": "relatedQuestions ACC_INV_Q011(CVP/공헌이익), ACC_INV_Q012(매입 현금예산) 본문이 패턴명(운반비·부대비용)과 불일치."
+        }
+      ],
+      "pending_reason": "Classification mismatch — freight/incidental-cost error categories would be unsupported invention."
+    },
+    {
+      "error_id": "ERR_ACC_INV_003_02",
+      "pattern_id": "ACC_INV_003",
+      "error_type": "unspecified",
+      "description": "ACC_INV_Q012 연계 pending slot. 운반비 오답 taxonomy 작성 금지(내용 불일치).",
+      "evidence_question_id": "ACC_INV_Q012",
+      "validation_status": "pending",
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_003.common_errors",
+          "excerpt": "wrongAnalysis 공란 + 관련 문항 내용 불일치로 오답 유형 확정 불가."
+        }
+      ],
+      "pending_reason": "Same classification mismatch as ERR_ACC_INV_003_01."
+    },
+    {
+      "error_id": "ERR_ACC_INV_004_01",
+      "pattern_id": "ACC_INV_004",
+      "error_type": "concept_error",
+      "description": "매출총이익률(30%)을 매출원가율처럼 적용해 매출원가=매출×30%=3,000,000으로 두고 기말=기초+매입−매출원가=5,000,000(보기④)을 산출하는 경로.",
+      "evidence_question_id": "ACC_INV_Q008",
+      "validation_status": "partial",
+      "choice_refs": ["4"],
+      "related_solving_step": 0,
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_004.solving_algorithm",
+          "excerpt": "매출원가 = 매출액 × (1 − 매출총이익률); 기말재고 = 기초 + 매입 − 매출원가"
+        },
+        {
+          "validation_source": "data/question-db.json#ACC_INV_Q008.solution.calculationProcess",
+          "excerpt": "매출원가 = 매출(10,000,000)×(1-30%)=￦7,000,000; 기말=2,000,000+6,000,000-7,000,000=￦1,000,000"
+        },
+        {
+          "validation_source": "data/question-db.json#ACC_INV_Q008.originalQuestion",
+          "excerpt": "보기 ④ ￦5,000,000 — equals 2,000,000+6,000,000−(10,000,000×30%)"
+        }
+      ],
+      "pending_reason": "SoT wrongAnalysis empty — rate-base misuse is mathematically reconstructable as partial only."
+    },
+    {
+      "error_id": "ERR_ACC_INV_004_02",
+      "pattern_id": "ACC_INV_004",
+      "error_type": "calculation_error",
+      "description": "PER법 항등식 적용 중 매출원가율·중간 금액을 잘못 잡아 기말재고가 정답(1,000,000)이 아닌 다른 보기로 수렴하는 계산 오류 후보.",
+      "evidence_question_id": "ACC_INV_Q008",
+      "validation_status": "pending",
+      "choice_refs": ["1", "3"],
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_004.common_errors",
+          "excerpt": "wrongAnalysis 공란. 오답 함정을 추정하지 않음."
+        }
+      ],
+      "pending_reason": "보기①·③에 대한 유일 오적용 경로가 확정되지 않음."
+    },
+    {
+      "error_id": "ERR_ACC_INV_004_03",
+      "pattern_id": "ACC_INV_004",
+      "error_type": "unspecified",
+      "description": "Pattern foundation slot for content-mismatched relatedQuestions under ACC_INV_004. PER error taxonomy must not be forced onto mismatched stems.",
+      "evidence_question_id": "ACC_INV_Q038",
+      "validation_status": "pending",
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#unresolved_issues",
+          "excerpt": "ACC_INV_Q038 (LCM numeric) tagged ACC_INV_004 — classification drift"
+        }
+      ],
+      "pending_reason": "Question–pattern content drift; unsupported to invent PER errors from LCM stem."
+    },
+    {
+      "error_id": "ERR_ACC_INV_005_01",
+      "pattern_id": "ACC_INV_005",
+      "error_type": "concept_error",
+      "description": "기말 단가에 min(취득원가100, NRV80)=80을 적용하지 않고 원가 100으로 역산해 실제수량=40개(보기)를 얻는 경로. 매출원가 36,000=40,000−Q×100 → Q=40.",
+      "evidence_question_id": "ACC_INV_Q014",
+      "validation_status": "partial",
+      "choice_refs": ["1"],
+      "related_solving_step": 1,
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_005.solving_algorithm",
+          "excerpt": "기말재고는 단위당 min(취득원가, 순실현가능가치)×실제수량; 매출원가로부터 실제재고수량 역산"
+        },
+        {
+          "validation_source": "data/question-db.json#ACC_INV_Q014.solution.calculationProcess",
+          "excerpt": "매출원가=…−실제재고수량×min(100,80)=￦36,000; ∴ 실제재고수량=50개"
+        }
+      ],
+      "pending_reason": "SoT wrongAnalysis empty — LCM unit omission reconstructable as partial only."
+    },
+    {
+      "error_id": "ERR_ACC_INV_005_02",
+      "pattern_id": "ACC_INV_005",
+      "error_type": "reading_error",
+      "description": "역산 대상인 실제수량이 아니라 장부수량을 답으로 선택하는 조건 해석 실패 후보(장부수량 언급이 지문에 존재).",
+      "evidence_question_id": "ACC_INV_Q014",
+      "validation_status": "partial",
+      "choice_refs": ["4"],
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_005.concept",
+          "excerpt": "계속기록법·순실현가능가치 하락·매출원가 인식액으로부터 실제재고수량 역산 문항"
+        },
+        {
+          "validation_source": "data/question-db.json#ACC_INV_Q014.solution.calculationProcess",
+          "excerpt": "∴ 실제재고수량 = 50개"
+        }
+      ],
+      "pending_reason": "SoT wrongAnalysis empty — stem states 장부수량 70개 and choice ④ is 70개; selecting book qty instead of actual qty is reconstructable as partial only."
+    },
+    {
+      "error_id": "ERR_ACC_INV_005_03",
+      "pattern_id": "ACC_INV_005",
+      "error_type": "unspecified",
+      "description": "ACC_INV_005 foundation slot for remaining distractors (감모·부호 반전 등). wrongAnalysis 공란으로 확정 보류.",
+      "evidence_question_id": "ACC_INV_Q014",
+      "validation_status": "pending",
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_005.common_errors",
+          "excerpt": "wrongAnalysis 공란."
+        }
+      ],
+      "pending_reason": "Insufficient unique path evidence for remaining choices."
+    },
+    {
+      "error_id": "ERR_ACC_INV_006_01",
+      "pattern_id": "ACC_INV_006",
+      "error_type": "concept_error",
+      "description": "FIFO·실지/계속기록 조합에 대한 개념 오적용 후보(정답 ⑤, 옳지 않은 것). 해설 텍스트와 지문 보기 문구 간 OCR 불일치 가능성이 있어 오답 유형을 확정하지 않음.",
+      "evidence_question_id": "ACC_INV_Q002",
+      "validation_status": "pending",
+      "choice_refs": ["5"],
+      "related_solving_step": 3,
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_006.solving_algorithm",
+          "excerpt": "선입선출법은 실지/계속기록에서 기말재고·매출원가가 같음을 확인한다."
+        },
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_006.common_errors",
+          "excerpt": "보기 함정(⑤)을 일반 오답유형으로 확장 서술하지 않음."
+        },
+        {
+          "validation_source": "data/question-db.json#ACC_INV_Q002.solution.calculationProcess",
+          "excerpt": "⑤ …선입선출법은 기말재고자산과 매출원가가 항상 같다. 정답 : ⑤"
+        }
+      ],
+      "pending_reason": "calculationProcess statement for ⑤ appears factually true under K-IFRS inventory methods, yet answer key is ⑤ — OCR/stem mismatch suspected. Do not invent error category."
+    },
+    {
+      "error_id": "ERR_ACC_INV_006_02",
+      "pattern_id": "ACC_INV_006",
+      "error_type": "unspecified",
+      "description": "Golden mapped ACC_2018_Q068 (FIFO·총평균·회계정책변경) error foundation slot. Golden 전용 오답경로 증거 없음.",
+      "evidence_question_id": "ACC_2018_Q068",
+      "validation_status": "pending",
+      "evidence": [
+        {
+          "validation_source": "data/golden-pattern-mapping.json",
+          "excerpt": "ACC_2018_Q068 mapping_status=mapped, pattern_id=ACC_INV_006"
+        }
+      ],
+      "pending_reason": "No choice-level error evidence for Golden Pilot Q068."
+    },
+    {
+      "error_id": "ERR_ACC_INV_006_03",
+      "pattern_id": "ACC_INV_006",
+      "error_type": "calculation_error",
+      "description": "총평균 단가·매출원가 표 계산 오류 후보. 개별 보기별 고유 경로는 wrongAnalysis 공란으로 미확정.",
+      "evidence_question_id": "ACC_INV_Q002",
+      "validation_status": "pending",
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_006.common_errors",
+          "excerpt": "wrongAnalysis 공란. 보기 함정(⑤)을 일반 오답유형으로 확장 서술하지 않음."
+        }
+      ],
+      "pending_reason": "Do not expand choice trap into unverified generic error type."
+    },
+    {
+      "error_id": "ERR_ACC_INV_007_01",
+      "pattern_id": "ACC_INV_007",
+      "error_type": "concept_error",
+      "description": "상품중개기업 재고의 순공정가치 변동을 기타포괄손익으로 인식한다고 서술하는 개념 오류. Q003 해설은 당기손익 인식을 정답 근거로 제시.",
+      "evidence_question_id": "ACC_INV_Q003",
+      "validation_status": "partial",
+      "choice_refs": ["5"],
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_007.concept",
+          "excerpt": "기말 재고자산을 원가와 순실현가능가치 중 낮은 금액으로 평가한다는 진술 포함"
+        },
+        {
+          "validation_source": "data/question-db.json#ACC_INV_Q003.solution.calculationProcess",
+          "excerpt": "가격변동이익이나 중개이익을 목적으로…순공정가치의 변동을 당기손익으로 인식한다. 정답 : ⑤"
+        }
+      ],
+      "pending_reason": "SoT wrongAnalysis empty — solution text supports the incorrect statement identity as partial; Human attestation for verified."
+    },
+    {
+      "error_id": "ERR_ACC_INV_007_02",
+      "pattern_id": "ACC_INV_007",
+      "error_type": "unspecified",
+      "description": "LCM 수치형(평가손실·NRV 추가비용) error foundation slot. 수치 풀이 후보 문항(Q038)이 INV_004로 태깅되어 INV_007 증거로 사용하지 않음.",
+      "evidence_question_id": "ACC_INV_Q039",
+      "validation_status": "pending",
+      "evidence": [
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_007.solving_algorithm.pending_note",
+          "excerpt": "상세 수치 풀이는 ACC_INV_Q038에 있으나 patternId=ACC_INV_004 태깅. 수치 단계를 INV_007에 이식하지 않음."
+        },
+        {
+          "validation_source": "data/pattern-metadata-db.json#ACC_INV_007.common_errors",
+          "excerpt": "wrongAnalysis 공란."
+        }
+      ],
+      "pending_reason": "Numeric LCM error paths blocked by classification drift; Q039 wrongAnalysis empty."
+    }
+  ]
+}

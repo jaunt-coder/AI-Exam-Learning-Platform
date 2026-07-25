@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0.0",
+  "woId": "WO-20260722-009",
+  "startedAt": "2026-07-22T15:09:18.041160+00:00",
+  "finishedAt": "2026-07-22T15:09:18.699490+00:00",
+  "mode": "read_only_sha256",
+  "rootsScanned": [
+    "source/past-exams",
+    "source/original-exams"
+  ],
+  "outputs": [
+    "data/knowledge/inventory/past-exams-inventory.json",
+    "data/knowledge/inventory/original-exams-inventory.json"
+  ],
+  "sourceWriteCount": 0,
+  "forbiddenActionsExecuted": [],
+  "counts": {
+    "pastExams": 27,
+    "originalExams": 0
+  },
+  "proof": {
+    "method": "preflight_file_list + postflight_identical_paths_bytes",
+    "sourceUnchanged": true,
+    "pastExamsPostflightOk": true,
+    "originalExamsPostflightOk": true,
+    "details": [],
+    "notes": "No files created/modified/deleted under source/"
+  }
+}

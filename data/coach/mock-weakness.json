@@ -1,0 +1,101 @@
+[
+  {
+    "patternId": "ACC_CFS_001",
+    "totalAttempts": 1,
+    "correctCount": 1,
+    "wrongCount": 0,
+    "accuracy": 1.0,
+    "averageElapsedSeconds": 88.0,
+    "recentTrend": "insufficient_data",
+    "severity": "normal",
+    "generatedAt": "2026-07-20T12:00:00.000Z"
+  },
+  {
+    "patternId": "ACC_COST_002",
+    "totalAttempts": 1,
+    "correctCount": 0,
+    "wrongCount": 1,
+    "accuracy": 0.0,
+    "averageElapsedSeconds": 220.0,
+    "recentTrend": "insufficient_data",
+    "severity": "normal",
+    "generatedAt": "2026-07-20T12:00:00.000Z"
+  },
+  {
+    "patternId": "ACC_EQ_001",
+    "totalAttempts": 7,
+    "correctCount": 6,
+    "wrongCount": 1,
+    "accuracy": 0.8571428571,
+    "averageElapsedSeconds": 48.0,
+    "recentTrend": "improving",
+    "severity": "mastered",
+    "generatedAt": "2026-07-20T12:00:00.000Z"
+  },
+  {
+    "patternId": "ACC_FIN_001",
+    "totalAttempts": 3,
+    "correctCount": 0,
+    "wrongCount": 3,
+    "accuracy": 0.0,
+    "averageElapsedSeconds": 363.3333333333,
+    "recentTrend": "insufficient_data",
+    "severity": "critical",
+    "generatedAt": "2026-07-20T12:00:00.000Z"
+  },
+  {
+    "patternId": "ACC_INV_003",
+    "totalAttempts": 7,
+    "correctCount": 2,
+    "wrongCount": 5,
+    "accuracy": 0.2857142857,
+    "averageElapsedSeconds": 136.4285714286,
+    "recentTrend": "declining",
+    "severity": "critical",
+    "generatedAt": "2026-07-20T12:00:00.000Z"
+  },
+  {
+    "patternId": "ACC_LEASE_001",
+    "totalAttempts": 1,
+    "correctCount": 1,
+    "wrongCount": 0,
+    "accuracy": 1.0,
+    "averageElapsedSeconds": 65.0,
+    "recentTrend": "insufficient_data",
+    "severity": "normal",
+    "generatedAt": "2026-07-20T12:00:00.000Z"
+  },
+  {
+    "patternId": "ACC_PPE_002",
+    "totalAttempts": 9,
+    "correctCount": 6,
+    "wrongCount": 3,
+    "accuracy": 0.6666666667,
+    "averageElapsedSeconds": 123.0,
+    "recentTrend": "improving",
+    "severity": "normal",
+    "generatedAt": "2026-07-20T12:00:00.000Z"
+  },
+  {
+    "patternId": "ACC_REV_001",
+    "totalAttempts": 1,
+    "correctCount": 0,
+    "wrongCount": 1,
+    "accuracy": 0.0,
+    "averageElapsedSeconds": 100.0,
+    "recentTrend": "insufficient_data",
+    "severity": "normal",
+    "generatedAt": "2026-07-20T12:00:00.000Z"
+  },
+  {
+    "patternId": "ACC_TAX_001",
+    "totalAttempts": 1,
+    "correctCount": 1,
+    "wrongCount": 0,
+    "accuracy": 1.0,
+    "averageElapsedSeconds": 75.0,
+    "recentTrend": "insufficient_data",
+    "severity": "normal",
+    "generatedAt": "2026-07-20T12:00:00.000Z"
+  }
+]

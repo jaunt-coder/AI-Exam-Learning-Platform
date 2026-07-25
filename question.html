@@ -34,13 +34,15 @@
       <section id="pattern-section" class="pattern-section" aria-labelledby="pattern-heading" hidden>
         <header class="section-header">
           <h2 id="pattern-heading">Pattern 선택</h2>
-          <p class="section-desc" id="chapter-desc">재고자산 · PDF 검증 기출 Pattern</p>
+          <p class="section-desc" id="chapter-desc">회계학 · 재고자산(ACC_INV_*) Pattern</p>
         </header>
         <div class="score-bar card" aria-live="polite">
           <span class="score-bar__label">누적 정답률</span>
           <span class="score-bar__value" id="overall-score">-</span>
-          <span class="score-bar__label score-bar__label--right">오답 노트</span>
+          <span class="score-bar__label score-bar__label--right">오답</span>
           <span class="score-bar__value" id="wrong-count">0문항</span>
+          <span class="score-bar__label score-bar__label--right">북마크</span>
+          <span class="score-bar__value" id="bookmark-count">0문항</span>
         </div>
         <ul class="pattern-list" id="pattern-list" role="list"></ul>
       </section>
@@ -64,6 +66,9 @@
             <a href="#" class="breadcrumb-link" id="back-to-list">← 문제 목록</a>
           </nav>
           <div class="question-meta" id="question-meta"></div>
+          <div class="question-toolbar">
+            <button type="button" class="button button--ghost" id="bookmark-btn" aria-pressed="false">북마크</button>
+          </div>
           <h2 id="solve-heading" class="visually-hidden">문제 풀이</h2>
         </header>
 
@@ -84,6 +89,7 @@
           <div class="result-panel" id="result-panel" hidden role="status" aria-live="polite">
             <p class="result-message" id="result-message"></p>
             <p class="session-score" id="session-score"></p>
+            <div class="result-pattern" id="result-pattern" hidden></div>
             <p class="wrong-saved-notice" id="wrong-saved-notice" hidden>오답 노트에 저장되었습니다.</p>
           </div>
 

@@ -1,0 +1,28 @@
+[
+  {
+    "reportId": "wr_001",
+    "userId": "001",
+    "patternId": "ACC_INV_003",
+    "concept": "재고자산 귀속",
+    "errorType": "개념 오류",
+    "severity": "HIGH",
+    "failureRate": 0.7,
+    "repeatWrongCount": 4,
+    "recommendation": "기초 문제 반복 필요",
+    "evidenceAttemptIds": ["att_001", "att_002", "att_005"],
+    "createdAt": "2026-07-20T02:00:00.000Z"
+  },
+  {
+    "reportId": "wr_002",
+    "userId": "001",
+    "patternId": "ACC_PPE_002",
+    "concept": "감가상각·재평가·손상",
+    "errorType": "계산 오류",
+    "severity": "MEDIUM",
+    "failureRate": 0.55,
+    "repeatWrongCount": 2,
+    "recommendation": "감가상각 계산 드릴 10문항",
+    "evidenceAttemptIds": ["att_003"],
+    "createdAt": "2026-07-20T02:05:00.000Z"
+  }
+]

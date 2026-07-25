@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q073",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 73,
+  "page": 25,
+  "stem": "실제개별원가계산제도를사용하는(주)감평의20x1년도연간실제원가는다음\n과같다.\n직접재료원가\n￦4,000,000\n직접노무원가\n￦5,000,000\n제조간접원가\n￦1,000,000\n(주)감평은20x1년중작업지시서#901을수행하였는데이작업에320시간의직\n접노무시간이투입되었다. (주)감평은제조간접원가를직접노무시간을기준으로\n실제배부율을사용하여각작업에배부한다. 20x1년도실제총직접노무시간은\n2,500시간이다. (주)감평이작업지시서#901에배부하여야할제조간접원가는?",
+  "choices": [
+    "￦98,000",
+    "￦109,000",
+    "￦128,000",
+    "￦160,000",
+    "￦175,000\n\n\n\n2018년제29회감정평가사1차-2교시-A-28-26"
+  ],
+  "answer": 3,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "73. 실제개별원가계산제도를사용하는(주)감평의20x1년도연간실제원가는다음\n과같다.\n직접재료원가\n￦4,000,000\n직접노무원가\n￦5,000,000\n제조간접원가\n￦1,000,000\n(주)감평은20x1년중작업지시서#901을수행하였는데이작업에320시간의직\n접노무시간이투입되었다. (주)감평은제조간접원가를직접노무시간을기준으로\n실제배부율을사용하여각작업에배부한다. 20x1년도실제총직접노무시간은\n2,500시간이다. (주)감평이작업지시서#901에배부하여야할제조간접원가는?\n①￦98,000\n②￦109,000\n③￦128,000\n④￦160,000\n⑤￦175,000\n\n\n\n2018년제29회감정평가사1차-2교시-A-28-26",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "③",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.536398+00:00",
+    "status": "joined"
+  }
+}

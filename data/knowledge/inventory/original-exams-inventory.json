@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-07-22T15:09:18.699490+00:00",
+  "sprintId": "KS-ACC-LOSSLESS-GOLDEN",
+  "woId": "WO-20260722-009",
+  "rootId": "original_exams",
+  "rootPath": "source/original-exams",
+  "algorithm": "SHA-256",
+  "entryCount": 0,
+  "entries": [],
+  "gaps": [],
+  "rootMissing": true
+}

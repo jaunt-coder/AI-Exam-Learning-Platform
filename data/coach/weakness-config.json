@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "recentWindow": 5,
+  "minAttemptsForSeverity": 2,
+  "minAttemptsForTrend": 3,
+  "timeoutAverageSeconds": 300,
+  "severity": {
+    "mastered": {
+      "minAccuracy": 0.85,
+      "minAttempts": 3
+    },
+    "critical": {
+      "maxAccuracy": 0.35,
+      "minWrong": 3
+    },
+    "weak": {
+      "maxAccuracy": 0.55
+    },
+    "timeoutBoost": {
+      "from": "normal",
+      "to": "weak",
+      "whenAverageElapsedGte": 300
+    },
+    "timeoutBoostWeakToCritical": {
+      "enabled": true,
+      "whenAverageElapsedGte": 300,
+      "maxAccuracy": 0.5
+    }
+  },
+  "trend": {
+    "improvingDelta": 0.15,
+    "decliningDelta": -0.15
+  }
+}

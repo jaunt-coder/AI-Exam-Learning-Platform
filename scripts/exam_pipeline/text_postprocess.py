@@ -34,6 +34,7 @@ NUMBER_PATTERN = re.compile(
 ORPHAN_YEAR = re.compile(r"^20[×xX]\d{1,2}$")
 ORPHAN_AMOUNT = re.compile(r"^(\d{1,3}(?:,\d{3})+|\d{3,})$")
 DATE_UNIT = re.compile(r"^(년|월|일|주|원|%)")
+ORPHAN_DATE_SKELETON = re.compile(r"^(?:년|월|일(?:까지)?)")
 DIGIT_LINE = re.compile(r"^\d{1,2}$")
 CHOICE_GRID_HEADER = re.compile(
     r"^(?:년\s*)?(?:20[×xX]\d{1,2}\s*년\s*){2,4}20[×xX]\d{1,2}\s*$"
@@ -226,6 +227,95 @@ def rejoin_exam_line_fragments(text: str) -> str:
             i += 1
             continue
 
+        if (
+            i + 3 < len(lines)
+            and re.match(r"^\.?\s*20[×xX]\d{1,2}$", line)
+            and DIGIT_LINE.match(lines[i + 1])
+            and DIGIT_LINE.match(lines[i + 2])
+        ):
+            year_match = re.search(r"20[×xX]\d{1,2}", line)
+            if year_match:
+                month, day = lines[i + 1], lines[i + 2]
+                suffix = ""
+                skip = 3
+                if i + 3 < len(lines) and _is_currency_line(lines[i + 3]):
+                    suffix = "W"
+                    skip = 4
+                _try_emit_date_from_parts(
+                    merged, year_match.group(0), month, day, suffix
+                )
+                i += skip
+                continue
+
+        if (
+            i + 3 < len(lines)
+            and line.startswith("일")
+            and ORPHAN_AMOUNT.match(lines[i + 1])
+            and re.match(r"^\.?\s*20[×xX]\d{1,2}$", lines[i + 2])
+            and DIGIT_LINE.match(lines[i + 3])
+        ):
+            amount = lines[i + 1]
+            year_match = re.search(r"20[×xX]\d{1,2}", lines[i + 2])
+            month = lines[i + 3]
+            day = lines[i + 4] if i + 4 < len(lines) and DIGIT_LINE.match(lines[i + 4]) else None
+            if year_match and day:
+                date_text = (
+                    f"{_norm_year(year_match.group(0))}년 {month}월 {day}일까지 "
+                    f"보통주 {amount}W"
+                )
+                merged.append(date_text)
+                skip = 5
+                if i + 4 < len(lines) and _is_currency_line(lines[i + 4]):
+                    skip = 5
+                elif i + 4 < len(lines) and not DIGIT_LINE.match(lines[i + 4]):
+                    skip = 4
+                i += skip
+                continue
+
+        if (
+            i + 1 < len(lines)
+            and line == "년"
+            and DIGIT_LINE.match(lines[i + 1])
+            and i + 4 < len(lines)
+            and lines[i + 2] in {".", ". ("}
+            and lines[i + 3] == ")"
+            and ORPHAN_YEAR.match(lines[i + 4])
+        ):
+            count = lines[i + 1]
+            year = _norm_year(lines[i + 4])
+            month = day = None
+            scan = i + 5
+            while scan + 1 < len(lines) and not month:
+                if lines[scan] == "월" and DIGIT_LINE.match(lines[scan + 1]):
+                    month = lines[scan + 1]
+                    scan += 2
+                    if scan < len(lines) and lines[scan].startswith("일"):
+                        day_match = re.search(r"일(\d{1,2})?", lines[scan])
+                        if day_match and day_match.group(1):
+                            day = day_match.group(1)
+                        elif scan + 1 < len(lines) and DIGIT_LINE.match(lines[scan + 1]):
+                            day = lines[scan + 1]
+                            scan += 1
+                        scan += 1
+                    break
+                scan += 1
+            if month and day:
+                merged.append(f"{count}주이다. ({year})년 {month}월 {day}일")
+                i = scan
+                continue
+
+        if (
+            line == "포괄손"
+            and i + 2 < len(lines)
+            and lines[i + 1] == "."
+            and ORPHAN_YEAR.match(lines[i + 2])
+            and i + 3 < len(lines)
+            and lines[i + 3].startswith("익계산서")
+        ):
+            merged.append(f"{_norm_year(lines[i + 2])}년 포괄손익계산서")
+            i += 4
+            continue
+
         if ORPHAN_AMOUNT.match(line):
             amount = line
             j = i + 1
@@ -386,6 +476,113 @@ def normalize_rejoined_structure(text: str) -> str:
         value = re.sub(r"년\s*월\s*일\s*(?=까지|에|의|)", "", value)
         value = re.sub(r"년\s*월\s*일(?=\s*까지)", "", value)
     value = re.sub(
+        r"(\d{1,3}(?:,\d{3})*W)\s*이(?:다|다\.?)\s*(?:년\s*)?(?:월\s*)?(?:일)?까지?\s*보통주\s*"
+        r"(\d{1,3}(?:,\d{3})*)\s*(20[×xX]\d{1,2})년\s*(\d{1,2})월\s*(\d{1,2})일",
+        lambda m: (
+            f"{m.group(1)}이다. {_norm_year(m.group(4))}년 {m.group(5)}월 {m.group(6)}일까지 "
+            f"보통주 {m.group(2)}W의"
+        ),
+        value,
+        flags=re.I,
+    )
+    value = re.sub(
+        r"년\s*(\d{2,4})\s*\.\s*\(\s*\)",
+        r" \1주이다.",
+        value,
+    )
+    value = re.sub(
+        r"년\s*(\d{1,2})\s+(\d{1,2})\s*\.\s*\(\s*\)\s*"
+        r"(20[×xX]\d{1,2})년\s*일\s*(까지|에)",
+        lambda m: (
+            f"{_norm_year(m.group(3))}년 {m.group(1)}월 {m.group(2)}일{m.group(4)}"
+        ),
+        value,
+        flags=re.I,
+    )
+    value = re.sub(
+        r"(20[×xX]\d{1,2})년\s*일\s*에(.{0,120}?)년\s*(\d{1,2})\s+(\d{1,2})\s+(\d{2,4})",
+        lambda m: (
+            f"{_norm_year(m.group(1))}년 {m.group(3)}월 {m.group(4)}일에"
+            f"{m.group(2)} {m.group(5)}주"
+        ),
+        value,
+        flags=re.I,
+    )
+    value = re.sub(
+        r"유통보통주\s*(\d{1,2})\s+(\d{1,2})\s+(\d{1,2})\s+(\d{1,2})\s*",
+        r"유통보통주 \3주당 \4주 ",
+        value,
+    )
+    value = re.sub(
+        r"주당\s*주\s*의",
+        "1주당 2주의",
+        value,
+    )
+    value = re.sub(
+        r"포괄손\s*\.\s*(20[×xX]\d{1,2})\s*익계산서",
+        lambda m: f"{_norm_year(m.group(1))}년 포괄손익계산서",
+        value,
+        flags=re.I,
+    )
+    value = re.sub(r"(\d{1,3}(?:,\d{3})*)W{2,}", r"\1W", value)
+    value = re.sub(r"WW+", "W", value)
+    value = re.sub(r"년\s*월\s*(?=20[×xX]\d{1,2}년\s*\d{1,2}월)", "", value)
+    value = re.sub(r"(?<=\?)\s*년\s+(?=20[×xX]\d{1,2}년)", "", value)
+    value = re.sub(r"WW의", "W의", value)
+    value = re.sub(
+        r"발행주식\s*수\s*는\s*주\s*이(?:다|다\.?).{0,40}?(\d+)주\s*이(?:다|다\.?)",
+        r"발행주식수는 \1주이다",
+        value,
+        flags=re.I,
+    )
+    value = re.sub(
+        r"(20[×xX]\d{1,2})년\s*(\d{1,2})월\s*(\d{1,2})일에\s*자기주식\s*주\s*를\s*취득\s*하여\s*(\d{2,4})주",
+        lambda m: (
+            f"{_norm_year(m.group(1))}년 {m.group(2)}월 {m.group(3)}일에 "
+            f"자기주식 {m.group(4)}주를 취득하여"
+        ),
+        value,
+        flags=re.I,
+    )
+    for year_token in set(re.findall(r"20[×xX]\d{1,2}", value)):
+        y = _norm_year(year_token)
+        incomplete_matches = list(
+            re.finditer(rf"({re.escape(y)})년\s*일\s*(까지|에)", value)
+        )
+        if not incomplete_matches:
+            continue
+        complete_matches = list(
+            re.finditer(
+                rf"{re.escape(y)}년\s*(\d{{1,2}})월\s*(\d{{1,2}})일", value
+            )
+        )
+        if not complete_matches:
+            continue
+        offset = 0
+        for match in incomplete_matches:
+            following = [
+                item
+                for item in complete_matches
+                if item.start() > match.start() + offset
+            ]
+            if following:
+                month, day = following[0].group(1), following[0].group(2)
+            else:
+                month, day = complete_matches[-1].group(1), complete_matches[-1].group(2)
+            replacement = f"{y}년 {month}월 {day}일{match.group(2)}"
+            start = match.start() + offset
+            end = match.end() + offset
+            value = value[:start] + replacement + value[end:]
+            offset += len(replacement) - (end - start)
+    value = re.sub(r"(?<=[^0-9×])년\s+(?=20[×xX]\d{1,2}년)", "", value)
+    value = re.sub(
+        r"(주당\s*\d+주\s*의[^.?]{0,50}?)\s*\d{1,2}\s+\d{1,2}\s+\d{1,2}\s+\d{1,2}\s*(?=급|지급)",
+        r"\1",
+        value,
+    )
+    value = re.sub(r"\s*\(\s*\)", "", value)
+    value = re.sub(r"\.\s*\(\s*\)", ".", value)
+    value = re.sub(
         r"(\?)\s*(?:년\s+(?:20[×xX]\d{1,2}\s*년\s*){2,4}20[×xX]\d{1,2}\s*)$",
         r"\1",
         value,
@@ -407,6 +604,11 @@ def _should_join_lines(prev: str, nxt: str) -> bool:
         return False
     if ORPHAN_YEAR.match(nxt) and CHOICE_GRID_HEADER.match(
         f"{prev} {nxt}".replace("  ", " ")
+    ):
+        return False
+    if ORPHAN_DATE_SKELETON.match(nxt) and (
+        prev.endswith(("W", "이다", "이었다"))
+        or re.search(r"\d{1,3}(?:,\d{3})*W?\s*이(?:다|다\.?)$", prev)
     ):
         return False
     if ORPHAN_YEAR.match(prev) and (DIGIT_LINE.match(nxt) or DATE_UNIT.match(nxt)):
@@ -542,6 +744,32 @@ def normalize_exam_body(text: str) -> str:
     value = collapse_soft_breaks(value)
     value = normalize_rejoined_structure(value)
     return value.strip()
+
+
+def strip_trailing_choice_grid_header(text: str) -> str:
+    """Remove 2-column year header rows that precede ①–⑤ W grid choices."""
+    if not text:
+        return ""
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    while lines:
+        probe = " ".join(lines[-4:]) if len(lines) >= 4 else " ".join(lines)
+        flat = probe.replace(" ", "")
+        if CHOICE_GRID_HEADER.match(flat):
+            while lines and (
+                ORPHAN_YEAR.match(lines[-1])
+                or lines[-1] in {"년", "과", "에", "의"}
+                or re.fullmatch(r"20[×xX]\d{1,2}년?", lines[-1].replace(" ", ""))
+            ):
+                lines.pop()
+            continue
+        if len(lines) >= 2 and all(
+            re.fullmatch(r"20[×xX]\d{1,2}년?", item.replace(" ", "")) or item == "년"
+            for item in lines[-2:]
+        ):
+            lines.pop()
+            continue
+        break
+    return "\n".join(lines).strip()
 
 
 def format_question_text(text: str) -> str:

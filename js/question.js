@@ -8,6 +8,8 @@ import {
   getQuestionById,
   getPatternById,
   getChoiceLabel,
+  filterInventoryScope,
+  isInventoryPatternId,
 } from './data-loader.js';
 import { getItem, STORAGE_KEYS } from './storage.js';
 import {
@@ -20,6 +22,9 @@ import {
   getResultMessage,
   getWrongAnswerCount,
   filterQuestionsByPattern,
+  isBookmarked,
+  toggleBookmark,
+  getBookmarkCount,
 } from './question-engine.js';
 import { getStatisticsForPattern } from './pattern-engine.js';
 import { generateTutorLesson } from './ai-tutor-engine.js';
@@ -77,6 +82,8 @@ function updateScoreBar() {
   const progress = loadProgress();
   $('overall-score').textContent = formatOverallScore(progress);
   $('wrong-count').textContent = `${getWrongAnswerCount()}문항`;
+  const bookmarkEl = $('bookmark-count');
+  if (bookmarkEl) bookmarkEl.textContent = `${getBookmarkCount()}문항`;
 }
 
 function escapeHtml(text) {
@@ -95,10 +102,8 @@ function renderQuestionTable(question) {
 
 function renderPatternList() {
   updateScoreBar();
-  const chapter = state.master?.chapters?.[0];
-  if (chapter) {
-    $('chapter-desc').textContent = `${chapter.name} · ${state.patterns.length} Pattern · PDF 검증 ${state.questions.length}문항`;
-  }
+  $('chapter-desc').textContent =
+    `회계학 · 재고자산(ACC_INV_*) · ${state.patterns.length} Pattern · ${state.questions.length}문항`;
 
   const listEl = $('pattern-list');
   listEl.innerHTML = '';
@@ -119,7 +124,7 @@ function renderPatternList() {
     link.innerHTML = `
       <span class="${gradeClass(pattern.grade)}">${pattern.grade}급</span>
       <h3 class="pattern-card__title">${escapeHtml(pattern.name)}</h3>
-      <p class="pattern-card__meta">${pattern.frequency}문항 · ${pattern.years.join(', ')}년</p>
+      <p class="pattern-card__meta">${pattern.patternId} · ${pattern.frequency}문항 · ${pattern.years.join(', ')}년</p>
       <p class="pattern-card__progress">${correct} / ${qs.length} 정답 · ${answered} 풀이</p>
     `;
 
@@ -201,6 +206,15 @@ function setChoiceStates(selected, correct, submitted) {
   });
 }
 
+function updateBookmarkButton(question) {
+  const btn = $('bookmark-btn');
+  if (!btn || !question) return;
+  const on = isBookmarked(question.questionId);
+  btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  btn.textContent = on ? '북마크 해제' : '북마크';
+  btn.classList.toggle('is-active', on);
+}
+
 function renderSolveView(question) {
   const pool = state.filteredQuestions.length
     ? state.filteredQuestions
@@ -216,6 +230,7 @@ function renderSolveView(question) {
   $('back-to-list').href = `question.html?pattern=${encodeURIComponent(question.patternId)}`;
 
   renderQuestionMeta(question);
+  updateBookmarkButton(question);
 
   mountQuestionStem(question, $('question-stem'));
   renderQuestionTable(question);
@@ -285,6 +300,19 @@ function showResult(question, result) {
   $('result-message').textContent = getResultMessage(result);
   $('session-score').textContent = `이번 세션: ${formatSessionScore(state.session)}`;
 
+  const patternBox = $('result-pattern');
+  if (patternBox) {
+    const name = pattern?.name || question.patternId;
+    patternBox.innerHTML = `
+      <p class="result-pattern__label">관련 Pattern</p>
+      <a class="result-pattern__link" href="pattern.html?id=${encodeURIComponent(question.patternId)}">
+        ${escapeHtml(name)} <span class="result-pattern__id">(${escapeHtml(question.patternId)})</span>
+      </a>
+      <p class="result-pattern__meta">${pattern?.grade || '-'}급 · 출제 ${pattern?.frequency ?? '?'}회 · D3 answer 기준 채점</p>
+    `;
+    show(patternBox);
+  }
+
   if (result.correct) {
     hide($('wrong-saved-notice'));
   } else {
@@ -338,6 +366,18 @@ function bindSolveEvents() {
     document.querySelectorAll('.choice-label').forEach((l) => l.classList.remove('is-selected'));
     e.target.closest('.choice-label')?.classList.add('is-selected');
   });
+
+  const bookmarkBtn = $('bookmark-btn');
+  if (bookmarkBtn) {
+    bookmarkBtn.addEventListener('click', () => {
+      const id = getQueryParam('id');
+      const question = getQuestionById(state.questions, id);
+      if (!question) return;
+      toggleBookmark(question);
+      updateBookmarkButton(question);
+      updateScoreBar();
+    });
+  }
 }
 
 function onSubmit(e) {
@@ -384,9 +424,19 @@ async function init() {
     }
 
     state.master = db.master;
-    state.questions = db.questions;
-    state.patterns = db.patterns;
-    state.statistics = db.statistics;
+    const scoped = filterInventoryScope({
+      patterns: db.patterns,
+      questions: db.questions,
+      statistics: db.statistics,
+    });
+    state.questions = scoped.questions;
+    state.patterns = scoped.patterns;
+    state.statistics = scoped.statistics;
+
+    if (!state.patterns.length || !state.questions.length) {
+      showError('재고자산(ACC_INV_*) Pattern/문항을 찾을 수 없습니다.');
+      return;
+    }
 
     hide($('loading-state'));
     hideAllViews();
@@ -397,7 +447,11 @@ async function init() {
     if (questionId) {
       const question = getQuestionById(state.questions, questionId);
       if (!question) {
-        showError(`문항을 찾을 수 없습니다: ${questionId}`);
+        showError(`재고자산 MVP 범위 밖이거나 없는 문항입니다: ${questionId}`);
+        return;
+      }
+      if (!isInventoryPatternId(question.patternId)) {
+        showError(`재고자산(ACC_INV_*) 문항만 풀이할 수 있습니다: ${question.patternId}`);
         return;
       }
       if (patternId) {
@@ -409,7 +463,7 @@ async function init() {
     } else if (patternId) {
       const pattern = getPatternById(state.patterns, patternId);
       if (!pattern) {
-        showError(`Pattern을 찾을 수 없습니다: ${patternId}`);
+        showError(`재고자산 MVP 범위 밖이거나 없는 Pattern입니다: ${patternId}`);
         return;
       }
       show($('question-list-section'));

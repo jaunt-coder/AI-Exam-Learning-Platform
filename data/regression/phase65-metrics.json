@@ -1,0 +1,588 @@
+{
+  "years": [
+    2015,
+    2017,
+    2018,
+    2020,
+    2024,
+    2025
+  ],
+  "questionsExpected": 240,
+  "tableQuestions": 92,
+  "overall": {
+    "before": {
+      "tables": 92,
+      "cells": 1302,
+      "cellReconstructionAccuracy": 0.9785,
+      "numericReconstructionAccuracy": 0.9864,
+      "currencyReconstructionAccuracy": 1.0,
+      "yearReconstructionAccuracy": 1.0,
+      "mergedTokenAccuracy": 0.9785,
+      "cellRecall": 0.9785,
+      "tableFidelity": 0.9785
+    },
+    "after": {
+      "tables": 92,
+      "cells": 1302,
+      "cellReconstructionAccuracy": 0.9992,
+      "numericReconstructionAccuracy": 0.9973,
+      "currencyReconstructionAccuracy": 1.0,
+      "yearReconstructionAccuracy": 1.0,
+      "mergedTokenAccuracy": 0.9992,
+      "cellRecall": 0.9992,
+      "tableFidelity": 0.9992
+    }
+  },
+  "perYear": {
+    "2015": {
+      "tableCount": 13,
+      "before": {
+        "tables": 13,
+        "cells": 174,
+        "cellReconstructionAccuracy": 0.9597,
+        "numericReconstructionAccuracy": 0.9038,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": 1.0,
+        "mergedTokenAccuracy": 0.9597,
+        "cellRecall": 0.9597,
+        "tableFidelity": 0.9597
+      },
+      "after": {
+        "tables": 13,
+        "cells": 174,
+        "cellReconstructionAccuracy": 0.9941,
+        "numericReconstructionAccuracy": 0.9808,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": 1.0,
+        "mergedTokenAccuracy": 0.9941,
+        "cellRecall": 0.9941,
+        "tableFidelity": 0.9941
+      },
+      "ids": [
+        43,
+        44,
+        45,
+        47,
+        54,
+        55,
+        62,
+        67,
+        70,
+        72,
+        74,
+        77,
+        80
+      ],
+      "meta": {
+        "tablesTouched": 19,
+        "merges": 41,
+        "numericOk": 67,
+        "numericN": 67,
+        "currencyOk": 48,
+        "currencyN": 48,
+        "yearOk": 32,
+        "yearN": 32
+      }
+    },
+    "2017": {
+      "tableCount": 18,
+      "before": {
+        "tables": 18,
+        "cells": 272,
+        "cellReconstructionAccuracy": 0.9756,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": 1.0,
+        "mergedTokenAccuracy": 0.9756,
+        "cellRecall": 0.9756,
+        "tableFidelity": 0.9756
+      },
+      "after": {
+        "tables": 18,
+        "cells": 272,
+        "cellReconstructionAccuracy": 1.0,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": 1.0,
+        "mergedTokenAccuracy": 1.0,
+        "cellRecall": 1.0,
+        "tableFidelity": 1.0
+      },
+      "ids": [
+        44,
+        47,
+        49,
+        51,
+        54,
+        59,
+        62,
+        63,
+        64,
+        65,
+        66,
+        71,
+        72,
+        73,
+        76,
+        77,
+        79,
+        80
+      ],
+      "meta": {
+        "tablesTouched": 19,
+        "merges": 87,
+        "numericOk": 180,
+        "numericN": 180,
+        "currencyOk": 43,
+        "currencyN": 43,
+        "yearOk": 14,
+        "yearN": 14
+      }
+    },
+    "2018": {
+      "tableCount": 16,
+      "before": {
+        "tables": 16,
+        "cells": 240,
+        "cellReconstructionAccuracy": 0.9922,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": 1.0,
+        "mergedTokenAccuracy": 0.9922,
+        "cellRecall": 0.9922,
+        "tableFidelity": 0.9922
+      },
+      "after": {
+        "tables": 16,
+        "cells": 240,
+        "cellReconstructionAccuracy": 1.0,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": 1.0,
+        "mergedTokenAccuracy": 1.0,
+        "cellRecall": 1.0,
+        "tableFidelity": 1.0
+      },
+      "ids": [
+        43,
+        44,
+        47,
+        49,
+        52,
+        53,
+        54,
+        57,
+        60,
+        66,
+        68,
+        70,
+        74,
+        75,
+        77,
+        78
+      ],
+      "meta": {
+        "tablesTouched": 16,
+        "merges": 56,
+        "numericOk": 123,
+        "numericN": 123,
+        "currencyOk": 36,
+        "currencyN": 36,
+        "yearOk": 8,
+        "yearN": 8
+      }
+    },
+    "2020": {
+      "tableCount": 16,
+      "before": {
+        "tables": 16,
+        "cells": 220,
+        "cellReconstructionAccuracy": 0.98,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": 1.0,
+        "mergedTokenAccuracy": 0.98,
+        "cellRecall": 0.98,
+        "tableFidelity": 0.98
+      },
+      "after": {
+        "tables": 16,
+        "cells": 220,
+        "cellReconstructionAccuracy": 1.0,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": 1.0,
+        "mergedTokenAccuracy": 1.0,
+        "cellRecall": 1.0,
+        "tableFidelity": 1.0
+      },
+      "ids": [
+        46,
+        47,
+        51,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        66,
+        67,
+        71,
+        72,
+        74,
+        75,
+        78
+      ],
+      "meta": {
+        "tablesTouched": 16,
+        "merges": 58,
+        "numericOk": 124,
+        "numericN": 124,
+        "currencyOk": 38,
+        "currencyN": 38,
+        "yearOk": 4,
+        "yearN": 4
+      }
+    },
+    "2024": {
+      "tableCount": 14,
+      "before": {
+        "tables": 14,
+        "cells": 218,
+        "cellReconstructionAccuracy": 0.9851,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": 1.0,
+        "mergedTokenAccuracy": 0.9851,
+        "cellRecall": 0.9851,
+        "tableFidelity": 0.9851
+      },
+      "after": {
+        "tables": 14,
+        "cells": 218,
+        "cellReconstructionAccuracy": 1.0,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": 1.0,
+        "mergedTokenAccuracy": 1.0,
+        "cellRecall": 1.0,
+        "tableFidelity": 1.0
+      },
+      "ids": [
+        43,
+        44,
+        46,
+        48,
+        52,
+        57,
+        58,
+        59,
+        65,
+        71,
+        72,
+        73,
+        75,
+        76
+      ],
+      "meta": {
+        "tablesTouched": 15,
+        "merges": 53,
+        "numericOk": 146,
+        "numericN": 146,
+        "currencyOk": 33,
+        "currencyN": 33,
+        "yearOk": 6,
+        "yearN": 6
+      }
+    },
+    "2025": {
+      "tableCount": 15,
+      "before": {
+        "tables": 15,
+        "cells": 178,
+        "cellReconstructionAccuracy": 0.9759,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": 1.0,
+        "mergedTokenAccuracy": 0.9759,
+        "cellRecall": 0.9759,
+        "tableFidelity": 0.9759
+      },
+      "after": {
+        "tables": 15,
+        "cells": 178,
+        "cellReconstructionAccuracy": 1.0,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": 1.0,
+        "mergedTokenAccuracy": 1.0,
+        "cellRecall": 1.0,
+        "tableFidelity": 1.0
+      },
+      "ids": [
+        43,
+        44,
+        45,
+        47,
+        50,
+        53,
+        58,
+        60,
+        61,
+        63,
+        66,
+        73,
+        74,
+        75,
+        78
+      ],
+      "meta": {
+        "tablesTouched": 16,
+        "merges": 78,
+        "numericOk": 95,
+        "numericN": 95,
+        "currencyOk": 28,
+        "currencyN": 28,
+        "yearOk": 19,
+        "yearN": 19
+      }
+    }
+  },
+  "targets": {
+    "ACC_2017_Q044": {
+      "before": [
+        [
+          "",
+          "단일금액￦1의 현재가치",
+          "정상연금 ￦1의 현재가치"
+        ],
+        [
+          "기간",
+          "",
+          ""
+        ],
+        [
+          "",
+          "12%",
+          "12%"
+        ],
+        [
+          "1",
+          "0.8929",
+          "0.8929"
+        ],
+        [
+          "2",
+          "0.7972",
+          "1.6901"
+        ],
+        [
+          "3",
+          "0.7118",
+          "2.4018"
+        ]
+      ],
+      "after": [
+        [
+          "",
+          "단일금액 ￦1의현재가치",
+          "정상연금 ￦1의현재가치"
+        ],
+        [
+          "기간",
+          "",
+          ""
+        ],
+        [
+          "",
+          "12%",
+          "12%"
+        ],
+        [
+          "1",
+          "0.8929",
+          "0.8929"
+        ],
+        [
+          "2",
+          "0.7972",
+          "1.6901"
+        ],
+        [
+          "3",
+          "0.7118",
+          "2.4018"
+        ]
+      ],
+      "scoreBefore": {
+        "cells": 14,
+        "wellFormed": 14,
+        "cellReconstructionAccuracy": 1.0,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": null,
+        "mergedTokenAccuracy": 1.0,
+        "cellRecall": 1.0,
+        "tableFidelity": 1.0,
+        "key": "2017:44"
+      },
+      "scoreAfter": {
+        "cells": 14,
+        "wellFormed": 14,
+        "cellReconstructionAccuracy": 1.0,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": 1.0,
+        "yearReconstructionAccuracy": null,
+        "mergedTokenAccuracy": 1.0,
+        "cellRecall": 1.0,
+        "tableFidelity": 1.0,
+        "key": "2017:44"
+      }
+    },
+    "ACC_2017_Q047": {
+      "before": [
+        [
+          "(차변) 건물1,000,000",
+          "(대변) 현금1,000,000"
+        ]
+      ],
+      "after": [
+        [
+          "(차변) 건물 1,000,000",
+          "(대변) 현금 1,000,000"
+        ]
+      ],
+      "scoreBefore": {
+        "cells": 2,
+        "wellFormed": 2,
+        "cellReconstructionAccuracy": 1.0,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": null,
+        "yearReconstructionAccuracy": null,
+        "mergedTokenAccuracy": 1.0,
+        "cellRecall": 1.0,
+        "tableFidelity": 1.0,
+        "key": "2017:47"
+      },
+      "scoreAfter": {
+        "cells": 2,
+        "wellFormed": 2,
+        "cellReconstructionAccuracy": 1.0,
+        "numericReconstructionAccuracy": 1.0,
+        "currencyReconstructionAccuracy": null,
+        "yearReconstructionAccuracy": null,
+        "mergedTokenAccuracy": 1.0,
+        "cellRecall": 1.0,
+        "tableFidelity": 1.0,
+        "key": "2017:47"
+      }
+    }
+  },
+  "idsByYear": {
+    "2015": [
+      43,
+      44,
+      45,
+      47,
+      54,
+      55,
+      62,
+      67,
+      70,
+      72,
+      74,
+      77,
+      80
+    ],
+    "2017": [
+      44,
+      47,
+      49,
+      51,
+      54,
+      59,
+      62,
+      63,
+      64,
+      65,
+      66,
+      71,
+      72,
+      73,
+      76,
+      77,
+      79,
+      80
+    ],
+    "2018": [
+      43,
+      44,
+      47,
+      49,
+      52,
+      53,
+      54,
+      57,
+      60,
+      66,
+      68,
+      70,
+      74,
+      75,
+      77,
+      78
+    ],
+    "2020": [
+      46,
+      47,
+      51,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      66,
+      67,
+      71,
+      72,
+      74,
+      75,
+      78
+    ],
+    "2024": [
+      43,
+      44,
+      46,
+      48,
+      52,
+      57,
+      58,
+      59,
+      65,
+      71,
+      72,
+      73,
+      75,
+      76
+    ],
+    "2025": [
+      43,
+      44,
+      45,
+      47,
+      50,
+      53,
+      58,
+      60,
+      61,
+      63,
+      66,
+      73,
+      74,
+      75,
+      78
+    ]
+  }
+}

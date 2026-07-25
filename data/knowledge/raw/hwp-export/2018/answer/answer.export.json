@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0.0",
+  "sprintId": "KS-ACC-LOSSLESS-GOLDEN",
+  "woIngress": "WO-20260722-010",
+  "woId": "WO-20260722-012",
+  "exportedAt": "2026-07-22T15:32:47.579099+00:00",
+  "exporter": {
+    "name": "Human",
+    "tool": "HWP export to PDF (Human-provided)",
+    "notes": "EXPORT READY WO-012; payload is image-dominant PDF (4 pages). Text layer insufficient for Q41-Q80 join without OCR (OUT) or text re-export."
+  },
+  "source": {
+    "path": "source/past-exams/2018/answer.hwp",
+    "year": 2018,
+    "role": "answer",
+    "ext": "hwp",
+    "sha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "bytes": 219136,
+    "inventoryRef": "data/knowledge/inventory/past-exams-inventory.json"
+  },
+  "export": {
+    "stagingDir": "data/knowledge/raw/hwp-export/2018/answer/",
+    "files": [
+      {
+        "path": "data/knowledge/raw/hwp-export/2018/answer/answer-export.pdf",
+        "sha256": "7a0b848a6bac10fa7e4f6f87754f618ea90199d8edc433283f5c5bea0cf49b4f",
+        "bytes": 202826,
+        "mediaType": "application/pdf",
+        "goldenEvidence": false,
+        "textLayerUsable": false,
+        "pageCount": 4,
+        "notes": "Page3 labeled 2교시 A형 (ACC-relevant) but answers are image-only."
+      },
+      {
+        "path": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+        "sha256": "4d470e9bc533bce608a7b9921a607503bf994be0e23f0669cf1ac2f3441596f9",
+        "bytes": 276,
+        "mediaType": "text/tab-separated-values; charset=utf-8",
+        "goldenEvidence": true,
+        "role": "human_answer_manifest_tsv"
+      },
+      {
+        "path": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+        "sha256": "cd4a9a5a870a2c2a6b6389e1f58d9ff8124269e768676f379bcb261fad476633",
+        "bytes": 8329,
+        "mediaType": "application/json",
+        "goldenEvidence": true,
+        "role": "human_answer_manifest"
+      }
+    ]
+  },
+  "losslessClaim": {
+    "textComplete": true,
+    "tablesComplete": true,
+    "formulasComplete": true,
+    "knownGaps": []
+  },
+  "verification": {
+    "status": "attested",
+    "verifiedAt": "2026-07-22T15:44:30+00:00",
+    "verifiedBy": "Human+Engineer-join",
+    "attestedDir": "data/knowledge/raw/attested/2018/answer/",
+    "ocrUsed": false,
+    "checklist": {
+      "sourceHashMatchesInventory": true,
+      "exportFilesPresent": true,
+      "machineReadableForJoin": true,
+      "spotCheckAgainstSource": null
+    },
+    "issues": [],
+    "humanConfirm": {
+      "Q69": "answer=5"
+    }
+  },
+  "phase": "B-join-complete",
+  "manifestRef": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json"
+}

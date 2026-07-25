@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q046",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 46,
+  "page": 16,
+  "stem": "재무보고를위한개념체계에서재무제표요소에관한설명으로옳지않은것은?",
+  "choices": [
+    "자산이갖는미래경제적효익은대체적인제조과정의도입으로생산원가가절감\n되는경우와같이현금유출을감소시키는능력일수도있다.",
+    "자산의존재를판단하기위해서물리적형태가필수적인것은아니다.",
+    "경제적효익에대한통제력은법률적권리의결과이므로법률적통제가있어야\n자산의정의를충족시킬수있다.",
+    "기업은일반적으로구매나생산을통하여자산을획득하지만다른거래나사건도\n자산을창출할수있다.",
+    "보증기간이명백히경과한후에발생하는제품하자에대해서도수리해주기로방침을\n정한경우에이미판매된제품과관련하여지출될것으로예상되는금액은부채이다."
+  ],
+  "answer": 3,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "46. 재무보고를위한개념체계에서재무제표요소에관한설명으로옳지않은것은?\n①자산이갖는미래경제적효익은대체적인제조과정의도입으로생산원가가절감\n되는경우와같이현금유출을감소시키는능력일수도있다.\n②자산의존재를판단하기위해서물리적형태가필수적인것은아니다.\n③경제적효익에대한통제력은법률적권리의결과이므로법률적통제가있어야\n자산의정의를충족시킬수있다.\n④기업은일반적으로구매나생산을통하여자산을획득하지만다른거래나사건도\n자산을창출할수있다.\n⑤보증기간이명백히경과한후에발생하는제품하자에대해서도수리해주기로방침을\n정한경우에이미판매된제품과관련하여지출될것으로예상되는금액은부채이다.",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "③",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.490520+00:00",
+    "status": "joined"
+  }
+}

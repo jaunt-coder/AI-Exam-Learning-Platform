@@ -57,6 +57,141 @@ export const PATTERN_LEARNING_POINTS = {
 };
 
 /**
+ * 시험 Trigger Keyword (UI enrichment — D4 미변경)
+ * keyword → short judgment cue
+ * @type {Record<string, Array<{ keyword: string, cue: string }>>}
+ */
+export const PATTERN_TRIGGER_KEYWORDS = {
+  ACC_INV_001: [
+    { keyword: 'FOB 선적지', cue: '선적 시점 소유권 이전' },
+    { keyword: 'FOB 도착지', cue: '도착 시점 소유권 이전' },
+    { keyword: '위탁판매', cue: '판매 전 위탁자 재고' },
+    { keyword: '적송·시송', cue: '미판매·의사표시 기준으로 포함/제외' },
+  ],
+  ACC_INV_003: [
+    { keyword: '부대비용', cue: '취득·완성 필요원가면 재고원가 포함' },
+    { keyword: 'VAT·매입세', cue: '재고원가 불포함' },
+    { keyword: '매입할인·에누리', cue: '원가에서 차감' },
+    { keyword: '비정상낭비·판매비', cue: '발생기간 비용 (원가 X)' },
+  ],
+  ACC_INV_004: [
+    { keyword: '기초·매입·기말', cue: '항등식: 기초+매입−기말=매출원가' },
+    { keyword: '매출총이익률', cue: '매출원가 역산 → 기말재고 추정' },
+    { keyword: '매입채무·현금', cue: '현금흐름으로 매입액 되짚기' },
+  ],
+  ACC_INV_005: [
+    { keyword: '실지재고조사법(PER)', cue: '기말 실사로 재고 확정' },
+    { keyword: '계속기록법(PR)', cue: '매 거래 장부잔액 유지' },
+    { keyword: '감모', cue: '장부수량 − 실사수량' },
+  ],
+  ACC_INV_006: [
+    { keyword: 'FIFO', cue: '먼저 들어온 원가부터 출고' },
+    { keyword: '총평균법', cue: '(기초+매입) 원가÷수량 단가' },
+    { keyword: '실지 vs 계속', cue: 'FIFO는 동일, 평균만 갈림' },
+  ],
+  ACC_INV_007: [
+    { keyword: 'LCM', cue: 'min(취득원가, NRV)' },
+    { keyword: 'NRV', cue: '순매가액 − 추가원가' },
+    { keyword: '소매재고법', cue: '원가율 × 매가기준 기말재고' },
+    { keyword: '저가기준 원가율', cue: '분모에서 순인하 제외' },
+  ],
+};
+
+/**
+ * 핵심 판단 기준: Keyword → 판단 기준 → 결론 (UI enrichment)
+ * @type {Record<string, Array<{ keyword: string, criterion: string, conclusion: string }>>}
+ */
+export const PATTERN_JUDGMENT_CRITERIA = {
+  ACC_INV_001: [
+    {
+      keyword: 'FOB 선적지',
+      criterion: '기말 시점 운송 중인가?',
+      conclusion: '운송 중이면 매입자 재고(선적 시 소유권 이전)',
+    },
+    {
+      keyword: 'FOB 도착지',
+      criterion: '기말 시점 도착 완료인가?',
+      conclusion: '미도착(운송 중)이면 판매자 재고',
+    },
+    {
+      keyword: '위탁·적송',
+      criterion: '기말 현재 판매 완료 여부',
+      conclusion: '미판매분만 위탁자(본인) 재고',
+    },
+  ],
+  ACC_INV_003: [
+    {
+      keyword: '운반·하역·보험',
+      criterion: '재고 취득·완성까지 필요한가?',
+      conclusion: '필요하면 재고원가 포함',
+    },
+    {
+      keyword: 'VAT',
+      criterion: '환급·공제 대상 세금인가?',
+      conclusion: '재고원가에 넣지 않음',
+    },
+    {
+      keyword: '비정상낭비',
+      criterion: '정상 조업 범위인가?',
+      conclusion: '비정상이면 당기 비용',
+    },
+  ],
+  ACC_INV_004: [
+    {
+      keyword: '항등식',
+      criterion: '기초·매입·기말·매출원가 중 미지수는?',
+      conclusion: '기초+매입−기말=매출원가로 역산',
+    },
+    {
+      keyword: '이익률',
+      criterion: '매출 기준인가 원가 기준인가?',
+      conclusion: '분모(매출 vs 원가)를 확정한 뒤 매출원가 산출',
+    },
+  ],
+  ACC_INV_005: [
+    {
+      keyword: 'PER',
+      criterion: '기말 실사 자료가 있는가?',
+      conclusion: '실사 기말재고로 매출원가 역산',
+    },
+    {
+      keyword: 'PR',
+      criterion: '매출마다 원가 기록이 있는가?',
+      conclusion: '장부 재고·매출원가 사용, 감모는 별도',
+    },
+  ],
+  ACC_INV_006: [
+    {
+      keyword: 'FIFO',
+      criterion: '출고 순서(먼저 매입분)를 따르는가?',
+      conclusion: '오래된 단가부터 매출원가 배분',
+    },
+    {
+      keyword: '총평균',
+      criterion: '기초+당기매입 수량·금액이 완전한가?',
+      conclusion: '가중평균 단가로 매출·기말 동일 적용',
+    },
+  ],
+  ACC_INV_007: [
+    {
+      keyword: 'LCM',
+      criterion: '취득원가와 NRV 중 낮은 쪽은?',
+      conclusion: '낮은 금액으로 평가, 차액은 평가손실',
+    },
+    {
+      keyword: 'NRV',
+      criterion: '추가 완성·판매비를 차감했는가?',
+      conclusion: '순매가액 − 추가원가 = NRV',
+    },
+    {
+      keyword: '소매재고법',
+      criterion: '원가율 종류(평균/FIFO/저가)는?',
+      conclusion: '해당 원가율 × 매가기준 기말재고',
+    },
+  ],
+};
+
+/**
  * Pattern 풀이 진행률
  * @param {string} patternId
  * @param {array} questions
@@ -125,6 +260,22 @@ export function getPatternDescription(patternId) {
  */
 export function getPatternLearningPoints(patternId) {
   return PATTERN_LEARNING_POINTS[patternId] || ['핵심 개념과 기출 유형을 정리하세요.'];
+}
+
+/**
+ * @param {string} patternId
+ * @returns {Array<{ keyword: string, cue: string }>}
+ */
+export function getPatternTriggerKeywords(patternId) {
+  return PATTERN_TRIGGER_KEYWORDS[patternId] || [];
+}
+
+/**
+ * @param {string} patternId
+ * @returns {Array<{ keyword: string, criterion: string, conclusion: string }>}
+ */
+export function getPatternJudgmentCriteria(patternId) {
+  return PATTERN_JUDGMENT_CRITERIA[patternId] || [];
 }
 
 /**

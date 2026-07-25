@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-exam-learning-platform.local/schemas/attempt-event-schema.json",
+  "title": "AttemptEvent",
+  "description": "WO-014.1 Attempt Event — append-only record of one verified student solving attempt. Used to update Student Learning State counters only. No mastery, weakness inference, recommendation, or error-cause assignment.",
+  "woId": "WO-014.1",
+  "schemaVersion": "wo014.1-1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "event_id",
+    "student_id",
+    "question_id",
+    "pattern_id",
+    "selected_answer",
+    "correct_answer_reference",
+    "result",
+    "timestamp"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "wo014.1-1.0"
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Globally unique attempt event id (append-only; never reuse)."
+    },
+    "student_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Learner id matching Student Learning State.student_id."
+    },
+    "question_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Existing question_id only. Never invent. Must not modify Question DB."
+    },
+    "pattern_id": {
+      "type": "string",
+      "pattern": "^ACC_[A-Z]+_[0-9]{3}$",
+      "description": "Pattern link at attempt time. Must exist in data/pattern-master-db.json. Preferred: validation_status=verified. Not a reclassification write."
+    },
+    "selected_answer": {
+      "description": "Student-selected choice as recorded by UI/engine. Typically 1-based choice index (integer) or explicit label string. Not an Answer SoT mutation.",
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ]
+    },
+    "correct_answer_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Pointer to Answer SoT / Product answer field. Stores reference metadata, not authority to edit answers.",
+      "required": ["source", "question_id", "field"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Read-only path or logical source id (e.g. data/question-db.json, pilot candidate path, attested answer-manifest)."
+        },
+        "question_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Question id used to look up the correct answer in source."
+        },
+        "field": {
+          "type": "string",
+          "const": "answer",
+          "description": "Field name inside the source record."
+        }
+      }
+    },
+    "result": {
+      "type": "string",
+      "enum": ["correct", "wrong"],
+      "description": "Verified grading outcome for this attempt. Must be derived by comparing selected_answer to the referenced SoT answer at ingest time — not guessed."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 attempt time."
+    },
+    "ingest": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional ingest provenance (no pedagogical inference).",
+      "properties": {
+        "woId": {
+          "type": "string",
+          "const": "WO-014.1"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["accepted", "rejected"],
+          "description": "accepted = applied to Learning State counters; rejected = validation failed (not applied)."
+        },
+        "reject_reason": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "schemaVersion": "wo014.1-1.0",
+      "event_id": "evt_example_001",
+      "student_id": "student_placeholder",
+      "question_id": "ACC_INV_Q001",
+      "pattern_id": "ACC_INV_001",
+      "selected_answer": 3,
+      "correct_answer_reference": {
+        "source": "data/question-db.json",
+        "question_id": "ACC_INV_Q001",
+        "field": "answer"
+      },
+      "result": "correct",
+      "timestamp": "2026-07-22T18:00:00Z",
+      "ingest": {
+        "woId": "WO-014.1",
+        "status": "accepted"
+      }
+    }
+  ]
+}

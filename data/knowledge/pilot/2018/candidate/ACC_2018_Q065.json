@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q065",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 65,
+  "page": 23,
+  "stem": "생물자산에관한설명으로옳지않은것은?",
+  "choices": [
+    "생물자산의순공정가치를산정할때에추정매각부대원가를차감하기때문에\n생물자산의최초인식시점에손실이발생할수있다.",
+    "수확시점의수확물은어떠한경우에도순공정가치로측정한다.",
+    "최초인식후생물자산의순공정가치변동으로발생하는평가손익은발생한기간의\n당기손익에반영한다.",
+    "순공정가치로측정하는생물자산과관련된정부보조금에다른조건이없는경우\n에는이를수취할수있게되는시점에기타포괄손익으로인식한다.",
+    "생물자산을최초로인식하는시점에시장공시가격을구할수없고, 대체적인\n공정가치측정치가명백히신뢰성없게결정되는경우에는원가에서감가상각\n누계액과손상차손누계액을차감한금액으로측정한다."
+  ],
+  "answer": 4,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "65. 생물자산에관한설명으로옳지않은것은?\n①생물자산의순공정가치를산정할때에추정매각부대원가를차감하기때문에\n생물자산의최초인식시점에손실이발생할수있다.\n②수확시점의수확물은어떠한경우에도순공정가치로측정한다.\n③최초인식후생물자산의순공정가치변동으로발생하는평가손익은발생한기간의\n당기손익에반영한다.\n④순공정가치로측정하는생물자산과관련된정부보조금에다른조건이없는경우\n에는이를수취할수있게되는시점에기타포괄손익으로인식한다.\n⑤생물자산을최초로인식하는시점에시장공시가격을구할수없고, 대체적인\n공정가치측정치가명백히신뢰성없게결정되는경우에는원가에서감가상각\n누계액과손상차손누계액을차감한금액으로측정한다.",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "④",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.521437+00:00",
+    "status": "joined"
+  }
+}

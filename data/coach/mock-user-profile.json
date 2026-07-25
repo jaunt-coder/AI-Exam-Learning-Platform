@@ -1,0 +1,35 @@
+{
+  "userId": "001",
+  "examTarget": "감정평가사 1차",
+  "examDate": "2026-10-15",
+  "currentScore": {
+    "accounting": 37.5,
+    "civilLaw": 57.5
+  },
+  "targetScore": {
+    "accounting": 60,
+    "civilLaw": 60
+  },
+  "studyTime": {
+    "totalMinutes": 1200,
+    "weekMinutes": 180
+  },
+  "solvedQuestions": 86,
+  "accuracyRate": 0.54,
+  "weakPatterns": [
+    "ACC_INV_003",
+    "ACC_PPE_002"
+  ],
+  "strongPatterns": [
+    "ACC_EQ_001"
+  ],
+  "learningHistory": [
+    {
+      "date": "2026-07-19",
+      "minutes": 45,
+      "focusPatterns": ["ACC_INV_003"],
+      "solved": 12
+    }
+  ],
+  "updatedAt": "2026-07-20T00:00:00.000Z"
+}

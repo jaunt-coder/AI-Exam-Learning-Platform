@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q050",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 50,
+  "page": 17,
+  "stem": "다음설명중옳은것을모두고른것은?\nㄱ. 특정유형자산을재평가할때, 해당자산이포함되는유형자산분류전\n체를재평가한다.\nㄴ. 자가사용부동산을공정가치로평가하는투자부동산으로대체하는시점\n까지그부동산을감가상각하고, 발생한손상차손을인식한다.\nㄷ. 무형자산으로인식되기위해서는식별가능성, 자원에대한통제및미\n래경제적효익의존재중최소하나이상의조건을충족하여야한다.\nㄹ. 무형자산을창출하기위한내부프로젝트를연구단계와개발단계로구\n분할수없는경우에는그프로젝트에서발생한지출은모두개발단계\n에서발생한것으로본다.",
+  "choices": [
+    "ㄱ, ㄴ",
+    "ㄱ, ㄷ",
+    "ㄴ, ㄹ",
+    "ㄷ, ㄹ",
+    "ㄱ, ㄴ, ㄷ\n\n\n\n2018년제29회감정평가사1차-2교시-A-28-18"
+  ],
+  "answer": 1,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "50. 다음설명중옳은것을모두고른것은?\nㄱ. 특정유형자산을재평가할때, 해당자산이포함되는유형자산분류전\n체를재평가한다.\nㄴ. 자가사용부동산을공정가치로평가하는투자부동산으로대체하는시점\n까지그부동산을감가상각하고, 발생한손상차손을인식한다.\nㄷ. 무형자산으로인식되기위해서는식별가능성, 자원에대한통제및미\n래경제적효익의존재중최소하나이상의조건을충족하여야한다.\nㄹ. 무형자산을창출하기위한내부프로젝트를연구단계와개발단계로구\n분할수없는경우에는그프로젝트에서발생한지출은모두개발단계\n에서발생한것으로본다.\n①ㄱ, ㄴ\n②ㄱ, ㄷ\n③ㄴ, ㄹ\n④ㄷ, ㄹ\n⑤ㄱ, ㄴ, ㄷ\n\n\n\n2018년제29회감정평가사1차-2교시-A-28-18",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "①",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.496511+00:00",
+    "status": "joined"
+  }
+}

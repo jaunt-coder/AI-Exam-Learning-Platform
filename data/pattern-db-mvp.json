@@ -81,21 +81,23 @@
     "chapterId": "ACC_FIN",
     "name": "사채·채권",
     "grade": "S",
-    "frequency": 11,
+    "frequency": 12,
     "years": [
       2015,
       2017,
       2018,
+      2020,
       2024,
       2025
     ],
-    "importance": 88,
+    "importance": 91,
     "relatedQuestions": [
       "ACC_2015_Q056",
       "ACC_2015_Q057",
       "ACC_2017_Q064",
       "ACC_2018_Q053",
       "ACC_2018_Q062",
+      "ACC_2020_Q070",
       "ACC_2024_Q051",
       "ACC_2024_Q052",
       "ACC_2024_Q059",
@@ -451,18 +453,17 @@
     "chapterId": "ACC_PPE",
     "name": "재평가·손상",
     "grade": "S",
-    "frequency": 5,
+    "frequency": 4,
     "years": [
       2015,
       2020,
       2024,
       2025
     ],
-    "importance": 70,
+    "importance": 67,
     "relatedQuestions": [
       "ACC_2015_Q054",
       "ACC_2020_Q061",
-      "ACC_2020_Q070",
       "ACC_2024_Q058",
       "ACC_2025_Q067"
     ]

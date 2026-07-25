@@ -1,0 +1,474 @@
+{
+  "years": [
+    2015,
+    2017,
+    2018,
+    2020,
+    2024,
+    2025
+  ],
+  "questionsExpected": 240,
+  "overall": {
+    "expectedCount": 56,
+    "universeCount": 121,
+    "detectionRecallBefore": 0.2975,
+    "detectionRecallAfter": 0.7603,
+    "cellRecallBefore": 0.1009,
+    "cellRecallAfter": 0.4495,
+    "rowAccuracyBefore": 0.314,
+    "rowAccuracyAfter": 0.7603,
+    "columnAccuracyBefore": 0.2975,
+    "columnAccuracyAfter": 0.7603,
+    "fidelityBefore": 0.2975,
+    "fidelityAfter": 0.7603,
+    "geometricDetections": 92,
+    "geometricFidelity": 1.0,
+    "keywordDetectionAfter": 0.4821,
+    "keywordDetectionBefore": 0.6429
+  },
+  "perYear": {
+    "2015": {
+      "expectedCount": 3,
+      "universeCount": 16,
+      "detectionRecallBefore": 0.0625,
+      "detectionRecallAfter": 0.8125,
+      "cellRecallBefore": 0.0,
+      "cellRecallAfter": 0.0,
+      "rowAccuracyBefore": 0.0625,
+      "rowAccuracyAfter": 0.8125,
+      "columnAccuracyBefore": 0.0625,
+      "columnAccuracyAfter": 0.8125,
+      "fidelityBefore": 0.0625,
+      "fidelityAfter": 0.8125,
+      "geometricDetections": 13,
+      "geometricFidelity": 1.0,
+      "keywordDetectionAfter": 0.0,
+      "keywordDetectionBefore": 0.3333,
+      "geometricIds": [
+        43,
+        44,
+        45,
+        47,
+        54,
+        55,
+        62,
+        67,
+        70,
+        72,
+        74,
+        77,
+        80
+      ],
+      "meta": {
+        "questionsWithTable": 13,
+        "tablesDetected": 19,
+        "cellsDetected": 264,
+        "kinds": {
+          "grid": 18,
+          "two-column": 1
+        }
+      }
+    },
+    "2017": {
+      "expectedCount": 13,
+      "universeCount": 24,
+      "detectionRecallBefore": 0.375,
+      "detectionRecallAfter": 0.75,
+      "cellRecallBefore": 0.2782,
+      "cellRecallAfter": 0.5083,
+      "rowAccuracyBefore": 0.4167,
+      "rowAccuracyAfter": 0.75,
+      "columnAccuracyBefore": 0.375,
+      "columnAccuracyAfter": 0.75,
+      "fidelityBefore": 0.375,
+      "fidelityAfter": 0.75,
+      "geometricDetections": 18,
+      "geometricFidelity": 1.0,
+      "keywordDetectionAfter": 0.5385,
+      "keywordDetectionBefore": 0.6923,
+      "geometricIds": [
+        44,
+        47,
+        49,
+        51,
+        54,
+        59,
+        62,
+        63,
+        64,
+        65,
+        66,
+        71,
+        72,
+        73,
+        76,
+        77,
+        79,
+        80
+      ],
+      "meta": {
+        "questionsWithTable": 18,
+        "tablesDetected": 19,
+        "cellsDetected": 282,
+        "kinds": {
+          "grid": 17,
+          "journal": 2
+        }
+      }
+    },
+    "2018": {
+      "expectedCount": 11,
+      "universeCount": 22,
+      "detectionRecallBefore": 0.3636,
+      "detectionRecallAfter": 0.7273,
+      "cellRecallBefore": 0.0114,
+      "cellRecallAfter": 0.4545,
+      "rowAccuracyBefore": 0.3636,
+      "rowAccuracyAfter": 0.7273,
+      "columnAccuracyBefore": 0.3636,
+      "columnAccuracyAfter": 0.7273,
+      "fidelityBefore": 0.3636,
+      "fidelityAfter": 0.7273,
+      "geometricDetections": 16,
+      "geometricFidelity": 1.0,
+      "keywordDetectionAfter": 0.4545,
+      "keywordDetectionBefore": 0.7273,
+      "geometricIds": [
+        43,
+        44,
+        47,
+        49,
+        52,
+        53,
+        54,
+        57,
+        60,
+        66,
+        68,
+        70,
+        74,
+        75,
+        77,
+        78
+      ],
+      "meta": {
+        "questionsWithTable": 16,
+        "tablesDetected": 16,
+        "cellsDetected": 240,
+        "kinds": {
+          "grid": 16
+        }
+      }
+    },
+    "2020": {
+      "expectedCount": 10,
+      "universeCount": 20,
+      "detectionRecallBefore": 0.25,
+      "detectionRecallAfter": 0.8,
+      "cellRecallBefore": 0.1286,
+      "cellRecallAfter": 0.5707,
+      "rowAccuracyBefore": 0.25,
+      "rowAccuracyAfter": 0.8,
+      "columnAccuracyBefore": 0.25,
+      "columnAccuracyAfter": 0.8,
+      "fidelityBefore": 0.25,
+      "fidelityAfter": 0.8,
+      "geometricDetections": 16,
+      "geometricFidelity": 1.0,
+      "keywordDetectionAfter": 0.6,
+      "keywordDetectionBefore": 0.5,
+      "geometricIds": [
+        46,
+        47,
+        51,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        66,
+        67,
+        71,
+        72,
+        74,
+        75,
+        78
+      ],
+      "meta": {
+        "questionsWithTable": 16,
+        "tablesDetected": 16,
+        "cellsDetected": 220,
+        "kinds": {
+          "grid": 16
+        }
+      }
+    },
+    "2024": {
+      "expectedCount": 12,
+      "universeCount": 21,
+      "detectionRecallBefore": 0.3333,
+      "detectionRecallAfter": 0.6667,
+      "cellRecallBefore": 0.0208,
+      "cellRecallAfter": 0.3769,
+      "rowAccuracyBefore": 0.3333,
+      "rowAccuracyAfter": 0.6667,
+      "columnAccuracyBefore": 0.3333,
+      "columnAccuracyAfter": 0.6667,
+      "fidelityBefore": 0.3333,
+      "fidelityAfter": 0.6667,
+      "geometricDetections": 14,
+      "geometricFidelity": 1.0,
+      "keywordDetectionAfter": 0.4167,
+      "keywordDetectionBefore": 0.5833,
+      "geometricIds": [
+        43,
+        44,
+        46,
+        48,
+        52,
+        57,
+        58,
+        59,
+        65,
+        71,
+        72,
+        73,
+        75,
+        76
+      ],
+      "meta": {
+        "questionsWithTable": 14,
+        "tablesDetected": 15,
+        "cellsDetected": 227,
+        "kinds": {
+          "grid": 15
+        }
+      }
+    },
+    "2025": {
+      "expectedCount": 7,
+      "universeCount": 18,
+      "detectionRecallBefore": 0.3333,
+      "detectionRecallAfter": 0.8333,
+      "cellRecallBefore": 0.0536,
+      "cellRecallAfter": 0.4762,
+      "rowAccuracyBefore": 0.3889,
+      "rowAccuracyAfter": 0.8333,
+      "columnAccuracyBefore": 0.3333,
+      "columnAccuracyAfter": 0.8333,
+      "fidelityBefore": 0.3333,
+      "fidelityAfter": 0.8333,
+      "geometricDetections": 15,
+      "geometricFidelity": 1.0,
+      "keywordDetectionAfter": 0.5714,
+      "keywordDetectionBefore": 0.8571,
+      "geometricIds": [
+        43,
+        44,
+        45,
+        47,
+        50,
+        53,
+        58,
+        60,
+        61,
+        63,
+        66,
+        73,
+        74,
+        75,
+        78
+      ],
+      "meta": {
+        "questionsWithTable": 15,
+        "tablesDetected": 16,
+        "cellsDetected": 190,
+        "kinds": {
+          "grid": 16
+        }
+      }
+    }
+  },
+  "targets": {
+    "ACC_2017_Q044": {
+      "expected": true,
+      "before": null,
+      "after": [
+        [
+          "",
+          "단일금액￦1의 현재가치",
+          "정상연금 ￦1의 현재가치"
+        ],
+        [
+          "기간",
+          "",
+          ""
+        ],
+        [
+          "",
+          "12%",
+          "12%"
+        ],
+        [
+          "1",
+          "0.8929",
+          "0.8929"
+        ],
+        [
+          "2",
+          "0.7972",
+          "1.6901"
+        ],
+        [
+          "3",
+          "0.7118",
+          "2.4018"
+        ]
+      ],
+      "kind": "grid",
+      "score": {
+        "detectedBefore": 0.0,
+        "detectedAfter": 1.0,
+        "fidelityBefore": 0.0,
+        "fidelityAfter": 1.0,
+        "afterRows": 6,
+        "afterCols": 3,
+        "afterCells": 14
+      }
+    },
+    "ACC_2017_Q047": {
+      "expected": true,
+      "before": [
+        [
+          "(차변) 건물1,000,000"
+        ],
+        [
+          "(대변) 현금1,000,000"
+        ]
+      ],
+      "after": [
+        [
+          "(차변) 건물1,000,000",
+          "(대변) 현금1,000,000"
+        ]
+      ],
+      "kind": "journal",
+      "score": {
+        "detectedBefore": 0.0,
+        "detectedAfter": 1.0,
+        "fidelityBefore": 0.0,
+        "fidelityAfter": 1.0,
+        "afterRows": 1,
+        "afterCols": 2,
+        "afterCells": 2
+      }
+    }
+  },
+  "geometricByYear": {
+    "2015": [
+      43,
+      44,
+      45,
+      47,
+      54,
+      55,
+      62,
+      67,
+      70,
+      72,
+      74,
+      77,
+      80
+    ],
+    "2017": [
+      44,
+      47,
+      49,
+      51,
+      54,
+      59,
+      62,
+      63,
+      64,
+      65,
+      66,
+      71,
+      72,
+      73,
+      76,
+      77,
+      79,
+      80
+    ],
+    "2018": [
+      43,
+      44,
+      47,
+      49,
+      52,
+      53,
+      54,
+      57,
+      60,
+      66,
+      68,
+      70,
+      74,
+      75,
+      77,
+      78
+    ],
+    "2020": [
+      46,
+      47,
+      51,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      66,
+      67,
+      71,
+      72,
+      74,
+      75,
+      78
+    ],
+    "2024": [
+      43,
+      44,
+      46,
+      48,
+      52,
+      57,
+      58,
+      59,
+      65,
+      71,
+      72,
+      73,
+      75,
+      76
+    ],
+    "2025": [
+      43,
+      44,
+      45,
+      47,
+      50,
+      53,
+      58,
+      60,
+      61,
+      63,
+      66,
+      73,
+      74,
+      75,
+      78
+    ]
+  }
+}

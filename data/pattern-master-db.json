@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": "wo013-1.0",
+  "generatedAt": "2026-07-22T16:47:02Z",
+  "woId": "WO-013",
+  "sprintNote": "Pattern Master built from existing verified Question↔Pattern mappings. No AI-invented patterns. Golden pilot pattern mapping deferred (AFTER VERIFY_QUESTION).",
+  "authority": {
+    "phase1_sot": "data/question-db.json + data/pattern-db.json + docs/pattern-db.md",
+    "mvp_sot": "data/question-db-mvp.json + data/pattern-db-mvp.json",
+    "d4_note": "This file is a WO-013 staging Master Knowledge Base. D4 Product Persist of pattern-db*.json was NOT performed."
+  },
+  "summary": {
+    "total_patterns": 18,
+    "verified_patterns": 6,
+    "mapped_frequency_verified": 7,
+    "mapped_coarse_bucket": 5,
+    "phase1_questions": 32,
+    "mvp_questions": 240,
+    "phase1_mapped": 32,
+    "mvp_mapped": 240,
+    "unmapped": 0,
+    "shared_inv_conflicts": 5,
+    "known_gaps": [
+      {
+        "pattern_id": "ACC_INV_002",
+        "status": "documented_gap",
+        "note": "docs/05·docs/27 예시 ID이나 Phase1/MVP Pattern DB에 미등록. 신규 생성 금지(WO-013 Rule 2)."
+      },
+      {
+        "pattern_id": "ACC_COST_001",
+        "status": "adr_pending_persist",
+        "note": "ADR-001 Option A 승인·Persist=0. D4 등록은 별도 실행 WO 필요. WO-013에서 임의 등록 금지."
+      },
+      {
+        "pattern_id": "ACC_INV_005",
+        "status": "mvp_missing",
+        "note": "Phase1에는 존재(B/1). pattern-db-mvp.json에는 부재."
+      }
+    ],
+    "golden_pilot_2018": {
+      "count": 40,
+      "with_answer": 40,
+      "with_pattern": 0,
+      "verified": 0
+    }
+  },
+  "validation5": {
+    "question_ids_preserved": true,
+    "answers_unchanged": true,
+    "all_questions_pattern_linked": true,
+    "pattern_id_unique": true,
+    "frequency_recalculated": true,
+    "migration_log_exists": true,
+    "pattern_master_db_created": true
+  },
+  "validation5_result": "PASS",
+  "patterns": [
+    {
+      "pattern_id": "ACC_COST_002",
+      "category": "ACC_COST",
+      "name": "관리회계",
+      "grade": "A",
+      "frequency": 2,
+      "question_ids": [
+        "ACC_2018_Q077",
+        "ACC_2025_Q080"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "mapped_frequency_verified",
+      "years": [
+        2018,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 61,
+      "evidence": {
+        "primary_source": [
+          "data/question-db-mvp.json",
+          "data/pattern-db-mvp.json"
+        ],
+        "frequency_before": 2,
+        "frequency_after": 2,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db-mvp.json",
+        "grade_rationale": "Grade inherited from pattern-db-mvp.json; frequency recalculated from question-db-mvp.json. Human strategic regrade not performed in WO-013.",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    },
+    {
+      "pattern_id": "ACC_EQ_001",
+      "category": "ACC_EQ",
+      "name": "자본·배당",
+      "grade": "S",
+      "frequency": 16,
+      "question_ids": [
+        "ACC_2015_Q051",
+        "ACC_2015_Q060",
+        "ACC_2015_Q065",
+        "ACC_2017_Q046",
+        "ACC_2017_Q062",
+        "ACC_2018_Q047",
+        "ACC_2018_Q057",
+        "ACC_2018_Q061",
+        "ACC_2020_Q053",
+        "ACC_2020_Q056",
+        "ACC_2024_Q046",
+        "ACC_2024_Q049",
+        "ACC_2025_Q045",
+        "ACC_2025_Q061",
+        "ACC_2025_Q062",
+        "ACC_2025_Q070"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "mapped_frequency_verified",
+      "years": [
+        2015,
+        2017,
+        2018,
+        2020,
+        2024,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 95,
+      "evidence": {
+        "primary_source": [
+          "data/question-db-mvp.json",
+          "data/pattern-db-mvp.json"
+        ],
+        "frequency_before": 16,
+        "frequency_after": 16,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db-mvp.json",
+        "grade_rationale": "Grade inherited from pattern-db-mvp.json; frequency recalculated from question-db-mvp.json. Human strategic regrade not performed in WO-013.",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    },
+    {
+      "pattern_id": "ACC_FIN_001",
+      "category": "ACC_FIN",
+      "name": "금융상품",
+      "grade": "S",
+      "frequency": 7,
+      "question_ids": [
+        "ACC_2015_Q048",
+        "ACC_2015_Q062",
+        "ACC_2015_Q070",
+        "ACC_2017_Q043",
+        "ACC_2024_Q054",
+        "ACC_2025_Q054",
+        "ACC_2025_Q056"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "mapped_frequency_verified",
+      "years": [
+        2015,
+        2017,
+        2024,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 76,
+      "evidence": {
+        "primary_source": [
+          "data/question-db-mvp.json",
+          "data/pattern-db-mvp.json"
+        ],
+        "frequency_before": 7,
+        "frequency_after": 7,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db-mvp.json",
+        "grade_rationale": "Grade inherited from pattern-db-mvp.json; frequency recalculated from question-db-mvp.json. Human strategic regrade not performed in WO-013.",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    },
+    {
+      "pattern_id": "ACC_FIN_002",
+      "category": "ACC_FIN",
+      "name": "사채·채권",
+      "grade": "S",
+      "frequency": 12,
+      "question_ids": [
+        "ACC_2015_Q056",
+        "ACC_2015_Q057",
+        "ACC_2017_Q064",
+        "ACC_2018_Q053",
+        "ACC_2018_Q062",
+        "ACC_2020_Q070",
+        "ACC_2024_Q051",
+        "ACC_2024_Q052",
+        "ACC_2024_Q059",
+        "ACC_2024_Q061",
+        "ACC_2025_Q057",
+        "ACC_2025_Q058"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "mapped_frequency_verified",
+      "years": [
+        2015,
+        2017,
+        2018,
+        2020,
+        2024,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 91,
+      "evidence": {
+        "primary_source": [
+          "data/question-db-mvp.json",
+          "data/pattern-db-mvp.json"
+        ],
+        "frequency_before": 12,
+        "frequency_after": 12,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db-mvp.json",
+        "grade_rationale": "Grade inherited from pattern-db-mvp.json; frequency recalculated from question-db-mvp.json. Human strategic regrade not performed in WO-013.",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    },
+    {
+      "pattern_id": "ACC_FS_001",
+      "category": "ACC_FS",
+      "name": "재무제표 일반",
+      "grade": "S",
+      "frequency": 23,
+      "question_ids": [
+        "ACC_2015_Q041",
+        "ACC_2015_Q046",
+        "ACC_2015_Q049",
+        "ACC_2015_Q063",
+        "ACC_2015_Q064",
+        "ACC_2015_Q066",
+        "ACC_2017_Q048",
+        "ACC_2017_Q051",
+        "ACC_2017_Q058",
+        "ACC_2018_Q041",
+        "ACC_2018_Q046",
+        "ACC_2018_Q052",
+        "ACC_2018_Q056",
+        "ACC_2020_Q041",
+        "ACC_2020_Q042",
+        "ACC_2020_Q044",
+        "ACC_2020_Q052",
+        "ACC_2020_Q060",
+        "ACC_2024_Q041",
+        "ACC_2024_Q042",
+        "ACC_2024_Q045",
+        "ACC_2024_Q056",
+        "ACC_2025_Q042"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "mapped_coarse_bucket",
+      "years": [
+        2015,
+        2017,
+        2018,
+        2020,
+        2024,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 95,
+      "evidence": {
+        "primary_source": [
+          "data/question-db-mvp.json",
+          "data/pattern-db-mvp.json"
+        ],
+        "frequency_before": 23,
+        "frequency_after": 23,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db-mvp.json",
+        "grade_rationale": "Chapter-level coarse bucket — grade inherited from pattern-db-mvp.json; fine-grained exam-pattern split requires Human D4 review (not invented in WO-013).",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    },
+    {
+      "pattern_id": "ACC_GEN_001",
+      "category": "ACC_GEN",
+      "name": "회계학 일반",
+      "grade": "S",
+      "frequency": 55,
+      "question_ids": [
+        "ACC_2015_Q042",
+        "ACC_2015_Q044",
+        "ACC_2015_Q047",
+        "ACC_2015_Q053",
+        "ACC_2015_Q055",
+        "ACC_2015_Q058",
+        "ACC_2015_Q067",
+        "ACC_2015_Q069",
+        "ACC_2015_Q072",
+        "ACC_2015_Q073",
+        "ACC_2015_Q074",
+        "ACC_2015_Q077",
+        "ACC_2017_Q045",
+        "ACC_2017_Q059",
+        "ACC_2017_Q060",
+        "ACC_2017_Q061",
+        "ACC_2017_Q070",
+        "ACC_2017_Q072",
+        "ACC_2017_Q074",
+        "ACC_2017_Q076",
+        "ACC_2017_Q079",
+        "ACC_2018_Q049",
+        "ACC_2018_Q055",
+        "ACC_2018_Q058",
+        "ACC_2018_Q063",
+        "ACC_2018_Q065",
+        "ACC_2018_Q067",
+        "ACC_2018_Q072",
+        "ACC_2018_Q073",
+        "ACC_2018_Q074",
+        "ACC_2018_Q078",
+        "ACC_2020_Q071",
+        "ACC_2020_Q072",
+        "ACC_2020_Q074",
+        "ACC_2020_Q075",
+        "ACC_2020_Q079",
+        "ACC_2020_Q080",
+        "ACC_2024_Q048",
+        "ACC_2024_Q053",
+        "ACC_2024_Q057",
+        "ACC_2024_Q060",
+        "ACC_2024_Q065",
+        "ACC_2024_Q066",
+        "ACC_2024_Q068",
+        "ACC_2024_Q072",
+        "ACC_2024_Q074",
+        "ACC_2024_Q078",
+        "ACC_2024_Q080",
+        "ACC_2025_Q041",
+        "ACC_2025_Q047",
+        "ACC_2025_Q059",
+        "ACC_2025_Q074",
+        "ACC_2025_Q075",
+        "ACC_2025_Q076",
+        "ACC_2025_Q078"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "mapped_coarse_bucket",
+      "years": [
+        2015,
+        2017,
+        2018,
+        2020,
+        2024,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 95,
+      "evidence": {
+        "primary_source": [
+          "data/question-db-mvp.json",
+          "data/pattern-db-mvp.json"
+        ],
+        "frequency_before": 55,
+        "frequency_after": 55,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db-mvp.json",
+        "grade_rationale": "Chapter-level coarse bucket — grade inherited from pattern-db-mvp.json; fine-grained exam-pattern split requires Human D4 review (not invented in WO-013).",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    },
+    {
+      "pattern_id": "ACC_INT_001",
+      "category": "ACC_INT",
+      "name": "무형자산",
+      "grade": "S",
+      "frequency": 20,
+      "question_ids": [
+        "ACC_2015_Q061",
+        "ACC_2015_Q079",
+        "ACC_2015_Q080",
+        "ACC_2017_Q044",
+        "ACC_2017_Q050",
+        "ACC_2017_Q063",
+        "ACC_2018_Q048",
+        "ACC_2018_Q051",
+        "ACC_2018_Q060",
+        "ACC_2018_Q071",
+        "ACC_2020_Q051",
+        "ACC_2020_Q062",
+        "ACC_2020_Q064",
+        "ACC_2020_Q065",
+        "ACC_2020_Q078",
+        "ACC_2024_Q067",
+        "ACC_2025_Q049",
+        "ACC_2025_Q055",
+        "ACC_2025_Q066",
+        "ACC_2025_Q069"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "mapped_coarse_bucket",
+      "years": [
+        2015,
+        2017,
+        2018,
+        2020,
+        2024,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 95,
+      "evidence": {
+        "primary_source": [
+          "data/question-db-mvp.json",
+          "data/pattern-db-mvp.json"
+        ],
+        "frequency_before": 20,
+        "frequency_after": 20,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db-mvp.json",
+        "grade_rationale": "Chapter-level coarse bucket — grade inherited from pattern-db-mvp.json; fine-grained exam-pattern split requires Human D4 review (not invented in WO-013).",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    },
+    {
+      "pattern_id": "ACC_INV_001",
+      "category": "ACC_INV",
+      "name": "기말재고 포함 여부 판단",
+      "grade": "S",
+      "frequency": 5,
+      "question_ids": [
+        "ACC_INV_Q001",
+        "ACC_INV_Q006",
+        "ACC_INV_Q019",
+        "ACC_INV_Q022",
+        "ACC_INV_Q037"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "verified",
+      "years": [
+        2018,
+        2019,
+        2021,
+        2023
+      ],
+      "subject_id": "ACC",
+      "importance": 85,
+      "evidence": {
+        "primary_source": [
+          "data/question-db.json",
+          "data/pattern-db.json",
+          "docs/pattern-db.md",
+          "docs/exam-analysis.md",
+          "docs/statistics.md"
+        ],
+        "frequency_before": 5,
+        "frequency_after": 5,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db.json",
+        "grade_rationale": "기말재고 귀속·포함 여부 판단은 재고자산 기본 계산 패턴이며 다년도 반복 출제(docs/pattern-db.md, docs/exam-analysis.md).",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": {
+        "mvp_grade": "B",
+        "mvp_frequency": 1,
+        "mvp_question_ids": [
+          "ACC_2018_Q042"
+        ],
+        "conflict_with_phase1": true,
+        "note": "MVP namespace uses ACC_YYYY_Qnnn IDs; Phase1 uses ACC_INV_Qnnn. Not auto-merged."
+      }
+    },
+    {
+      "pattern_id": "ACC_INV_003",
+      "category": "ACC_INV",
+      "name": "운반비·부대비용과 재고원가",
+      "grade": "A",
+      "frequency": 2,
+      "question_ids": [
+        "ACC_INV_Q011",
+        "ACC_INV_Q012"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "verified",
+      "years": [
+        2019
+      ],
+      "subject_id": "ACC",
+      "importance": 70,
+      "evidence": {
+        "primary_source": [
+          "data/question-db.json",
+          "data/pattern-db.json",
+          "docs/pattern-db.md",
+          "docs/exam-analysis.md",
+          "docs/statistics.md"
+        ],
+        "frequency_before": 2,
+        "frequency_after": 2,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db.json",
+        "grade_rationale": "운반비·부대비용 원가 배분은 특정 조건에서 중요하나 출제 빈도는 상대적으로 낮음(A).",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": {
+        "mvp_grade": "A",
+        "mvp_frequency": 3,
+        "mvp_question_ids": [
+          "ACC_2025_Q051",
+          "ACC_2025_Q053",
+          "ACC_2025_Q065"
+        ],
+        "conflict_with_phase1": true,
+        "note": "MVP namespace uses ACC_YYYY_Qnnn IDs; Phase1 uses ACC_INV_Qnnn. Not auto-merged."
+      }
+    },
+    {
+      "pattern_id": "ACC_INV_004",
+      "category": "ACC_INV",
+      "name": "매출원가 계산 (PER법)",
+      "grade": "S",
+      "frequency": 14,
+      "question_ids": [
+        "ACC_INV_Q005",
+        "ACC_INV_Q008",
+        "ACC_INV_Q009",
+        "ACC_INV_Q010",
+        "ACC_INV_Q013",
+        "ACC_INV_Q015",
+        "ACC_INV_Q018",
+        "ACC_INV_Q020",
+        "ACC_INV_Q024",
+        "ACC_INV_Q027",
+        "ACC_INV_Q035",
+        "ACC_INV_Q036",
+        "ACC_INV_Q038",
+        "ACC_INV_Q042"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "verified",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 95,
+      "evidence": {
+        "primary_source": [
+          "data/question-db.json",
+          "data/pattern-db.json",
+          "docs/pattern-db.md",
+          "docs/exam-analysis.md",
+          "docs/statistics.md"
+        ],
+        "frequency_before": 14,
+        "frequency_after": 14,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db.json",
+        "grade_rationale": "PER법 매출원가 계산은 최고 빈도(14) · 합격 전략상 필수(docs/statistics.md priority HIGH).",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": {
+        "mvp_grade": "A",
+        "mvp_frequency": 2,
+        "mvp_question_ids": [
+          "ACC_2020_Q049",
+          "ACC_2020_Q066"
+        ],
+        "conflict_with_phase1": true,
+        "note": "MVP namespace uses ACC_YYYY_Qnnn IDs; Phase1 uses ACC_INV_Qnnn. Not auto-merged."
+      }
+    },
+    {
+      "pattern_id": "ACC_INV_005",
+      "category": "ACC_INV",
+      "name": "PER vs PR 재고조사법",
+      "grade": "B",
+      "frequency": 1,
+      "question_ids": [
+        "ACC_INV_Q014"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "verified",
+      "years": [
+        2020
+      ],
+      "subject_id": "ACC",
+      "importance": 65,
+      "evidence": {
+        "primary_source": [
+          "data/question-db.json",
+          "data/pattern-db.json",
+          "docs/pattern-db.md",
+          "docs/exam-analysis.md",
+          "docs/statistics.md"
+        ],
+        "frequency_before": 1,
+        "frequency_after": 1,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db.json",
+        "grade_rationale": "PER vs PR 재고조사법 비교는 간헐 출제(1회) · 보조 개념(docs/25 grade B).",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    },
+    {
+      "pattern_id": "ACC_INV_006",
+      "category": "ACC_INV",
+      "name": "FIFO·총평균법 매출원가",
+      "grade": "S",
+      "frequency": 6,
+      "question_ids": [
+        "ACC_INV_Q002",
+        "ACC_INV_Q004",
+        "ACC_INV_Q021",
+        "ACC_INV_Q023",
+        "ACC_INV_Q025",
+        "ACC_INV_Q031"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "verified",
+      "years": [
+        2018,
+        2021,
+        2022
+      ],
+      "subject_id": "ACC",
+      "importance": 90,
+      "evidence": {
+        "primary_source": [
+          "data/question-db.json",
+          "data/pattern-db.json",
+          "docs/pattern-db.md",
+          "docs/exam-analysis.md",
+          "docs/statistics.md"
+        ],
+        "frequency_before": 6,
+        "frequency_after": 6,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db.json",
+        "grade_rationale": "FIFO·총평균법 매출원가는 기본 계산 패턴 · 다년도 반복(docs/pattern-db.md).",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": {
+        "mvp_grade": "S",
+        "mvp_frequency": 19,
+        "mvp_question_ids": [
+          "ACC_2015_Q075",
+          "ACC_2017_Q066",
+          "ACC_2017_Q069",
+          "ACC_2017_Q077",
+          "ACC_2017_Q080",
+          "ACC_2018_Q066",
+          "ACC_2018_Q068",
+          "ACC_2018_Q079",
+          "ACC_2020_Q063",
+          "ACC_2020_Q073",
+          "ACC_2020_Q076",
+          "ACC_2024_Q044",
+          "ACC_2024_Q047",
+          "ACC_2024_Q073",
+          "ACC_2024_Q075",
+          "ACC_2025_Q043",
+          "ACC_2025_Q063",
+          "ACC_2025_Q073",
+          "ACC_2025_Q079"
+        ],
+        "conflict_with_phase1": true,
+        "note": "MVP namespace uses ACC_YYYY_Qnnn IDs; Phase1 uses ACC_INV_Qnnn. Not auto-merged."
+      }
+    },
+    {
+      "pattern_id": "ACC_INV_007",
+      "category": "ACC_INV",
+      "name": "LCM·순실현가능가치 평가",
+      "grade": "S",
+      "frequency": 4,
+      "question_ids": [
+        "ACC_INV_Q003",
+        "ACC_INV_Q029",
+        "ACC_INV_Q039",
+        "ACC_INV_Q041"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "verified",
+      "years": [
+        2018,
+        2022,
+        2024,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 80,
+      "evidence": {
+        "primary_source": [
+          "data/question-db.json",
+          "data/pattern-db.json",
+          "docs/pattern-db.md",
+          "docs/exam-analysis.md",
+          "docs/statistics.md"
+        ],
+        "frequency_before": 4,
+        "frequency_after": 4,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db.json",
+        "grade_rationale": "LCM·순실현가능가치 평가는 기본 평가 패턴 · 최근 연도 연속 출제(2022/2024/2025).",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": {
+        "mvp_grade": "A",
+        "mvp_frequency": 3,
+        "mvp_question_ids": [
+          "ACC_2024_Q043",
+          "ACC_2024_Q076",
+          "ACC_2025_Q044"
+        ],
+        "conflict_with_phase1": true,
+        "note": "MVP namespace uses ACC_YYYY_Qnnn IDs; Phase1 uses ACC_INV_Qnnn. Not auto-merged."
+      }
+    },
+    {
+      "pattern_id": "ACC_LEASE_001",
+      "category": "ACC_LEASE",
+      "name": "리스",
+      "grade": "S",
+      "frequency": 4,
+      "question_ids": [
+        "ACC_2015_Q068",
+        "ACC_2020_Q059",
+        "ACC_2024_Q055",
+        "ACC_2025_Q052"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "mapped_frequency_verified",
+      "years": [
+        2015,
+        2020,
+        2024,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 67,
+      "evidence": {
+        "primary_source": [
+          "data/question-db-mvp.json",
+          "data/pattern-db-mvp.json"
+        ],
+        "frequency_before": 4,
+        "frequency_after": 4,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db-mvp.json",
+        "grade_rationale": "Grade inherited from pattern-db-mvp.json; frequency recalculated from question-db-mvp.json. Human strategic regrade not performed in WO-013.",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    },
+    {
+      "pattern_id": "ACC_PPE_001",
+      "category": "ACC_PPE",
+      "name": "유형자산·감가상각",
+      "grade": "S",
+      "frequency": 42,
+      "question_ids": [
+        "ACC_2015_Q043",
+        "ACC_2015_Q050",
+        "ACC_2015_Q059",
+        "ACC_2017_Q041",
+        "ACC_2017_Q047",
+        "ACC_2017_Q049",
+        "ACC_2017_Q052",
+        "ACC_2017_Q053",
+        "ACC_2017_Q054",
+        "ACC_2017_Q055",
+        "ACC_2017_Q056",
+        "ACC_2017_Q057",
+        "ACC_2017_Q065",
+        "ACC_2017_Q067",
+        "ACC_2018_Q043",
+        "ACC_2018_Q045",
+        "ACC_2018_Q050",
+        "ACC_2018_Q054",
+        "ACC_2018_Q059",
+        "ACC_2018_Q064",
+        "ACC_2018_Q069",
+        "ACC_2018_Q070",
+        "ACC_2020_Q043",
+        "ACC_2020_Q045",
+        "ACC_2020_Q046",
+        "ACC_2020_Q047",
+        "ACC_2020_Q048",
+        "ACC_2020_Q050",
+        "ACC_2020_Q055",
+        "ACC_2020_Q057",
+        "ACC_2020_Q058",
+        "ACC_2020_Q067",
+        "ACC_2020_Q068",
+        "ACC_2020_Q069",
+        "ACC_2024_Q062",
+        "ACC_2024_Q063",
+        "ACC_2024_Q064",
+        "ACC_2024_Q069",
+        "ACC_2024_Q070",
+        "ACC_2025_Q046",
+        "ACC_2025_Q048",
+        "ACC_2025_Q050"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "mapped_coarse_bucket",
+      "years": [
+        2015,
+        2017,
+        2018,
+        2020,
+        2024,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 95,
+      "evidence": {
+        "primary_source": [
+          "data/question-db-mvp.json",
+          "data/pattern-db-mvp.json"
+        ],
+        "frequency_before": 42,
+        "frequency_after": 42,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db-mvp.json",
+        "grade_rationale": "Chapter-level coarse bucket — grade inherited from pattern-db-mvp.json; fine-grained exam-pattern split requires Human D4 review (not invented in WO-013).",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    },
+    {
+      "pattern_id": "ACC_PPE_002",
+      "category": "ACC_PPE",
+      "name": "재평가·손상",
+      "grade": "S",
+      "frequency": 4,
+      "question_ids": [
+        "ACC_2015_Q054",
+        "ACC_2020_Q061",
+        "ACC_2024_Q058",
+        "ACC_2025_Q067"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "mapped_frequency_verified",
+      "years": [
+        2015,
+        2020,
+        2024,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 67,
+      "evidence": {
+        "primary_source": [
+          "data/question-db-mvp.json",
+          "data/pattern-db-mvp.json"
+        ],
+        "frequency_before": 4,
+        "frequency_after": 4,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db-mvp.json",
+        "grade_rationale": "Grade inherited from pattern-db-mvp.json; frequency recalculated from question-db-mvp.json. Human strategic regrade not performed in WO-013.",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    },
+    {
+      "pattern_id": "ACC_REV_001",
+      "category": "ACC_REV",
+      "name": "수익인식",
+      "grade": "S",
+      "frequency": 26,
+      "question_ids": [
+        "ACC_2015_Q045",
+        "ACC_2015_Q052",
+        "ACC_2015_Q071",
+        "ACC_2015_Q076",
+        "ACC_2015_Q078",
+        "ACC_2017_Q042",
+        "ACC_2017_Q068",
+        "ACC_2017_Q071",
+        "ACC_2017_Q073",
+        "ACC_2017_Q075",
+        "ACC_2017_Q078",
+        "ACC_2018_Q044",
+        "ACC_2018_Q075",
+        "ACC_2018_Q076",
+        "ACC_2018_Q080",
+        "ACC_2020_Q054",
+        "ACC_2020_Q077",
+        "ACC_2024_Q050",
+        "ACC_2024_Q071",
+        "ACC_2024_Q079",
+        "ACC_2025_Q060",
+        "ACC_2025_Q064",
+        "ACC_2025_Q068",
+        "ACC_2025_Q071",
+        "ACC_2025_Q072",
+        "ACC_2025_Q077"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "mapped_coarse_bucket",
+      "years": [
+        2015,
+        2017,
+        2018,
+        2020,
+        2024,
+        2025
+      ],
+      "subject_id": "ACC",
+      "importance": 95,
+      "evidence": {
+        "primary_source": [
+          "data/question-db-mvp.json",
+          "data/pattern-db-mvp.json"
+        ],
+        "frequency_before": 26,
+        "frequency_after": 26,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db-mvp.json",
+        "grade_rationale": "Chapter-level coarse bucket — grade inherited from pattern-db-mvp.json; fine-grained exam-pattern split requires Human D4 review (not invented in WO-013).",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    },
+    {
+      "pattern_id": "ACC_TAX_001",
+      "category": "ACC_TAX",
+      "name": "법인세",
+      "grade": "B",
+      "frequency": 1,
+      "question_ids": [
+        "ACC_2024_Q077"
+      ],
+      "concept": "",
+      "solving_algorithm": [],
+      "common_errors": [],
+      "validation_status": "mapped_frequency_verified",
+      "years": [
+        2024
+      ],
+      "subject_id": "ACC",
+      "importance": 58,
+      "evidence": {
+        "primary_source": [
+          "data/question-db-mvp.json",
+          "data/pattern-db-mvp.json"
+        ],
+        "frequency_before": 1,
+        "frequency_after": 1,
+        "frequency_recalc_basis": "count(question.patternId == pattern_id) in data/question-db-mvp.json",
+        "grade_rationale": "Grade inherited from pattern-db-mvp.json; frequency recalculated from question-db-mvp.json. Human strategic regrade not performed in WO-013.",
+        "relatedQuestions_match": true
+      },
+      "learning": {
+        "difficulty": "",
+        "estimated_learning_time": "",
+        "prerequisite_patterns": [],
+        "next_recommended_patterns": [],
+        "status": "pending"
+      },
+      "cross_db": null
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-exam-learning-platform.local/schemas/student-learning-state-schema.json",
+  "title": "StudentLearningState",
+  "description": "WO-014 Student Learning State — records learning history, pattern mastery slots, question attempts, and error occurrence slots. Initial state means no learning data exists. Does not invent weakness, mastery, or recommendations.",
+  "woId": "WO-014",
+  "schemaVersion": "wo014-1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "student_id",
+    "created_at",
+    "updated_at",
+    "learning_data_status",
+    "pattern_states",
+    "question_history",
+    "error_states",
+    "recommendation_state"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "wo014-1.0"
+    },
+    "student_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable learner identifier. Does not imply profile completeness."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp when this state document was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp of last state write."
+    },
+    "learning_data_status": {
+      "type": "string",
+      "enum": ["empty"],
+      "description": "WO-014 lock: only empty is allowed until a future Attempt-Ingest WO appends real attempts. empty = No learning data exists."
+    },
+    "kb_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Read-only Knowledge Base references (not copied SoT).",
+      "properties": {
+        "pattern_master": {
+          "type": "string",
+          "const": "data/pattern-master-db.json"
+        },
+        "pattern_metadata": {
+          "type": "string",
+          "const": "data/pattern-metadata-db.json"
+        },
+        "error_taxonomy": {
+          "type": "string",
+          "const": "data/error-taxonomy-db.json"
+        }
+      }
+    },
+    "pattern_states": {
+      "type": "array",
+      "description": "Per-pattern counters. MUST be [] when learning_data_status=empty. Do not pre-seed all Pattern Master IDs.",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/pattern_state"
+      }
+    },
+    "question_history": {
+      "type": "array",
+      "description": "Append-only solving history projection. MUST be [] when empty. Source of truth for attempts remains event log / coach.attempts.v1 (future wiring).",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/question_history_item"
+      }
+    },
+    "error_states": {
+      "type": "array",
+      "description": "Per-error occurrence slots linked to error-taxonomy-db error_id. MUST be [] when empty. Do not invent occurrence_count.",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/error_state"
+      }
+    },
+    "recommendation_state": {
+      "$ref": "#/$defs/recommendation_state"
+    }
+  },
+  "$defs": {
+    "pattern_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pattern_id",
+        "attempt_count",
+        "correct_count",
+        "wrong_count",
+        "accuracy",
+        "mastery_status",
+        "last_attempt_date"
+      ],
+      "properties": {
+        "pattern_id": {
+          "type": "string",
+          "pattern": "^ACC_[A-Z]+_[0-9]{3}$",
+          "description": "Must reference an existing Pattern Master pattern_id. Preferred scope for Learning Layer: validation_status=verified."
+        },
+        "attempt_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of recorded attempts for this pattern. Not inventable."
+        },
+        "correct_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "wrong_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "accuracy": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 1,
+          "description": "correct_count / attempt_count when attempt_count>0; otherwise null. Never invent a score."
+        },
+        "mastery_status": {
+          "type": "string",
+          "enum": ["unknown"],
+          "description": "WO-014 allowed value: unknown only. Future Attempt-Ingest / Mastery WO may extend enum after real attempts exist. Do not set weak/strong without attempts."
+        },
+        "last_attempt_date": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Timestamp of latest attempt; null if none."
+        }
+      }
+    },
+    "question_history_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question_id",
+        "pattern_id",
+        "answer_result",
+        "timestamp"
+      ],
+      "properties": {
+        "question_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Existing question_id only. Never invent IDs."
+        },
+        "pattern_id": {
+          "type": "string",
+          "pattern": "^ACC_[A-Z]+_[0-9]{3}$",
+          "description": "Pattern link at attempt time (from Question/Golden mapping). Not a reclassification authority."
+        },
+        "answer_result": {
+          "type": "string",
+          "enum": ["correct", "wrong"],
+          "description": "Observed result of one attempt. No partial credit in WO-014."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "error_id": {
+          "type": ["string", "null"],
+          "description": "Optional link to error-taxonomy-db error_id when classified; null if unclassified. Do not invent."
+        }
+      }
+    },
+    "error_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "error_id",
+        "occurrence_count",
+        "confidence"
+      ],
+      "properties": {
+        "error_id": {
+          "type": "string",
+          "pattern": "^ERR_ACC_[A-Z]+_[0-9]{3}_[0-9]{2}$",
+          "description": "Must reference data/error-taxonomy-db.json errors[].error_id when present."
+        },
+        "occurrence_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Observed student occurrences only. Initial empty state has no rows."
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["unknown"],
+          "description": "WO-014 allowed value: unknown only. Do not invent high/low confidence without evidence."
+        }
+      }
+    },
+    "recommendation_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["next_action"],
+      "properties": {
+        "next_action": {
+          "type": "string",
+          "enum": ["unknown"],
+          "description": "WO-014: recommendation logic OUT. next_action remains unknown until a future Recommendation WO."
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "schemaVersion": "wo014-1.0",
+      "student_id": "student_placeholder",
+      "created_at": "2026-07-22T17:00:00Z",
+      "updated_at": "2026-07-22T17:00:00Z",
+      "learning_data_status": "empty",
+      "kb_refs": {
+        "pattern_master": "data/pattern-master-db.json",
+        "pattern_metadata": "data/pattern-metadata-db.json",
+        "error_taxonomy": "data/error-taxonomy-db.json"
+      },
+      "pattern_states": [],
+      "question_history": [],
+      "error_states": [],
+      "recommendation_state": {
+        "next_action": "unknown"
+      }
+    }
+  ]
+}

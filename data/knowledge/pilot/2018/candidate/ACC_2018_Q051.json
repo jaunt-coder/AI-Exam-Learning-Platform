@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q051",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 51,
+  "page": 18,
+  "stem": "(주)감평은\n20x1년\n1월\n1일\n(주)한국이\n동\n일자에\n발행한\n액면금액\n￦1,000,000, 표시이자율연10%(이자는매년말지급)의3년만기의사채를\n￦951,963에취득하였다. 동사채의취득시유효이자율은연12%이었으며,\n(주)감평은동사채를상각후원가로측정하는금융자산으로분류하였다. 동\n사채의20x1년12월31일공정가치는￦975,123이었으며, (주)감평은20x2년\n7월31일에경과이자를포함하여￦980,000에전부처분하였다. 동사채관련\n회계처리가(주)감평의20x2년도당기순이익에미치는영향은? (단, 단수차이\n로인한오차가있으면가장근사치를선택한다.)",
+  "choices": [
+    "￦13,801 증가",
+    "￦14,842 감소",
+    "￦4,877 증가",
+    "￦34,508 감소",
+    "￦48,310 증가"
+  ],
+  "answer": 1,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "51. (주)감평은\n20x1년\n1월\n1일\n(주)한국이\n동\n일자에\n발행한\n액면금액\n￦1,000,000, 표시이자율연10%(이자는매년말지급)의3년만기의사채를\n￦951,963에취득하였다. 동사채의취득시유효이자율은연12%이었으며,\n(주)감평은동사채를상각후원가로측정하는금융자산으로분류하였다. 동\n사채의20x1년12월31일공정가치는￦975,123이었으며, (주)감평은20x2년\n7월31일에경과이자를포함하여￦980,000에전부처분하였다. 동사채관련\n회계처리가(주)감평의20x2년도당기순이익에미치는영향은? (단, 단수차이\n로인한오차가있으면가장근사치를선택한다.)\n①￦13,801 증가\n②￦14,842 감소\n③￦4,877 증가\n④￦34,508 감소\n⑤￦48,310 증가",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "①",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.498499+00:00",
+    "status": "joined"
+  }
+}

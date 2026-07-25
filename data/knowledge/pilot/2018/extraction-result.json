@@ -1,0 +1,14 @@
+{
+  "workOrder": "WO-20260722-011",
+  "status": "STAGING_COMPLETE",
+  "candidateCount": 40,
+  "choice5Count": 40,
+  "answerJoinedCount": 0,
+  "missingNumbers": [],
+  "paths": {
+    "metadata": "data/knowledge/pilot/2018/source-metadata.json",
+    "raw": "data/knowledge/pilot/2018/raw/",
+    "candidate": "data/knowledge/pilot/2018/candidate/",
+    "verify": "data/knowledge/pilot/2018/verify/human-verify-checklist.md"
+  }
+}

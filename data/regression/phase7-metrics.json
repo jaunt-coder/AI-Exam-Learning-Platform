@@ -1,0 +1,99 @@
+{
+  "years": [
+    2015,
+    2017,
+    2018,
+    2020,
+    2024,
+    2025
+  ],
+  "overall": {
+    "years": 6,
+    "frozenYears": 6,
+    "totalRecords": 240,
+    "diffErrorCount": 0,
+    "diffWarnCount": 138,
+    "allDiffPassed": true,
+    "emitJson": "data/regression/parser-emit/question-db-parser.json",
+    "mvpDbUntouched": true
+  },
+  "perYear": {
+    "2015": {
+      "frozen": true,
+      "records": 40,
+      "withAnswer": 40,
+      "withTable": 13,
+      "diffPassed": true,
+      "diffErrors": 0,
+      "diffWarns": 30,
+      "sidecar": "data/regression/ast-sidecar/2015.json",
+      "yearEmit": "data/regression/parser-emit/questions-2015.json"
+    },
+    "2017": {
+      "frozen": true,
+      "records": 40,
+      "withAnswer": 40,
+      "withTable": 18,
+      "diffPassed": true,
+      "diffErrors": 0,
+      "diffWarns": 19,
+      "sidecar": "data/regression/ast-sidecar/2017.json",
+      "yearEmit": "data/regression/parser-emit/questions-2017.json"
+    },
+    "2018": {
+      "frozen": true,
+      "records": 40,
+      "withAnswer": 40,
+      "withTable": 16,
+      "diffPassed": true,
+      "diffErrors": 0,
+      "diffWarns": 16,
+      "sidecar": "data/regression/ast-sidecar/2018.json",
+      "yearEmit": "data/regression/parser-emit/questions-2018.json"
+    },
+    "2020": {
+      "frozen": true,
+      "records": 40,
+      "withAnswer": 40,
+      "withTable": 16,
+      "diffPassed": true,
+      "diffErrors": 0,
+      "diffWarns": 21,
+      "sidecar": "data/regression/ast-sidecar/2020.json",
+      "yearEmit": "data/regression/parser-emit/questions-2020.json"
+    },
+    "2024": {
+      "frozen": true,
+      "records": 40,
+      "withAnswer": 40,
+      "withTable": 14,
+      "diffPassed": true,
+      "diffErrors": 0,
+      "diffWarns": 26,
+      "sidecar": "data/regression/ast-sidecar/2024.json",
+      "yearEmit": "data/regression/parser-emit/questions-2024.json"
+    },
+    "2025": {
+      "frozen": true,
+      "records": 40,
+      "withAnswer": 40,
+      "withTable": 15,
+      "diffPassed": true,
+      "diffErrors": 0,
+      "diffWarns": 26,
+      "sidecar": "data/regression/ast-sidecar/2025.json",
+      "yearEmit": "data/regression/parser-emit/questions-2025.json"
+    }
+  },
+  "diffErrors": [],
+  "targets": {
+    "allFrozen": true,
+    "totalRecords": 240,
+    "diffErrorCount": 0
+  },
+  "targetsMet": {
+    "allFrozen": true,
+    "totalRecords": true,
+    "diffErrorCount": true
+  }
+}

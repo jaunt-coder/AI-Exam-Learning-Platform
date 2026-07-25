@@ -16,6 +16,7 @@ from .text_postprocess import (
     normalize_exam_body,
     normalize_exam_symbols,
     remove_footer_noise,
+    strip_trailing_choice_grid_header,
 )
 
 
@@ -714,17 +715,50 @@ def _recover_short_w_choices(choices: list[str], body: str) -> list[str]:
     return fixed
 
 
+def normalize_choice_value(value: str) -> str:
+    value = remove_footer_noise(value or "")
+    value = re.sub(r"[ \t]+", " ", value.strip())
+    value = re.sub(r"(\d{1,3}(?:,\d{3})+)\s+W\b", r"\1W", value, flags=re.I)
+    value = re.sub(r"\bW\s+(\d)", r"W\1", value, flags=re.I)
+    return value.strip()
+
+
+def finalize_choices(choices: list[str], body: str) -> list[str]:
+    cleaned = _recover_short_w_choices(choices, body)
+    return [normalize_choice_value(item) for item in cleaned if item.strip()][:5]
+
+
+def _choice_richness_score(choices: list[str]) -> int:
+    score = 0
+    for choice in choices:
+        text = str(choice)
+        score += len(text)
+        score += len(re.findall(r"\d{1,3}(?:,\d{3})+", text)) * 12
+        score += len(re.findall(r"W[\d,]+", text, re.I)) * 8
+        if re.search(r"[가-힣]{2,}", text):
+            score += 20
+    return score
+
+
 def resolve_choices_and_table(body: str, table: TableExtract | None) -> tuple[list[str], TableExtract | None]:
     grid_choices, grid_table = extract_choice_grid_won(body)
-    if len(grid_choices) == 5 and grid_table:
-        return _recover_short_w_choices(grid_choices, body), grid_table
     multi_choices = extract_multicolumn_circled_choices(body)
+    plain_choices = extract_circled_choices(body)
+
+    candidates: list[tuple[int, list[str], TableExtract | None]] = []
+    if len(grid_choices) == 5:
+        candidates.append((_choice_richness_score(grid_choices), grid_choices, grid_table))
     if len(multi_choices) == 5:
         multi_table = _build_won_grid_table_from_body(body)
-        if multi_table:
-            return _recover_short_w_choices(multi_choices, body), multi_table
-        return _recover_short_w_choices(multi_choices, body), table
-    return _recover_short_w_choices(extract_choices(body), body), table
+        candidates.append((_choice_richness_score(multi_choices), multi_choices, multi_table or table))
+    if len(plain_choices) == 5:
+        candidates.append((_choice_richness_score(plain_choices), plain_choices, table))
+
+    if not candidates:
+        return finalize_choices(extract_choices(body), body), table
+
+    _, best_choices, best_table = max(candidates, key=lambda item: item[0])
+    return finalize_choices(best_choices, body), best_table
 
 
 def remove_table_from_text(text: str, table: TableExtract | None) -> str:
@@ -755,7 +789,9 @@ def extract_stem(body: str, table: TableExtract | None) -> str:
     stem = _stem_from(body)
     if not stem.strip() and table:
         stem = _stem_from(body.replace("\n", " "))
-    return trim_stem_before_choice_grid(stem)
+    stem = trim_stem_before_choice_grid(stem)
+    stem = strip_trailing_choice_grid_header(stem)
+    return stem
 
 
 def build_original_question(stem: str, table: TableExtract | None) -> str:
@@ -834,7 +870,7 @@ def parse_accounting_questions(full_text: str, pages: list[str]) -> list[ParsedQ
 
         body = remove_footer_noise(body)
         table_extract, cleaned_body = detect_table_block(body)
-        working_body = normalize_exam_body(cleaned_body if table_extract else body)
+        working_body = cleaned_body if table_extract else body
         choices, table_extract = resolve_choices_and_table(working_body, table_extract)
         stem = extract_stem(working_body, table_extract)
         original_question = build_original_question(stem, table_extract)

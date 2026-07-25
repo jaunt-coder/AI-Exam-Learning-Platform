@@ -1,0 +1,3968 @@
+{
+  "version": "7.0.0",
+  "year": 2025,
+  "goal": "source_truth",
+  "note": "Not a clone of question-db-mvp.json",
+  "questions": [
+    {
+      "questionId": "ACC_2025_Q041",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_GEN",
+      "patternId": "ACC_GEN_001",
+      "difficulty": "medium",
+      "originalQuestion": "41유용한재무정보의질적특성에관한설명으로옳은것은?",
+      "question": "41유용한재무정보의질적특성에관한설명으로옳은것은?",
+      "choices": [
+        "완벽한표현충실성을위해서서술은완전하고중요하며 오류가없어야할것이다.",
+        "재무정보가 예측가치를 갖기위해서는그자체가 예측치또는 예상치이어야한다.",
+        "나타내고자하는바를 충실하게표현하는가장목적적합한정보를선택하려는결정의\n결과가비대칭성인경우라도특정회계기준에서비대칭적인요구사항을포함할수없다.",
+        "오류가없다는것은현상의기술에오류나 누락이없고보고정보를생산하는 데 사\n용되는 측정과절차 측면에서완벽하게정확하다는것을의미한다.",
+        "합리적인추정치의사용은재무정보의 작성에필수적인부분이며 추정치가명확하고\n정확하게기술되고설명되는한정보의유용성을 저해하지않는다."
+      ],
+      "answer": 5,
+      "answerIndex": 5,
+      "questionType": "standard",
+      "hasTable": false,
+      "hasCalculation": false,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 41,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 13,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "aa7262e062f7c21a",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 13,
+            "bbox": [
+              49.4132194519043,
+              230.50808715820312,
+              546.78369140625,
+              421.21966552734375
+            ],
+            "column": 0,
+            "spanCount": 59
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 41,
+            "tokenCounts": {
+              "owned": 15,
+              "stemEmit": 2,
+              "choices": [
+                1,
+                1,
+                2,
+                2,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q042",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_FS",
+      "patternId": "ACC_FS_001",
+      "difficulty": "medium",
+      "originalQuestion": "42재무제표표시에관한설명으로옳지않은것은?",
+      "question": "42재무제표표시에관한설명으로옳지않은것은?",
+      "choices": [
+        "기업이재무상태표에유동자산과비유동자산, 그리고유동부채와비유동부채로구분\n하여표시하는경우, 이연법인세부채는유동부채로분류한다.",
+        "기업이명확히식별가능한 영업주기내에서재화나용역을제공하는경우, 재무상태\n표에유동자산과비유동자산및유동부채와비유동부채를구분하여표시한다.",
+        "기업이보고기간말현재기존의대출계약조건에따라보고기간후적어도12개월 이\n상부채를연장할권리가있다면, 보고기간후12개월 이내에만기가도래한다하더\n라도비유동부채로분류한다.",
+        "영업주기는 영업활동을위한자산의 취득시점부터그자산이현금이나현금성자산으\n로실현되는시점까지소요되는기간을의미하며, 정상영업주기를명확히식별할수\n없는경우에는그기간이12개월인것으로가정한다.",
+        "매입채무그리고종업원및그 밖의 영업원가에대한미지급비용과같은유동부채는\n기업의정상영업주기내에사용되는운전자본의일부이므로, 이러한항목은보고기간\n후12개월 후에결제일이도래한다하더라도유동부채로분류한다."
+      ],
+      "answer": 1,
+      "answerIndex": 1,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 42,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 13,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "acf29382dc4950b7",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 13,
+            "bbox": [
+              49.4132194519043,
+              449.0292663574219,
+              546.78369140625,
+              735.6361083984375
+            ],
+            "column": 0,
+            "spanCount": 108
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 42,
+            "tokenCounts": {
+              "owned": 32,
+              "stemEmit": 2,
+              "choices": [
+                2,
+                2,
+                7,
+                5,
+                9
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q043",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_INV",
+      "patternId": "ACC_INV_004",
+      "difficulty": "medium",
+      "originalQuestion": "43(주)감평의20×1년재고자산관련자료는다음과같다. (주)감평이재고자산을저\n가기준가중평균소매재고법으로측정하는경우매출원가는? (단, 재고자산평가손\n실과감모손실은없고, 화폐금액은소수점첫째자리에서반올림하며, 단수차이로\n인한오차가있으면가장근사치를선택한다.)\n원가\n￦1,100\n￦1,500\n| 항목 | 원가 | 판매가 |\n| --- | --- | --- |\n| 기초재고액 | ￦1,100 | ￦1,500 |\n| 당기매입액 | 8,500 | 12,400 |\n| 인상액 | - | 1,800 |\n| 인상취소액 | - | 700 |\n| 인하액 | - | 1,500 |\n| 인하취소액 | - | 500 |\n| 당기매출액 | - | 10,000 |",
+      "question": "43(주)감평의20×1년재고자산관련자료는다음과같다. (주)감평이재고자산을저\n가기준가중평균소매재고법으로측정하는경우매출원가는? (단, 재고자산평가손\n실과감모손실은없고, 화폐금액은소수점첫째자리에서반올림하며, 단수차이로\n인한오차가있으면가장근사치를선택한다.)\n원가\n￦1,100\n￦1,500",
+      "choices": [
+        "￦6,880",
+        "￦7,040",
+        "￦7,082",
+        "￦7,120",
+        "￦7,154"
+      ],
+      "answer": 2,
+      "answerIndex": 2,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "| 항목 | 원가 | 판매가 |\n| --- | --- | --- |\n| 기초재고액 | ￦1,100 | ￦1,500 |\n| 당기매입액 | 8,500 | 12,400 |\n| 인상액 | - | 1,800 |\n| 인상취소액 | - | 700 |\n| 인하액 | - | 1,500 |\n| 인하취소액 | - | 500 |\n| 당기매출액 | - | 10,000 |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 43,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 14,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "d3260bef4405b100",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 14,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              545.82421875,
+              338.3901672363281
+            ],
+            "column": 0,
+            "spanCount": 55
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 43,
+            "tokenCounts": {
+              "owned": 51,
+              "stemEmit": 15,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 24,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q044",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_INV",
+      "patternId": "ACC_INV_004",
+      "difficulty": "medium",
+      "originalQuestion": "44(주)감평의20×1년기초상품은￦20,000, 당기상품매입액은￦80,000이다. 20×1년\n기말상품관련자료는다음과같다.\n○ 단위당취득원가\n￦300\n○ 단위당 순실현가능가치\n￦270\n감모수량중\n7개는정상적인\n것이며, 나머지는\n비정상적인것이다. (주)감평의\n20×1년포괄손익계산서에표시될 매출원가는? (단, (주)감평은정상적인감모손\n실과평가손실은매출원가로처리하고, 기초재고자산평가충당금은없다.)\n| ○ 장부상수량 | 90 개 | ○ 단위당취득원가 | ￦300 |\n| --- | --- | --- | --- |\n| ○ 실제수량 | 80 개 | ○ 단위당순실현가능가치 | ￦270 |",
+      "question": "44(주)감평의20×1년기초상품은￦20,000, 당기상품매입액은￦80,000이다. 20×1년\n기말상품관련자료는다음과같다.\n○ 단위당취득원가\n￦300\n○ 단위당 순실현가능가치\n￦270\n감모수량중\n7개는정상적인\n것이며, 나머지는\n비정상적인것이다. (주)감평의\n20×1년포괄손익계산서에표시될 매출원가는? (단, (주)감평은정상적인감모손\n실과평가손실은매출원가로처리하고, 기초재고자산평가충당금은없다.)",
+      "choices": [
+        "￦75,100",
+        "￦75,400",
+        "￦77,500",
+        "￦78,400",
+        "￦79,300"
+      ],
+      "answer": 3,
+      "answerIndex": 3,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "| ○ 장부상수량 | 90 개 | ○ 단위당취득원가 | ￦300 |\n| --- | --- | --- | --- |\n| ○ 실제수량 | 80 개 | ○ 단위당순실현가능가치 | ￦270 |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 44,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 14,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "6f9c514eadd48de0",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 14,
+            "bbox": [
+              49.4132194519043,
+              366.1997985839844,
+              545.82421875,
+              540.9688110351562
+            ],
+            "column": 0,
+            "spanCount": 65
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 44,
+            "tokenCounts": {
+              "owned": 53,
+              "stemEmit": 32,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 10,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q045",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_EQ",
+      "patternId": "ACC_EQ_001",
+      "difficulty": "medium",
+      "originalQuestion": "45(주)감평은20×1년5월초공장건물신축공사를시작하여20×2년10월말 완공하\n였다. 동건물은차입원가자본화대상인적격자산이다. 동건물신축관련자료\n가다음과같을 때, (주)감평이20×1년에자본화할차입원가는? (단, 연평균지출\n액과이자비용은월할계산한다.)\n(1) 공장건물신축을위한공사비지출내역은다음과같다. 지출내역중20×1년\n9월1일에지출한￦108,000은전액공장건물신축과관련하여동일자에\n수령한정부보조금(상환의무없음)으로지출되었다.\n일\n자\n금\n액\n5. 1\n￦240,000\n9. 1\n6. 1\n(2) 일반차입금현황은다음과같으며, 모든차입금의이자는단리로계산하여\n1년후급하는조건이다. 또한특정차입금은없다.\n구\n분\n차입금액\n차입기간\n연이자율\n차입금 A\n￦100,000\n20×0. 1. 1.∼20×2. 12. 31.\n12 %\n차입금 B\n200,000\n20×1. 7. 1.∼20×2. 06. 30.\n10 %\n| 일자 | 금액 |\n| --- | --- |\n| 20×1.5.1. | ￦240,000 |\n| 20×1.9.1. | 108,000 |\n| 20×2.6.1. | 180,000 |",
+      "question": "45(주)감평은20×1년5월초공장건물신축공사를시작하여20×2년10월말 완공하\n였다. 동건물은차입원가자본화대상인적격자산이다. 동건물신축관련자료\n가다음과같을 때, (주)감평이20×1년에자본화할차입원가는? (단, 연평균지출\n액과이자비용은월할계산한다.)\n(1) 공장건물신축을위한공사비지출내역은다음과같다. 지출내역중20×1년\n9월1일에지출한￦108,000은전액공장건물신축과관련하여동일자에\n수령한정부보조금(상환의무없음)으로지출되었다.\n일\n자\n금\n액\n5. 1\n￦240,000\n9. 1\n6. 1\n(2) 일반차입금현황은다음과같으며, 모든차입금의이자는단리로계산하여\n1년후급하는조건이다. 또한특정차입금은없다.\n구\n분\n차입금액\n차입기간\n연이자율\n차입금 A\n￦100,000\n20×0. 1. 1.∼20×2. 12. 31.\n12 %\n차입금 B\n200,000\n20×1. 7. 1.∼20×2. 06. 30.\n10 %",
+      "choices": [
+        "￦17,600",
+        "￦18,860",
+        "￦19,440",
+        "￦21,560",
+        "￦22,000"
+      ],
+      "answer": 1,
+      "answerIndex": 1,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "| 일자 | 금액 |\n| --- | --- |\n| 20×1.5.1. | ￦240,000 |\n| 20×1.9.1. | 108,000 |\n| 20×2.6.1. | 180,000 |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 45,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 15,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "fccb8d300c804989",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 15,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              545.82421875,
+              400.3624572753906
+            ],
+            "column": 0,
+            "spanCount": 118
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 45,
+            "tokenCounts": {
+              "owned": 111,
+              "stemEmit": 85,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 17,
+              "extraTables": 1
+            },
+            "hasExtraTables": true,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q046",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_PPE",
+      "patternId": "ACC_PPE_001",
+      "difficulty": "medium",
+      "originalQuestion": "46(주)감평은20×1년초구축물로분류되는폐기물처리시설(내용연수10년, 잔존가\n치￦0, 정액법상각, 원가모형 적용)을동일자에수령한정부보조금(상환의무없\n음) ￦300,000을포함하여 총 ￦1,000,000에취득하였다. 동시설은내용연수종료\n시점에원상복구의무가있으며, 복구시점의복구비용은￦200,000이소요될 것으\n로예상된다. 이는 충당부채의인식요건을 충족하며, 복구충당부채에대한할인율\n은연8 %이다. 정부보조금과관련하여자산차감법으로인식할경우, (주)감평이\n20×1년에동폐기물처리시설과관련하여인식할감가상각비는? (단, 8 %, 10기간\n단일금액￦1의현가계수는0.4632이고, 화폐금액은소수점첫째자리에서반올림\n하며, 단수차이로인한오차가있으면가장근사치를선택한다.)",
+      "question": "46(주)감평은20×1년초구축물로분류되는폐기물처리시설(내용연수10년, 잔존가\n치￦0, 정액법상각, 원가모형 적용)을동일자에수령한정부보조금(상환의무없\n음) ￦300,000을포함하여 총 ￦1,000,000에취득하였다. 동시설은내용연수종료\n시점에원상복구의무가있으며, 복구시점의복구비용은￦200,000이소요될 것으\n로예상된다. 이는 충당부채의인식요건을 충족하며, 복구충당부채에대한할인율\n은연8 %이다. 정부보조금과관련하여자산차감법으로인식할경우, (주)감평이\n20×1년에동폐기물처리시설과관련하여인식할감가상각비는? (단, 8 %, 10기간\n단일금액￦1의현가계수는0.4632이고, 화폐금액은소수점첫째자리에서반올림\n하며, 단수차이로인한오차가있으면가장근사치를선택한다.)",
+      "choices": [
+        "￦70,000",
+        "￦79,264",
+        "￦82,562",
+        "￦100,000",
+        "￦109,264"
+      ],
+      "answer": 2,
+      "answerIndex": 2,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 46,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 15,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "c127a1f8817a78c5",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 15,
+            "bbox": [
+              49.4132194519043,
+              428.17205810546875,
+              545.82421875,
+              620.3220825195312
+            ],
+            "column": 0,
+            "spanCount": 87
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 46,
+            "tokenCounts": {
+              "owned": 57,
+              "stemEmit": 42,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q047",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_PPE",
+      "patternId": "ACC_PPE_002",
+      "difficulty": "medium",
+      "originalQuestion": "47(주)감평은20×1년초 영업에사용할목적으로토지를￦200,000에취득하였으며,\n재평가모형을적용하고있다. 토지의공정가치와회수가능액이다음과같을경우,\n동토지와관련된회계처리로인한(주)감평의20×2년당기순이익 감소액은? (단,\n처분부대원가는무시하지 못할정도로상당하며, 회수가능액이공정가치에미달\n하면손상이발생하였다고가정한다. 또한재평가잉여금의일부를이익잉여금으\n로대체하지않는다.)\n구\n분\n20×1년말\n20×2년말\n￦250,000\n￦210,000\n| 구분 | 20×1년말 | 20×2년말 |\n| --- | --- | --- |\n| 공정가치 | ￦250,000 | ￦210,000 |\n| 회수가능액 | 260,000 | 150,000 |",
+      "question": "47(주)감평은20×1년초 영업에사용할목적으로토지를￦200,000에취득하였으며,\n재평가모형을적용하고있다. 토지의공정가치와회수가능액이다음과같을경우,\n동토지와관련된회계처리로인한(주)감평의20×2년당기순이익 감소액은? (단,\n처분부대원가는무시하지 못할정도로상당하며, 회수가능액이공정가치에미달\n하면손상이발생하였다고가정한다. 또한재평가잉여금의일부를이익잉여금으\n로대체하지않는다.)\n구\n분\n20×1년말\n20×2년말\n￦250,000\n￦210,000",
+      "choices": [
+        "￦30,000",
+        "￦40,000",
+        "￦50,000",
+        "￦60,000",
+        "￦70,000"
+      ],
+      "answer": 3,
+      "answerIndex": 3,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "| 구분 | 20×1년말 | 20×2년말 |\n| --- | --- | --- |\n| 공정가치 | ￦250,000 | ￦210,000 |\n| 회수가능액 | 260,000 | 150,000 |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 47,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 16,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "98d0cdbc96df3991",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 16,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              545.82421875,
+              260.11572265625
+            ],
+            "column": 0,
+            "spanCount": 66
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 47,
+            "tokenCounts": {
+              "owned": 45,
+              "stemEmit": 26,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 9,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q048",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_PPE",
+      "patternId": "ACC_PPE_001",
+      "difficulty": "medium",
+      "originalQuestion": "48(주)감평은\n20×1년\n￦40,000)를(주)한국의구축물(장부금액\n면서(주)한국에 추가로현금\n있으며, 기계장치의공정가치가구축물의공정가치보다명백하다. 한편 (주)감평\n은교환으로취득한구축물의내용연수와 잔존가치를 각각\n정하였으며, 연수합계법으로상각한다. (주)감평이동교환시인식할유형자산처\n분손실(A)과교환으로취득한구축물과관련하여\n(B)는? (단, 교환으로취득한구축물은 영업에사용하며,\n(A)",
+      "question": "48(주)감평은\n20×1년\n￦40,000)를(주)한국의구축물(장부금액\n면서(주)한국에 추가로현금\n있으며, 기계장치의공정가치가구축물의공정가치보다명백하다. 한편 (주)감평\n은교환으로취득한구축물의내용연수와 잔존가치를 각각\n정하였으며, 연수합계법으로상각한다. (주)감평이동교환시인식할유형자산처\n분손실(A)과교환으로취득한구축물과관련하여\n(B)는? (단, 교환으로취득한구축물은 영업에사용하며,\n(A)",
+      "choices": [
+        "￦30,000,\n￦",
+        "￦60,000,\n￦",
+        "초\n사용\n중인\n기계장치(장부금액\n￦100,000,\n공정가치\n￦80,000, 공정가치￦70,000)과교환하\n￦10,000을지급하였다. 동교환은상업적실질이\n4년과￦5,000으로 추\n20×1년에인식할감가상각비\n원가모형을적용한다.)\n(B)\n(A)\n(B)\n14,000\n￦70,000,\n￦",
+        "￦60,000,\n￦14,000\n18,000",
+        "￦70,000,\n￦14,000\n18,000"
+      ],
+      "answer": 3,
+      "answerIndex": 3,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 48,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 16,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "82640aa830e28d5c",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 16,
+            "bbox": [
+              49.4132194519043,
+              288.0451965332031,
+              545.82421875,
+              527.3037719726562
+            ],
+            "column": 0,
+            "spanCount": 107
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 48,
+            "tokenCounts": {
+              "owned": 72,
+              "stemEmit": 13,
+              "choices": [
+                4,
+                4,
+                34,
+                6,
+                6
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q049",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_INT",
+      "patternId": "ACC_INT_001",
+      "difficulty": "medium",
+      "originalQuestion": "49무형자산에관한설명으로옳은것은?",
+      "question": "49무형자산에관한설명으로옳은것은?",
+      "choices": [
+        "내용연수가비한정인무형자산으로 최초 인식한경우그이후에비한정내용연수를\n유한내용연수로변경할수없다.",
+        "원가모형과달리무형자산에재평가모형을적용하는경우에는원가가아닌금액으로\n무형자산을 최초로인식하는것을 허용한다.",
+        "계약상권리또는기타법적권리로부터발생하는무형자산의내용연수는자산의 예상\n사용기간에따라그러한계약상권리또는기타법적권리의기간을 초과할수있다.",
+        "제조과정에서사용된무형자산의상각은일반적으로당기손익으로인식한다.",
+        "자산에서발생하는미래경제적효익이기업에유입될가능성이높고자산의원가를신\n뢰성있게 측정할수있는경우에만무형자산을인식한다."
+      ],
+      "answer": 5,
+      "answerIndex": 5,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 49,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 16,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "27b0d7398932edd3",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 16,
+            "bbox": [
+              49.4132194519043,
+              555.1133422851562,
+              546.78369140625,
+              765.0039672851562
+            ],
+            "column": 0,
+            "spanCount": 51
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 49,
+            "tokenCounts": {
+              "owned": 21,
+              "stemEmit": 2,
+              "choices": [
+                2,
+                5,
+                2,
+                1,
+                4
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q050",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_PPE",
+      "patternId": "ACC_PPE_001",
+      "difficulty": "medium",
+      "originalQuestion": "50(주)감평은20×1년초본사사옥으로사용할목적으로건물(취득원가￦480,000,\n내용연수4년, 잔존가치￦0, 정액법상각)을취득하였다. 20×2년초(주)감평은\n동건물을 임대목적으로전환하였다. 동건물의20×2년초와20×2년말의공정가\n치가다음과같을경우, 동건물과관련된회계처리로인한(주)감평의20×2년당\n기순이익증가액은? (단, 유형자산의경우원가모형을적용하고, 투자부동산에대\n해서는공정가치모형을적용한다.)\n20×2년초\n20×2년말\n￦380,000\n￦410,000\n|  | 20×2년초 | 20×2년말 |\n| --- | --- | --- |\n| 공정가치 | ￦380,000 | ￦410,000 |",
+      "question": "50(주)감평은20×1년초본사사옥으로사용할목적으로건물(취득원가￦480,000,\n내용연수4년, 잔존가치￦0, 정액법상각)을취득하였다. 20×2년초(주)감평은\n동건물을 임대목적으로전환하였다. 동건물의20×2년초와20×2년말의공정가\n치가다음과같을경우, 동건물과관련된회계처리로인한(주)감평의20×2년당\n기순이익증가액은? (단, 유형자산의경우원가모형을적용하고, 투자부동산에대\n해서는공정가치모형을적용한다.)\n20×2년초\n20×2년말\n￦380,000\n￦410,000",
+      "choices": [
+        "￦10,000",
+        "￦20,000",
+        "￦30,000",
+        "￦40,000",
+        "￦50,000"
+      ],
+      "answer": 3,
+      "answerIndex": 3,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "|  | 20×2년초 | 20×2년말 |\n| --- | --- | --- |\n| 공정가치 | ￦380,000 | ￦410,000 |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 50,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 17,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "446e3d843f67b811",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 17,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              545.82421875,
+              236.86114501953125
+            ],
+            "column": 0,
+            "spanCount": 66
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 50,
+            "tokenCounts": {
+              "owned": 53,
+              "stemEmit": 37,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 5,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q051",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_INV",
+      "patternId": "ACC_INV_003",
+      "difficulty": "medium",
+      "originalQuestion": "51(주)감평은20×1년초 영업용차량운반구(취득원가￦500,000, 내용연수5년, 잔\n존가치￦0, 정액법상각)를취득하고원가모형을적용하였다. (주)감평은20×2년\n초차량운반구의일상적인유지와관련하여￦30,000을지출하였다. 또한동일자\n에차량운반구의성능을향상시키기위하여￦200,000을 추가지출하였고, 이로\n인해차량운반구의내용연수는2년연장되었으며 잔존가치는￦60,000으로 증가\n되었다. 동차량운반구와관련된회계처리로인한(주)감평의20×2년당기순이익\n감소액은?",
+      "question": "51(주)감평은20×1년초 영업용차량운반구(취득원가￦500,000, 내용연수5년, 잔\n존가치￦0, 정액법상각)를취득하고원가모형을적용하였다. (주)감평은20×2년\n초차량운반구의일상적인유지와관련하여￦30,000을지출하였다. 또한동일자\n에차량운반구의성능을향상시키기위하여￦200,000을 추가지출하였고, 이로\n인해차량운반구의내용연수는2년연장되었으며 잔존가치는￦60,000으로 증가\n되었다. 동차량운반구와관련된회계처리로인한(주)감평의20×2년당기순이익\n감소액은?",
+      "choices": [
+        "￦90,000",
+        "￦95,000",
+        "￦100,000",
+        "￦120,000",
+        "￦130,000"
+      ],
+      "answer": 4,
+      "answerIndex": 4,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 51,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 17,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "62ac05a264072ac2",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 17,
+            "bbox": [
+              49.4132194519043,
+              264.6707458496094,
+              545.82421875,
+              418.3428039550781
+            ],
+            "column": 0,
+            "spanCount": 68
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 51,
+            "tokenCounts": {
+              "owned": 51,
+              "stemEmit": 36,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q052",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_LEASE",
+      "patternId": "ACC_LEASE_001",
+      "difficulty": "medium",
+      "originalQuestion": "52투자부동산에해당하는것을모두고른것은?\nㄱ. 장래용도를결정하지 못한채로보유하고있는토지\nㄴ. 금융리스로제공한부동산\nㄷ. 직접 소유하고운용리스로제공하는건물\nㄹ. 종업원이사용하고있는부동산\nㅁ. 운용리스로제공하기위하여보유하는미사용건물",
+      "question": "52투자부동산에해당하는것을모두고른것은?\nㄱ. 장래용도를결정하지 못한채로보유하고있는토지\nㄴ. 금융리스로제공한부동산\nㄷ. 직접 소유하고운용리스로제공하는건물\nㄹ. 종업원이사용하고있는부동산\nㅁ. 운용리스로제공하기위하여보유하는미사용건물",
+      "choices": [
+        "",
+        "ㄱ, ㄷ",
+        "ㄴ, ㄹ",
+        "ㄱ, ㄷ, ㅁ",
+        "ㄴ\nㄴ, ㄹ, ㅁ"
+      ],
+      "answer": 4,
+      "answerIndex": 4,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 52,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 17,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "304c1c64ce3a7b7a",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 17,
+            "bbox": [
+              49.4132194519043,
+              446.15240478515625,
+              531.4320068359375,
+              597.6668701171875
+            ],
+            "column": 0,
+            "spanCount": 57
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 52,
+            "tokenCounts": {
+              "owned": 19,
+              "stemEmit": 9,
+              "choices": [
+                0,
+                1,
+                1,
+                1,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q053",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_INV",
+      "patternId": "ACC_INV_003",
+      "difficulty": "medium",
+      "originalQuestion": "53(주)감평은20×1년초 영업용차량운반구(취득원가￦300,000, 내용연수5년, 잔\n존가치￦50,000, 정액법상각)를취득하고원가모형을적용하였다. (주)감평은\n20×2년초동차량운반구를매각하기로결정하고매각예정비유동자산으로분류하\n였다. 동차량운반구의20×2년초와20×2년말의 순공정가치와사용가치가다음\n과같을경우(주)감평이20×2년말재무상태표에인식할매각예정비유동자산의\n장부금액은? (단, 동차량운반구는20×2년초부터20×2년말현재까지매각예정\n분류기준을 충족하고있다.)\n20×2년초\n20×2년말\n￦200,000\n￦190,000\n|  | 20×2년초 | 20×2년말 |\n| --- | --- | --- |\n| 순공정가치 | ￦200,000 | ￦190,000 |\n| 사용가치 | 150,000 | 170,000 |",
+      "question": "53(주)감평은20×1년초 영업용차량운반구(취득원가￦300,000, 내용연수5년, 잔\n존가치￦50,000, 정액법상각)를취득하고원가모형을적용하였다. (주)감평은\n20×2년초동차량운반구를매각하기로결정하고매각예정비유동자산으로분류하\n였다. 동차량운반구의20×2년초와20×2년말의 순공정가치와사용가치가다음\n과같을경우(주)감평이20×2년말재무상태표에인식할매각예정비유동자산의\n장부금액은? (단, 동차량운반구는20×2년초부터20×2년말현재까지매각예정\n분류기준을 충족하고있다.)\n20×2년초\n20×2년말\n￦200,000\n￦190,000",
+      "choices": [
+        "￦150,000",
+        "￦170,000",
+        "￦180,000",
+        "￦190,000",
+        "￦200,000"
+      ],
+      "answer": 4,
+      "answerIndex": 4,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "|  | 20×2년초 | 20×2년말 |\n| --- | --- | --- |\n| 순공정가치 | ￦200,000 | ￦190,000 |\n| 사용가치 | 150,000 | 170,000 |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 53,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 18,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "c8f8037a249aeab1",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 18,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              545.82421875,
+              279.2947692871094
+            ],
+            "column": 0,
+            "spanCount": 77
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 53,
+            "tokenCounts": {
+              "owned": 60,
+              "stemEmit": 41,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 8,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q054",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_PPE",
+      "patternId": "ACC_PPE_002",
+      "difficulty": "medium",
+      "originalQuestion": "54(주)감평은20×1년\n면금액￦100,000\n인￦105,151\n목적으로(주)감평은동사채를기타포괄손익-공정가치측정금융자산으로분류하\n였다. 취득당시금융자산에적용된유효이자율은연\n말과20×2년말공정가치는 각각\n초동사채를공정가치인\n회계처리가(주)감평의\n수점첫째자리에서반올림하며, 단수차이로인한오차가있으면가장근사치를선\n택한다.)",
+      "question": "54(주)감평은20×1년\n면금액￦100,000\n인￦105,151\n목적으로(주)감평은동사채를기타포괄손익-공정가치측정금융자산으로분류하\n였다. 취득당시금융자산에적용된유효이자율은연\n말과20×2년말공정가치는 각각\n초동사채를공정가치인\n회계처리가(주)감평의\n수점첫째자리에서반올림하며, 단수차이로인한오차가있으면가장근사치를선\n택한다.)",
+      "choices": [
+        "￦1,437 감소",
+        "초(주)한국이3년 만기로발행한사채(발행일20×1년초, 액\n, 표시이자율연10 %, 매년말이자지급)를발행일의공정가치\n에취득하였다. 동사채의취득목적은원리금을수취하면서매도할\n8 %이다. 동사채의20×1년\n￦100,000과￦95,000이다. (주)감평이20×3년\n￦95,000에매각하였다면, 동금융자산처분과관련한\n20×3년당기순이익에미치는 영향은? (단, 화폐금액은소\n￦6,848 감소",
+        "￦1,437 증가",
+        "￦3,563 감소",
+        "￦6,848 증가"
+      ],
+      "answer": 4,
+      "answerIndex": 4,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 54,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 18,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "9de5ed9ea0b6c9d0",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 18,
+            "bbox": [
+              49.4132194519043,
+              307.2242431640625,
+              545.82421875,
+              542.0476684570312
+            ],
+            "column": 0,
+            "spanCount": 96
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 54,
+            "tokenCounts": {
+              "owned": 64,
+              "stemEmit": 18,
+              "choices": [
+                3,
+                29,
+                3,
+                3,
+                3
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q055",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_PPE",
+      "patternId": "ACC_PPE_002",
+      "difficulty": "medium",
+      "originalQuestion": "55(주)감평은20×1년초금융자산을취득하고, 이를상각후원가로측정하는금융자\n산으로분류하였다. 20×1년말동금융자산의손실충당금반영 전장부금액은\n￦9,200이고, 기대신용손실은￦600으로예상된다. 20×2년초(주)감평은동금융\n자산을당기손익-공정가치측정금융자산으로재분류하였다. 재분류시점에금융자\n산의공정가치는￦8,800이다. (주)감평이금융자산의재분류로인해인식할당기\n손익은?",
+      "question": "55(주)감평은20×1년초금융자산을취득하고, 이를상각후원가로측정하는금융자\n산으로분류하였다. 20×1년말동금융자산의손실충당금반영 전장부금액은\n￦9,200이고, 기대신용손실은￦600으로예상된다. 20×2년초(주)감평은동금융\n자산을당기손익-공정가치측정금융자산으로재분류하였다. 재분류시점에금융자\n산의공정가치는￦8,800이다. (주)감평이금융자산의재분류로인해인식할당기\n손익은?",
+      "choices": [
+        "이익 ￦200",
+        "이익 ￦400",
+        "이익 ￦600",
+        "손실 ￦200",
+        "손실 ￦400"
+      ],
+      "answer": 1,
+      "answerIndex": 1,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 55,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 18,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "27b0944cdd33a2db",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 18,
+            "bbox": [
+              49.4132194519043,
+              569.8572387695312,
+              545.82421875,
+              704.3502807617188
+            ],
+            "column": 0,
+            "spanCount": 76
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 55,
+            "tokenCounts": {
+              "owned": 43,
+              "stemEmit": 23,
+              "choices": [
+                3,
+                3,
+                3,
+                3,
+                3
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q056",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_FIN",
+      "patternId": "ACC_FIN_001",
+      "difficulty": "medium",
+      "originalQuestion": "56(주)감평은20×1년6월1일제품판매대금으로 만기가20×1년9월30일인액면\n금액￦120,000, 연10 %의이자부어음(이자는 만기시수취)을거래처로부터수\n취하였다. (주)감평은20×1년7월1일동어음을은행에서할인하였으며, 할인율\n은연12 %이다. 어음의할인이제거조건을 충족하는경우, (주)감평이어음의할\n인으로인해인식할금융자산처분손실은? (단, 이자는월할계산한다.)",
+      "question": "56(주)감평은20×1년6월1일제품판매대금으로 만기가20×1년9월30일인액면\n금액￦120,000, 연10 %의이자부어음(이자는 만기시수취)을거래처로부터수\n취하였다. (주)감평은20×1년7월1일동어음을은행에서할인하였으며, 할인율\n은연12 %이다. 어음의할인이제거조건을 충족하는경우, (주)감평이어음의할\n인으로인해인식할금융자산처분손실은? (단, 이자는월할계산한다.)",
+      "choices": [
+        "￦160",
+        "￦240",
+        "￦480",
+        "￦720",
+        "￦960"
+      ],
+      "answer": 4,
+      "answerIndex": 4,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 56,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 19,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "2f701e97b8cdfc19",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 19,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              545.82421875,
+              158.22708129882812
+            ],
+            "column": 0,
+            "spanCount": 56
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 56,
+            "tokenCounts": {
+              "owned": 37,
+              "stemEmit": 22,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q057",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_FIN",
+      "patternId": "ACC_FIN_002",
+      "difficulty": "medium",
+      "originalQuestion": "57(주)감평은20×1년\n는매년말지급, 만기\n하였다. 사채의발행당시유효이자율은연\n를경과이자를포함하여\n용은월할계산하고, 화폐금액은소수점첫째자리에서반올림하며, 단수차이로인\n한오차가있으면가장근사치를선택한다.)",
+      "question": "57(주)감평은20×1년\n는매년말지급, 만기\n하였다. 사채의발행당시유효이자율은연\n를경과이자를포함하여\n용은월할계산하고, 화폐금액은소수점첫째자리에서반올림하며, 단수차이로인\n한오차가있으면가장근사치를선택한다.)",
+      "choices": [
+        "상환손실 ￦50",
+        "초연속상환사채(액면금액￦9,000, 표시이자율연5 %, 이자\n3년, 매년말￦3,000씩 원금상환조건)를￦8,524에발행\n8 %이다. 20×2년6월30일사채전부\n￦5,950에조기상환한경우사채상환손익은? (단, 이자비\n상환이익 ￦50",
+        "상환손실 ￦36",
+        "상환이익 ￦36",
+        "상환이익 ￦114"
+      ],
+      "answer": 3,
+      "answerIndex": 3,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 57,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 19,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "b09392e72fb223bd",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 19,
+            "bbox": [
+              49.4132194519043,
+              186.03668212890625,
+              545.82421875,
+              344.1438903808594
+            ],
+            "column": 0,
+            "spanCount": 60
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 57,
+            "tokenCounts": {
+              "owned": 52,
+              "stemEmit": 8,
+              "choices": [
+                3,
+                27,
+                3,
+                3,
+                3
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q058",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_FIN",
+      "patternId": "ACC_FIN_002",
+      "difficulty": "medium",
+      "originalQuestion": "58(주)감평은20×1년초다음과같은조건의전환사채를액면발행하였다.\n○ 액면금액: ￦100,000\n○ 표시이자율: 연6 %(이자는매년말지급)\n○ 사채발행시전환권이부여되지않은일반사채의시장이자율: 연9 %\n○ 전환가격: 사채액면￦1,000당1주의보통주(주당액면금액￦500)\n○ 상환방법: 만기(20×3년12월31일)에액면금액의106.7 %를일시상환\n전환사채와관련하여20×2년인식할이자비용은? (단, 화폐금액은소수점첫째자\n리에서반올림하며, 단수차이로인한오차가있으면가장근사치를선택한다.)\n￦1\n￦1\n6 %\n9 %\n6 %\n9 %\n|  | 단일금액 ￦1의현재가치 |  | 정상연금 ￦1의현재가치 |  |\n| --- | --- | --- | --- | --- |\n| 기간 |  |  |  |  |\n|  | 6% | 9% | 6% | 9% |\n| 3 | 0.8396 | 0.7722 | 2.6730 | 2.5313 |",
+      "question": "58(주)감평은20×1년초다음과같은조건의전환사채를액면발행하였다.\n○ 액면금액: ￦100,000\n○ 표시이자율: 연6 %(이자는매년말지급)\n○ 사채발행시전환권이부여되지않은일반사채의시장이자율: 연9 %\n○ 전환가격: 사채액면￦1,000당1주의보통주(주당액면금액￦500)\n○ 상환방법: 만기(20×3년12월31일)에액면금액의106.7 %를일시상환\n전환사채와관련하여20×2년인식할이자비용은? (단, 화폐금액은소수점첫째자\n리에서반올림하며, 단수차이로인한오차가있으면가장근사치를선택한다.)\n￦1\n￦1\n6 %\n9 %\n6 %\n9 %",
+      "choices": [
+        "￦6,000",
+        "￦8,872",
+        "￦9,033",
+        "￦9,303",
+        "￦9,758"
+      ],
+      "answer": 3,
+      "answerIndex": 3,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "|  | 단일금액 ￦1의현재가치 |  | 정상연금 ￦1의현재가치 |  |\n| --- | --- | --- | --- | --- |\n| 기간 |  |  |  |  |\n|  | 6% | 9% | 6% | 9% |\n| 3 | 0.8396 | 0.7722 | 2.6730 | 2.5313 |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 58,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 19,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "6fffd270a666ad3c",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 19,
+            "bbox": [
+              49.4132194519043,
+              371.9534912109375,
+              545.82421875,
+              644.655517578125
+            ],
+            "column": 0,
+            "spanCount": 84
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 58,
+            "tokenCounts": {
+              "owned": 69,
+              "stemEmit": 44,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 16,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q059",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_GEN",
+      "patternId": "ACC_GEN_001",
+      "difficulty": "medium",
+      "originalQuestion": "59충당부채, 우발부채및우발자산에관한설명으로옳은것은?",
+      "question": "59충당부채, 우발부채및우발자산에관한설명으로옳은것은?",
+      "choices": [
+        "미래의 예상 영업손실은 충당부채로인식하여야한다.",
+        "손실부담계약을체결하고있는경우에는관련된현재의무를 충당부채로인식하지않\n는다.",
+        "보수주의관점에서우발자산은재무제표에인식하지아니하나, 우발부채는재무제표\n에인식한다.",
+        "충당부채와관련하여포괄손익계산서에인식한비용은제삼자의변제와관련하여인\n식한 금액과상계하여표시할수있다.",
+        "예상되는자산처분이 충당부채를생기게한사건과 밀접하게관련되었다면, 예상되\n는자산처분이익은 충당부채를 측정하는 데 고려하여야한다."
+      ],
+      "answer": 4,
+      "answerIndex": 4,
+      "questionType": "standard",
+      "hasTable": false,
+      "hasCalculation": false,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 59,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 20,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "80cfc5727e62b61f",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 20,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              546.78369140625,
+              252.68385314941406
+            ],
+            "column": 0,
+            "spanCount": 81
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 59,
+            "tokenCounts": {
+              "owned": 16,
+              "stemEmit": 2,
+              "choices": [
+                1,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q060",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_REV",
+      "patternId": "ACC_REV_001",
+      "difficulty": "medium",
+      "originalQuestion": "60 20×1년2월초 영업을개시한(주)감평은제품하자보증을실시하고있다. 제품\n매출액은20×1년￦200,000, 20×2년￦250,000이고, (주)감평은20×1년매출액의\n5 %, 20×2년매출액의6 %에해당하는무상수리비용이발생할것으로 추정하고\n있다. 연도별무상수리비용실제발생액은다음과같다.\n￦2,500\n￦3,000\n(주)감평의제품하자보증기간이판매일로부터2년인경우, 20×2년말제품보증충\n당부채 잔액은? (단, 제품보증은확신유형의보증이고, 추정치는 최선의 추정치이\n며, 현재가치는고려하지않는다.)\n|  | 구분 | 20×1년 | 20×2년 |\n| --- | --- | --- | --- |\n| 20×1년 판매분 |  | ￦2,500 | ￦3,000 |\n| 20×2년 판매분 |  | - | 4,000 |",
+      "question": "60 20×1년2월초 영업을개시한(주)감평은제품하자보증을실시하고있다. 제품\n매출액은20×1년￦200,000, 20×2년￦250,000이고, (주)감평은20×1년매출액의\n5 %, 20×2년매출액의6 %에해당하는무상수리비용이발생할것으로 추정하고\n있다. 연도별무상수리비용실제발생액은다음과같다.\n￦2,500\n￦3,000\n(주)감평의제품하자보증기간이판매일로부터2년인경우, 20×2년말제품보증충\n당부채 잔액은? (단, 제품보증은확신유형의보증이고, 추정치는 최선의 추정치이\n며, 현재가치는고려하지않는다.)",
+      "choices": [
+        "￦4,500",
+        "￦6,500",
+        "￦9,500",
+        "￦11,000",
+        "￦15,500"
+      ],
+      "answer": 5,
+      "answerIndex": 5,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "|  | 구분 | 20×1년 | 20×2년 |\n| --- | --- | --- | --- |\n| 20×1년 판매분 |  | ￦2,500 | ￦3,000 |\n| 20×2년 판매분 |  | - | 4,000 |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 60,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 20,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "a17c669c062d0567",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 20,
+            "bbox": [
+              49.4132194519043,
+              280.6133117675781,
+              545.82421875,
+              516.9949951171875
+            ],
+            "column": 0,
+            "spanCount": 81
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 60,
+            "tokenCounts": {
+              "owned": 57,
+              "stemEmit": 33,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 11,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q061",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_EQ",
+      "patternId": "ACC_EQ_001",
+      "difficulty": "medium",
+      "originalQuestion": "61 20×1년초설립된(주)감평의20×3년말자본계정은다음과같으며, 설립후현\n재까지자본금변동은없었다.\n￦500\n5 %\n(주)감평은 그 동안배당가능이익이부족하여어떠한 형태의 배당도할수없었\n으나, 설립후처음으로20×4년초￦10,000의현금배당을결의하였다. 보통주에\n배분될배당금이￦4,500일 때, 우선주 배당률은?\n| 구분 | 액면금액 | 발행주식수 |  | 비고 |\n| --- | --- | --- | --- | --- |\n| 보통주자본금 | ￦500 | 100주 |  | 배당률 5% |\n| 우선주자본금 | 500 | 50 | 누적적, 완전참가적, 배당률? |  |",
+      "question": "61 20×1년초설립된(주)감평의20×3년말자본계정은다음과같으며, 설립후현\n재까지자본금변동은없었다.\n￦500\n5 %\n(주)감평은 그 동안배당가능이익이부족하여어떠한 형태의 배당도할수없었\n으나, 설립후처음으로20×4년초￦10,000의현금배당을결의하였다. 보통주에\n배분될배당금이￦4,500일 때, 우선주 배당률은?",
+      "choices": [
+        "5 %",
+        "6 %",
+        "7 %",
+        "8 %",
+        "9 %"
+      ],
+      "answer": 2,
+      "answerIndex": 2,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "| 구분 | 액면금액 | 발행주식수 |  | 비고 |\n| --- | --- | --- | --- | --- |\n| 보통주자본금 | ￦500 | 100주 |  | 배당률 5% |\n| 우선주자본금 | 500 | 50 | 누적적, 완전참가적, 배당률? |  |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 61,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 20,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "4aa4efc851b7dee2",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 20,
+            "bbox": [
+              49.4132194519043,
+              544.9244995117188,
+              545.82421875,
+              742.9480590820312
+            ],
+            "column": 0,
+            "spanCount": 81
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 61,
+            "tokenCounts": {
+              "owned": 47,
+              "stemEmit": 21,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 13,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q062",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_PPE",
+      "patternId": "ACC_PPE_002",
+      "difficulty": "medium",
+      "originalQuestion": "62(주)감평은20×1년초종업원100명에게 각각 주식선택권10개(개당행사가격\n￦500, 주당액면금액￦150)를부여하고부여일로부터2년의용역제공조건을부\n과하였다. 부여일현재주식선택권의단위당공정가치는￦200으로 추정되었다.\n주식선택권1개당1주의보통주식을부여받을수있으며, 실제로 총 80명의종업\n원이주식선택권을가득하였다. 20×3년초주식선택권을가득한종업원전원이\n주식선택권전량을행사한경우, (주)감평의자본증가액은?",
+      "question": "62(주)감평은20×1년초종업원100명에게 각각 주식선택권10개(개당행사가격\n￦500, 주당액면금액￦150)를부여하고부여일로부터2년의용역제공조건을부\n과하였다. 부여일현재주식선택권의단위당공정가치는￦200으로 추정되었다.\n주식선택권1개당1주의보통주식을부여받을수있으며, 실제로 총 80명의종업\n원이주식선택권을가득하였다. 20×3년초주식선택권을가득한종업원전원이\n주식선택권전량을행사한경우, (주)감평의자본증가액은?",
+      "choices": [
+        "￦120,000",
+        "￦160,000",
+        "￦200,000",
+        "￦400,000",
+        "￦440,000"
+      ],
+      "answer": 4,
+      "answerIndex": 4,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 62,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 21,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "c8adfbdac4162a6d",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 21,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              545.8721313476562,
+              177.4061279296875
+            ],
+            "column": 0,
+            "spanCount": 61
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 62,
+            "tokenCounts": {
+              "owned": 52,
+              "stemEmit": 37,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q063",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_INV",
+      "patternId": "ACC_INV_006",
+      "difficulty": "medium",
+      "originalQuestion": "63(주)감평의20×1년보통주에 귀속되는당기순이익은￦1,000,000, 가중평균유통보\n통주식수는100주, 중단사업손익은없다. (주)감평이 희석주당이익을계산할 때\n필요한자료는다음과같다.\n보통주로전환(행사)되었다고\n가정할경우 추가적으로유통되\n었을가중평균유통보통주식수\n보통주로전환(행사)되었다고\n가정할경우 증가하는법인세\n효과를반영한보통주귀속이익\n￦425,000\n(주)감평의20×1년 희석주당이익은? (단, 20×1년 잠재적보통주식의변동은없다.)\n|  | 종류 |  |  |  |\n| --- | --- | --- | --- | --- |\n|  |  | (분모) | (분자) |  |\n| 전환사채 |  | 150주 | ￦425,000 |  |\n| 전환우선주 |  | 100 | 190,000 |  |\n| 신주인수권부사채 |  | 200 | 10,000 |  |\n|  | 옵션 | 100 |  | 0 |",
+      "question": "63(주)감평의20×1년보통주에 귀속되는당기순이익은￦1,000,000, 가중평균유통보\n통주식수는100주, 중단사업손익은없다. (주)감평이 희석주당이익을계산할 때\n필요한자료는다음과같다.\n보통주로전환(행사)되었다고\n가정할경우 추가적으로유통되\n었을가중평균유통보통주식수\n보통주로전환(행사)되었다고\n가정할경우 증가하는법인세\n효과를반영한보통주귀속이익\n￦425,000\n(주)감평의20×1년 희석주당이익은? (단, 20×1년 잠재적보통주식의변동은없다.)",
+      "choices": [
+        "￦2,400",
+        "￦2,500",
+        "￦2,525",
+        "￦5,000",
+        "￦10,000"
+      ],
+      "answer": 2,
+      "answerIndex": 2,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "|  | 종류 |  |  |  |\n| --- | --- | --- | --- | --- |\n|  |  | (분모) | (분자) |  |\n| 전환사채 |  | 150주 | ￦425,000 |  |\n| 전환우선주 |  | 100 | 190,000 |  |\n| 신주인수권부사채 |  | 200 | 10,000 |  |\n|  | 옵션 | 100 |  | 0 |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 63,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 21,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "0db951aeb98a6d9b",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 21,
+            "bbox": [
+              49.4132194519043,
+              205.21572875976562,
+              545.82421875,
+              488.3463134765625
+            ],
+            "column": 0,
+            "spanCount": 93
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 63,
+            "tokenCounts": {
+              "owned": 53,
+              "stemEmit": 24,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 15,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q064",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_PPE",
+      "patternId": "ACC_PPE_002",
+      "difficulty": "medium",
+      "originalQuestion": "64 20×1년 영업을개시한(주)감평은상품구매￦10당1포인트를고객에게보상하는\n고객충성제도를운영한다. 각 포인트는기업의상품을미래에구매할 때 ￦1의할\n인과교환할수있다. (주)감평은20×1년고객에게현금￦100,000에상품을판매\n하고동시에10,000포인트를부여하였다. (주)감평이부여한포인트는별도의수\n행의무에해당하며, 20×1년판매대가￦100,000에는상품및부여된포인트의개\n별판매가격이포함되어있다. (주)감평은부여된포인트의90 %가사용될 것으\n로예상하고있고, 1포인트당개별공정가치를￦0.8으로 추정한다. (주)감평은예\n상사용률을반영하여포인트의개별판매가격을측정한후, 포인트 개별판매가\n격을\n차감한\n잔여금액을\n상품의\n개별\n판매가격으로\n배분한다.\n20×1년\n실제로\n6,000포인트가사용된경우, (주)감평이20×1년인식할매출(수익)은? (단, 포인트\n의소멸시효는부여일로부터3년이다.)",
+      "question": "64 20×1년 영업을개시한(주)감평은상품구매￦10당1포인트를고객에게보상하는\n고객충성제도를운영한다. 각 포인트는기업의상품을미래에구매할 때 ￦1의할\n인과교환할수있다. (주)감평은20×1년고객에게현금￦100,000에상품을판매\n하고동시에10,000포인트를부여하였다. (주)감평이부여한포인트는별도의수\n행의무에해당하며, 20×1년판매대가￦100,000에는상품및부여된포인트의개\n별판매가격이포함되어있다. (주)감평은부여된포인트의90 %가사용될 것으\n로예상하고있고, 1포인트당개별공정가치를￦0.8으로 추정한다. (주)감평은예\n상사용률을반영하여포인트의개별판매가격을측정한후, 포인트 개별판매가\n격을\n차감한\n잔여금액을\n상품의\n개별\n판매가격으로\n배분한다.\n20×1년\n실제로\n6,000포인트가사용된경우, (주)감평이20×1년인식할매출(수익)은? (단, 포인트\n의소멸시효는부여일로부터3년이다.)",
+      "choices": [
+        "￦92,000",
+        "￦92,800",
+        "￦96,400",
+        "￦97,120",
+        "￦97,600"
+      ],
+      "answer": 5,
+      "answerIndex": 5,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 64,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 21,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "92548309e15f25ba",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 21,
+            "bbox": [
+              49.4132194519043,
+              516.1559448242188,
+              545.82421875,
+              746.544189453125
+            ],
+            "column": 0,
+            "spanCount": 105
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 64,
+            "tokenCounts": {
+              "owned": 68,
+              "stemEmit": 53,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q065",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_INV",
+      "patternId": "ACC_INV_003",
+      "difficulty": "medium",
+      "originalQuestion": "65(주)감평은20×1년\n존가치￦0, 정액법상각, 재평가모형 적용) 금융리스계약(리스기간\n하였다. (주)감평은리스개시일에리스개설직접\n리스기간종료시차량운반구소유권은(주)감평에게무상으로이전된다. (주)감\n평은정기리스료로리스기간동안 매년말\n한다. 20×1년말차량운반구의공정가치가\n로인한(주)감평의\n아니며, 금융리스에적용되는(주)감평의 증분차입이자율은연\n금￦1의현가계수(",
+      "question": "65(주)감평은20×1년\n존가치￦0, 정액법상각, 재평가모형 적용) 금융리스계약(리스기간\n하였다. (주)감평은리스개시일에리스개설직접\n리스기간종료시차량운반구소유권은(주)감평에게무상으로이전된다. (주)감\n평은정기리스료로리스기간동안 매년말\n한다. 20×1년말차량운반구의공정가치가\n로인한(주)감평의\n아니며, 금융리스에적용되는(주)감평의 증분차입이자율은연\n금￦1의현가계수(",
+      "choices": [
+        "￦768,576",
+        "초(주)대한리스와사용목적으로차량운반구(내용연수5년, 잔\n3년)을체결\n원가로￦98,200을부담하였으며,\n￦1,000,000을(주)대한리스에게지급\n￦1,800,000일 때, 동리스의회계처리\n20×1년당기순이익 감소액은? (단, 동금융리스는소액리스가\n12 %이고, 정상연\n3기간, 12 %)는2.4018이다.)\n￦988,216",
+        "￦788,216",
+        "￦968,576",
+        "￦1,066,776"
+      ],
+      "answer": 2,
+      "answerIndex": 2,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 65,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 22,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "a9399eb2cca9fa7d",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 22,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              545.8841552734375,
+              258.55743408203125
+            ],
+            "column": 0,
+            "spanCount": 89
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 65,
+            "tokenCounts": {
+              "owned": 60,
+              "stemEmit": 19,
+              "choices": [
+                2,
+                28,
+                2,
+                2,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q066",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_PPE",
+      "patternId": "ACC_PPE_001",
+      "difficulty": "medium",
+      "originalQuestion": "66다음은20×1년설립한(주)감평의20×2년법인세관련자료이다.\n￦500,000\n○ 설립이후연도별법인세율은20 %로일정하다.\n○ 이연법인세자산(부채)의실현가능성은거의확실하다.\n20×1년세무조정사항은정기적금미수이자￦80,000이있으며20×2년소멸한다.\n(주)감평의20×2년포괄손익계산서에인식할법인세비용은?\n| ○ 20×2년 법인세비용차감전순이익 | ￦500,000 |\n| --- | --- |\n| ○ 20×2년 처음발생한세무조정사항 |  |\n| - 접대비한도초과액 | 20,000 |\n| - 감가상각비한도초과액 | 100,000 |",
+      "question": "66다음은20×1년설립한(주)감평의20×2년법인세관련자료이다.\n￦500,000\n○ 설립이후연도별법인세율은20 %로일정하다.\n○ 이연법인세자산(부채)의실현가능성은거의확실하다.\n20×1년세무조정사항은정기적금미수이자￦80,000이있으며20×2년소멸한다.\n(주)감평의20×2년포괄손익계산서에인식할법인세비용은?",
+      "choices": [
+        "￦100,000",
+        "￦104,000",
+        "￦120,000",
+        "￦124,000",
+        "￦140,000"
+      ],
+      "answer": 2,
+      "answerIndex": 2,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "| ○ 20×2년 법인세비용차감전순이익 | ￦500,000 |\n| --- | --- |\n| ○ 20×2년 처음발생한세무조정사항 |  |\n| - 접대비한도초과액 | 20,000 |\n| - 감가상각비한도초과액 | 100,000 |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 66,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 22,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "75378f91117b260f",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 22,
+            "bbox": [
+              49.4132194519043,
+              286.3670349121094,
+              545.8721313476562,
+              516.0360717773438
+            ],
+            "column": 0,
+            "spanCount": 54
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 66,
+            "tokenCounts": {
+              "owned": 47,
+              "stemEmit": 22,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 11,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q067",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_PPE",
+      "patternId": "ACC_PPE_001",
+      "difficulty": "medium",
+      "originalQuestion": "67(주)감평의20×1년\n다음과같다.\n계정\n기계장치\n감가상각누계액\n손상차손누계액\n장부금액\n20×1년\n중\n장부금액\n￦15,000, 손상차손누계액\n기계장치와관련된(주)감평의\n(단, 기계장치의취득과처분은현금거래이다.)",
+      "question": "67(주)감평의20×1년\n다음과같다.\n계정\n기계장치\n감가상각누계액\n손상차손누계액\n장부금액\n20×1년\n중\n장부금액\n￦15,000, 손상차손누계액\n기계장치와관련된(주)감평의\n(단, 기계장치의취득과처분은현금거래이다.)",
+      "choices": [
+        "(-) ￦60,000",
+        "기계장치(원가모형 적용)와관련된기초및기말잔액자료는\n기초\n기말\n￦130,000\n￦150,000\n(40,000)\n(50,000)\n(5,000)\n(3,000)\n￦85,000\n￦97,000\n￦10,000의\n기계장치(취득원가\n￦30,000,\n감가상각누계액\n￦5,000)를처분하고￦50,000의처분이익을인식하였다.\n20×1년 순현금유입액(현금유입액-현금유출액)은?\n(+) ￦10,000",
+        "(-) ￦30,000",
+        "(-) ￦10,000",
+        "(+) ￦30,000"
+      ],
+      "answer": 3,
+      "answerIndex": 3,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 67,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 23,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "9aa25a2bbea8c9c6",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 23,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              545.8721313476562,
+              330.47882080078125
+            ],
+            "column": 0,
+            "spanCount": 77
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 67,
+            "tokenCounts": {
+              "owned": 80,
+              "stemEmit": 17,
+              "choices": [
+                3,
+                46,
+                3,
+                3,
+                3
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q068",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_REV",
+      "patternId": "ACC_REV_001",
+      "difficulty": "medium",
+      "originalQuestion": "68(주)감평의20×1년매출액순이익률은10 %, 총자산회전율은1.2회, 자기자본순이\n익률(ROE)은15 %이다. (주)감평의20×1년부채비율(부채÷자본)은? (단, 비율분\n석 계산시재무상태표요소는기초와기말의평균값을이용한다고가정한다.)",
+      "question": "68(주)감평의20×1년매출액순이익률은10 %, 총자산회전율은1.2회, 자기자본순이\n익률(ROE)은15 %이다. (주)감평의20×1년부채비율(부채÷자본)은? (단, 비율분\n석 계산시재무상태표요소는기초와기말의평균값을이용한다고가정한다.)",
+      "choices": [
+        "25 %",
+        "50 %",
+        "100 %",
+        "125 %",
+        "150 %"
+      ],
+      "answer": 1,
+      "answerIndex": 1,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 68,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 23,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "7963cb518ae05988",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 23,
+            "bbox": [
+              49.4132194519043,
+              358.2884216308594,
+              545.82421875,
+              435.24432373046875
+            ],
+            "column": 0,
+            "spanCount": 48
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 68,
+            "tokenCounts": {
+              "owned": 29,
+              "stemEmit": 14,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q069",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_PPE",
+      "patternId": "ACC_PPE_002",
+      "difficulty": "medium",
+      "originalQuestion": "69(주)감평은20×1년초(주)대한을 흡수합병하고이전대가로(주)감평의보통주식\n200주(주당액면금액￦1,000, 주당공정가치￦4,500)를지급하였다. 합병 시점\n(주)대한의재무상태표상자산총액은￦500,000이고부채총액은￦200,000이며,\n장부가치와공정가치가차이가발생하는항목은토지(장부가치￦100,000, 공정가\n치￦250,000)이다. 합병시 식별가능한무형자산￦70,000이 새롭게인식되었고,\n토지취득세￦5,000을현금지출하였다. (주)감평이20×1년초 흡수합병 시인식\n할 영업권은?",
+      "question": "69(주)감평은20×1년초(주)대한을 흡수합병하고이전대가로(주)감평의보통주식\n200주(주당액면금액￦1,000, 주당공정가치￦4,500)를지급하였다. 합병 시점\n(주)대한의재무상태표상자산총액은￦500,000이고부채총액은￦200,000이며,\n장부가치와공정가치가차이가발생하는항목은토지(장부가치￦100,000, 공정가\n치￦250,000)이다. 합병시 식별가능한무형자산￦70,000이 새롭게인식되었고,\n토지취득세￦5,000을현금지출하였다. (주)감평이20×1년초 흡수합병 시인식\n할 영업권은?",
+      "choices": [
+        "￦375,000",
+        "￦380,000",
+        "￦385,000",
+        "￦445,000",
+        "￦455,000"
+      ],
+      "answer": 2,
+      "answerIndex": 2,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 69,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 23,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "da05e1d8293285f8",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 23,
+            "bbox": [
+              49.4132194519043,
+              463.053955078125,
+              545.82421875,
+              616.7260131835938
+            ],
+            "column": 0,
+            "spanCount": 72
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 69,
+            "tokenCounts": {
+              "owned": 52,
+              "stemEmit": 37,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q070",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_EQ",
+      "patternId": "ACC_EQ_001",
+      "difficulty": "medium",
+      "originalQuestion": "70외화거래에서화폐성항목을모두고른것은?\nㄱ. 현금으로지급하는연금\nㄴ. 현금으로상환하는 충당부채\nㄷ. 부채로인식하는현금배당\nㄹ. 사용권자산\nㅁ. 재화와용역에대한선급금",
+      "question": "70외화거래에서화폐성항목을모두고른것은?\nㄱ. 현금으로지급하는연금\nㄴ. 현금으로상환하는 충당부채\nㄷ. 부채로인식하는현금배당\nㄹ. 사용권자산\nㅁ. 재화와용역에대한선급금",
+      "choices": [
+        "ㄱ, ㄴ, ㄷ",
+        "ㄱ, ㄴ, ㅁ",
+        "ㄱ, ㄹ, ㅁ",
+        "ㄴ, ㄷ, ㄹ",
+        "ㄷ, ㄹ, ㅁ"
+      ],
+      "answer": 2,
+      "answerIndex": 2,
+      "questionType": "standard",
+      "hasTable": false,
+      "hasCalculation": false,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 70,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 23,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "84e6e47fa61cdf44",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 23,
+            "bbox": [
+              49.4132194519043,
+              645.7343139648438,
+              531.4320068359375,
+              758.8906860351562
+            ],
+            "column": 0,
+            "spanCount": 69
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 70,
+            "tokenCounts": {
+              "owned": 17,
+              "stemEmit": 7,
+              "choices": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q071",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_GEN",
+      "patternId": "ACC_GEN_001",
+      "difficulty": "medium",
+      "originalQuestion": "71(주)감평의20×1년\n직접재료\n매입액은\n(주)감평의20×1년\n20×1.\n1\n1\n20×1. 12. 31.\n(주)감평의20×1년",
+      "question": "71(주)감평의20×1년\n직접재료\n매입액은\n(주)감평의20×1년\n20×1.\n1\n1\n20×1. 12. 31.\n(주)감평의20×1년",
+      "choices": [
+        "￦2,125,000",
+        "매출액은￦4,000,000이며, 매출총이익률은20 %이다. 당기중\n￦1,500,000이며,\n직접노무원가는\n제조간접원가의\n60 %이다.\n재고자산자료는다음과같다.\n직접재료\n재공품\n제품\n￦40,000\n￦120,000\n￦90,000\n60,000\n150,000\n60,000\n기초(기본)원가는?\n￦2,456,500",
+        "￦2,168,000",
+        "￦2,245,000",
+        "￦2,512,000"
+      ],
+      "answer": 1,
+      "answerIndex": 1,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 71,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 24,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "4d22e0b756c0ed51",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 24,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              545.8721313476562,
+              236.86114501953125
+            ],
+            "column": 0,
+            "spanCount": 62
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 71,
+            "tokenCounts": {
+              "owned": 67,
+              "stemEmit": 19,
+              "choices": [
+                2,
+                35,
+                2,
+                2,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q072",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_INV",
+      "patternId": "ACC_INV_004",
+      "difficulty": "medium",
+      "originalQuestion": "72(주)감평은20×1년\n은20×1년말 배부차이를조정하기전의제조간접\n매출원가에관한자료이다.\n- 제조간접원가\n제조간접\n370,000\n- 기말재고자산및매출\n원재료\n￦500,000\n(주)감평은제조간접\n간접원가 배부차이를조정한후, (주)감평의",
+      "question": "72(주)감평은20×1년\n은20×1년말 배부차이를조정하기전의제조간접\n매출원가에관한자료이다.\n- 제조간접원가\n제조간접\n370,000\n- 기말재고자산및매출\n원재료\n￦500,000\n(주)감평은제조간접\n간접원가 배부차이를조정한후, (주)감평의",
+      "choices": [
+        "￦1,440,000",
+        "초에설립되었으며, 정상개별원가계산을적용하고있다. 다음\n원가계정과기말재고자산및\n원가\n310,000\n원가\n재공품\n제품\n매출원가\n￦200,000\n￦300,000\n￦1,500,000\n원가 배부차이를 총원가비례배분법으로조정하고있다. 제조\n20×1년매출원가는?\n￦1,536,000",
+        "￦1,455,000",
+        "￦1,464,000",
+        "￦1,545,000"
+      ],
+      "answer": 5,
+      "answerIndex": 5,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 72,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 24,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "a744d9c0bbb08d92",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 24,
+            "bbox": [
+              49.4132194519043,
+              264.6707458496094,
+              545.82421875,
+              569.8572387695312
+            ],
+            "column": 0,
+            "spanCount": 69
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 72,
+            "tokenCounts": {
+              "owned": 67,
+              "stemEmit": 23,
+              "choices": [
+                2,
+                31,
+                2,
+                2,
+                2
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q073",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_INV",
+      "patternId": "ACC_INV_006",
+      "difficulty": "medium",
+      "originalQuestion": "73(주)감평은단일제품을대량생산하고있으며, 선입선출법에의한종합원가계산을적\n용하고있다. 직접재료원가는공정초에전량 투입되며, 전환원가(conversion costs,\n가공원가)는공정전반에 걸쳐 균등하게발생한다. 품질검사는생산공정의50 % 시\n점에서이루어지며, 당기품질검사를통과한합격품의3 %를정상공손으로간주한다.\n(주)감평의20×1년의생산및원가와관련한자료는다음과같다.\n직접재료원가\n전환원가\n40 %\n￦32,000\n￦18,380\n30 %\n(주)감평의20×1년정상공손원가는?\n|  | 수량 | 완성도 | 직접재료원가 | 전환원가 |\n| --- | --- | --- | --- | --- |\n| 기초재공품 | 500 단위 | 40% | ￦32,000 | ￦18,380 |\n| 당기착수량 | 8,500 단위 |  | 850,000 | 409,000 |\n| 당기완성량 | 8,000 단위 |  |  |  |\n| 기말재공품 | 600 단위 | 30% |  |  |",
+      "question": "73(주)감평은단일제품을대량생산하고있으며, 선입선출법에의한종합원가계산을적\n용하고있다. 직접재료원가는공정초에전량 투입되며, 전환원가(conversion costs,\n가공원가)는공정전반에 걸쳐 균등하게발생한다. 품질검사는생산공정의50 % 시\n점에서이루어지며, 당기품질검사를통과한합격품의3 %를정상공손으로간주한다.\n(주)감평의20×1년의생산및원가와관련한자료는다음과같다.\n직접재료원가\n전환원가\n40 %\n￦32,000\n￦18,380\n30 %\n(주)감평의20×1년정상공손원가는?",
+      "choices": [
+        "￦28,125",
+        "￦30,000",
+        "￦30,375",
+        "￦32,250",
+        "￦35,000"
+      ],
+      "answer": 2,
+      "answerIndex": 2,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "|  | 수량 | 완성도 | 직접재료원가 | 전환원가 |\n| --- | --- | --- | --- | --- |\n| 기초재공품 | 500 단위 | 40% | ￦32,000 | ￦18,380 |\n| 당기착수량 | 8,500 단위 |  | 850,000 | 409,000 |\n| 당기완성량 | 8,000 단위 |  |  |  |\n| 기말재공품 | 600 단위 | 30% |  |  |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 73,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 25,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "0383e31451dcf6d1",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 25,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              545.8721313476562,
+              292.4803466796875
+            ],
+            "column": 0,
+            "spanCount": 81
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 73,
+            "tokenCounts": {
+              "owned": 72,
+              "stemEmit": 41,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 22,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q074",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_GEN",
+      "patternId": "ACC_GEN_001",
+      "difficulty": "medium",
+      "originalQuestion": "74(주)감평은원재료리튬을이용하여결합제품 A, B, C를생산하고있다. 각 결합\n제품의생산량, 결합원가및분리점의판매가치에관한자료는다음과같다.\n결합원가\n￦86,000\n￦200,000\n￦80,000\n(주)감평은결합원가를분리점에서의상대적판매가치를기준으로 배분하고있다.\n제품 A에 배분되는결합원가는?\n|  |  | 제품 A | 제품 B | 제품 C | 합계 |\n| --- | --- | --- | --- | --- | --- |\n|  | 생산량 | 800 개 | 1,200 개 | 1,000 개 | 3,000 개 |\n|  | 결합원가 | ? | ￦86,000 | ? | ￦200,000 |\n| 분리점의판매가치 |  | ? | ? | ￦80,000 | 320,000 |",
+      "question": "74(주)감평은원재료리튬을이용하여결합제품 A, B, C를생산하고있다. 각 결합\n제품의생산량, 결합원가및분리점의판매가치에관한자료는다음과같다.\n결합원가\n￦86,000\n￦200,000\n￦80,000\n(주)감평은결합원가를분리점에서의상대적판매가치를기준으로 배분하고있다.\n제품 A에 배분되는결합원가는?",
+      "choices": [
+        "￦56,000",
+        "￦60,000",
+        "￦64,000",
+        "￦70,000",
+        "￦75,000"
+      ],
+      "answer": 3,
+      "answerIndex": 3,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "|  |  | 제품 A | 제품 B | 제품 C | 합계 |\n| --- | --- | --- | --- | --- | --- |\n|  | 생산량 | 800 개 | 1,200 개 | 1,000 개 | 3,000 개 |\n|  | 결합원가 | ? | ￦86,000 | ? | ￦200,000 |\n| 분리점의판매가치 |  | ? | ? | ￦80,000 | 320,000 |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 74,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 25,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "53c29679f823efe2",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 25,
+            "bbox": [
+              49.4132194519043,
+              320.28997802734375,
+              545.8721313476562,
+              499.8537292480469
+            ],
+            "column": 0,
+            "spanCount": 64
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 74,
+            "tokenCounts": {
+              "owned": 56,
+              "stemEmit": 22,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 23,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q075",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_COST",
+      "patternId": "ACC_COST_001",
+      "difficulty": "medium",
+      "originalQuestion": "75(주)감평은표준원가계산제도를채택하고있다. 20×1년 직접재료원가의표준원가\n와실제원가의차이에관한자료는다음과같다.\n￦160\n제품단위당 직접재료표준투입량\n직접재료원가가격차이\n￦48,500\n직접재료원가 총차이\n(주)감평의20×1년실제제품생산량은?\n| 직접재료실제사용량 | 4,850 kg |  |\n| --- | --- | --- |\n| 직접재료단위당실제구입가격 | ￦160 |  |\n| 제품단위당직접재료표준투입량 |  | 2 kg |\n| 직접재료원가가격차이 | ￦48,500 (불리) |  |\n| 직접재료원가총차이 | 26,000 (불리) |  |",
+      "question": "75(주)감평은표준원가계산제도를채택하고있다. 20×1년 직접재료원가의표준원가\n와실제원가의차이에관한자료는다음과같다.\n￦160\n제품단위당 직접재료표준투입량\n직접재료원가가격차이\n￦48,500\n직접재료원가 총차이\n(주)감평의20×1년실제제품생산량은?",
+      "choices": [
+        "2,300단위",
+        "2,350단위",
+        "2,400단위",
+        "2,450단위",
+        "2,500단위"
+      ],
+      "answer": 5,
+      "answerIndex": 5,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "| 직접재료실제사용량 | 4,850 kg |  |\n| --- | --- | --- |\n| 직접재료단위당실제구입가격 | ￦160 |  |\n| 제품단위당직접재료표준투입량 |  | 2 kg |\n| 직접재료원가가격차이 | ￦48,500 (불리) |  |\n| 직접재료원가총차이 | 26,000 (불리) |  |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 75,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 25,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "62cd746fb0eb07d5",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 25,
+            "bbox": [
+              49.4132194519043,
+              527.6633911132812,
+              545.82421875,
+              719.8133544921875
+            ],
+            "column": 0,
+            "spanCount": 46
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 75,
+            "tokenCounts": {
+              "owned": 51,
+              "stemEmit": 27,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 14,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q076",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_COST",
+      "patternId": "ACC_COST_001",
+      "difficulty": "medium",
+      "originalQuestion": "76전부원가계산, 변동원가계산및초변동원가계산에관한설명으로옳지않은것은?",
+      "question": "76전부원가계산, 변동원가계산및초변동원가계산에관한설명으로옳지않은것은?",
+      "choices": [
+        "초변동원가계산은직접재료원가만을제품원가에포함하고나머지제조원가는 모두 기\n간비용으로처리한다.",
+        "변동원가계산은이익계획및의사결정목적에유용하도록원가를변동원가와고정원\n가로분류하고공헌이익을보고한다.",
+        "전부원가계산하의 영업이익은 판매량뿐만아니라생산량의변화에도 영향을받지만,\n변동원가계산하의 영업이익은 판매량에의해서만 영향을받는다.",
+        "전부원가계산과변동원가계산은수익과비용의대응원칙에부합되는원가계산방법으\n로외부보고및조세목적을위해서일반적으로인정되는방법이다.",
+        "초변동원가계산은 판매량이일정한경우에생산량이증가할수록기간비용화되는변동\n가공원가가증가하여 영업이익이감소되므로 불필요한재고의 누적을방지하는효과\n가변동원가계산보다 크다."
+      ],
+      "answer": 4,
+      "answerIndex": 4,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 76,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 26,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "4aee705f92736393",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 26,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              546.78369140625,
+              291.04193115234375
+            ],
+            "column": 0,
+            "spanCount": 58
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 76,
+            "tokenCounts": {
+              "owned": 57,
+              "stemEmit": 8,
+              "choices": [
+                10,
+                9,
+                6,
+                10,
+                9
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q077",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_REV",
+      "patternId": "ACC_REV_001",
+      "difficulty": "medium",
+      "originalQuestion": "77(주)감평은단일제품을생산ㆍ판매하고있다. 20×1년매출액은￦1,200,000(판매량\n1,000단위), 총고정원가는￦240,000, 변동원가율은75 %이며, 법인세율은40 %이다.\n다음설명중옳지않은것은?",
+      "question": "77(주)감평은단일제품을생산ㆍ판매하고있다. 20×1년매출액은￦1,200,000(판매량\n1,000단위), 총고정원가는￦240,000, 변동원가율은75 %이며, 법인세율은40 %이다.\n다음설명중옳지않은것은?",
+      "choices": [
+        "세후영업이익은 ￦36,000이다.",
+        "안전한계율(margin of safety ratio)은20 %이다.",
+        "영업레버리지도(degree of operating leverage)는4이다.",
+        "세후목표이익 ￦54,000을달성하기위한매출액은 ￦1,320,000이다.",
+        "손익분기점판매량은800단위이고, 손익분기점 공헌이익은 ￦240,000이다."
+      ],
+      "answer": 3,
+      "answerIndex": 3,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 77,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 26,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "d34189c2e4a91d81",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 26,
+            "bbox": [
+              49.4132194519043,
+              318.9714050292969,
+              545.8721313476562,
+              490.3840637207031
+            ],
+            "column": 0,
+            "spanCount": 70
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 77,
+            "tokenCounts": {
+              "owned": 49,
+              "stemEmit": 21,
+              "choices": [
+                4,
+                3,
+                3,
+                7,
+                6
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q078",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_COST",
+      "patternId": "ACC_COST_001",
+      "difficulty": "medium",
+      "originalQuestion": "78(주)감평은20×1년에 영업을개시하였으며, 실제원가계산을적용하고있다. 20×1년\n생산및판매에관한자료는다음과같다.\n단위당변동제조원가\n￦150\n고정제조간접원가\n￦200,000\n(주)감평의20×1년전부원가계산하에서의손익분기점판매량은?\n| 생산량 | 5,000 단위 |  | 판매량 | 4,800 단위 |\n| --- | --- | --- | --- | --- |\n| 단위당변동제조원가 |  | ￦150 | 고정제조간접원가 | ￦200,000 |\n| 단위당변동판매관리비 |  | 20 | 고정판매관리비 | 110,000 |\n| 단위당판매가격 |  | 250 |  |  |",
+      "question": "78(주)감평은20×1년에 영업을개시하였으며, 실제원가계산을적용하고있다. 20×1년\n생산및판매에관한자료는다음과같다.\n단위당변동제조원가\n￦150\n고정제조간접원가\n￦200,000\n(주)감평의20×1년전부원가계산하에서의손익분기점판매량은?",
+      "choices": [
+        "2,500단위",
+        "2,750단위",
+        "3,000단위",
+        "3,750단위",
+        "3,875단위"
+      ],
+      "answer": 2,
+      "answerIndex": 2,
+      "questionType": "calculation",
+      "hasTable": true,
+      "hasCalculation": true,
+      "figure": false,
+      "table": "| 생산량 | 5,000 단위 |  | 판매량 | 4,800 단위 |\n| --- | --- | --- | --- | --- |\n| 단위당변동제조원가 |  | ￦150 | 고정제조간접원가 | ￦200,000 |\n| 단위당변동판매관리비 |  | 20 | 고정판매관리비 | 110,000 |\n| 단위당판매가격 |  | 250 |  |  |",
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 78,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 26,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "3e7405b5611fe268",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 26,
+            "bbox": [
+              49.4132194519043,
+              518.3135986328125,
+              545.82421875,
+              684.3321533203125
+            ],
+            "column": 0,
+            "spanCount": 36
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 78,
+            "tokenCounts": {
+              "owned": 50,
+              "stemEmit": 23,
+              "choices": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "table": 16,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": "grid"
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": true
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q079",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_EQ",
+      "patternId": "ACC_EQ_001",
+      "difficulty": "medium",
+      "originalQuestion": "79(주)감평의제1사업부는단일제품을생산ㆍ판매하고있으며, 투자중심점으로운영\n되고있다. 20×1년\n평균영업자산\n투하(투자)자본\n세전영업이익\n제1사업부의 잔여이익과경제적부가가치(EVA)는 각각얼마인가?\n잔여이익\n경제적부가가치",
+      "question": "79(주)감평의제1사업부는단일제품을생산ㆍ판매하고있으며, 투자중심점으로운영\n되고있다. 20×1년\n평균영업자산\n투하(투자)자본\n세전영업이익\n제1사업부의 잔여이익과경제적부가가치(EVA)는 각각얼마인가?\n잔여이익\n경제적부가가치",
+      "choices": [
+        "￦86,000",
+        "￦86,000",
+        "제1사업부의성과평가와관련된자료는다음과같다.\n￦1,200,000\n가중평균자본비용\n12 %\n1,200,000\n최저필수수익률\n10 %\n230,000\n법인세율\n30 %\n잔여이익\n경제적부가가치\n￦17,000\n￦110,000",
+        "￦110,000\n￦17,000\n￦41,000",
+        "￦110,000\n￦41,000\n￦50,000"
+      ],
+      "answer": 2,
+      "answerIndex": 2,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 79,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 27,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "1533d05dd37374de",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 27,
+            "bbox": [
+              49.4132194519043,
+              42.91310119628906,
+              545.82421875,
+              270.4244689941406
+            ],
+            "column": 0,
+            "spanCount": 85
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 79,
+            "tokenCounts": {
+              "owned": 57,
+              "stemEmit": 14,
+              "choices": [
+                2,
+                2,
+                22,
+                6,
+                6
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q080",
+      "year": 2025,
+      "subjectId": "ACC",
+      "chapterId": "ACC_COST",
+      "patternId": "ACC_COST_001",
+      "difficulty": "medium",
+      "originalQuestion": "80전략적관리회계기법에관한내용으로옳은것을모두고른것은?\nㄱ. 제약이론(theory of constraints)은기업의목표를 달성하는과정에서 병목\n공정을 파악하여 집중적으로관리하고개선해서기업의성과를높이는방\n법이다.\nㄴ. 품질원가(cost of quality)에서예방원가와평가원가를포함하는통제원가\n는 불량품의발생률과역의관계를 갖는다.\nㄷ. 활동기준경영(activity based management)에서활동분석을통하여 파악된\n비부가가치활동은 검사, 이동, 대기및저장등의활동이있다.\nㄹ. 적시생산시스템(just-in-time)은적정한 안전재고를보유하기위한기법으\n로, 초변동원가계산을적용하여제품원가를계산한다.\nㅁ. 제품수명주기원가계산(life cycle costing)은제품의제조단계에초점을 맞\n춰 제품설계에따라 제품을생산하면서지속적인개선을통하여원가절감\n방안을모색한다.",
+      "question": "80전략적관리회계기법에관한내용으로옳은것을모두고른것은?\nㄱ. 제약이론(theory of constraints)은기업의목표를 달성하는과정에서 병목\n공정을 파악하여 집중적으로관리하고개선해서기업의성과를높이는방\n법이다.\nㄴ. 품질원가(cost of quality)에서예방원가와평가원가를포함하는통제원가\n는 불량품의발생률과역의관계를 갖는다.\nㄷ. 활동기준경영(activity based management)에서활동분석을통하여 파악된\n비부가가치활동은 검사, 이동, 대기및저장등의활동이있다.\nㄹ. 적시생산시스템(just-in-time)은적정한 안전재고를보유하기위한기법으\n로, 초변동원가계산을적용하여제품원가를계산한다.\nㅁ. 제품수명주기원가계산(life cycle costing)은제품의제조단계에초점을 맞\n춰 제품설계에따라 제품을생산하면서지속적인개선을통하여원가절감\n방안을모색한다.",
+      "choices": [
+        "ㄱ, ㄴ, ㄷ",
+        "ㄱ, ㄷ, ㅁ",
+        "ㄱ, ㄹ, ㅁ",
+        "ㄴ, ㄷ, ㄹ",
+        "ㄴ, ㄹ, ㅁ"
+      ],
+      "answer": 1,
+      "answerIndex": 1,
+      "questionType": "calculation",
+      "hasTable": false,
+      "hasCalculation": true,
+      "figure": false,
+      "table": null,
+      "formula": null,
+      "source": {
+        "type": "original_exam",
+        "examId": "APPRAISER",
+        "year": 2025,
+        "round": 1,
+        "examRound": 36,
+        "questionNumber": 80,
+        "sourceFile": "source/original-exams/2025.pdf",
+        "sourceKind": "pdf",
+        "page": 27,
+        "usedOcr": false
+      },
+      "solution": {
+        "summary": "",
+        "algorithm": "",
+        "calculationProcess": "",
+        "explanation": "",
+        "steps": [],
+        "wrongAnalysis": [],
+        "memoryPoint": ""
+      },
+      "provenance": {
+        "emitVersion": "7.0.0",
+        "irFrozen": true,
+        "contentHash": "7260dfb81184a5f7",
+        "layers": {
+          "source": {
+            "path": "source/original-exams/2025.pdf",
+            "kind": "pdf",
+            "usedOcr": false,
+            "year": 2025
+          },
+          "layout": {
+            "page": 27,
+            "bbox": [
+              49.4132194519043,
+              298.23406982421875,
+              539.34765625,
+              584.0017700195312
+            ],
+            "column": 0,
+            "spanCount": 146
+          },
+          "ast": {
+            "sidecar": "data/regression/ast-sidecar/2025.json",
+            "questionNumber": 80,
+            "tokenCounts": {
+              "owned": 40,
+              "stemEmit": 30,
+              "choices": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "table": 0,
+              "extraTables": 0
+            },
+            "hasExtraTables": false,
+            "tableKind": null
+          },
+          "json": {
+            "fields": [
+              "question",
+              "originalQuestion",
+              "choices",
+              "table"
+            ],
+            "choiceCount": 5,
+            "hasTable": false
+          }
+        }
+      }
+    }
+  ]
+}

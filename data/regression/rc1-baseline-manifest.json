@@ -1,0 +1,74 @@
+{
+  "manifestId": "rc1-baseline",
+  "version": "RC1",
+  "captured": "2026-07-20",
+  "spec": "docs/release/RC1-BASELINE.md",
+  "workOrder": "WO-20260721-001",
+  "sprint": "RC2-E8",
+  "algorithm": {
+    "file": "sha256(file bytes)",
+    "directory": "sha256 over sorted pairs: relativePath UTF-8 + NUL + fileSha256 hex ASCII + LF; exclude __pycache__ and *.pyc",
+    "ref": "docs/release/RC1-BASELINE.md"
+  },
+  "components": [
+    {
+      "id": "parser-core",
+      "label": "Parser Core",
+      "path": "scripts/parser",
+      "kind": "directory",
+      "sha256": "dfaa7b50425789e2cc765c041dd7549eaa2c810e64fc3fed0f6972442b6ff031",
+      "fileCount": 19,
+      "auxiliary": false
+    },
+    {
+      "id": "emit",
+      "label": "Emit",
+      "path": "data/regression/parser-emit/question-db-parser.json",
+      "kind": "file",
+      "sha256": "4aebf14eef76b47425605512163c97eb66a2a050ab25bbf570f28624385dd935",
+      "fileCount": 1,
+      "auxiliary": false
+    },
+    {
+      "id": "pattern-db",
+      "label": "Pattern DB",
+      "path": "data/pattern-db-mvp.json",
+      "kind": "file",
+      "sha256": "0a97e796cefba51381ae3721e5d50bbb0e6c04714e5cdf861eeabe0fc18699fd",
+      "fileCount": 1,
+      "auxiliary": false
+    },
+    {
+      "id": "product-snapshot",
+      "label": "Product Snapshot",
+      "path": "data/question-db-mvp.json",
+      "kind": "file",
+      "sha256": "0cfcaa317bc25c811cebb48e3b53218556b2320f9c3538b2d4583ba9d16a9629",
+      "fileCount": 1,
+      "auxiliary": false
+    },
+    {
+      "id": "coach-layer",
+      "label": "Coach Layer",
+      "path": "js/coach",
+      "kind": "directory",
+      "sha256": "cf7325be3f8849cd99410901db47f121dbf343e5039c435e8e5949305c234db6",
+      "fileCount": 15,
+      "auxiliary": false
+    },
+    {
+      "id": "promotion-scripts",
+      "label": "Promotion analysis scripts",
+      "path": "scripts/promotion",
+      "kind": "directory",
+      "sha256": "f9079a5dcb6ddc9c747714c12e06241b5dfeaf40cc4824668172a0d79b56a523",
+      "fileCount": 3,
+      "auxiliary": true
+    }
+  ],
+  "notes": [
+    "Baseline is for drift detection only.",
+    "Does not imply Promotion Apply or code freeze commit.",
+    "PROMOTION_READY and ADR-001/G6 are out of scope for this harness."
+  ]
+}

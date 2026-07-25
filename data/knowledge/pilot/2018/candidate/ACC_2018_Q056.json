@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q056",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 56,
+  "page": 20,
+  "stem": "(주)감평은20x1년초(주)대한을합병하면서이전대가로현금￦1,500,000\n과(주)감평이보유한토지(장부금액￦200,000, 공정가치￦150,000)를(주)\n대한의주주에게지급하였다. 합병일현재(주)대한의식별가능한자산의공\n정가치는￦3,000,000, 부채의공정가치는￦1,500,000이며, 주석으로공시한\n우발부채는\n현재의무이며\n신뢰성\n있는\n공정가치는\n￦100,000이다.\n합병시\n(주)감평이인식할영업권은?",
+  "choices": [
+    "￦150,000",
+    "￦200,000",
+    "￦250,000",
+    "￦350,000",
+    "￦400,000"
+  ],
+  "answer": 3,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "56. (주)감평은20x1년초(주)대한을합병하면서이전대가로현금￦1,500,000\n과(주)감평이보유한토지(장부금액￦200,000, 공정가치￦150,000)를(주)\n대한의주주에게지급하였다. 합병일현재(주)대한의식별가능한자산의공\n정가치는￦3,000,000, 부채의공정가치는￦1,500,000이며, 주석으로공시한\n우발부채는\n현재의무이며\n신뢰성\n있는\n공정가치는\n￦100,000이다.\n합병시\n(주)감평이인식할영업권은?\n①￦150,000\n②￦200,000\n③￦250,000\n④￦350,000\n⑤￦400,000",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "③",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.506478+00:00",
+    "status": "joined"
+  }
+}

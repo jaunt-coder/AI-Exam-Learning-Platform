@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q074",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 74,
+  "page": 26,
+  "stem": "(주)감평은수선부문과동력부문의두개의보조부문과도색부문과조립부문의\n두개의제조부문으로구성되어있다. (주)감평은상호배부법을사용하여보조\n부문의원가를제조부문에배부한다. 20x1년도보조부문의용역제공은다음과\n같다.\n제공부문\n보조부문\n제조부문\n수선\n동력\n도색\n조립\n수선(시간)\n-\n400\n1,000\n600\n동력(kwh)\n2,000\n-\n4,000\n4,000\n20x1년도보조부문인수선부문과동력부문으로부터도색부문에배부된금액은\n￦100,000이고, 조립부문에배부된금액은￦80,000이었다. 동력부문의배부전\n원가는?",
+  "choices": [
+    "￦75,000",
+    "￦80,000",
+    "￦100,000",
+    "￦105,000",
+    "￦125,000"
+  ],
+  "answer": 4,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "74. (주)감평은수선부문과동력부문의두개의보조부문과도색부문과조립부문의\n두개의제조부문으로구성되어있다. (주)감평은상호배부법을사용하여보조\n부문의원가를제조부문에배부한다. 20x1년도보조부문의용역제공은다음과\n같다.\n제공부문\n보조부문\n제조부문\n수선\n동력\n도색\n조립\n수선(시간)\n-\n400\n1,000\n600\n동력(kwh)\n2,000\n-\n4,000\n4,000\n20x1년도보조부문인수선부문과동력부문으로부터도색부문에배부된금액은\n￦100,000이고, 조립부문에배부된금액은￦80,000이었다. 동력부문의배부전\n원가는?\n①￦75,000\n②￦80,000\n③￦100,000\n④￦105,000\n⑤￦125,000",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "④",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.538392+00:00",
+    "status": "joined"
+  }
+}

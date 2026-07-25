@@ -1,0 +1,100 @@
+{
+  "years": [
+    2015,
+    2017,
+    2018,
+    2020,
+    2024,
+    2025
+  ],
+  "overall": {
+    "frozenYearCount": 6,
+    "yearCount": 6,
+    "integrityErrorCount": 0,
+    "integrityWarnCount": 0,
+    "allFrozen": true
+  },
+  "perYear": {
+    "2015": {
+      "frozen": true,
+      "passed": true,
+      "integrityErrorCount": 0,
+      "integrityWarnCount": 0,
+      "questionsPassed": 40,
+      "questionCount": 40,
+      "semanticScore": 99.92,
+      "semanticErrorCount": 0,
+      "orphanRepairs": 39,
+      "degenerateTablesPruned": 1
+    },
+    "2017": {
+      "frozen": true,
+      "passed": true,
+      "integrityErrorCount": 0,
+      "integrityWarnCount": 0,
+      "questionsPassed": 40,
+      "questionCount": 40,
+      "semanticScore": 100.0,
+      "semanticErrorCount": 0,
+      "orphanRepairs": 0,
+      "degenerateTablesPruned": 0
+    },
+    "2018": {
+      "frozen": true,
+      "passed": true,
+      "integrityErrorCount": 0,
+      "integrityWarnCount": 0,
+      "questionsPassed": 40,
+      "questionCount": 40,
+      "semanticScore": 100.0,
+      "semanticErrorCount": 0,
+      "orphanRepairs": 0,
+      "degenerateTablesPruned": 0
+    },
+    "2020": {
+      "frozen": true,
+      "passed": true,
+      "integrityErrorCount": 0,
+      "integrityWarnCount": 0,
+      "questionsPassed": 40,
+      "questionCount": 40,
+      "semanticScore": 100.0,
+      "semanticErrorCount": 0,
+      "orphanRepairs": 0,
+      "degenerateTablesPruned": 0
+    },
+    "2024": {
+      "frozen": true,
+      "passed": true,
+      "integrityErrorCount": 0,
+      "integrityWarnCount": 0,
+      "questionsPassed": 40,
+      "questionCount": 40,
+      "semanticScore": 100.0,
+      "semanticErrorCount": 0,
+      "orphanRepairs": 0,
+      "degenerateTablesPruned": 0
+    },
+    "2025": {
+      "frozen": true,
+      "passed": true,
+      "integrityErrorCount": 0,
+      "integrityWarnCount": 0,
+      "questionsPassed": 40,
+      "questionCount": 40,
+      "semanticScore": 100.0,
+      "semanticErrorCount": 0,
+      "orphanRepairs": 0,
+      "degenerateTablesPruned": 0
+    }
+  },
+  "violations": [],
+  "targets": {
+    "allFrozen": true,
+    "integrityErrorCount": 0
+  },
+  "targetsMet": {
+    "allFrozen": true,
+    "integrityErrorCount": true
+  }
+}

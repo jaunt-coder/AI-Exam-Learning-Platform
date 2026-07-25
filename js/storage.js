@@ -11,7 +11,20 @@ const STORAGE_KEYS = {
   LEARNING_EVENTS: 'learningEvents',
   THEME: 'theme',
   SETTINGS: 'settings',
-  EXAM_HISTORY: 'examHistory'
+  EXAM_HISTORY: 'examHistory',
+  // Coach Agent Layer (additive — do not rename existing keys)
+  USER_PROFILE: 'userProfile',
+  QUESTION_ATTEMPTS: 'questionAttempts',
+  WEAKNESS_REPORTS: 'weaknessReports',
+  // Phase C2 append-only attempts (does not replace legacy keys)
+  COACH_ATTEMPTS_V1: 'coach.attempts.v1',
+  // Phase C3 weakness diagnosis snapshot
+  COACH_WEAKNESS_V1: 'coach.weakness.v1',
+  // M1 Learning Loop (additive — do not rename existing Constitution keys)
+  LEARNING_ATTEMPTS_V1: 'learning.attempts.v1',
+  LEARNING_STATE_V1: 'learning.state.v1',
+  // M2.6 Evidence Pad (append-only observation log — do not rename)
+  LEARNING_EVIDENCE_V1: 'learning.evidence.v1',
 };
 
 /**

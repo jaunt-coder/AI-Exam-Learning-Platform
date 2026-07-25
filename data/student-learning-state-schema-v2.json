@@ -1,0 +1,380 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-exam-learning-platform.local/schemas/student-learning-state-schema-v2.json",
+  "title": "StudentLearningState",
+  "description": "WO-014.2A Student Learning State v2 — additive extension of wo014-1.0 with Mastery Policy storage slots. Schema application only. Does not execute mastery calculation, assign mastered/weak labels, or create recommendations.",
+  "woId": "WO-014.2A",
+  "schemaVersion": "wo014.2a-2.0",
+  "migratesFrom": "wo014-1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "student_id",
+    "created_at",
+    "updated_at",
+    "learning_data_status",
+    "pattern_states",
+    "question_history",
+    "error_states",
+    "recommendation_state",
+    "mastery",
+    "transition_history",
+    "mastery_policy_reference"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "wo014.2a-2.0"
+    },
+    "student_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable learner identifier. Does not imply profile completeness. (WO-014 retained)"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "learning_data_status": {
+      "type": "string",
+      "enum": ["empty", "observed"],
+      "description": "empty = No learning data exists (WO-014). observed = at least one accepted AttemptEvent projected (WO-014.1 design). Mastery still unknown until Execution WO."
+    },
+    "kb_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Read-only Knowledge Base references (not copied SoT).",
+      "properties": {
+        "pattern_master": {
+          "type": "string",
+          "const": "data/pattern-master-db.json"
+        },
+        "pattern_metadata": {
+          "type": "string",
+          "const": "data/pattern-metadata-db.json"
+        },
+        "error_taxonomy": {
+          "type": "string",
+          "const": "data/error-taxonomy-db.json"
+        },
+        "mastery_policy_schema": {
+          "type": "string",
+          "const": "data/mastery-policy-schema.json"
+        }
+      }
+    },
+    "pattern_states": {
+      "type": "array",
+      "description": "Per-pattern counters + mastery storage slot. MUST be [] when learning_data_status=empty. Do not pre-seed patterns.",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/pattern_state"
+      }
+    },
+    "question_history": {
+      "type": "array",
+      "description": "Append-only solving history projection. (WO-014 retained)",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/question_history_item"
+      }
+    },
+    "error_states": {
+      "type": "array",
+      "description": "Per-error occurrence slots. (WO-014 retained)",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/error_state"
+      }
+    },
+    "recommendation_state": {
+      "$ref": "#/$defs/recommendation_state"
+    },
+    "mastery": {
+      "$ref": "#/$defs/mastery_slot",
+      "description": "Document-level mastery evaluation slot. Initial/always-safe value under WO-014.2A: status=unknown, confidence=unknown. Not a global weakness score. Per-pattern labels live under pattern_states[].mastery."
+    },
+    "transition_history": {
+      "type": "array",
+      "description": "Append-only log of mastery status transitions. MUST be [] until a future Mastery Execution WO writes evidenced transitions. WO-014.2A does not populate this.",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/mastery_transition"
+      }
+    },
+    "mastery_policy_reference": {
+      "$ref": "#/$defs/mastery_policy_reference"
+    }
+  },
+  "$defs": {
+    "mastery_slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "confidence", "policy_version"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "insufficient_data",
+            "learning",
+            "developing",
+            "mastered",
+            "review_required"
+          ],
+          "description": "Storage enum aligned with data/mastery-policy-schema.json. WO-014.2A initial/safe write: unknown only. Non-unknown writes forbidden until Mastery Execution WO + Human/Architecture gate. Do not treat unknown as weak/strong."
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["unknown", "low", "medium", "high"],
+          "description": "Confidence in the mastery status label (not error_states.confidence). WO-014.2A initial/safe write: unknown only."
+        },
+        "policy_version": {
+          "type": "string",
+          "const": "wo014.2-1.0",
+          "description": "Bound Mastery Policy schemaVersion. Must match mastery_policy_reference.version."
+        }
+      }
+    },
+    "mastery_policy_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id", "version", "status"],
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "const": "WO-014.2",
+          "description": "Mastery Calculation Policy work-order / policy id."
+        },
+        "version": {
+          "type": "string",
+          "const": "wo014.2-1.0",
+          "description": "data/mastery-policy-schema.json schemaVersion."
+        },
+        "status": {
+          "type": "string",
+          "const": "documented",
+          "description": "Policy is documented, not executed. Mirrors mastery-policy-schema policy_status."
+        },
+        "schema_path": {
+          "type": "string",
+          "const": "data/mastery-policy-schema.json"
+        },
+        "design_path": {
+          "type": "string",
+          "const": "docs/mastery-calculation-policy.md"
+        }
+      }
+    },
+    "mastery_transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "timestamp",
+        "scope",
+        "from_status",
+        "to_status",
+        "policy_version",
+        "execution_status"
+      ],
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "scope": {
+          "type": "string",
+          "enum": ["document", "pattern"],
+          "description": "document = root mastery slot; pattern = pattern_states[].mastery"
+        },
+        "pattern_id": {
+          "type": ["string", "null"],
+          "pattern": "^ACC_[A-Z]+_[0-9]{3}$",
+          "description": "Required when scope=pattern; null when scope=document."
+        },
+        "from_status": {
+          "type": "string"
+        },
+        "to_status": {
+          "type": "string"
+        },
+        "from_confidence": {
+          "type": ["string", "null"]
+        },
+        "to_confidence": {
+          "type": ["string", "null"]
+        },
+        "policy_version": {
+          "type": "string",
+          "const": "wo014.2-1.0"
+        },
+        "execution_status": {
+          "type": "string",
+          "enum": ["not_executed", "accepted", "rejected"],
+          "description": "WO-014.2A never writes accepted transitions. Future Execution WO only."
+        },
+        "reason": {
+          "type": "string",
+          "description": "Human/machine rationale. Must not invent weakness narratives in this WO."
+        }
+      }
+    },
+    "pattern_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pattern_id",
+        "attempt_count",
+        "correct_count",
+        "wrong_count",
+        "accuracy",
+        "mastery_status",
+        "mastery",
+        "last_attempt_date"
+      ],
+      "properties": {
+        "pattern_id": {
+          "type": "string",
+          "pattern": "^ACC_[A-Z]+_[0-9]{3}$",
+          "description": "Must reference Pattern Master pattern_id. Preferred: validation_status=verified."
+        },
+        "attempt_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "correct_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "wrong_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "accuracy": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "mastery_status": {
+          "type": "string",
+          "enum": ["unknown"],
+          "description": "WO-014 backward-compatible mirror. Locked to unknown in v2 apply phase. Must equal mastery.status when mastery.status is unknown. Future Execution WO may deprecate this field after dual-write period."
+        },
+        "mastery": {
+          "$ref": "#/$defs/mastery_slot",
+          "description": "Per-pattern mastery storage (policy unit_of_mastery=pattern_id). Initial safe value: status=unknown, confidence=unknown."
+        },
+        "last_attempt_date": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        }
+      }
+    },
+    "question_history_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question_id",
+        "pattern_id",
+        "answer_result",
+        "timestamp"
+      ],
+      "properties": {
+        "question_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pattern_id": {
+          "type": "string",
+          "pattern": "^ACC_[A-Z]+_[0-9]{3}$"
+        },
+        "answer_result": {
+          "type": "string",
+          "enum": ["correct", "wrong"]
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "error_id": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "error_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "error_id",
+        "occurrence_count",
+        "confidence"
+      ],
+      "properties": {
+        "error_id": {
+          "type": "string",
+          "pattern": "^ERR_ACC_[A-Z]+_[0-9]{3}_[0-9]{2}$"
+        },
+        "occurrence_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["unknown"],
+          "description": "Error occurrence confidence (distinct from mastery.confidence). Still unknown-only."
+        }
+      }
+    },
+    "recommendation_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["next_action"],
+      "properties": {
+        "next_action": {
+          "type": "string",
+          "enum": ["unknown"],
+          "description": "Recommendation OUT. Remains unknown."
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "schemaVersion": "wo014.2a-2.0",
+      "student_id": "student_placeholder",
+      "created_at": "2026-07-22T17:00:00Z",
+      "updated_at": "2026-07-22T17:00:00Z",
+      "learning_data_status": "empty",
+      "kb_refs": {
+        "pattern_master": "data/pattern-master-db.json",
+        "pattern_metadata": "data/pattern-metadata-db.json",
+        "error_taxonomy": "data/error-taxonomy-db.json",
+        "mastery_policy_schema": "data/mastery-policy-schema.json"
+      },
+      "pattern_states": [],
+      "question_history": [],
+      "error_states": [],
+      "recommendation_state": {
+        "next_action": "unknown"
+      },
+      "mastery": {
+        "status": "unknown",
+        "confidence": "unknown",
+        "policy_version": "wo014.2-1.0"
+      },
+      "transition_history": [],
+      "mastery_policy_reference": {
+        "policy_id": "WO-014.2",
+        "version": "wo014.2-1.0",
+        "status": "documented",
+        "schema_path": "data/mastery-policy-schema.json",
+        "design_path": "docs/mastery-calculation-policy.md"
+      }
+    }
+  ]
+}

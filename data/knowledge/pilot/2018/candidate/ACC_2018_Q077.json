@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q077",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 77,
+  "page": 27,
+  "stem": "다음은활동기준원가계산을사용하는제조기업인(주)감평의20x1년도연간\n활동원가예산자료이다. 20x1년에회사는제품A를1,000단위생산하였는데\n제품A의생산을위한활동원가는￦830,000으로집계되었다. 제품A의생산\n을위해서20x1년에80회의재료이동과300시간의직접노동시간이소요되었\n다. (주)감평이제품A를생산하는과정에서발생한기계작업시간은?\n연간활동원가예산자료\n활동\n활동원가\n원가동인\n원가동인총수량\n재료이동\n￦4,000,000\n이동횟수\n1,000회\n성형\n￦3,000,000\n제품생산량\n15,000단위\n도색\n￦1,500,000\n직접노동시간\n7,500시간\n조립\n￦1,000,000\n기계작업시간\n2,000시간",
+  "choices": [
+    "400시간",
+    "500시간",
+    "600시간",
+    "700시간",
+    "800시간"
+  ],
+  "answer": 2,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "77. 다음은활동기준원가계산을사용하는제조기업인(주)감평의20x1년도연간\n활동원가예산자료이다. 20x1년에회사는제품A를1,000단위생산하였는데\n제품A의생산을위한활동원가는￦830,000으로집계되었다. 제품A의생산\n을위해서20x1년에80회의재료이동과300시간의직접노동시간이소요되었\n다. (주)감평이제품A를생산하는과정에서발생한기계작업시간은?\n연간활동원가예산자료\n활동\n활동원가\n원가동인\n원가동인총수량\n재료이동\n￦4,000,000\n이동횟수\n1,000회\n성형\n￦3,000,000\n제품생산량\n15,000단위\n도색\n￦1,500,000\n직접노동시간\n7,500시간\n조립\n￦1,000,000\n기계작업시간\n2,000시간\n①400시간\n②500시간\n③600시간\n④700시간\n⑤800시간",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "②",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.544376+00:00",
+    "status": "joined"
+  }
+}

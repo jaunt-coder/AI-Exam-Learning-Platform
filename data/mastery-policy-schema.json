@@ -1,0 +1,649 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-exam-learning-platform.local/schemas/mastery-policy-schema.json",
+  "title": "MasteryCalculationPolicy",
+  "description": "WO-014.2 Mastery Calculation Policy — documents how observed Learning State metrics may eventually map to mastery_status. Policy only. Does not calculate real student mastery, assume weakness, or emit recommendations.",
+  "woId": "WO-014.2",
+  "schemaVersion": "wo014.2-1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "woId",
+    "policy_status",
+    "policy_execution",
+    "inputs",
+    "mastery_status_enum",
+    "mastery_confidence_enum",
+    "input_metrics",
+    "minimum_data_requirements",
+    "transition_framework",
+    "forbidden_rules",
+    "downstream_locks"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "wo014.2-1.0"
+    },
+    "woId": {
+      "type": "string",
+      "const": "WO-014.2"
+    },
+    "policy_status": {
+      "type": "string",
+      "const": "documented",
+      "description": "Policy is authored and reviewable. Not applied to any student."
+    },
+    "policy_execution": {
+      "type": "string",
+      "const": "not_executed",
+      "description": "WO-014.2 forbids running mastery assignment against real or mock students."
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "student_learning_state_schema",
+        "attempt_event_schema",
+        "pattern_metadata_db"
+      ],
+      "properties": {
+        "student_learning_state_schema": {
+          "type": "string",
+          "const": "data/student-learning-state-schema.json"
+        },
+        "attempt_event_schema": {
+          "type": "string",
+          "const": "data/attempt-event-schema.json"
+        },
+        "pattern_metadata_db": {
+          "type": "string",
+          "const": "data/pattern-metadata-db.json"
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unit_of_mastery": {
+          "type": "string",
+          "const": "pattern_id",
+          "description": "Mastery is evaluated per pattern_state.pattern_id, not per chapter or student global score."
+        },
+        "preferred_pattern_scope": {
+          "type": "string",
+          "const": "pattern-master validation_status=verified",
+          "description": "Learning Layer preferred patterns. Metadata documents concept/solving; does not invent mastery."
+        },
+        "applies_to_learning_state_field": {
+          "type": "string",
+          "const": "pattern_states[].mastery_status",
+          "description": "Future Apply WO may extend Student Learning State enum. WO-014 still locks enum to unknown only."
+        }
+      }
+    },
+    "mastery_status_enum": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "$ref": "#/$defs/mastery_status_definition"
+      }
+    },
+    "mastery_confidence_enum": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/confidence_definition"
+      },
+      "description": "Confidence in the mastery_status label itself. Distinct from error_states.confidence (WO-014 still unknown-only)."
+    },
+    "input_metrics": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "$ref": "#/$defs/input_metric"
+      }
+    },
+    "minimum_data_requirements": {
+      "$ref": "#/$defs/minimum_data_requirements"
+    },
+    "candidate_parameters": {
+      "type": "object",
+      "description": "Numeric candidates for a future Apply WO. NOT executed in WO-014.2. Human/Architecture approval required before Learning State enum extension.",
+      "additionalProperties": false,
+      "properties": {
+        "approval_status": {
+          "type": "string",
+          "const": "pending_human"
+        },
+        "min_attempts_for_any_labeled_state": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Below this → insufficient_data (when attempts exist) or unknown (when none)."
+        },
+        "recent_window_size": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Last N pattern-scoped attempts used for recent_performance."
+        },
+        "mastered_min_attempts": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mastered_min_accuracy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "mastered_min_recent_accuracy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "developing_min_attempts": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "developing_min_accuracy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "review_required_recent_accuracy_max": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "If recent_accuracy ≤ this after prior developing/mastered eligibility signals, review_required is eligible — still multi-gate, not accuracy-only."
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "transition_framework": {
+      "$ref": "#/$defs/transition_framework"
+    },
+    "forbidden_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "downstream_locks": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "student_learning_state_mastery_enum_wo014": {
+          "type": "string",
+          "const": "unknown_only",
+          "description": "data/student-learning-state-schema.json still allows mastery_status=unknown only until a future Apply WO."
+        },
+        "recommendation_next_action": {
+          "type": "string",
+          "const": "unknown_only",
+          "description": "WO-014.2 does not define or expand recommendation_state.next_action."
+        },
+        "error_taxonomy_driven_mastery": {
+          "type": "string",
+          "const": "blocked_until_verified_errors",
+          "description": "WO-013.3 verified error count is 0 — error-driven mastery/review gates stay blocked."
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "no_student_mastery_assumption": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_recommendation_logic": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_question_modification": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_answer_modification": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_pattern_modification": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_real_mastery_calculation": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "result": {
+          "type": "string",
+          "enum": ["PASS", "FAIL"]
+        }
+      }
+    },
+    "unresolved_issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "issue"],
+        "properties": {
+          "id": { "type": "string" },
+          "issue": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "mastery_status_definition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "meaning", "requires_observed_attempts"],
+      "properties": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "insufficient_data",
+            "learning",
+            "developing",
+            "mastered",
+            "review_required"
+          ]
+        },
+        "meaning": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requires_observed_attempts": {
+          "type": "boolean"
+        },
+        "accuracy_alone_sufficient": {
+          "type": "boolean",
+          "const": false,
+          "description": "Always false. Accuracy alone never decides mastery_status."
+        }
+      }
+    },
+    "confidence_definition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "meaning", "increase_conditions"],
+      "properties": {
+        "value": {
+          "type": "string",
+          "enum": ["unknown", "low", "medium", "high"]
+        },
+        "meaning": {
+          "type": "string"
+        },
+        "increase_conditions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "input_metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metric_id", "source", "description"],
+      "properties": {
+        "metric_id": {
+          "type": "string",
+          "enum": [
+            "attempt_count",
+            "correct_count",
+            "wrong_count",
+            "accuracy",
+            "recent_performance"
+          ]
+        },
+        "source": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "nullable_when": {
+          "type": "string"
+        }
+      }
+    },
+    "minimum_data_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule", "auto_apply"],
+      "properties": {
+        "rule": {
+          "type": "string"
+        },
+        "auto_apply": {
+          "type": "boolean",
+          "const": false
+        },
+        "conditions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "transition_framework": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "principle", "eligibility_concepts"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "const": "conceptual_only"
+        },
+        "principle": {
+          "type": "string"
+        },
+        "eligibility_concepts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["to_status", "requires_all_of", "forbidden_shortcuts"],
+            "properties": {
+              "to_status": {
+                "type": "string"
+              },
+              "requires_all_of": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "forbidden_shortcuts": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "schemaVersion": "wo014.2-1.0",
+      "woId": "WO-014.2",
+      "policy_status": "documented",
+      "policy_execution": "not_executed",
+      "generatedAt": "2026-07-22T19:00:00Z",
+      "inputs": {
+        "student_learning_state_schema": "data/student-learning-state-schema.json",
+        "attempt_event_schema": "data/attempt-event-schema.json",
+        "pattern_metadata_db": "data/pattern-metadata-db.json"
+      },
+      "scope": {
+        "unit_of_mastery": "pattern_id",
+        "preferred_pattern_scope": "pattern-master validation_status=verified",
+        "applies_to_learning_state_field": "pattern_states[].mastery_status"
+      },
+      "mastery_status_enum": [
+        {
+          "value": "unknown",
+          "meaning": "Mastery not evaluated. Includes empty Learning State, pre-Apply lock (WO-014 enum), or explicit non-evaluation. Does not mean 'weak' or 'strong'.",
+          "requires_observed_attempts": false,
+          "accuracy_alone_sufficient": false
+        },
+        {
+          "value": "insufficient_data",
+          "meaning": "At least one attempt may exist for the pattern, but attempt_count is below the minimum required to label learning/developing/mastered/review_required.",
+          "requires_observed_attempts": true,
+          "accuracy_alone_sufficient": false
+        },
+        {
+          "value": "learning",
+          "meaning": "Minimum data met; early competence signal only. Student is practicing the pattern but has not met developing multi-gate conditions.",
+          "requires_observed_attempts": true,
+          "accuracy_alone_sufficient": false
+        },
+        {
+          "value": "developing",
+          "meaning": "Sustained practice with improving or stable metrics across attempt_count, accuracy, and recent_performance — not yet mastered, not review_required.",
+          "requires_observed_attempts": true,
+          "accuracy_alone_sufficient": false
+        },
+        {
+          "value": "mastered",
+          "meaning": "Multi-gate eligibility satisfied: enough attempts + overall accuracy gate + recent_performance gate (+ optional future verified-error stability). Accuracy alone never grants mastered.",
+          "requires_observed_attempts": true,
+          "accuracy_alone_sufficient": false
+        },
+        {
+          "value": "review_required",
+          "meaning": "Observed regression or instability relative to prior competence signals (e.g. recent_performance decline while attempt history is non-trivial). Not a synonym for 'low accuracy on first try'.",
+          "requires_observed_attempts": true,
+          "accuracy_alone_sufficient": false
+        }
+      ],
+      "mastery_confidence_enum": [
+        {
+          "value": "unknown",
+          "meaning": "No mastery evaluation performed (policy not executed or no basis).",
+          "increase_conditions": []
+        },
+        {
+          "value": "low",
+          "meaning": "Label is provisional: at/near minimum attempts or recent window sparse/unstable.",
+          "increase_conditions": [
+            "attempt_count reaches minimum_data threshold",
+            "recent_window has enough attempts to compute recent_performance"
+          ]
+        },
+        {
+          "value": "medium",
+          "meaning": "Label supported by full metric set with consistent recent_performance.",
+          "increase_conditions": [
+            "attempt_count exceeds minimum by a clear margin (candidate parameter)",
+            "recent_performance agrees with overall accuracy direction",
+            "no unresolved OCR/classification drift on linked evidence questions for that pattern"
+          ]
+        },
+        {
+          "value": "high",
+          "meaning": "Label repeatedly stable across multiple recent windows; optional future verified error_states show no rising critical error_id.",
+          "increase_conditions": [
+            "multiple recent_window evaluations agree on the same mastery_status",
+            "optional: verified Error Taxonomy links available and non-escalating (currently blocked — verified errors = 0)"
+          ]
+        }
+      ],
+      "input_metrics": [
+        {
+          "metric_id": "attempt_count",
+          "source": "pattern_states[].attempt_count (from accepted AttemptEvents)",
+          "description": "Number of verified attempts for the pattern.",
+          "nullable_when": "never null when row exists; absence of row means no metric"
+        },
+        {
+          "metric_id": "correct_count",
+          "source": "pattern_states[].correct_count",
+          "description": "Count of correct results.",
+          "nullable_when": "n/a"
+        },
+        {
+          "metric_id": "wrong_count",
+          "source": "pattern_states[].wrong_count",
+          "description": "Count of wrong results.",
+          "nullable_when": "n/a"
+        },
+        {
+          "metric_id": "accuracy",
+          "source": "pattern_states[].accuracy",
+          "description": "correct_count / attempt_count when attempt_count > 0; else null.",
+          "nullable_when": "attempt_count = 0 or no pattern_state row"
+        },
+        {
+          "metric_id": "recent_performance",
+          "source": "question_history filtered by pattern_id, ordered by timestamp, last N = recent_window_size",
+          "description": "Derived view: recent_attempt_count, recent_correct_count, recent_accuracy. Requires Attempt Ingest history. Not inventable.",
+          "nullable_when": "fewer than 1 attempt in window"
+        }
+      ],
+      "minimum_data_requirements": {
+        "rule": "No mastery_status other than unknown/insufficient_data without meeting minimum attempt_count. Empty Learning State → unknown only.",
+        "auto_apply": false,
+        "conditions": [
+          "If no pattern_state row and learning_data_status=empty → mastery conceptually unknown (no row).",
+          "If pattern_state exists and attempt_count < candidate min_attempts_for_any_labeled_state → insufficient_data eligible (not auto-written).",
+          "If attempt_count >= minimum → learning/developing/mastered/review_required may become eligible only via multi-gate transition_framework.",
+          "pattern-metadata-db concept/solving fields are NOT mastery inputs."
+        ]
+      },
+      "candidate_parameters": {
+        "approval_status": "pending_human",
+        "min_attempts_for_any_labeled_state": 3,
+        "recent_window_size": 5,
+        "mastered_min_attempts": 5,
+        "mastered_min_accuracy": 0.85,
+        "mastered_min_recent_accuracy": 0.8,
+        "developing_min_attempts": 3,
+        "developing_min_accuracy": 0.55,
+        "review_required_recent_accuracy_max": 0.5,
+        "notes": "Numeric values are CANDIDATES inspired by coach/weakness-config.json magnitudes for continuity discussion only. They are NOT applied. Accuracy-only shortcuts remain forbidden even if numbers match."
+      },
+      "transition_framework": {
+        "mode": "conceptual_only",
+        "principle": "Multi-metric eligibility. Accuracy is necessary for some gates but never sufficient alone. No automatic calculation in WO-014.2.",
+        "eligibility_concepts": [
+          {
+            "to_status": "unknown",
+            "requires_all_of": [
+              "No evaluation requested OR Learning State empty OR Apply WO not enabled"
+            ],
+            "forbidden_shortcuts": [
+              "Infer weak/strong from Pattern grade (S/A/B)",
+              "Pre-seed all verified patterns as unknown rows to simulate a graph"
+            ]
+          },
+          {
+            "to_status": "insufficient_data",
+            "requires_all_of": [
+              "Observed attempt_count > 0",
+              "attempt_count < min_attempts_for_any_labeled_state (candidate)"
+            ],
+            "forbidden_shortcuts": [
+              "Use accuracy alone when attempt_count is 1",
+              "Assume weakness from a single wrong"
+            ]
+          },
+          {
+            "to_status": "learning",
+            "requires_all_of": [
+              "attempt_count >= min_attempts_for_any_labeled_state",
+              "Does not yet meet developing multi-gate",
+              "recent_performance computable or explicitly marked sparse→keep confidence low"
+            ],
+            "forbidden_shortcuts": [
+              "Declare learning from Pattern Metadata text",
+              "Map low accuracy directly to review_required on first window"
+            ]
+          },
+          {
+            "to_status": "developing",
+            "requires_all_of": [
+              "attempt_count >= developing_min_attempts",
+              "accuracy >= developing_min_accuracy",
+              "recent_performance not in review_required eligibility",
+              "mastery_confidence at least low"
+            ],
+            "forbidden_shortcuts": [
+              "accuracy-only promotion",
+              "Ignore recent_performance when overall accuracy is high"
+            ]
+          },
+          {
+            "to_status": "mastered",
+            "requires_all_of": [
+              "attempt_count >= mastered_min_attempts",
+              "accuracy >= mastered_min_accuracy",
+              "recent_accuracy >= mastered_min_recent_accuracy",
+              "mastery_confidence medium or high (candidate gate)",
+              "NOT review_required eligible"
+            ],
+            "forbidden_shortcuts": [
+              "accuracy-only mastered",
+              "Single perfect attempt → mastered",
+              "Use Pattern Master grade S as mastery"
+            ]
+          },
+          {
+            "to_status": "review_required",
+            "requires_all_of": [
+              "attempt_count >= min_attempts_for_any_labeled_state",
+              "recent_performance indicates decline or instability (candidate: recent_accuracy <= review_required_recent_accuracy_max)",
+              "Prior history non-trivial (not first-window cold start alone)"
+            ],
+            "forbidden_shortcuts": [
+              "Equate any wrong answer with review_required",
+              "Promote Error Taxonomy partial/pending to student review_required",
+              "Generate personalized next_action from this status in WO-014.2"
+            ]
+          }
+        ]
+      },
+      "forbidden_rules": [
+        "Do not declare mastery from accuracy only",
+        "Do not assume student weakness",
+        "Do not create personalized recommendations",
+        "Do not modify Question DB / Answer SoT / Pattern DB / Pattern Metadata / Error Taxonomy",
+        "Do not calculate or write real student mastery_status in this WO",
+        "Do not auto_apply candidate_parameters",
+        "Do not treat pattern-metadata concept text as a mastery signal"
+      ],
+      "downstream_locks": {
+        "student_learning_state_mastery_enum_wo014": "unknown_only",
+        "recommendation_next_action": "unknown_only",
+        "error_taxonomy_driven_mastery": "blocked_until_verified_errors"
+      },
+      "integrity": {
+        "no_student_mastery_assumption": true,
+        "no_recommendation_logic": true,
+        "no_question_modification": true,
+        "no_answer_modification": true,
+        "no_pattern_modification": true,
+        "no_real_mastery_calculation": true
+      },
+      "validation": {
+        "result": "PASS"
+      },
+      "unresolved_issues": [
+        {
+          "id": "U1",
+          "issue": "Student Learning State schema still locks mastery_status to unknown — Apply/Enum-Extension WO required before policy can write labels."
+        },
+        {
+          "id": "U2",
+          "issue": "candidate_parameters remain pending_human; weakness-config numbers are continuity references only."
+        },
+        {
+          "id": "U3",
+          "issue": "Error Taxonomy verified=0 blocks error-driven confidence elevation and error-driven review gates."
+        },
+        {
+          "id": "U4",
+          "issue": "Recommendation Engine must not consume mastery labels until Apply WO + Human gate; next_action stays unknown."
+        }
+      ]
+    }
+  ]
+}

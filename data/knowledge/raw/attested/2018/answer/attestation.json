@@ -1,0 +1,14 @@
+{
+  "woId": "WO-20260722-012",
+  "promotedAt": "2026-07-22T15:44:30+00:00",
+  "from": "data/knowledge/raw/hwp-export/2018/answer/",
+  "verificationStatus": "attested",
+  "sourceSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+  "sourceUnchanged": true,
+  "ocrUsed": false,
+  "joinedCount": 40,
+  "issues": [],
+  "humanConfirm": {
+    "Q69": "answer=5"
+  }
+}

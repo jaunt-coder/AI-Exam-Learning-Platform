@@ -6,9 +6,28 @@ AI 기반 시험 학습 플랫폼 — 출제 패턴 중심의 개인화 학습 �
 
 본 프로젝트는 특정 과목을 위한 문제집이 아닌, **AI Exam Learning Platform**이다.
 
-- 기출 데이터 분석 → 출제 패턴 발견
-- 학습자 약점 분석 → 개인별 최적 학습 경로 제공
+최종 지향: **AI Exam Coach Agent Platform** — 학생 한 명의 합격 가능성을 분석하고 매일 최적 학습 행동을 결정한다.
+
+- 기출 데이터 분석 → 출제 패턴 발견 → IR 품질 보증 (Parser Core)
+- 학습자 약점 분석 → 개인별 합격 전략 Agent Layer (`js/coach/`)
 - Core Engine + Subject Template 구조로 다양한 시험·과목 확장
+
+> IR Pipeline(CellRecon → SemanticRepair → SemanticValidator → IRIntegrityGate → QuestionBuilder)은 **Core Engine으로 보호**한다. Coach 기능은 그 위에 Agent Layer로만 추가한다.  
+> 명세: `docs/33-ai-exam-coach-agent-spec.md`
+
+## Project Navigation
+
+This repository is governed by:
+
+→ [MASTER_HANDOFF.md](./MASTER_HANDOFF.md)
+
+For architecture details:
+
+→ docs/35 Platform Constitution
+→ docs/34 Truth Split Migration
+→ docs/33 Coach Agent Specification
+→ docs/32 Emit Contract
+→ docs/31 Parser Architecture
 
 ## Technology Stack
 
@@ -35,17 +54,19 @@ AI Exam Learning Platform v2/
 │   ├── app.js              # 앱 초기화
 │   ├── data-loader.js      # JSON 데이터 로더
 │   ├── storage.js          # LocalStorage 관리
-│   └── ui.js               # UI 렌더링
+│   ├── ui.js               # UI 렌더링
+│   └── coach/              # AI Exam Coach Agent Layer (docs/33)
 │
 ├── data/
 │   ├── master/
 │   │   └── master-db.json  # Single Source of Truth
 │   ├── generated/          # master-db에서 자동 생성 (직접 수정 금지)
+│   ├── coach/              # Coach Mock (UserProfile / Attempts / Weakness)
 │   ├── source/             # 원본 PDF·기출 데이터
 │   └── cache/              # 캐시 데이터
 │
 ├── assets/                 # 이미지·아이콘 등 정적 자원
-├── docs/                   # 설계 문서 (00~29)
+├── docs/                   # 설계 문서 (00~33)
 ├── scripts/                # 검증·빌드 스크립트
 └── .cursor/rules/          # Cursor AI 개발 규칙
 ```
@@ -58,11 +79,23 @@ Exam → Subject → Chapter → Pattern → Knowledge → Question → Learning
 
 **원칙:** 모든 데이터 수정은 `data/master/master-db.json`에서 시작한다. Generated 파일 직접 수정 금지.
 
+### Question Source of Truth (Truth Split 해소 — docs/34)
+
+| Layer | 경로 | 역할 |
+|-------|------|------|
+| Document | `source/original-exams/` | 원본 PDF |
+| Emit SoT | `data/regression/parser-emit/question-db-parser.json` | IR→JSON Source of Truth |
+| Product Snapshot | `data/question-db-mvp.json` | 배포용 스냅샷 (Emit Promotion 결과여야 함) |
+
+현재는 Emit과 MVP가 **분리(Truth Split)** 되어 있다.  
+승격은 Promotion Gate만 허용한다: `docs/34-truth-split-migration-plan.md` · `scripts/promote-parser-emit.py`  
+RC2-E8 read-only 회귀/게이트: `scripts/regression/` · `docs/release/RC2-E8-CI-ASSIST-CHECKLIST.md`
+
 상세 스키마: [docs/02-database-spec.md](docs/02-database-spec.md)
 
 ## Document Policy
 
-개발 시 `docs/` **전체 문서(00~29)** 를 기준으로 한다.
+개발 시 `docs/` **전체 문서(00~34)** 를 기준으로 한다.
 
 - 높은 번호 문서 = 기존 폐기가 아닌 **보완·실행 우선순위 조정**
 - 충돌 시 우선순위: **최신 번호 → MVP Roadmap(29) → Database Schema(02,06) → 초기 설계**
@@ -82,11 +115,29 @@ Exam → Subject → Chapter → Pattern → Knowledge → Question → Learning
 | [07-exam-analysis-spec.md](docs/07-exam-analysis-spec.md) | 기출 분석 |
 | [08-recommendation-engine-spec.md](docs/08-recommendation-engine-spec.md) | 추천 엔진 |
 | [09-learning-flow-spec.md](docs/09-learning-flow-spec.md) | 학습 흐름 |
+| [session-architecture.md](docs/session-architecture.md) | Study Session 아키텍처 (Sprint-06) |
+| [session-state-machine.md](docs/session-state-machine.md) | Session 상태 전이 |
+| [session-export-v3.md](docs/session-export-v3.md) | Session Export v3 |
+| [sprint-06-study-session-architecture.md](docs/sprint-06-study-session-architecture.md) | Sprint-06 보고서 |
 | [10-development-roadmap-spec.md](docs/10-development-roadmap-spec.md) | 개발 로드맵 |
 | [20-final-implementation-plan.md](docs/20-final-implementation-plan.md) | 최종 실행 계획 |
 | [23-development-environment-spec.md](docs/23-development-environment-spec.md) | 개발 환경 |
 | [28-testing-spec.md](docs/28-testing-spec.md) | 테스트 기준 |
 | [29-mvp-fast-development-roadmap.md](docs/29-mvp-fast-development-roadmap.md) | MVP 빠른 개발 로드맵 |
+| [32-parser-emit-contract.md](docs/32-parser-emit-contract.md) | Stage 7 Emit 계약 |
+| [33-ai-exam-coach-agent-spec.md](docs/33-ai-exam-coach-agent-spec.md) | AI Exam Coach Agent |
+| [34-truth-split-migration-plan.md](docs/34-truth-split-migration-plan.md) | Emit→MVP Promotion / Truth Split 해소 |
+
+## Study Session (Sprint-06)
+
+학습 단위: `Question ⊂ Pattern ⊂ Study Session`
+
+- 진입점: `learning-loop.html`
+- Pattern 종료 시 Export하지 않음 → **Continue Learning** / **Finish Today's Study** 선택
+- Export(JSON·Markdown v3)는 **오늘 공부 종료(Session Summary)** 에서만
+- Question / Answer / Pattern / Knowledge DB 무변경 · AI·Recommendation·Mastery 미사용
+
+상세: [docs/session-architecture.md](docs/session-architecture.md)
 
 ## Development Principles
 
@@ -114,8 +165,13 @@ Exam → Subject → Chapter → Pattern → Knowledge → Question → Learning
 | `theme` | 테마 설정 |
 | `settings` | 사용자 설정 |
 | `examHistory` | 시험 기록 |
+| `userProfile` | Coach UserProfile (C1, 추가) |
+| `questionAttempts` | Coach legacy attempts (C1, 유지) |
+| `weaknessReports` | Coach WeaknessReport (C1, 추가) |
+| `coach.attempts.v1` | Coach append-only attempts (C2, 추가) |
+| `coach.weakness.v1` | Coach WeaknessReport snapshot (C3, 추가) |
 
-> Key 이름 변경 금지. 하위 호환성 유지.
+> 기존 Key 이름 변경 금지. Coach 키는 **추가만**. 하위 호환성 유지.
 
 ## Development Roadmap (MVP — docs/29)
 
@@ -134,7 +190,24 @@ Exam → Subject → Chapter → Pattern → Knowledge → Question → Learning
 | **Phase 7.2** | **Learning Event Tracking** | **✅ 완료** |
 | **Phase 7.3** | **Learning Timeline Dashboard** | **✅ 완료** |
 
-> 실행 계획: `docs/29-mvp-fast-development-roadmap.md` | 구조·원칙: `docs/00~20`
+### Coach Agent Roadmap (`docs/33`)
+
+| Phase | 목표 | 상태 |
+|-------|------|------|
+| **C1** | **Data Model (UserProfile / QuestionAttempt / WeaknessReport)** | **✅ 완료** |
+| **C2** | **학생 풀이 기록 (append-only Attempt 계약)** | **✅ 완료** |
+| **C3** | **Weakness Diagnosis Engine** | **✅ 완료 (승인 요청)** |
+| C4 | Learning Planner | 대기 |
+| C5 | AI Dashboard | 대기 |
+| C6 | Full Agent Loop | 대기 |
+
+| Coach C1 산출물 | 경로 |
+|-----------------|------|
+| 모듈 | `js/coach/` |
+| Mock | `data/coach/mock-*.json` |
+| 검증 | `py -3 scripts/validate-coach-phase1.py` |
+
+> 실행 계획: `docs/29-mvp-fast-development-roadmap.md` · Coach: `docs/33-ai-exam-coach-agent-spec.md` | 구조·원칙: `docs/00~20`
 
 ### Phase 1 Output (PDF 검증 — 2026-07-18 재수행)
 

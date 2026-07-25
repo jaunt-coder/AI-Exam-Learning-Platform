@@ -273,3 +273,18 @@ body {
     max-width: 1320px;
   }
 }
+
+/* Inventory MVP v0.1 home */
+.hero-eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+}
+
+.home-actions__hint {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}

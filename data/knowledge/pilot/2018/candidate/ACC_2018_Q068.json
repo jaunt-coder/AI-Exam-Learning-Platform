@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q068",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 68,
+  "page": 24,
+  "stem": "(주)감평은20x3년도부터재고자산평가방법을선입선출법에서가중평균법\n으로변경하였다. 이러한회계정책의변경은한국채택국제회계기준에서제시\n하는조건을충족하며, (주)감평은이러한변경에대한소급효과를모두결\n정할수있다. 다음은(주)감평의재고자산평가방법별기말재고와선입선출\n법에의한당기순이익이다.\n20x1년\n20x2년\n20x3년\n기말재고자산:\n선입선출법\n￦1,100\n￦1,400\n￦2,000\n가중평균법\n1,250\n1,600\n1,700\n당기순이익\n￦21,000\n￦21,500\n￦24,000\n회계변경후20x3년도당기순이익은? (단, 20x3년도장부는마감전이다.)",
+  "choices": [
+    "￦23,500",
+    "￦23,700",
+    "￦24,000",
+    "￦24,300",
+    "￦24,500"
+  ],
+  "answer": 1,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "68. (주)감평은20x3년도부터재고자산평가방법을선입선출법에서가중평균법\n으로변경하였다. 이러한회계정책의변경은한국채택국제회계기준에서제시\n하는조건을충족하며, (주)감평은이러한변경에대한소급효과를모두결\n정할수있다. 다음은(주)감평의재고자산평가방법별기말재고와선입선출\n법에의한당기순이익이다.\n20x1년\n20x2년\n20x3년\n기말재고자산:\n선입선출법\n￦1,100\n￦1,400\n￦2,000\n가중평균법\n1,250\n1,600\n1,700\n당기순이익\n￦21,000\n￦21,500\n￦24,000\n회계변경후20x3년도당기순이익은? (단, 20x3년도장부는마감전이다.)\n①￦23,500\n②￦23,700\n③￦24,000\n④￦24,300\n⑤￦24,500",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "①",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.528419+00:00",
+    "status": "joined"
+  }
+}

@@ -422,3 +422,142 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* Inventory MVP v0.1 — study validation / algorithm */
+.study-validation {
+  margin: 1rem 0 1.5rem;
+  padding: 1rem 1.25rem;
+}
+
+.study-validation-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.algorithm-steps {
+  list-style: none;
+  padding-left: 0;
+}
+
+.algorithm-steps li {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-surface-muted, transparent);
+}
+
+.algo-step {
+  display: inline-block;
+  font-weight: 700;
+  margin-right: 0.35rem;
+  color: var(--color-primary);
+}
+
+/* WO-20260722-003 — Trigger Keyword / Judgment Criteria */
+.pattern-enrichment {
+  margin: 1.25rem 0;
+}
+
+.pattern-enrichment h3 {
+  margin-bottom: 0.5rem;
+}
+
+.enrichment-flow-hint {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.trigger-keyword-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.trigger-keyword-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.5rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface-muted, transparent);
+}
+
+.trigger-keyword-item__keyword {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.trigger-keyword-item__arrow {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.trigger-keyword-item__cue {
+  color: var(--color-text-muted);
+}
+
+.judgment-criteria-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+  counter-reset: judgment;
+}
+
+.judgment-criteria-item {
+  padding: 0.75rem 0.9rem;
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-surface-muted, transparent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.judgment-step {
+  margin: 0.25rem 0;
+  line-height: 1.45;
+}
+
+.judgment-step__label {
+  display: inline-block;
+  min-width: 4.5rem;
+  margin-right: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+  text-transform: none;
+}
+
+.judgment-step--conclusion {
+  font-weight: 600;
+}
+
+.enrichment-empty {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (min-width: 768px) {
+  .trigger-keyword-list {
+    grid-template-columns: 1fr;
+  }
+}

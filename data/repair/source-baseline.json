@@ -2,26 +2,30 @@
   "summary": {
     "generatedAt": "2026-07-19",
     "total": 240,
-    "critical_questions": 8,
-    "warning_questions": 124,
+    "critical_questions": 36,
+    "warning_questions": 138,
     "verified_count": 0,
     "issue_counts": {
-      "ocr_glued_hangul": 124,
-      "stem_truncated": 8
+      "stem_truncated": 36,
+      "ocr_glued_hangul": 111,
+      "missing_numbers": 19,
+      "missing_units": 35
     },
     "critical_by_year": {
-      "2017": 5,
-      "2018": 1,
+      "2015": 24,
+      "2017": 6,
+      "2018": 2,
+      "2020": 1,
       "2024": 1,
-      "2025": 1
+      "2025": 2
     },
     "warning_by_year": {
-      "2015": 36,
-      "2017": 18,
-      "2018": 21,
-      "2020": 20,
-      "2024": 13,
-      "2025": 16
+      "2015": 37,
+      "2017": 17,
+      "2018": 27,
+      "2020": 24,
+      "2024": 18,
+      "2025": 15
     }
   },
   "questions": [
@@ -32,18 +36,24 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 7,
       "rawBodyHash": "7fcc00182a04ca90",
-      "stemCoverage": 0.973,
+      "stemCoverage": 0.4505,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 45% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
           "detail": "stem 연속 한글 33자 (원본 20자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -59,7 +69,7 @@
       "missingUnits": [],
       "verified": false,
       "issues": [],
-      "issue_codes": []
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2015_Q043",
@@ -68,7 +78,7 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 8,
       "rawBodyHash": "7408e902b20ec4ee",
-      "stemCoverage": 0.9848,
+      "stemCoverage": 0.5808,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -90,19 +100,38 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 8,
       "rawBodyHash": "676e7c46f0a81b7b",
-      "stemCoverage": 0.9893,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.2171,
+      "missingNumbers": [
+        "400,000",
+        "200,000",
+        "120,000",
+        "500,000"
+      ],
+      "missingUnits": [
+        "10%"
+      ],
       "verified": false,
       "issues": [
         {
-          "code": "ocr_glued_hangul",
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 22% (<55%)"
+        },
+        {
+          "code": "missing_numbers",
           "severity": "warning",
-          "detail": "stem 연속 한글 16자 (원본 13자)"
+          "detail": "원본 숫자 4개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: 10%"
         }
       ],
-      "issueCodes": [
-        "ocr_glued_hangul"
+      "issue_codes": [
+        "stem_truncated",
+        "missing_numbers",
+        "missing_units"
       ]
     },
     {
@@ -112,18 +141,24 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 8,
       "rawBodyHash": "35695d713724c587",
-      "stemCoverage": 0.9812,
+      "stemCoverage": 0.4437,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
         {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 44% (<55%)"
+        },
+        {
           "code": "ocr_glued_hangul",
           "severity": "warning",
-          "detail": "stem 연속 한글 35자 (원본 13자)"
+          "detail": "stem 연속 한글 55자 (원본 13자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -134,11 +169,16 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 8,
       "rawBodyHash": "475c5aeed804122f",
-      "stemCoverage": 0.9844,
+      "stemCoverage": 0.5469,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 55% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -146,6 +186,7 @@
         }
       ],
       "issueCodes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -156,18 +197,34 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 9,
       "rawBodyHash": "abe96e1347b157bd",
-      "stemCoverage": 0.9909,
-      "missingNumbers": [],
+      "stemCoverage": 0.2568,
+      "missingNumbers": [
+        "30,000",
+        "40,000",
+        "1,000"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 26% (<55%)"
+        },
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 3개 DB 미포함"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
           "detail": "stem 연속 한글 20자 (원본 16자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
+        "missing_numbers",
         "ocr_glued_hangul"
       ]
     },
@@ -178,18 +235,24 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 9,
       "rawBodyHash": "95a9dc3014073f91",
-      "stemCoverage": 0.9875,
+      "stemCoverage": 0.4042,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 40% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
           "detail": "stem 연속 한글 29자 (원본 13자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -200,18 +263,24 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 9,
       "rawBodyHash": "c4ecdbc7d8d0c4fe",
-      "stemCoverage": 0.9876,
+      "stemCoverage": 0.1411,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
         {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 14% (<55%)"
+        },
+        {
           "code": "ocr_glued_hangul",
           "severity": "warning",
-          "detail": "stem 연속 한글 16자 (원본 13자)"
+          "detail": "stem 연속 한글 22자 (원본 13자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -222,11 +291,16 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 9,
       "rawBodyHash": "6eda48f20de14512",
-      "stemCoverage": 0.9833,
+      "stemCoverage": 0.4778,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 48% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -234,6 +308,7 @@
         }
       ],
       "issueCodes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -244,18 +319,24 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 9,
       "rawBodyHash": "0d025cce382f92e2",
-      "stemCoverage": 0.9879,
+      "stemCoverage": 0.0,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
         {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 0% (<55%)"
+        },
+        {
           "code": "ocr_glued_hangul",
           "severity": "warning",
-          "detail": "stem 연속 한글 18자 (원본 14자)"
+          "detail": "stem 연속 한글 20자 (원본 14자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -266,14 +347,16 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 10,
       "rawBodyHash": "5742429616ac7538",
-      "stemCoverage": 0.991,
-      "missingNumbers": [
-        "150",
-        "300"
-      ],
+      "stemCoverage": 0.4866,
+      "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 49% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -281,6 +364,7 @@
         }
       ],
       "issueCodes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -313,18 +397,24 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 10,
       "rawBodyHash": "af3a7e79ff516d9b",
-      "stemCoverage": 0.9858,
+      "stemCoverage": 0.217,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 22% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
           "detail": "stem 연속 한글 18자 (원본 14자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -335,11 +425,27 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 10,
       "rawBodyHash": "f29a9b85bb27e323",
-      "stemCoverage": 0.9851,
-      "missingNumbers": [],
+      "stemCoverage": 0.5323,
+      "missingNumbers": [
+        "100,000",
+        "200,000",
+        "300,000",
+        "400,000",
+        "500,000"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 53% (<55%)"
+        },
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 5개 DB 미포함"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -347,6 +453,8 @@
         }
       ],
       "issueCodes": [
+        "stem_truncated",
+        "missing_numbers",
         "ocr_glued_hangul"
       ]
     },
@@ -371,11 +479,16 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 11,
       "rawBodyHash": "4312ecaac2ef71aa",
-      "stemCoverage": 0.9908,
+      "stemCoverage": 0.4985,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 50% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -383,6 +496,7 @@
         }
       ],
       "issueCodes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -429,18 +543,24 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 11,
       "rawBodyHash": "782085fd7452846e",
-      "stemCoverage": 0.9858,
+      "stemCoverage": 0.4198,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 42% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
           "detail": "stem 연속 한글 20자 (원본 16자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -451,11 +571,16 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 11,
       "rawBodyHash": "a952c388f8bf40d5",
-      "stemCoverage": 0.9872,
+      "stemCoverage": 0.5214,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 52% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -463,6 +588,7 @@
         }
       ],
       "issueCodes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -473,18 +599,34 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 12,
       "rawBodyHash": "110c76e3a133e7d2",
-      "stemCoverage": 0.9883,
-      "missingNumbers": [],
+      "stemCoverage": 0.3619,
+      "missingNumbers": [
+        "10,000",
+        "25,000",
+        "5,000"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 36% (<55%)"
+        },
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 3개 DB 미포함"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
           "detail": "stem 연속 한글 63자 (원본 20자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
+        "missing_numbers",
         "ocr_glued_hangul"
       ]
     },
@@ -517,18 +659,24 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 12,
       "rawBodyHash": "870b9cf265350780",
-      "stemCoverage": 0.9902,
+      "stemCoverage": 0.281,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
         {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 28% (<55%)"
+        },
+        {
           "code": "ocr_glued_hangul",
           "severity": "warning",
-          "detail": "stem 연속 한글 23자 (원본 14자)"
+          "detail": "stem 연속 한글 35자 (원본 14자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -539,18 +687,27 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 12,
       "rawBodyHash": "954fa26c215c8557",
-      "stemCoverage": 0.9858,
-      "missingNumbers": [],
+      "stemCoverage": 0.2607,
+      "missingNumbers": [
+        "6,000",
+        "5,000"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 26% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
           "detail": "stem 연속 한글 17자 (원본 0자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -561,7 +718,7 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 12,
       "rawBodyHash": "086d9990006f5768",
-      "stemCoverage": 0.9865,
+      "stemCoverage": 0.9148,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -583,18 +740,37 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 13,
       "rawBodyHash": "1935398c937127d3",
-      "stemCoverage": 0.9846,
-      "missingNumbers": [],
+      "stemCoverage": 0.2513,
+      "missingNumbers": [
+        "5,000",
+        "2,400",
+        "1,400",
+        "2,700",
+        "7,000",
+        "700"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 25% (<55%)"
+        },
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 6개 DB 미포함"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
           "detail": "stem 연속 한글 18자 (원본 0자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
+        "missing_numbers",
         "ocr_glued_hangul"
       ]
     },
@@ -605,7 +781,7 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 13,
       "rawBodyHash": "96c6d9b703bb59e4",
-      "stemCoverage": 0.9845,
+      "stemCoverage": 0.6528,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -627,7 +803,7 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 13,
       "rawBodyHash": "af0e1a16f2fc7eda",
-      "stemCoverage": 0.984,
+      "stemCoverage": 0.7647,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -649,11 +825,16 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 13,
       "rawBodyHash": "c3aa1dc7ca4fead3",
-      "stemCoverage": 0.9838,
+      "stemCoverage": 0.5081,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 51% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -661,6 +842,7 @@
         }
       ],
       "issueCodes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -671,7 +853,7 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 13,
       "rawBodyHash": "894649e4be1afbda",
-      "stemCoverage": 0.9746,
+      "stemCoverage": 0.7034,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -693,12 +875,26 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 14,
       "rawBodyHash": "8bb4ef8444a045a1",
-      "stemCoverage": 0.8642,
+      "stemCoverage": 0.4305,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 43% (<55%)"
+        },
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 36자 (원본 17자)"
+        }
+      ],
+      "issue_codes": [
+        "stem_truncated",
+        "ocr_glued_hangul"
+      ]
     },
     {
       "questionId": "ACC_2015_Q073",
@@ -707,7 +903,7 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 14,
       "rawBodyHash": "8a618096a5c9c2ec",
-      "stemCoverage": 0.9868,
+      "stemCoverage": 0.7763,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -729,18 +925,24 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 14,
       "rawBodyHash": "0a50ce024110647c",
-      "stemCoverage": 0.9913,
+      "stemCoverage": 0.4812,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
         {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 48% (<55%)"
+        },
+        {
           "code": "ocr_glued_hangul",
           "severity": "warning",
-          "detail": "stem 연속 한글 34자 (원본 21자)"
+          "detail": "stem 연속 한글 53자 (원본 21자)"
         }
       ],
       "issueCodes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -751,18 +953,24 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 14,
       "rawBodyHash": "09cea83033ac736c",
-      "stemCoverage": 0.9863,
+      "stemCoverage": 0.2009,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 20% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
           "detail": "stem 연속 한글 39자 (원본 20자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -773,7 +981,7 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 14,
       "rawBodyHash": "08e850f600f91263",
-      "stemCoverage": 0.975,
+      "stemCoverage": 0.8167,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -795,9 +1003,10 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 15,
       "rawBodyHash": "cf9c7cb7f12a3d8f",
-      "stemCoverage": 0.9774,
+      "stemCoverage": 0.8346,
       "missingNumbers": [
-        "3,570"
+        "18,900",
+        "15,330"
       ],
       "missingUnits": [],
       "verified": false,
@@ -819,18 +1028,24 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 15,
       "rawBodyHash": "b2254bea5d2c5f4c",
-      "stemCoverage": 0.987,
+      "stemCoverage": 0.3766,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 38% (<55%)"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
           "detail": "stem 연속 한글 36자 (원본 19자)"
         }
       ],
-      "issueCodes": [
+      "issue_codes": [
+        "stem_truncated",
         "ocr_glued_hangul"
       ]
     },
@@ -841,7 +1056,7 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 15,
       "rawBodyHash": "15c8970683d33c57",
-      "stemCoverage": 0.9892,
+      "stemCoverage": 0.5791,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -849,7 +1064,7 @@
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
-          "detail": "stem 연속 한글 19자 (원본 16자)"
+          "detail": "stem 연속 한글 36자 (원본 16자)"
         }
       ],
       "issueCodes": [
@@ -863,7 +1078,7 @@
       "sourceFile": "source/original-exams/2015.pdf",
       "sourcePage": 15,
       "rawBodyHash": "c292021ef9d3414b",
-      "stemCoverage": 0.9866,
+      "stemCoverage": 0.6027,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -904,7 +1119,7 @@
       "missingUnits": [],
       "verified": false,
       "issues": [],
-      "issue_codes": []
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2017_Q043",
@@ -996,7 +1211,7 @@
           "detail": "stem coverage 48% (<55%)"
         }
       ],
-      "issue_codes": [
+      "issueCodes": [
         "stem_truncated"
       ]
     },
@@ -1007,19 +1222,30 @@
       "sourceFile": "source/original-exams/2017.pdf",
       "sourcePage": 16,
       "rawBodyHash": "64bce32d2f5c2b7d",
-      "stemCoverage": 0.9889,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.1296,
+      "missingNumbers": [
+        "300,000"
+      ],
+      "missingUnits": [
+        "20x2",
+        "W300,000"
+      ],
       "verified": false,
       "issues": [
         {
-          "code": "ocr_glued_hangul",
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 13% (<55%)"
+        },
+        {
+          "code": "missing_units",
           "severity": "warning",
-          "detail": "stem 연속 한글 46자 (원본 29자)"
+          "detail": "원본 단위 2개 DB 미포함: 20x2, W300,000"
         }
       ],
-      "issueCodes": [
-        "ocr_glued_hangul"
+      "issue_codes": [
+        "stem_truncated",
+        "missing_units"
       ]
     },
     {
@@ -1055,16 +1281,8 @@
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
-      "issues": [
-        {
-          "code": "ocr_glued_hangul",
-          "severity": "warning",
-          "detail": "stem 연속 한글 24자 (원본 19자)"
-        }
-      ],
-      "issueCodes": [
-        "ocr_glued_hangul"
-      ]
+      "issues": [],
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2017_Q051",
@@ -1073,19 +1291,44 @@
       "sourceFile": "source/original-exams/2017.pdf",
       "sourcePage": 18,
       "rawBodyHash": "2d5bcfa860df1469",
-      "stemCoverage": 0.8172,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.4552,
+      "missingNumbers": [
+        "350,000",
+        "320,000",
+        "200,000",
+        "300,000",
+        "280,000",
+        "480,000",
+        "250,000"
+      ],
+      "missingUnits": [
+        "20x2",
+        "W200,000",
+        "W250,000",
+        "W320,000"
+      ],
       "verified": false,
       "issues": [
         {
-          "code": "ocr_glued_hangul",
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 46% (<55%)"
+        },
+        {
+          "code": "missing_numbers",
           "severity": "warning",
-          "detail": "stem 연속 한글 30자 (원본 18자)"
+          "detail": "원본 숫자 7개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 4개 DB 미포함: 20x2, W200,000, W250,000, W320,000"
         }
       ],
       "issue_codes": [
-        "ocr_glued_hangul"
+        "stem_truncated",
+        "missing_numbers",
+        "missing_units"
       ]
     },
     {
@@ -1096,10 +1339,21 @@
       "sourcePage": 18,
       "rawBodyHash": "ea1d6866445f68f3",
       "stemCoverage": 0.986,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "missingNumbers": [
+        "6,000,000",
+        "5,000,000"
+      ],
+      "missingUnits": [
+        "W5,000,000",
+        "W6,000,000"
+      ],
       "verified": false,
       "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 2개 DB 미포함: W5,000,000, W6,000,000"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -1107,6 +1361,7 @@
         }
       ],
       "issueCodes": [
+        "missing_units",
         "ocr_glued_hangul"
       ]
     },
@@ -1139,19 +1394,24 @@
       "sourceFile": "source/original-exams/2017.pdf",
       "sourcePage": 19,
       "rawBodyHash": "f657c4e41c67c0d2",
-      "stemCoverage": 0.9886,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.6439,
+      "missingNumbers": [
+        "90,000",
+        "35,000"
+      ],
+      "missingUnits": [
+        "W90,000"
+      ],
       "verified": false,
       "issues": [
         {
-          "code": "ocr_glued_hangul",
+          "code": "missing_units",
           "severity": "warning",
-          "detail": "stem 연속 한글 26자 (원본 21자)"
+          "detail": "원본 단위 1개 DB 미포함: W90,000"
         }
       ],
       "issueCodes": [
-        "ocr_glued_hangul"
+        "missing_units"
       ]
     },
     {
@@ -1163,10 +1423,20 @@
       "rawBodyHash": "644cf08a7a66f9e5",
       "stemCoverage": 0.9914,
       "missingNumbers": [],
-      "missingUnits": [],
+      "missingUnits": [
+        "20×1년\n1월\n1일"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: 20×1년\n1월\n1일"
+        }
+      ],
+      "issueCodes": [
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2017_Q056",
@@ -1208,7 +1478,7 @@
       "missingUnits": [],
       "verified": false,
       "issues": [],
-      "issue_codes": []
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2017_Q059",
@@ -1267,25 +1537,43 @@
       "sourceFile": "source/original-exams/2017.pdf",
       "sourcePage": 22,
       "rawBodyHash": "ca32ac88ae90d0ab",
-      "stemCoverage": 0.4143,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.2964,
+      "missingNumbers": [
+        "1,000,000",
+        "600,000",
+        "500,000",
+        "300,000"
+      ],
+      "missingUnits": [
+        "20x3",
+        "3%",
+        "4%",
+        "5%",
+        "W300,000",
+        "W600,000"
+      ],
       "verified": false,
       "issues": [
         {
           "code": "stem_truncated",
           "severity": "critical",
-          "detail": "stem coverage 41% (<55%)"
+          "detail": "stem coverage 30% (<55%)"
         },
         {
-          "code": "ocr_glued_hangul",
+          "code": "missing_numbers",
           "severity": "warning",
-          "detail": "stem 연속 한글 24자 (원본 17자)"
+          "detail": "원본 숫자 4개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 6개 DB 미포함: 20x3, 3%, 4%, 5%, W300,000"
         }
       ],
       "issue_codes": [
         "stem_truncated",
-        "ocr_glued_hangul"
+        "missing_numbers",
+        "missing_units"
       ]
     },
     {
@@ -1295,15 +1583,22 @@
       "sourceFile": "source/original-exams/2017.pdf",
       "sourcePage": 23,
       "rawBodyHash": "c4464f74904b4b42",
-      "stemCoverage": 0.4946,
+      "stemCoverage": 0.3967,
       "missingNumbers": [],
-      "missingUnits": [],
+      "missingUnits": [
+        "20x3"
+      ],
       "verified": false,
       "issues": [
         {
           "code": "stem_truncated",
           "severity": "critical",
-          "detail": "stem coverage 49% (<55%)"
+          "detail": "stem coverage 40% (<55%)"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: 20x3"
         },
         {
           "code": "ocr_glued_hangul",
@@ -1313,6 +1608,7 @@
       ],
       "issue_codes": [
         "stem_truncated",
+        "missing_units",
         "ocr_glued_hangul"
       ]
     },
@@ -1399,16 +1695,8 @@
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
-      "issues": [
-        {
-          "code": "ocr_glued_hangul",
-          "severity": "warning",
-          "detail": "stem 연속 한글 26자 (원본 19자)"
-        }
-      ],
-      "issueCodes": [
-        "ocr_glued_hangul"
-      ]
+      "issues": [],
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2017_Q069",
@@ -1567,20 +1855,12 @@
       "sourceFile": "source/original-exams/2017.pdf",
       "sourcePage": 29,
       "rawBodyHash": "d9e8edb6be6b9bdc",
-      "stemCoverage": 0.4364,
+      "stemCoverage": 0.9873,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
-      "issues": [
-        {
-          "code": "stem_truncated",
-          "severity": "critical",
-          "detail": "stem coverage 44% (<55%)"
-        }
-      ],
-      "issue_codes": [
-        "stem_truncated"
-      ]
+      "issues": [],
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2017_Q079",
@@ -1648,7 +1928,9 @@
       "sourcePage": 14,
       "rawBodyHash": "66c3fe3c77916e03",
       "stemCoverage": 0.9924,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2018"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -1692,11 +1974,24 @@
       "sourcePage": 15,
       "rawBodyHash": "29cc4b1dfd1bbf54",
       "stemCoverage": 0.9771,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "missingNumbers": [
+        "11,000",
+        "2018"
+      ],
+      "missingUnits": [
+        "W11,000"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: W11,000"
+        }
+      ],
+      "issueCodes": [
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2018_Q045",
@@ -1713,7 +2008,7 @@
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
-          "detail": "stem 연속 한글 33자 (원본 17자)"
+          "detail": "stem 연속 한글 20자 (원본 17자)"
         }
       ],
       "issueCodes": [
@@ -1741,8 +2036,10 @@
       "sourceFile": "source/original-exams/2018.pdf",
       "sourcePage": 16,
       "rawBodyHash": "3fa9755c04799da5",
-      "stemCoverage": 0.9865,
-      "missingNumbers": [],
+      "stemCoverage": 0.7658,
+      "missingNumbers": [
+        "2018"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -1800,7 +2097,9 @@
       "sourcePage": 17,
       "rawBodyHash": "9612223fe0bae00b",
       "stemCoverage": 0.9878,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2018"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -1823,10 +2122,20 @@
       "rawBodyHash": "cbb22ce844f68f80",
       "stemCoverage": 0.9894,
       "missingNumbers": [],
-      "missingUnits": [],
+      "missingUnits": [
+        "20×1년\n1월\n1일"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: 20×1년\n1월\n1일"
+        }
+      ],
+      "issueCodes": [
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2018_Q052",
@@ -1880,7 +2189,9 @@
       "sourcePage": 19,
       "rawBodyHash": "699c71ed14599c7d",
       "stemCoverage": 0.9901,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2018"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -1893,12 +2204,43 @@
       "sourceFile": "source/original-exams/2018.pdf",
       "sourcePage": 20,
       "rawBodyHash": "ec8e1d50efe69dc5",
-      "stemCoverage": 0.9905,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.0635,
+      "missingNumbers": [
+        "1,049,000",
+        "20,000",
+        "5,000",
+        "1,000",
+        "900"
+      ],
+      "missingUnits": [
+        "20×1년5월1일",
+        "8%",
+        "W1,000",
+        "W1,049,000"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 6% (<55%)"
+        },
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 5개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 4개 DB 미포함: 20×1년5월1일, 8%, W1,000, W1,049,000"
+        }
+      ],
+      "issue_codes": [
+        "stem_truncated",
+        "missing_numbers",
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2018_Q056",
@@ -1930,7 +2272,9 @@
       "sourcePage": 20,
       "rawBodyHash": "67ed16642eb80969",
       "stemCoverage": 0.9886,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2018"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -1972,7 +2316,9 @@
       "sourcePage": 21,
       "rawBodyHash": "bef651e94029693f",
       "stemCoverage": 0.9862,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2018"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -1993,7 +2339,7 @@
       "sourceFile": "source/original-exams/2018.pdf",
       "sourcePage": 22,
       "rawBodyHash": "4739fe258d67d035",
-      "stemCoverage": 0.9883,
+      "stemCoverage": 0.8016,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -2009,10 +2355,20 @@
       "rawBodyHash": "f76ccec3414b11ea",
       "stemCoverage": 0.9827,
       "missingNumbers": [],
-      "missingUnits": [],
+      "missingUnits": [
+        "20×1년\n1월\n1일"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: 20×1년\n1월\n1일"
+        }
+      ],
+      "issueCodes": [
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2018_Q063",
@@ -2021,12 +2377,33 @@
       "sourceFile": "source/original-exams/2018.pdf",
       "sourcePage": 22,
       "rawBodyHash": "a5402b62292d8a14",
-      "stemCoverage": 0.9824,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.5353,
+      "missingNumbers": [
+        "1,800,000",
+        "1,900,000"
+      ],
+      "missingUnits": [
+        "W0",
+        "W1,800,000",
+        "W1,900,000"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 54% (<55%)"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 3개 DB 미포함: W0, W1,800,000, W1,900,000"
+        }
+      ],
+      "issueCodes": [
+        "stem_truncated",
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2018_Q064",
@@ -2036,7 +2413,9 @@
       "sourcePage": 22,
       "rawBodyHash": "eb68328fae59cd41",
       "stemCoverage": 0.985,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2018"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -2062,7 +2441,7 @@
       "missingUnits": [],
       "verified": false,
       "issues": [],
-      "issue_codes": []
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2018_Q066",
@@ -2094,11 +2473,13 @@
       "sourcePage": 23,
       "rawBodyHash": "6d126062b67799f5",
       "stemCoverage": 0.8571,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2018"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
-      "issue_codes": []
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2018_Q068",
@@ -2107,7 +2488,7 @@
       "sourceFile": "source/original-exams/2018.pdf",
       "sourcePage": 24,
       "rawBodyHash": "cd47c752bc2120bf",
-      "stemCoverage": 0.9891,
+      "stemCoverage": 0.9203,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -2152,7 +2533,9 @@
       "sourcePage": 24,
       "rawBodyHash": "e2de45a5bffc58c6",
       "stemCoverage": 0.9886,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2018"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -2195,12 +2578,52 @@
       "sourceFile": "source/original-exams/2018.pdf",
       "sourcePage": 25,
       "rawBodyHash": "817422af9256d789",
-      "stemCoverage": 0.9835,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.8352,
+      "missingNumbers": [
+        "10,500",
+        "17,500",
+        "25,000",
+        "45,000",
+        "30,000",
+        "48,000",
+        "15,000",
+        "35,000",
+        "13,500"
+      ],
+      "missingUnits": [
+        "W10,500",
+        "W13,500",
+        "W15,000",
+        "W17,500",
+        "W25,000",
+        "W30,000",
+        "W35,000",
+        "W45,000",
+        "W48,000"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 9개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 9개 DB 미포함: W10,500, W13,500, W15,000, W17,500, W25,000"
+        },
+        {
+          "code": "ocr_glued_hangul",
+          "severity": "warning",
+          "detail": "stem 연속 한글 37자 (원본 25자)"
+        }
+      ],
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "ocr_glued_hangul"
+      ]
     },
     {
       "questionId": "ACC_2018_Q073",
@@ -2210,7 +2633,9 @@
       "sourcePage": 25,
       "rawBodyHash": "b992bc1216440a3b",
       "stemCoverage": 0.9876,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2018"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -2231,24 +2656,18 @@
       "sourceFile": "source/original-exams/2018.pdf",
       "sourcePage": 26,
       "rawBodyHash": "07d9ba81a040a944",
-      "stemCoverage": 0.528,
+      "stemCoverage": 0.988,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [
-        {
-          "code": "stem_truncated",
-          "severity": "critical",
-          "detail": "stem coverage 53% (<55%)"
-        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
           "detail": "stem 연속 한글 46자 (원본 31자)"
         }
       ],
-      "issue_codes": [
-        "stem_truncated",
+      "issueCodes": [
         "ocr_glued_hangul"
       ]
     },
@@ -2259,7 +2678,7 @@
       "sourceFile": "source/original-exams/2018.pdf",
       "sourcePage": 26,
       "rawBodyHash": "c7f69621427f43aa",
-      "stemCoverage": 0.9862,
+      "stemCoverage": 0.7281,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -2274,7 +2693,9 @@
       "sourcePage": 26,
       "rawBodyHash": "80bf808a586a7334",
       "stemCoverage": 0.9884,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2018"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -2310,7 +2731,9 @@
       "sourcePage": 27,
       "rawBodyHash": "345b07f937065542",
       "stemCoverage": 0.9852,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2018"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -2374,7 +2797,9 @@
       "sourcePage": 13,
       "rawBodyHash": "c2cc4445e49cfe97",
       "stemCoverage": 0.8571,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2020"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -2389,9 +2814,16 @@
       "rawBodyHash": "d34cf7a319a9e1f0",
       "stemCoverage": 0.9882,
       "missingNumbers": [],
-      "missingUnits": [],
+      "missingUnits": [
+        "20×1년\n1월\n1일"
+      ],
       "verified": false,
       "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: 20×1년\n1월\n1일"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -2399,6 +2831,7 @@
         }
       ],
       "issueCodes": [
+        "missing_units",
         "ocr_glued_hangul"
       ]
     },
@@ -2413,16 +2846,8 @@
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
-      "issues": [
-        {
-          "code": "ocr_glued_hangul",
-          "severity": "warning",
-          "detail": "stem 연속 한글 25자 (원본 17자)"
-        }
-      ],
-      "issueCodes": [
-        "ocr_glued_hangul"
-      ]
+      "issues": [],
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2020_Q045",
@@ -2432,7 +2857,9 @@
       "sourcePage": 14,
       "rawBodyHash": "997b848f511620f2",
       "stemCoverage": 0.9877,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2020"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -2476,7 +2903,9 @@
       "sourcePage": 15,
       "rawBodyHash": "5b39da16f39c8a1a",
       "stemCoverage": 0.9942,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2020"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -2534,11 +2963,23 @@
       "sourcePage": 16,
       "rawBodyHash": "db41e6a7cf38df01",
       "stemCoverage": 0.9901,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": [
+        "20×1년10월\n1일"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: 20×1년10월\n1일"
+        }
+      ],
+      "issueCodes": [
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2020_Q051",
@@ -2562,11 +3003,24 @@
       "sourcePage": 17,
       "rawBodyHash": "c5b85650353d31d2",
       "stemCoverage": 0.9913,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "missingNumbers": [
+        "86,200",
+        "2020"
+      ],
+      "missingUnits": [
+        "W86,200"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: W86,200"
+        }
+      ],
+      "issueCodes": [
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2020_Q053",
@@ -2598,7 +3052,9 @@
       "sourcePage": 18,
       "rawBodyHash": "ae025bdd5e2a4714",
       "stemCoverage": 0.9919,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2020"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -2634,7 +3090,9 @@
       "sourcePage": 19,
       "rawBodyHash": "a4d386bfd571488a",
       "stemCoverage": 0.985,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2020"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -2647,12 +3105,31 @@
       "sourceFile": "source/original-exams/2020.pdf",
       "sourcePage": 20,
       "rawBodyHash": "ef8d87e081ccf6bf",
-      "stemCoverage": 0.9868,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.5439,
+      "missingNumbers": [
+        "0.7350"
+      ],
+      "missingUnits": [
+        "8%",
+        "W1"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 54% (<55%)"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 2개 DB 미포함: 8%, W1"
+        }
+      ],
+      "issueCodes": [
+        "stem_truncated",
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2020_Q058",
@@ -2684,7 +3161,9 @@
       "sourcePage": 20,
       "rawBodyHash": "43ed5c6a80d22f72",
       "stemCoverage": 0.992,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2020"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -2705,12 +3184,26 @@
       "sourceFile": "source/original-exams/2020.pdf",
       "sourcePage": 21,
       "rawBodyHash": "9fde9fcf38a8a2dd",
-      "stemCoverage": 0.9935,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.7121,
+      "missingNumbers": [
+        "2.7232",
+        "0.8638"
+      ],
+      "missingUnits": [
+        "5%",
+        "W1"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 2개 DB 미포함: 5%, W1"
+        }
+      ],
+      "issueCodes": [
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2020_Q061",
@@ -2720,10 +3213,29 @@
       "sourcePage": 21,
       "rawBodyHash": "1a95f93aeea00226",
       "stemCoverage": 0.9886,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "missingNumbers": [
+        "107,700",
+        "95,700",
+        "92,300",
+        "2020"
+      ],
+      "missingUnits": [
+        "W107,700",
+        "W92,300",
+        "W95,700"
+      ],
       "verified": false,
       "issues": [
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 4개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 3개 DB 미포함: W107,700, W92,300, W95,700"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -2731,6 +3243,8 @@
         }
       ],
       "issueCodes": [
+        "missing_numbers",
+        "missing_units",
         "ocr_glued_hangul"
       ]
     },
@@ -2770,19 +3284,13 @@
       "sourcePage": 22,
       "rawBodyHash": "34ff31fc0bd9484a",
       "stemCoverage": 0.9865,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2020"
+      ],
       "missingUnits": [],
       "verified": false,
-      "issues": [
-        {
-          "code": "ocr_glued_hangul",
-          "severity": "warning",
-          "detail": "stem 연속 한글 33자 (원본 28자)"
-        }
-      ],
-      "issueCodes": [
-        "ocr_glued_hangul"
-      ]
+      "issues": [],
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2020_Q065",
@@ -2821,7 +3329,7 @@
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
-          "detail": "stem 연속 한글 27자 (원본 16자)"
+          "detail": "stem 연속 한글 23자 (원본 16자)"
         }
       ],
       "issueCodes": [
@@ -2836,7 +3344,9 @@
       "sourcePage": 23,
       "rawBodyHash": "30a26e81d3960f5f",
       "stemCoverage": 0.9864,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2020"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -2894,11 +3404,26 @@
       "sourcePage": 25,
       "rawBodyHash": "f0a09bcc11c68129",
       "stemCoverage": 0.9868,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "missingNumbers": [
+        "68,116",
+        "15,000"
+      ],
+      "missingUnits": [
+        "20×1년\n1월\n1일",
+        "W15,000",
+        "W68,116"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 3개 DB 미포함: 20×1년\n1월\n1일, W15,000, W68,116"
+        }
+      ],
+      "issueCodes": [
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2020_Q071",
@@ -2907,12 +3432,25 @@
       "sourceFile": "source/original-exams/2020.pdf",
       "sourcePage": 25,
       "rawBodyHash": "2dfdb49ccf6ed244",
-      "stemCoverage": 0.9871,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.7382,
+      "missingNumbers": [
+        "20,000",
+        "2020"
+      ],
+      "missingUnits": [
+        "W20,000"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: W20,000"
+        }
+      ],
+      "issueCodes": [
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2020_Q072",
@@ -2926,7 +3464,7 @@
       "missingUnits": [],
       "verified": false,
       "issues": [],
-      "issue_codes": []
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2020_Q073",
@@ -2936,7 +3474,9 @@
       "sourcePage": 26,
       "rawBodyHash": "dbef6d22dc0dbcc1",
       "stemCoverage": 0.9891,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2020"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -2971,18 +3511,20 @@
       "sourceFile": "source/original-exams/2020.pdf",
       "sourcePage": 27,
       "rawBodyHash": "1e9f6a877918f3ca",
-      "stemCoverage": 0.6207,
-      "missingNumbers": [],
+      "stemCoverage": 0.9828,
+      "missingNumbers": [
+        "2020"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
-          "detail": "stem 연속 한글 18자 (원본 0자)"
+          "detail": "stem 연속 한글 21자 (원본 0자)"
         }
       ],
-      "issue_codes": [
+      "issueCodes": [
         "ocr_glued_hangul"
       ]
     },
@@ -3008,10 +3550,28 @@
       "sourcePage": 28,
       "rawBodyHash": "7206d1b2f60a629f",
       "stemCoverage": 0.979,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "missingNumbers": [
+        "100,000",
+        "140,000",
+        "200,000"
+      ],
+      "missingUnits": [
+        "W100,000",
+        "W140,000",
+        "W200,000"
+      ],
       "verified": false,
       "issues": [
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 3개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 3개 DB 미포함: W100,000, W140,000, W200,000"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -3019,6 +3579,8 @@
         }
       ],
       "issueCodes": [
+        "missing_numbers",
+        "missing_units",
         "ocr_glued_hangul"
       ]
     },
@@ -3030,7 +3592,9 @@
       "sourcePage": 28,
       "rawBodyHash": "c0d32c765e9649bb",
       "stemCoverage": 0.9894,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2020"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -3094,7 +3658,9 @@
       "sourcePage": 13,
       "rawBodyHash": "026dbf70010d89e1",
       "stemCoverage": 0.8571,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2024"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -3107,7 +3673,7 @@
       "sourceFile": "source/original-exams/2024.pdf",
       "sourcePage": 14,
       "rawBodyHash": "92fb57f45d0a06d9",
-      "stemCoverage": 0.6599,
+      "stemCoverage": 0.6628,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -3118,7 +3684,7 @@
           "detail": "stem 연속 한글 33자 (원본 27자)"
         }
       ],
-      "issue_codes": [
+      "issueCodes": [
         "ocr_glued_hangul"
       ]
     },
@@ -3129,12 +3695,14 @@
       "sourceFile": "source/original-exams/2024.pdf",
       "sourcePage": 14,
       "rawBodyHash": "9a042e6e55e15117",
-      "stemCoverage": 0.7289,
-      "missingNumbers": [],
+      "stemCoverage": 0.9819,
+      "missingNumbers": [
+        "2024"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
-      "issue_codes": []
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2024_Q045",
@@ -3145,17 +3713,29 @@
       "rawBodyHash": "aba7d25c62c0321c",
       "stemCoverage": 0.1388,
       "missingNumbers": [],
-      "missingUnits": [],
+      "missingUnits": [
+        "20×2",
+        "20×2년",
+        "W14",
+        "W15",
+        "W17"
+      ],
       "verified": false,
       "issues": [
         {
           "code": "stem_truncated",
           "severity": "critical",
           "detail": "stem coverage 14% (<55%)"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 5개 DB 미포함: 20×2, 20×2년, W14, W15, W17"
         }
       ],
       "issue_codes": [
-        "stem_truncated"
+        "stem_truncated",
+        "missing_units"
       ]
     },
     {
@@ -3193,11 +3773,22 @@
       "sourceFile": "source/original-exams/2024.pdf",
       "sourcePage": 15,
       "rawBodyHash": "54557a5ef18810e8",
-      "stemCoverage": 0.9838,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.773,
+      "missingNumbers": [
+        "2024"
+      ],
+      "missingUnits": [
+        "W10",
+        "W20",
+        "W30"
+      ],
       "verified": false,
       "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 3개 DB 미포함: W10, W20, W30"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -3205,6 +3796,7 @@
         }
       ],
       "issueCodes": [
+        "missing_units",
         "ocr_glued_hangul"
       ]
     },
@@ -3260,7 +3852,9 @@
       "sourcePage": 16,
       "rawBodyHash": "018db6d4ddca25a2",
       "stemCoverage": 0.9874,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2024"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -3288,7 +3882,9 @@
       "sourcePage": 17,
       "rawBodyHash": "454eaa49b0cda203",
       "stemCoverage": 0.9917,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2024"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -3330,7 +3926,9 @@
       "sourcePage": 18,
       "rawBodyHash": "7bb0a0a05b1bc3b5",
       "stemCoverage": 0.9865,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2024"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -3351,12 +3949,36 @@
       "sourceFile": "source/original-exams/2024.pdf",
       "sourcePage": 19,
       "rawBodyHash": "16c89296975d6002",
-      "stemCoverage": 0.9854,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.561,
+      "missingNumbers": [
+        "1,100",
+        "1,700",
+        "2,100",
+        "950",
+        "920"
+      ],
+      "missingUnits": [
+        "W1,100",
+        "W920",
+        "W950"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 5개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 3개 DB 미포함: W1,100, W920, W950"
+        }
+      ],
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2024_Q058",
@@ -3366,7 +3988,9 @@
       "sourcePage": 19,
       "rawBodyHash": "c587e0da8a956f73",
       "stemCoverage": 0.9938,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2024"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -3407,12 +4031,25 @@
       "sourceFile": "source/original-exams/2024.pdf",
       "sourcePage": 20,
       "rawBodyHash": "5aea342080798d34",
-      "stemCoverage": 0.8229,
-      "missingNumbers": [],
+      "stemCoverage": 0.583,
+      "missingNumbers": [
+        "1,280",
+        "1,300",
+        "1,250",
+        "2024"
+      ],
       "missingUnits": [],
       "verified": false,
-      "issues": [],
-      "issue_codes": []
+      "issues": [
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 4개 DB 미포함"
+        }
+      ],
+      "issueCodes": [
+        "missing_numbers"
+      ]
     },
     {
       "questionId": "ACC_2024_Q062",
@@ -3421,11 +4058,27 @@
       "sourceFile": "source/original-exams/2024.pdf",
       "sourcePage": 21,
       "rawBodyHash": "f348fec4f22ec66a",
-      "stemCoverage": 0.988,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.696,
+      "missingNumbers": [
+        "17,000",
+        "18,000",
+        "21,000"
+      ],
+      "missingUnits": [
+        "W18,000"
+      ],
       "verified": false,
       "issues": [
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 3개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: W18,000"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -3433,6 +4086,8 @@
         }
       ],
       "issueCodes": [
+        "missing_numbers",
+        "missing_units",
         "ocr_glued_hangul"
       ]
     },
@@ -3443,12 +4098,34 @@
       "sourceFile": "source/original-exams/2024.pdf",
       "sourcePage": 21,
       "rawBodyHash": "6e7e6ffebe1cabd8",
-      "stemCoverage": 0.9846,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.8051,
+      "missingNumbers": [
+        "11,000",
+        "9,000",
+        "1,000"
+      ],
+      "missingUnits": [
+        "W1,000",
+        "W11,000",
+        "W9,000"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 3개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 3개 DB 미포함: W1,000, W11,000, W9,000"
+        }
+      ],
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2024_Q064",
@@ -3457,20 +4134,14 @@
       "sourceFile": "source/original-exams/2024.pdf",
       "sourcePage": 21,
       "rawBodyHash": "a09eef53a799369f",
-      "stemCoverage": 0.7061,
-      "missingNumbers": [],
+      "stemCoverage": 0.9885,
+      "missingNumbers": [
+        "2024"
+      ],
       "missingUnits": [],
       "verified": false,
-      "issues": [
-        {
-          "code": "ocr_glued_hangul",
-          "severity": "warning",
-          "detail": "stem 연속 한글 45자 (원본 30자)"
-        }
-      ],
-      "issue_codes": [
-        "ocr_glued_hangul"
-      ]
+      "issues": [],
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2024_Q065",
@@ -3516,7 +4187,9 @@
       "sourcePage": 22,
       "rawBodyHash": "5677e0a04421172f",
       "stemCoverage": 0.9883,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2024"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -3561,10 +4234,20 @@
       "rawBodyHash": "bcc5c36dae448431",
       "stemCoverage": 0.9855,
       "missingNumbers": [],
-      "missingUnits": [],
+      "missingUnits": [
+        "20×2년10월\n1일"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: 20×2년10월\n1일"
+        }
+      ],
+      "issueCodes": [
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2024_Q070",
@@ -3574,11 +4257,32 @@
       "sourcePage": 23,
       "rawBodyHash": "3a80fcc1d9f70d9b",
       "stemCoverage": 0.989,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "missingNumbers": [
+        "1,200",
+        "2024",
+        "100"
+      ],
+      "missingUnits": [
+        "W1,200",
+        "W100"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 3개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 2개 DB 미포함: W1,200, W100"
+        }
+      ],
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2024_Q071",
@@ -3587,11 +4291,18 @@
       "sourceFile": "source/original-exams/2024.pdf",
       "sourcePage": 24,
       "rawBodyHash": "9d3a7cc5250d0341",
-      "stemCoverage": 0.9865,
+      "stemCoverage": 0.8874,
       "missingNumbers": [],
-      "missingUnits": [],
+      "missingUnits": [
+        "30%"
+      ],
       "verified": false,
       "issues": [
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 1개 DB 미포함: 30%"
+        },
         {
           "code": "ocr_glued_hangul",
           "severity": "warning",
@@ -3599,6 +4310,7 @@
         }
       ],
       "issueCodes": [
+        "missing_units",
         "ocr_glued_hangul"
       ]
     },
@@ -3632,7 +4344,9 @@
       "sourcePage": 24,
       "rawBodyHash": "18a9a12c6e1b954d",
       "stemCoverage": 0.9892,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2024"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -3674,7 +4388,9 @@
       "sourcePage": 25,
       "rawBodyHash": "39280c41b5fde933",
       "stemCoverage": 0.9876,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2024"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -3766,7 +4482,9 @@
       "sourcePage": 13,
       "rawBodyHash": "b9a84818705fa153",
       "stemCoverage": 0.8696,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -3779,7 +4497,7 @@
       "sourceFile": "source/original-exams/2025.pdf",
       "sourcePage": 14,
       "rawBodyHash": "4ef6991fc8628ac1",
-      "stemCoverage": 0.7818,
+      "stemCoverage": 0.9864,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -3790,7 +4508,7 @@
           "detail": "stem 연속 한글 34자 (원본 25자)"
         }
       ],
-      "issue_codes": [
+      "issueCodes": [
         "ocr_glued_hangul"
       ]
     },
@@ -3802,19 +4520,13 @@
       "sourcePage": 14,
       "rawBodyHash": "fc9eae2480891809",
       "stemCoverage": 0.986,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
-      "issues": [
-        {
-          "code": "ocr_glued_hangul",
-          "severity": "warning",
-          "detail": "stem 연속 한글 26자 (원본 17자)"
-        }
-      ],
-      "issueCodes": [
-        "ocr_glued_hangul"
-      ]
+      "issues": [],
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2025_Q045",
@@ -3823,25 +4535,42 @@
       "sourceFile": "source/original-exams/2025.pdf",
       "sourcePage": 15,
       "rawBodyHash": "09501e9f79e54e89",
-      "stemCoverage": 0.5361,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.2452,
+      "missingNumbers": [
+        "100,000",
+        "200,000",
+        "108,000",
+        "240,000",
+        "180,000"
+      ],
+      "missingUnits": [
+        "20×1년\n9월1일",
+        "W100,000",
+        "W108,000",
+        "W240,000"
+      ],
       "verified": false,
       "issues": [
         {
           "code": "stem_truncated",
           "severity": "critical",
-          "detail": "stem coverage 54% (<55%)"
+          "detail": "stem coverage 25% (<55%)"
         },
         {
-          "code": "ocr_glued_hangul",
+          "code": "missing_numbers",
           "severity": "warning",
-          "detail": "stem 연속 한글 26자 (원본 22자)"
+          "detail": "원본 숫자 5개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 4개 DB 미포함: 20×1년\n9월1일, W100,000, W108,000, W240,000"
         }
       ],
       "issue_codes": [
         "stem_truncated",
-        "ocr_glued_hangul"
+        "missing_numbers",
+        "missing_units"
       ]
     },
     {
@@ -3851,12 +4580,12 @@
       "sourceFile": "source/original-exams/2025.pdf",
       "sourcePage": 15,
       "rawBodyHash": "afccbab83b0ca688",
-      "stemCoverage": 0.6776,
+      "stemCoverage": 0.794,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [],
-      "issue_codes": []
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2025_Q047",
@@ -3865,19 +4594,39 @@
       "sourceFile": "source/original-exams/2025.pdf",
       "sourcePage": 16,
       "rawBodyHash": "5aad16f7b399a04a",
-      "stemCoverage": 0.9879,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.4476,
+      "missingNumbers": [
+        "150,000",
+        "210,000",
+        "260,000",
+        "250,000"
+      ],
+      "missingUnits": [
+        "W210,000",
+        "W250,000"
+      ],
       "verified": false,
       "issues": [
         {
-          "code": "ocr_glued_hangul",
+          "code": "stem_truncated",
+          "severity": "critical",
+          "detail": "stem coverage 45% (<55%)"
+        },
+        {
+          "code": "missing_numbers",
           "severity": "warning",
-          "detail": "stem 연속 한글 28자 (원본 21자)"
+          "detail": "원본 숫자 4개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 2개 DB 미포함: W210,000, W250,000"
         }
       ],
-      "issueCodes": [
-        "ocr_glued_hangul"
+      "issue_codes": [
+        "stem_truncated",
+        "missing_numbers",
+        "missing_units"
       ]
     },
     {
@@ -3902,11 +4651,13 @@
       "sourcePage": 16,
       "rawBodyHash": "9cf048bae0396bfb",
       "stemCoverage": 0.8421,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
-      "issue_codes": []
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2025_Q050",
@@ -3915,19 +4666,25 @@
       "sourceFile": "source/original-exams/2025.pdf",
       "sourcePage": 17,
       "rawBodyHash": "c602505561be535a",
-      "stemCoverage": 0.9875,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "stemCoverage": 0.675,
+      "missingNumbers": [
+        "380,000",
+        "410,000"
+      ],
+      "missingUnits": [
+        "W380,000",
+        "W410,000"
+      ],
       "verified": false,
       "issues": [
         {
-          "code": "ocr_glued_hangul",
+          "code": "missing_units",
           "severity": "warning",
-          "detail": "stem 연속 한글 21자 (원본 17자)"
+          "detail": "원본 단위 2개 DB 미포함: W380,000, W410,000"
         }
       ],
       "issueCodes": [
-        "ocr_glued_hangul"
+        "missing_units"
       ]
     },
     {
@@ -3960,7 +4717,9 @@
       "sourcePage": 17,
       "rawBodyHash": "58126bf704fce5e5",
       "stemCoverage": 0.9739,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -3973,7 +4732,7 @@
       "sourceFile": "source/original-exams/2025.pdf",
       "sourcePage": 18,
       "rawBodyHash": "e8205d75b973dc1e",
-      "stemCoverage": 0.9898,
+      "stemCoverage": 0.6644,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -4010,7 +4769,9 @@
       "sourcePage": 18,
       "rawBodyHash": "623e485893309047",
       "stemCoverage": 0.9845,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -4068,11 +4829,13 @@
       "sourcePage": 19,
       "rawBodyHash": "6d74a46fae4eeee2",
       "stemCoverage": 0.6678,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
-      "issue_codes": []
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2025_Q059",
@@ -4095,12 +4858,12 @@
       "sourceFile": "source/original-exams/2025.pdf",
       "sourcePage": 20,
       "rawBodyHash": "b2e67261b52b6d07",
-      "stemCoverage": 0.6514,
+      "stemCoverage": 0.9894,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
       "issues": [],
-      "issue_codes": []
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2025_Q061",
@@ -4110,7 +4873,9 @@
       "sourcePage": 20,
       "rawBodyHash": "603374072919ecc2",
       "stemCoverage": 0.9854,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -4145,7 +4910,7 @@
       "sourceFile": "source/original-exams/2025.pdf",
       "sourcePage": 21,
       "rawBodyHash": "53f4bb98c8320a07",
-      "stemCoverage": 0.9893,
+      "stemCoverage": 0.9071,
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
@@ -4168,7 +4933,9 @@
       "sourcePage": 21,
       "rawBodyHash": "26cef3b0cc2eb99e",
       "stemCoverage": 0.9924,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -4204,7 +4971,9 @@
       "sourcePage": 22,
       "rawBodyHash": "7dfa28cae837a44a",
       "stemCoverage": 0.9868,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -4235,16 +5004,8 @@
       "missingNumbers": [],
       "missingUnits": [],
       "verified": false,
-      "issues": [
-        {
-          "code": "ocr_glued_hangul",
-          "severity": "warning",
-          "detail": "stem 연속 한글 34자 (원본 31자)"
-        }
-      ],
-      "issueCodes": [
-        "ocr_glued_hangul"
-      ]
+      "issues": [],
+      "issueCodes": []
     },
     {
       "questionId": "ACC_2025_Q069",
@@ -4268,7 +5029,9 @@
       "sourcePage": 23,
       "rawBodyHash": "cf612f90cc6f162a",
       "stemCoverage": 0.963,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -4296,7 +5059,9 @@
       "sourcePage": 24,
       "rawBodyHash": "712ea925739b6195",
       "stemCoverage": 0.9874,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -4346,7 +5111,9 @@
       "sourcePage": 25,
       "rawBodyHash": "0bc92300769d28c6",
       "stemCoverage": 0.9825,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [
@@ -4396,7 +5163,9 @@
       "sourcePage": 26,
       "rawBodyHash": "56b54c0f42860600",
       "stemCoverage": 0.9831,
-      "missingNumbers": [],
+      "missingNumbers": [
+        "2025"
+      ],
       "missingUnits": [],
       "verified": false,
       "issues": [],
@@ -4410,11 +5179,33 @@
       "sourcePage": 27,
       "rawBodyHash": "0e24702365747d4c",
       "stemCoverage": 0.985,
-      "missingNumbers": [],
-      "missingUnits": [],
+      "missingNumbers": [
+        "17,000",
+        "50,000",
+        "41,000"
+      ],
+      "missingUnits": [
+        "W17,000",
+        "W41,000",
+        "W50,000"
+      ],
       "verified": false,
-      "issues": [],
-      "issueCodes": []
+      "issues": [
+        {
+          "code": "missing_numbers",
+          "severity": "warning",
+          "detail": "원본 숫자 3개 DB 미포함"
+        },
+        {
+          "code": "missing_units",
+          "severity": "warning",
+          "detail": "원본 단위 3개 DB 미포함: W17,000, W41,000, W50,000"
+        }
+      ],
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units"
+      ]
     },
     {
       "questionId": "ACC_2025_Q080",

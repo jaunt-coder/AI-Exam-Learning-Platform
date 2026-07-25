@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q062",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 62,
+  "page": 22,
+  "stem": "(주)감평은\n20x1년\n1월\n1일에\n액면금액\n￦1,000,000(표시이자율\n연\n8%,\n매년말이자지급, 만기3년)의사채를발행하였다. 발행당시시장이자율\n은연13%이다. 20x1년12월31일현재동사채의장부금액은￦916,594\n이다. 동사채와관련하여(주)감평이20x3년도인식할이자비용은? (단,\n단수차이로인한오차가있으면가장근사치를선택한다.)",
+  "choices": [
+    "￦103,116",
+    "￦107,026",
+    "￦119,157",
+    "￦124,248",
+    "￦132,245"
+  ],
+  "answer": 4,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "62. (주)감평은\n20x1년\n1월\n1일에\n액면금액\n￦1,000,000(표시이자율\n연\n8%,\n매년말이자지급, 만기3년)의사채를발행하였다. 발행당시시장이자율\n은연13%이다. 20x1년12월31일현재동사채의장부금액은￦916,594\n이다. 동사채와관련하여(주)감평이20x3년도인식할이자비용은? (단,\n단수차이로인한오차가있으면가장근사치를선택한다.)\n①￦103,116\n②￦107,026\n③￦119,157\n④￦124,248\n⑤￦132,245",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "④",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.516450+00:00",
+    "status": "joined"
+  }
+}

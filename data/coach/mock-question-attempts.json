@@ -1,0 +1,67 @@
+[
+  {
+    "attemptId": "att_001",
+    "userId": "001",
+    "questionId": "ACC_2015_Q044",
+    "patternId": "ACC_INV_003",
+    "answer": 2,
+    "correct": false,
+    "solvingTime": 95,
+    "errorType": "개념 오류",
+    "difficulty": "medium",
+    "source": "practice",
+    "createdAt": "2026-07-18T10:00:00.000Z"
+  },
+  {
+    "attemptId": "att_002",
+    "userId": "001",
+    "questionId": "ACC_2017_Q049",
+    "patternId": "ACC_INV_003",
+    "answer": 1,
+    "correct": false,
+    "solvingTime": 110,
+    "errorType": "개념 오류",
+    "difficulty": "medium",
+    "source": "practice",
+    "createdAt": "2026-07-18T10:15:00.000Z"
+  },
+  {
+    "attemptId": "att_003",
+    "userId": "001",
+    "questionId": "ACC_2018_Q052",
+    "patternId": "ACC_PPE_002",
+    "answer": 3,
+    "correct": false,
+    "solvingTime": 140,
+    "errorType": "계산 오류",
+    "difficulty": "hard",
+    "source": "exam",
+    "createdAt": "2026-07-19T09:00:00.000Z"
+  },
+  {
+    "attemptId": "att_004",
+    "userId": "001",
+    "questionId": "ACC_2020_Q053",
+    "patternId": "ACC_EQ_001",
+    "answer": 4,
+    "correct": true,
+    "solvingTime": 60,
+    "errorType": null,
+    "difficulty": "medium",
+    "source": "practice",
+    "createdAt": "2026-07-19T11:00:00.000Z"
+  },
+  {
+    "attemptId": "att_005",
+    "userId": "001",
+    "questionId": "ACC_2024_Q046",
+    "patternId": "ACC_INV_003",
+    "answer": 5,
+    "correct": false,
+    "solvingTime": 88,
+    "errorType": "조건 누락",
+    "difficulty": "medium",
+    "source": "practice",
+    "createdAt": "2026-07-20T08:30:00.000Z"
+  }
+]

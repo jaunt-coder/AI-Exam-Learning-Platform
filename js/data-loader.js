@@ -44,6 +44,49 @@ const PHASE1_PATHS = {
 const CHOICE_SYMBOLS = ['①', '②', '③', '④', '⑤'];
 const ALLOWED_SOURCE_TYPES = new Set(['past_exam', 'original_exam']);
 
+/** Inventory MVP scope (Plane C filter — D3/D4 파일 미변경) */
+export const INVENTORY_CHAPTER_ID = 'ACC_INV';
+export const INVENTORY_PATTERN_PREFIX = 'ACC_INV_';
+
+/**
+ * @param {string|null|undefined} patternId
+ * @returns {boolean}
+ */
+export function isInventoryPatternId(patternId) {
+  return typeof patternId === 'string' && patternId.startsWith(INVENTORY_PATTERN_PREFIX);
+}
+
+/**
+ * 재고자산(ACC_INV_*) Pattern·문항·통계만 남긴다. DB 파일은 읽기만 한다.
+ * @param {{ patterns?: array, questions?: array, statistics?: array }} payload
+ */
+export function filterInventoryScope(payload = {}) {
+  const patterns = Array.isArray(payload.patterns) ? payload.patterns : [];
+  const questions = Array.isArray(payload.questions) ? payload.questions : [];
+  const statistics = Array.isArray(payload.statistics) ? payload.statistics : [];
+
+  const invPatterns = patterns.filter(
+    (p) =>
+      p?.chapterId === INVENTORY_CHAPTER_ID || isInventoryPatternId(p?.patternId),
+  );
+  const invPatternIds = new Set(invPatterns.map((p) => p.patternId));
+
+  const invQuestions = questions.filter(
+    (q) =>
+      q?.chapterId === INVENTORY_CHAPTER_ID ||
+      invPatternIds.has(q?.patternId) ||
+      isInventoryPatternId(q?.patternId),
+  );
+
+  const invStatistics = statistics.filter((s) => invPatternIds.has(s?.patternId));
+
+  return {
+    patterns: invPatterns,
+    questions: invQuestions,
+    statistics: invStatistics,
+  };
+}
+
 /**
  * JSON 파일을 fetch하여 파싱한다.
  * @param {string} path

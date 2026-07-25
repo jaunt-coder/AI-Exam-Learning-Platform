@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q063",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 63,
+  "page": 22,
+  "stem": "(주)감평은20x1년초투자목적으로건물을￦2,000,000에취득하여공정가\n치모형을적용하였다. 건물의공정가치변동이다음과같을떄, (주)감평의\n20x2년도당기순이익에미치는영향은? (단, 필요할경우건물에대해내용\n연수8년, 잔존가치￦0, 정액법으로감가상각한다.)\n20x1년말\n20x2년말\n공정가치\n￦1,900,000\n￦1,800,000",
+  "choices": [
+    "영향없음",
+    "￦100,000 감소",
+    "￦200,000 감소",
+    "￦350,000 감소",
+    "￦450,000 감소"
+  ],
+  "answer": 2,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "63. (주)감평은20x1년초투자목적으로건물을￦2,000,000에취득하여공정가\n치모형을적용하였다. 건물의공정가치변동이다음과같을떄, (주)감평의\n20x2년도당기순이익에미치는영향은? (단, 필요할경우건물에대해내용\n연수8년, 잔존가치￦0, 정액법으로감가상각한다.)\n20x1년말\n20x2년말\n공정가치\n￦1,900,000\n￦1,800,000\n①영향없음\n②￦100,000 감소\n③￦200,000 감소\n④￦350,000 감소\n⑤￦450,000 감소",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "②",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.518445+00:00",
+    "status": "joined"
+  }
+}

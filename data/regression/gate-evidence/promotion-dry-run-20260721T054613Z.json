@@ -1,0 +1,25 @@
+{
+  "workOrder": "WO-20260721-001",
+  "sprint": "RC2-E8",
+  "timestamp": "20260721T054613Z",
+  "mode": "dry-run",
+  "command": [
+    "py",
+    "-3",
+    "scripts/promote-parser-emit.py"
+  ],
+  "forbiddenFlags": [
+    "--apply",
+    "--write-candidate"
+  ],
+  "returncode": 0,
+  "productTouched": false,
+  "patternTouched": false,
+  "notes": [
+    "Evidence reproduction only.",
+    "Does not change PROMOTION_READY policy or resolve G6/ADR-001.",
+    "Observed READY value is recorded, not rewritten."
+  ],
+  "promotionReadyObserved": "NO",
+  "gateHardChecksObserved": "FAIL"
+}

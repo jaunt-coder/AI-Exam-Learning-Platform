@@ -1,0 +1,10 @@
+{
+  "ok": false,
+  "method": "ole-zlib-section-scan",
+  "note": "HWP binary probe did not yield reliable answer key text. Answer join HOLD until Human VERIFY_EXPORT (WO-010 D-primary).",
+  "streamCount": 13,
+  "charCount": 0,
+  "humanVerifyExportRequired": true,
+  "sourcePath": "source/past-exams/2018/answer.hwp",
+  "sourceSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595"
+}

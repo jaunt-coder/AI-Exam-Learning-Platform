@@ -1,0 +1,251 @@
+{
+  "years": [
+    2015,
+    2017,
+    2018,
+    2020,
+    2024,
+    2025
+  ],
+  "questionsExpected": 240,
+  "boundary": {
+    "2015": {
+      "detected": 40,
+      "missing": [],
+      "duplicates": {},
+      "foreign": [],
+      "dbQuestions": 40
+    },
+    "2017": {
+      "detected": 40,
+      "missing": [],
+      "duplicates": {},
+      "foreign": [],
+      "dbQuestions": 40
+    },
+    "2018": {
+      "detected": 40,
+      "missing": [],
+      "duplicates": {},
+      "foreign": [],
+      "dbQuestions": 40
+    },
+    "2020": {
+      "detected": 40,
+      "missing": [],
+      "duplicates": {},
+      "foreign": [],
+      "dbQuestions": 40
+    },
+    "2024": {
+      "detected": 40,
+      "missing": [],
+      "duplicates": {},
+      "foreign": [],
+      "dbQuestions": 40
+    },
+    "2025": {
+      "detected": 40,
+      "missing": [],
+      "duplicates": {},
+      "foreign": [],
+      "dbQuestions": 40
+    }
+  },
+  "boundaryTotals": {
+    "detected": 240,
+    "missing": 0,
+    "duplicates": 0,
+    "foreign": 0
+  },
+  "perYear": {
+    "2015": {
+      "before": {
+        "numberRecall": 0.9475,
+        "currencyRecall": 1.0,
+        "yearRecall": 1.0,
+        "tokenPreservation": 0.9558,
+        "totals": {
+          "numbers": 324,
+          "currency": 14,
+          "years": 43,
+          "tokens": 407
+        }
+      },
+      "after": {
+        "numberRecall": 0.8179,
+        "currencyRecall": 0.8571,
+        "yearRecall": 0.907,
+        "tokenPreservation": 0.8305,
+        "totals": {
+          "numbers": 324,
+          "currency": 14,
+          "years": 43,
+          "tokens": 407
+        }
+      }
+    },
+    "2017": {
+      "before": {
+        "numberRecall": 0.9581,
+        "currencyRecall": 0.9723,
+        "yearRecall": 0.9035,
+        "tokenPreservation": 0.9521,
+        "totals": {
+          "numbers": 334,
+          "currency": 253,
+          "years": 114,
+          "tokens": 730
+        }
+      },
+      "after": {
+        "numberRecall": 1.0,
+        "currencyRecall": 1.0,
+        "yearRecall": 1.0,
+        "tokenPreservation": 1.0,
+        "totals": {
+          "numbers": 334,
+          "currency": 253,
+          "years": 114,
+          "tokens": 730
+        }
+      }
+    },
+    "2018": {
+      "before": {
+        "numberRecall": 0.9556,
+        "currencyRecall": 0.9482,
+        "yearRecall": 0.9412,
+        "tokenPreservation": 0.951,
+        "totals": {
+          "numbers": 338,
+          "currency": 251,
+          "years": 102,
+          "tokens": 714
+        }
+      },
+      "after": {
+        "numberRecall": 1.0,
+        "currencyRecall": 1.0,
+        "yearRecall": 1.0,
+        "tokenPreservation": 1.0,
+        "totals": {
+          "numbers": 338,
+          "currency": 251,
+          "years": 102,
+          "tokens": 714
+        }
+      }
+    },
+    "2020": {
+      "before": {
+        "numberRecall": 0.9867,
+        "currencyRecall": 0.99,
+        "yearRecall": 0.9474,
+        "tokenPreservation": 0.9807,
+        "totals": {
+          "numbers": 375,
+          "currency": 299,
+          "years": 114,
+          "tokens": 827
+        }
+      },
+      "after": {
+        "numberRecall": 1.0,
+        "currencyRecall": 1.0,
+        "yearRecall": 1.0,
+        "tokenPreservation": 1.0,
+        "totals": {
+          "numbers": 375,
+          "currency": 299,
+          "years": 114,
+          "tokens": 827
+        }
+      }
+    },
+    "2024": {
+      "before": {
+        "numberRecall": 0.951,
+        "currencyRecall": 0.9426,
+        "yearRecall": 0.9737,
+        "tokenPreservation": 0.9539,
+        "totals": {
+          "numbers": 286,
+          "currency": 209,
+          "years": 114,
+          "tokens": 651
+        }
+      },
+      "after": {
+        "numberRecall": 1.0,
+        "currencyRecall": 1.0,
+        "yearRecall": 1.0,
+        "tokenPreservation": 1.0,
+        "totals": {
+          "numbers": 286,
+          "currency": 209,
+          "years": 114,
+          "tokens": 651
+        }
+      }
+    },
+    "2025": {
+      "before": {
+        "numberRecall": 0.9609,
+        "currencyRecall": 0.9703,
+        "yearRecall": 0.9901,
+        "tokenPreservation": 0.9689,
+        "totals": {
+          "numbers": 307,
+          "currency": 236,
+          "years": 101,
+          "tokens": 644
+        }
+      },
+      "after": {
+        "numberRecall": 1.0,
+        "currencyRecall": 1.0,
+        "yearRecall": 1.0,
+        "tokenPreservation": 1.0,
+        "totals": {
+          "numbers": 307,
+          "currency": 236,
+          "years": 101,
+          "tokens": 644
+        }
+      }
+    }
+  },
+  "overall": {
+    "before": {
+      "numberRecall": 0.9608,
+      "currencyRecall": 0.9667,
+      "yearRecall": 0.9541,
+      "tokenPreservation": 0.9612,
+      "totals": {
+        "numbers": 1964,
+        "currency": 1262,
+        "years": 588,
+        "tokens": 3973
+      }
+    },
+    "after": {
+      "numberRecall": 0.97,
+      "currencyRecall": 0.9984,
+      "yearRecall": 0.9932,
+      "tokenPreservation": 0.9826,
+      "totals": {
+        "numbers": 1964,
+        "currency": 1262,
+        "years": 588,
+        "tokens": 3973
+      }
+    }
+  },
+  "tokenLayer": {
+    "sourceTokens": 3973,
+    "trueLoss": 0,
+    "sliceDrift": 69,
+    "truePreservation": 1.0
+  }
+}

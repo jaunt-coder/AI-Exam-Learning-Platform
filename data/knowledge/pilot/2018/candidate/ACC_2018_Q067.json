@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q067",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 67,
+  "page": 23,
+  "stem": "재고자산에관한설명으로옳지않은것은?",
+  "choices": [
+    "재료원가, 노무원가및기타제조원가중비정상적으로낭비된부분은재고자산의\n취득원가에포함시키지않고발생기간의비용으로인식한다.",
+    "제작기간이단기간인재고자산은차입원가를자본화할수있는적격자산에해\n당되지아니한다.",
+    "매입거래처로부터매입수량이나매입금액의일정률만큼리베이트를수령할경우\n이를수익으로인식하지않고재고자산매입원가에서차감한다.",
+    "기말재고자산은취득원가와순실현가능가치중낮은금액으로측정한다.",
+    "가격변동이익이나중개이익을목적으로옥수수, 구리, 석유등의상품을취득하여\n단기간내에매도하는기업은순공정가치의변동을기타포괄손익으로인식한다.\n\n\n\n2018년제29회감정평가사1차-2교시-A-28-24"
+  ],
+  "answer": 5,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "67. 재고자산에관한설명으로옳지않은것은?\n①재료원가, 노무원가및기타제조원가중비정상적으로낭비된부분은재고자산의\n취득원가에포함시키지않고발생기간의비용으로인식한다.\n②제작기간이단기간인재고자산은차입원가를자본화할수있는적격자산에해\n당되지아니한다.\n③매입거래처로부터매입수량이나매입금액의일정률만큼리베이트를수령할경우\n이를수익으로인식하지않고재고자산매입원가에서차감한다.\n④기말재고자산은취득원가와순실현가능가치중낮은금액으로측정한다.\n⑤가격변동이익이나중개이익을목적으로옥수수, 구리, 석유등의상품을취득하여\n단기간내에매도하는기업은순공정가치의변동을기타포괄손익으로인식한다.\n\n\n\n2018년제29회감정평가사1차-2교시-A-28-24",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "⑤",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.526424+00:00",
+    "status": "joined"
+  }
+}

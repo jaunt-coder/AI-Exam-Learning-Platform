@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q055",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 55,
+  "page": 20,
+  "stem": "(주)감평의20x1년도희석주당이익은? (단, 전환우선주전환이외의보통주식\n수의변동은없으며, 유통보통주식수계산시월할계산한다. 또한계산결과는\n가장근사치를선택한다.)\n○20x1년도당기순이익: ￦1,049,000\n○기초유통보통주식수: 20,000주(주당액면금액￦1,000)\n○기초유통우선주식수: 5,000주(전환우선주, 주당액면금액￦1,000, 전환\n비율1:1)\n○전환우선주: 회계연도말까지미전환된부분에대해서액면금액의8%\n배당(전년도에는배당가능이익이부족하여배당금을지급하지못하였으\n나, 20x1년도에는전년도배당금까지포함하여지급할예정)\n○20x1년5월1일: 전환우선주900주가보통주로전환되고나머지는기말\n까지미전환",
+  "choices": [
+    "￦30",
+    "￦32",
+    "￦35",
+    "￦37",
+    "￦42"
+  ],
+  "answer": 3,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "55. (주)감평의20x1년도희석주당이익은? (단, 전환우선주전환이외의보통주식\n수의변동은없으며, 유통보통주식수계산시월할계산한다. 또한계산결과는\n가장근사치를선택한다.)\n○20x1년도당기순이익: ￦1,049,000\n○기초유통보통주식수: 20,000주(주당액면금액￦1,000)\n○기초유통우선주식수: 5,000주(전환우선주, 주당액면금액￦1,000, 전환\n비율1:1)\n○전환우선주: 회계연도말까지미전환된부분에대해서액면금액의8%\n배당(전년도에는배당가능이익이부족하여배당금을지급하지못하였으\n나, 20x1년도에는전년도배당금까지포함하여지급할예정)\n○20x1년5월1일: 전환우선주900주가보통주로전환되고나머지는기말\n까지미전환\n①￦30\n②￦32\n③￦35\n④￦37\n⑤￦42",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "③",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.504483+00:00",
+    "status": "joined"
+  }
+}

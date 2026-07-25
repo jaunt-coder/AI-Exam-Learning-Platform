@@ -1,0 +1,37 @@
+{
+  "questionId": "ACC_2018_Q069",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 69,
+  "page": 24,
+  "stem": "(주)감평은\n20x3년\n초\n건물을\n￦41,500에\n취득(내용연수\n10년,\n잔존가치\n￦1,500,\n정액법\n상각)하여\n사용하고\n있으며,\n20x5년\n중\n손상이\n발생하여\n20x5년말회수가능액은￦22,500으로추정되었다. 20x6년말건물의회수\n가능액은￦26,000인것으로추정되었다. 동건물에대해원가모형을적용하\n는경우다음설명중옳지않은것은?",
+  "choices": [
+    "20x5년말손상을인식하기전의건물의장부금액은￦29,500이다.",
+    "20x5년건물의손상차손은￦7,000이다.",
+    "20x6년건물의감가상각비는￦3,000이다.",
+    "20x6년말손상이회복된이후건물의장부금액은￦25,500이다.",
+    "20x6년건물의손상차손환입액은￦6,500이다."
+  ],
+  "answer": 5,
+  "answerLabel": "⑤",
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "69. (주)감평은\n20x3년\n초\n건물을\n￦41,500에\n취득(내용연수\n10년,\n잔존가치\n￦1,500,\n정액법\n상각)하여\n사용하고\n있으며,\n20x5년\n중\n손상이\n발생하여\n20x5년말회수가능액은￦22,500으로추정되었다. 20x6년말건물의회수\n가능액은￦26,000인것으로추정되었다. 동건물에대해원가모형을적용하\n는경우다음설명중옳지않은것은?\n①20x5년말손상을인식하기전의건물의장부금액은￦29,500이다.\n②20x5년건물의손상차손은￦7,000이다.\n③20x6년건물의감가상각비는￦3,000이다.\n④20x6년말손상이회복된이후건물의장부금액은￦25,500이다.\n⑤20x6년건물의손상차손환입액은￦6,500이다.",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:44:00+00:00",
+    "status": "joined",
+    "humanConfirm": "Q69 CONFIRM answer=5"
+  }
+}

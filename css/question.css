@@ -778,3 +778,63 @@
     font-size: 1.75rem;
   }
 }
+
+/* Inventory MVP v0.1 — result pattern / bookmark */
+.question-toolbar {
+  margin: 0.5rem 0 1rem;
+}
+
+#bookmark-btn.is-active {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.result-pattern {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.result-pattern__label {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.result-pattern__link {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.result-pattern__link:hover {
+  text-decoration: underline;
+}
+
+.result-pattern__id {
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.result-pattern__meta {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.hero-eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+}
+
+.home-actions__hint {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}

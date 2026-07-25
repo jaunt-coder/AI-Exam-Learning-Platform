@@ -1,0 +1,514 @@
+{
+  "schemaVersion": "1.0.0",
+  "manifestType": "human_answer_manifest",
+  "sprintId": "KS-ACC-LOSSLESS-GOLDEN",
+  "woId": "WO-20260722-012",
+  "phase": "B-join",
+  "updatedAt": "2026-07-22T15:43:35.553352+00:00",
+  "scope": {
+    "year": 2018,
+    "subject": "회계학",
+    "questionNoStart": 41,
+    "questionNoEnd": 80,
+    "expectedCount": 40
+  },
+  "source": {
+    "path": "source/past-exams/2018/answer.hwp",
+    "sha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "bytes": 219136,
+    "inventoryRef": "data/knowledge/inventory/past-exams-inventory.json",
+    "rehashAtJoin": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "sourceUnchanged": true
+  },
+  "files": {
+    "tsv": {
+      "path": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+        "sha256": "8048c94239dbd79c22b398135ae8c46e6787865ea050eb3af0951d673915e947",
+        "bytes": 497,
+      "encoding": "utf-8",
+      "columns": [
+        "questionNo",
+        "answer",
+        "answerLabel",
+        "notes"
+      ],
+      "note": "Normalized from answerLabel column into answer"
+    },
+    "relatedPdfExport": {
+      "path": "data/knowledge/raw/hwp-export/2018/answer/answer-export.pdf",
+      "role": "human_visual_reference_only",
+      "goldenEvidence": false,
+      "ocrUsed": false
+    }
+  },
+  "fillRules": {
+    "answer": "integer 1-5",
+    "ocr": "FORBIDDEN",
+    "parserProductCopy": "FORBIDDEN as Human SoT"
+  },
+  "entries": [
+    {
+      "questionNo": 41,
+      "questionId": "ACC_2018_Q041",
+      "answer": 1,
+      "answerLabel": "①",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "1"
+    },
+    {
+      "questionNo": 42,
+      "questionId": "ACC_2018_Q042",
+      "answer": 3,
+      "answerLabel": "③",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "3"
+    },
+    {
+      "questionNo": 43,
+      "questionId": "ACC_2018_Q043",
+      "answer": 5,
+      "answerLabel": "⑤",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "5"
+    },
+    {
+      "questionNo": 44,
+      "questionId": "ACC_2018_Q044",
+      "answer": 5,
+      "answerLabel": "⑤",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "5"
+    },
+    {
+      "questionNo": 45,
+      "questionId": "ACC_2018_Q045",
+      "answer": 2,
+      "answerLabel": "②",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "2"
+    },
+    {
+      "questionNo": 46,
+      "questionId": "ACC_2018_Q046",
+      "answer": 3,
+      "answerLabel": "③",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "3"
+    },
+    {
+      "questionNo": 47,
+      "questionId": "ACC_2018_Q047",
+      "answer": 3,
+      "answerLabel": "③",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "3"
+    },
+    {
+      "questionNo": 48,
+      "questionId": "ACC_2018_Q048",
+      "answer": 1,
+      "answerLabel": "①",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "1"
+    },
+    {
+      "questionNo": 49,
+      "questionId": "ACC_2018_Q049",
+      "answer": 2,
+      "answerLabel": "②",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "2"
+    },
+    {
+      "questionNo": 50,
+      "questionId": "ACC_2018_Q050",
+      "answer": 1,
+      "answerLabel": "①",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "1"
+    },
+    {
+      "questionNo": 51,
+      "questionId": "ACC_2018_Q051",
+      "answer": 1,
+      "answerLabel": "①",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "1"
+    },
+    {
+      "questionNo": 52,
+      "questionId": "ACC_2018_Q052",
+      "answer": 5,
+      "answerLabel": "⑤",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "5"
+    },
+    {
+      "questionNo": 53,
+      "questionId": "ACC_2018_Q053",
+      "answer": 4,
+      "answerLabel": "④",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "4"
+    },
+    {
+      "questionNo": 54,
+      "questionId": "ACC_2018_Q054",
+      "answer": 2,
+      "answerLabel": "②",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "2"
+    },
+    {
+      "questionNo": 55,
+      "questionId": "ACC_2018_Q055",
+      "answer": 3,
+      "answerLabel": "③",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "3"
+    },
+    {
+      "questionNo": 56,
+      "questionId": "ACC_2018_Q056",
+      "answer": 3,
+      "answerLabel": "③",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "3"
+    },
+    {
+      "questionNo": 57,
+      "questionId": "ACC_2018_Q057",
+      "answer": 2,
+      "answerLabel": "②",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "2"
+    },
+    {
+      "questionNo": 58,
+      "questionId": "ACC_2018_Q058",
+      "answer": 3,
+      "answerLabel": "③",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "3"
+    },
+    {
+      "questionNo": 59,
+      "questionId": "ACC_2018_Q059",
+      "answer": 2,
+      "answerLabel": "②",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "2"
+    },
+    {
+      "questionNo": 60,
+      "questionId": "ACC_2018_Q060",
+      "answer": 2,
+      "answerLabel": "②",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "2"
+    },
+    {
+      "questionNo": 61,
+      "questionId": "ACC_2018_Q061",
+      "answer": 4,
+      "answerLabel": "④",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "4"
+    },
+    {
+      "questionNo": 62,
+      "questionId": "ACC_2018_Q062",
+      "answer": 4,
+      "answerLabel": "④",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "4"
+    },
+    {
+      "questionNo": 63,
+      "questionId": "ACC_2018_Q063",
+      "answer": 2,
+      "answerLabel": "②",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "2"
+    },
+    {
+      "questionNo": 64,
+      "questionId": "ACC_2018_Q064",
+      "answer": 2,
+      "answerLabel": "②",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "2"
+    },
+    {
+      "questionNo": 65,
+      "questionId": "ACC_2018_Q065",
+      "answer": 4,
+      "answerLabel": "④",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "4"
+    },
+    {
+      "questionNo": 66,
+      "questionId": "ACC_2018_Q066",
+      "answer": 4,
+      "answerLabel": "④",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "4"
+    },
+    {
+      "questionNo": 67,
+      "questionId": "ACC_2018_Q067",
+      "answer": 5,
+      "answerLabel": "⑤",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "5"
+    },
+    {
+      "questionNo": 68,
+      "questionId": "ACC_2018_Q068",
+      "answer": 1,
+      "answerLabel": "①",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "1"
+    },
+    {
+      "questionNo": 69,
+      "questionId": "ACC_2018_Q069",
+      "answer": 5,
+      "answerLabel": "⑤",
+      "status": "ok",
+      "sourceColumn": "human_confirm",
+      "notes": "Q69 CONFIRM answer=5",
+      "rawAnswer": "5",
+      "rawLabel": "5"
+    },
+    {
+      "questionNo": 70,
+      "questionId": "ACC_2018_Q070",
+      "answer": 2,
+      "answerLabel": "②",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "2"
+    },
+    {
+      "questionNo": 71,
+      "questionId": "ACC_2018_Q071",
+      "answer": 1,
+      "answerLabel": "①",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "1"
+    },
+    {
+      "questionNo": 72,
+      "questionId": "ACC_2018_Q072",
+      "answer": 1,
+      "answerLabel": "①",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "1"
+    },
+    {
+      "questionNo": 73,
+      "questionId": "ACC_2018_Q073",
+      "answer": 3,
+      "answerLabel": "③",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "3"
+    },
+    {
+      "questionNo": 74,
+      "questionId": "ACC_2018_Q074",
+      "answer": 4,
+      "answerLabel": "④",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "4"
+    },
+    {
+      "questionNo": 75,
+      "questionId": "ACC_2018_Q075",
+      "answer": 4,
+      "answerLabel": "④",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "4"
+    },
+    {
+      "questionNo": 76,
+      "questionId": "ACC_2018_Q076",
+      "answer": 1,
+      "answerLabel": "①",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "1"
+    },
+    {
+      "questionNo": 77,
+      "questionId": "ACC_2018_Q077",
+      "answer": 2,
+      "answerLabel": "②",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "2"
+    },
+    {
+      "questionNo": 78,
+      "questionId": "ACC_2018_Q078",
+      "answer": 5,
+      "answerLabel": "⑤",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "5"
+    },
+    {
+      "questionNo": 79,
+      "questionId": "ACC_2018_Q079",
+      "answer": 5,
+      "answerLabel": "⑤",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "5"
+    },
+    {
+      "questionNo": 80,
+      "questionId": "ACC_2018_Q080",
+      "answer": 1,
+      "answerLabel": "①",
+      "status": "ok",
+      "sourceColumn": "answerLabel",
+      "notes": "",
+      "rawAnswer": "",
+      "rawLabel": "1"
+    }
+  ],
+    "counts": {
+      "total": 40,
+      "filledDeclared": 40,
+      "joined": 40,
+      "outOfRange": 0,
+      "missing": 0
+    },
+    "issues": [],
+    "verification": {
+      "status": "attested",
+      "attested": true,
+      "ocrUsed": false,
+      "joinEligible": true,
+      "humanDeclared": {
+        "filled": "40/40",
+        "sourceUnchanged": true,
+        "ocr": false
+      },
+      "humanConfirm": {
+        "Q69": "answer=5"
+      },
+      "notes": "40/40 joined after Q69 CONFIRM answer=5"
+    }
+}

@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q057",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 57,
+  "page": 20,
+  "stem": "(주)감평은20x1년초에부여일로부터3년의지속적인용역제공을조건으로직\n원100명에게주식선택권을1인당10개씩부여하였다. 20x1년초주식선택권의\n단위당공정가치는￦150이며, 주식선택권은20x4년초부터행사할수있다.\n(주)감평의연도별실제퇴직자수및추가퇴직예상자수는다음과같다.\n실제퇴직자수\n추가퇴직예상자수\n20x1년말\n5명\n15명\n20x2년말\n8명\n17명\n(주)감평은20x1년말에주식선택권의행사가격을높이는조건변경을하였으며,\n이러한조건변경으로주식선택권의단위당공정가치가￦30 감소하였다. 20x2\n년도인식할보상비용은?",
+  "choices": [
+    "￦16,000",
+    "￦30,000",
+    "￦40,000",
+    "￦56,000",
+    "￦70,000\n\n\n\n2018년제29회감정평가사1차-2교시-A-28-21"
+  ],
+  "answer": 2,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "57. (주)감평은20x1년초에부여일로부터3년의지속적인용역제공을조건으로직\n원100명에게주식선택권을1인당10개씩부여하였다. 20x1년초주식선택권의\n단위당공정가치는￦150이며, 주식선택권은20x4년초부터행사할수있다.\n(주)감평의연도별실제퇴직자수및추가퇴직예상자수는다음과같다.\n실제퇴직자수\n추가퇴직예상자수\n20x1년말\n5명\n15명\n20x2년말\n8명\n17명\n(주)감평은20x1년말에주식선택권의행사가격을높이는조건변경을하였으며,\n이러한조건변경으로주식선택권의단위당공정가치가￦30 감소하였다. 20x2\n년도인식할보상비용은?\n①￦16,000\n②￦30,000\n③￦40,000\n④￦56,000\n⑤￦70,000\n\n\n\n2018년제29회감정평가사1차-2교시-A-28-21",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "②",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.509470+00:00",
+    "status": "joined"
+  }
+}

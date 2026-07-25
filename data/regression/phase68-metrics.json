@@ -1,0 +1,135 @@
+{
+  "years": [
+    2015,
+    2017,
+    2018,
+    2020,
+    2024,
+    2025
+  ],
+  "overall": {
+    "semanticScore": 0.9999,
+    "semanticScore100": 99.99,
+    "semanticViolationCount": 1,
+    "semanticErrorCount": 0,
+    "semanticWarnCount": 1,
+    "headerValidationAccuracy": 1.0,
+    "numericContextAccuracy": 1.0,
+    "blankCellRatio": 0.2499,
+    "orphanTokenCount": 0,
+    "tableConsistencyScore": 1.0,
+    "choiceAccuracy": 1.0,
+    "orphanRepairs": 39
+  },
+  "perYear": {
+    "2015": {
+      "documentScore": 99.92,
+      "tableScore": 99.77,
+      "errorCount": 0,
+      "warnCount": 1,
+      "orphanTokenCount": 0,
+      "orphanRepairs": 39,
+      "blankCellRatioMean": 0.5369,
+      "headerValidationAccuracy": 1.0,
+      "numericContextAccuracy": 1.0,
+      "tableConsistencyMean": 1.0,
+      "choiceAccuracy": 1.0,
+      "tableQuestionCount": 13
+    },
+    "2017": {
+      "documentScore": 100.0,
+      "tableScore": 100.0,
+      "errorCount": 0,
+      "warnCount": 0,
+      "orphanTokenCount": 0,
+      "orphanRepairs": 0,
+      "blankCellRatioMean": 0.2028,
+      "headerValidationAccuracy": 1.0,
+      "numericContextAccuracy": 1.0,
+      "tableConsistencyMean": 1.0,
+      "choiceAccuracy": 1.0,
+      "tableQuestionCount": 18
+    },
+    "2018": {
+      "documentScore": 100.0,
+      "tableScore": 100.0,
+      "errorCount": 0,
+      "warnCount": 0,
+      "orphanTokenCount": 0,
+      "orphanRepairs": 0,
+      "blankCellRatioMean": 0.179,
+      "headerValidationAccuracy": 1.0,
+      "numericContextAccuracy": 1.0,
+      "tableConsistencyMean": 1.0,
+      "choiceAccuracy": 1.0,
+      "tableQuestionCount": 16
+    },
+    "2020": {
+      "documentScore": 100.0,
+      "tableScore": 100.0,
+      "errorCount": 0,
+      "warnCount": 0,
+      "orphanTokenCount": 0,
+      "orphanRepairs": 0,
+      "blankCellRatioMean": 0.1984,
+      "headerValidationAccuracy": 1.0,
+      "numericContextAccuracy": 1.0,
+      "tableConsistencyMean": 1.0,
+      "choiceAccuracy": 1.0,
+      "tableQuestionCount": 16
+    },
+    "2024": {
+      "documentScore": 100.0,
+      "tableScore": 100.0,
+      "errorCount": 0,
+      "warnCount": 0,
+      "orphanTokenCount": 0,
+      "orphanRepairs": 0,
+      "blankCellRatioMean": 0.1904,
+      "headerValidationAccuracy": 1.0,
+      "numericContextAccuracy": 1.0,
+      "tableConsistencyMean": 1.0,
+      "choiceAccuracy": 1.0,
+      "tableQuestionCount": 14
+    },
+    "2025": {
+      "documentScore": 100.0,
+      "tableScore": 100.0,
+      "errorCount": 0,
+      "warnCount": 0,
+      "orphanTokenCount": 0,
+      "orphanRepairs": 0,
+      "blankCellRatioMean": 0.1916,
+      "headerValidationAccuracy": 1.0,
+      "numericContextAccuracy": 1.0,
+      "tableConsistencyMean": 1.0,
+      "choiceAccuracy": 1.0,
+      "tableQuestionCount": 15
+    }
+  },
+  "violations": [
+    {
+      "year": 2015,
+      "rule": "BlankCellRule",
+      "severity": "warn",
+      "message": "빈 셀 비율이 높음 (75%)",
+      "questionNumber": 43,
+      "tableIndex": 0,
+      "detail": {
+        "blank": 36,
+        "total": 48,
+        "ratio": 0.75
+      }
+    }
+  ],
+  "targets": {
+    "semanticScore": 0.99,
+    "semanticErrorCount": 0,
+    "orphanTokenCount": 0
+  },
+  "targetsMet": {
+    "semanticScore": true,
+    "semanticErrorCount": true,
+    "orphanTokenCount": true
+  }
+}

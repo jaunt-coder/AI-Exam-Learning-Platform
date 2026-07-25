@@ -1,0 +1,149 @@
+{
+  "engine": "pymupdf.get_text(text)",
+  "ocrUsed": false,
+  "pages": [
+    {
+      "page": 1,
+      "charCount": 706,
+      "hasTextLayer": true
+    },
+    {
+      "page": 2,
+      "charCount": 832,
+      "hasTextLayer": true
+    },
+    {
+      "page": 3,
+      "charCount": 837,
+      "hasTextLayer": true
+    },
+    {
+      "page": 4,
+      "charCount": 948,
+      "hasTextLayer": true
+    },
+    {
+      "page": 5,
+      "charCount": 658,
+      "hasTextLayer": true
+    },
+    {
+      "page": 6,
+      "charCount": 830,
+      "hasTextLayer": true
+    },
+    {
+      "page": 7,
+      "charCount": 771,
+      "hasTextLayer": true
+    },
+    {
+      "page": 8,
+      "charCount": 663,
+      "hasTextLayer": true
+    },
+    {
+      "page": 9,
+      "charCount": 558,
+      "hasTextLayer": true
+    },
+    {
+      "page": 10,
+      "charCount": 669,
+      "hasTextLayer": true
+    },
+    {
+      "page": 11,
+      "charCount": 793,
+      "hasTextLayer": true
+    },
+    {
+      "page": 12,
+      "charCount": 772,
+      "hasTextLayer": true
+    },
+    {
+      "page": 13,
+      "charCount": 765,
+      "hasTextLayer": true
+    },
+    {
+      "page": 14,
+      "charCount": 975,
+      "hasTextLayer": true
+    },
+    {
+      "page": 15,
+      "charCount": 861,
+      "hasTextLayer": true
+    },
+    {
+      "page": 16,
+      "charCount": 895,
+      "hasTextLayer": true
+    },
+    {
+      "page": 17,
+      "charCount": 884,
+      "hasTextLayer": true
+    },
+    {
+      "page": 18,
+      "charCount": 822,
+      "hasTextLayer": true
+    },
+    {
+      "page": 19,
+      "charCount": 881,
+      "hasTextLayer": true
+    },
+    {
+      "page": 20,
+      "charCount": 1001,
+      "hasTextLayer": true
+    },
+    {
+      "page": 21,
+      "charCount": 910,
+      "hasTextLayer": true
+    },
+    {
+      "page": 22,
+      "charCount": 1072,
+      "hasTextLayer": true
+    },
+    {
+      "page": 23,
+      "charCount": 897,
+      "hasTextLayer": true
+    },
+    {
+      "page": 24,
+      "charCount": 1055,
+      "hasTextLayer": true
+    },
+    {
+      "page": 25,
+      "charCount": 938,
+      "hasTextLayer": true
+    },
+    {
+      "page": 26,
+      "charCount": 962,
+      "hasTextLayer": true
+    },
+    {
+      "page": 27,
+      "charCount": 798,
+      "hasTextLayer": true
+    },
+    {
+      "page": 28,
+      "charCount": 428,
+      "hasTextLayer": true
+    }
+  ],
+  "accountingStreamChars": 13588,
+  "questionBlocksFound": 40,
+  "answerProbeJoined": 0
+}

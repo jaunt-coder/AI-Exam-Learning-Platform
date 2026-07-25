@@ -1,0 +1,24 @@
+{
+  "metrics": {
+    "stem_truncated": 224,
+    "missing_numbers": 2,
+    "missing_units": 84,
+    "choice_split": 14,
+    "duplicate_context": 2,
+    "table_parse": 0,
+    "ocr_glued_hangul": 0,
+    "source_fidelity_avg": 0.8195994396128466,
+    "source_fidelity_below_99": 240,
+    "repair_queue_size": 240,
+    "issue_counts": {
+      "source_fidelity": 240,
+      "ocr_footer": 39,
+      "stem_truncated": 224,
+      "number_missing": 16,
+      "choice_split": 14,
+      "missing_units": 84,
+      "missing_numbers": 2,
+      "duplicate_context": 2
+    }
+  }
+}

@@ -163,6 +163,7 @@ export function recordAttempt(question, result, options = {}) {
 
   saveProgress(progress);
   saveWrongAnswer(question, result);
+  recordRecentStudy(question, result);
 
   if (options.trackLearningEvent) {
     trackQuestionAnswer(question, result, {
@@ -243,4 +244,92 @@ export function getResultMessage(result) {
  */
 export function filterQuestionsByPattern(questions, patternId) {
   return questions.filter((q) => q.patternId === patternId);
+}
+
+function createEmptyBookmarks() {
+  return { version: 1, items: {} };
+}
+
+/**
+ * bookmarks LocalStorage (키 이름 변경 금지)
+ * @returns {{ version: number, items: object }}
+ */
+export function loadBookmarks() {
+  const data = getItem(STORAGE_KEYS.BOOKMARKS, null);
+  if (!data || typeof data !== 'object') {
+    return createEmptyBookmarks();
+  }
+  return {
+    ...createEmptyBookmarks(),
+    ...data,
+    items: data.items && typeof data.items === 'object' ? data.items : {},
+  };
+}
+
+export function saveBookmarks(store) {
+  setItem(STORAGE_KEYS.BOOKMARKS, store);
+}
+
+export function isBookmarked(questionId) {
+  return Boolean(loadBookmarks().items[questionId]);
+}
+
+/**
+ * @param {object} question
+ * @returns {boolean} 북마크 여부 (토글 후)
+ */
+export function toggleBookmark(question) {
+  if (!question?.questionId) return false;
+  const store = loadBookmarks();
+  if (store.items[question.questionId]) {
+    delete store.items[question.questionId];
+    saveBookmarks(store);
+    return false;
+  }
+  store.items[question.questionId] = {
+    questionId: question.questionId,
+    patternId: question.patternId,
+    year: question.year,
+    bookmarkedAt: new Date().toISOString(),
+  };
+  saveBookmarks(store);
+  return true;
+}
+
+export function getBookmarkCount() {
+  return Object.keys(loadBookmarks().items).length;
+}
+
+/**
+ * recentStudy에 최근 풀이 문항을 기록한다 (키 이름 변경 금지).
+ * learning-event의 sessions(date/duration) 스키마는 유지하고 recentQuestions만 갱신한다.
+ * @param {object} question
+ * @param {object} result
+ */
+export function recordRecentStudy(question, result) {
+  const raw = getItem(STORAGE_KEYS.RECENT_STUDY, null);
+  const base =
+    raw && typeof raw === 'object' && !Array.isArray(raw)
+      ? { ...raw }
+      : { sessions: Array.isArray(raw) ? raw : [], totalMinutes: 0 };
+  const sessions = Array.isArray(base.sessions) ? base.sessions : [];
+  const recentQuestions = Array.isArray(base.recentQuestions) ? base.recentQuestions : [];
+  const entry = {
+    questionId: question.questionId,
+    patternId: question.patternId,
+    correct: Boolean(result?.correct),
+    at: new Date().toISOString(),
+  };
+  const next = [
+    entry,
+    ...recentQuestions.filter((s) => s?.questionId !== question.questionId),
+  ].slice(0, 30);
+
+  setItem(STORAGE_KEYS.RECENT_STUDY, {
+    ...base,
+    sessions,
+    totalMinutes: Number(base.totalMinutes) || 0,
+    recentQuestions: next,
+    updatedAt: entry.at,
+  });
 }

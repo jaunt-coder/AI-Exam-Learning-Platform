@@ -1,0 +1,36 @@
+{
+  "questionId": "ACC_2018_Q048",
+  "year": 2018,
+  "subject": "회계학",
+  "number": 48,
+  "page": 17,
+  "stem": "(주)감평은20x8년3월1일사용중이던기계장치를(주)대한의신형기계장치와\n교환하면서￦4,000의현금을추가로지급하였다. (주)감평이사용하던기계장치는\n20x5년에￦41,000에취득한것으로교환당시감가상각누계액은￦23,000이고공\n정가치는￦21,000이다. 한편, 교환시점(주)대한의신형기계장치의공정가치는\n￦26,000이다. 동교환거래가상업적실질이있으며(주)감평의사용중이던기계장\n치의공정가치가더명백한경우(주)감평이교환거래로인해인식할처분손익은?",
+  "choices": [
+    "이익￦3,000",
+    "이익￦4,000",
+    "손실￦3,000",
+    "손실￦4,000",
+    "이익￦1,000"
+  ],
+  "answer": 1,
+  "extractionConfidence": 0.75,
+  "verified": false,
+  "rawBlock": "48. (주)감평은20x8년3월1일사용중이던기계장치를(주)대한의신형기계장치와\n교환하면서￦4,000의현금을추가로지급하였다. (주)감평이사용하던기계장치는\n20x5년에￦41,000에취득한것으로교환당시감가상각누계액은￦23,000이고공\n정가치는￦21,000이다. 한편, 교환시점(주)대한의신형기계장치의공정가치는\n￦26,000이다. 동교환거래가상업적실질이있으며(주)감평의사용중이던기계장\n치의공정가치가더명백한경우(주)감평이교환거래로인해인식할처분손익은?\n①이익￦3,000\n②이익￦4,000\n③손실￦3,000\n④손실￦4,000\n⑤이익￦1,000",
+  "source": {
+    "examPath": "source/past-exams/2018/exam_2.pdf",
+    "examSha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+    "answerPath": "source/past-exams/2018/answer.hwp",
+    "answerSha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+    "extractMethod": "pymupdf-text-layer",
+    "ocrUsed": false
+  },
+  "answerLabel": "①",
+  "answerJoin": {
+    "woId": "WO-20260722-012",
+    "manifest": "data/knowledge/raw/hwp-export/2018/answer/answer-manifest.json",
+    "tsv": "data/knowledge/raw/hwp-export/2018/answer/answer.tsv",
+    "ocrUsed": false,
+    "joinedAt": "2026-07-22T15:43:35.493512+00:00",
+    "status": "joined"
+  }
+}

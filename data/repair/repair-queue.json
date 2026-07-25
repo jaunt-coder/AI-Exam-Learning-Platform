@@ -1,0 +1,3410 @@
+{
+  "generatedAt": "2026-07-19",
+  "threshold": 0.95,
+  "count": 183,
+  "summary": {
+    "total": 240,
+    "queueSize": 183,
+    "byYear": {
+      "2018": 28,
+      "2024": 35,
+      "2025": 29,
+      "2020": 27,
+      "2017": 24,
+      "2015": 40
+    }
+  },
+  "questions": [
+    {
+      "questionId": "ACC_2018_Q055",
+      "year": 2018,
+      "questionNumber": 55,
+      "sourcePage": 20,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.0635,
+      "sourceFidelity": 0.2541,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "1,049,000",
+        "20,000",
+        "1,000",
+        "5,000",
+        "900"
+      ],
+      "missingUnits": [
+        "20×1년5월1일",
+        "8%",
+        "W1,000",
+        "W1,049,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q056",
+      "year": 2024,
+      "questionNumber": 56,
+      "sourcePage": 18,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9865,
+      "sourceFidelity": 0.4703,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2024"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q067",
+      "year": 2024,
+      "questionNumber": 67,
+      "sourcePage": 22,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9883,
+      "sourceFidelity": 0.4703,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2024"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q052",
+      "year": 2025,
+      "questionNumber": 52,
+      "sourcePage": 17,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9739,
+      "sourceFidelity": 0.475,
+      "issueCodes": [
+        "choice_split",
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q050",
+      "year": 2018,
+      "questionNumber": 50,
+      "sourcePage": 17,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9878,
+      "sourceFidelity": 0.485,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2018"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q042",
+      "year": 2025,
+      "questionNumber": 42,
+      "sourcePage": 13,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.8696,
+      "sourceFidelity": 0.4854,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q072",
+      "year": 2018,
+      "questionNumber": 72,
+      "sourcePage": 25,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.8352,
+      "sourceFidelity": 0.4873,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "15,000",
+        "45,000",
+        "48,000",
+        "25,000",
+        "13,500",
+        "17,500",
+        "35,000",
+        "30,000",
+        "10,500"
+      ],
+      "missingUnits": [
+        "W10,500",
+        "W13,500",
+        "W15,000",
+        "W17,500",
+        "W25,000",
+        "W30,000",
+        "W35,000",
+        "W45,000",
+        "W48,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q070",
+      "year": 2025,
+      "questionNumber": 70,
+      "sourcePage": 23,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.963,
+      "sourceFidelity": 0.4893,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q042",
+      "year": 2024,
+      "questionNumber": 42,
+      "sourcePage": 13,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.8571,
+      "sourceFidelity": 0.5091,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2024"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q067",
+      "year": 2018,
+      "questionNumber": 67,
+      "sourcePage": 23,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.8571,
+      "sourceFidelity": 0.5099,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2018"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q049",
+      "year": 2025,
+      "questionNumber": 49,
+      "sourcePage": 16,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.8421,
+      "sourceFidelity": 0.51,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q042",
+      "year": 2020,
+      "questionNumber": 42,
+      "sourcePage": 13,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.8571,
+      "sourceFidelity": 0.5205,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q051",
+      "year": 2017,
+      "questionNumber": 51,
+      "sourcePage": 18,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.4552,
+      "sourceFidelity": 0.5218,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "280,000",
+        "350,000",
+        "200,000",
+        "320,000",
+        "250,000",
+        "300,000",
+        "480,000"
+      ],
+      "missingUnits": [
+        "20x2",
+        "W200,000",
+        "W250,000",
+        "W320,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q045",
+      "year": 2025,
+      "questionNumber": 45,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.2452,
+      "sourceFidelity": 0.5712,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "200,000",
+        "240,000",
+        "180,000",
+        "100,000",
+        "108,000"
+      ],
+      "missingUnits": [
+        "20×1년\n9월1일",
+        "W100,000",
+        "W108,000",
+        "W240,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q044",
+      "year": 2015,
+      "questionNumber": 44,
+      "sourcePage": 8,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.2171,
+      "sourceFidelity": 0.5941,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "500,000",
+        "120,000",
+        "200,000",
+        "400,000"
+      ],
+      "missingUnits": [
+        "10%"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q062",
+      "year": 2017,
+      "questionNumber": 62,
+      "sourcePage": 22,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.2964,
+      "sourceFidelity": 0.5953,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "1,000,000",
+        "300,000",
+        "500,000",
+        "600,000"
+      ],
+      "missingUnits": [
+        "20x3",
+        "3%",
+        "4%",
+        "5%",
+        "W300,000",
+        "W600,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q055",
+      "year": 2015,
+      "questionNumber": 55,
+      "sourcePage": 10,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.5323,
+      "sourceFidelity": 0.611,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "200,000",
+        "500,000",
+        "300,000",
+        "100,000",
+        "400,000"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q063",
+      "year": 2024,
+      "questionNumber": 63,
+      "sourcePage": 21,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.8051,
+      "sourceFidelity": 0.644,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "11,000",
+        "1,000",
+        "9,000"
+      ],
+      "missingUnits": [
+        "W1,000",
+        "W11,000",
+        "W9,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q067",
+      "year": 2015,
+      "questionNumber": 67,
+      "sourcePage": 13,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.2513,
+      "sourceFidelity": 0.6468,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2,700",
+        "2,400",
+        "7,000",
+        "1,400",
+        "5,000",
+        "700"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q057",
+      "year": 2024,
+      "questionNumber": 57,
+      "sourcePage": 19,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.561,
+      "sourceFidelity": 0.6737,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "1,100",
+        "2,100",
+        "1,700",
+        "950",
+        "920"
+      ],
+      "missingUnits": [
+        "W1,100",
+        "W920",
+        "W950"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q048",
+      "year": 2017,
+      "questionNumber": 48,
+      "sourcePage": 16,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.1296,
+      "sourceFidelity": 0.6749,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "300,000"
+      ],
+      "missingUnits": [
+        "20x2",
+        "W300,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q079",
+      "year": 2025,
+      "questionNumber": 79,
+      "sourcePage": 27,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.985,
+      "sourceFidelity": 0.6759,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "41,000",
+        "17,000",
+        "50,000"
+      ],
+      "missingUnits": [
+        "W17,000",
+        "W41,000",
+        "W50,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q047",
+      "year": 2015,
+      "questionNumber": 47,
+      "sourcePage": 9,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.2568,
+      "sourceFidelity": 0.6864,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "40,000",
+        "30,000",
+        "1,000"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q047",
+      "year": 2025,
+      "questionNumber": 47,
+      "sourcePage": 16,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.4476,
+      "sourceFidelity": 0.6909,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "150,000",
+        "250,000",
+        "260,000",
+        "210,000"
+      ],
+      "missingUnits": [
+        "W210,000",
+        "W250,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q062",
+      "year": 2015,
+      "questionNumber": 62,
+      "sourcePage": 12,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.3619,
+      "sourceFidelity": 0.7034,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "10,000",
+        "25,000",
+        "5,000"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q061",
+      "year": 2024,
+      "questionNumber": 61,
+      "sourcePage": 20,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.583,
+      "sourceFidelity": 0.7099,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "1,300",
+        "1,280",
+        "1,250",
+        "2024"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q062",
+      "year": 2024,
+      "questionNumber": 62,
+      "sourcePage": 21,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.696,
+      "sourceFidelity": 0.7295,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "18,000",
+        "17,000",
+        "21,000"
+      ],
+      "missingUnits": [
+        "W18,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q070",
+      "year": 2024,
+      "questionNumber": 70,
+      "sourcePage": 23,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.989,
+      "sourceFidelity": 0.7425,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "1,200",
+        "2024",
+        "100"
+      ],
+      "missingUnits": [
+        "W1,200",
+        "W100"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q063",
+      "year": 2018,
+      "questionNumber": 63,
+      "sourcePage": 22,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.5353,
+      "sourceFidelity": 0.7488,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "1,900,000",
+        "1,800,000"
+      ],
+      "missingUnits": [
+        "W0",
+        "W1,800,000",
+        "W1,900,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q077",
+      "year": 2020,
+      "questionNumber": 77,
+      "sourcePage": 28,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.979,
+      "sourceFidelity": 0.7629,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "100,000",
+        "140,000",
+        "200,000"
+      ],
+      "missingUnits": [
+        "W100,000",
+        "W140,000",
+        "W200,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q073",
+      "year": 2024,
+      "questionNumber": 73,
+      "sourcePage": 24,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9892,
+      "sourceFidelity": 0.7792,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2024"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q052",
+      "year": 2017,
+      "questionNumber": 52,
+      "sourcePage": 18,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.986,
+      "sourceFidelity": 0.7914,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "5,000,000",
+        "6,000,000"
+      ],
+      "missingUnits": [
+        "W5,000,000",
+        "W6,000,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q061",
+      "year": 2020,
+      "questionNumber": 61,
+      "sourcePage": 21,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9886,
+      "sourceFidelity": 0.8004,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "107,700",
+        "92,300",
+        "95,700",
+        "2020"
+      ],
+      "missingUnits": [
+        "W107,700",
+        "W92,300",
+        "W95,700"
+      ]
+    },
+    {
+      "questionId": "ACC_2018_Q044",
+      "year": 2018,
+      "questionNumber": 44,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9771,
+      "sourceFidelity": 0.806,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "11,000",
+        "2018"
+      ],
+      "missingUnits": [
+        "W11,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q048",
+      "year": 2024,
+      "questionNumber": 48,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.773,
+      "sourceFidelity": 0.8068,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2024"
+      ],
+      "missingUnits": [
+        "W10",
+        "W20",
+        "W30"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q050",
+      "year": 2025,
+      "questionNumber": 50,
+      "sourcePage": 17,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.675,
+      "sourceFidelity": 0.8074,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "410,000",
+        "380,000"
+      ],
+      "missingUnits": [
+        "W380,000",
+        "W410,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q065",
+      "year": 2015,
+      "questionNumber": 65,
+      "sourcePage": 12,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.2607,
+      "sourceFidelity": 0.8128,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "6,000",
+        "5,000"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q060",
+      "year": 2020,
+      "questionNumber": 60,
+      "sourcePage": 21,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.7121,
+      "sourceFidelity": 0.8129,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2.7232",
+        "0.8638"
+      ],
+      "missingUnits": [
+        "5%",
+        "W1"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q061",
+      "year": 2025,
+      "questionNumber": 61,
+      "sourcePage": 20,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9854,
+      "sourceFidelity": 0.8156,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q051",
+      "year": 2015,
+      "questionNumber": 51,
+      "sourcePage": 9,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.0,
+      "sourceFidelity": 0.8213,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q052",
+      "year": 2020,
+      "questionNumber": 52,
+      "sourcePage": 17,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9913,
+      "sourceFidelity": 0.8257,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "86,200",
+        "2020"
+      ],
+      "missingUnits": [
+        "W86,200"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q054",
+      "year": 2017,
+      "questionNumber": 54,
+      "sourcePage": 19,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.6439,
+      "sourceFidelity": 0.8266,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "35,000",
+        "90,000"
+      ],
+      "missingUnits": [
+        "W90,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q057",
+      "year": 2020,
+      "questionNumber": 57,
+      "sourcePage": 20,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.5439,
+      "sourceFidelity": 0.8284,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "0.7350"
+      ],
+      "missingUnits": [
+        "8%",
+        "W1"
+      ]
+    },
+    {
+      "questionId": "ACC_2024_Q045",
+      "year": 2024,
+      "questionNumber": 45,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.1388,
+      "sourceFidelity": 0.8339,
+      "issueCodes": [
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": [
+        "20×2",
+        "20×2년",
+        "W14",
+        "W15",
+        "W17"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q070",
+      "year": 2020,
+      "questionNumber": 70,
+      "sourcePage": 25,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9868,
+      "sourceFidelity": 0.8376,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "15,000",
+        "68,116"
+      ],
+      "missingUnits": [
+        "20×1년\n1월\n1일",
+        "W15,000",
+        "W68,116"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q071",
+      "year": 2020,
+      "questionNumber": 71,
+      "sourcePage": 25,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.7382,
+      "sourceFidelity": 0.8434,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "20,000",
+        "2020"
+      ],
+      "missingUnits": [
+        "W20,000"
+      ]
+    },
+    {
+      "questionId": "ACC_2020_Q054",
+      "year": 2020,
+      "questionNumber": 54,
+      "sourcePage": 18,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9919,
+      "sourceFidelity": 0.8485,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q055",
+      "year": 2025,
+      "questionNumber": 55,
+      "sourcePage": 18,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9845,
+      "sourceFidelity": 0.8707,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q047",
+      "year": 2018,
+      "questionNumber": 47,
+      "sourcePage": 16,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.7658,
+      "sourceFidelity": 0.8779,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2018"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q045",
+      "year": 2020,
+      "questionNumber": 45,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9877,
+      "sourceFidelity": 0.8803,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q051",
+      "year": 2024,
+      "questionNumber": 51,
+      "sourcePage": 16,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9874,
+      "sourceFidelity": 0.8811,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2024"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q063",
+      "year": 2015,
+      "questionNumber": 63,
+      "sourcePage": 12,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.8929,
+      "sourceFidelity": 0.8829,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q056",
+      "year": 2015,
+      "questionNumber": 56,
+      "sourcePage": 10,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.9667,
+      "sourceFidelity": 0.892,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q064",
+      "year": 2018,
+      "questionNumber": 64,
+      "sourcePage": 22,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.985,
+      "sourceFidelity": 0.8937,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2018"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q050",
+      "year": 2020,
+      "questionNumber": 50,
+      "sourcePage": 16,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9901,
+      "sourceFidelity": 0.8945,
+      "issueCodes": [
+        "missing_numbers",
+        "missing_units",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": [
+        "20×1년10월\n1일"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q042",
+      "year": 2015,
+      "questionNumber": 42,
+      "sourcePage": 8,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.8421,
+      "sourceFidelity": 0.8962,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q058",
+      "year": 2025,
+      "questionNumber": 58,
+      "sourcePage": 19,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.6678,
+      "sourceFidelity": 0.9004,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q064",
+      "year": 2024,
+      "questionNumber": 64,
+      "sourcePage": 21,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9885,
+      "sourceFidelity": 0.9007,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2024"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q053",
+      "year": 2024,
+      "questionNumber": 53,
+      "sourcePage": 17,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9917,
+      "sourceFidelity": 0.9007,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2024"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q057",
+      "year": 2018,
+      "questionNumber": 57,
+      "sourcePage": 20,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9886,
+      "sourceFidelity": 0.9031,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2018"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q075",
+      "year": 2020,
+      "questionNumber": 75,
+      "sourcePage": 27,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9828,
+      "sourceFidelity": 0.9053,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q066",
+      "year": 2025,
+      "questionNumber": 66,
+      "sourcePage": 22,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9868,
+      "sourceFidelity": 0.9053,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q075",
+      "year": 2025,
+      "questionNumber": 75,
+      "sourcePage": 25,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9825,
+      "sourceFidelity": 0.906,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q044",
+      "year": 2025,
+      "questionNumber": 44,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.986,
+      "sourceFidelity": 0.906,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q064",
+      "year": 2025,
+      "questionNumber": 64,
+      "sourcePage": 21,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9924,
+      "sourceFidelity": 0.906,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q076",
+      "year": 2024,
+      "questionNumber": 76,
+      "sourcePage": 25,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9876,
+      "sourceFidelity": 0.9082,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2024"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q058",
+      "year": 2024,
+      "questionNumber": 58,
+      "sourcePage": 19,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9938,
+      "sourceFidelity": 0.9087,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2024"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q053",
+      "year": 2017,
+      "questionNumber": 53,
+      "sourcePage": 19,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.3243,
+      "sourceFidelity": 0.913,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q078",
+      "year": 2025,
+      "questionNumber": 78,
+      "sourcePage": 26,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9831,
+      "sourceFidelity": 0.9135,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q044",
+      "year": 2024,
+      "questionNumber": 44,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9819,
+      "sourceFidelity": 0.9157,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2024"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q064",
+      "year": 2020,
+      "questionNumber": 64,
+      "sourcePage": 22,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9865,
+      "sourceFidelity": 0.9163,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q067",
+      "year": 2020,
+      "questionNumber": 67,
+      "sourcePage": 23,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9864,
+      "sourceFidelity": 0.9178,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q060",
+      "year": 2018,
+      "questionNumber": 60,
+      "sourcePage": 21,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9862,
+      "sourceFidelity": 0.9182,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2018"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q078",
+      "year": 2020,
+      "questionNumber": 78,
+      "sourcePage": 28,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9894,
+      "sourceFidelity": 0.9206,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q059",
+      "year": 2020,
+      "questionNumber": 59,
+      "sourcePage": 20,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.992,
+      "sourceFidelity": 0.9206,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q041",
+      "year": 2015,
+      "questionNumber": 41,
+      "sourcePage": 7,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.4505,
+      "sourceFidelity": 0.9237,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q070",
+      "year": 2018,
+      "questionNumber": 70,
+      "sourcePage": 24,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9886,
+      "sourceFidelity": 0.924,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2018"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q072",
+      "year": 2025,
+      "questionNumber": 72,
+      "sourcePage": 24,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9874,
+      "sourceFidelity": 0.9244,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2025"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q053",
+      "year": 2015,
+      "questionNumber": 53,
+      "sourcePage": 10,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.8889,
+      "sourceFidelity": 0.9246,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q073",
+      "year": 2018,
+      "questionNumber": 73,
+      "sourcePage": 25,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9876,
+      "sourceFidelity": 0.925,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2018"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q076",
+      "year": 2018,
+      "questionNumber": 76,
+      "sourcePage": 26,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9884,
+      "sourceFidelity": 0.9257,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2018"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q047",
+      "year": 2020,
+      "questionNumber": 47,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9942,
+      "sourceFidelity": 0.9273,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q058",
+      "year": 2015,
+      "questionNumber": 58,
+      "sourcePage": 11,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.875,
+      "sourceFidelity": 0.9276,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q056",
+      "year": 2020,
+      "questionNumber": 56,
+      "sourcePage": 19,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.985,
+      "sourceFidelity": 0.9276,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q042",
+      "year": 2018,
+      "questionNumber": 42,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9924,
+      "sourceFidelity": 0.9281,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2018"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q077",
+      "year": 2015,
+      "questionNumber": 77,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.8346,
+      "sourceFidelity": 0.9314,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "18,900",
+        "15,330"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q054",
+      "year": 2018,
+      "questionNumber": 54,
+      "sourcePage": 19,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9901,
+      "sourceFidelity": 0.936,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2018"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q046",
+      "year": 2025,
+      "questionNumber": 46,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.794,
+      "sourceFidelity": 0.9376,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q049",
+      "year": 2015,
+      "questionNumber": 49,
+      "sourcePage": 9,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.1411,
+      "sourceFidelity": 0.9378,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q053",
+      "year": 2025,
+      "questionNumber": 53,
+      "sourcePage": 18,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.6644,
+      "sourceFidelity": 0.942,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q055",
+      "year": 2017,
+      "questionNumber": 55,
+      "sourcePage": 20,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.9914,
+      "sourceFidelity": 0.9433,
+      "issueCodes": [
+        "missing_units",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": [
+        "20×1년\n1월\n1일"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q063",
+      "year": 2017,
+      "questionNumber": 63,
+      "sourcePage": 23,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.3967,
+      "sourceFidelity": 0.9455,
+      "issueCodes": [
+        "missing_units",
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": [
+        "20x3"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q048",
+      "year": 2015,
+      "questionNumber": 48,
+      "sourcePage": 9,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.4042,
+      "sourceFidelity": 0.9459,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q050",
+      "year": 2017,
+      "questionNumber": 50,
+      "sourcePage": 17,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.9926,
+      "sourceFidelity": 0.9478,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q075",
+      "year": 2018,
+      "questionNumber": 75,
+      "sourcePage": 26,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.7281,
+      "sourceFidelity": 0.9492,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q058",
+      "year": 2018,
+      "questionNumber": 58,
+      "sourcePage": 21,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9032,
+      "sourceFidelity": 0.95,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q073",
+      "year": 2020,
+      "questionNumber": 73,
+      "sourcePage": 26,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9891,
+      "sourceFidelity": 0.95,
+      "issueCodes": [
+        "missing_numbers",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2020"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q078",
+      "year": 2018,
+      "questionNumber": 78,
+      "sourcePage": 27,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9852,
+      "sourceFidelity": 0.9503,
+      "issueCodes": [
+        "missing_numbers",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [
+        "2018"
+      ],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q060",
+      "year": 2024,
+      "questionNumber": 60,
+      "sourcePage": 20,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.875,
+      "sourceFidelity": 0.9522,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q054",
+      "year": 2015,
+      "questionNumber": 54,
+      "sourcePage": 10,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.217,
+      "sourceFidelity": 0.9545,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q071",
+      "year": 2024,
+      "questionNumber": 71,
+      "sourcePage": 24,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.8874,
+      "sourceFidelity": 0.9546,
+      "issueCodes": [
+        "missing_units",
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": [
+        "30%"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q041",
+      "year": 2017,
+      "questionNumber": 41,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.9032,
+      "sourceFidelity": 0.9558,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q065",
+      "year": 2018,
+      "questionNumber": 65,
+      "sourcePage": 23,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.8571,
+      "sourceFidelity": 0.9585,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q076",
+      "year": 2025,
+      "questionNumber": 76,
+      "sourcePage": 26,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9211,
+      "sourceFidelity": 0.9591,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q043",
+      "year": 2017,
+      "questionNumber": 43,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.982,
+      "sourceFidelity": 0.9591,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q061",
+      "year": 2018,
+      "questionNumber": 61,
+      "sourcePage": 22,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.8016,
+      "sourceFidelity": 0.9603,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q044",
+      "year": 2020,
+      "questionNumber": 44,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9872,
+      "sourceFidelity": 0.961,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q068",
+      "year": 2024,
+      "questionNumber": 68,
+      "sourcePage": 23,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9318,
+      "sourceFidelity": 0.9617,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q061",
+      "year": 2017,
+      "questionNumber": 61,
+      "sourcePage": 22,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.8966,
+      "sourceFidelity": 0.9628,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q045",
+      "year": 2017,
+      "questionNumber": 45,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.875,
+      "sourceFidelity": 0.964,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q058",
+      "year": 2017,
+      "questionNumber": 58,
+      "sourcePage": 21,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.8571,
+      "sourceFidelity": 0.9652,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q041",
+      "year": 2025,
+      "questionNumber": 41,
+      "sourcePage": 13,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.8889,
+      "sourceFidelity": 0.9666,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q060",
+      "year": 2015,
+      "questionNumber": 60,
+      "sourcePage": 11,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.4198,
+      "sourceFidelity": 0.9672,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q046",
+      "year": 2018,
+      "questionNumber": 46,
+      "sourcePage": 16,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9167,
+      "sourceFidelity": 0.9677,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q048",
+      "year": 2025,
+      "questionNumber": 48,
+      "sourcePage": 16,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9906,
+      "sourceFidelity": 0.9684,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q070",
+      "year": 2017,
+      "questionNumber": 70,
+      "sourcePage": 26,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.8846,
+      "sourceFidelity": 0.9685,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q066",
+      "year": 2024,
+      "questionNumber": 66,
+      "sourcePage": 22,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.8571,
+      "sourceFidelity": 0.9687,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q060",
+      "year": 2017,
+      "questionNumber": 60,
+      "sourcePage": 21,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.9,
+      "sourceFidelity": 0.9688,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q055",
+      "year": 2024,
+      "questionNumber": 55,
+      "sourcePage": 18,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9167,
+      "sourceFidelity": 0.9689,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q042",
+      "year": 2017,
+      "questionNumber": 42,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.8571,
+      "sourceFidelity": 0.9697,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q041",
+      "year": 2020,
+      "questionNumber": 41,
+      "sourcePage": 13,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9211,
+      "sourceFidelity": 0.9714,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q041",
+      "year": 2024,
+      "questionNumber": 41,
+      "sourcePage": 13,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.8929,
+      "sourceFidelity": 0.9738,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q071",
+      "year": 2015,
+      "questionNumber": 71,
+      "sourcePage": 13,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.7034,
+      "sourceFidelity": 0.974,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q043",
+      "year": 2024,
+      "questionNumber": 43,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.6628,
+      "sourceFidelity": 0.9748,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q046",
+      "year": 2024,
+      "questionNumber": 46,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9824,
+      "sourceFidelity": 0.9758,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q072",
+      "year": 2020,
+      "questionNumber": 72,
+      "sourcePage": 26,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.5584,
+      "sourceFidelity": 0.9775,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q069",
+      "year": 2024,
+      "questionNumber": 69,
+      "sourcePage": 23,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9855,
+      "sourceFidelity": 0.9779,
+      "issueCodes": [
+        "missing_units",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": [
+        "20×2년10월\n1일"
+      ]
+    },
+    {
+      "questionId": "ACC_2025_Q063",
+      "year": 2025,
+      "questionNumber": 63,
+      "sourcePage": 21,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9071,
+      "sourceFidelity": 0.978,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q059",
+      "year": 2025,
+      "questionNumber": 59,
+      "sourcePage": 20,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.8966,
+      "sourceFidelity": 0.9781,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q047",
+      "year": 2017,
+      "questionNumber": 47,
+      "sourcePage": 16,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.48,
+      "sourceFidelity": 0.9785,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q078",
+      "year": 2024,
+      "questionNumber": 78,
+      "sourcePage": 26,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9776,
+      "sourceFidelity": 0.9786,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q079",
+      "year": 2018,
+      "questionNumber": 79,
+      "sourcePage": 28,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9825,
+      "sourceFidelity": 0.9786,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q049",
+      "year": 2020,
+      "questionNumber": 49,
+      "sourcePage": 16,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.988,
+      "sourceFidelity": 0.9786,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q074",
+      "year": 2017,
+      "questionNumber": 74,
+      "sourcePage": 27,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.9901,
+      "sourceFidelity": 0.9786,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q061",
+      "year": 2015,
+      "questionNumber": 61,
+      "sourcePage": 11,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.5214,
+      "sourceFidelity": 0.9803,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q062",
+      "year": 2018,
+      "questionNumber": 62,
+      "sourcePage": 22,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9827,
+      "sourceFidelity": 0.9805,
+      "issueCodes": [
+        "missing_units",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": [
+        "20×1년\n1월\n1일"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q073",
+      "year": 2015,
+      "questionNumber": 73,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.7763,
+      "sourceFidelity": 0.9806,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q071",
+      "year": 2018,
+      "questionNumber": 71,
+      "sourcePage": 25,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.967,
+      "sourceFidelity": 0.9808,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q059",
+      "year": 2015,
+      "questionNumber": 59,
+      "sourcePage": 11,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.9808,
+      "sourceFidelity": 0.9808,
+      "issueCodes": [
+        "choice_split",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q057",
+      "year": 2017,
+      "questionNumber": 57,
+      "sourcePage": 20,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.8846,
+      "sourceFidelity": 0.9809,
+      "issueCodes": [
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q068",
+      "year": 2018,
+      "questionNumber": 68,
+      "sourcePage": 24,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9203,
+      "sourceFidelity": 0.981,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q043",
+      "year": 2020,
+      "questionNumber": 43,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9882,
+      "sourceFidelity": 0.9813,
+      "issueCodes": [
+        "missing_units",
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": [
+        "20×1년\n1월\n1일"
+      ]
+    },
+    {
+      "questionId": "ACC_2015_Q066",
+      "year": 2015,
+      "questionNumber": 66,
+      "sourcePage": 12,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.9148,
+      "sourceFidelity": 0.9817,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q068",
+      "year": 2025,
+      "questionNumber": 68,
+      "sourcePage": 23,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9752,
+      "sourceFidelity": 0.9817,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q054",
+      "year": 2024,
+      "questionNumber": 54,
+      "sourcePage": 18,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9861,
+      "sourceFidelity": 0.9817,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q051",
+      "year": 2018,
+      "questionNumber": 51,
+      "sourcePage": 18,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9894,
+      "sourceFidelity": 0.9826,
+      "issueCodes": [
+        "missing_units",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": [
+        "20×1년\n1월\n1일"
+      ]
+    },
+    {
+      "questionId": "ACC_2017_Q068",
+      "year": 2017,
+      "questionNumber": 68,
+      "sourcePage": 25,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.9773,
+      "sourceFidelity": 0.9833,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q056",
+      "year": 2025,
+      "questionNumber": 56,
+      "sourcePage": 19,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.984,
+      "sourceFidelity": 0.9833,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q049",
+      "year": 2024,
+      "questionNumber": 49,
+      "sourcePage": 16,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9851,
+      "sourceFidelity": 0.9833,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q059",
+      "year": 2024,
+      "questionNumber": 59,
+      "sourcePage": 20,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9895,
+      "sourceFidelity": 0.9833,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q052",
+      "year": 2024,
+      "questionNumber": 52,
+      "sourcePage": 17,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9934,
+      "sourceFidelity": 0.9833,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q057",
+      "year": 2015,
+      "questionNumber": 57,
+      "sourcePage": 11,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.4985,
+      "sourceFidelity": 0.9836,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q074",
+      "year": 2020,
+      "questionNumber": 74,
+      "sourcePage": 27,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9943,
+      "sourceFidelity": 0.984,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q080",
+      "year": 2015,
+      "questionNumber": 80,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.6027,
+      "sourceFidelity": 0.9849,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q075",
+      "year": 2015,
+      "questionNumber": 75,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.2009,
+      "sourceFidelity": 0.985,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q052",
+      "year": 2015,
+      "questionNumber": 52,
+      "sourcePage": 10,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.4866,
+      "sourceFidelity": 0.985,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q077",
+      "year": 2024,
+      "questionNumber": 77,
+      "sourcePage": 26,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.981,
+      "sourceFidelity": 0.9853,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q074",
+      "year": 2024,
+      "questionNumber": 74,
+      "sourcePage": 25,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9836,
+      "sourceFidelity": 0.9858,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q064",
+      "year": 2015,
+      "questionNumber": 64,
+      "sourcePage": 12,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.281,
+      "sourceFidelity": 0.9861,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q079",
+      "year": 2015,
+      "questionNumber": 79,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.5791,
+      "sourceFidelity": 0.9862,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q070",
+      "year": 2015,
+      "questionNumber": 70,
+      "sourcePage": 13,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.5081,
+      "sourceFidelity": 0.9864,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q048",
+      "year": 2020,
+      "questionNumber": 48,
+      "sourcePage": 16,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9764,
+      "sourceFidelity": 0.9864,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q077",
+      "year": 2018,
+      "questionNumber": 77,
+      "sourcePage": 27,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.9901,
+      "sourceFidelity": 0.9864,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q080",
+      "year": 2025,
+      "questionNumber": 80,
+      "sourcePage": 27,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9922,
+      "sourceFidelity": 0.9864,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q078",
+      "year": 2015,
+      "questionNumber": 78,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.3766,
+      "sourceFidelity": 0.9867,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q065",
+      "year": 2017,
+      "questionNumber": 65,
+      "sourcePage": 24,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.9888,
+      "sourceFidelity": 0.9868,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q046",
+      "year": 2015,
+      "questionNumber": 46,
+      "sourcePage": 8,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.5469,
+      "sourceFidelity": 0.9869,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q045",
+      "year": 2015,
+      "questionNumber": 45,
+      "sourcePage": 8,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.4437,
+      "sourceFidelity": 0.9871,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q050",
+      "year": 2015,
+      "questionNumber": 50,
+      "sourcePage": 9,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.4778,
+      "sourceFidelity": 0.988,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2020_Q066",
+      "year": 2020,
+      "questionNumber": 66,
+      "sourcePage": 23,
+      "sourceFile": "source/original-exams/2020.pdf",
+      "stemCoverage": 0.9841,
+      "sourceFidelity": 0.9881,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q069",
+      "year": 2015,
+      "questionNumber": 69,
+      "sourcePage": 13,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.7647,
+      "sourceFidelity": 0.9884,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q059",
+      "year": 2017,
+      "questionNumber": 59,
+      "sourcePage": 21,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.9703,
+      "sourceFidelity": 0.9885,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q043",
+      "year": 2025,
+      "questionNumber": 43,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9864,
+      "sourceFidelity": 0.9885,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q047",
+      "year": 2024,
+      "questionNumber": 47,
+      "sourcePage": 15,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.9873,
+      "sourceFidelity": 0.9885,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2017_Q079",
+      "year": 2017,
+      "questionNumber": 79,
+      "sourcePage": 29,
+      "sourceFile": "source/original-exams/2017.pdf",
+      "stemCoverage": 0.9904,
+      "sourceFidelity": 0.9885,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2018_Q041",
+      "year": 2018,
+      "questionNumber": 41,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2018.pdf",
+      "stemCoverage": 0.925,
+      "sourceFidelity": 0.9891,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2025_Q060",
+      "year": 2025,
+      "questionNumber": 60,
+      "sourcePage": 20,
+      "sourceFile": "source/original-exams/2025.pdf",
+      "stemCoverage": 0.9894,
+      "sourceFidelity": 0.9891,
+      "issueCodes": [
+        "source_fidelity"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q068",
+      "year": 2015,
+      "questionNumber": 68,
+      "sourcePage": 13,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.6528,
+      "sourceFidelity": 0.9892,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q074",
+      "year": 2015,
+      "questionNumber": 74,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.4812,
+      "sourceFidelity": 0.9894,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "source_fidelity",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q076",
+      "year": 2015,
+      "questionNumber": 76,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.8167,
+      "sourceFidelity": 0.9907,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q072",
+      "year": 2015,
+      "questionNumber": 72,
+      "sourcePage": 14,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.4305,
+      "sourceFidelity": 0.9921,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2015_Q043",
+      "year": 2015,
+      "questionNumber": 43,
+      "sourcePage": 8,
+      "sourceFile": "source/original-exams/2015.pdf",
+      "stemCoverage": 0.5808,
+      "sourceFidelity": 0.9924,
+      "issueCodes": [
+        "ocr_glued_hangul",
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    },
+    {
+      "questionId": "ACC_2024_Q080",
+      "year": 2024,
+      "questionNumber": 80,
+      "sourcePage": 26,
+      "sourceFile": "source/original-exams/2024.pdf",
+      "stemCoverage": 0.8846,
+      "sourceFidelity": 0.9977,
+      "issueCodes": [
+        "stem_truncated"
+      ],
+      "failureLayer": "L1→L2 Parser",
+      "missingNumbers": [],
+      "missingUnits": []
+    }
+  ]
+}

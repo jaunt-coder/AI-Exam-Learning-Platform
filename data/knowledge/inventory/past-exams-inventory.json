@@ -1,0 +1,266 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-07-22T15:09:18.699490+00:00",
+  "sprintId": "KS-ACC-LOSSLESS-GOLDEN",
+  "woId": "WO-20260722-009",
+  "rootId": "past_exams",
+  "rootPath": "source/past-exams",
+  "algorithm": "SHA-256",
+  "entryCount": 27,
+  "entries": [
+    {
+      "path": "source/past-exams/2018/answer.hwp",
+      "year": 2018,
+      "role": "answer",
+      "ext": "hwp",
+      "bytes": 219136,
+      "sha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+      "mtimeUtc": "2026-07-18T14:16:27.633295+00:00"
+    },
+    {
+      "path": "source/past-exams/2018/exam_1.pdf",
+      "year": 2018,
+      "role": "exam_1",
+      "ext": "pdf",
+      "bytes": 834285,
+      "sha256": "023be48df5bf6d9bde1434e33b2c8ca78f4e711456639b5d3259e4a462719ec7",
+      "mtimeUtc": "2018-03-06T01:33:14+00:00"
+    },
+    {
+      "path": "source/past-exams/2018/exam_2.pdf",
+      "year": 2018,
+      "role": "exam_2",
+      "ext": "pdf",
+      "bytes": 719717,
+      "sha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+      "mtimeUtc": "2018-03-06T01:33:38+00:00"
+    },
+    {
+      "path": "source/past-exams/2019/answer.hwp",
+      "year": 2019,
+      "role": "answer",
+      "ext": "hwp",
+      "bytes": 226816,
+      "sha256": "e9cb03f1f27da76264622a170a772919b3657a58a7c4d7471765722c5abb51dd",
+      "mtimeUtc": "2026-07-18T14:15:31.789145+00:00"
+    },
+    {
+      "path": "source/past-exams/2019/exam_1.hwp",
+      "year": 2019,
+      "role": "exam_1",
+      "ext": "hwp",
+      "bytes": 166912,
+      "sha256": "55e9d17758fe868cd716e015564776fb4de172ad7fddd7c0821fd1792417ffa2",
+      "mtimeUtc": "2019-03-04T03:34:24+00:00"
+    },
+    {
+      "path": "source/past-exams/2019/exam_2.hwp",
+      "year": 2019,
+      "role": "exam_2",
+      "ext": "hwp",
+      "bytes": 108544,
+      "sha256": "3d1651dfcb43cc4864ddd0c16a653aeb20aeaccbaa307719e966e6d66414dfdc",
+      "mtimeUtc": "2019-03-04T03:30:26+00:00"
+    },
+    {
+      "path": "source/past-exams/2020/answer.hwp",
+      "year": 2020,
+      "role": "answer",
+      "ext": "hwp",
+      "bytes": 102400,
+      "sha256": "9913d09a7d031693f0edd2db381c41e35843182bc45e52d66f7b553a27322048",
+      "mtimeUtc": "2026-07-18T14:13:35.480410+00:00"
+    },
+    {
+      "path": "source/past-exams/2020/exam_1.pdf",
+      "year": 2020,
+      "role": "exam_1",
+      "ext": "pdf",
+      "bytes": 803037,
+      "sha256": "aaa432819df2146ed78a92e0adaeff9bf086fa7b8db595bb3c6d0883805009bd",
+      "mtimeUtc": "2020-06-15T01:57:50+00:00"
+    },
+    {
+      "path": "source/past-exams/2020/exam_2.pdf",
+      "year": 2020,
+      "role": "exam_2",
+      "ext": "pdf",
+      "bytes": 623336,
+      "sha256": "ef27f90ccfb0e4d57dda37335cd99bea211cc3bacc4a821cb23a8101f1de00a3",
+      "mtimeUtc": "2020-06-15T02:02:54+00:00"
+    },
+    {
+      "path": "source/past-exams/2021/answer.hwp",
+      "year": 2021,
+      "role": "answer",
+      "ext": "hwp",
+      "bytes": 175104,
+      "sha256": "4b8543ea2ca814286cac88ce2fe62db2c7f351158fec8dc17b1cfc1d58af7a1e",
+      "mtimeUtc": "2026-07-18T14:14:48.853924+00:00"
+    },
+    {
+      "path": "source/past-exams/2021/exam_1.pdf",
+      "year": 2021,
+      "role": "exam_1",
+      "ext": "pdf",
+      "bytes": 10170284,
+      "sha256": "8805cb6027a5b4b8cc6f0a819ae5cbcc779403902dc739087f0824d779625325",
+      "mtimeUtc": "2021-04-27T00:35:30+00:00"
+    },
+    {
+      "path": "source/past-exams/2021/exam_2.pdf",
+      "year": 2021,
+      "role": "exam_2",
+      "ext": "pdf",
+      "bytes": 7516725,
+      "sha256": "0b396403793a88e5dfbb5bbff09d7768b5a905230edff098032d922c98195034",
+      "mtimeUtc": "2021-04-27T00:37:38+00:00"
+    },
+    {
+      "path": "source/past-exams/2022/answer.hwp",
+      "year": 2022,
+      "role": "answer",
+      "ext": "hwp",
+      "bytes": 252928,
+      "sha256": "1771f6f86598f66b5d1bec622e9d0dab1697054ba90a7c9439566dad5d71651f",
+      "mtimeUtc": "2026-07-18T14:13:31.770623+00:00"
+    },
+    {
+      "path": "source/past-exams/2022/exam_1.pdf",
+      "year": 2022,
+      "role": "exam_1",
+      "ext": "pdf",
+      "bytes": 12140140,
+      "sha256": "0d696ea2605745de01339be1731bb08307d97079933f17ed170cac02ddfe2850",
+      "mtimeUtc": "2026-07-22T14:24:30.074930+00:00"
+    },
+    {
+      "path": "source/past-exams/2022/exam_2.pdf",
+      "year": 2022,
+      "role": "exam_2",
+      "ext": "pdf",
+      "bytes": 9145609,
+      "sha256": "9788758bff58bd4f21f03767434ed9862e66d93b3daaef31db7ed14a932558f2",
+      "mtimeUtc": "2026-07-18T12:10:20.630588+00:00"
+    },
+    {
+      "path": "source/past-exams/2023/answer.hwp",
+      "year": 2023,
+      "role": "answer",
+      "ext": "hwp",
+      "bytes": 277504,
+      "sha256": "ee373f7af0f6b198eeb7738dcce78aab094c8e45b3a842b55dbe9cf14edf1ac8",
+      "mtimeUtc": "2026-07-18T14:13:28.202413+00:00"
+    },
+    {
+      "path": "source/past-exams/2023/exam_1.pdf",
+      "year": 2023,
+      "role": "exam_1",
+      "ext": "pdf",
+      "bytes": 84556875,
+      "sha256": "83629cfff6bdea29790f33e2843d443decf2aa73f9736bebf66afaad1d322177",
+      "mtimeUtc": "2026-07-22T14:23:04.868009+00:00"
+    },
+    {
+      "path": "source/past-exams/2023/exam_2.pdf",
+      "year": 2023,
+      "role": "exam_2",
+      "ext": "pdf",
+      "bytes": 61111497,
+      "sha256": "2343da0b8b181777d330382907e81f824328a67319b94eee97d7a8e4f20f7a82",
+      "mtimeUtc": "2026-07-18T12:18:11.652292+00:00"
+    },
+    {
+      "path": "source/past-exams/2024/answer.hwp",
+      "year": 2024,
+      "role": "answer",
+      "ext": "hwp",
+      "bytes": 148480,
+      "sha256": "9097d7720f88191870c73cc5b1e7cfbe94bcbe85a74a9ee0a84c2c33d22e4f97",
+      "mtimeUtc": "2026-07-18T14:13:24.384208+00:00"
+    },
+    {
+      "path": "source/past-exams/2024/exam_1.pdf",
+      "year": 2024,
+      "role": "exam_1",
+      "ext": "pdf",
+      "bytes": 877934,
+      "sha256": "d7d189a3d34a97a96e13452c35344bfad5dadf048e46faabe6a24ca843196f80",
+      "mtimeUtc": "2026-07-22T14:22:39.950048+00:00"
+    },
+    {
+      "path": "source/past-exams/2024/exam_2.pdf",
+      "year": 2024,
+      "role": "exam_2",
+      "ext": "pdf",
+      "bytes": 598404,
+      "sha256": "f8d1d74d255b9ecb103ebd08a7cb648db56c10595850c68b91fef4f38c088e1a",
+      "mtimeUtc": "2026-07-18T12:10:04.980466+00:00"
+    },
+    {
+      "path": "source/past-exams/2025/answer.hwp",
+      "year": 2025,
+      "role": "answer",
+      "ext": "hwp",
+      "bytes": 163328,
+      "sha256": "527748ba443c6aff63bafc00fda2873c2f07696e424570f96ac4309f8f419719",
+      "mtimeUtc": "2026-07-18T14:13:20.657912+00:00"
+    },
+    {
+      "path": "source/past-exams/2025/exam_1.pdf",
+      "year": 2025,
+      "role": "exam_1",
+      "ext": "pdf",
+      "bytes": 814707,
+      "sha256": "11578508ad4f819a02a52b246ff5990a31ff283db1d6aab4d6d0e1f5cbcc06e8",
+      "mtimeUtc": "2026-07-22T14:22:35.273371+00:00"
+    },
+    {
+      "path": "source/past-exams/2025/exam_2.pdf",
+      "year": 2025,
+      "role": "exam_2",
+      "ext": "pdf",
+      "bytes": 621106,
+      "sha256": "90aa88ff99e69e77012a5b7e3fdae6dd34b219fcf2db9626b50536a58978da33",
+      "mtimeUtc": "2026-07-18T12:09:57.794350+00:00"
+    },
+    {
+      "path": "source/past-exams/2026/answer.hwp",
+      "year": 2026,
+      "role": "answer",
+      "ext": "hwp",
+      "bytes": 310784,
+      "sha256": "a92dfb8ea131ab6f6a722ee17afdae325295c6f950adfab996f47d50da7250e2",
+      "mtimeUtc": "2026-07-22T14:32:50.717391+00:00"
+    },
+    {
+      "path": "source/past-exams/2026/exam_1.pdf",
+      "year": 2026,
+      "role": "exam_1",
+      "ext": "pdf",
+      "bytes": 845088,
+      "sha256": "fb01940b7eee49659864c8d0e752e516e7cd0d76c8ea8d964d78160adde89678",
+      "mtimeUtc": "2026-07-22T14:22:20.346464+00:00"
+    },
+    {
+      "path": "source/past-exams/2026/exam_2.pdf",
+      "year": 2026,
+      "role": "exam_2",
+      "ext": "pdf",
+      "bytes": 641933,
+      "sha256": "5ac4a24525415efc3f82fabc17b3609322c9ef75cf8e5e0e51ea41e09fea82c1",
+      "mtimeUtc": "2026-07-18T12:09:44.835612+00:00"
+    }
+  ],
+  "gaps": [
+    {
+      "year": 2017,
+      "missing": [
+        "folder",
+        "exam_1",
+        "exam_2",
+        "answer"
+      ]
+    }
+  ]
+}

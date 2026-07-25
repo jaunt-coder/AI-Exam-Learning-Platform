@@ -1,0 +1,216 @@
+{
+  "years": [
+    2015,
+    2017,
+    2018,
+    2020,
+    2024,
+    2025
+  ],
+  "questionsExpected": 240,
+  "boundary": {
+    "2015": {
+      "detected": 40,
+      "missing": []
+    },
+    "2017": {
+      "detected": 40,
+      "missing": []
+    },
+    "2018": {
+      "detected": 40,
+      "missing": []
+    },
+    "2020": {
+      "detected": 40,
+      "missing": []
+    },
+    "2024": {
+      "detected": 40,
+      "missing": []
+    },
+    "2025": {
+      "detected": 40,
+      "missing": []
+    }
+  },
+  "boundaryDetectedTotal": 240,
+  "overall": {
+    "before": {
+      "questions": 240,
+      "expectedMarkers": 1200,
+      "foundMarkers": 1200,
+      "markerRecall": 1.0,
+      "count5Questions": 240,
+      "countAccuracy": 1.0,
+      "textCoverage": 1.0
+    },
+    "after": {
+      "questions": 240,
+      "expectedMarkers": 1200,
+      "foundMarkers": 1196,
+      "markerRecall": 0.9967,
+      "count5Questions": 236,
+      "countAccuracy": 0.9833,
+      "textCoverage": 0.9908
+    }
+  },
+  "contaminationTotal": 10,
+  "footer": {
+    "removed": 973,
+    "falsePositive": 8,
+    "survivingMarginBoilerplate": 36
+  },
+  "perYear": {
+    "2015": {
+      "before": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "after": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 196,
+        "markerRecall": 0.98,
+        "count5Questions": 36,
+        "countAccuracy": 0.9,
+        "textCoverage": 0.95
+      },
+      "footer": {
+        "removed": 83,
+        "falsePositive": 8,
+        "survivingMarginBoilerplate": 29
+      }
+    },
+    "2017": {
+      "before": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "after": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "footer": {
+        "removed": 90,
+        "falsePositive": 0,
+        "survivingMarginBoilerplate": 1
+      }
+    },
+    "2018": {
+      "before": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "after": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "footer": {
+        "removed": 56,
+        "falsePositive": 0,
+        "survivingMarginBoilerplate": 1
+      }
+    },
+    "2020": {
+      "before": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "after": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "footer": {
+        "removed": 265,
+        "falsePositive": 0,
+        "survivingMarginBoilerplate": 1
+      }
+    },
+    "2024": {
+      "before": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "after": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "footer": {
+        "removed": 236,
+        "falsePositive": 0,
+        "survivingMarginBoilerplate": 2
+      }
+    },
+    "2025": {
+      "before": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 1.0
+      },
+      "after": {
+        "questions": 40,
+        "expectedMarkers": 200,
+        "foundMarkers": 200,
+        "markerRecall": 1.0,
+        "count5Questions": 40,
+        "countAccuracy": 1.0,
+        "textCoverage": 0.995
+      },
+      "footer": {
+        "removed": 243,
+        "falsePositive": 0,
+        "survivingMarginBoilerplate": 2
+      }
+    }
+  }
+}

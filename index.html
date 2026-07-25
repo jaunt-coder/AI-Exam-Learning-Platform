@@ -3,42 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AI Exam Learning Platform - 출제 패턴 중심 시험 학습 플랫폼">
-  <title>AI Exam Learning Platform</title>
+  <meta name="description" content="감정평가사 회계학 재고자산 Inventory MVP — AI Exam Learning Platform">
+  <title>재고자산 MVP | AI Exam Learning Platform</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header" role="banner">
     <div class="container">
       <h1 class="site-title">AI Exam Learning Platform</h1>
-      <p class="site-subtitle">출제 패턴 중심 AI 시험 학습 플랫폼</p>
+      <p class="site-subtitle">감정평가사 1차 회계학 · 재고자산 Inventory MVP v0.1</p>
     </div>
   </header>
 
   <main class="site-main" role="main">
     <section class="hero-section" aria-labelledby="hero-heading">
       <div class="container">
-        <h2 id="hero-heading">감정평가사 회계학 MVP</h2>
+        <p class="hero-eyebrow">회계학 → 재고자산(ACC_INV_*)</p>
+        <h2 id="hero-heading">재고자산 Pattern 학습 MVP</h2>
         <p class="hero-description">
-          MVP 6개년 240문항 · 18 Pattern · 문제 풀이 · AI Tutor · 학습 추천
+          Pattern 학습 → 문제 풀이 → 채점(D3 answer) → 결과·Pattern 확인.
+          Product/Pattern DB는 읽기만 하며 변경하지 않습니다.
         </p>
         <div class="status-card card" id="platform-status" aria-live="polite">
           <p class="status-label">시스템 상태</p>
           <p class="status-value" id="status-message">초기화 중...</p>
         </div>
         <div class="home-actions card" id="home-actions">
-          <h3 class="home-actions__title">학습 시작</h3>
-          <p class="home-actions__desc">MVP v1.0 · Pattern 중심 학습</p>
+          <h3 class="home-actions__title">수험생 학습 시작</h3>
+          <p class="home-actions__desc">재고자산 단원만 노출 (ACC_INV_* 필터)</p>
           <div class="home-stats" id="home-stats" aria-live="polite"></div>
           <div class="home-buttons">
-            <a href="pattern.html" class="button button--primary">Pattern 학습 Dashboard</a>
-            <a href="question.html" class="button button--secondary">문제 풀이</a>
-            <a href="wrong-note.html" class="button button--secondary">오답 노트</a>
-            <a href="ai-tutor.html" class="button button--secondary">AI Tutor</a>
-            <a href="exam.html" class="button button--secondary">모의시험</a>
-            <a href="recommendation.html" class="button button--secondary">학습 추천</a>
-            <a href="analytics.html" class="button button--secondary">Analytics</a>
+            <a href="learning-loop.html" class="button button--primary">오늘 Pattern 학습</a>
+            <a href="pattern.html" class="button button--secondary">1. 재고자산 Pattern 목록</a>
+            <a href="question.html" class="button button--secondary">2. 문제 풀이</a>
+            <a href="exam.html" class="button button--secondary">3. 재고 모의시험</a>
+            <a href="wrong-note.html" class="button button--ghost">오답 노트</a>
           </div>
+          <p class="home-actions__hint" id="home-validation-hint"></p>
         </div>
       </div>
     </section>
@@ -46,7 +47,7 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>&copy; 2026 AI Exam Learning Platform v2</p>
+      <p>&copy; 2026 AI Exam Learning Platform v2 · Inventory MVP v0.1 (WO-20260722-002)</p>
     </div>
   </footer>
 

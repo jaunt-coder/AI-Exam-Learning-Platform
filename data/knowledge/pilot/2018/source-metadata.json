@@ -1,0 +1,45 @@
+{
+  "workOrder": "WO-20260722-011",
+  "createdAt": "2026-07-22T15:23:01Z",
+  "pilotYear": 2018,
+  "session": "2교시",
+  "examRound": 29,
+  "inputs": [
+    {
+      "role": "exam_2",
+      "path": "source/past-exams/2018/exam_2.pdf",
+      "sha256": "18dd374b323cdc8aff8a3f7273b04eadf126fb05d7a621c904b4d9d10a23aadc",
+      "bytes": 719717,
+      "pages": 28,
+      "textLayer": true
+    },
+    {
+      "role": "answer",
+      "path": "source/past-exams/2018/answer.hwp",
+      "sha256": "1a67082b336e263b4b22873696be2d7e949027bbba4e6a5bcb9fc4d826ab2595",
+      "bytes": 219136,
+      "humanExportRequired": true,
+      "probeOk": false
+    }
+  ],
+  "outputsRoot": "data/knowledge/pilot/2018",
+  "forbiddenHonored": [
+    "source-unchanged",
+    "no-ocr",
+    "no-parser-edit",
+    "no-question-db-product",
+    "no-pattern-db",
+    "no-d3-d4-persist",
+    "no-convert-into-source"
+  ],
+  "accountingStart": {
+    "page": 14,
+    "offsetInPageText": 29
+  },
+  "candidateCount": 40,
+  "notes": [
+    "exam_2 mixes 관계법 + 회계학; pilot candidates are ACC Q41–Q80 only.",
+    "Lossless rule: stem/choices taken from text-layer split; no paraphrase.",
+    "HWP binary probe did not yield reliable answer key text. Answer join HOLD until Human VERIFY_EXPORT (WO-010 D-primary)."
+  ]
+}
