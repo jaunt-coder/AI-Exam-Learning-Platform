@@ -171,9 +171,40 @@ function hasApprovedEvidence(pattern) {
   return Array.isArray(questions) && questions.length > 0;
 }
 
+/**
+ * Sprint-09I — Evidence Quality Gate projection (warning mode).
+ * @param {array} patterns
+ * @returns {{ totalPatterns: number, approved: number, missingReview: number, blocked: number }}
+ */
+export function buildEvidenceReviewSummary(patterns = []) {
+  let totalPatterns = 0;
+  let approved = 0;
+  let missingReview = 0;
+  let blocked = 0;
+
+  for (const p of patterns || []) {
+    if ((p?.frequency || 0) <= 0) continue;
+    totalPatterns += 1;
+
+    const status = p?.evidenceReview?.status || p?.evidence?.reviewStatus || null;
+    if (status === 'REJECTED') {
+      blocked += 1;
+      continue;
+    }
+
+    if (hasApprovedEvidence(p)) {
+      approved += 1;
+    } else {
+      missingReview += 1;
+    }
+  }
+
+  return { totalPatterns, approved, missingReview, blocked };
+}
+
 function validateDatabasePayload(dbSet, data, options = {}) {
   const errors = [];
-  /** Sprint-09H: evidence gaps are warnings (do not fail valid) */
+  /** Sprint-09H/09I: evidence gaps are warnings (do not fail valid) */
   const warnings = [];
   const { master, patterns, questions, statistics } = data;
 
@@ -247,10 +278,13 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     errors.push(`MVP question count ${(questions || []).length}/240`);
   }
 
+  const evidenceReview = buildEvidenceReviewSummary(patterns || []);
+
   return {
     valid: errors.length === 0,
     errors,
     warnings,
+    evidenceReview,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -282,6 +316,12 @@ async function loadDatabaseSet(dbSet, options = {}) {
       valid: false,
       errors: [error.message],
       warnings: [],
+      evidenceReview: {
+        totalPatterns: 0,
+        approved: 0,
+        missingReview: 0,
+        blocked: 0,
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -309,6 +349,12 @@ async function loadDatabaseSet(dbSet, options = {}) {
     valid: validation.valid,
     errors: validation.errors,
     warnings: validation.warnings || [],
+    evidenceReview: validation.evidenceReview || {
+      totalPatterns: 0,
+      approved: 0,
+      missingReview: 0,
+      blocked: 0,
+    },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,
     paths: {
