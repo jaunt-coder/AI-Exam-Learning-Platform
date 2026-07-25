@@ -337,6 +337,13 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     servicePath: 'js/dashboard-service.js',
     pagePath: 'dashboard.html',
   };
+  /* Sprint-10F — Adaptive Question Selector (does not fail valid) */
+  const selectorContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    servicePath: 'js/question-selector.js',
+  };
 
   return {
     valid: errors.length === 0,
@@ -350,6 +357,7 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     strategyContract,
     studySessionContract,
     dashboardContract,
+    selectorContract,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -439,6 +447,12 @@ async function loadDatabaseSet(dbSet, options = {}) {
         servicePath: 'js/dashboard-service.js',
         pagePath: 'dashboard.html',
       },
+      selectorContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        servicePath: 'js/question-selector.js',
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -523,6 +537,12 @@ async function loadDatabaseSet(dbSet, options = {}) {
       storageKey: 'learning.*',
       servicePath: 'js/dashboard-service.js',
       pagePath: 'dashboard.html',
+    },
+    selectorContract: validation.selectorContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      servicePath: 'js/question-selector.js',
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,

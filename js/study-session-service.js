@@ -1,6 +1,7 @@
 /**
  * Sprint-10D — Study Session Runtime
- * Learning Strategy → Study Session Builder → Question Queue → Attempt
+ * Sprint-10F — Adaptive Question Selector for queue building
+ * Learning Strategy → Adaptive Selector → Question Queue → Attempt
  * Deterministic only. No AI / LLM. Question/Pattern/Master DB read-only.
  *
  * Storage: learning.session.v1
@@ -9,6 +10,10 @@
 
 import { getItem, setItem, STORAGE_KEYS } from './storage.js';
 import { loadStrategies } from './learning-strategy-service.js';
+import {
+  buildSelectorContext,
+  selectQuestionsForStrategy as adaptiveSelectForStrategy,
+} from './question-selector.js';
 
 export const STUDY_SESSION_STORE_KEY =
   STORAGE_KEYS.LEARNING_SESSION_V1 || 'learning.session.v1';
@@ -84,21 +89,6 @@ export function resolveQuestionCount(strategy = {}) {
 }
 
 /**
- * Stable hash for deterministic "random" ordering.
- * @param {string} seed
- * @param {string} id
- * @returns {number}
- */
-function stableRank(seed, id) {
-  const s = `${seed}::${id}`;
-  let h = 0;
-  for (let i = 0; i < s.length; i += 1) {
-    h = (h * 31 + s.charCodeAt(i)) >>> 0;
-  }
-  return h;
-}
-
-/**
  * Collect wrong question ids (Constitution + attempt log).
  * @returns {Set<string>}
  */
@@ -129,78 +119,38 @@ export function loadWrongQuestionIdSet() {
 }
 
 /**
- * Select question ids for one strategy (deterministic).
+ * Select question ids for one strategy via Adaptive Selector (Sprint-10F).
  *
  * @param {object} strategy
  * @param {object[]} bank
- * @param {{ excludeIds?: Set<string>, wrongIds?: Set<string>, seed?: string }} [options]
+ * @param {{
+ *   excludeIds?: Set<string>,
+ *   context?: object,
+ *   nowMs?: number,
+ * }} [options]
  * @returns {string[]}
  */
 export function selectQuestionIdsForStrategy(strategy, bank, options = {}) {
-  const excludeIds = options.excludeIds || new Set();
-  const wrongIds = options.wrongIds || new Set();
-  const seed = options.seed || strategy.strategyId || 'session';
-  const patternId = String(strategy.patternId || '');
-  const count = resolveQuestionCount(strategy);
-  const type = strategy.strategyType;
-
-  let candidates = (bank || []).filter((q) => {
-    const qid = questionIdOf(q);
-    return qid && !excludeIds.has(qid);
+  const selected = adaptiveSelectForStrategy(strategy, bank, {
+    excludeIds: options.excludeIds,
+    context: options.context,
+    count: resolveQuestionCount(strategy),
   });
-
-  if (type === 'CALC_DRILL_SET') {
-    const calc = candidates.filter(
-      (q) => q.hasCalculation === true || q.questionType === 'calculation',
-    );
-    const samePat = calc.filter((q) => effectivePatternId(q) === patternId);
-    candidates = samePat.length ? samePat : calc.length ? calc : candidates.filter(
-      (q) => effectivePatternId(q) === patternId,
-    );
-  } else if (type === 'TIMED_PRACTICE') {
-    /* keep all candidates — order by stable hash ("random") */
-  } else {
-    /* PATTERN_RETRY_SET / CONCEPT_REVIEW_SET → same pattern */
-    candidates = candidates.filter((q) => effectivePatternId(q) === patternId);
-  }
-
-  if (!candidates.length && patternId) {
-    candidates = (bank || []).filter((q) => {
-      const qid = questionIdOf(q);
-      return qid && !excludeIds.has(qid) && effectivePatternId(q) === patternId;
-    });
-  }
-
-  const ranked = candidates.slice().sort((a, b) => {
-    const ida = questionIdOf(a);
-    const idb = questionIdOf(b);
-    if (type === 'TIMED_PRACTICE') {
-      return stableRank(seed, ida) - stableRank(seed, idb) || ida.localeCompare(idb);
-    }
-    const wa = wrongIds.has(ida) ? 0 : 1;
-    const wb = wrongIds.has(idb) ? 0 : 1;
-    if (wa !== wb) return wa - wb;
-    return ida.localeCompare(idb);
-  });
-
-  const out = [];
-  const used = new Set();
-  for (const q of ranked) {
-    const qid = questionIdOf(q);
-    if (used.has(qid)) continue;
-    used.add(qid);
-    out.push(qid);
-    if (out.length >= count) break;
-  }
-  return out;
+  return selected.ok ? selected.questionIds : [];
 }
 
 /**
- * Build pattern-grouped question queue.
+ * Build pattern-grouped question queue (Adaptive Selector).
  *
  * @param {object[]} strategies
  * @param {object[]} [questions]
- * @param {{ wrongIds?: Set<string>, seed?: string }} [options]
+ * @param {{
+ *   nowMs?: number,
+ *   context?: object,
+ *   servedIds?: Set<string>|string[],
+ *   attemptsDoc?: object|null,
+ *   weaknessDoc?: object|null,
+ * }} [options]
  * @returns {{
  *   ok: boolean,
  *   queue: { patternId: string, questionIds: string[] }[],
@@ -230,8 +180,15 @@ export function buildQuestionQueue(strategies = [], questions, options = {}) {
     };
   }
 
-  const wrongIds = options.wrongIds || loadWrongQuestionIdSet();
-  const seed = options.seed || `q_${Date.now().toString(36)}`;
+  const context =
+    options.context ||
+    buildSelectorContext({
+      nowMs: options.nowMs,
+      attemptsDoc: options.attemptsDoc,
+      weaknessDoc: options.weaknessDoc,
+      servedIds: options.servedIds,
+    });
+
   const excludeIds = new Set();
   /** @type {Map<string, string[]>} */
   const byPattern = new Map();
@@ -245,8 +202,7 @@ export function buildQuestionQueue(strategies = [], questions, options = {}) {
   for (const strategy of ordered) {
     const ids = selectQuestionIdsForStrategy(strategy, bank, {
       excludeIds,
-      wrongIds,
-      seed: `${seed}:${strategy.strategyId || strategy.strategyType}`,
+      context,
     });
     const patternId = String(strategy.patternId || 'MIXED');
     if (!byPattern.has(patternId)) byPattern.set(patternId, []);
@@ -545,14 +501,19 @@ export function loadTodayQueue() {
 }
 
 /**
- * 10C resolver shape — thin wrapper over selectQuestionIdsForStrategy.
+ * 10C resolver shape — Adaptive Selector wrapper.
  */
 export function resolveQuestionsForStrategy(strategy, questions, options = {}) {
   const bank = Array.isArray(questions) ? questions : questionBankCache;
+  const context =
+    options.context ||
+    buildSelectorContext({
+      nowMs: options.nowMs,
+      servedIds: options.servedIds,
+    });
   const ids = selectQuestionIdsForStrategy(strategy, bank, {
     excludeIds: options.excludeIds,
-    wrongIds: options.wrongIds || loadWrongQuestionIdSet(),
-    seed: strategy.strategyId,
+    context,
   });
   const byId = new Map(bank.map((q) => [questionIdOf(q), q]));
   const selected = ids.map((qid) => {
