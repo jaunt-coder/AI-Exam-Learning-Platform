@@ -5,6 +5,7 @@
 import { getItem, STORAGE_KEYS } from './storage.js';
 import { loadDashboard } from './dashboard-service.js';
 import { buildCoachDashboard } from './coach/ai-coach-service.js';
+import { buildPatternTutorDashboardCard } from './coach/pattern-tutor.js';
 
 function applyTheme() {
   const theme = getItem(STORAGE_KEYS.THEME, 'light') || 'light';
@@ -162,6 +163,53 @@ function renderCoachCard(card, coachResult) {
   `;
 }
 
+function renderListBlock(title, items) {
+  const list = Array.isArray(items) ? items : items ? [items] : [];
+  if (!list.length) {
+    return `<div><dt>${escapeHtml(title)}</dt><dd>—</dd></div>`;
+  }
+  const lis = list.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
+  return `
+    <div class="ld-tutor-block">
+      <h4>${escapeHtml(title)}</h4>
+      <ul class="ld-tutor-list">${lis}</ul>
+    </div>`;
+}
+
+function renderPatternTutorCard(card, tutor) {
+  if (!card) return;
+  if (!tutor) {
+    card.innerHTML = '<p class="ld-empty">Pattern Tutor를 준비하지 못했습니다.</p>';
+    return;
+  }
+  const source = tutor.fallback
+    ? 'Rule Coach (fallback)'
+    : 'LLM Adapter · Pattern Tutor';
+  card.innerHTML = `
+    <p class="ld-card-desc">${escapeHtml(source)} · ${escapeHtml(tutor.provider || 'openai')} / ${escapeHtml(tutor.model || 'gpt-5.5')}</p>
+    <dl class="ld-dl">
+      <div><dt>Pattern</dt><dd>${escapeHtml(tutor.patternId || '—')}</dd></div>
+      <div><dt>Mastery</dt><dd>${escapeHtml(tutor.masteryLevel || '—')}</dd></div>
+      <div><dt>Weakness</dt><dd>${escapeHtml(tutor.weaknessType || '—')}</dd></div>
+      <div><dt>Confidence</dt><dd>${escapeHtml(tutor.confidence ?? '—')}</dd></div>
+    </dl>
+    <div class="ld-tutor-block">
+      <h4>Explanation</h4>
+      <p class="ld-coach-text">${escapeHtml(tutor.explanation || tutor.summary || '')}</p>
+    </div>
+    <div class="ld-tutor-block">
+      <h4>Why Wrong</h4>
+      <p class="ld-coach-text">${escapeHtml(tutor.whyWrong || '')}</p>
+    </div>
+    ${renderListBlock('Common Mistakes', tutor.commonMistakes)}
+    ${renderListBlock('Review Checklist', tutor.reviewChecklist)}
+    <div class="ld-tutor-block">
+      <h4>Next Study</h4>
+      <p class="ld-coach-text">${escapeHtml(tutor.nextStudy || '')}</p>
+    </div>
+  `;
+}
+
 function renderDashboard(dashboard) {
   renderTodayStudy(el('card-today-study'), dashboard.todayStudy);
   renderCountList(el('card-mastery'), dashboard.masterySummary, [
@@ -205,10 +253,16 @@ async function main() {
     renderCoachCard(el('card-today-coach'), coach.today);
     renderCoachCard(el('card-pattern-coach'), coach.pattern);
     renderCoachCard(el('card-recommendation-coach'), coach.recommendation);
+
+    const patternTutor = await buildPatternTutorDashboardCard();
+    renderPatternTutorCard(el('card-pattern-tutor'), patternTutor);
+
     if (status) {
-      status.textContent = coach.today?.fallback
-        ? 'Learning Dashboard 준비 완료 · Rule Coach fallback'
-        : 'Learning Dashboard 준비 완료 · AI Coach ready';
+      status.textContent = patternTutor?.fallback
+        ? 'Learning Dashboard 준비 완료 · Pattern Tutor fallback'
+        : coach.today?.fallback
+          ? 'Learning Dashboard 준비 완료 · Rule Coach fallback'
+          : 'Learning Dashboard 준비 완료 · AI Pattern Tutor ready';
     }
   } catch (err) {
     if (status) {
