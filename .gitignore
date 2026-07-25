@@ -28,3 +28,4 @@ npm-debug.log*
 # Build output
 dist/
 build/
+data/analysis/
