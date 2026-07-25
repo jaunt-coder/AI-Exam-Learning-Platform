@@ -1,10 +1,12 @@
 /**
  * Sprint-09M — Learning Plan Contract Foundation
+ * Sprint-10B — Plan dedupe (patternId + actionType + active status).
  * Deterministic Weakness → Learning Plan mapping.
  * No AI / LLM / recommendation model.
  */
 
 import { getItem, setItem, STORAGE_KEYS } from './storage.js';
+import { getLearningPolicy } from './learning-policy.js';
 
 export const PLAN_STORE_KEY =
   STORAGE_KEYS.LEARNING_PLAN_V1 || 'learning.plan.v1';
@@ -65,6 +67,37 @@ export function createPlanId(patternId, signalType) {
 }
 
 /**
+ * Active statuses used for dedupe (from policy).
+ * @returns {string[]}
+ */
+export function getPlanDedupeStatuses() {
+  const statuses = getLearningPolicy().plan?.dedupeStatuses;
+  return Array.isArray(statuses) && statuses.length
+    ? statuses.slice()
+    : ['GENERATED', 'ACTIVE'];
+}
+
+/**
+ * Find existing active plan for patternId + actionType.
+ * @param {object[]} plans
+ * @param {string} patternId
+ * @param {string} actionType
+ * @returns {object|null}
+ */
+export function findActivePlan(plans, patternId, actionType) {
+  const active = new Set(getPlanDedupeStatuses());
+  return (
+    (plans || []).find(
+      (p) =>
+        p &&
+        p.patternId === patternId &&
+        p.actionType === actionType &&
+        active.has(p.status),
+    ) || null
+  );
+}
+
+/**
  * Build one plan from a single weakness signal.
  * @param {string} patternId
  * @param {{ type: string, count?: number, severity?: string }} signal
@@ -75,6 +108,10 @@ export function buildPlanFromSignal(patternId, signal) {
   const actionType = mapSignalToAction(signal.type);
   if (!actionType) return null;
 
+  const status =
+    getLearningPolicy().plan?.defaultStatus || 'GENERATED';
+  const now = new Date().toISOString();
+
   return {
     planId: createPlanId(patternId, signal.type),
     patternId,
@@ -82,14 +119,16 @@ export function buildPlanFromSignal(patternId, signal) {
     priority: priorityFromSeverity(signal.severity),
     actionType,
     target: patternId,
-    status: 'GENERATED',
+    status,
     signalCount: Number(signal.count) || 1,
-    createdAt: new Date().toISOString(),
+    attemptCount: 1,
+    lastSeen: now,
+    createdAt: now,
   };
 }
 
 /**
- * Create learning plan(s) from weakness diagnosis.
+ * Create learning plan(s) from weakness diagnosis (pure; no storage).
  * Returns the highest-priority plan as primary `plan`.
  * Skips when no weakness signals (no unnecessary plan).
  *
@@ -122,16 +161,32 @@ export function createLearningPlanFromWeakness(input = {}) {
   }
 
   const plans = [];
+  const seenActions = new Set();
   for (const signal of signals) {
     const plan = buildPlanFromSignal(patternId, signal);
-    if (plan) plans.push(plan);
+    if (!plan) continue;
+    /* same actionType from multiple signals → one candidate plan */
+    if (seenActions.has(plan.actionType)) {
+      const prev = plans.find((p) => p.actionType === plan.actionType);
+      if (prev && plan.priority > prev.priority) {
+        prev.priority = plan.priority;
+        prev.weaknessSignal = plan.weaknessSignal;
+        prev.signalCount = plan.signalCount;
+      }
+      continue;
+    }
+    seenActions.add(plan.actionType);
+    plans.push(plan);
   }
 
   if (!plans.length) {
     return { ok: true, plan: null, plans: [], skipped: true };
   }
 
-  plans.sort((a, b) => b.priority - a.priority || a.actionType.localeCompare(b.actionType));
+  plans.sort(
+    (a, b) =>
+      b.priority - a.priority || a.actionType.localeCompare(b.actionType),
+  );
   return {
     ok: true,
     plan: plans[0],
@@ -167,19 +222,78 @@ export function saveLearningPlans(doc) {
 }
 
 /**
- * Detect plans from weakness and append to learning.plan.v1.
+ * Upsert plans with dedupe: same patternId + actionType + active status
+ * → update attemptCount / priority / lastSeen only (no new plan).
+ *
  * @param {{ weaknessDiagnosis: object, studentId?: string }} input
- * @returns {{ ok: boolean, plan?: object|null, plans?: object[], skipped?: boolean, error?: string }}
+ * @returns {{
+ *   ok: boolean,
+ *   plan?: object|null,
+ *   plans?: object[],
+ *   createdPlans?: object[],
+ *   updatedPlans?: object[],
+ *   skipped?: boolean,
+ *   error?: string,
+ *   totalStored?: number
+ * }}
  */
 export function recordLearningPlansFromWeakness(input = {}) {
   const created = createLearningPlanFromWeakness(input);
   if (!created.ok) return created;
   if (created.skipped || !created.plans?.length) {
-    return { ok: true, plan: null, plans: [], skipped: true };
+    return {
+      ok: true,
+      plan: null,
+      plans: [],
+      createdPlans: [],
+      updatedPlans: [],
+      skipped: true,
+    };
   }
 
   const doc = loadLearningPlans();
-  const nextPlans = doc.plans.concat(created.plans);
+  const nextPlans = doc.plans.slice();
+  const createdPlans = [];
+  const updatedPlans = [];
+  const now = new Date().toISOString();
+
+  for (const candidate of created.plans) {
+    const existing = findActivePlan(
+      nextPlans,
+      candidate.patternId,
+      candidate.actionType,
+    );
+    if (existing) {
+      existing.attemptCount = (Number(existing.attemptCount) || 1) + 1;
+      existing.priority = Math.max(
+        Number(existing.priority) || 0,
+        Number(candidate.priority) || 0,
+      );
+      existing.lastSeen = now;
+      if (
+        (Number(candidate.signalCount) || 0) >
+        (Number(existing.signalCount) || 0)
+      ) {
+        existing.signalCount = candidate.signalCount;
+      }
+      updatedPlans.push(existing);
+      continue;
+    }
+    nextPlans.push(candidate);
+    createdPlans.push(candidate);
+  }
+
+  if (!createdPlans.length && !updatedPlans.length) {
+    return {
+      ok: true,
+      plan: null,
+      plans: [],
+      createdPlans: [],
+      updatedPlans: [],
+      skipped: true,
+    };
+  }
+
   const saved = saveLearningPlans({
     schemaVersion: PLAN_SCHEMA_VERSION,
     plans: nextPlans,
@@ -188,11 +302,21 @@ export function recordLearningPlansFromWeakness(input = {}) {
     return { ok: false, plan: null, plans: [], error: 'storage_write_failed' };
   }
 
+  const touched = createdPlans.concat(updatedPlans).sort(
+    (a, b) =>
+      (Number(b.priority) || 0) - (Number(a.priority) || 0) ||
+      String(a.actionType).localeCompare(String(b.actionType)),
+  );
+
   return {
     ok: true,
-    plan: created.plan,
-    plans: created.plans,
-    skipped: false,
+    plan: touched[0] || null,
+    /* Only newly created plans flow to Strategy (prevent strategy spam) */
+    plans: createdPlans,
+    createdPlans,
+    updatedPlans,
+    skipped: createdPlans.length === 0 && updatedPlans.length === 0,
+    deduped: updatedPlans.length > 0,
     totalStored: nextPlans.length,
   };
 }
@@ -206,6 +330,8 @@ export default {
   mapSignalToAction,
   createLearningPlanFromWeakness,
   recordLearningPlansFromWeakness,
+  findActivePlan,
+  getPlanDedupeStatuses,
   loadLearningPlans,
   saveLearningPlans,
 };

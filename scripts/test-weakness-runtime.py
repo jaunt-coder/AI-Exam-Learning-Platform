@@ -7,8 +7,14 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[1]
 js = (root / "js/weakness-service.js").read_text(encoding="utf-8")
 assert "export function detectWeakness" in js
+assert "export function gateWeaknessSignals" in js
 assert "learning.weakness.v1" in js
 assert "LOW_ACCURACY" in js
+assert "getLearningPolicy" in js
+policy = json.loads((root / "data/learning-policy.json").read_text(encoding="utf-8"))
+assert policy["weakness"]["signalGates"]["CONCEPT_ERROR"] == 2
+assert policy["weakness"]["signalGates"]["REPEATED_MISS"] == 2
+assert policy["weakness"]["signalGates"]["LOW_ACCURACY"] == 3
 loop = (root / "runtime/learning-loop.js").read_text(encoding="utf-8")
 assert "recordWeaknessDiagnosis" in loop
 loader = (root / "js/data-loader.js").read_text(encoding="utf-8")

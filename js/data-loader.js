@@ -319,6 +319,15 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     storageKey: 'learning.strategy.v1',
     servicePath: 'js/learning-strategy-service.js',
   };
+  /* Sprint-10D — Study Session Runtime (runtime connected) */
+  const studySessionContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    schemaPath: 'data/study-session-schema.json',
+    storageKey: 'learning.session.v1',
+    servicePath: 'js/study-session-service.js',
+  };
 
   return {
     valid: errors.length === 0,
@@ -330,6 +339,7 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     weaknessRuntime,
     learningPlanContract,
     strategyContract,
+    studySessionContract,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -403,6 +413,14 @@ async function loadDatabaseSet(dbSet, options = {}) {
         storageKey: 'learning.strategy.v1',
         servicePath: 'js/learning-strategy-service.js',
       },
+      studySessionContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        schemaPath: 'data/study-session-schema.json',
+        storageKey: 'learning.session.v1',
+        servicePath: 'js/study-session-service.js',
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -471,6 +489,14 @@ async function loadDatabaseSet(dbSet, options = {}) {
       schemaPath: 'data/learning-strategy-schema.json',
       storageKey: 'learning.strategy.v1',
       servicePath: 'js/learning-strategy-service.js',
+    },
+    studySessionContract: validation.studySessionContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      schemaPath: 'data/study-session-schema.json',
+      storageKey: 'learning.session.v1',
+      servicePath: 'js/study-session-service.js',
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,

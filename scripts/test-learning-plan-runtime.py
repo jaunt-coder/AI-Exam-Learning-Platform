@@ -79,6 +79,13 @@ assert "RETRY_PATTERN" in schema["actionTypes"]
 svc = (root / "js/learning-plan-service.js").read_text(encoding="utf-8")
 assert "export function createLearningPlanFromWeakness" in svc
 assert "learning.plan.v1" in svc
+assert "findActivePlan" in svc
+assert "attemptCount" in svc
+assert "lastSeen" in svc
+assert "getLearningPolicy" in svc
+policy = json.loads((root / "data/learning-policy.json").read_text(encoding="utf-8"))
+assert "GENERATED" in policy["plan"]["dedupeStatuses"]
+assert "ACTIVE" in policy["plan"]["dedupeStatuses"]
 
 loop = (root / "runtime/learning-loop.js").read_text(encoding="utf-8")
 assert "recordLearningPlansFromWeakness" in loop

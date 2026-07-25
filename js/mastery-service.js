@@ -1,10 +1,12 @@
 /**
  * Sprint-09K — Mastery Runtime Integration
+ * Sprint-10B — Mastery thresholds from learning-policy (no hardcoded promotion).
  * Deterministic Pattern Mastery updates from Attempt events.
  * No AI recommendation. Does not mutate Question / Pattern / Evidence SoT.
  */
 
 import { getItem, setItem, STORAGE_KEYS } from './storage.js';
+import { getLearningPolicy } from './learning-policy.js';
 
 export const MASTERY_STORE_KEY =
   STORAGE_KEYS.LEARNING_MASTERY_V1 || 'learning.mastery.v1';
@@ -13,18 +15,29 @@ export const MASTERY_SCHEMA_VERSION = 'v1';
 /**
  * @param {number} attempts
  * @param {number|null} accuracy
+ * @param {object} [policy]
  * @returns {'UNKNOWN'|'LEARNING'|'DEVELOPING'|'MASTERED'|'RETRY_REQUIRED'}
  */
-export function computeMasteryLevel(attempts, accuracy) {
+export function computeMasteryLevel(attempts, accuracy, policy) {
+  const mastery = (policy || getLearningPolicy()).mastery || {};
+  const learningMax = Number(mastery.learningMaxAttempts) || 4;
+  const retryBelow = Number(mastery.retryAccuracyBelow);
+  const retryThreshold = Number.isFinite(retryBelow) ? retryBelow : 0.5;
+  const masteredMinAttempts = Number(mastery.masteredMinAttempts) || 8;
+  const masteredMinAccuracy = Number(mastery.masteredMinAccuracy);
+  const masteredAcc = Number.isFinite(masteredMinAccuracy)
+    ? masteredMinAccuracy
+    : 0.85;
+
   const n = Number(attempts) || 0;
   if (n === 0) return 'UNKNOWN';
-  if (n < 3) return 'LEARNING';
+  if (n < learningMax) return 'LEARNING';
 
   const acc = typeof accuracy === 'number' ? accuracy : 0;
-  if (acc < 0.5) return 'RETRY_REQUIRED';
-  if (n >= 5 && acc >= 0.8) return 'MASTERED';
-  if (acc < 0.8) return 'DEVELOPING';
-  /* accuracy >= 0.8 but attempts < 5 */
+  if (acc < retryThreshold) return 'RETRY_REQUIRED';
+  if (n >= masteredMinAttempts && acc >= masteredAcc) return 'MASTERED';
+  if (acc < masteredAcc) return 'DEVELOPING';
+  /* accuracy meets mastered bar but attempts below min */
   return 'DEVELOPING';
 }
 

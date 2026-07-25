@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "v1",
+  "sprint": "Sprint-10D",
+  "enabled": true,
+  "connected": true,
+  "description": "Study Session Runtime — Strategy to Today's Question Queue",
+  "storageKey": "learning.session.v1",
+  "servicePath": "js/study-session-service.js",
+  "fields": {
+    "sessionId": "string",
+    "createdAt": "string",
+    "status": "ACTIVE|COMPLETED",
+    "strategyType": "string",
+    "patternIds": "string[]",
+    "questionIds": "string[]",
+    "queue": [
+      {
+        "patternId": "string",
+        "questionIds": "string[]"
+      }
+    ],
+    "estimatedMinutes": "number",
+    "completedQuestions": "string[]",
+    "remainingQuestions": "string[]"
+  },
+  "allowedStrategyTypes": [
+    "PATTERN_RETRY_SET",
+    "CONCEPT_REVIEW_SET",
+    "CALC_DRILL_SET",
+    "TIMED_PRACTICE"
+  ],
+  "selectionRules": {
+    "PATTERN_RETRY_SET": "same_pattern",
+    "CONCEPT_REVIEW_SET": "same_pattern",
+    "CALC_DRILL_SET": "calculation_questions",
+    "TIMED_PRACTICE": "deterministic_random"
+  },
+  "defaultCounts": {
+    "PATTERN_RETRY_SET": 5,
+    "CONCEPT_REVIEW_SET": 3,
+    "CALC_DRILL_SET": 5,
+    "TIMED_PRACTICE": 10
+  },
+  "minutesPerQuestion": 3,
+  "nonGoals": [
+    "AI recommendation",
+    "LLM calls",
+    "question-db mutation",
+    "pattern-db mutation",
+    "master-db mutation",
+    "evidence mutation"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "v1",
+  "sprint": "Sprint-10B",
+  "description": "Learning Runtime policy — mastery / weakness gating / plan dedupe",
+  "mastery": {
+    "learningMaxAttempts": 4,
+    "retryAccuracyBelow": 0.5,
+    "masteredMinAttempts": 8,
+    "masteredMinAccuracy": 0.85
+  },
+  "weakness": {
+    "lowAccuracyMinAttempts": 3,
+    "lowAccuracyThreshold": 0.6,
+    "slowResponseMs": 120000,
+    "signalGates": {
+      "REPEATED_MISS": 2,
+      "CONCEPT_ERROR": 2,
+      "CALCULATION_ERROR": 2,
+      "LOW_ACCURACY": 3,
+      "SLOW_RESPONSE": 1
+    }
+  },
+  "plan": {
+    "dedupeStatuses": ["GENERATED", "ACTIVE"],
+    "defaultStatus": "GENERATED"
+  }
+}

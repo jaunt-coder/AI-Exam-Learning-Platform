@@ -1,10 +1,12 @@
 /**
  * Sprint-09L — Weakness Detection Layer
+ * Sprint-10B — Signal gating from learning-policy (threshold before active weakness).
  * Deterministic signals from Pattern Mastery (+ optional attempt context).
  * No AI / LLM / recommendation.
  */
 
 import { getItem, setItem, STORAGE_KEYS } from './storage.js';
+import { getLearningPolicy } from './learning-policy.js';
 
 export const WEAKNESS_STORE_KEY =
   STORAGE_KEYS.LEARNING_WEAKNESS_V1 || 'learning.weakness.v1';
@@ -21,13 +23,24 @@ export const SIGNAL_TYPES = Object.freeze([
   'SLOW_RESPONSE',
 ]);
 
-/** Policy thresholds (deterministic) */
-export const WEAKNESS_POLICY = Object.freeze({
-  lowAccuracyMinAttempts: 3,
-  lowAccuracyThreshold: 0.6,
-  repeatedMissMinIncorrect: 3,
-  slowResponseMs: 120000,
-});
+/**
+ * Backward-compatible snapshot of weakness detection knobs (from policy).
+ * Prefer getLearningPolicy().weakness in new code.
+ */
+export function getWeaknessPolicy() {
+  const w = getLearningPolicy().weakness || {};
+  return Object.freeze({
+    lowAccuracyMinAttempts: Number(w.lowAccuracyMinAttempts) || 3,
+    lowAccuracyThreshold: Number(w.lowAccuracyThreshold) || 0.6,
+    repeatedMissMinIncorrect:
+      Number(w.signalGates?.REPEATED_MISS) || 2,
+    slowResponseMs: Number(w.slowResponseMs) || 120000,
+    signalGates: { ...(w.signalGates || {}) },
+  });
+}
+
+/** @deprecated use getWeaknessPolicy() — kept for import compatibility */
+export const WEAKNESS_POLICY = getWeaknessPolicy();
 
 /**
  * @param {string|null|undefined} patternId
@@ -53,14 +66,33 @@ function severityForAccuracy(attempts, accuracy) {
 }
 
 /**
- * Detect weakness signals from a patternMastery snapshot.
- * Optional context: { lastCorrect?: boolean, durationMs?: number }
+ * Filter signals by policy signalGates (count thresholds).
+ * @param {object[]} signals
+ * @param {object} [policy]
+ * @returns {object[]}
+ */
+export function gateWeaknessSignals(signals = [], policy) {
+  const gates =
+    (policy || getLearningPolicy()).weakness?.signalGates || {};
+  return (signals || []).filter((s) => {
+    if (!s?.type) return false;
+    const min = Number(gates[s.type]);
+    const threshold = Number.isFinite(min) ? min : 1;
+    return (Number(s.count) || 0) >= threshold;
+  });
+}
+
+/**
+ * Detect weakness signal *candidates* from a patternMastery snapshot.
+ * Domain misses always emit count:1 for merge accumulation; callers must
+ * gateWeaknessSignals() before treating as active weakness / plans.
  *
  * @param {object} patternMastery
  * @param {{ lastCorrect?: boolean, durationMs?: number }} [context]
  * @returns {{ patternId: string, weaknessSignals: object[] }}
  */
 export function detectWeakness(patternMastery = {}, context = {}) {
+  const policy = getWeaknessPolicy();
   const patternId = patternMastery.patternId || '';
   const attempts = Number(patternMastery.attempts) || 0;
   const incorrectCount = Number(patternMastery.incorrectCount) || 0;
@@ -71,9 +103,9 @@ export function detectWeakness(patternMastery = {}, context = {}) {
   const signals = [];
 
   if (
-    attempts >= WEAKNESS_POLICY.lowAccuracyMinAttempts &&
+    attempts >= policy.lowAccuracyMinAttempts &&
     accuracy != null &&
-    accuracy < WEAKNESS_POLICY.lowAccuracyThreshold
+    accuracy < policy.lowAccuracyThreshold
   ) {
     signals.push({
       type: 'LOW_ACCURACY',
@@ -82,7 +114,7 @@ export function detectWeakness(patternMastery = {}, context = {}) {
     });
   }
 
-  if (incorrectCount >= WEAKNESS_POLICY.repeatedMissMinIncorrect) {
+  if (incorrectCount >= policy.repeatedMissMinIncorrect) {
     signals.push({
       type: 'REPEATED_MISS',
       count: incorrectCount,
@@ -91,7 +123,7 @@ export function detectWeakness(patternMastery = {}, context = {}) {
     });
   }
 
-  /* Last attempt wrong → domain-typed miss (no LLM) */
+  /* Last attempt wrong → domain-typed miss (no LLM); gated after merge */
   if (context.lastCorrect === false && patternId) {
     const domain = resolveErrorDomain(patternId);
     if (domain === 'cost') {
@@ -112,12 +144,12 @@ export function detectWeakness(patternMastery = {}, context = {}) {
   const durationMs = Number(context.durationMs);
   if (
     Number.isFinite(durationMs) &&
-    durationMs >= WEAKNESS_POLICY.slowResponseMs
+    durationMs >= policy.slowResponseMs
   ) {
     signals.push({
       type: 'SLOW_RESPONSE',
       count: 1,
-      severity: durationMs >= WEAKNESS_POLICY.slowResponseMs * 2 ? 'high' : 'medium',
+      severity: durationMs >= policy.slowResponseMs * 2 ? 'high' : 'medium',
     });
   }
 
@@ -166,12 +198,10 @@ export function mergeWeaknessSignals(existing = [], incoming = []) {
     map.set(s.type, prev);
   }
 
-  /* Drop domain miss types that are not in incoming and are snapshot-only? keep accumulated */
   /* Refresh LOW_ACCURACY / REPEATED_MISS / SLOW from incoming when present */
   for (const type of ['LOW_ACCURACY', 'REPEATED_MISS', 'SLOW_RESPONSE']) {
     const inc = (incoming || []).find((x) => x.type === type);
     if (!inc) {
-      /* recompute clears: remove if not in incoming snapshot */
       map.delete(type);
     }
   }
@@ -232,6 +262,7 @@ export function saveWeaknessState(state) {
 
 /**
  * Detect + persist weakness for a mastery entry after an attempt.
+ * Store keeps accumulated signal counts; diagnosis exposes gated (active) signals.
  *
  * @param {{
  *   studentId?: string,
@@ -263,11 +294,13 @@ export function recordWeaknessDiagnosis(input = {}) {
     prev?.signals || [],
     detected.weaknessSignals,
   );
+  const activeSignals = gateWeaknessSignals(mergedSignals);
 
   const entry = {
     patternId: mastery.patternId,
     studentId,
     signals: mergedSignals,
+    activeSignals,
     updatedAt: new Date().toISOString(),
   };
 
@@ -284,7 +317,7 @@ export function recordWeaknessDiagnosis(input = {}) {
     ok: true,
     diagnosis: {
       patternId: mastery.patternId,
-      weaknessSignals: mergedSignals,
+      weaknessSignals: activeSignals,
     },
     entry,
   };
@@ -295,8 +328,10 @@ export default {
   WEAKNESS_SCHEMA_VERSION,
   SIGNAL_TYPES,
   WEAKNESS_POLICY,
+  getWeaknessPolicy,
   resolveErrorDomain,
   detectWeakness,
+  gateWeaknessSignals,
   mergeWeaknessSignals,
   loadWeaknessState,
   saveWeaknessState,
