@@ -25,6 +25,11 @@ const STORAGE_KEYS = {
   LEARNING_STATE_V1: 'learning.state.v1',
   // M2.6 Evidence Pad (append-only observation log — do not rename)
   LEARNING_EVIDENCE_V1: 'learning.evidence.v1',
+  // Sprint-07 Study State Sync (additive — do not rename)
+  LEARNING_SESSION_V1: 'learning.session.v1',
+  LEARNING_RETRIEVAL_V1: 'learning.retrieval.v1',
+  LEARNING_PROGRESS_V1: 'learning.progress.v1',
+  LEARNING_SYNC_META_V1: 'learning.sync.meta.v1',
 };
 
 /**

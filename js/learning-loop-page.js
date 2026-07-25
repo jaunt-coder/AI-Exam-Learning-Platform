@@ -26,6 +26,19 @@ import {
   DEFAULT_RETRIEVAL_PROMPT,
 } from '../runtime/retrieval-service.js';
 import { exportSessionV3 } from './session-export-v3.js';
+import {
+  ensureProgress,
+  touchLocal,
+  getSyncStatus,
+  setAdapter,
+} from '../runtime/sync-service.js';
+import { createLocalStorageAdapter } from '../runtime/local-storage-adapter.js';
+import {
+  persistResumeSnapshot,
+  discardResume,
+  mountResumePrompt,
+} from './session-resume.js';
+import { exportSyncStateV4 } from './import-export-v4.js';
 
 const STUDENT_ID = 'm1_demo_student';
 const KEY_MODE = 'learning.studyMode.v1';
@@ -134,6 +147,8 @@ const els = {
   status: document.getElementById('loop-status'),
   evidenceRoot: document.getElementById('evidence-pad-root'),
   betaScopeNotice: document.getElementById('beta-scope-notice'),
+  resumeHost: document.getElementById('resume-host'),
+  homeSyncBadge: document.getElementById('home-sync-badge'),
 };
 
 /** @type {any} */
@@ -242,6 +257,7 @@ function getSession() {
 function saveSessionPatch(patch) {
   const cur = getSession();
   setItem(KEY_SESSION, { ...cur, ...patch });
+  touchLocal();
 }
 
 function sessionAttempts() {
@@ -401,6 +417,81 @@ function updateSessionHeader(metrics) {
   if (els.sessionHeaderPct) {
     els.sessionHeaderPct.textContent = `${m.pct}%`;
   }
+}
+
+function refreshSyncBadge() {
+  const st = getSyncStatus();
+  if (els.homeSyncBadge) {
+    els.homeSyncBadge.textContent = st.label;
+    els.homeSyncBadge.setAttribute('data-status', st.status);
+  }
+}
+
+function captureResumeSnapshot() {
+  if (!lesson?.pattern_id) return;
+  if (els.screenFlow?.hidden) return;
+  persistResumeSnapshot({
+    pattern_id: lesson.pattern_id,
+    pattern_name: lesson.name,
+    pattern_index: patternIndex,
+    question_index: questionIndex,
+    stage_index: stageIndex,
+    study_mode: studyMode,
+    screen: 'flow',
+  });
+}
+
+function applyResumeSnapshot(snap) {
+  if (!snap) return false;
+  const idx =
+    typeof snap.pattern_index === 'number'
+      ? snap.pattern_index
+      : studyPatterns.findIndex(
+          (sp) => sp.lesson?.pattern_id === snap.pattern_id
+        );
+  if (idx < 0 || !studyPatterns[idx]?.lesson) {
+    setLearnerStatus('이어서 할 Pattern을 찾을 수 없습니다. Restart를 선택하세요.');
+    return false;
+  }
+  patternIndex = idx;
+  studyMode = snap.study_mode === 'exam' ? 'exam' : 'pattern_master';
+  setItem(KEY_MODE, studyMode);
+  const radio = document.querySelector(
+    `input[name="study-mode"][value="${studyMode}"]`
+  );
+  if (radio) {
+    radio.checked = true;
+    document.querySelectorAll('.mode-option').forEach((lab) => {
+      lab.classList.toggle('is-selected', lab.querySelector('input')?.checked);
+    });
+  }
+
+  const pack = studyPatterns[patternIndex];
+  lesson = pack.lesson;
+  const qMax = Math.max(0, (pack.questions?.length || 1) - 1);
+  questionIndex = Math.min(Math.max(0, snap.question_index || 0), qMax);
+  currentQuestion = pack.questions[questionIndex];
+  submitted = false;
+  lastGradeResult = null;
+  lastAttemptEvent = null;
+  retrievalSavedForQuestion = false;
+  evidenceSavedForQuestion = false;
+  const list = stages();
+  stageIndex = Math.min(
+    Math.max(0, snap.stage_index || 0),
+    list.length - 1
+  );
+  /* Avoid landing on result without a fresh submit */
+  if (list[stageIndex] === 'result') {
+    stageIndex = list.indexOf('question');
+  }
+  evidencePad?.close();
+  retrievalMount?.destroy?.();
+  retrievalMount = null;
+  showScreen('flow');
+  setActiveStage();
+  setLearnerStatus('이전 학습을 이어서 시작합니다.');
+  return true;
 }
 
 function renderStageDots() {
@@ -900,13 +991,22 @@ function renderSessionExportBar() {
       <div class="ep-closing-export__actions">
         <button type="button" class="ep-btn ep-btn--primary" id="btn-export-json">session JSON</button>
         <button type="button" class="ep-btn ep-btn--ghost" id="btn-export-md">session Markdown</button>
+        <button type="button" class="ep-btn ep-btn--ghost" id="btn-export-sync">sync-state.json (v4)</button>
       </div>
+      <p class="ll-hint">sync-state.json은 다른 기기 Import용 Study State입니다. SoT DB는 포함되지 않습니다.</p>
     </div>`;
   slot.querySelector('#btn-export-json')?.addEventListener('click', () => {
     runSessionExport('json');
   });
   slot.querySelector('#btn-export-md')?.addEventListener('click', () => {
     runSessionExport('md');
+  });
+  slot.querySelector('#btn-export-sync')?.addEventListener('click', async () => {
+    const r = await exportSyncStateV4();
+    setLearnerStatus(
+      r.ok ? `${r.filename} 내려받기 완료` : `Export 실패: ${r.error}`
+    );
+    refreshSyncBadge();
   });
 }
 
@@ -1018,6 +1118,8 @@ function setActiveStage() {
 
   els.btnPrev.disabled = stageIndex === 0;
   refreshDashboard();
+  captureResumeSnapshot();
+  refreshSyncBadge();
 }
 
 function bindModeOptions() {
@@ -1155,6 +1257,9 @@ function startPatternFlow() {
       ? 'Pattern을 먼저 익힌 뒤 문제에 적용합니다.'
       : 'Exam Mode — 제출 후 Pattern Review로 강화합니다.'
   );
+  captureResumeSnapshot();
+  touchLocal();
+  refreshSyncBadge();
 }
 
 function onStartToday() {
@@ -1222,11 +1327,16 @@ function onSubmit() {
   setLearnerStatus(
     '제출 완료 · Review → 회상 → Evidence 순서로 진행하세요.'
   );
+  touchLocal();
+  captureResumeSnapshot();
   refreshDashboard();
+  refreshSyncBadge();
 }
 
 function openClosing() {
   if (lesson?.pattern_id) markPatternLearned(lesson.pattern_id);
+  discardResume();
+  touchLocal();
   renderClosing();
   evidencePad?.close();
   showScreen('closing');
@@ -1234,27 +1344,33 @@ function openClosing() {
     '이 Pattern을 익혔습니다. 다음 Pattern을 이어가거나 오늘 공부를 종료하세요.'
   );
   refreshDashboard();
+  refreshSyncBadge();
 }
 
 function onContinueLearning() {
+  discardResume();
   renderTodayHome();
   showScreen('home');
   setLearnerStatus(
     'Today\'s Study로 돌아왔습니다. 다음 Pattern을 선택해 이어 학습하세요.'
   );
   refreshDashboard();
+  refreshSyncBadge();
 }
 
 function onFinishToday() {
   const finishedAt = Date.now();
   saveSessionPatch({ finishedAt });
+  discardResume();
+  touchLocal();
   evidencePad?.close();
   renderSessionSummary();
   showScreen('summary');
   setLearnerStatus(
-    '오늘 공부를 종료했습니다. Session 전체를 JSON/Markdown으로 내보내세요.'
+    '오늘 공부를 종료했습니다. Session Export와 sync-state.json을 저장할 수 있습니다.'
   );
   refreshDashboard();
+  refreshSyncBadge();
 }
 
 function onNext() {
@@ -1350,6 +1466,8 @@ function restorePatternIndex() {
 }
 
 async function init() {
+  setAdapter(createLocalStorageAdapter());
+  ensureProgress();
   loadPrefs();
   applyViewMode();
   bindModeOptions();
@@ -1381,6 +1499,24 @@ async function init() {
       : '학습 가능한 Pattern이 없습니다.'
   );
   refreshDashboard();
+  refreshSyncBadge();
+
+  mountResumePrompt(els.resumeHost, {
+    onContinue(snap) {
+      const ok = applyResumeSnapshot(snap);
+      if (ok && els.resumeHost) {
+        els.resumeHost.hidden = true;
+        els.resumeHost.innerHTML = '';
+      }
+    },
+    onRestart() {
+      setLearnerStatus('처음부터 시작합니다. Pattern을 선택해 학습하세요.');
+      refreshSyncBadge();
+    },
+  });
+
+  window.addEventListener('online', refreshSyncBadge);
+  window.addEventListener('offline', refreshSyncBadge);
 
   evidencePad = mountEvidencePad(els.evidenceRoot, {
     sessionStartedAt: new Date(sessionStartedAt).toISOString(),
@@ -1393,10 +1529,13 @@ async function init() {
     onSaved: () => {
       evidenceSavedForQuestion = true;
       evidencePad?.refreshProgress?.();
+      touchLocal();
+      captureResumeSnapshot();
       setLearnerStatus(
         '기록 저장 완료 · 다음 문제로 가도 좋습니다.'
       );
       refreshDashboard();
+      refreshSyncBadge();
     },
   });
 

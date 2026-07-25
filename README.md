@@ -119,6 +119,10 @@ RC2-E8 read-only 회귀/게이트: `scripts/regression/` · `docs/release/RC2-E8
 | [session-state-machine.md](docs/session-state-machine.md) | Session 상태 전이 |
 | [session-export-v3.md](docs/session-export-v3.md) | Session Export v3 |
 | [sprint-06-study-session-architecture.md](docs/sprint-06-study-session-architecture.md) | Sprint-06 보고서 |
+| [cloud-study-foundation.md](docs/cloud-study-foundation.md) | Cloud Study Foundation (Sprint-07) |
+| [sync-policy.md](docs/sync-policy.md) | Sync · Conflict Policy |
+| [storage-adapter-design.md](docs/storage-adapter-design.md) | Storage Adapter 설계 |
+| [sprint-07-report.md](docs/sprint-07-report.md) | Sprint-07 보고서 |
 | [10-development-roadmap-spec.md](docs/10-development-roadmap-spec.md) | 개발 로드맵 |
 | [20-final-implementation-plan.md](docs/20-final-implementation-plan.md) | 최종 실행 계획 |
 | [23-development-environment-spec.md](docs/23-development-environment-spec.md) | 개발 환경 |
@@ -138,6 +142,19 @@ RC2-E8 read-only 회귀/게이트: `scripts/regression/` · `docs/release/RC2-E8
 - Question / Answer / Pattern / Knowledge DB 무변경 · AI·Recommendation·Mastery 미사용
 
 상세: [docs/session-architecture.md](docs/session-architecture.md)
+
+## Cloud Study Foundation (Sprint-07)
+
+Study State Sync Layer — **Student State만** 기기간 이동 (Local First).
+
+- Adapter: Local 구현 · GitHub/Firebase Interface only
+- Resume Study? Continue / Restart — `js/session-resume.js`
+- Export/Import v4 — `sync-state.json` (`js/import-export-v4.js`)
+- Cloud Ready badge — `settings.html` (실 Cloud Sync 없음)
+- Sync 대상: `learning.progress.v1` · attempts · evidence · retrieval · session
+- SoT(Question/Pattern/Knowledge) READ ONLY · AI/Recommendation/Mastery 미구현
+
+상세: [docs/cloud-study-foundation.md](docs/cloud-study-foundation.md) · [docs/sprint-07-report.md](docs/sprint-07-report.md)
 
 ## Development Principles
 

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sprint-07 Cloud Study Foundation — Settings">
+  <title>설정 | AI Exam Learning Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/learning-loop.css">
+  <link rel="stylesheet" href="css/sync.css">
+</head>
+<body class="study-body">
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <div>
+        <h1 class="site-title">
+          <a href="index.html" class="site-title-link">AI Exam Learning Platform</a>
+        </h1>
+        <p class="site-subtitle">설정 · Cloud Study Foundation</p>
+      </div>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a href="index.html" class="button button--ghost">홈</a>
+        <a href="learning-loop.html" class="button button--ghost">오늘 공부</a>
+        <a href="settings.html" class="button button--ghost" aria-current="page">설정</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main" role="main">
+    <div class="container study-layout">
+      <section class="card study-card" aria-labelledby="sync-heading">
+        <p class="edu-kicker">Sprint-07</p>
+        <h2 id="sync-heading" class="study-card__title">Cloud Study Foundation</h2>
+        <p class="section-desc">
+          Student Study State만 기기간으로 옮깁니다.
+          Question / Pattern / Knowledge는 동기화하지 않습니다.
+          AI · Recommendation · Mastery는 없습니다.
+        </p>
+
+        <div class="cloud-badge-wrap" aria-live="polite">
+          <span class="cloud-badge" id="cloud-badge" data-status="cloud_ready">Cloud Ready</span>
+          <p class="ll-hint" id="cloud-badge-detail">Local Adapter · 실제 Cloud Sync 미연결</p>
+        </div>
+
+        <dl class="edu-facts" id="sync-meta-facts">
+          <div><dt>Adapter</dt><dd id="sync-adapter">local</dd></div>
+          <div><dt>Revision</dt><dd id="sync-revision">0</dd></div>
+          <div><dt>Online</dt><dd id="sync-online">—</dd></div>
+          <div><dt>Dirty</dt><dd id="sync-dirty">—</dd></div>
+        </dl>
+      </section>
+
+      <section class="card study-card" aria-labelledby="transfer-heading">
+        <h2 id="transfer-heading" class="study-card__title">Export / Import v4</h2>
+        <div id="sync-transfer-root"></div>
+      </section>
+
+      <section class="card study-card" aria-labelledby="policy-heading">
+        <h2 id="policy-heading" class="study-card__title">Sync Policy (요약)</h2>
+        <ul class="sync-policy-list">
+          <li><strong>Local First</strong> — 오프라인에서도 공부 가능</li>
+          <li><strong>Append Only</strong> — Attempt / Evidence / Retrieval 삭제 없음</li>
+          <li><strong>Newest Wins</strong> — Session · Progress 메타</li>
+          <li><strong>No Delete</strong> — 병합 시 기록 제거 금지</li>
+        </ul>
+        <p class="ll-hint">상세: docs/sync-policy.md</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-row">
+      <p>Study State Sync Layer · No AI Cloud</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/settings-page.js"></script>
+</body>
+</html>

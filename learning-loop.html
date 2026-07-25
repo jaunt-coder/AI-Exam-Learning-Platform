@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/learning-loop.css">
   <link rel="stylesheet" href="css/evidence-pad.css">
+  <link rel="stylesheet" href="css/sync.css">
 </head>
 <body class="study-body is-learner">
   <header class="site-header" role="banner">
@@ -21,6 +22,7 @@
       <nav class="header-nav" aria-label="주요 메뉴">
         <a href="index.html" class="button button--ghost">홈</a>
         <a href="learning-loop.html" class="button button--ghost" aria-current="page">오늘 공부</a>
+        <a href="settings.html" class="button button--ghost">설정</a>
       </nav>
     </div>
   </header>
@@ -29,9 +31,11 @@
     <div class="container study-layout study-layout--wide">
 
       <section class="card study-card study-home" id="screen-home" aria-labelledby="home-heading">
-        <p class="edu-kicker">Today's Study</p>
+        <p class="edu-kicker">Today's Study <span class="sync-mini-badge" id="home-sync-badge" aria-live="polite">Local Mode</span></p>
         <h2 id="home-heading" class="study-card__title edu-hero-title">오늘 Pattern을 익히러 왔습니다</h2>
         <p class="section-desc">Session 안에 Pattern을 여러 개 담을 수 있습니다. 문제는 Pattern을 강화하는 수단입니다.</p>
+
+        <div id="resume-host" class="resume-host" hidden></div>
 
         <aside class="beta-scope-notice" id="beta-scope-notice" aria-label="Beta 범위 안내">
           <p>현재 Beta에서는 검증 완료된 Pattern만 학습할 수 있습니다.</p>
