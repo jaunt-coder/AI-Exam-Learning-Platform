@@ -280,11 +280,20 @@ function validateDatabasePayload(dbSet, data, options = {}) {
 
   const evidenceReview = buildEvidenceReviewSummary(patterns || []);
 
+  /* Sprint-09J — Pattern Mastery Contract projection (does not fail valid) */
+  const masteryContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: false,
+    schemaPath: 'data/mastery-state-schema.json',
+  };
+
   return {
     valid: errors.length === 0,
     errors,
     warnings,
     evidenceReview,
+    masteryContract,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -322,6 +331,12 @@ async function loadDatabaseSet(dbSet, options = {}) {
         missingReview: 0,
         blocked: 0,
       },
+      masteryContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: false,
+        schemaPath: 'data/mastery-state-schema.json',
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -354,6 +369,12 @@ async function loadDatabaseSet(dbSet, options = {}) {
       approved: 0,
       missingReview: 0,
       blocked: 0,
+    },
+    masteryContract: validation.masteryContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: false,
+      schemaPath: 'data/mastery-state-schema.json',
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,

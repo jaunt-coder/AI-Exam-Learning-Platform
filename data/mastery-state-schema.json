@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-exam-learning-platform.local/schemas/mastery-state-schema.json",
+  "title": "PatternMasteryStateDocument",
+  "description": "Sprint-09J Pattern Mastery Contract — storage document shape. State contract only. Does not execute mastery calculation or recommendations.",
+  "sprint": "Sprint-09J",
+  "version": "v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "patterns"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "patterns": {
+      "type": "array",
+      "description": "patternMastery entries. MUST be [] until Mastery Execution writes evidenced updates. Do not pre-seed.",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/patternMastery"
+      }
+    }
+  },
+  "examples": [
+    {
+      "version": "v1",
+      "patterns": []
+    }
+  ],
+  "$defs": {
+    "masteryLevel": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "LEARNING",
+        "DEVELOPING",
+        "MASTERED",
+        "RETRY_REQUIRED"
+      ]
+    },
+    "patternMastery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "patternId",
+        "studentId",
+        "attempts",
+        "correctCount",
+        "incorrectCount",
+        "accuracy",
+        "masteryLevel",
+        "lastAttemptAt",
+        "weaknessSignals"
+      ],
+      "properties": {
+        "patternId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "studentId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attempts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "correctCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "incorrectCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "accuracy": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "masteryLevel": {
+          "$ref": "#/$defs/masteryLevel"
+        },
+        "lastAttemptAt": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "weaknessSignals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
