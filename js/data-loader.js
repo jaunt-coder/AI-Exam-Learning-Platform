@@ -301,6 +301,15 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     storageKey: 'learning.weakness.v1',
     servicePath: 'js/weakness-service.js',
   };
+  /* Sprint-09M — Learning Plan Contract (runtime connected; does not fail valid) */
+  const learningPlanContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    schemaPath: 'data/learning-plan-schema.json',
+    storageKey: 'learning.plan.v1',
+    servicePath: 'js/learning-plan-service.js',
+  };
 
   return {
     valid: errors.length === 0,
@@ -310,6 +319,7 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     masteryContract,
     masteryRuntime,
     weaknessRuntime,
+    learningPlanContract,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -367,6 +377,14 @@ async function loadDatabaseSet(dbSet, options = {}) {
         storageKey: 'learning.weakness.v1',
         servicePath: 'js/weakness-service.js',
       },
+      learningPlanContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        schemaPath: 'data/learning-plan-schema.json',
+        storageKey: 'learning.plan.v1',
+        servicePath: 'js/learning-plan-service.js',
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -419,6 +437,14 @@ async function loadDatabaseSet(dbSet, options = {}) {
       connected: true,
       storageKey: 'learning.weakness.v1',
       servicePath: 'js/weakness-service.js',
+    },
+    learningPlanContract: validation.learningPlanContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      schemaPath: 'data/learning-plan-schema.json',
+      storageKey: 'learning.plan.v1',
+      servicePath: 'js/learning-plan-service.js',
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,

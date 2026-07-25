@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "v1",
+  "enabled": true,
+  "connected": false,
+  "description": "Weakness diagnosis to learning action contract",
+  "fields": {
+    "planId": "string",
+    "patternId": "string",
+    "weaknessSignal": "string",
+    "priority": "number",
+    "actionType": "string",
+    "target": "string",
+    "status": "string"
+  },
+  "actionTypes": [
+    "REVIEW_CONCEPT",
+    "RETRY_PATTERN",
+    "PRACTICE_CALCULATION",
+    "MEMORIZE_RULE",
+    "MOCK_TEST"
+  ],
+  "statuses": [
+    "GENERATED",
+    "ACTIVE",
+    "COMPLETED"
+  ],
+  "signalToAction": {
+    "LOW_ACCURACY": "RETRY_PATTERN",
+    "REPEATED_MISS": "REVIEW_CONCEPT",
+    "CALCULATION_ERROR": "PRACTICE_CALCULATION",
+    "CONCEPT_ERROR": "REVIEW_CONCEPT",
+    "SLOW_RESPONSE": "MOCK_TEST"
+  },
+  "storageKey": "learning.plan.v1",
+  "documentShape": {
+    "schemaVersion": "v1",
+    "plans": []
+  }
+}

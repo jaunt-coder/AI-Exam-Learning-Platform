@@ -13,10 +13,11 @@ import {
 } from './state-update.js';
 import { recordAttempt } from '../js/mastery-service.js';
 import { recordWeaknessDiagnosis } from '../js/weakness-service.js';
+import { recordLearningPlansFromWeakness } from '../js/learning-plan-service.js';
 
 /**
  * Run one complete learning cycle
- * (deterministic mastery + weakness · no AI recommendation).
+ * (deterministic mastery + weakness + learning plan · no AI recommendation).
  * @param {object} input
  * @returns {object}
  */
@@ -80,6 +81,15 @@ export function runLearningLoopCycle(input = {}) {
     });
   }
 
+  /* Sprint-09M — Learning Plan Contract (LocalStorage learning.plan.v1) */
+  let learningPlan = { ok: true, plan: null, plans: [], skipped: true };
+  if (weakness.ok && weakness.diagnosis) {
+    learningPlan = recordLearningPlansFromWeakness({
+      studentId,
+      weaknessDiagnosis: weakness.diagnosis,
+    });
+  }
+
   return {
     ok: true,
     stage: 'complete',
@@ -90,10 +100,13 @@ export function runLearningLoopCycle(input = {}) {
     masteryUpdate: mastery,
     weakness: weakness.ok ? weakness.diagnosis : null,
     weaknessUpdate: weakness,
+    learningPlan: learningPlan.ok ? learningPlan.plan : null,
+    learningPlanUpdate: learningPlan,
     dashboard: projectDashboard(updated.state, input.patternId),
     guarantees: {
       mastery_runtime_connected: true,
       weakness_runtime_connected: true,
+      learning_plan_connected: true,
       recommendation_absent: true,
       question_db_untouched: true,
       answer_sot_untouched: true,
