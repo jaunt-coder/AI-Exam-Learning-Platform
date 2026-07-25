@@ -1,0 +1,172 @@
+/* Sprint-10E — Learning Dashboard */
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.site-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-title-link:hover {
+  text-decoration: underline;
+}
+
+.header-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.ld-main {
+  padding-top: 2rem;
+}
+
+.ld-header {
+  margin-bottom: 1.5rem;
+}
+
+.ld-header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.ld-desc {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.ld-meta,
+.ld-status {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.ld-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.ld-card {
+  padding: 1.25rem;
+}
+
+.ld-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+}
+
+.ld-card-desc {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.85rem;
+}
+
+.ld-card--wide {
+  grid-column: 1 / -1;
+}
+
+.ld-count-list {
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.ld-count-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.55rem;
+  background: var(--color-bg);
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid var(--color-border);
+}
+
+.ld-key {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.ld-val {
+  font-variant-numeric: tabular-nums;
+}
+
+.ld-dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem 1rem;
+}
+
+.ld-dl dt {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.ld-dl dd {
+  font-weight: 600;
+}
+
+.ld-empty {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.ld-table-wrap {
+  overflow-x: auto;
+}
+
+.ld-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.ld-table th,
+.ld-table td {
+  text-align: left;
+  padding: 0.45rem 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ld-table th {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.ld-progress-label {
+  margin-bottom: 0.5rem;
+}
+
+.ld-progress-bar {
+  height: 0.65rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.9rem;
+}
+
+.ld-progress-bar span {
+  display: block;
+  height: 100%;
+  background: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .ld-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ld-dl {
+    grid-template-columns: 1fr;
+  }
+}

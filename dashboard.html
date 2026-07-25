@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learning Dashboard — Attempt부터 Study Session까지 학습 현황">
+  <title>Learning Dashboard | AI Exam Learning Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/learning-dashboard.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <div>
+        <h1 class="site-title">
+          <a href="index.html" class="site-title-link">AI Exam Learning Platform</a>
+        </h1>
+        <p class="site-subtitle">Sprint-10E — Learning Dashboard</p>
+      </div>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a href="index.html" class="button button--ghost">홈</a>
+        <a href="learning-loop.html" class="button button--ghost">학습 루프</a>
+        <a href="question.html" class="button button--ghost">문제 풀이</a>
+        <a href="dashboard.html" class="button button--ghost" aria-current="page">Dashboard</a>
+        <a href="settings.html" class="button button--ghost">설정</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main ld-main" role="main">
+    <div class="container">
+      <header class="ld-header">
+        <h2 id="dashboard-heading">Learning Dashboard</h2>
+        <p class="ld-desc">
+          LocalStorage 학습 Runtime 현황을 읽기 전용으로 표시합니다.
+          Question / Pattern / Master DB는 변경하지 않습니다.
+        </p>
+        <p class="ld-status" id="dashboard-status" aria-live="polite">불러오는 중…</p>
+        <p class="ld-meta" id="dashboard-meta"></p>
+      </header>
+
+      <div class="ld-grid" aria-labelledby="dashboard-heading">
+        <section class="ld-card card" aria-labelledby="today-study-heading">
+          <h3 id="today-study-heading">Today's Study</h3>
+          <p class="ld-card-desc">learning.session.v1</p>
+          <div id="card-today-study"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="mastery-heading">
+          <h3 id="mastery-heading">Mastery Summary</h3>
+          <p class="ld-card-desc">learning.mastery.v1</p>
+          <div id="card-mastery"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="weakness-heading">
+          <h3 id="weakness-heading">Weakness Summary</h3>
+          <p class="ld-card-desc">learning.weakness.v1</p>
+          <div id="card-weakness"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="plans-heading">
+          <h3 id="plans-heading">Today's Plans</h3>
+          <p class="ld-card-desc">learning.plan.v1 · Active · Priority순</p>
+          <div id="card-plans"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="strategies-heading">
+          <h3 id="strategies-heading">Today's Strategies</h3>
+          <p class="ld-card-desc">learning.strategy.v1</p>
+          <div id="card-strategies"></div>
+        </section>
+
+        <section class="ld-card card ld-card--wide" aria-labelledby="session-heading">
+          <h3 id="session-heading">Today's Session</h3>
+          <p class="ld-card-desc">진행률 · 남은 문제 · 예상 시간</p>
+          <div id="card-session"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2026 AI Exam Learning Platform v2 · Learning Dashboard (Sprint-10E)</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/learning-dashboard-page.js"></script>
+</body>
+</html>

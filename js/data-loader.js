@@ -328,6 +328,15 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     storageKey: 'learning.session.v1',
     servicePath: 'js/study-session-service.js',
   };
+  /* Sprint-10E — Learning Dashboard (UI projection; does not fail valid) */
+  const dashboardContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.*',
+    servicePath: 'js/dashboard-service.js',
+    pagePath: 'dashboard.html',
+  };
 
   return {
     valid: errors.length === 0,
@@ -340,6 +349,7 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     learningPlanContract,
     strategyContract,
     studySessionContract,
+    dashboardContract,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -421,6 +431,14 @@ async function loadDatabaseSet(dbSet, options = {}) {
         storageKey: 'learning.session.v1',
         servicePath: 'js/study-session-service.js',
       },
+      dashboardContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.*',
+        servicePath: 'js/dashboard-service.js',
+        pagePath: 'dashboard.html',
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -497,6 +515,14 @@ async function loadDatabaseSet(dbSet, options = {}) {
       schemaPath: 'data/study-session-schema.json',
       storageKey: 'learning.session.v1',
       servicePath: 'js/study-session-service.js',
+    },
+    dashboardContract: validation.dashboardContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.*',
+      servicePath: 'js/dashboard-service.js',
+      pagePath: 'dashboard.html',
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,
