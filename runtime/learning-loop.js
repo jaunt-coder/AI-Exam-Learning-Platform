@@ -1,6 +1,6 @@
 /**
  * M1 Learning Loop orchestrator
- * Question → Answer → Grade → Attempt → State → Dashboard projection
+ * Question → Answer → Grade → Attempt → State → Mastery → Dashboard projection
  */
 
 import { submitAttempt } from './attempt-service.js';
@@ -11,9 +11,10 @@ import {
   projectDashboard,
   saveLearningState,
 } from './state-update.js';
+import { recordAttempt } from '../js/mastery-service.js';
 
 /**
- * Run one complete learning cycle (no mastery execution, no recommendation).
+ * Run one complete learning cycle (deterministic mastery · no AI recommendation).
  * @param {object} input
  * @returns {object}
  */
@@ -56,15 +57,26 @@ export function runLearningLoopCycle(input = {}) {
     };
   }
 
+  /* Sprint-09K — Pattern Mastery runtime (LocalStorage learning.mastery.v1) */
+  const mastery = recordAttempt({
+    studentId,
+    questionId: submitted.event.question_id || input.questionId,
+    patternId: submitted.event.pattern_id || input.patternId,
+    correct: submitted.grade?.result === 'correct',
+    timestamp: submitted.event.timestamp || new Date().toISOString(),
+  });
+
   return {
     ok: true,
     stage: 'complete',
     grade: submitted.grade,
     event: submitted.event,
     state: updated.state,
+    mastery: mastery.ok ? mastery.entry : null,
+    masteryUpdate: mastery,
     dashboard: projectDashboard(updated.state, input.patternId),
     guarantees: {
-      mastery_unchanged_unknown: true,
+      mastery_runtime_connected: true,
       recommendation_absent: true,
       question_db_untouched: true,
       answer_sot_untouched: true,

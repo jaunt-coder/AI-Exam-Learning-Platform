@@ -23,6 +23,8 @@ const STORAGE_KEYS = {
   // M1 Learning Loop (additive — do not rename existing Constitution keys)
   LEARNING_ATTEMPTS_V1: 'learning.attempts.v1',
   LEARNING_STATE_V1: 'learning.state.v1',
+  // Sprint-09K Pattern Mastery runtime (additive — do not rename)
+  LEARNING_MASTERY_V1: 'learning.mastery.v1',
   // M2.6 Evidence Pad (append-only observation log — do not rename)
   LEARNING_EVIDENCE_V1: 'learning.evidence.v1',
   // Sprint-07 Study State Sync (additive — do not rename)

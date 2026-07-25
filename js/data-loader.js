@@ -280,12 +280,19 @@ function validateDatabasePayload(dbSet, data, options = {}) {
 
   const evidenceReview = buildEvidenceReviewSummary(patterns || []);
 
-  /* Sprint-09J — Pattern Mastery Contract projection (does not fail valid) */
+  /* Sprint-09J/09K — Pattern Mastery Contract + Runtime projection (does not fail valid) */
   const masteryContract = {
     enabled: true,
     schemaVersion: 'v1',
-    connected: false,
+    connected: true,
     schemaPath: 'data/mastery-state-schema.json',
+  };
+  const masteryRuntime = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.mastery.v1',
+    servicePath: 'js/mastery-service.js',
   };
 
   return {
@@ -294,6 +301,7 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     warnings,
     evidenceReview,
     masteryContract,
+    masteryRuntime,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -334,8 +342,15 @@ async function loadDatabaseSet(dbSet, options = {}) {
       masteryContract: {
         enabled: true,
         schemaVersion: 'v1',
-        connected: false,
+        connected: true,
         schemaPath: 'data/mastery-state-schema.json',
+      },
+      masteryRuntime: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.mastery.v1',
+        servicePath: 'js/mastery-service.js',
       },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
@@ -373,8 +388,15 @@ async function loadDatabaseSet(dbSet, options = {}) {
     masteryContract: validation.masteryContract || {
       enabled: true,
       schemaVersion: 'v1',
-      connected: false,
+      connected: true,
       schemaPath: 'data/mastery-state-schema.json',
+    },
+    masteryRuntime: validation.masteryRuntime || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.mastery.v1',
+      servicePath: 'js/mastery-service.js',
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,
