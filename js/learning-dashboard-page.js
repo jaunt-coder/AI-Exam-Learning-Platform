@@ -4,6 +4,7 @@
 
 import { getItem, STORAGE_KEYS } from './storage.js';
 import { loadDashboard } from './dashboard-service.js';
+import { buildCoachDashboard } from './coach/ai-coach-service.js';
 
 function applyTheme() {
   const theme = getItem(STORAGE_KEYS.THEME, 'light') || 'light';
@@ -144,6 +145,23 @@ function renderSession(card, studySession) {
   `;
 }
 
+function renderCoachCard(card, coachResult) {
+  if (!card) return;
+  if (!coachResult?.text) {
+    card.innerHTML = '<p class="ld-empty">Coach 메시지를 준비하지 못했습니다.</p>';
+    return;
+  }
+  const source = coachResult.fallback
+    ? 'Rule Coach (fallback)'
+    : coachResult.source === 'cache'
+      ? 'Cache'
+      : 'LLM Adapter';
+  card.innerHTML = `
+    <p class="ld-card-desc">${escapeHtml(source)}</p>
+    <p class="ld-coach-text">${escapeHtml(coachResult.text)}</p>
+  `;
+}
+
 function renderDashboard(dashboard) {
   renderTodayStudy(el('card-today-study'), dashboard.todayStudy);
   renderCountList(el('card-mastery'), dashboard.masterySummary, [
@@ -167,11 +185,11 @@ function renderDashboard(dashboard) {
 
   const meta = el('dashboard-meta');
   if (meta) {
-    meta.textContent = `생성 ${dashboard.generatedAt || ''} · Storage 5종 읽기 전용`;
+    meta.textContent = `생성 ${dashboard.generatedAt || ''} · Storage 읽기 전용 · Coach via Adapter`;
   }
 }
 
-function main() {
+async function main() {
   applyTheme();
   const status = el('dashboard-status');
   try {
@@ -181,7 +199,17 @@ function main() {
       return;
     }
     renderDashboard(dashboard);
-    if (status) status.textContent = 'Learning Dashboard 준비 완료';
+    if (status) status.textContent = 'Learning Dashboard 준비 완료 · Coach 로딩…';
+
+    const coach = await buildCoachDashboard();
+    renderCoachCard(el('card-today-coach'), coach.today);
+    renderCoachCard(el('card-pattern-coach'), coach.pattern);
+    renderCoachCard(el('card-recommendation-coach'), coach.recommendation);
+    if (status) {
+      status.textContent = coach.today?.fallback
+        ? 'Learning Dashboard 준비 완료 · Rule Coach fallback'
+        : 'Learning Dashboard 준비 완료 · AI Coach ready';
+    }
   } catch (err) {
     if (status) {
       status.textContent = `오류: ${err?.message || 'unknown'}`;

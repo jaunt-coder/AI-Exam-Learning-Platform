@@ -161,6 +161,12 @@
   background: var(--color-primary);
 }
 
+.ld-coach-text {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
 @media (max-width: 768px) {
   .ld-grid {
     grid-template-columns: 1fr;

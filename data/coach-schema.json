@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "v1",
+  "sprint": "Sprint-11A",
+  "enabled": true,
+  "connected": true,
+  "description": "AI Coach Foundation — explainable coaching via LLM Adapter only",
+  "servicePath": "js/coach/ai-coach-service.js",
+  "adapterPath": "js/llm/llm-client.js",
+  "tasks": [
+    "TODAY_COACH",
+    "PATTERN_COACH",
+    "RECOMMENDATION_COACH"
+  ],
+  "snapshotFields": [
+    "mastery",
+    "weakness",
+    "plan",
+    "strategy",
+    "recommendation",
+    "studySession"
+  ],
+  "rules": [
+    "Coach uses LLM Client only",
+    "Coach never calls OpenAI directly",
+    "Coach never mutates Runtime recommendations",
+    "Coach never invents new Patterns",
+    "On LLM failure use Rule Coach fallback"
+  ],
+  "output": {
+    "language": "ko",
+    "minChars": 300,
+    "maxChars": 500,
+    "sections": [
+      "why",
+      "how",
+      "caution",
+      "encourage"
+    ]
+  }
+}

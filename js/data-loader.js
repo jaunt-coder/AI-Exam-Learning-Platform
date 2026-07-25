@@ -353,6 +353,19 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     storageKey: 'learning.recommendation.v1',
     servicePath: 'js/recommendation-service.js',
   };
+  /* Sprint-11A — LLM Adapter + AI Coach (does not fail valid) */
+  const llm = {
+    enabled: true,
+    provider: 'OPENAI',
+    model: 'gpt-5.5',
+    adapter: true,
+    connected: true,
+    configPath: 'data/llm-config.json',
+    coachSchemaPath: 'data/coach-schema.json',
+    clientPath: 'js/llm/llm-client.js',
+    coachPath: 'js/coach/ai-coach-service.js',
+    cacheKey: 'learning.llm.cache.v1',
+  };
 
   return {
     valid: errors.length === 0,
@@ -368,6 +381,7 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     dashboardContract,
     selectorContract,
     recommendationContract,
+    llm,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -471,6 +485,18 @@ async function loadDatabaseSet(dbSet, options = {}) {
         storageKey: 'learning.recommendation.v1',
         servicePath: 'js/recommendation-service.js',
       },
+      llm: {
+        enabled: true,
+        provider: 'OPENAI',
+        model: 'gpt-5.5',
+        adapter: true,
+        connected: true,
+        configPath: 'data/llm-config.json',
+        coachSchemaPath: 'data/coach-schema.json',
+        clientPath: 'js/llm/llm-client.js',
+        coachPath: 'js/coach/ai-coach-service.js',
+        cacheKey: 'learning.llm.cache.v1',
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -569,6 +595,18 @@ async function loadDatabaseSet(dbSet, options = {}) {
       schemaPath: 'data/recommendation-schema.json',
       storageKey: 'learning.recommendation.v1',
       servicePath: 'js/recommendation-service.js',
+    },
+    llm: validation.llm || {
+      enabled: true,
+      provider: 'OPENAI',
+      model: 'gpt-5.5',
+      adapter: true,
+      connected: true,
+      configPath: 'data/llm-config.json',
+      coachSchemaPath: 'data/coach-schema.json',
+      clientPath: 'js/llm/llm-client.js',
+      coachPath: 'js/coach/ai-coach-service.js',
+      cacheKey: 'learning.llm.cache.v1',
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,

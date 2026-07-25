@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "v1",
+  "sprint": "Sprint-11A",
+  "enabled": true,
+  "provider": "OPENAI",
+  "model": "gpt-5.5",
+  "adapter": true,
+  "connected": true,
+  "api": {
+    "baseUrl": "https://api.openai.com/v1",
+    "chatPath": "/chat/completions",
+    "timeoutMs": 30000
+  },
+  "cache": {
+    "enabled": true,
+    "storageKey": "learning.llm.cache.v1"
+  },
+  "fallback": {
+    "enabled": true,
+    "mode": "RULE_COACH"
+  },
+  "providers": ["OPENAI", "GEMINI", "CLAUDE", "LOCAL"],
+  "implementedProviders": ["OPENAI"],
+  "nonGoals": [
+    "runtime mutation",
+    "recommendation mutation",
+    "question-db mutation",
+    "direct OpenAI calls from Runtime/Coach"
+  ]
+}
