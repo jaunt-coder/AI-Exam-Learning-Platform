@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "v1",
+  "enabled": true,
+  "connected": true,
+  "description": "Learning Plan to Strategy resolver contract",
+  "sprint": "Sprint-09N",
+  "storageKey": "learning.strategy.v1",
+  "servicePath": "js/learning-strategy-service.js",
+  "fields": {
+    "strategyId": "string",
+    "patternId": "string",
+    "sourcePlanId": "string",
+    "strategyType": "string",
+    "nextAction": "string",
+    "questionCount": "number",
+    "reviewAfterDays": "number",
+    "createdAt": "string"
+  },
+  "allowedStrategyTypes": [
+    "PATTERN_RETRY_SET",
+    "CONCEPT_REVIEW_SET",
+    "CALC_DRILL_SET",
+    "TIMED_PRACTICE"
+  ],
+  "allowedNextActions": [
+    "SOLVE_PATTERN_SET",
+    "REVIEW_CONCEPT_CARD",
+    "SOLVE_CALCULATION_DRILL",
+    "MINI_TEST"
+  ],
+  "actionTypeToStrategy": {
+    "RETRY_PATTERN": "PATTERN_RETRY_SET",
+    "REVIEW_CONCEPT": "CONCEPT_REVIEW_SET",
+    "PRACTICE_CALCULATION": "CALC_DRILL_SET",
+    "MOCK_TEST": "TIMED_PRACTICE"
+  },
+  "documentShape": {
+    "schemaVersion": "v1",
+    "strategies": []
+  },
+  "nonGoals": [
+    "AI recommendation",
+    "LLM calls",
+    "automatic question selection",
+    "question-db mutation",
+    "pattern-db mutation"
+  ]
+}

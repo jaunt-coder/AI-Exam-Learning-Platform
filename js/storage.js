@@ -29,6 +29,8 @@ const STORAGE_KEYS = {
   LEARNING_WEAKNESS_V1: 'learning.weakness.v1',
   // Sprint-09M Learning Plan Contract (additive — do not rename Constitution keys)
   LEARNING_PLAN_V1: 'learning.plan.v1',
+  // Sprint-09N Learning Strategy Resolver (additive — do not rename Constitution keys)
+  LEARNING_STRATEGY_V1: 'learning.strategy.v1',
   // M2.6 Evidence Pad (append-only observation log — do not rename)
   LEARNING_EVIDENCE_V1: 'learning.evidence.v1',
   // Sprint-07 Study State Sync (additive — do not rename)

@@ -14,10 +14,11 @@ import {
 import { recordAttempt } from '../js/mastery-service.js';
 import { recordWeaknessDiagnosis } from '../js/weakness-service.js';
 import { recordLearningPlansFromWeakness } from '../js/learning-plan-service.js';
+import { recordStrategiesFromPlans } from '../js/learning-strategy-service.js';
 
 /**
  * Run one complete learning cycle
- * (deterministic mastery + weakness + learning plan · no AI recommendation).
+ * (mastery + weakness + plan + strategy · no AI recommendation).
  * @param {object} input
  * @returns {object}
  */
@@ -90,6 +91,16 @@ export function runLearningLoopCycle(input = {}) {
     });
   }
 
+  /* Sprint-09N — Learning Strategy Resolver (LocalStorage learning.strategy.v1) */
+  let learningStrategy = { ok: true, strategy: null, strategies: [], skipped: true };
+  if (learningPlan.ok && !learningPlan.skipped && learningPlan.plans?.length) {
+    learningStrategy = recordStrategiesFromPlans({
+      studentId,
+      plans: learningPlan.plans,
+      plan: learningPlan.plan,
+    });
+  }
+
   return {
     ok: true,
     stage: 'complete',
@@ -102,11 +113,14 @@ export function runLearningLoopCycle(input = {}) {
     weaknessUpdate: weakness,
     learningPlan: learningPlan.ok ? learningPlan.plan : null,
     learningPlanUpdate: learningPlan,
+    learningStrategy: learningStrategy.ok ? learningStrategy.strategy : null,
+    learningStrategyUpdate: learningStrategy,
     dashboard: projectDashboard(updated.state, input.patternId),
     guarantees: {
       mastery_runtime_connected: true,
       weakness_runtime_connected: true,
       learning_plan_connected: true,
+      learning_strategy_connected: true,
       recommendation_absent: true,
       question_db_untouched: true,
       answer_sot_untouched: true,

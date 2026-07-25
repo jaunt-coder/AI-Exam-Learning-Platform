@@ -310,6 +310,15 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     storageKey: 'learning.plan.v1',
     servicePath: 'js/learning-plan-service.js',
   };
+  /* Sprint-09N — Learning Strategy Resolver (runtime connected; does not fail valid) */
+  const strategyContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    schemaPath: 'data/learning-strategy-schema.json',
+    storageKey: 'learning.strategy.v1',
+    servicePath: 'js/learning-strategy-service.js',
+  };
 
   return {
     valid: errors.length === 0,
@@ -320,6 +329,7 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     masteryRuntime,
     weaknessRuntime,
     learningPlanContract,
+    strategyContract,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -385,6 +395,14 @@ async function loadDatabaseSet(dbSet, options = {}) {
         storageKey: 'learning.plan.v1',
         servicePath: 'js/learning-plan-service.js',
       },
+      strategyContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        schemaPath: 'data/learning-strategy-schema.json',
+        storageKey: 'learning.strategy.v1',
+        servicePath: 'js/learning-strategy-service.js',
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -445,6 +463,14 @@ async function loadDatabaseSet(dbSet, options = {}) {
       schemaPath: 'data/learning-plan-schema.json',
       storageKey: 'learning.plan.v1',
       servicePath: 'js/learning-plan-service.js',
+    },
+    strategyContract: validation.strategyContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      schemaPath: 'data/learning-strategy-schema.json',
+      storageKey: 'learning.strategy.v1',
+      servicePath: 'js/learning-strategy-service.js',
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,
