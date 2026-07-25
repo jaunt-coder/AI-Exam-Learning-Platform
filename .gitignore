@@ -29,3 +29,6 @@ npm-debug.log*
 dist/
 build/
 data/analysis/
+data/analysis/tmp/
+*.tmp.json
+temp-*.json
