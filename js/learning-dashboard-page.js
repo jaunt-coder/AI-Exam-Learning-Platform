@@ -102,6 +102,24 @@ function renderStrategies(card, strategies) {
     </div>`;
 }
 
+function renderRecommendation(card, summary) {
+  if (!card) return;
+  if (!summary || !summary.active) {
+    card.innerHTML = '<p class="ld-empty">오늘 Recommendation이 없습니다.</p>';
+    return;
+  }
+  const top = summary.highestPriority;
+  card.innerHTML = `
+    <dl class="ld-dl">
+      <div><dt>Active</dt><dd>${Number(summary.active) || 0}</dd></div>
+      <div><dt>Total</dt><dd>${Number(summary.total) || 0}</dd></div>
+      <div><dt>Estimated Minutes</dt><dd>${Number(summary.estimatedMinutes) || 0}분</dd></div>
+      <div><dt>Highest Priority</dt><dd>${escapeHtml(top?.reasonCode || '—')} · ${escapeHtml(top?.patternId || '')}</dd></div>
+    </dl>
+    <p class="ld-card-desc" style="margin-top:0.75rem">${escapeHtml(top?.reason || '')}</p>
+  `;
+}
+
 function renderSession(card, studySession) {
   if (!card) return;
   const progress = studySession?.progress;
@@ -144,6 +162,7 @@ function renderDashboard(dashboard) {
   ]);
   renderPlans(el('card-plans'), dashboard.todaysPlans);
   renderStrategies(el('card-strategies'), dashboard.todaysStrategies);
+  renderRecommendation(el('card-recommendation'), dashboard.recommendationSummary);
   renderSession(el('card-session'), dashboard.studySession);
 
   const meta = el('dashboard-meta');

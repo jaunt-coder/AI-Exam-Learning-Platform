@@ -344,6 +344,15 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     connected: true,
     servicePath: 'js/question-selector.js',
   };
+  /* Sprint-10G — Recommendation Engine v1 (does not fail valid) */
+  const recommendationContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    schemaPath: 'data/recommendation-schema.json',
+    storageKey: 'learning.recommendation.v1',
+    servicePath: 'js/recommendation-service.js',
+  };
 
   return {
     valid: errors.length === 0,
@@ -358,6 +367,7 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     studySessionContract,
     dashboardContract,
     selectorContract,
+    recommendationContract,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -453,6 +463,14 @@ async function loadDatabaseSet(dbSet, options = {}) {
         connected: true,
         servicePath: 'js/question-selector.js',
       },
+      recommendationContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        schemaPath: 'data/recommendation-schema.json',
+        storageKey: 'learning.recommendation.v1',
+        servicePath: 'js/recommendation-service.js',
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -543,6 +561,14 @@ async function loadDatabaseSet(dbSet, options = {}) {
       schemaVersion: 'v1',
       connected: true,
       servicePath: 'js/question-selector.js',
+    },
+    recommendationContract: validation.recommendationContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      schemaPath: 'data/recommendation-schema.json',
+      storageKey: 'learning.recommendation.v1',
+      servicePath: 'js/recommendation-service.js',
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,

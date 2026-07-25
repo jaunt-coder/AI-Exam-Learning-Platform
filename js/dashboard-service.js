@@ -5,6 +5,7 @@
  */
 
 import { getItem, STORAGE_KEYS } from './storage.js';
+import { buildRecommendationSummary } from './recommendation-service.js';
 
 export const DASHBOARD_SCHEMA_VERSION = 'v1';
 
@@ -123,6 +124,7 @@ export function buildDashboardSummary(stores = {}) {
   const plansDoc = stores.plans || { plans: [] };
   const strategiesDoc = stores.strategies || { strategies: [] };
   const session = stores.session || null;
+  const recommendationDoc = stores.recommendations || { recommendations: [] };
 
   const masteryCounts = {
     MASTERED: 0,
@@ -214,6 +216,11 @@ export function buildDashboardSummary(stores = {}) {
     weaknessPatternCount: weaknessPatterns.length,
     todaysPlans,
     todaysStrategies,
+    recommendationSummary: buildRecommendationSummary(
+      Array.isArray(recommendationDoc.recommendations)
+        ? recommendationDoc.recommendations
+        : [],
+    ),
     studySession: {
       session,
       progress,
@@ -224,6 +231,7 @@ export function buildDashboardSummary(stores = {}) {
       plan: 'learning.plan.v1',
       strategy: 'learning.strategy.v1',
       session: 'learning.session.v1',
+      recommendation: 'learning.recommendation.v1',
     },
   };
 }
@@ -253,6 +261,10 @@ export function loadDashboard() {
     STORAGE_KEYS.LEARNING_SESSION_V1 || 'learning.session.v1',
     null,
   );
+  const recommendations = getItem(
+    STORAGE_KEYS.LEARNING_RECOMMENDATION_V1 || 'learning.recommendation.v1',
+    null,
+  );
 
   const dashboard = buildDashboardSummary({
     mastery,
@@ -260,6 +272,7 @@ export function loadDashboard() {
     plans,
     strategies,
     session,
+    recommendations,
   });
 
   return { ok: true, dashboard };

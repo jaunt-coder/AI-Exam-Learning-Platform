@@ -19,10 +19,12 @@ import {
   buildStudySession,
   setQuestionBank,
 } from '../js/study-session-service.js';
+import { buildTodayRecommendation } from '../js/recommendation-service.js';
 
 /**
  * Run one complete learning cycle
- * (mastery + weakness + plan + strategy + study session · no AI recommendation).
+ * (mastery + weakness + plan + strategy + recommendation + study session).
+ * Recommendation is deterministic / explainable — no LLM.
  * @param {object} input
  * @returns {object}
  */
@@ -107,8 +109,29 @@ export function runLearningLoopCycle(input = {}) {
     });
   }
 
+  /* Sprint-10G — Recommendation Engine v1 (before Study Session) */
+  let recommendation = {
+    ok: true,
+    recommendation: null,
+    recommendations: [],
+    skipped: true,
+  };
+  if (
+    learningStrategy.ok &&
+    !learningStrategy.skipped &&
+    Array.isArray(learningStrategy.strategies) &&
+    learningStrategy.strategies.length
+  ) {
+    recommendation = buildTodayRecommendation({
+      studentId,
+      strategies: learningStrategy.strategies,
+      plans: learningPlan.createdPlans || learningPlan.plans || [],
+      weaknessDiagnosis: weakness.ok ? weakness.diagnosis : null,
+    });
+  }
+
   /* Sprint-10D — Study Session Runtime (learning.session.v1)
-   * recordStrategiesFromPlans() → buildStudySession() */
+   * Recommendation → buildStudySession() */
   let studySession = { ok: true, session: null, skipped: true };
   if (
     learningStrategy.ok &&
@@ -140,6 +163,10 @@ export function runLearningLoopCycle(input = {}) {
     learningPlanUpdate: learningPlan,
     learningStrategy: learningStrategy.ok ? learningStrategy.strategy : null,
     learningStrategyUpdate: learningStrategy,
+    recommendation: recommendation.ok ? recommendation.recommendation : null,
+    recommendations: recommendation.ok ? recommendation.recommendations : [],
+    recommendationUpdate: recommendation,
+    recommendationSummary: recommendation.ok ? recommendation.summary : null,
     studySession: studySession.ok ? studySession.session : null,
     studySessionUpdate: studySession,
     dashboard: projectDashboard(updated.state, input.patternId),
@@ -148,8 +175,9 @@ export function runLearningLoopCycle(input = {}) {
       weakness_runtime_connected: true,
       learning_plan_connected: true,
       learning_strategy_connected: true,
+      recommendation_connected: true,
       study_session_connected: true,
-      recommendation_absent: true,
+      recommendation_absent: false,
       question_db_untouched: true,
       answer_sot_untouched: true,
       pattern_db_untouched: true,

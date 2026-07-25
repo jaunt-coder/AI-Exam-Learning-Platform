@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "v1",
+  "sprint": "Sprint-10G",
+  "enabled": true,
+  "connected": true,
+  "description": "Explainable Recommendation Engine v1 — Strategy-based, deterministic",
+  "storageKey": "learning.recommendation.v1",
+  "servicePath": "js/recommendation-service.js",
+  "fields": {
+    "recommendationId": "string",
+    "patternId": "string",
+    "strategyType": "string",
+    "actionType": "string",
+    "priority": "number",
+    "reason": "string",
+    "reasonCode": "string",
+    "estimatedMinutes": "number",
+    "createdAt": "string",
+    "status": "ACTIVE"
+  },
+  "reasonCodes": [
+    "REPEATED_MISS",
+    "LOW_ACCURACY",
+    "CALCULATION_ERROR",
+    "CONCEPT_ERROR",
+    "SLOW_RESPONSE"
+  ],
+  "reasonPriority": {
+    "REPEATED_MISS": 1,
+    "LOW_ACCURACY": 2,
+    "CALCULATION_ERROR": 3,
+    "CONCEPT_ERROR": 4,
+    "SLOW_RESPONSE": 5
+  },
+  "estimatedMinutesByStrategy": {
+    "PATTERN_RETRY_SET": 15,
+    "CONCEPT_REVIEW_SET": 20,
+    "CALC_DRILL_SET": 25,
+    "TIMED_PRACTICE": 30
+  },
+  "nonGoals": [
+    "AI / LLM",
+    "question-db mutation",
+    "pattern-db mutation",
+    "master-db mutation",
+    "policy mutation",
+    "mastery / weakness / plan / strategy / session mutation"
+  ]
+}

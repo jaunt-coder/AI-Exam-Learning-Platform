@@ -31,6 +31,8 @@ const STORAGE_KEYS = {
   LEARNING_PLAN_V1: 'learning.plan.v1',
   // Sprint-09N Learning Strategy Resolver (additive — do not rename Constitution keys)
   LEARNING_STRATEGY_V1: 'learning.strategy.v1',
+  // Sprint-10G Recommendation Engine v1 (additive — do not rename Constitution keys)
+  LEARNING_RECOMMENDATION_V1: 'learning.recommendation.v1',
   // Sprint-10C legacy Study Session queue (migration read — do not rename)
   LEARNING_STUDY_SESSION_V1: 'learning.study-session.v1',
   // M2.6 Evidence Pad (append-only observation log — do not rename)

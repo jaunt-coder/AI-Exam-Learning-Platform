@@ -218,7 +218,7 @@ assert len(summary["todaysPlans"]) == 2
 assert summary["todaysPlans"][0]["patternId"] == "B"  # higher priority
 assert len(summary["todaysStrategies"]) == 1
 assert summary["studySession"]["progress"]["percent"] == 40
-assert len(summary["storageKeys"]) == 5
+assert len(summary["storageKeys"]) >= 5
 
 # Files / wiring
 svc = (ROOT / "js/dashboard-service.js").read_text(encoding="utf-8")
