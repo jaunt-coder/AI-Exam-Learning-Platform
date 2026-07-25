@@ -1,0 +1,103 @@
+{
+  "schema": "learning.solution-review-decision.v1",
+  "version": "1.0.0",
+  "sprint": "Sprint-09H-2 Solution Human Review Gate",
+  "generatedAt": "2026-07-26",
+  "authority": "HUMAN_REVIEW_GATE",
+  "note": "Decisions only. Question / Answer / Pattern / Mapping / Runtime not modified. Draft content not auto-merged to SoT.",
+  "patternId": "ACC_INV_001",
+  "draftSource": "data/question-solution-draft-review.json",
+  "criteria": [
+    "diagnosis_core_judgment",
+    "steps_solve_order",
+    "pattern_algorithm_link",
+    "exam_trap_present",
+    "takeaway_reusable"
+  ],
+  "scopeQuestions": [
+    "ACC_INV_Q001",
+    "ACC_INV_Q006",
+    "ACC_INV_Q022"
+  ],
+  "summary": {
+    "APPROVE": 2,
+    "REVISE": 1,
+    "REJECT": 0,
+    "gateCleared": true,
+    "gateNote": "3문항 모두 APPROVE 또는 수정 방향 명확화(REVISE+requiredFix) — Gate 조건 충족. SoT merge는 Q001 REVISE 반영 후."
+  },
+  "decisions": [
+    {
+      "questionId": "ACC_INV_Q001",
+      "decision": "REVISE",
+      "reason": "Diagnosis·Step 순서·Trap·Takeaway는 학습용으로 충분하나, Step5(FOB 도착지 매입 운송중 가산)가 Pattern ACC_INV_001 판단기준(도착지·미도착=판매자 재고 → 매입자 제외)과 충돌한다. 현재 합산(→₩1,130,000·정답③)은 Tutor Override/DB 정답과 일치하나 Pattern Algorithm 연결 기준(검토항목 3)을 통과하지 못한다.",
+      "requiredFix": [
+        "FOB 도착지 매입·기말 운송중 항목의 포함/제외를 Pattern 기준에 맞게 재기술",
+        "원본 PDF·정답키와 ₩1,130,000 정합 여부 재확인(정답이 Pattern과 어긋나면 Answer/해설 정비는 별도 승인 Sprint)",
+        "Step5 explanation을 ‘매입자 재고 포함’이 아닌 Pattern-consistent 문장으로 교체하거나, 정답 재검증 결과를 diagnosis에 명시",
+        "patternStepRef와 examTrap을 수정 후에도 보기 ①~④ 오답 경로와 연결"
+      ],
+      "criteriaScore": {
+        "diagnosis_core_judgment": "PASS",
+        "steps_solve_order": "PASS",
+        "pattern_algorithm_link": "FAIL",
+        "exam_trap_present": "PASS",
+        "takeaway_reusable": "PASS"
+      },
+      "confidence": "high"
+    },
+    {
+      "questionId": "ACC_INV_Q006",
+      "decision": "APPROVE",
+      "reason": "수탁 수수료(A)와 위탁 매출원가(B) 분리가 diagnosis에 명확하고, 판매수량→수수료→운반비 배분→COGS 순서가 시험장 사고와 일치한다. 미판매분 재고 잔존·판매분 원가 인식으로 Pattern Step2–3와 연결되며, Trap(운반비 누락 84,000·수수료 과대)과 Takeaway 공식이 재사용 가능하다. 수치 검증: A=6,000, B=88,800 → 정답②.",
+      "requiredFix": [],
+      "criteriaScore": {
+        "diagnosis_core_judgment": "PASS",
+        "steps_solve_order": "PASS",
+        "pattern_algorithm_link": "PASS",
+        "exam_trap_present": "PASS",
+        "takeaway_reusable": "PASS"
+      },
+      "confidence": "high",
+      "approvedForSotMerge": true,
+      "mergeNote": "Question SoT merge는 Q001 REVISE 완료 후 일괄 또는 본 문항 단독 Merge Sprint에서 수행"
+    },
+    {
+      "questionId": "ACC_INV_Q022",
+      "decision": "APPROVE",
+      "reason": "위탁 매출원가=판매분×(원가+운반비/총수량)이 diagnosis·steps에 간결히 반영된다. 7×710=4,970 계산이 정답①과 일치하고, Pattern(적송·판매분 인식)과 Q006 학습 연속성이 분명하다. Trap·Takeaway가 시험장에서 바로 쓸 수 있는 형태다.",
+      "requiredFix": [],
+      "criteriaScore": {
+        "diagnosis_core_judgment": "PASS",
+        "steps_solve_order": "PASS",
+        "pattern_algorithm_link": "PASS",
+        "exam_trap_present": "PASS",
+        "takeaway_reusable": "PASS"
+      },
+      "confidence": "high",
+      "approvedForSotMerge": true,
+      "mergeNote": "Question SoT merge는 Q001 REVISE 완료 후 일괄 또는 본 문항 단독 Merge Sprint에서 수행"
+    }
+  ],
+  "outOfScope": {
+    "notReviewedThisGate": ["ACC_INV_Q019", "ACC_INV_Q037"],
+    "reason": "09H-1에서 medium/weak_fit — 별도 Gate"
+  },
+  "nextActions": [
+    {
+      "order": 1,
+      "action": "ACC_INV_Q001 Solution draft REVISE (FOB 도착지 처리 + PDF 정답 대조)",
+      "owner": "Solution Content Architect"
+    },
+    {
+      "order": 2,
+      "action": "REVISE 재심사 → 3문항 APPROVE 달성 시 SoT Merge Sprint",
+      "owner": "Solution Human Review Gate"
+    },
+    {
+      "order": 3,
+      "action": "APPROVE된 Q006·Q022는 Merge 대기열 등록 (본문/Answer/Pattern/Mapping 변경 없음 — solution 필드만)",
+      "owner": "Content Merge Sprint"
+    }
+  ]
+}

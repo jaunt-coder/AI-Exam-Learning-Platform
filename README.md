@@ -126,6 +126,25 @@ RC2-E8 read-only 회귀/게이트: `scripts/regression/` · `docs/release/RC2-E8
 | [session-learning-flow.md](docs/session-learning-flow.md) | Session Learning Flow (Sprint-08) |
 | [mobile-layout-guideline.md](docs/mobile-layout-guideline.md) | Mobile Layout Guideline |
 | [sprint-08-session-ux-refactor.md](docs/sprint-08-session-ux-refactor.md) | Sprint-08 보고서 |
+| [source-map-spec.md](docs/source-map-spec.md) | Question Source Map |
+| [source-viewer-design.md](docs/source-viewer-design.md) | Official Source Viewer |
+| [sprint-09-official-source-viewer.md](docs/sprint-09-official-source-viewer.md) | Sprint-09 보고서 |
+| [sprint-09A-official-source-navigator.md](docs/sprint-09A-official-source-navigator.md) | Sprint-09A 보고서 |
+| [problem-report-system.md](docs/problem-report-system.md) | Problem Report · QA Queue |
+| [question-patch-foundation.md](docs/question-patch-foundation.md) | Question Patch Hook |
+| [pattern-boundary-audit.md](docs/pattern-boundary-audit.md) | Pattern Boundary Audit (240) |
+| [sprint-pattern-boundary-audit-report.md](docs/sprint-pattern-boundary-audit-report.md) | Pattern Boundary Audit 보고서 |
+| [pattern-taxonomy-v2-design.md](docs/pattern-taxonomy-v2-design.md) | Pattern Taxonomy V2 설계 |
+| [sprint-09C-pattern-taxonomy-v2-report.md](docs/sprint-09C-pattern-taxonomy-v2-report.md) | Sprint-09C 보고서 |
+| [taxonomy-v2-human-review-cost-process.md](docs/taxonomy-v2-human-review-cost-process.md) | COST_PROCESS_001 Human Review |
+| [sprint-09D-human-review-cost-process-report.md](docs/sprint-09D-human-review-cost-process-report.md) | Sprint-09D 보고서 |
+| [taxonomy-v2-human-review-cost-gate.md](docs/taxonomy-v2-human-review-cost-gate.md) | Cost Candidate Full Gate |
+| [sprint-09E-cost-gate-report.md](docs/sprint-09E-cost-gate-report.md) | Sprint-09E 보고서 |
+| [pattern-promotion-09F-report.md](docs/pattern-promotion-09F-report.md) | Sprint-09F Pattern Promotion |
+| [pattern-mapping-09G-report.md](docs/pattern-mapping-09G-report.md) | Sprint-09G Mapping Fix |
+| [question-learning-integrity-audit.md](docs/question-learning-integrity-audit.md) | Pattern1 Learning Integrity Audit |
+| [solution-content-foundation-report.md](docs/solution-content-foundation-report.md) | Solution Content Foundation (INV_001) |
+| [solution-human-review-09H2.md](docs/solution-human-review-09H2.md) | Solution Human Review 09H-2 |
 | [10-development-roadmap-spec.md](docs/10-development-roadmap-spec.md) | 개발 로드맵 |
 | [20-final-implementation-plan.md](docs/20-final-implementation-plan.md) | 최종 실행 계획 |
 | [23-development-environment-spec.md](docs/23-development-environment-spec.md) | 개발 환경 |
@@ -147,6 +166,33 @@ RC2-E8 read-only 회귀/게이트: `scripts/regression/` · `docs/release/RC2-E8
 - Question / Answer / Pattern / Knowledge DB 무변경 · AI·Recommendation·Mastery 미사용
 
 상세: [docs/session-architecture.md](docs/session-architecture.md) · [docs/session-learning-flow.md](docs/session-learning-flow.md) · [docs/sprint-08-session-ux-refactor.md](docs/sprint-08-session-ux-refactor.md)
+
+## Official Source Navigator & QA (Sprint-09 · 09A)
+
+학생이 학습 중 원본 시험지를 확인하고, 이상하면 QA를 남긴다. **데이터 수정이 목적이 아니다.**
+
+- Source Map: `data/question-source-map.json` v1.1 · `questionNo` (**Question DB 미수정**)
+- UI: 📄 **원본 시험지** → Navigator Overlay → PDF `#page=` (`question` · `exam` · `learning-loop`)
+- Finder: Ctrl+F 안내 · 문항 번호 복사 · 자동 검색 없음
+- 미연결: **원본 연결 준비중** (오류 없음)
+- 🐞 **문제 수정 요청** → `learning.problemReports.v1` append-only · `patchTarget` hook
+- Export: `problem-report.json` / `.md` (Evidence와 별도) · Settings 통계
+
+상세: [docs/sprint-09A-official-source-navigator.md](docs/sprint-09A-official-source-navigator.md) · [docs/problem-report-system.md](docs/problem-report-system.md) · [docs/source-map-spec.md](docs/source-map-spec.md)
+
+## Pattern Taxonomy V2 (Sprint-09B · 09C)
+
+Chapter First 왜곡을 막기 위한 **설계 확정** (Migration/Runtime 미적용).
+
+- Audit: KEEP 176 · MOVE 18 · LINK 29 · NEW_CANDIDATE 17 ([pattern-boundary-audit.md](docs/pattern-boundary-audit.md))
+- Domain: `financial_accounting` · `cost_accounting` only (`tax_accounting` 금지)
+- Question: `primaryPattern` + `relatedPatterns` (후보만) · V1 `patternId` SoT 동결
+- 후보 저장소: `data/pattern-taxonomy-candidates.json` (**Pattern DB 아님**)
+- Human Review: PROCESS 승인 4 · Cost Full Gate → APPROVE 5 / REJECT ABC · flags `data/pattern-taxonomy-cost-review-flags.json`
+- Promotion 09F: `COST_*` 5개 Pattern DB **append-only** · log `data/pattern-promotion-log.json`
+- Mapping 09G: 승인 evidence 20문항 `primaryPattern`/`relatedPatterns` · frequency sync · status `ACTIVE` · log `data/pattern-mapping-migration-log.json`
+
+상세: [docs/pattern-taxonomy-v2-design.md](docs/pattern-taxonomy-v2-design.md) · [docs/pattern-mapping-09G-report.md](docs/pattern-mapping-09G-report.md)
 
 ## Cloud Study Foundation (Sprint-07)
 

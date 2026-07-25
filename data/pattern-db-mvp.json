@@ -154,7 +154,7 @@
     "chapterId": "ACC_GEN",
     "name": "회계학 일반",
     "grade": "S",
-    "frequency": 55,
+    "frequency": 48,
     "years": [
       2015,
       2017,
@@ -195,11 +195,8 @@
       "ACC_2018_Q072",
       "ACC_2018_Q073",
       "ACC_2018_Q074",
-      "ACC_2018_Q078",
       "ACC_2020_Q071",
       "ACC_2020_Q072",
-      "ACC_2020_Q074",
-      "ACC_2020_Q075",
       "ACC_2020_Q079",
       "ACC_2020_Q080",
       "ACC_2024_Q048",
@@ -210,15 +207,11 @@
       "ACC_2024_Q066",
       "ACC_2024_Q068",
       "ACC_2024_Q072",
-      "ACC_2024_Q074",
       "ACC_2024_Q078",
       "ACC_2024_Q080",
       "ACC_2025_Q041",
       "ACC_2025_Q047",
       "ACC_2025_Q059",
-      "ACC_2025_Q074",
-      "ACC_2025_Q075",
-      "ACC_2025_Q076",
       "ACC_2025_Q078"
     ]
   },
@@ -228,7 +221,7 @@
     "chapterId": "ACC_INT",
     "name": "무형자산",
     "grade": "S",
-    "frequency": 20,
+    "frequency": 19,
     "years": [
       2015,
       2017,
@@ -248,7 +241,6 @@
       "ACC_2018_Q048",
       "ACC_2018_Q051",
       "ACC_2018_Q060",
-      "ACC_2018_Q071",
       "ACC_2020_Q051",
       "ACC_2020_Q062",
       "ACC_2020_Q064",
@@ -315,7 +307,7 @@
     "chapterId": "ACC_INV",
     "name": "FIFO·총평균법 매출원가",
     "grade": "S",
-    "frequency": 19,
+    "frequency": 13,
     "years": [
       2015,
       2017,
@@ -333,17 +325,11 @@
       "ACC_2017_Q080",
       "ACC_2018_Q066",
       "ACC_2018_Q068",
-      "ACC_2018_Q079",
       "ACC_2020_Q063",
-      "ACC_2020_Q073",
-      "ACC_2020_Q076",
       "ACC_2024_Q044",
       "ACC_2024_Q047",
-      "ACC_2024_Q073",
-      "ACC_2024_Q075",
       "ACC_2025_Q043",
       "ACC_2025_Q063",
-      "ACC_2025_Q073",
       "ACC_2025_Q079"
     ]
   },
@@ -353,7 +339,7 @@
     "chapterId": "ACC_INV",
     "name": "LCM·순실현가능가치 평가",
     "grade": "A",
-    "frequency": 3,
+    "frequency": 2,
     "years": [
       2024,
       2025
@@ -361,7 +347,6 @@
     "importance": 64,
     "relatedQuestions": [
       "ACC_2024_Q043",
-      "ACC_2024_Q076",
       "ACC_2025_Q044"
     ]
   },
@@ -474,7 +459,7 @@
     "chapterId": "ACC_REV",
     "name": "수익인식",
     "grade": "S",
-    "frequency": 26,
+    "frequency": 22,
     "years": [
       2015,
       2017,
@@ -497,9 +482,6 @@
       "ACC_2017_Q075",
       "ACC_2017_Q078",
       "ACC_2018_Q044",
-      "ACC_2018_Q075",
-      "ACC_2018_Q076",
-      "ACC_2018_Q080",
       "ACC_2020_Q054",
       "ACC_2020_Q077",
       "ACC_2024_Q050",
@@ -509,8 +491,7 @@
       "ACC_2025_Q064",
       "ACC_2025_Q068",
       "ACC_2025_Q071",
-      "ACC_2025_Q072",
-      "ACC_2025_Q077"
+      "ACC_2025_Q072"
     ]
   },
   {
@@ -519,13 +500,260 @@
     "chapterId": "ACC_TAX",
     "name": "법인세",
     "grade": "B",
-    "frequency": 1,
+    "frequency": 0,
     "years": [
       2024
     ],
     "importance": 58,
+    "relatedQuestions": []
+  },
+  {
+    "patternId": "COST_PROCESS_001",
+    "subjectId": "ACC",
+    "chapterId": "ACC_COST",
+    "name": "완성품환산량 기반 원가 배분",
+    "grade": "S",
+    "frequency": 4,
+    "years": [
+      2018,
+      2020,
+      2024,
+      2025
+    ],
+    "importance": 88,
     "relatedQuestions": [
-      "ACC_2024_Q077"
-    ]
+      "ACC_2018_Q079",
+      "ACC_2020_Q073",
+      "ACC_2024_Q073",
+      "ACC_2025_Q073"
+    ],
+    "domain": "cost_accounting",
+    "chapter": "종합원가계산",
+    "title": "완성품환산량 기반 원가 배분",
+    "algorithm": "종합원가계산 / 환산량 / 완성품환산량",
+    "trigger": "종합원가계산·환산량·재공품 완성도·(공손)",
+    "relatedPatterns": [
+      "ACC_INV_006"
+    ],
+    "status": "ACTIVE",
+    "promotedFrom": {
+      "candidateStore": "data/pattern-taxonomy-candidates.json",
+      "humanGate": "data/pattern-taxonomy-cost-review-flags.json",
+      "processGate": "data/pattern-taxonomy-review-flags.json",
+      "sprints": [
+        "Sprint-09D",
+        "Sprint-09E",
+        "Sprint-09F"
+      ],
+      "candidatePattern": "COST_PROCESS_001",
+      "humanDecision": "APPROVE_CANDIDATE",
+      "humanConfidence": "high",
+      "humanRationale": "공통 Trigger(종합원가·환산량·재공 완성도)와 독립 Algorithm(EU→배분)이 명확하다. ACC_INV_006 등 FA Pattern으로 설명 불가. 다년도 반복 확인(승인 4).",
+      "approvedEvidenceQuestions": [
+        "ACC_2018_Q079",
+        "ACC_2020_Q073",
+        "ACC_2024_Q073",
+        "ACC_2025_Q073"
+      ]
+    }
+  },
+  {
+    "patternId": "COST_JOINT_001",
+    "subjectId": "ACC",
+    "chapterId": "ACC_COST",
+    "name": "결합원가·주부산품 배분",
+    "grade": "A",
+    "frequency": 3,
+    "years": [
+      2020,
+      2024,
+      2025
+    ],
+    "importance": 78,
+    "relatedQuestions": [
+      "ACC_2020_Q074",
+      "ACC_2024_Q076",
+      "ACC_2025_Q074"
+    ],
+    "domain": "cost_accounting",
+    "chapter": "결합원가",
+    "title": "결합원가·주부산품 배분",
+    "algorithm": "결합원가 배분",
+    "trigger": "결합공정·분리점·주산품·부산품·결합원가",
+    "relatedPatterns": [
+      "ACC_INV_007",
+      "ACC_GEN_001"
+    ],
+    "status": "ACTIVE",
+    "promotedFrom": {
+      "candidateStore": "data/pattern-taxonomy-candidates.json",
+      "humanGate": "data/pattern-taxonomy-cost-review-flags.json",
+      "processGate": "data/pattern-taxonomy-review-flags.json",
+      "sprints": [
+        "Sprint-09D",
+        "Sprint-09E",
+        "Sprint-09F"
+      ],
+      "candidatePattern": "COST_JOINT_001",
+      "humanDecision": "APPROVE_CANDIDATE",
+      "humanConfidence": "high",
+      "humanRationale": "결합공정·분리점·주부산품 Trigger가 문항 간 공유된다. 결합원가 배분은 INV_007 LCM/NRV·GEN 버킷으로 대체 불가. Source=Y 3년 반복.",
+      "approvedEvidenceQuestions": [
+        "ACC_2020_Q074",
+        "ACC_2024_Q076",
+        "ACC_2025_Q074"
+      ]
+    }
+  },
+  {
+    "patternId": "COST_STD_001",
+    "subjectId": "ACC",
+    "chapterId": "ACC_COST",
+    "name": "표준원가 차이분석",
+    "grade": "A",
+    "frequency": 3,
+    "years": [
+      2020,
+      2024,
+      2025
+    ],
+    "importance": 80,
+    "relatedQuestions": [
+      "ACC_2020_Q075",
+      "ACC_2024_Q074",
+      "ACC_2025_Q075"
+    ],
+    "domain": "cost_accounting",
+    "chapter": "표준원가",
+    "title": "표준원가 차이분석",
+    "algorithm": "표준원가 차이 분석",
+    "trigger": "표준원가·가격/임률차이·능률/수량차이",
+    "relatedPatterns": [
+      "ACC_GEN_001"
+    ],
+    "status": "ACTIVE",
+    "promotedFrom": {
+      "candidateStore": "data/pattern-taxonomy-candidates.json",
+      "humanGate": "data/pattern-taxonomy-cost-review-flags.json",
+      "processGate": "data/pattern-taxonomy-review-flags.json",
+      "sprints": [
+        "Sprint-09D",
+        "Sprint-09E",
+        "Sprint-09F"
+      ],
+      "candidatePattern": "COST_STD_001",
+      "humanDecision": "APPROVE_CANDIDATE",
+      "humanConfidence": "high",
+      "humanRationale": "표준원가 가격/임률·능률/수량 차이분석이 독립 Algorithm이다. FA Pattern으로 설명 불가. 2020·2024·2025 반복(09D PROCESS 오분류 이관분 포함).",
+      "approvedEvidenceQuestions": [
+        "ACC_2020_Q075",
+        "ACC_2024_Q074",
+        "ACC_2025_Q075"
+      ]
+    }
+  },
+  {
+    "patternId": "COST_CVP_001",
+    "subjectId": "ACC",
+    "chapterId": "ACC_COST",
+    "name": "CVP·전부/변동원가 분석",
+    "grade": "S",
+    "frequency": 8,
+    "years": [
+      2018,
+      2020,
+      2024,
+      2025
+    ],
+    "importance": 90,
+    "relatedQuestions": [
+      "ACC_2018_Q071",
+      "ACC_2018_Q075",
+      "ACC_2018_Q078",
+      "ACC_2020_Q076",
+      "ACC_2024_Q075",
+      "ACC_2024_Q077",
+      "ACC_2025_Q076",
+      "ACC_2025_Q077"
+    ],
+    "domain": "cost_accounting",
+    "chapter": "관리회계",
+    "title": "CVP·전부/변동원가 분석",
+    "algorithm": "CVP 분석",
+    "trigger": "변동/전부원가·공헌이익·손익분기·제약자원",
+    "relatedPatterns": [
+      "ACC_INV_006",
+      "ACC_TAX_001",
+      "ACC_REV_001",
+      "ACC_GEN_001"
+    ],
+    "status": "ACTIVE",
+    "promotedFrom": {
+      "candidateStore": "data/pattern-taxonomy-candidates.json",
+      "humanGate": "data/pattern-taxonomy-cost-review-flags.json",
+      "processGate": "data/pattern-taxonomy-review-flags.json",
+      "sprints": [
+        "Sprint-09D",
+        "Sprint-09E",
+        "Sprint-09F"
+      ],
+      "candidatePattern": "COST_CVP_001",
+      "humanDecision": "APPROVE_CANDIDATE",
+      "humanConfidence": "high",
+      "humanRationale": "변동/전부원가·CVP·제약자원 의사결정의 공통 Trigger와 독립 Algorithm이 명확하다. INV/TAX/REV 오매핑이 FA로 해소되지 않는다. Source=Y 반복성 높음.",
+      "approvedEvidenceQuestions": [
+        "ACC_2018_Q071",
+        "ACC_2018_Q075",
+        "ACC_2018_Q078",
+        "ACC_2020_Q076",
+        "ACC_2024_Q075",
+        "ACC_2024_Q077",
+        "ACC_2025_Q076",
+        "ACC_2025_Q077"
+      ]
+    }
+  },
+  {
+    "patternId": "COST_MFG_001",
+    "subjectId": "ACC",
+    "chapterId": "ACC_COST",
+    "name": "제조원가 흐름·제품원가",
+    "grade": "A",
+    "frequency": 2,
+    "years": [
+      2018
+    ],
+    "importance": 72,
+    "relatedQuestions": [
+      "ACC_2018_Q076",
+      "ACC_2018_Q080"
+    ],
+    "domain": "cost_accounting",
+    "chapter": "제조원가",
+    "title": "제조원가 흐름·제품원가",
+    "algorithm": "제조원가 흐름",
+    "trigger": "제조원가 집계·재공/제품·매출원가·정상원가",
+    "relatedPatterns": [
+      "ACC_REV_001"
+    ],
+    "status": "ACTIVE",
+    "promotedFrom": {
+      "candidateStore": "data/pattern-taxonomy-candidates.json",
+      "humanGate": "data/pattern-taxonomy-cost-review-flags.json",
+      "processGate": "data/pattern-taxonomy-review-flags.json",
+      "sprints": [
+        "Sprint-09D",
+        "Sprint-09E",
+        "Sprint-09F"
+      ],
+      "candidatePattern": "COST_MFG_001",
+      "humanDecision": "APPROVE_CANDIDATE",
+      "humanConfidence": "medium",
+      "humanRationale": "환산량 없는 제조원가 집계·재공/제품·매출원가 흐름은 PROCESS/STD와 분리되는 독립 Algorithm이다. REV Pattern으로 설명 불가. Source=Y 확정 2건으로 반복성은 medium.",
+      "approvedEvidenceQuestions": [
+        "ACC_2018_Q076",
+        "ACC_2018_Q080"
+      ]
+    }
   }
 ]

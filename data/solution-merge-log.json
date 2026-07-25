@@ -1,0 +1,170 @@
+{
+  "schema": "learning.solution-merge-log.v1",
+  "version": "1.0.0",
+  "sprint": "Sprint-09H-3 Solution Content Merge",
+  "generatedAt": "2026-07-26",
+  "authority": "SOLUTION_CONTENT_MERGE_ENGINEER",
+  "operation": "APPEND_SOLUTION_LAYER",
+  "targetLayer": "data/question-solution-approved.json",
+  "sotQuestionDb": "data/question-db.json",
+  "sotMutation": false,
+  "forbiddenTouch": [
+    "question body (question / originalQuestion / choices)",
+    "answer",
+    "patternId",
+    "mapping",
+    "runtime (js/ css/ html)"
+  ],
+  "allowedTouch": [
+    "solution content fields (diagnosis, steps, examTrap, takeaway, patternAlgorithmLink)",
+    "solution.version",
+    "solution.reviewStatus",
+    "solution.approvedReview"
+  ],
+  "merged": [
+    {
+      "questionId": "ACC_INV_Q001",
+      "source": "data/q001-solution-revision.json#revisedSolution",
+      "action": "APPEND_APPROVED_SOLUTION",
+      "solutionVersion": "1.0.0",
+      "reviewStatus": "APPROVED",
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "patternIdBefore": "ACC_INV_001",
+      "patternIdAfter": "ACC_INV_001",
+      "questionCoreHashBefore": "8f75fb148343313b42c16b27cac5923b1fa526a04c2c1506f93d2a1e2ed83d1e",
+      "questionCoreHashAfter": "8f75fb148343313b42c16b27cac5923b1fa526a04c2c1506f93d2a1e2ed83d1e",
+      "questionRecordHashBefore": "fca19eee86a1b2e0b0000c3c2c94fd8687a277995dac2c664f85875eec2a3b54",
+      "questionRecordHashAfter": "fca19eee86a1b2e0b0000c3c2c94fd8687a277995dac2c664f85875eec2a3b54",
+      "hashUnchanged": true,
+      "fieldsAdded": [
+        "solution.diagnosis",
+        "solution.steps",
+        "solution.examTrap",
+        "solution.takeaway",
+        "solution.patternAlgorithmLink",
+        "solution.version",
+        "solution.reviewStatus",
+        "solution.approvedReview"
+      ]
+    },
+    {
+      "questionId": "ACC_INV_Q006",
+      "source": "data/question-solution-draft-review.json#ACC_INV_Q006",
+      "action": "APPEND_APPROVED_SOLUTION",
+      "solutionVersion": "1.0.0",
+      "reviewStatus": "APPROVED",
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "patternIdBefore": "ACC_INV_001",
+      "patternIdAfter": "ACC_INV_001",
+      "questionCoreHashBefore": "19367bcf5b4ad7a6f0f9da7d123aceed1f8df7f196175b692afd81cf0dfa70d9",
+      "questionCoreHashAfter": "19367bcf5b4ad7a6f0f9da7d123aceed1f8df7f196175b692afd81cf0dfa70d9",
+      "questionRecordHashBefore": "b2e4339d6b2aad663af97c9c72715033d9e91fee7f16e4531f584e882956c7dc",
+      "questionRecordHashAfter": "b2e4339d6b2aad663af97c9c72715033d9e91fee7f16e4531f584e882956c7dc",
+      "hashUnchanged": true,
+      "fieldsAdded": [
+        "solution.diagnosis",
+        "solution.steps",
+        "solution.examTrap",
+        "solution.takeaway",
+        "solution.patternAlgorithmLink",
+        "solution.version",
+        "solution.reviewStatus",
+        "solution.approvedReview"
+      ]
+    },
+    {
+      "questionId": "ACC_INV_Q022",
+      "source": "data/question-solution-draft-review.json#ACC_INV_Q022",
+      "action": "APPEND_APPROVED_SOLUTION",
+      "solutionVersion": "1.0.0",
+      "reviewStatus": "APPROVED",
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "patternIdBefore": "ACC_INV_001",
+      "patternIdAfter": "ACC_INV_001",
+      "questionCoreHashBefore": "d678589ffe374a96e0a7c707130dc7e6f8af4e7dec73245c0ecfad4217e3ccc9",
+      "questionCoreHashAfter": "d678589ffe374a96e0a7c707130dc7e6f8af4e7dec73245c0ecfad4217e3ccc9",
+      "questionRecordHashBefore": "b750ec2a26d6b7c0cdd34969aadef958878978cc0e581910bd1ec5aa2deaca3c",
+      "questionRecordHashAfter": "b750ec2a26d6b7c0cdd34969aadef958878978cc0e581910bd1ec5aa2deaca3c",
+      "hashUnchanged": true,
+      "fieldsAdded": [
+        "solution.diagnosis",
+        "solution.steps",
+        "solution.examTrap",
+        "solution.takeaway",
+        "solution.patternAlgorithmLink",
+        "solution.version",
+        "solution.reviewStatus",
+        "solution.approvedReview"
+      ]
+    }
+  ],
+  "validation": {
+    "questionHashPreserved": true,
+    "answerUnchanged": true,
+    "patternUnchanged": true,
+    "solutionLayerPresent": true,
+    "rollbackPossible": true,
+    "checks": [
+      {
+        "id": "hash",
+        "label": "기존 Question hash 유지",
+        "result": "PASS",
+        "detail": "data/question-db.json 미수정. core/record SHA-256 전후 동일"
+      },
+      {
+        "id": "answer",
+        "label": "Answer 동일",
+        "result": "PASS",
+        "detail": "Q001=3, Q006=2, Q022=1"
+      },
+      {
+        "id": "pattern",
+        "label": "Pattern 동일",
+        "result": "PASS",
+        "detail": "3문항 모두 ACC_INV_001"
+      },
+      {
+        "id": "solution",
+        "label": "Solution 추가 확인",
+        "result": "PASS",
+        "detail": "overlay에 diagnosis/steps/examTrap/takeaway/version/reviewStatus/approvedReview 존재"
+      },
+      {
+        "id": "rollback",
+        "label": "Rollback 가능",
+        "result": "PASS",
+        "detail": "question-solution-approved.json 삭제 또는 questions[] entry 제거로 복원. SoT 무변경"
+      }
+    ]
+  },
+  "rollback": {
+    "method": "overlay-delete",
+    "steps": [
+      "Remove or empty entries in data/question-solution-approved.json",
+      "Optionally delete data/solution-merge-log.json entry for this sprint",
+      "Confirm data/question-db.json hashes still match pre-merge values recorded above"
+    ],
+    "preMergeSnapshotHashes": {
+      "ACC_INV_Q001": {
+        "questionCoreHashSha256": "8f75fb148343313b42c16b27cac5923b1fa526a04c2c1506f93d2a1e2ed83d1e",
+        "questionRecordHashSha256": "fca19eee86a1b2e0b0000c3c2c94fd8687a277995dac2c664f85875eec2a3b54"
+      },
+      "ACC_INV_Q006": {
+        "questionCoreHashSha256": "19367bcf5b4ad7a6f0f9da7d123aceed1f8df7f196175b692afd81cf0dfa70d9",
+        "questionRecordHashSha256": "b2e4339d6b2aad663af97c9c72715033d9e91fee7f16e4531f584e882956c7dc"
+      },
+      "ACC_INV_Q022": {
+        "questionCoreHashSha256": "d678589ffe374a96e0a7c707130dc7e6f8af4e7dec73245c0ecfad4217e3ccc9",
+        "questionRecordHashSha256": "b750ec2a26d6b7c0cdd34969aadef958878978cc0e581910bd1ec5aa2deaca3c"
+      }
+    }
+  },
+  "outOfScope": {
+    "notMerged": ["ACC_INV_Q019", "ACC_INV_Q037"],
+    "reason": "09H-2 Gate 미승인 (weak_fit / 별도 Gate)"
+  },
+  "runtimeNote": "본 Sprint는 Runtime 미배선. Learning Loop가 overlay를 읽도록 하는 작업은 별도 Sprint."
+}

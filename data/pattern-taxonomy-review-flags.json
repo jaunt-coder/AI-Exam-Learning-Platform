@@ -1,0 +1,148 @@
+{
+  "schema": "learning.pattern-taxonomy-review-flags.v1",
+  "version": "1.0.0",
+  "sprint": "Sprint-09D Human Review Gate — COST_PROCESS_001",
+  "generatedAt": "2026-07-26",
+  "authority": "HUMAN_REVIEW_RECORD_ONLY",
+  "note": "Not Pattern SoT. Not Question mapping. Runtime must not read this as production Pattern DB.",
+  "candidatePattern": "COST_PROCESS_001",
+  "domain": "cost_accounting",
+  "scope": {
+    "priority": 1,
+    "sourceFilter": "Y",
+    "reviewedCount": 6
+  },
+  "summary": {
+    "APPROVE_CANDIDATE": 4,
+    "REJECT": 2,
+    "LINK_ONLY": 0,
+    "promotionReady": false,
+    "minEvidenceMet": true,
+    "approvedEvidenceQuestions": [
+      "ACC_2018_Q079",
+      "ACC_2020_Q073",
+      "ACC_2024_Q073",
+      "ACC_2025_Q073"
+    ]
+  },
+  "reviews": [
+    {
+      "questionId": "ACC_2018_Q079",
+      "candidatePattern": "COST_PROCESS_001",
+      "reviewStatus": "APPROVE_CANDIDATE",
+      "reviewerNote": "WA/FIFO 전환원가 완성품환산량 → 기초재공 완성도. ACC_INV_006으로 설명 불가. Primary=PROCESS, Related=ACC_INV_006 권고.",
+      "criteria": {
+        "coreAlgorithm": "YES",
+        "existingPatternSufficient": "NO",
+        "independentPromoteValue": "YES",
+        "primaryCandidate": "YES",
+        "relatedNeeded": "YES"
+      },
+      "source": "Y · p.28 · Q79",
+      "currentPattern": "ACC_INV_006",
+      "suggestedRelatedPatterns": ["ACC_INV_006"],
+      "runtimeApplied": false,
+      "sotMutated": false
+    },
+    {
+      "questionId": "ACC_2018_Q080",
+      "candidatePattern": "COST_PROCESS_001",
+      "reviewStatus": "REJECT",
+      "reviewerNote": "환산량·완성도 없음. 제조원가 집계 후 매출원가. PROCESS 부적합 → COST_MFG_001 Gate로 이관.",
+      "criteria": {
+        "coreAlgorithm": "NO",
+        "existingPatternSufficient": "NO",
+        "independentPromoteValue": "NO",
+        "primaryCandidate": "NO",
+        "relatedNeeded": "NO"
+      },
+      "source": "Y · p.28 · Q80",
+      "currentPattern": "ACC_REV_001",
+      "suggestedRetargetCandidate": "COST_MFG_001",
+      "runtimeApplied": false,
+      "sotMutated": false
+    },
+    {
+      "questionId": "ACC_2020_Q073",
+      "candidatePattern": "COST_PROCESS_001",
+      "reviewStatus": "APPROVE_CANDIDATE",
+      "reviewerNote": "FIFO 종합원가·물량·완성도·기초재공 직접재료. Primary=PROCESS, Related=ACC_INV_006.",
+      "criteria": {
+        "coreAlgorithm": "YES",
+        "existingPatternSufficient": "NO",
+        "independentPromoteValue": "YES",
+        "primaryCandidate": "YES",
+        "relatedNeeded": "YES"
+      },
+      "source": "Y · p.26 · Q73",
+      "currentPattern": "ACC_INV_006",
+      "suggestedRelatedPatterns": ["ACC_INV_006"],
+      "runtimeApplied": false,
+      "sotMutated": false
+    },
+    {
+      "questionId": "ACC_2024_Q073",
+      "candidatePattern": "COST_PROCESS_001",
+      "reviewStatus": "APPROVE_CANDIDATE",
+      "reviewerNote": "종합원가·전환원가 환산·품질검사/공손. PROCESS 범위. Related=ACC_INV_006.",
+      "criteria": {
+        "coreAlgorithm": "YES",
+        "existingPatternSufficient": "NO",
+        "independentPromoteValue": "YES",
+        "primaryCandidate": "YES",
+        "relatedNeeded": "YES"
+      },
+      "source": "Y · p.24 · Q73",
+      "currentPattern": "ACC_INV_006",
+      "suggestedRelatedPatterns": ["ACC_INV_006"],
+      "runtimeApplied": false,
+      "sotMutated": false
+    },
+    {
+      "questionId": "ACC_2024_Q074",
+      "candidatePattern": "COST_PROCESS_001",
+      "reviewStatus": "REJECT",
+      "reviewerNote": "표준원가 재료 가격/능률차이·기말재료. PROCESS 오분류 → COST_STD_001 Gate로 이관.",
+      "criteria": {
+        "coreAlgorithm": "NO",
+        "existingPatternSufficient": "NO",
+        "independentPromoteValue": "NO",
+        "primaryCandidate": "NO",
+        "relatedNeeded": "NO"
+      },
+      "source": "Y · p.25 · Q74",
+      "currentPattern": "ACC_GEN_001",
+      "suggestedRetargetCandidate": "COST_STD_001",
+      "runtimeApplied": false,
+      "sotMutated": false
+    },
+    {
+      "questionId": "ACC_2025_Q073",
+      "candidatePattern": "COST_PROCESS_001",
+      "reviewStatus": "APPROVE_CANDIDATE",
+      "reviewerNote": "FIFO 종합원가·정상공손·환산량. Primary=PROCESS, Related=ACC_INV_006.",
+      "criteria": {
+        "coreAlgorithm": "YES",
+        "existingPatternSufficient": "NO",
+        "independentPromoteValue": "YES",
+        "primaryCandidate": "YES",
+        "relatedNeeded": "YES"
+      },
+      "source": "Y · p.25 · Q73",
+      "currentPattern": "ACC_INV_006",
+      "suggestedRelatedPatterns": ["ACC_INV_006"],
+      "runtimeApplied": false,
+      "sotMutated": false
+    }
+  ],
+  "migrationAdvice": {
+    "appendPatternDbNow": false,
+    "changeQuestionMappingNow": false,
+    "nextSprint": "09E Human Review other COST_* drafts OR 09F COST_PROCESS_001 Promotion Pack (append-only, mapping frozen)",
+    "recommendedOrder": [
+      "09E — COST_STD_001 / COST_MFG_001 / COST_JOINT_001 / COST_CVP_001 / COST_ABC_001 Source=Y review",
+      "09F — Promote approved COST_PROCESS_001 draft into Pattern DB (append only)",
+      "09G — Mapping Fix for 4 approved questions (primary/related overlay)"
+    ]
+  }
+}

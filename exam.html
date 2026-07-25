@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/question.css">
   <link rel="stylesheet" href="css/exam.css">
+  <link rel="stylesheet" href="css/source-viewer.css">
 </head>
 <body>
   <header class="site-header" role="banner">
@@ -85,7 +86,10 @@
 
           <article class="exam-question card" id="exam-question-panel">
             <header class="exam-question-header">
-              <p class="exam-question-meta" id="exam-question-meta"></p>
+              <div class="exam-question-meta-row">
+                <p class="exam-question-meta" id="exam-question-meta"></p>
+                <div id="exam-source-viewer-host" class="source-viewer-host" aria-label="원본 PDF"></div>
+              </div>
               <h3 class="exam-question-stem" id="exam-question-stem"></h3>
               <div class="question-table-wrap" id="exam-question-table" hidden aria-label="문제 표"></div>
             </header>

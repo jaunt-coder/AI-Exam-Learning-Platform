@@ -18,6 +18,7 @@ import {
   EVIDENCE_TARGET_DEFAULT,
   PATTERN_TARGET_DEFAULT,
 } from '../runtime/evidence-service.js';
+import { markSourceReviewNeeded } from './source-viewer.js';
 
 const UNDERSTANDING = [
   { value: 'understood', label: '이해했다', tone: 'ok' },
@@ -122,6 +123,7 @@ export function mountEvidencePad(host, options = {}) {
       exam_retry: '',
       explain_friend: '',
       want_retry: false,
+      source_review_needed: false,
       memo: '',
     };
   }
@@ -167,6 +169,10 @@ export function mountEvidencePad(host, options = {}) {
     });
     const retry = host.querySelector('#ep-want-retry');
     if (retry) retry.checked = Boolean(state.form.want_retry);
+    const srcReview = host.querySelector('#ep-source-review');
+    if (srcReview) {
+      srcReview.checked = Boolean(state.form.source_review_needed);
+    }
     const memo = host.querySelector('#ep-memo');
     if (memo) memo.value = state.form.memo || '';
   }
@@ -187,6 +193,9 @@ export function mountEvidencePad(host, options = {}) {
     });
     state.form.difficulty_reasons = reasons;
     state.form.want_retry = Boolean(host.querySelector('#ep-want-retry')?.checked);
+    state.form.source_review_needed = Boolean(
+      host.querySelector('#ep-source-review')?.checked
+    );
     state.form.memo = host.querySelector('#ep-memo')?.value || '';
   }
 
@@ -207,6 +216,7 @@ export function mountEvidencePad(host, options = {}) {
         exam_retry: draft.exam_retry || '',
         explain_friend: draft.explain_friend || '',
         want_retry: Boolean(draft.want_retry),
+        source_review_needed: Boolean(draft.source_review_needed),
         memo: draft.memo || '',
       };
     } else {
@@ -293,6 +303,13 @@ export function mountEvidencePad(host, options = {}) {
     if (!result.ok) {
       setStatus(`저장 실패: ${result.error}`, 'err');
       return;
+    }
+
+    /* WP-05: flag only — no analysis */
+    if (state.form.source_review_needed) {
+      markSourceReviewNeeded(state.context.question_id, {
+        session_id: payload.session_id,
+      });
     }
 
     state.form = emptyForm();
@@ -468,6 +485,15 @@ function shellHtml() {
           <input type="checkbox" id="ep-want-retry" />
           <span>YES</span>
         </label>
+      </section>
+
+      <section class="ep-section">
+        <h3 class="ep-section__title">QA</h3>
+        <label class="ep-check ep-check--solo">
+          <input type="checkbox" id="ep-source-review" />
+          <span>원본 확인 필요</span>
+        </label>
+        <p class="ep-hint">체크 시 questionId만 저장합니다. 분석·채점 없음.</p>
       </section>
 
       <section class="ep-section">

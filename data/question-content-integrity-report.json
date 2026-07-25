@@ -1,0 +1,345 @@
+{
+  "schema": "learning.question-content-integrity.v1",
+  "sprint": "Learning Content Integrity Audit — Pattern Master Pattern #1",
+  "generatedAt": "2026-07-26",
+  "authority": "AUDIT_ONLY",
+  "scopeNote": "Pattern Mapping Migration(09G) not started/continued in this audit",
+  "pattern": {
+    "index": 1,
+    "patternId": "ACC_INV_001",
+    "name": "기말재고 포함 여부 판단",
+    "validation_status": "verified",
+    "studyPatternOrder": [
+      "ACC_INV_001",
+      "ACC_INV_006"
+    ],
+    "declaredQuestionIds": [
+      "ACC_INV_Q001",
+      "ACC_INV_Q006",
+      "ACC_INV_Q019",
+      "ACC_INV_Q022",
+      "ACC_INV_Q037"
+    ],
+    "runtimeQuestionIds": [
+      "ACC_2018_Q042"
+    ],
+    "metadataAlgorithmSteps": 3,
+    "metadataAlgorithmStatus": "evidenced",
+    "reviewWhyLensDataExists": true,
+    "closingTakeawayConnectable": true
+  },
+  "primaryLayer": "declared_master_question_ids",
+  "summary": {
+    "count": 5,
+    "PASS": 5,
+    "MISSING_SOLUTION": 0,
+    "MISSING_REVIEW": 0,
+    "MISSING_DATA": 0,
+    "missingSolutionList": [],
+    "firstQuestionSolutionExists": true,
+    "restSolutionMissing": 0,
+    "gapFirstVsRest": false,
+    "allDbStepsEmpty": true,
+    "allHaveTutorOverride": true
+  },
+  "layerSummaries": {
+    "runtime_study_pack": {
+      "count": 1,
+      "PASS": 0,
+      "MISSING_SOLUTION": 1,
+      "MISSING_REVIEW": 0,
+      "MISSING_DATA": 0,
+      "missingSolutionList": [
+        "ACC_2018_Q042"
+      ]
+    },
+    "declared_master_question_ids": {
+      "count": 5,
+      "PASS": 5,
+      "MISSING_SOLUTION": 0,
+      "MISSING_REVIEW": 0,
+      "MISSING_DATA": 0,
+      "missingSolutionList": []
+    }
+  },
+  "questions": [
+    {
+      "questionId": "ACC_INV_Q001",
+      "patternId": "ACC_INV_001",
+      "questionExists": true,
+      "answerExists": true,
+      "solutionExists": true,
+      "reviewExists": true,
+      "status": "PASS",
+      "issueType": null,
+      "indexInPattern": 1,
+      "algorithmExists": true,
+      "takeawayConnectable": true,
+      "solutionVia": "tutor_override",
+      "sotGap": "solution.steps empty in question-db; Tutor override supplies steps",
+      "layer": "declared_master_question_ids"
+    },
+    {
+      "questionId": "ACC_INV_Q006",
+      "patternId": "ACC_INV_001",
+      "questionExists": true,
+      "answerExists": true,
+      "solutionExists": true,
+      "reviewExists": true,
+      "status": "PASS",
+      "issueType": null,
+      "indexInPattern": 2,
+      "algorithmExists": true,
+      "takeawayConnectable": true,
+      "solutionVia": "tutor_override",
+      "sotGap": "solution.steps empty in question-db; Tutor override supplies steps",
+      "layer": "declared_master_question_ids"
+    },
+    {
+      "questionId": "ACC_INV_Q019",
+      "patternId": "ACC_INV_001",
+      "questionExists": true,
+      "answerExists": true,
+      "solutionExists": true,
+      "reviewExists": true,
+      "status": "PASS",
+      "issueType": null,
+      "indexInPattern": 3,
+      "algorithmExists": true,
+      "takeawayConnectable": true,
+      "solutionVia": "tutor_override",
+      "sotGap": "solution.steps empty in question-db; Tutor override supplies steps",
+      "layer": "declared_master_question_ids"
+    },
+    {
+      "questionId": "ACC_INV_Q022",
+      "patternId": "ACC_INV_001",
+      "questionExists": true,
+      "answerExists": true,
+      "solutionExists": true,
+      "reviewExists": true,
+      "status": "PASS",
+      "issueType": null,
+      "indexInPattern": 4,
+      "algorithmExists": true,
+      "takeawayConnectable": true,
+      "solutionVia": "tutor_override",
+      "sotGap": "solution.steps empty in question-db; Tutor override supplies steps",
+      "layer": "declared_master_question_ids"
+    },
+    {
+      "questionId": "ACC_INV_Q037",
+      "patternId": "ACC_INV_001",
+      "questionExists": true,
+      "answerExists": true,
+      "solutionExists": true,
+      "reviewExists": true,
+      "status": "PASS",
+      "issueType": null,
+      "indexInPattern": 5,
+      "algorithmExists": true,
+      "takeawayConnectable": true,
+      "solutionVia": "tutor_override",
+      "sotGap": "solution.steps empty in question-db; Tutor override supplies steps",
+      "layer": "declared_master_question_ids"
+    }
+  ],
+  "runtimeQuestionsDetail": [
+    {
+      "layer": "runtime_study_pack",
+      "questionId": "ACC_2018_Q042",
+      "patternId": "ACC_INV_001",
+      "indexInPattern": 1,
+      "questionExists": true,
+      "answerExists": true,
+      "solutionExists": false,
+      "solutionIssue": "pilot_candidate_no_solution_field",
+      "algorithmExists": true,
+      "reviewExists": true,
+      "takeawayConnectable": true,
+      "sourcePath": "data/knowledge/pilot/2018/candidate/ACC_2018_Q042.json",
+      "mvpStructuredSteps": false,
+      "mvpStepCount": 0,
+      "overrideSteps": 0,
+      "status": "MISSING_SOLUTION",
+      "issueType": "pilot_candidate_no_solution_field"
+    }
+  ],
+  "declaredQuestionsDetail": [
+    {
+      "layer": "declared_master_question_ids",
+      "questionId": "ACC_INV_Q001",
+      "patternId": "ACC_INV_001",
+      "indexInPattern": 1,
+      "questionExists": true,
+      "answerExists": true,
+      "solutionExists": true,
+      "solutionIssue": null,
+      "solutionStepCount": 6,
+      "solutionVia": "tutor_override",
+      "dbStepsEmpty": true,
+      "dbOcrNoiseLikely": true,
+      "algorithmExists": true,
+      "reviewExists": true,
+      "takeawayConnectable": true,
+      "hasTutorOverride": true,
+      "sourcePath": "data/question-db.json",
+      "status": "PASS",
+      "issueType": null,
+      "sotGap": "solution.steps empty in question-db; Tutor override supplies steps"
+    },
+    {
+      "layer": "declared_master_question_ids",
+      "questionId": "ACC_INV_Q006",
+      "patternId": "ACC_INV_001",
+      "indexInPattern": 2,
+      "questionExists": true,
+      "answerExists": true,
+      "solutionExists": true,
+      "solutionIssue": null,
+      "solutionStepCount": 4,
+      "solutionVia": "tutor_override",
+      "dbStepsEmpty": true,
+      "dbOcrNoiseLikely": true,
+      "algorithmExists": true,
+      "reviewExists": true,
+      "takeawayConnectable": true,
+      "hasTutorOverride": true,
+      "sourcePath": "data/question-db.json",
+      "status": "PASS",
+      "issueType": null,
+      "sotGap": "solution.steps empty in question-db; Tutor override supplies steps"
+    },
+    {
+      "layer": "declared_master_question_ids",
+      "questionId": "ACC_INV_Q019",
+      "patternId": "ACC_INV_001",
+      "indexInPattern": 3,
+      "questionExists": true,
+      "answerExists": true,
+      "solutionExists": true,
+      "solutionIssue": null,
+      "solutionStepCount": 5,
+      "solutionVia": "tutor_override",
+      "dbStepsEmpty": true,
+      "dbOcrNoiseLikely": true,
+      "algorithmExists": true,
+      "reviewExists": true,
+      "takeawayConnectable": true,
+      "hasTutorOverride": true,
+      "sourcePath": "data/question-db.json",
+      "status": "PASS",
+      "issueType": null,
+      "sotGap": "solution.steps empty in question-db; Tutor override supplies steps"
+    },
+    {
+      "layer": "declared_master_question_ids",
+      "questionId": "ACC_INV_Q022",
+      "patternId": "ACC_INV_001",
+      "indexInPattern": 4,
+      "questionExists": true,
+      "answerExists": true,
+      "solutionExists": true,
+      "solutionIssue": null,
+      "solutionStepCount": 3,
+      "solutionVia": "tutor_override",
+      "dbStepsEmpty": true,
+      "dbOcrNoiseLikely": true,
+      "algorithmExists": true,
+      "reviewExists": true,
+      "takeawayConnectable": true,
+      "hasTutorOverride": true,
+      "sourcePath": "data/question-db.json",
+      "status": "PASS",
+      "issueType": null,
+      "sotGap": "solution.steps empty in question-db; Tutor override supplies steps"
+    },
+    {
+      "layer": "declared_master_question_ids",
+      "questionId": "ACC_INV_Q037",
+      "patternId": "ACC_INV_001",
+      "indexInPattern": 5,
+      "questionExists": true,
+      "answerExists": true,
+      "solutionExists": true,
+      "solutionIssue": null,
+      "solutionStepCount": 3,
+      "solutionVia": "tutor_override",
+      "dbStepsEmpty": true,
+      "dbOcrNoiseLikely": true,
+      "algorithmExists": true,
+      "reviewExists": true,
+      "takeawayConnectable": true,
+      "hasTutorOverride": true,
+      "sourcePath": "data/question-db.json",
+      "status": "PASS",
+      "issueType": null,
+      "sotGap": "solution.steps empty in question-db; Tutor override supplies steps"
+    }
+  ],
+  "missingSolutionList": [],
+  "causeClassification": [
+    {
+      "causeId": "C0",
+      "type": "DUAL_SOURCE_SPLIT",
+      "severity": "Pattern Master Runtime은 golden pilot 1문항(`['ACC_2018_Q042']`)만 로드하고, Master 선언 question_ids는 5문항(phase1 DB)이다. Human Pilot 다문항 체감은 선언 세트/Question·Tutor 경로일 가능성이 높다."
+    },
+    {
+      "causeId": "C1",
+      "type": "EMPTY_SOLUTION_STEPS_IN_QUESTION_SOT",
+      "severity": "phase1 `question-db.json`의 solution.steps가 Pattern1 전 문항에서 빈 배열이다. algorithm/explanation은 OCR 잡음(스터디파이터/CHAPTER)이다."
+    },
+    {
+      "causeId": "C2",
+      "type": "TUTOR_OVERRIDE_MASKS_SOT_GAP",
+      "severity": "Tutor `question-overrides.js`의 solvingAlgorithm이 Solution Step을 공급해 첫 문항 등에서 정상처럼 보인다. Override 미적용·로드 실패·다른 화면이면 두 번째부터 steps 미표시로 관측될 수 있다."
+    },
+    {
+      "causeId": "C3",
+      "type": "RUNTIME_PACK_SINGLE_QUESTION",
+      "severity": "learning-loop Pattern#1 런타임 팩은 문항이 1개뿐이라 ‘같은 Pattern 내 Q2’가 존재하지 않는다. Q2 증상은 Pattern 전환 또는 Question 페이지 경로를 의심."
+    },
+    {
+      "causeId": "C4",
+      "type": "PATTERN_LEVEL_ALGORITHM_OK",
+      "severity": "pattern-metadata `ACC_INV_001` solving_algorithm steps=3 — Review Why Lens / Pattern Algorithm 패널 공통 자산은 존재한다."
+    }
+  ],
+  "fixPriority": [
+    {
+      "priority": 1,
+      "action": "Pattern1 선언 문항의solution.steps`를 SoT(또는 승인된 Solution DB)에 구조화 채움 — OCR 잡음 제거",
+      "targets": [
+        "ACC_INV_Q001",
+        "ACC_INV_Q006",
+        "ACC_INV_Q019",
+        "ACC_INV_Q022",
+        "ACC_INV_Q037"
+      ],
+      "why": "C1 — steps 전량 공백"
+    },
+    {
+      "priority": 2,
+      "action": "Learning Loop가 Master question_ids(또는 MVP 매핑)를 쓰도록 Study Pack 정합 — golden 1문항 한계 해소",
+      "targets": [
+        "ACC_INV_001"
+      ],
+      "why": "C0/C3 — Runtime vs Declared split"
+    },
+    {
+      "priority": 3,
+      "action": "Human Pilot 재현: Question 페이지 Tutor vs Pattern Master Review — Override 의존 여부 확인",
+      "targets": [
+        "ACC_INV_Q001",
+        "ACC_INV_Q006"
+      ],
+      "why": "C2 — 첫 문항만 정상 관측 설명"
+    },
+    {
+      "priority": 4,
+      "action": "09G Mapping Migration과 분리 — 본 이슈는 Solution Content Integrity (매핑 아님)",
+      "targets": [],
+      "why": "Scope guard"
+    }
+  ]
+}

@@ -33,6 +33,7 @@ import {
   mountQuestionTable,
   renderChoiceItems,
 } from './shared-renderer.js';
+import { mountSourceViewerButton } from './source-viewer.js';
 
 const state = {
   master: null,
@@ -268,6 +269,11 @@ function renderCurrentQuestion() {
   const pattern = getPatternById(state.patterns, question.patternId);
   $('exam-question-meta').textContent =
     `${state.session.currentIndex + 1}번 · ${question.questionId} · ${pattern?.name || question.patternId} · ${question.year}년`;
+
+  mountSourceViewerButton(
+    document.getElementById('exam-source-viewer-host'),
+    question.questionId
+  );
 
   mountQuestionStem(question, $('exam-question-stem'));
   mountQuestionTable(question, $('exam-question-table'));

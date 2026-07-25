@@ -39,6 +39,13 @@ import {
   mountResumePrompt,
 } from './session-resume.js';
 import { exportSyncStateV4 } from './import-export-v4.js';
+import { mountSourceViewerButton } from './source-viewer.js';
+import {
+  enrichStudyQuestionsWithApproved,
+  getApprovedSolution,
+  loadSolutionOverlay,
+  resolveOverlayQuestionId,
+} from './solution-overlay.js';
 
 const STUDENT_ID = 'm1_demo_student';
 const KEY_MODE = 'learning.studyMode.v1';
@@ -778,6 +785,10 @@ function renderQuestionPanel() {
     viewMode === 'developer'
       ? `${q.questionId} · ${lesson.pattern_id}`
       : `「${lesson.name}」 Pattern 적용`;
+  mountSourceViewerButton(
+    document.getElementById('loop-source-viewer-host'),
+    q.questionId
+  );
   els.questionStem.innerHTML = renderQuestionStemHtml(q.stem);
   els.questionChoices.innerHTML = '';
   (q.choices || []).forEach((text, idx) => {
@@ -793,8 +804,54 @@ function renderQuestionPanel() {
   });
 }
 
+/**
+ * Approved Solution Layer block (09H-4).
+ * @param {object} sol
+ * @param {string} questionId
+ */
+function renderApprovedSolutionHtml(sol, questionId) {
+  const overlayId = resolveOverlayQuestionId(questionId) || questionId;
+  const steps = (sol.steps || [])
+    .map((s) => {
+      const title = s.title || `Step ${s.order || ''}`;
+      const body = s.explanation || '';
+      return `<li class="solution-approved__step">
+        <strong>${escapeHtml(String(s.order ?? ''))}. ${escapeHtml(title)}</strong>
+        <p>${escapeHtml(body)}</p>
+      </li>`;
+    })
+    .join('');
+
+  return `
+    <article class="edu-block lesson-block solution-approved" aria-label="Approved Solution">
+      <header class="solution-approved__head">
+        <p class="edu-kicker">Approved Solution</p>
+        <h3>문항 Solution</h3>
+        <p class="ll-hint">승인된 Learning Content Layer · Pattern Algorithm 대체 표시</p>
+        <p class="dev-only"><code>${escapeHtml(overlayId || '')}</code>
+          ${sol.version ? ` · v${escapeHtml(String(sol.version))}` : ''}</p>
+      </header>
+      <section class="solution-approved__section">
+        <h4>Diagnosis</h4>
+        <p>${escapeHtml(sol.diagnosis || '—')}</p>
+      </section>
+      <section class="solution-approved__section">
+        <h4>Steps</h4>
+        ${steps ? `<ol class="solution-approved__steps">${steps}</ol>` : '<p class="ll-hint">—</p>'}
+      </section>
+      <section class="solution-approved__section">
+        <h4>Exam Trap</h4>
+        <p>${escapeHtml(sol.examTrap || '—')}</p>
+      </section>
+      <section class="solution-approved__section">
+        <h4>Takeaway</h4>
+        <p>${escapeHtml(sol.takeaway || '—')}</p>
+      </section>
+    </article>`;
+}
+
 /** WP-01~04 Review Why Lens + Pattern Card + Takeaway + Mistake Replay */
-function renderReview(panel, L, gradeResult) {
+function renderReview(panel, L, gradeResult, approvedSolution = null) {
   const isCorrect = gradeResult?.result === 'correct';
   const isWrong = gradeResult?.result === 'wrong';
   const judgments = L.algorithm?.decision_tree || [];
@@ -841,6 +898,31 @@ function renderReview(panel, L, gradeResult) {
       </label>`
     )
     .join('');
+
+  /* 09H-4: Approved overlay wins; else Pattern Algorithm fallback (unchanged) */
+  if (approvedSolution) {
+    const outcomeLine = isCorrect
+      ? '정답입니다. 아래 승인 Solution으로 판단 과정을 복습하세요.'
+      : isWrong
+        ? '오답입니다. 아래 승인 Solution으로 판단 과정을 다시 확인하세요.'
+        : '제출 후 승인 Solution으로 복습할 수 있습니다.';
+
+    panel.innerHTML = `
+      <header class="lesson-header">
+        <p class="edu-kicker">Pattern Review</p>
+        <h2 class="study-card__title">「${escapeHtml(L.name)}」을 검증했습니다</h2>
+        <p class="section-desc">${escapeHtml(outcomeLine)}</p>
+      </header>
+
+      ${renderApprovedSolutionHtml(approvedSolution, currentQuestion?.questionId)}
+
+      <div class="edu-block lesson-block evidence-nudge" role="note">
+        <h3>다음: 스스로 회상 → 이번 문제 기록</h3>
+        <p>Review를 읽었다면 <strong>다음</strong>을 눌러 회상(Retrieval)을 남기고, 이어서 Evidence를 기록하세요.</p>
+      </div>
+    `;
+    return;
+  }
 
   const whyBlock = isCorrect
     ? `
@@ -1103,12 +1185,15 @@ function setActiveStage() {
   if (stage === 'checklist') renderChecklist(panel, lesson);
   if (stage === 'question') renderQuestionPanel();
   if (stage === 'review') {
-    renderReview(panel, lesson, lastGradeResult);
+    const approved = getApprovedSolution(currentQuestion?.questionId);
+    renderReview(panel, lesson, lastGradeResult, approved);
     markPatternReviewed(lesson.pattern_id);
     evidencePad?.close();
     evidencePad?.setContext(buildEvidenceContext());
     setLearnerStatus(
-      'Pattern Review를 읽은 뒤, 다음에서 스스로 회상하세요.'
+      approved
+        ? '승인 Solution을 확인한 뒤, 다음에서 스스로 회상하세요.'
+        : 'Pattern Review를 읽은 뒤, 다음에서 스스로 회상하세요.'
     );
   }
   if (stage === 'retrieval') {
@@ -1571,8 +1656,13 @@ async function init() {
   }
 
   bundle = await loadStudyBundle();
+  await loadSolutionOverlay();
+  const studyQuestions = await enrichStudyQuestionsWithApproved(
+    bundle.questions || []
+  );
+  bundle = { ...bundle, questions: studyQuestions };
   studyPatterns = listStudyPatterns(
-    bundle.questions,
+    studyQuestions,
     bundle.masterById,
     bundle.metaById
   ).filter((sp) => sp.lesson);

@@ -871,6 +871,57 @@ body.is-developer .dev-only {
   font-size: 1.25rem;
 }
 
+/* Sprint-09H-4 Approved Solution on Review */
+.solution-approved {
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius);
+  padding: 1rem 1.05rem;
+  margin: 0.85rem 0 1.1rem;
+  background: var(--color-surface, var(--color-bg));
+}
+
+.solution-approved__head h3 {
+  margin: 0.15rem 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.solution-approved__section {
+  margin-top: 0.9rem;
+}
+
+.solution-approved__section h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.92rem;
+}
+
+.solution-approved__section p {
+  margin: 0;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.solution-approved__steps {
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.solution-approved__step {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  line-height: 1.55;
+}
+
+.solution-approved__step p {
+  margin: 0.35rem 0 0;
+  color: var(--color-text);
+}
+
 .exam-takeaway .takeaway-list,
 .takeaway-list {
   list-style: none;
@@ -978,6 +1029,19 @@ body.is-learner .dev-toggle {
 
 /* WP-10 Mobile ≤768px */
 @media (max-width: 768px) {
+  .solution-approved {
+    padding: 0.9rem 0.85rem;
+    margin: 0.75rem 0 1rem;
+  }
+
+  .solution-approved__head h3 {
+    font-size: 1.05rem;
+  }
+
+  .solution-approved__step {
+    padding: 0.65rem 0.7rem;
+  }
+
   .study-layout,
   .study-flow {
     grid-template-columns: 1fr;

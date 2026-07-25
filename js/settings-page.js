@@ -1,5 +1,6 @@
 /**
  * Sprint-07 Settings — Cloud Ready badge + Import/Export v4
+ * Sprint-09A — Problem Reports dashboard (stats + export only)
  */
 
 import {
@@ -15,6 +16,10 @@ import {
 } from '../runtime/cloud-adapter-interface.js';
 import { mountSyncTransferPanel } from './import-export-v4.js';
 import { getItem, STORAGE_KEYS } from './storage.js';
+import {
+  exportProblemReports,
+  getProblemReportStats,
+} from './problem-report.js';
 
 function applyTheme() {
   const theme = getItem(STORAGE_KEYS.THEME, 'light') || 'light';
@@ -42,6 +47,34 @@ function renderBadge() {
   set('sync-dirty', st.dirty ? 'yes' : 'no');
 }
 
+function renderProblemReportDashboard() {
+  const stats = getProblemReportStats();
+  const set = (id, v) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = String(v);
+  };
+  set('qa-total', stats.total);
+  set('qa-open', stats.Open ?? 0);
+  set('qa-pending', stats.Pending ?? 0);
+  set('qa-closed', stats.Closed ?? 0);
+}
+
+function wireProblemReportExport() {
+  const status = document.getElementById('qa-export-status');
+  const bind = (id, format) => {
+    document.getElementById(id)?.addEventListener('click', () => {
+      const r = exportProblemReports(format);
+      if (status) {
+        status.textContent = r.ok
+          ? `${r.filename} 내려받기 시작`
+          : 'Export 실패';
+      }
+    });
+  };
+  bind('qa-export-json', 'json');
+  bind('qa-export-md', 'md');
+}
+
 function init() {
   applyTheme();
   setAdapter(createLocalStorageAdapter());
@@ -55,10 +88,18 @@ function init() {
 
   mountSyncTransferPanel(document.getElementById('sync-transfer-root'));
   renderBadge();
+  renderProblemReportDashboard();
+  wireProblemReportExport();
 
   window.addEventListener('online', renderBadge);
   window.addEventListener('offline', renderBadge);
   setInterval(renderBadge, 5000);
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'learning.problemReports.v1') renderProblemReportDashboard();
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') renderProblemReportDashboard();
+  });
 }
 
 init();

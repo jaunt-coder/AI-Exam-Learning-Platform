@@ -35,6 +35,7 @@ import {
   mountQuestionTable,
   renderChoiceItems,
 } from './shared-renderer.js';
+import { mountSourceViewerButton } from './source-viewer.js';
 
 const state = {
   master: null,
@@ -231,6 +232,10 @@ function renderSolveView(question) {
 
   renderQuestionMeta(question);
   updateBookmarkButton(question);
+  mountSourceViewerButton(
+    document.getElementById('source-viewer-host'),
+    question.questionId
+  );
 
   mountQuestionStem(question, $('question-stem'));
   renderQuestionTable(question);

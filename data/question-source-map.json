@@ -1,0 +1,2251 @@
+{
+  "schema": "learning.question-source-map.v1",
+  "version": "1.1.0",
+  "note": "Sprint-09A Source Map. Question DB not modified. Includes questionNo for Navigator.",
+  "generated_from": "data/question-db-mvp.json source.* (read-only)",
+  "count": 240,
+  "linked": 160,
+  "unlinked": 80,
+  "entries": {
+    "ACC_2015_Q041": {
+      "pdf": null,
+      "page": 7,
+      "year": 2015,
+      "questionNumber": 41,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 41
+    },
+    "ACC_2015_Q042": {
+      "pdf": null,
+      "page": 8,
+      "year": 2015,
+      "questionNumber": 42,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 42
+    },
+    "ACC_2015_Q043": {
+      "pdf": null,
+      "page": 8,
+      "year": 2015,
+      "questionNumber": 43,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 43
+    },
+    "ACC_2015_Q044": {
+      "pdf": null,
+      "page": 8,
+      "year": 2015,
+      "questionNumber": 44,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 44
+    },
+    "ACC_2015_Q045": {
+      "pdf": null,
+      "page": 8,
+      "year": 2015,
+      "questionNumber": 45,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 45
+    },
+    "ACC_2015_Q046": {
+      "pdf": null,
+      "page": 8,
+      "year": 2015,
+      "questionNumber": 46,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 46
+    },
+    "ACC_2015_Q047": {
+      "pdf": null,
+      "page": 9,
+      "year": 2015,
+      "questionNumber": 47,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 47
+    },
+    "ACC_2015_Q048": {
+      "pdf": null,
+      "page": 9,
+      "year": 2015,
+      "questionNumber": 48,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 48
+    },
+    "ACC_2015_Q049": {
+      "pdf": null,
+      "page": 9,
+      "year": 2015,
+      "questionNumber": 49,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 49
+    },
+    "ACC_2015_Q050": {
+      "pdf": null,
+      "page": 9,
+      "year": 2015,
+      "questionNumber": 50,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 50
+    },
+    "ACC_2015_Q051": {
+      "pdf": null,
+      "page": 9,
+      "year": 2015,
+      "questionNumber": 51,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 51
+    },
+    "ACC_2015_Q052": {
+      "pdf": null,
+      "page": 10,
+      "year": 2015,
+      "questionNumber": 52,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 52
+    },
+    "ACC_2015_Q053": {
+      "pdf": null,
+      "page": 10,
+      "year": 2015,
+      "questionNumber": 53,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 53
+    },
+    "ACC_2015_Q054": {
+      "pdf": null,
+      "page": 10,
+      "year": 2015,
+      "questionNumber": 54,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 54
+    },
+    "ACC_2015_Q055": {
+      "pdf": null,
+      "page": 10,
+      "year": 2015,
+      "questionNumber": 55,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 55
+    },
+    "ACC_2015_Q056": {
+      "pdf": null,
+      "page": 10,
+      "year": 2015,
+      "questionNumber": 56,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 56
+    },
+    "ACC_2015_Q057": {
+      "pdf": null,
+      "page": 11,
+      "year": 2015,
+      "questionNumber": 57,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 57
+    },
+    "ACC_2015_Q058": {
+      "pdf": null,
+      "page": 11,
+      "year": 2015,
+      "questionNumber": 58,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 58
+    },
+    "ACC_2015_Q059": {
+      "pdf": null,
+      "page": 11,
+      "year": 2015,
+      "questionNumber": 59,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 59
+    },
+    "ACC_2015_Q060": {
+      "pdf": null,
+      "page": 11,
+      "year": 2015,
+      "questionNumber": 60,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 60
+    },
+    "ACC_2015_Q061": {
+      "pdf": null,
+      "page": 11,
+      "year": 2015,
+      "questionNumber": 61,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 61
+    },
+    "ACC_2015_Q062": {
+      "pdf": null,
+      "page": 12,
+      "year": 2015,
+      "questionNumber": 62,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 62
+    },
+    "ACC_2015_Q063": {
+      "pdf": null,
+      "page": 12,
+      "year": 2015,
+      "questionNumber": 63,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 63
+    },
+    "ACC_2015_Q064": {
+      "pdf": null,
+      "page": 12,
+      "year": 2015,
+      "questionNumber": 64,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 64
+    },
+    "ACC_2015_Q065": {
+      "pdf": null,
+      "page": 12,
+      "year": 2015,
+      "questionNumber": 65,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 65
+    },
+    "ACC_2015_Q066": {
+      "pdf": null,
+      "page": 12,
+      "year": 2015,
+      "questionNumber": 66,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 66
+    },
+    "ACC_2015_Q067": {
+      "pdf": null,
+      "page": 13,
+      "year": 2015,
+      "questionNumber": 67,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 67
+    },
+    "ACC_2015_Q068": {
+      "pdf": null,
+      "page": 13,
+      "year": 2015,
+      "questionNumber": 68,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 68
+    },
+    "ACC_2015_Q069": {
+      "pdf": null,
+      "page": 13,
+      "year": 2015,
+      "questionNumber": 69,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 69
+    },
+    "ACC_2015_Q070": {
+      "pdf": null,
+      "page": 13,
+      "year": 2015,
+      "questionNumber": 70,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 70
+    },
+    "ACC_2015_Q071": {
+      "pdf": null,
+      "page": 13,
+      "year": 2015,
+      "questionNumber": 71,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 71
+    },
+    "ACC_2015_Q072": {
+      "pdf": null,
+      "page": 14,
+      "year": 2015,
+      "questionNumber": 72,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 72
+    },
+    "ACC_2015_Q073": {
+      "pdf": null,
+      "page": 14,
+      "year": 2015,
+      "questionNumber": 73,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 73
+    },
+    "ACC_2015_Q074": {
+      "pdf": null,
+      "page": 14,
+      "year": 2015,
+      "questionNumber": 74,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 74
+    },
+    "ACC_2015_Q075": {
+      "pdf": null,
+      "page": 14,
+      "year": 2015,
+      "questionNumber": 75,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 75
+    },
+    "ACC_2015_Q076": {
+      "pdf": null,
+      "page": 14,
+      "year": 2015,
+      "questionNumber": 76,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 76
+    },
+    "ACC_2015_Q077": {
+      "pdf": null,
+      "page": 15,
+      "year": 2015,
+      "questionNumber": 77,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 77
+    },
+    "ACC_2015_Q078": {
+      "pdf": null,
+      "page": 15,
+      "year": 2015,
+      "questionNumber": 78,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 78
+    },
+    "ACC_2015_Q079": {
+      "pdf": null,
+      "page": 15,
+      "year": 2015,
+      "questionNumber": 79,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 79
+    },
+    "ACC_2015_Q080": {
+      "pdf": null,
+      "page": 15,
+      "year": 2015,
+      "questionNumber": 80,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2015.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 80
+    },
+    "ACC_2017_Q041": {
+      "pdf": null,
+      "page": 14,
+      "year": 2017,
+      "questionNumber": 41,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 41
+    },
+    "ACC_2017_Q042": {
+      "pdf": null,
+      "page": 14,
+      "year": 2017,
+      "questionNumber": 42,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 42
+    },
+    "ACC_2017_Q043": {
+      "pdf": null,
+      "page": 15,
+      "year": 2017,
+      "questionNumber": 43,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 43
+    },
+    "ACC_2017_Q044": {
+      "pdf": null,
+      "page": 15,
+      "year": 2017,
+      "questionNumber": 44,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 44
+    },
+    "ACC_2017_Q045": {
+      "pdf": null,
+      "page": 15,
+      "year": 2017,
+      "questionNumber": 45,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 45
+    },
+    "ACC_2017_Q046": {
+      "pdf": null,
+      "page": 16,
+      "year": 2017,
+      "questionNumber": 46,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 46
+    },
+    "ACC_2017_Q047": {
+      "pdf": null,
+      "page": 16,
+      "year": 2017,
+      "questionNumber": 47,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 47
+    },
+    "ACC_2017_Q048": {
+      "pdf": null,
+      "page": 16,
+      "year": 2017,
+      "questionNumber": 48,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 48
+    },
+    "ACC_2017_Q049": {
+      "pdf": null,
+      "page": 17,
+      "year": 2017,
+      "questionNumber": 49,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 49
+    },
+    "ACC_2017_Q050": {
+      "pdf": null,
+      "page": 17,
+      "year": 2017,
+      "questionNumber": 50,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 50
+    },
+    "ACC_2017_Q051": {
+      "pdf": null,
+      "page": 18,
+      "year": 2017,
+      "questionNumber": 51,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 51
+    },
+    "ACC_2017_Q052": {
+      "pdf": null,
+      "page": 18,
+      "year": 2017,
+      "questionNumber": 52,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 52
+    },
+    "ACC_2017_Q053": {
+      "pdf": null,
+      "page": 19,
+      "year": 2017,
+      "questionNumber": 53,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 53
+    },
+    "ACC_2017_Q054": {
+      "pdf": null,
+      "page": 19,
+      "year": 2017,
+      "questionNumber": 54,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 54
+    },
+    "ACC_2017_Q055": {
+      "pdf": null,
+      "page": 20,
+      "year": 2017,
+      "questionNumber": 55,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 55
+    },
+    "ACC_2017_Q056": {
+      "pdf": null,
+      "page": 20,
+      "year": 2017,
+      "questionNumber": 56,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 56
+    },
+    "ACC_2017_Q057": {
+      "pdf": null,
+      "page": 20,
+      "year": 2017,
+      "questionNumber": 57,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 57
+    },
+    "ACC_2017_Q058": {
+      "pdf": null,
+      "page": 21,
+      "year": 2017,
+      "questionNumber": 58,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 58
+    },
+    "ACC_2017_Q059": {
+      "pdf": null,
+      "page": 21,
+      "year": 2017,
+      "questionNumber": 59,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 59
+    },
+    "ACC_2017_Q060": {
+      "pdf": null,
+      "page": 21,
+      "year": 2017,
+      "questionNumber": 60,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 60
+    },
+    "ACC_2017_Q061": {
+      "pdf": null,
+      "page": 22,
+      "year": 2017,
+      "questionNumber": 61,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 61
+    },
+    "ACC_2017_Q062": {
+      "pdf": null,
+      "page": 22,
+      "year": 2017,
+      "questionNumber": 62,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 62
+    },
+    "ACC_2017_Q063": {
+      "pdf": null,
+      "page": 23,
+      "year": 2017,
+      "questionNumber": 63,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 63
+    },
+    "ACC_2017_Q064": {
+      "pdf": null,
+      "page": 23,
+      "year": 2017,
+      "questionNumber": 64,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 64
+    },
+    "ACC_2017_Q065": {
+      "pdf": null,
+      "page": 24,
+      "year": 2017,
+      "questionNumber": 65,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 65
+    },
+    "ACC_2017_Q066": {
+      "pdf": null,
+      "page": 24,
+      "year": 2017,
+      "questionNumber": 66,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 66
+    },
+    "ACC_2017_Q067": {
+      "pdf": null,
+      "page": 25,
+      "year": 2017,
+      "questionNumber": 67,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 67
+    },
+    "ACC_2017_Q068": {
+      "pdf": null,
+      "page": 25,
+      "year": 2017,
+      "questionNumber": 68,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 68
+    },
+    "ACC_2017_Q069": {
+      "pdf": null,
+      "page": 25,
+      "year": 2017,
+      "questionNumber": 69,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 69
+    },
+    "ACC_2017_Q070": {
+      "pdf": null,
+      "page": 26,
+      "year": 2017,
+      "questionNumber": 70,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 70
+    },
+    "ACC_2017_Q071": {
+      "pdf": null,
+      "page": 26,
+      "year": 2017,
+      "questionNumber": 71,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 71
+    },
+    "ACC_2017_Q072": {
+      "pdf": null,
+      "page": 26,
+      "year": 2017,
+      "questionNumber": 72,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 72
+    },
+    "ACC_2017_Q073": {
+      "pdf": null,
+      "page": 27,
+      "year": 2017,
+      "questionNumber": 73,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 73
+    },
+    "ACC_2017_Q074": {
+      "pdf": null,
+      "page": 27,
+      "year": 2017,
+      "questionNumber": 74,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 74
+    },
+    "ACC_2017_Q075": {
+      "pdf": null,
+      "page": 28,
+      "year": 2017,
+      "questionNumber": 75,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 75
+    },
+    "ACC_2017_Q076": {
+      "pdf": null,
+      "page": 28,
+      "year": 2017,
+      "questionNumber": 76,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 76
+    },
+    "ACC_2017_Q077": {
+      "pdf": null,
+      "page": 29,
+      "year": 2017,
+      "questionNumber": 77,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 77
+    },
+    "ACC_2017_Q078": {
+      "pdf": null,
+      "page": 29,
+      "year": 2017,
+      "questionNumber": 78,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 78
+    },
+    "ACC_2017_Q079": {
+      "pdf": null,
+      "page": 29,
+      "year": 2017,
+      "questionNumber": 79,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 79
+    },
+    "ACC_2017_Q080": {
+      "pdf": null,
+      "page": 30,
+      "year": 2017,
+      "questionNumber": 80,
+      "available": false,
+      "declaredSourceFile": "source/original-exams/2017.pdf",
+      "reason": "pdf_missing",
+      "questionNo": 80
+    },
+    "ACC_2018_Q041": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 14,
+      "year": 2018,
+      "questionNumber": 41,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 41
+    },
+    "ACC_2018_Q042": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 14,
+      "year": 2018,
+      "questionNumber": 42,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 42
+    },
+    "ACC_2018_Q043": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 15,
+      "year": 2018,
+      "questionNumber": 43,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 43
+    },
+    "ACC_2018_Q044": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 15,
+      "year": 2018,
+      "questionNumber": 44,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 44
+    },
+    "ACC_2018_Q045": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 16,
+      "year": 2018,
+      "questionNumber": 45,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 45
+    },
+    "ACC_2018_Q046": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 16,
+      "year": 2018,
+      "questionNumber": 46,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 46
+    },
+    "ACC_2018_Q047": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 16,
+      "year": 2018,
+      "questionNumber": 47,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 47
+    },
+    "ACC_2018_Q048": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 17,
+      "year": 2018,
+      "questionNumber": 48,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 48
+    },
+    "ACC_2018_Q049": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 17,
+      "year": 2018,
+      "questionNumber": 49,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 49
+    },
+    "ACC_2018_Q050": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 17,
+      "year": 2018,
+      "questionNumber": 50,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 50
+    },
+    "ACC_2018_Q051": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 18,
+      "year": 2018,
+      "questionNumber": 51,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 51
+    },
+    "ACC_2018_Q052": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 18,
+      "year": 2018,
+      "questionNumber": 52,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 52
+    },
+    "ACC_2018_Q053": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 19,
+      "year": 2018,
+      "questionNumber": 53,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 53
+    },
+    "ACC_2018_Q054": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 19,
+      "year": 2018,
+      "questionNumber": 54,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 54
+    },
+    "ACC_2018_Q055": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 20,
+      "year": 2018,
+      "questionNumber": 55,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 55
+    },
+    "ACC_2018_Q056": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 20,
+      "year": 2018,
+      "questionNumber": 56,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 56
+    },
+    "ACC_2018_Q057": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 20,
+      "year": 2018,
+      "questionNumber": 57,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 57
+    },
+    "ACC_2018_Q058": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 21,
+      "year": 2018,
+      "questionNumber": 58,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 58
+    },
+    "ACC_2018_Q059": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 21,
+      "year": 2018,
+      "questionNumber": 59,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 59
+    },
+    "ACC_2018_Q060": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 21,
+      "year": 2018,
+      "questionNumber": 60,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 60
+    },
+    "ACC_2018_Q061": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 22,
+      "year": 2018,
+      "questionNumber": 61,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 61
+    },
+    "ACC_2018_Q062": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 22,
+      "year": 2018,
+      "questionNumber": 62,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 62
+    },
+    "ACC_2018_Q063": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 22,
+      "year": 2018,
+      "questionNumber": 63,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 63
+    },
+    "ACC_2018_Q064": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 22,
+      "year": 2018,
+      "questionNumber": 64,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 64
+    },
+    "ACC_2018_Q065": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 23,
+      "year": 2018,
+      "questionNumber": 65,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 65
+    },
+    "ACC_2018_Q066": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 23,
+      "year": 2018,
+      "questionNumber": 66,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 66
+    },
+    "ACC_2018_Q067": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 23,
+      "year": 2018,
+      "questionNumber": 67,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 67
+    },
+    "ACC_2018_Q068": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 24,
+      "year": 2018,
+      "questionNumber": 68,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 68
+    },
+    "ACC_2018_Q069": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 24,
+      "year": 2018,
+      "questionNumber": 69,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 69
+    },
+    "ACC_2018_Q070": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 24,
+      "year": 2018,
+      "questionNumber": 70,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 70
+    },
+    "ACC_2018_Q071": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 25,
+      "year": 2018,
+      "questionNumber": 71,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 71
+    },
+    "ACC_2018_Q072": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 25,
+      "year": 2018,
+      "questionNumber": 72,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 72
+    },
+    "ACC_2018_Q073": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 25,
+      "year": 2018,
+      "questionNumber": 73,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 73
+    },
+    "ACC_2018_Q074": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 26,
+      "year": 2018,
+      "questionNumber": 74,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 74
+    },
+    "ACC_2018_Q075": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 26,
+      "year": 2018,
+      "questionNumber": 75,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 75
+    },
+    "ACC_2018_Q076": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 26,
+      "year": 2018,
+      "questionNumber": 76,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 76
+    },
+    "ACC_2018_Q077": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 27,
+      "year": 2018,
+      "questionNumber": 77,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 77
+    },
+    "ACC_2018_Q078": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 27,
+      "year": 2018,
+      "questionNumber": 78,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 78
+    },
+    "ACC_2018_Q079": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 28,
+      "year": 2018,
+      "questionNumber": 79,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 79
+    },
+    "ACC_2018_Q080": {
+      "pdf": "source/past-exams/2018/exam_2.pdf",
+      "page": 28,
+      "year": 2018,
+      "questionNumber": 80,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2018.pdf",
+      "questionNo": 80
+    },
+    "ACC_2020_Q041": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 13,
+      "year": 2020,
+      "questionNumber": 41,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 41
+    },
+    "ACC_2020_Q042": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 13,
+      "year": 2020,
+      "questionNumber": 42,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 42
+    },
+    "ACC_2020_Q043": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 14,
+      "year": 2020,
+      "questionNumber": 43,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 43
+    },
+    "ACC_2020_Q044": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 14,
+      "year": 2020,
+      "questionNumber": 44,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 44
+    },
+    "ACC_2020_Q045": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 14,
+      "year": 2020,
+      "questionNumber": 45,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 45
+    },
+    "ACC_2020_Q046": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 15,
+      "year": 2020,
+      "questionNumber": 46,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 46
+    },
+    "ACC_2020_Q047": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 15,
+      "year": 2020,
+      "questionNumber": 47,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 47
+    },
+    "ACC_2020_Q048": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 16,
+      "year": 2020,
+      "questionNumber": 48,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 48
+    },
+    "ACC_2020_Q049": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 16,
+      "year": 2020,
+      "questionNumber": 49,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 49
+    },
+    "ACC_2020_Q050": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 16,
+      "year": 2020,
+      "questionNumber": 50,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 50
+    },
+    "ACC_2020_Q051": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 17,
+      "year": 2020,
+      "questionNumber": 51,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 51
+    },
+    "ACC_2020_Q052": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 17,
+      "year": 2020,
+      "questionNumber": 52,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 52
+    },
+    "ACC_2020_Q053": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 18,
+      "year": 2020,
+      "questionNumber": 53,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 53
+    },
+    "ACC_2020_Q054": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 18,
+      "year": 2020,
+      "questionNumber": 54,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 54
+    },
+    "ACC_2020_Q055": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 19,
+      "year": 2020,
+      "questionNumber": 55,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 55
+    },
+    "ACC_2020_Q056": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 19,
+      "year": 2020,
+      "questionNumber": 56,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 56
+    },
+    "ACC_2020_Q057": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 20,
+      "year": 2020,
+      "questionNumber": 57,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 57
+    },
+    "ACC_2020_Q058": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 20,
+      "year": 2020,
+      "questionNumber": 58,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 58
+    },
+    "ACC_2020_Q059": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 20,
+      "year": 2020,
+      "questionNumber": 59,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 59
+    },
+    "ACC_2020_Q060": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 21,
+      "year": 2020,
+      "questionNumber": 60,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 60
+    },
+    "ACC_2020_Q061": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 21,
+      "year": 2020,
+      "questionNumber": 61,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 61
+    },
+    "ACC_2020_Q062": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 22,
+      "year": 2020,
+      "questionNumber": 62,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 62
+    },
+    "ACC_2020_Q063": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 22,
+      "year": 2020,
+      "questionNumber": 63,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 63
+    },
+    "ACC_2020_Q064": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 22,
+      "year": 2020,
+      "questionNumber": 64,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 64
+    },
+    "ACC_2020_Q065": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 23,
+      "year": 2020,
+      "questionNumber": 65,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 65
+    },
+    "ACC_2020_Q066": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 23,
+      "year": 2020,
+      "questionNumber": 66,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 66
+    },
+    "ACC_2020_Q067": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 23,
+      "year": 2020,
+      "questionNumber": 67,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 67
+    },
+    "ACC_2020_Q068": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 24,
+      "year": 2020,
+      "questionNumber": 68,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 68
+    },
+    "ACC_2020_Q069": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 24,
+      "year": 2020,
+      "questionNumber": 69,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 69
+    },
+    "ACC_2020_Q070": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 25,
+      "year": 2020,
+      "questionNumber": 70,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 70
+    },
+    "ACC_2020_Q071": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 25,
+      "year": 2020,
+      "questionNumber": 71,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 71
+    },
+    "ACC_2020_Q072": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 26,
+      "year": 2020,
+      "questionNumber": 72,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 72
+    },
+    "ACC_2020_Q073": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 26,
+      "year": 2020,
+      "questionNumber": 73,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 73
+    },
+    "ACC_2020_Q074": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 27,
+      "year": 2020,
+      "questionNumber": 74,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 74
+    },
+    "ACC_2020_Q075": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 27,
+      "year": 2020,
+      "questionNumber": 75,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 75
+    },
+    "ACC_2020_Q076": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 28,
+      "year": 2020,
+      "questionNumber": 76,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 76
+    },
+    "ACC_2020_Q077": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 28,
+      "year": 2020,
+      "questionNumber": 77,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 77
+    },
+    "ACC_2020_Q078": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 28,
+      "year": 2020,
+      "questionNumber": 78,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 78
+    },
+    "ACC_2020_Q079": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 29,
+      "year": 2020,
+      "questionNumber": 79,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 79
+    },
+    "ACC_2020_Q080": {
+      "pdf": "source/past-exams/2020/exam_2.pdf",
+      "page": 29,
+      "year": 2020,
+      "questionNumber": 80,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2020.pdf",
+      "questionNo": 80
+    },
+    "ACC_2024_Q041": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 13,
+      "year": 2024,
+      "questionNumber": 41,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 41
+    },
+    "ACC_2024_Q042": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 13,
+      "year": 2024,
+      "questionNumber": 42,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 42
+    },
+    "ACC_2024_Q043": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 14,
+      "year": 2024,
+      "questionNumber": 43,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 43
+    },
+    "ACC_2024_Q044": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 14,
+      "year": 2024,
+      "questionNumber": 44,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 44
+    },
+    "ACC_2024_Q045": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 15,
+      "year": 2024,
+      "questionNumber": 45,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 45
+    },
+    "ACC_2024_Q046": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 15,
+      "year": 2024,
+      "questionNumber": 46,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 46
+    },
+    "ACC_2024_Q047": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 15,
+      "year": 2024,
+      "questionNumber": 47,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 47
+    },
+    "ACC_2024_Q048": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 15,
+      "year": 2024,
+      "questionNumber": 48,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 48
+    },
+    "ACC_2024_Q049": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 16,
+      "year": 2024,
+      "questionNumber": 49,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 49
+    },
+    "ACC_2024_Q050": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 16,
+      "year": 2024,
+      "questionNumber": 50,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 50
+    },
+    "ACC_2024_Q051": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 16,
+      "year": 2024,
+      "questionNumber": 51,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 51
+    },
+    "ACC_2024_Q052": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 17,
+      "year": 2024,
+      "questionNumber": 52,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 52
+    },
+    "ACC_2024_Q053": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 17,
+      "year": 2024,
+      "questionNumber": 53,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 53
+    },
+    "ACC_2024_Q054": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 18,
+      "year": 2024,
+      "questionNumber": 54,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 54
+    },
+    "ACC_2024_Q055": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 18,
+      "year": 2024,
+      "questionNumber": 55,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 55
+    },
+    "ACC_2024_Q056": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 18,
+      "year": 2024,
+      "questionNumber": 56,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 56
+    },
+    "ACC_2024_Q057": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 19,
+      "year": 2024,
+      "questionNumber": 57,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 57
+    },
+    "ACC_2024_Q058": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 19,
+      "year": 2024,
+      "questionNumber": 58,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 58
+    },
+    "ACC_2024_Q059": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 20,
+      "year": 2024,
+      "questionNumber": 59,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 59
+    },
+    "ACC_2024_Q060": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 20,
+      "year": 2024,
+      "questionNumber": 60,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 60
+    },
+    "ACC_2024_Q061": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 20,
+      "year": 2024,
+      "questionNumber": 61,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 61
+    },
+    "ACC_2024_Q062": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 21,
+      "year": 2024,
+      "questionNumber": 62,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 62
+    },
+    "ACC_2024_Q063": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 21,
+      "year": 2024,
+      "questionNumber": 63,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 63
+    },
+    "ACC_2024_Q064": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 21,
+      "year": 2024,
+      "questionNumber": 64,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 64
+    },
+    "ACC_2024_Q065": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 22,
+      "year": 2024,
+      "questionNumber": 65,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 65
+    },
+    "ACC_2024_Q066": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 22,
+      "year": 2024,
+      "questionNumber": 66,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 66
+    },
+    "ACC_2024_Q067": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 22,
+      "year": 2024,
+      "questionNumber": 67,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 67
+    },
+    "ACC_2024_Q068": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 23,
+      "year": 2024,
+      "questionNumber": 68,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 68
+    },
+    "ACC_2024_Q069": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 23,
+      "year": 2024,
+      "questionNumber": 69,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 69
+    },
+    "ACC_2024_Q070": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 23,
+      "year": 2024,
+      "questionNumber": 70,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 70
+    },
+    "ACC_2024_Q071": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 24,
+      "year": 2024,
+      "questionNumber": 71,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 71
+    },
+    "ACC_2024_Q072": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 24,
+      "year": 2024,
+      "questionNumber": 72,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 72
+    },
+    "ACC_2024_Q073": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 24,
+      "year": 2024,
+      "questionNumber": 73,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 73
+    },
+    "ACC_2024_Q074": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 25,
+      "year": 2024,
+      "questionNumber": 74,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 74
+    },
+    "ACC_2024_Q075": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 25,
+      "year": 2024,
+      "questionNumber": 75,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 75
+    },
+    "ACC_2024_Q076": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 25,
+      "year": 2024,
+      "questionNumber": 76,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 76
+    },
+    "ACC_2024_Q077": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 26,
+      "year": 2024,
+      "questionNumber": 77,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 77
+    },
+    "ACC_2024_Q078": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 26,
+      "year": 2024,
+      "questionNumber": 78,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 78
+    },
+    "ACC_2024_Q079": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 26,
+      "year": 2024,
+      "questionNumber": 79,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 79
+    },
+    "ACC_2024_Q080": {
+      "pdf": "source/past-exams/2024/exam_2.pdf",
+      "page": 26,
+      "year": 2024,
+      "questionNumber": 80,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2024.pdf",
+      "questionNo": 80
+    },
+    "ACC_2025_Q041": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 13,
+      "year": 2025,
+      "questionNumber": 41,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 41
+    },
+    "ACC_2025_Q042": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 13,
+      "year": 2025,
+      "questionNumber": 42,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 42
+    },
+    "ACC_2025_Q043": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 14,
+      "year": 2025,
+      "questionNumber": 43,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 43
+    },
+    "ACC_2025_Q044": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 14,
+      "year": 2025,
+      "questionNumber": 44,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 44
+    },
+    "ACC_2025_Q045": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 15,
+      "year": 2025,
+      "questionNumber": 45,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 45
+    },
+    "ACC_2025_Q046": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 15,
+      "year": 2025,
+      "questionNumber": 46,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 46
+    },
+    "ACC_2025_Q047": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 16,
+      "year": 2025,
+      "questionNumber": 47,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 47
+    },
+    "ACC_2025_Q048": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 16,
+      "year": 2025,
+      "questionNumber": 48,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 48
+    },
+    "ACC_2025_Q049": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 16,
+      "year": 2025,
+      "questionNumber": 49,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 49
+    },
+    "ACC_2025_Q050": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 17,
+      "year": 2025,
+      "questionNumber": 50,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 50
+    },
+    "ACC_2025_Q051": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 17,
+      "year": 2025,
+      "questionNumber": 51,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 51
+    },
+    "ACC_2025_Q052": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 17,
+      "year": 2025,
+      "questionNumber": 52,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 52
+    },
+    "ACC_2025_Q053": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 18,
+      "year": 2025,
+      "questionNumber": 53,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 53
+    },
+    "ACC_2025_Q054": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 18,
+      "year": 2025,
+      "questionNumber": 54,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 54
+    },
+    "ACC_2025_Q055": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 18,
+      "year": 2025,
+      "questionNumber": 55,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 55
+    },
+    "ACC_2025_Q056": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 19,
+      "year": 2025,
+      "questionNumber": 56,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 56
+    },
+    "ACC_2025_Q057": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 19,
+      "year": 2025,
+      "questionNumber": 57,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 57
+    },
+    "ACC_2025_Q058": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 19,
+      "year": 2025,
+      "questionNumber": 58,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 58
+    },
+    "ACC_2025_Q059": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 20,
+      "year": 2025,
+      "questionNumber": 59,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 59
+    },
+    "ACC_2025_Q060": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 20,
+      "year": 2025,
+      "questionNumber": 60,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 60
+    },
+    "ACC_2025_Q061": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 20,
+      "year": 2025,
+      "questionNumber": 61,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 61
+    },
+    "ACC_2025_Q062": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 21,
+      "year": 2025,
+      "questionNumber": 62,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 62
+    },
+    "ACC_2025_Q063": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 21,
+      "year": 2025,
+      "questionNumber": 63,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 63
+    },
+    "ACC_2025_Q064": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 21,
+      "year": 2025,
+      "questionNumber": 64,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 64
+    },
+    "ACC_2025_Q065": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 22,
+      "year": 2025,
+      "questionNumber": 65,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 65
+    },
+    "ACC_2025_Q066": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 22,
+      "year": 2025,
+      "questionNumber": 66,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 66
+    },
+    "ACC_2025_Q067": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 23,
+      "year": 2025,
+      "questionNumber": 67,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 67
+    },
+    "ACC_2025_Q068": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 23,
+      "year": 2025,
+      "questionNumber": 68,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 68
+    },
+    "ACC_2025_Q069": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 23,
+      "year": 2025,
+      "questionNumber": 69,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 69
+    },
+    "ACC_2025_Q070": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 23,
+      "year": 2025,
+      "questionNumber": 70,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 70
+    },
+    "ACC_2025_Q071": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 24,
+      "year": 2025,
+      "questionNumber": 71,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 71
+    },
+    "ACC_2025_Q072": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 24,
+      "year": 2025,
+      "questionNumber": 72,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 72
+    },
+    "ACC_2025_Q073": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 25,
+      "year": 2025,
+      "questionNumber": 73,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 73
+    },
+    "ACC_2025_Q074": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 25,
+      "year": 2025,
+      "questionNumber": 74,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 74
+    },
+    "ACC_2025_Q075": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 25,
+      "year": 2025,
+      "questionNumber": 75,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 75
+    },
+    "ACC_2025_Q076": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 26,
+      "year": 2025,
+      "questionNumber": 76,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 76
+    },
+    "ACC_2025_Q077": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 26,
+      "year": 2025,
+      "questionNumber": 77,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 77
+    },
+    "ACC_2025_Q078": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 26,
+      "year": 2025,
+      "questionNumber": 78,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 78
+    },
+    "ACC_2025_Q079": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 27,
+      "year": 2025,
+      "questionNumber": 79,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 79
+    },
+    "ACC_2025_Q080": {
+      "pdf": "source/past-exams/2025/exam_2.pdf",
+      "page": 27,
+      "year": 2025,
+      "questionNumber": 80,
+      "available": true,
+      "declaredSourceFile": "source/original-exams/2025.pdf",
+      "questionNo": 80
+    }
+  }
+}

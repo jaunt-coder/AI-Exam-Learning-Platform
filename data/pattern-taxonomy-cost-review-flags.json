@@ -1,0 +1,277 @@
+{
+  "schema": "learning.pattern-taxonomy-cost-review-flags.v1",
+  "version": "1.0.0",
+  "sprint": "Sprint-09E Cost Accounting Full Human Gate",
+  "generatedAt": "2026-07-26",
+  "authority": "HUMAN_REVIEW_RECORD_ONLY",
+  "note": "Not Pattern SoT. Not Question mapping. Do not merge into pattern-db-mvp.json without Promotion Sprint.",
+  "domain": "cost_accounting",
+  "sourceFilter": "Y",
+  "priorReview": {
+    "sprint": "Sprint-09D",
+    "file": "data/pattern-taxonomy-review-flags.json",
+    "candidate": "COST_PROCESS_001"
+  },
+  "summary": {
+    "candidatesReviewed": 6,
+    "APPROVE_CANDIDATE": [
+      "COST_PROCESS_001",
+      "COST_JOINT_001",
+      "COST_STD_001",
+      "COST_CVP_001",
+      "COST_MFG_001"
+    ],
+    "LINK_ONLY": [],
+    "REJECT": ["COST_ABC_001"],
+    "promotionReadyNow": false,
+    "sotMutated": false,
+    "runtimeImpact": false
+  },
+  "reviews": [
+    {
+      "candidatePattern": "COST_PROCESS_001",
+      "reviewedQuestions": [
+        "ACC_2018_Q079",
+        "ACC_2018_Q080",
+        "ACC_2020_Q073",
+        "ACC_2024_Q073",
+        "ACC_2024_Q074",
+        "ACC_2025_Q073"
+      ],
+      "approvedEvidenceQuestions": [
+        "ACC_2018_Q079",
+        "ACC_2020_Q073",
+        "ACC_2024_Q073",
+        "ACC_2025_Q073"
+      ],
+      "excludedQuestions": [
+        {
+          "questionId": "ACC_2018_Q080",
+          "reason": "제조원가→매출원가 · 환산량 없음",
+          "retarget": "COST_MFG_001"
+        },
+        {
+          "questionId": "ACC_2024_Q074",
+          "reason": "표준원가 차이분석",
+          "retarget": "COST_STD_001"
+        }
+      ],
+      "decision": "APPROVE_CANDIDATE",
+      "rationale": "공통 Trigger(종합원가·환산량·재공 완성도)와 독립 Algorithm(EU→배분)이 명확하다. ACC_INV_006 등 FA Pattern으로 설명 불가. 다년도 반복 확인(승인 4).",
+      "confidence": "high",
+      "criteria": {
+        "commonTrigger": "YES",
+        "independentAlgorithm": "YES",
+        "existingFinancialSufficient": "NO",
+        "examRepeatability": "YES",
+        "learningUnitValue": "YES"
+      },
+      "suggestedRelatedPatterns": ["ACC_INV_006"],
+      "migration": {
+        "appendPatternDb": "eligible_after_promotion_sprint",
+        "mappingFixOrder": 1
+      }
+    },
+    {
+      "candidatePattern": "COST_JOINT_001",
+      "reviewedQuestions": [
+        "ACC_2020_Q074",
+        "ACC_2024_Q076",
+        "ACC_2025_Q074"
+      ],
+      "approvedEvidenceQuestions": [
+        "ACC_2020_Q074",
+        "ACC_2024_Q076",
+        "ACC_2025_Q074"
+      ],
+      "decision": "APPROVE_CANDIDATE",
+      "rationale": "결합공정·분리점·주부산품 Trigger가 문항 간 공유된다. 결합원가 배분은 INV_007 LCM/NRV·GEN 버킷으로 대체 불가. Source=Y 3년 반복.",
+      "confidence": "high",
+      "criteria": {
+        "commonTrigger": "YES",
+        "independentAlgorithm": "YES",
+        "existingFinancialSufficient": "NO",
+        "examRepeatability": "YES",
+        "learningUnitValue": "YES"
+      },
+      "suggestedRelatedPatterns": ["ACC_INV_007", "ACC_GEN_001"],
+      "migration": {
+        "appendPatternDb": "eligible_after_promotion_sprint",
+        "mappingFixOrder": 2
+      }
+    },
+    {
+      "candidatePattern": "COST_STD_001",
+      "reviewedQuestions": [
+        "ACC_2020_Q075",
+        "ACC_2024_Q074",
+        "ACC_2025_Q075"
+      ],
+      "approvedEvidenceQuestions": [
+        "ACC_2020_Q075",
+        "ACC_2024_Q074",
+        "ACC_2025_Q075"
+      ],
+      "decision": "APPROVE_CANDIDATE",
+      "rationale": "표준원가 가격/임률·능률/수량 차이분석이 독립 Algorithm이다. FA Pattern으로 설명 불가. 2020·2024·2025 반복(09D PROCESS 오분류 이관분 포함).",
+      "confidence": "high",
+      "criteria": {
+        "commonTrigger": "YES",
+        "independentAlgorithm": "YES",
+        "existingFinancialSufficient": "NO",
+        "examRepeatability": "YES",
+        "learningUnitValue": "YES"
+      },
+      "suggestedRelatedPatterns": ["ACC_GEN_001"],
+      "migration": {
+        "appendPatternDb": "eligible_after_promotion_sprint",
+        "mappingFixOrder": 3
+      }
+    },
+    {
+      "candidatePattern": "COST_CVP_001",
+      "reviewedQuestions": [
+        "ACC_2018_Q071",
+        "ACC_2018_Q075",
+        "ACC_2018_Q078",
+        "ACC_2020_Q076",
+        "ACC_2024_Q075",
+        "ACC_2024_Q077",
+        "ACC_2024_Q080",
+        "ACC_2025_Q076",
+        "ACC_2025_Q077",
+        "ACC_2025_Q079"
+      ],
+      "approvedEvidenceQuestions": [
+        "ACC_2018_Q071",
+        "ACC_2018_Q075",
+        "ACC_2018_Q078",
+        "ACC_2020_Q076",
+        "ACC_2024_Q075",
+        "ACC_2024_Q077",
+        "ACC_2025_Q076",
+        "ACC_2025_Q077"
+      ],
+      "peripheralQuestions": [
+        {
+          "questionId": "ACC_2024_Q080",
+          "note": "관리회계기법 개념 O/X — CVP 협의보다 넓음"
+        },
+        {
+          "questionId": "ACC_2025_Q079",
+          "note": "투자중심점 ROI/잔여이익 — 성과평가 인접"
+        }
+      ],
+      "decision": "APPROVE_CANDIDATE",
+      "rationale": "변동/전부원가·CVP·제약자원 의사결정의 공통 Trigger와 독립 Algorithm이 명확하다. INV/TAX/REV 오매핑이 FA로 해소되지 않는다. Source=Y 반복성 높음.",
+      "confidence": "high",
+      "criteria": {
+        "commonTrigger": "YES",
+        "independentAlgorithm": "YES",
+        "existingFinancialSufficient": "NO",
+        "examRepeatability": "YES",
+        "learningUnitValue": "YES"
+      },
+      "suggestedRelatedPatterns": [
+        "ACC_INV_006",
+        "ACC_TAX_001",
+        "ACC_REV_001",
+        "ACC_GEN_001",
+        "ACC_INT_001"
+      ],
+      "migration": {
+        "appendPatternDb": "eligible_after_promotion_sprint",
+        "mappingFixOrder": 4
+      }
+    },
+    {
+      "candidatePattern": "COST_MFG_001",
+      "reviewedQuestions": ["ACC_2018_Q076", "ACC_2018_Q080"],
+      "approvedEvidenceQuestions": ["ACC_2018_Q076", "ACC_2018_Q080"],
+      "futureRetargetHints": [
+        "ACC_2020_Q071",
+        "ACC_2024_Q071",
+        "ACC_2025_Q071"
+      ],
+      "decision": "APPROVE_CANDIDATE",
+      "rationale": "환산량 없는 제조원가 집계·재공/제품·매출원가 흐름은 PROCESS/STD와 분리되는 독립 Algorithm이다. REV Pattern으로 설명 불가. Source=Y 확정 2건으로 반복성은 medium.",
+      "confidence": "medium",
+      "criteria": {
+        "commonTrigger": "YES",
+        "independentAlgorithm": "YES",
+        "existingFinancialSufficient": "NO",
+        "examRepeatability": "MEDIUM",
+        "learningUnitValue": "YES"
+      },
+      "suggestedRelatedPatterns": ["ACC_REV_001"],
+      "migration": {
+        "appendPatternDb": "eligible_after_promotion_sprint",
+        "mappingFixOrder": 5
+      }
+    },
+    {
+      "candidatePattern": "COST_ABC_001",
+      "reviewedQuestions": [
+        "ACC_2018_Q072",
+        "ACC_2018_Q073",
+        "ACC_2020_Q071",
+        "ACC_2020_Q080",
+        "ACC_2024_Q071",
+        "ACC_2025_Q071",
+        "ACC_2025_Q072",
+        "ACC_2025_Q078"
+      ],
+      "approvedEvidenceQuestions": [],
+      "decision": "REJECT",
+      "rationale": "후보가 활동기준+개별원가를 한 ID에 묶어 독립 Algorithm 단위를 위반한다. Source=Y 근거가 원가흐름·make-or-buy·배부차이 등으로 혼재해 공통 Trigger가 성립하지 않는다. 진성 ABC는 기존 ACC_COST_002로 충분. 개별원가는 별도 COST_JOB_001 재정의 전까지 승격 금지.",
+      "confidence": "high",
+      "criteria": {
+        "commonTrigger": "NO",
+        "independentAlgorithm": "NO",
+        "existingFinancialSufficient": "PARTIAL",
+        "examRepeatability": "UNMEASURABLE_AS_PACKAGED",
+        "learningUnitValue": "NO"
+      },
+      "retargetHints": {
+        "ACC_2018_Q073": "future COST_JOB_001",
+        "ACC_2025_Q072": "future COST_JOB_001",
+        "ACC_2020_Q071": "COST_MFG_001",
+        "ACC_2024_Q071": "COST_MFG_001",
+        "ACC_2025_Q071": "COST_MFG_001",
+        "ACC_2020_Q080": "COST_CVP_001",
+        "ACC_2025_Q078": "COST_CVP_001",
+        "ACC_2018_Q072": "pricing/CVP peripheral",
+        "true_ABC": "keep ACC_COST_002"
+      },
+      "migration": {
+        "appendPatternDb": "forbidden",
+        "mappingFixOrder": null
+      }
+    }
+  ],
+  "migrationPlan": {
+    "executeNow": false,
+    "order": [
+      {
+        "sprint": "09F",
+        "action": "Pattern DB append-only for APPROVE candidates (exclude COST_ABC_001)",
+        "questionMapping": "frozen"
+      },
+      {
+        "sprint": "09G",
+        "action": "Mapping Fix Queue — primaryPattern/relatedPatterns for approved evidence",
+        "order": [
+          "COST_PROCESS_001",
+          "COST_JOINT_001",
+          "COST_STD_001",
+          "COST_CVP_001",
+          "COST_MFG_001"
+        ]
+      },
+      {
+        "sprint": "09H",
+        "action": "Optional COST_JOB_001 draft redefinition; ABC stays on ACC_COST_002"
+      }
+    ]
+  }
+}

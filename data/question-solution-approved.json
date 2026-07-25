@@ -1,0 +1,208 @@
+{
+  "schema": "learning.question-solution-approved.v1",
+  "version": "1.0.0",
+  "sprint": "Sprint-09H-3 Solution Content Merge",
+  "generatedAt": "2026-07-26",
+  "layer": "Question Learning Content Layer",
+  "mergeMode": "append-only-overlay",
+  "authority": "SOLUTION_CONTENT_MERGE_ENGINEER",
+  "sotQuestionDb": "data/question-db.json",
+  "sotMutation": false,
+  "note": "Approved solution content only. Question body / Answer / Pattern ID / Mapping / Runtime not modified. Overlay is rollback-safe (remove this file or drop entries).",
+  "sources": {
+    "q001": "data/q001-solution-revision.json",
+    "q006": "data/question-solution-draft-review.json",
+    "q022": "data/question-solution-draft-review.json",
+    "humanGate": "data/solution-review-decision.json",
+    "q001RevisionGate": "docs/q001-solution-revision-review.md"
+  },
+  "summary": {
+    "mergedCount": 3,
+    "reviewStatus": "APPROVED",
+    "questionIds": ["ACC_INV_Q001", "ACC_INV_Q006", "ACC_INV_Q022"]
+  },
+  "questions": [
+    {
+      "questionId": "ACC_INV_Q001",
+      "year": 2018,
+      "chapterId": "ACC_INV",
+      "patternId": "ACC_INV_001",
+      "answer": 3,
+      "answerLabelSnapshot": "1,130,000",
+      "question": "위의 내용을 반영하여 작성된 20x1년 말 재무상태표 상 재고자산은?",
+      "questionCoreHashSha256": "8f75fb148343313b42c16b27cac5923b1fa526a04c2c1506f93d2a1e2ed83d1e",
+      "questionRecordHashSha256": "fca19eee86a1b2e0b0000c3c2c94fd8687a277995dac2c664f85875eec2a3b54",
+      "solution": {
+        "version": "1.0.0",
+        "reviewStatus": "APPROVED",
+        "diagnosis": "창고 실사 재고 ₩1,000,000을 출발점으로 한다. 창고 밖에 있는 항목만 소유권·인도조건·위탁·시용 기준으로 가감한다. FOB 도착지 매입 운송중은 매입자 재고에 넣지 않는다.",
+        "steps": [
+          {
+            "order": 1,
+            "title": "창고 실사액을 출발점으로 둔다",
+            "explanation": "외부감사 전 보고액 ₩1,000,000은 ‘창고에 있는 상품만’ 실사한 금액이다. 창고 밖 재고는 아직 포함되어 있지 않다.",
+            "patternStepRef": 1
+          },
+          {
+            "order": 2,
+            "title": "FOB 선적지 판매·운송중 — 추가 차감 없음",
+            "explanation": "FOB 선적지 판매 상품(원가 ₩300,000)은 이미 출고되어 창고 실사에 없다. 선적 시 소유권도 이전되므로 기말재고에 포함하지 않음이 맞고, 실사액에서 다시 빼지 않는다. (조정 0)",
+            "patternStepRef": 2
+          },
+          {
+            "order": 3,
+            "title": "적송(위탁) 미판매분 가산",
+            "explanation": "적송 원가 ₩100,000 중 40% 판매 → 미판매 60% = ₩60,000은 위탁자 재고. 창고 밖에 있으므로 +60,000.",
+            "patternStepRef": 2
+          },
+          {
+            "order": 4,
+            "title": "시송품 미확정분 가산",
+            "explanation": "시송 원가 ₩200,000 중 매입의사 표시 ₩130,000은 매출 처리, 미표시 ₩70,000만 재고. 창고 밖이므로 +70,000.",
+            "patternStepRef": 2
+          },
+          {
+            "order": 5,
+            "title": "FOB 도착지 매입·운송중 — 가산하지 않음",
+            "explanation": "FOB 도착지 매입(원가 ₩200,000)이 기말 운송 중이면 소유권은 아직 판매자(민국)에게 있다. Pattern 기준상 매입자(감평) 재고에 포함하지 않는다. (조정 0 · +200,000 금지)",
+            "patternStepRef": 2
+          },
+          {
+            "order": 6,
+            "title": "조정 후 기말재고 확정",
+            "explanation": "1,000,000 + 60,000 + 70,000 = ₩1,130,000 → 정답 ③. (공인 정답키 Q42=③와 일치)",
+            "patternStepRef": 3
+          }
+        ],
+        "examTrap": "① FOB 도착지 매입 운송중을 +200,000으로 넣고 동시에 FOB 선적지 판매를 −300,000 하여 우연히 같은 답을 내는 오류. ② 창고 실사에 없는 선적지 판매분을 또 차감하는 오류. ③ 시송 전액·적송 전액을 가산하는 오류.",
+        "takeaway": "창고 실사 → 창고 밖만 소유권으로 가감. 선적지 판매 운송중=이미 제외(재차감 금지). 도착지 매입 운송중=매입자 가산 금지.",
+        "patternAlgorithmLink": {
+          "reuse": [1, 2, 3],
+          "questionSpecific": "창고-only 실사 전제에서 FOB 도착지 미가산·FOB 선적지 미재차감으로 정답과 Pattern을 동시에 만족"
+        },
+        "approvedReview": {
+          "gate": "Sprint-09H-2b",
+          "decision": "APPROVE",
+          "decidedAt": "2026-07-26",
+          "authority": "SOLUTION_REVISION_REVIEWER",
+          "priorDecision": "REVISE",
+          "evidence": [
+            "data/q001-solution-revision.json",
+            "docs/q001-solution-revision-review.md",
+            "data/knowledge/raw/attested/2018/answer/answer.tsv Q42=3"
+          ]
+        }
+      }
+    },
+    {
+      "questionId": "ACC_INV_Q006",
+      "year": 2019,
+      "chapterId": "ACC_INV",
+      "patternId": "ACC_INV_001",
+      "answer": 2,
+      "answerLabelSnapshot": "₩6,000 / ₩88,800",
+      "question": "이 거래로 20×1년도에 (주)대한이 인식할 수익(A)과 (주)감평이 인식할 매출원가(B)는?",
+      "questionCoreHashSha256": "19367bcf5b4ad7a6f0f9da7d123aceed1f8df7f196175b692afd81cf0dfa70d9",
+      "questionRecordHashSha256": "b2e4339d6b2aad663af97c9c72715033d9e91fee7f16e4531f584e882956c7dc",
+      "solution": {
+        "version": "1.0.0",
+        "reviewStatus": "APPROVED",
+        "diagnosis": "위탁판매에서 수탁자 수수료 수익(A)과 위탁자 매출원가(B)를 분리한다. 핵심은 ‘판매분’만 인식하고 운반비를 전체 적송수량에 배분하는 것이다.",
+        "steps": [
+          {
+            "order": 1,
+            "title": "판매수량 확정",
+            "explanation": "적송 100단위 중 60% 판매 → 판매수량 60단위. 미판매 40단위는 위탁자 재고로 남는다(포함 여부 Pattern).",
+            "patternStepRef": 2
+          },
+          {
+            "order": 2,
+            "title": "수탁자 수익(A) 계산",
+            "explanation": "대한의 수익은 수수료만 인식한다. A = 60 × ₩2,000 × 5% = ₩6,000.",
+            "patternStepRef": null
+          },
+          {
+            "order": 3,
+            "title": "단위당 위탁원가(운반비 포함)",
+            "explanation": "운반비 ₩8,000을 적송 100단위에 배분 → 단위당 ₩80. 단위당 원가 = 1,400 + 80 = ₩1,480.",
+            "patternStepRef": 2
+          },
+          {
+            "order": 4,
+            "title": "위탁자 매출원가(B)",
+            "explanation": "판매분만 매출원가. B = 60 × 1,480 = ₩88,800 → 정답 ② (A 6,000 / B 88,800).",
+            "patternStepRef": 3
+          }
+        ],
+        "examTrap": "운반비를 판매수량(60)에만 나누거나 아예 누락해 B=84,000으로 잡는 오류, 수수료를 과대 계상(6,240)하는 오류가 흔하다.",
+        "takeaway": "위탁 COGS = 판매수량 × (단위원가 + 총운반비/총적송수량). 수탁 수익 = 판매액 × 수수료율.",
+        "patternAlgorithmLink": {
+          "reuse": [2, 3],
+          "questionSpecific": "수탁 수수료 vs 위탁 매출원가 이중 산출 · 운반비 배분"
+        },
+        "approvedReview": {
+          "gate": "Sprint-09H-2",
+          "decision": "APPROVE",
+          "decidedAt": "2026-07-26",
+          "authority": "HUMAN_REVIEW_GATE",
+          "evidence": [
+            "data/solution-review-decision.json",
+            "docs/solution-human-review-09H2.md"
+          ]
+        }
+      }
+    },
+    {
+      "questionId": "ACC_INV_Q022",
+      "year": 2021,
+      "chapterId": "ACC_INV",
+      "patternId": "ACC_INV_001",
+      "answer": 1,
+      "answerLabelSnapshot": "₩4,970",
+      "question": "판매와 관련하여 (주)감평이 인식할 매출원가는?",
+      "questionCoreHashSha256": "d678589ffe374a96e0a7c707130dc7e6f8af4e7dec73245c0ecfad4217e3ccc9",
+      "questionRecordHashSha256": "b750ec2a26d6b7c0cdd34969aadef958878978cc0e581910bd1ec5aa2deaca3c",
+      "solution": {
+        "version": "1.0.0",
+        "reviewStatus": "APPROVED",
+        "diagnosis": "위탁(적송) 판매에서 위탁자가 인식할 매출원가는 ‘판매된 수량’에 한하며, 적송 시 지급한 운반비는 전체 수량에 배분해 단위원가에 포함한다.",
+        "steps": [
+          {
+            "order": 1,
+            "title": "판매수량 확인",
+            "explanation": "적송 10대 중 7대 판매 → 매출원가 인식 대상 7대. 미판매 3대는 위탁자 재고.",
+            "patternStepRef": 2
+          },
+          {
+            "order": 2,
+            "title": "단위당 원가(운반비 배분)",
+            "explanation": "대당 원가 ₩700 + 운반비 ₩100/10대 = ₩710.",
+            "patternStepRef": 2
+          },
+          {
+            "order": 3,
+            "title": "매출원가 산출",
+            "explanation": "7 × 710 = ₩4,970 → 정답 ①.",
+            "patternStepRef": 3
+          }
+        ],
+        "examTrap": "10대 전체 원가(₩7,100+)를 매출원가로 잡거나, 운반비를 판매 7대에만 나누어 단위원가를 왜곡하는 오류.",
+        "takeaway": "위탁 COGS = 판매대수 × (원가 + 총운반/총적송수량). Q006과 동일 Pattern, 수탁 수익은 묻지 않음.",
+        "patternAlgorithmLink": {
+          "reuse": [2, 3],
+          "questionSpecific": "판매 7대·운반비 100의 수치 적용 (Q006의 단순형)"
+        },
+        "approvedReview": {
+          "gate": "Sprint-09H-2",
+          "decision": "APPROVE",
+          "decidedAt": "2026-07-26",
+          "authority": "HUMAN_REVIEW_GATE",
+          "evidence": [
+            "data/solution-review-decision.json",
+            "docs/solution-human-review-09H2.md"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1300 @@
+{
+  "schema": "learning.pattern-taxonomy-candidates.v1",
+  "version": "2.0.0-design",
+  "sprint": "Sprint-09C Pattern Taxonomy V2 Design",
+  "generatedAt": "2026-07-26",
+  "authority": "CANDIDATE_STORE_ONLY",
+  "note": "NOT Pattern SoT. Do not merge into pattern-db-mvp.json / question-db-mvp.json without promotion sprint + approval.",
+  "domainPolicy": {
+    "allowed": [
+      "financial_accounting",
+      "cost_accounting"
+    ],
+    "forbidden": [
+      "tax_accounting"
+    ],
+    "taxNote": "ACC_TAX_001 remains as patternId/chapter label; domain MUST be financial_accounting"
+  },
+  "auditSnapshot": {
+    "sourceDoc": "docs/pattern-boundary-audit.md",
+    "KEEP": 176,
+    "MOVE": 18,
+    "LINK": 29,
+    "NEW_CANDIDATE": 17
+  },
+  "v2PatternMetadataSchemaExample": {
+    "patternId": "COST_PROCESS_001",
+    "domain": "cost_accounting",
+    "chapter": "종합원가계산",
+    "title": "완성품환산량 기반 원가 배분",
+    "algorithm": "환산량 계산 → 원가 배분 → 완성품/재공품 원가",
+    "trigger": "종합원가계산·환산량·재공품 완성도",
+    "relatedPatterns": [
+      "ACC_INV_006"
+    ],
+    "status": "draft"
+  },
+  "v2QuestionRelationSchemaExample": {
+    "questionId": "ACC_2020_Q073",
+    "primaryPattern": "COST_PROCESS_001",
+    "relatedPatterns": [
+      "ACC_INV_006"
+    ],
+    "note": "Not applied to question-db-mvp.json in this sprint"
+  },
+  "existingPatternDomainOverlay": [
+    {
+      "patternId": "ACC_COST_002",
+      "domain": "cost_accounting",
+      "chapter": "ACC_COST",
+      "title": "관리회계",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_EQ_001",
+      "domain": "financial_accounting",
+      "chapter": "ACC_EQ",
+      "title": "자본·배당",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_FIN_001",
+      "domain": "financial_accounting",
+      "chapter": "ACC_FIN",
+      "title": "금융상품",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_FIN_002",
+      "domain": "financial_accounting",
+      "chapter": "ACC_FIN",
+      "title": "사채·채권",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_FS_001",
+      "domain": "financial_accounting",
+      "chapter": "ACC_FS",
+      "title": "재무제표 일반",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_GEN_001",
+      "domain": "financial_accounting",
+      "chapter": "ACC_GEN",
+      "title": "회계학 일반",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "legacy_bucket",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_INT_001",
+      "domain": "financial_accounting",
+      "chapter": "ACC_INT",
+      "title": "무형자산",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_INV_001",
+      "domain": "financial_accounting",
+      "chapter": "ACC_INV",
+      "title": "기말재고 포함 여부 판단",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_INV_003",
+      "domain": "financial_accounting",
+      "chapter": "ACC_INV",
+      "title": "운반비·부대비용과 재고원가",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_INV_004",
+      "domain": "financial_accounting",
+      "chapter": "ACC_INV",
+      "title": "매출원가 계산 (PER법)",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_INV_006",
+      "domain": "financial_accounting",
+      "chapter": "ACC_INV",
+      "title": "FIFO·총평균법 매출원가",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_INV_007",
+      "domain": "financial_accounting",
+      "chapter": "ACC_INV",
+      "title": "LCM·순실현가능가치 평가",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_LEASE_001",
+      "domain": "financial_accounting",
+      "chapter": "ACC_LEASE",
+      "title": "리스",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_PPE_001",
+      "domain": "financial_accounting",
+      "chapter": "ACC_PPE",
+      "title": "유형자산·감가상각",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_PPE_002",
+      "domain": "financial_accounting",
+      "chapter": "ACC_PPE",
+      "title": "재평가·손상",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_REV_001",
+      "domain": "financial_accounting",
+      "chapter": "ACC_REV",
+      "title": "수익인식",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    },
+    {
+      "patternId": "ACC_TAX_001",
+      "domain": "financial_accounting",
+      "chapter": "ACC_TAX",
+      "title": "법인세",
+      "algorithm": null,
+      "trigger": null,
+      "relatedPatterns": [],
+      "status": "verified",
+      "note": "SoT Pattern ID frozen. Fields here are taxonomy overlay only."
+    }
+  ],
+  "draftPatterns": [
+    {
+      "patternId": "COST_ABC_001",
+      "domain": "cost_accounting",
+      "chapter": "활동기준원가",
+      "title": "활동기준·개별원가 배분",
+      "algorithm": "활동기준·개별원가 배분",
+      "trigger": "활동기준원가·제조간접원가 배분",
+      "relatedPatterns": [
+        "ACC_GEN_001",
+        "ACC_INT_001",
+        "ACC_REV_001"
+      ],
+      "status": "draft",
+      "evidenceQuestions": [
+        "ACC_2015_Q074",
+        "ACC_2015_Q076",
+        "ACC_2015_Q077",
+        "ACC_2015_Q079",
+        "ACC_2018_Q072",
+        "ACC_2018_Q073",
+        "ACC_2020_Q071",
+        "ACC_2020_Q080",
+        "ACC_2024_Q071",
+        "ACC_2025_Q071",
+        "ACC_2025_Q072",
+        "ACC_2025_Q078"
+      ],
+      "approvalGate": {
+        "humanPdfReview": true,
+        "minEvidenceQuestions": 2,
+        "promotedToPatternDb": false
+      }
+    },
+    {
+      "patternId": "COST_CVP_001",
+      "domain": "cost_accounting",
+      "chapter": "관리회계",
+      "title": "전부/변동원가·CVP·성과평가",
+      "algorithm": "전부/변동원가·CVP·성과평가",
+      "trigger": "전부/변동원가·CVP·공헌이익·성과평가",
+      "relatedPatterns": [
+        "ACC_GEN_001",
+        "ACC_INT_001",
+        "ACC_INV_006",
+        "ACC_REV_001",
+        "ACC_TAX_001"
+      ],
+      "status": "draft",
+      "evidenceQuestions": [
+        "ACC_2015_Q071",
+        "ACC_2017_Q073",
+        "ACC_2017_Q074",
+        "ACC_2017_Q075",
+        "ACC_2017_Q079",
+        "ACC_2018_Q071",
+        "ACC_2018_Q075",
+        "ACC_2018_Q078",
+        "ACC_2020_Q076",
+        "ACC_2024_Q075",
+        "ACC_2024_Q077",
+        "ACC_2024_Q080",
+        "ACC_2025_Q076",
+        "ACC_2025_Q077",
+        "ACC_2025_Q079"
+      ],
+      "approvalGate": {
+        "humanPdfReview": true,
+        "minEvidenceQuestions": 2,
+        "promotedToPatternDb": false
+      }
+    },
+    {
+      "patternId": "COST_JOINT_001",
+      "domain": "cost_accounting",
+      "chapter": "결합원가",
+      "title": "결합원가·주부산품 배분",
+      "algorithm": "결합원가·주부산품 배분",
+      "trigger": "결합공정·주산품·부산품·분리점",
+      "relatedPatterns": [
+        "ACC_GEN_001",
+        "ACC_INV_007"
+      ],
+      "status": "draft",
+      "evidenceQuestions": [
+        "ACC_2020_Q074",
+        "ACC_2024_Q076",
+        "ACC_2025_Q074"
+      ],
+      "approvalGate": {
+        "humanPdfReview": true,
+        "minEvidenceQuestions": 2,
+        "promotedToPatternDb": false
+      }
+    },
+    {
+      "patternId": "COST_MFG_001",
+      "domain": "cost_accounting",
+      "chapter": "제조원가",
+      "title": "제조원가 흐름·제품원가",
+      "algorithm": "제조원가 흐름·제품원가",
+      "trigger": "제조원가 흐름·당기제품제조원가",
+      "relatedPatterns": [
+        "ACC_INT_001",
+        "ACC_REV_001"
+      ],
+      "status": "draft",
+      "evidenceQuestions": [
+        "ACC_2015_Q080",
+        "ACC_2017_Q071",
+        "ACC_2018_Q076"
+      ],
+      "approvalGate": {
+        "humanPdfReview": true,
+        "minEvidenceQuestions": 2,
+        "promotedToPatternDb": false
+      }
+    },
+    {
+      "patternId": "COST_PROCESS_001",
+      "domain": "cost_accounting",
+      "chapter": "종합원가계산",
+      "title": "완성품환산량 기반 원가 배분",
+      "algorithm": "완성품환산량 기반 원가 배분",
+      "trigger": "종합원가계산·환산량·재공품 완성도",
+      "relatedPatterns": [
+        "ACC_GEN_001",
+        "ACC_INV_006",
+        "ACC_REV_001"
+      ],
+      "status": "draft",
+      "evidenceQuestions": [
+        "ACC_2015_Q073",
+        "ACC_2015_Q075",
+        "ACC_2017_Q077",
+        "ACC_2017_Q080",
+        "ACC_2018_Q079",
+        "ACC_2018_Q080",
+        "ACC_2020_Q073",
+        "ACC_2024_Q073",
+        "ACC_2024_Q074",
+        "ACC_2025_Q073"
+      ],
+      "approvalGate": {
+        "humanPdfReview": true,
+        "minEvidenceQuestions": 2,
+        "promotedToPatternDb": false
+      }
+    },
+    {
+      "patternId": "COST_STD_001",
+      "domain": "cost_accounting",
+      "chapter": "표준원가",
+      "title": "표준원가 차이분석",
+      "algorithm": "표준원가 차이분석",
+      "trigger": "표준원가·가격/수량/능률/조업도 차이",
+      "relatedPatterns": [
+        "ACC_GEN_001"
+      ],
+      "status": "draft",
+      "evidenceQuestions": [
+        "ACC_2017_Q072",
+        "ACC_2020_Q075",
+        "ACC_2025_Q075"
+      ],
+      "approvalGate": {
+        "humanPdfReview": true,
+        "minEvidenceQuestions": 2,
+        "promotedToPatternDb": false
+      }
+    }
+  ],
+  "questionProposals": {
+    "KEEP_policy": "No entry — retain current question.patternId as-is",
+    "MOVE": [
+      {
+        "questionId": "ACC_2015_Q055",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "자본·EPS",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "N · pdf_missing",
+        "reason": "ACC_GEN 바구니 — 실제 자본·EPS",
+        "proposedPattern": "ACC_EQ_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2017_Q050",
+        "currentPattern": "ACC_INT_001",
+        "algorithm": "법인세",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "N · pdf_missing",
+        "reason": "법인세 Algorithm인데 Pattern=ACC_INT_001",
+        "proposedPattern": "ACC_TAX_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2017_Q060",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "재무제표 일반",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "N · pdf_missing",
+        "reason": "ACC_GEN → 재무제표 일반 재분류 후보",
+        "proposedPattern": "ACC_FS_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2017_Q069",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "자본·EPS",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "N · pdf_missing",
+        "reason": "재고 Pattern에 자본·EPS 매핑",
+        "proposedPattern": "ACC_EQ_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2018_Q055",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "자본·EPS",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.20 · Q55",
+        "reason": "ACC_GEN 바구니 — 실제 자본·EPS",
+        "proposedPattern": "ACC_EQ_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2018_Q060",
+        "currentPattern": "ACC_INT_001",
+        "algorithm": "법인세",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.21 · Q60",
+        "reason": "법인세 Algorithm인데 Pattern=ACC_INT_001",
+        "proposedPattern": "ACC_TAX_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2018_Q067",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "소매재고·FIFO·LCM(재무 재고)",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.23 · Q67",
+        "reason": "ACC_GEN → 소매재고·FIFO·LCM(재무 재고) 재분류 후보",
+        "proposedPattern": "ACC_INV_006",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2020_Q062",
+        "currentPattern": "ACC_INT_001",
+        "algorithm": "법인세",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.22 · Q62",
+        "reason": "법인세 Algorithm인데 Pattern=ACC_INT_001",
+        "proposedPattern": "ACC_TAX_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2020_Q063",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "자본·EPS",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.22 · Q63",
+        "reason": "재고 Pattern에 자본·EPS 매핑",
+        "proposedPattern": "ACC_EQ_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2024_Q047",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "자본·EPS",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.15 · Q47",
+        "reason": "재고 Pattern에 자본·EPS 매핑",
+        "proposedPattern": "ACC_EQ_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2024_Q048",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "소매재고·FIFO·LCM(재무 재고)",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.15 · Q48",
+        "reason": "ACC_GEN → 소매재고·FIFO·LCM(재무 재고) 재분류 후보",
+        "proposedPattern": "ACC_INV_006",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2024_Q053",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "재무제표 일반",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.17 · Q53",
+        "reason": "ACC_GEN → 재무제표 일반 재분류 후보",
+        "proposedPattern": "ACC_FS_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2024_Q065",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "재무제표 일반",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.22 · Q65",
+        "reason": "ACC_GEN → 재무제표 일반 재분류 후보",
+        "proposedPattern": "ACC_FS_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2025_Q051",
+        "currentPattern": "ACC_INV_003",
+        "algorithm": "유형자산·감가상각",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.17 · Q51",
+        "reason": "재고 Pattern에 유형자산·감가상각 매핑",
+        "proposedPattern": "ACC_PPE_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2025_Q053",
+        "currentPattern": "ACC_INV_003",
+        "algorithm": "유형자산·감가상각",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.18 · Q53",
+        "reason": "재고 Pattern에 유형자산·감가상각 매핑",
+        "proposedPattern": "ACC_PPE_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2025_Q063",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "자본·EPS",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.21 · Q63",
+        "reason": "재고 Pattern에 자본·EPS 매핑",
+        "proposedPattern": "ACC_EQ_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2025_Q065",
+        "currentPattern": "ACC_INV_003",
+        "algorithm": "리스",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.22 · Q65",
+        "reason": "재고 Pattern에 리스 매핑",
+        "proposedPattern": "ACC_LEASE_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2025_Q066",
+        "currentPattern": "ACC_INT_001",
+        "algorithm": "법인세",
+        "domain": "financial_accounting",
+        "auditDecision": "MOVE",
+        "source": "Y · p.22 · Q66",
+        "reason": "법인세 Algorithm인데 Pattern=ACC_INT_001",
+        "proposedPattern": "ACC_TAX_001",
+        "status": "proposed_move",
+        "runtimeApplied": false
+      }
+    ],
+    "LINK": [
+      {
+        "questionId": "ACC_2015_Q071",
+        "currentPattern": "ACC_REV_001",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "N · pdf_missing",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_REV_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2015_Q074",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "개별·활동기준원가",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "N · pdf_missing",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(개별·활동기준원가) — primary/related 분리 필요",
+        "primaryPattern": "COST_ABC_001",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2015_Q076",
+        "currentPattern": "ACC_REV_001",
+        "algorithm": "개별·활동기준원가",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "N · pdf_missing",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(개별·활동기준원가) — primary/related 분리 필요",
+        "primaryPattern": "COST_ABC_001",
+        "relatedPatterns": [
+          "ACC_REV_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2015_Q077",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "개별·활동기준원가",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "N · pdf_missing",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(개별·활동기준원가) — primary/related 분리 필요",
+        "primaryPattern": "COST_ABC_001",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2015_Q079",
+        "currentPattern": "ACC_INT_001",
+        "algorithm": "개별·활동기준원가",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "N · pdf_missing",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(개별·활동기준원가) — primary/related 분리 필요",
+        "primaryPattern": "COST_ABC_001",
+        "relatedPatterns": [
+          "ACC_INT_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2015_Q080",
+        "currentPattern": "ACC_INT_001",
+        "algorithm": "제조원가 흐름(재무·원가 경계)",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "N · pdf_missing",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(제조원가 흐름(재무·원가 경계)) — primary/related 분리 필요",
+        "primaryPattern": "COST_MFG_001",
+        "relatedPatterns": [
+          "ACC_INT_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2017_Q071",
+        "currentPattern": "ACC_REV_001",
+        "algorithm": "제조원가 흐름(재무·원가 경계)",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "N · pdf_missing",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(제조원가 흐름(재무·원가 경계)) — primary/related 분리 필요",
+        "primaryPattern": "COST_MFG_001",
+        "relatedPatterns": [
+          "ACC_REV_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2017_Q073",
+        "currentPattern": "ACC_REV_001",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "N · pdf_missing",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_REV_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2017_Q074",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "N · pdf_missing",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2017_Q075",
+        "currentPattern": "ACC_REV_001",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "N · pdf_missing",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_REV_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2017_Q079",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "N · pdf_missing",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2018_Q071",
+        "currentPattern": "ACC_INT_001",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.25 · Q71",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_INT_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2018_Q072",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "개별·활동기준원가",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.25 · Q72",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(개별·활동기준원가) — primary/related 분리 필요",
+        "primaryPattern": "COST_ABC_001",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2018_Q073",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "개별·활동기준원가",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.25 · Q73",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(개별·활동기준원가) — primary/related 분리 필요",
+        "primaryPattern": "COST_ABC_001",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2018_Q075",
+        "currentPattern": "ACC_REV_001",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.26 · Q75",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_REV_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2018_Q078",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.27 · Q78",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2020_Q071",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "개별·활동기준원가",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.25 · Q71",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(개별·활동기준원가) — primary/related 분리 필요",
+        "primaryPattern": "COST_ABC_001",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2020_Q076",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.28 · Q76",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_INV_006"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2020_Q080",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "개별·활동기준원가",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.29 · Q80",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(개별·활동기준원가) — primary/related 분리 필요",
+        "primaryPattern": "COST_ABC_001",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2024_Q071",
+        "currentPattern": "ACC_REV_001",
+        "algorithm": "개별·활동기준원가",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.24 · Q71",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(개별·활동기준원가) — primary/related 분리 필요",
+        "primaryPattern": "COST_ABC_001",
+        "relatedPatterns": [
+          "ACC_REV_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2024_Q075",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.25 · Q75",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_INV_006"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2024_Q077",
+        "currentPattern": "ACC_TAX_001",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.26 · Q77",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_TAX_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2024_Q080",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.26 · Q80",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2025_Q071",
+        "currentPattern": "ACC_REV_001",
+        "algorithm": "개별·활동기준원가",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.24 · Q71",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(개별·활동기준원가) — primary/related 분리 필요",
+        "primaryPattern": "COST_ABC_001",
+        "relatedPatterns": [
+          "ACC_REV_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2025_Q072",
+        "currentPattern": "ACC_REV_001",
+        "algorithm": "개별·활동기준원가",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.24 · Q72",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(개별·활동기준원가) — primary/related 분리 필요",
+        "primaryPattern": "COST_ABC_001",
+        "relatedPatterns": [
+          "ACC_REV_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2025_Q076",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.26 · Q76",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2025_Q077",
+        "currentPattern": "ACC_REV_001",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.26 · Q77",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_REV_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2025_Q078",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "개별·활동기준원가",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.26 · Q78",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(개별·활동기준원가) — primary/related 분리 필요",
+        "primaryPattern": "COST_ABC_001",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      },
+      {
+        "questionId": "ACC_2025_Q079",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "전부·변동원가·CVP",
+        "domain": "cost_accounting",
+        "auditDecision": "LINK",
+        "source": "Y · p.27 · Q79",
+        "reason": "재무 Chapter/Pattern에 원가 Algorithm(전부·변동원가·CVP) — primary/related 분리 필요",
+        "primaryPattern": "COST_CVP_001",
+        "relatedPatterns": [
+          "ACC_INV_006"
+        ],
+        "status": "proposed_link",
+        "runtimeApplied": false
+      }
+    ],
+    "NEW_CANDIDATE": [
+      {
+        "questionId": "ACC_2015_Q073",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "종합원가·환산량",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "N · pdf_missing",
+        "reason": "Chapter=ACC_GEN Pattern=ACC_GEN_001 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_PROCESS_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2015_Q075",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "종합원가·환산량",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "N · pdf_missing",
+        "reason": "Chapter=ACC_INV Pattern=ACC_INV_006 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_PROCESS_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2017_Q072",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "표준원가·차이분석",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "N · pdf_missing",
+        "reason": "Chapter=ACC_GEN Pattern=ACC_GEN_001 이나 실제는 표준원가·차이분석",
+        "candidatePattern": "COST_STD_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2017_Q077",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "종합원가·환산량",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "N · pdf_missing",
+        "reason": "Chapter=ACC_INV Pattern=ACC_INV_006 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_PROCESS_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2017_Q080",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "종합원가·환산량",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "N · pdf_missing",
+        "reason": "Chapter=ACC_INV Pattern=ACC_INV_006 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_PROCESS_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2018_Q076",
+        "currentPattern": "ACC_REV_001",
+        "algorithm": "제조원가 흐름(재무·원가 경계)",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "Y · p.26 · Q76",
+        "reason": "Chapter=ACC_REV Pattern=ACC_REV_001 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_MFG_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2018_Q079",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "종합원가·환산량",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "Y · p.28 · Q79",
+        "reason": "Chapter=ACC_INV Pattern=ACC_INV_006 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_PROCESS_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2018_Q080",
+        "currentPattern": "ACC_REV_001",
+        "algorithm": "종합원가·환산량",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "Y · p.28 · Q80",
+        "reason": "Chapter=ACC_REV Pattern=ACC_REV_001 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_PROCESS_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2020_Q073",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "종합원가·환산량",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "Y · p.26 · Q73",
+        "reason": "Chapter=ACC_INV Pattern=ACC_INV_006 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_PROCESS_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2020_Q074",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "결합원가·주부산품",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "Y · p.27 · Q74",
+        "reason": "Chapter=ACC_GEN Pattern=ACC_GEN_001 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_JOINT_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2020_Q075",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "표준원가·차이분석",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "Y · p.27 · Q75",
+        "reason": "Chapter=ACC_GEN Pattern=ACC_GEN_001 이나 실제는 표준원가·차이분석",
+        "candidatePattern": "COST_STD_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2024_Q073",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "종합원가·환산량",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "Y · p.24 · Q73",
+        "reason": "Chapter=ACC_INV Pattern=ACC_INV_006 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_PROCESS_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2024_Q074",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "종합원가·환산량",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "Y · p.25 · Q74",
+        "reason": "Chapter=ACC_GEN Pattern=ACC_GEN_001 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_PROCESS_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2024_Q076",
+        "currentPattern": "ACC_INV_007",
+        "algorithm": "결합원가·주부산품",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "Y · p.25 · Q76",
+        "reason": "Chapter=ACC_INV Pattern=ACC_INV_007 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_JOINT_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2025_Q073",
+        "currentPattern": "ACC_INV_006",
+        "algorithm": "종합원가·환산량",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "Y · p.25 · Q73",
+        "reason": "Chapter=ACC_INV Pattern=ACC_INV_006 이나 실제는 종합원가·환산량",
+        "candidatePattern": "COST_PROCESS_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2025_Q074",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "결합원가·주부산품",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "Y · p.25 · Q74",
+        "reason": "Chapter=ACC_GEN Pattern=ACC_GEN_001 이나 실제는 결합원가·주부산품",
+        "candidatePattern": "COST_JOINT_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      },
+      {
+        "questionId": "ACC_2025_Q075",
+        "currentPattern": "ACC_GEN_001",
+        "algorithm": "표준원가·차이분석",
+        "domain": "cost_accounting",
+        "auditDecision": "NEW_CANDIDATE",
+        "source": "Y · p.25 · Q75",
+        "reason": "Chapter=ACC_GEN Pattern=ACC_GEN_001 이나 실제는 표준원가·차이분석",
+        "candidatePattern": "COST_STD_001",
+        "status": "draft",
+        "runtimeApplied": false,
+        "promotedToPatternDb": false
+      }
+    ]
+  },
+  "counts": {
+    "existingOverlay": 17,
+    "draftPatterns": 6,
+    "MOVE": 18,
+    "LINK": 29,
+    "NEW_CANDIDATE": 17
+  },
+  "frozenGuarantees": {
+    "existingPatternIdsUnchanged": true,
+    "questionMappingUnchangedInSoT": true,
+    "runtimeImpact": false,
+    "uiImpact": false
+  }
+}

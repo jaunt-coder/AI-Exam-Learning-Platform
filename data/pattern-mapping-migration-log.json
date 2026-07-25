@@ -1,0 +1,521 @@
+{
+  "schema": "learning.pattern-mapping-migration-log.v1",
+  "sprint": "Sprint-09G Pattern Mapping Fix (Cost Approved Evidence)",
+  "generatedAt": "2026-07-26",
+  "operation": "question-mapping-overlay + patternId→primary + frequency sync",
+  "sourcePromotionLog": "data/pattern-promotion-log.json",
+  "humanGate": "data/pattern-taxonomy-cost-review-flags.json",
+  "rules": {
+    "primaryPattern": "핵심 Algorithm (approved COST_*)",
+    "relatedPatterns": "기존 patternId를 Related로 보존",
+    "patternId": "primaryPattern과 동기화 (MVP 엔진·frequency validator)",
+    "contentMutation": "forbidden",
+    "approvedOnly": true
+  },
+  "checksums": {
+    "questionDbSha256Before": "0cfcaa317bc25c811cebb48e3b53218556b2320f9c3538b2d4583ba9d16a9629",
+    "questionDbSha256After": "b31cea543d79ed8200a373f7090b2202094c7aad4f9379076e05a1b9b927515d",
+    "patternDbSha256Before": "9829db950481610d331044655db9612329f0c628cb052a2d2604a90f951554cc",
+    "patternDbSha256After": "43b650f09a5697d5593cd19036deb34fe2e6670ed8e70f8cac37ef5c0be13f43"
+  },
+  "counts": {
+    "mappedQuestions": 20,
+    "patternsTouchedFrequency": 11
+  },
+  "coverageBefore": {
+    "costPatternIdsInDb": 5,
+    "questionsWithCostPatternId": 0,
+    "questionsWithPrimaryPattern": 0
+  },
+  "coverageAfter": {
+    "costPatternIdsInDb": 5,
+    "questionsWithCostPatternId": 20,
+    "questionsWithPrimaryPattern": 20,
+    "byPattern": {
+      "COST_PROCESS_001": 4,
+      "COST_JOINT_001": 3,
+      "COST_STD_001": 3,
+      "COST_CVP_001": 8,
+      "COST_MFG_001": 2
+    }
+  },
+  "frequencyDelta": [
+    {
+      "patternId": "ACC_GEN_001",
+      "before": 55,
+      "after": 48,
+      "delta": -7
+    },
+    {
+      "patternId": "ACC_INT_001",
+      "before": 20,
+      "after": 19,
+      "delta": -1
+    },
+    {
+      "patternId": "ACC_INV_006",
+      "before": 19,
+      "after": 13,
+      "delta": -6
+    },
+    {
+      "patternId": "ACC_INV_007",
+      "before": 3,
+      "after": 2,
+      "delta": -1
+    },
+    {
+      "patternId": "ACC_REV_001",
+      "before": 26,
+      "after": 22,
+      "delta": -4
+    },
+    {
+      "patternId": "ACC_TAX_001",
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    {
+      "patternId": "COST_CVP_001",
+      "before": 0,
+      "after": 8,
+      "delta": 8
+    },
+    {
+      "patternId": "COST_JOINT_001",
+      "before": 0,
+      "after": 3,
+      "delta": 3
+    },
+    {
+      "patternId": "COST_MFG_001",
+      "before": 0,
+      "after": 2,
+      "delta": 2
+    },
+    {
+      "patternId": "COST_PROCESS_001",
+      "before": 0,
+      "after": 4,
+      "delta": 4
+    },
+    {
+      "patternId": "COST_STD_001",
+      "before": 0,
+      "after": 3,
+      "delta": 3
+    }
+  ],
+  "mappings": [
+    {
+      "questionId": "ACC_2018_Q079",
+      "beforePattern": "ACC_INV_006",
+      "afterPrimaryPattern": "COST_PROCESS_001",
+      "relatedPatterns": [
+        "ACC_INV_006"
+      ],
+      "reason": "Human Gate APPROVE — 종합원가·환산량 Algorithm이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_PROCESS_001",
+      "chapterIdUnchanged": "ACC_INV",
+      "contentFingerprint": "ee90f39451958bd5d0883ad63b799e27697d175719ddbe3294e3e7bd3e3ce71d",
+      "rollback": {
+        "patternId": "ACC_INV_006",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2020_Q073",
+      "beforePattern": "ACC_INV_006",
+      "afterPrimaryPattern": "COST_PROCESS_001",
+      "relatedPatterns": [
+        "ACC_INV_006"
+      ],
+      "reason": "Human Gate APPROVE — 종합원가·환산량 Algorithm이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_PROCESS_001",
+      "chapterIdUnchanged": "ACC_INV",
+      "contentFingerprint": "c3e086d952b41a5e551b814fb506798cba94cba94635cdd49cc9e0737e46e6e7",
+      "rollback": {
+        "patternId": "ACC_INV_006",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2024_Q073",
+      "beforePattern": "ACC_INV_006",
+      "afterPrimaryPattern": "COST_PROCESS_001",
+      "relatedPatterns": [
+        "ACC_INV_006"
+      ],
+      "reason": "Human Gate APPROVE — 종합원가·환산량 Algorithm이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_PROCESS_001",
+      "chapterIdUnchanged": "ACC_INV",
+      "contentFingerprint": "1426f4340962a55fd69703a5669bae55366b54266176ab1d4080b6c05d6d16d6",
+      "rollback": {
+        "patternId": "ACC_INV_006",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q073",
+      "beforePattern": "ACC_INV_006",
+      "afterPrimaryPattern": "COST_PROCESS_001",
+      "relatedPatterns": [
+        "ACC_INV_006"
+      ],
+      "reason": "Human Gate APPROVE — 종합원가·환산량 Algorithm이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_PROCESS_001",
+      "chapterIdUnchanged": "ACC_INV",
+      "contentFingerprint": "9dfbf6986df21c5808f269b1c33a504e1870fa75c92a0de84327533e93f9ad22",
+      "rollback": {
+        "patternId": "ACC_INV_006",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2020_Q074",
+      "beforePattern": "ACC_GEN_001",
+      "afterPrimaryPattern": "COST_JOINT_001",
+      "relatedPatterns": [
+        "ACC_GEN_001"
+      ],
+      "reason": "Human Gate APPROVE — 결합원가 배분이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_JOINT_001",
+      "chapterIdUnchanged": "ACC_GEN",
+      "contentFingerprint": "c5b0436ef7e00bea1fb2b1277bb0fd18dd23101610138668207e4f4867b9f3a3",
+      "rollback": {
+        "patternId": "ACC_GEN_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2024_Q076",
+      "beforePattern": "ACC_INV_007",
+      "afterPrimaryPattern": "COST_JOINT_001",
+      "relatedPatterns": [
+        "ACC_INV_007"
+      ],
+      "reason": "Human Gate APPROVE — 결합원가 배분이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_JOINT_001",
+      "chapterIdUnchanged": "ACC_INV",
+      "contentFingerprint": "66afbfb77783d91363f3014612c7a2a239d87a518b4dc0edcfb45f9e4ee3776b",
+      "rollback": {
+        "patternId": "ACC_INV_007",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q074",
+      "beforePattern": "ACC_GEN_001",
+      "afterPrimaryPattern": "COST_JOINT_001",
+      "relatedPatterns": [
+        "ACC_GEN_001"
+      ],
+      "reason": "Human Gate APPROVE — 결합원가 배분이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_JOINT_001",
+      "chapterIdUnchanged": "ACC_GEN",
+      "contentFingerprint": "3bbac30873363bfd419b019c1cd4f644aa384ff78f2638dbc0135227d5b1923a",
+      "rollback": {
+        "patternId": "ACC_GEN_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2020_Q075",
+      "beforePattern": "ACC_GEN_001",
+      "afterPrimaryPattern": "COST_STD_001",
+      "relatedPatterns": [
+        "ACC_GEN_001"
+      ],
+      "reason": "Human Gate APPROVE — 표준원가 차이분석이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_STD_001",
+      "chapterIdUnchanged": "ACC_GEN",
+      "contentFingerprint": "fe92e76e59e5dfd1f87776d0b1e71b76a300b7ed84c7cf27e1f5ede1e6363b1f",
+      "rollback": {
+        "patternId": "ACC_GEN_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2024_Q074",
+      "beforePattern": "ACC_GEN_001",
+      "afterPrimaryPattern": "COST_STD_001",
+      "relatedPatterns": [
+        "ACC_GEN_001"
+      ],
+      "reason": "Human Gate APPROVE — 표준원가 차이분석이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_STD_001",
+      "chapterIdUnchanged": "ACC_GEN",
+      "contentFingerprint": "736c3f25535bf5c8ff94b277d53bc4ee10d99c30dd36e9148f98ca4f501c9ee1",
+      "rollback": {
+        "patternId": "ACC_GEN_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q075",
+      "beforePattern": "ACC_GEN_001",
+      "afterPrimaryPattern": "COST_STD_001",
+      "relatedPatterns": [
+        "ACC_GEN_001"
+      ],
+      "reason": "Human Gate APPROVE — 표준원가 차이분석이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_STD_001",
+      "chapterIdUnchanged": "ACC_GEN",
+      "contentFingerprint": "0442b96fdcf25f27beaffd3f1614e7b4062d70e4378d500a390cba9ea9d4df95",
+      "rollback": {
+        "patternId": "ACC_GEN_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2018_Q071",
+      "beforePattern": "ACC_INT_001",
+      "afterPrimaryPattern": "COST_CVP_001",
+      "relatedPatterns": [
+        "ACC_INT_001"
+      ],
+      "reason": "Human Gate APPROVE — CVP·전부/변동원가 Algorithm이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_CVP_001",
+      "chapterIdUnchanged": "ACC_INT",
+      "contentFingerprint": "f0e90ef711612d676f485f4097150b923931fd1681c50e537922836d4d3a79fe",
+      "rollback": {
+        "patternId": "ACC_INT_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2018_Q075",
+      "beforePattern": "ACC_REV_001",
+      "afterPrimaryPattern": "COST_CVP_001",
+      "relatedPatterns": [
+        "ACC_REV_001"
+      ],
+      "reason": "Human Gate APPROVE — CVP·전부/변동원가 Algorithm이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_CVP_001",
+      "chapterIdUnchanged": "ACC_REV",
+      "contentFingerprint": "b3722ad52c58e21a023e695c9d8e97d0af731e62192df44627bb6f053faef2f4",
+      "rollback": {
+        "patternId": "ACC_REV_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2018_Q078",
+      "beforePattern": "ACC_GEN_001",
+      "afterPrimaryPattern": "COST_CVP_001",
+      "relatedPatterns": [
+        "ACC_GEN_001"
+      ],
+      "reason": "Human Gate APPROVE — CVP·전부/변동원가 Algorithm이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_CVP_001",
+      "chapterIdUnchanged": "ACC_GEN",
+      "contentFingerprint": "56d280380d3793e6812698aadf7d252d9d7bc85e2c4a593875f4d1765848d4bb",
+      "rollback": {
+        "patternId": "ACC_GEN_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2020_Q076",
+      "beforePattern": "ACC_INV_006",
+      "afterPrimaryPattern": "COST_CVP_001",
+      "relatedPatterns": [
+        "ACC_INV_006"
+      ],
+      "reason": "Human Gate APPROVE — CVP·전부/변동원가 Algorithm이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_CVP_001",
+      "chapterIdUnchanged": "ACC_INV",
+      "contentFingerprint": "b30ba03c21ff17581363fc84c758056c362b5600ef38e8d369adbb764640dc9f",
+      "rollback": {
+        "patternId": "ACC_INV_006",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2024_Q075",
+      "beforePattern": "ACC_INV_006",
+      "afterPrimaryPattern": "COST_CVP_001",
+      "relatedPatterns": [
+        "ACC_INV_006"
+      ],
+      "reason": "Human Gate APPROVE — CVP·전부/변동원가 Algorithm이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_CVP_001",
+      "chapterIdUnchanged": "ACC_INV",
+      "contentFingerprint": "6a8cd4568b808a590c7f690c73672dcfdce6e0ca5c939eddb46e254834d5b7bd",
+      "rollback": {
+        "patternId": "ACC_INV_006",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2024_Q077",
+      "beforePattern": "ACC_TAX_001",
+      "afterPrimaryPattern": "COST_CVP_001",
+      "relatedPatterns": [
+        "ACC_TAX_001"
+      ],
+      "reason": "Human Gate APPROVE — CVP·전부/변동원가 Algorithm이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_CVP_001",
+      "chapterIdUnchanged": "ACC_TAX",
+      "contentFingerprint": "8b968753d4709e4177a96a24ddd63501da9747cd0fdd6e39180238a058f54323",
+      "rollback": {
+        "patternId": "ACC_TAX_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q076",
+      "beforePattern": "ACC_GEN_001",
+      "afterPrimaryPattern": "COST_CVP_001",
+      "relatedPatterns": [
+        "ACC_GEN_001"
+      ],
+      "reason": "Human Gate APPROVE — CVP·전부/변동원가 Algorithm이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_CVP_001",
+      "chapterIdUnchanged": "ACC_GEN",
+      "contentFingerprint": "0c05e22684b65f260248f40f3c22e638ba2d7ab27d68c76b4c91101dc16d3d22",
+      "rollback": {
+        "patternId": "ACC_GEN_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q077",
+      "beforePattern": "ACC_REV_001",
+      "afterPrimaryPattern": "COST_CVP_001",
+      "relatedPatterns": [
+        "ACC_REV_001"
+      ],
+      "reason": "Human Gate APPROVE — CVP·전부/변동원가 Algorithm이 Primary",
+      "confidence": "high",
+      "patternIdAfter": "COST_CVP_001",
+      "chapterIdUnchanged": "ACC_REV",
+      "contentFingerprint": "0ae7477706f1410c79523d5a3d7be76bd600a2a6f87e0897002bbae52baa6898",
+      "rollback": {
+        "patternId": "ACC_REV_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2018_Q076",
+      "beforePattern": "ACC_REV_001",
+      "afterPrimaryPattern": "COST_MFG_001",
+      "relatedPatterns": [
+        "ACC_REV_001"
+      ],
+      "reason": "Human Gate APPROVE — 제조원가 흐름이 Primary",
+      "confidence": "medium",
+      "patternIdAfter": "COST_MFG_001",
+      "chapterIdUnchanged": "ACC_REV",
+      "contentFingerprint": "0b10d940bcfd88dec7423d72c382f6b13a23e733ec411ddf5aee9f850d5968ae",
+      "rollback": {
+        "patternId": "ACC_REV_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2018_Q080",
+      "beforePattern": "ACC_REV_001",
+      "afterPrimaryPattern": "COST_MFG_001",
+      "relatedPatterns": [
+        "ACC_REV_001"
+      ],
+      "reason": "Human Gate APPROVE — 제조원가 흐름이 Primary",
+      "confidence": "medium",
+      "patternIdAfter": "COST_MFG_001",
+      "chapterIdUnchanged": "ACC_REV",
+      "contentFingerprint": "75dbd67dd5bbd96fbac5b95097372048a0974d9479496a144a5a3a919da31385",
+      "rollback": {
+        "patternId": "ACC_REV_001",
+        "removeFields": [
+          "primaryPattern",
+          "relatedPatterns"
+        ]
+      }
+    }
+  ],
+  "rollbackProcedure": {
+    "description": "For each mappings[].rollback: restore patternId, delete primaryPattern/relatedPatterns; then recalculate all pattern frequency/relatedQuestions.",
+    "scriptHint": "data/analysis/_map_cost_patterns_09G.py is one-way; use this log JSON for restore"
+  },
+  "nextSprintSuggestions": [
+    "09H — Runtime optional: Learning Loop prefers primaryPattern when present",
+    "09I — Expand mapping beyond evidence set (Human Gate for LINK/MOVE residuals)",
+    "09J — COST_JOB_001 redefinition (ABC reject follow-up)"
+  ]
+}

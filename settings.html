@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/learning-loop.css">
   <link rel="stylesheet" href="css/sync.css">
+  <link rel="stylesheet" href="css/source-viewer.css">
 </head>
 <body class="study-body">
   <header class="site-header" role="banner">
@@ -64,6 +65,30 @@
           <li><strong>No Delete</strong> — 병합 시 기록 제거 금지</li>
         </ul>
         <p class="ll-hint">상세: docs/sync-policy.md</p>
+      </section>
+
+      <section class="card study-card qa-dash" aria-labelledby="qa-heading">
+        <p class="edu-kicker">Sprint-09A</p>
+        <h2 id="qa-heading" class="study-card__title">Problem Reports</h2>
+        <p class="section-desc">
+          학생이 남긴 QA만 집계합니다. 분석·AI·자동 패치는 없습니다.
+        </p>
+        <dl class="edu-facts qa-dash__facts" id="qa-stats">
+          <div><dt>Total</dt><dd id="qa-total">0</dd></div>
+          <div><dt>Open</dt><dd id="qa-open">0</dd></div>
+          <div><dt>Pending</dt><dd id="qa-pending">0</dd></div>
+          <div><dt>Closed</dt><dd id="qa-closed">0</dd></div>
+        </dl>
+        <div class="source-viewer__actions" id="qa-export-actions">
+          <button type="button" class="button button--ghost button--touch" id="qa-export-json">
+            problem-report.json
+          </button>
+          <button type="button" class="button button--ghost button--touch" id="qa-export-md">
+            problem-report.md
+          </button>
+        </div>
+        <p class="ll-hint" id="qa-export-status" role="status"></p>
+        <p class="ll-hint">저장소: <code>learning.problemReports.v1</code> · append-only</p>
       </section>
     </div>
   </main>

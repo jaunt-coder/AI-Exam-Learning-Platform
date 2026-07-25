@@ -6,6 +6,7 @@
   <meta name="description" content="재고자산 기출 Pattern 문제 풀이 — AI Exam Learning Platform">
   <title>문제 풀이 | AI Exam Learning Platform</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/source-viewer.css">
   <link rel="stylesheet" href="css/question.css">
 </head>
 <body>
@@ -65,9 +66,12 @@
           <nav aria-label="breadcrumb">
             <a href="#" class="breadcrumb-link" id="back-to-list">← 문제 목록</a>
           </nav>
-          <div class="question-meta" id="question-meta"></div>
-          <div class="question-toolbar">
-            <button type="button" class="button button--ghost" id="bookmark-btn" aria-pressed="false">북마크</button>
+          <div class="question-meta-row">
+            <div class="question-meta" id="question-meta"></div>
+            <div class="question-toolbar">
+              <div id="source-viewer-host" class="source-viewer-host" aria-label="원본 PDF"></div>
+              <button type="button" class="button button--ghost button--touch" id="bookmark-btn" aria-pressed="false">북마크</button>
+            </div>
           </div>
           <h2 id="solve-heading" class="visually-hidden">문제 풀이</h2>
         </header>

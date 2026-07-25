@@ -1,0 +1,249 @@
+{
+  "schema": "learning.pattern-promotion-log.v1",
+  "sprint": "Sprint-09F Pattern Promotion (Cost Approved)",
+  "generatedAt": "2026-07-26",
+  "operation": "append-only",
+  "targetFile": "data/pattern-db-mvp.json",
+  "rejectedNotPromoted": [
+    "COST_ABC_001"
+  ],
+  "rejectReason": "Algorithm Unit 위반 (Sprint-09E)",
+  "statusPolicy": "PROMOTED_PENDING_MAPPING — Pattern exists; Question.patternId unchanged until 09G",
+  "checksums": {
+    "questionDbSha256Before": "0cfcaa317bc25c811cebb48e3b53218556b2320f9c3538b2d4583ba9d16a9629",
+    "questionDbSha256After": "0cfcaa317bc25c811cebb48e3b53218556b2320f9c3538b2d4583ba9d16a9629",
+    "questionDbUnchanged": true
+  },
+  "counts": {
+    "patternsBefore": 17,
+    "patternsAfter": 22,
+    "appended": 5,
+    "existingUnchanged": 17
+  },
+  "beforePatternIds": [
+    "ACC_COST_002",
+    "ACC_EQ_001",
+    "ACC_FIN_001",
+    "ACC_FIN_002",
+    "ACC_FS_001",
+    "ACC_GEN_001",
+    "ACC_INT_001",
+    "ACC_INV_001",
+    "ACC_INV_003",
+    "ACC_INV_004",
+    "ACC_INV_006",
+    "ACC_INV_007",
+    "ACC_LEASE_001",
+    "ACC_PPE_001",
+    "ACC_PPE_002",
+    "ACC_REV_001",
+    "ACC_TAX_001"
+  ],
+  "afterPatternIds": [
+    "ACC_COST_002",
+    "ACC_EQ_001",
+    "ACC_FIN_001",
+    "ACC_FIN_002",
+    "ACC_FS_001",
+    "ACC_GEN_001",
+    "ACC_INT_001",
+    "ACC_INV_001",
+    "ACC_INV_003",
+    "ACC_INV_004",
+    "ACC_INV_006",
+    "ACC_INV_007",
+    "ACC_LEASE_001",
+    "ACC_PPE_001",
+    "ACC_PPE_002",
+    "ACC_REV_001",
+    "ACC_TAX_001",
+    "COST_PROCESS_001",
+    "COST_JOINT_001",
+    "COST_STD_001",
+    "COST_CVP_001",
+    "COST_MFG_001"
+  ],
+  "promotions": [
+    {
+      "patternId": "COST_PROCESS_001",
+      "beforePattern": null,
+      "afterPattern": {
+        "patternId": "COST_PROCESS_001",
+        "domain": "cost_accounting",
+        "chapter": "종합원가계산",
+        "title": "완성품환산량 기반 원가 배분",
+        "algorithm": "종합원가계산 / 환산량 / 완성품환산량",
+        "trigger": "종합원가계산·환산량·재공품 완성도·(공손)",
+        "relatedPatterns": [
+          "ACC_INV_006"
+        ],
+        "status": "PROMOTED_PENDING_MAPPING",
+        "frequency": 0,
+        "relatedQuestions": []
+      },
+      "promotionReason": "공통 Trigger(종합원가·환산량·재공 완성도)와 독립 Algorithm(EU→배분)이 명확하다. ACC_INV_006 등 FA Pattern으로 설명 불가. 다년도 반복 확인(승인 4).",
+      "humanApprovalReference": {
+        "sprint": "Sprint-09E",
+        "file": "data/pattern-taxonomy-cost-review-flags.json",
+        "decision": "APPROVE_CANDIDATE",
+        "confidence": "high",
+        "approvedEvidenceQuestions": [
+          "ACC_2018_Q079",
+          "ACC_2020_Q073",
+          "ACC_2024_Q073",
+          "ACC_2025_Q073"
+        ],
+        "processDetailForPROCESS": "data/pattern-taxonomy-review-flags.json"
+      },
+      "questionMappingChanged": false
+    },
+    {
+      "patternId": "COST_JOINT_001",
+      "beforePattern": null,
+      "afterPattern": {
+        "patternId": "COST_JOINT_001",
+        "domain": "cost_accounting",
+        "chapter": "결합원가",
+        "title": "결합원가·주부산품 배분",
+        "algorithm": "결합원가 배분",
+        "trigger": "결합공정·분리점·주산품·부산품·결합원가",
+        "relatedPatterns": [
+          "ACC_INV_007",
+          "ACC_GEN_001"
+        ],
+        "status": "PROMOTED_PENDING_MAPPING",
+        "frequency": 0,
+        "relatedQuestions": []
+      },
+      "promotionReason": "결합공정·분리점·주부산품 Trigger가 문항 간 공유된다. 결합원가 배분은 INV_007 LCM/NRV·GEN 버킷으로 대체 불가. Source=Y 3년 반복.",
+      "humanApprovalReference": {
+        "sprint": "Sprint-09E",
+        "file": "data/pattern-taxonomy-cost-review-flags.json",
+        "decision": "APPROVE_CANDIDATE",
+        "confidence": "high",
+        "approvedEvidenceQuestions": [
+          "ACC_2020_Q074",
+          "ACC_2024_Q076",
+          "ACC_2025_Q074"
+        ],
+        "processDetailForPROCESS": null
+      },
+      "questionMappingChanged": false
+    },
+    {
+      "patternId": "COST_STD_001",
+      "beforePattern": null,
+      "afterPattern": {
+        "patternId": "COST_STD_001",
+        "domain": "cost_accounting",
+        "chapter": "표준원가",
+        "title": "표준원가 차이분석",
+        "algorithm": "표준원가 차이 분석",
+        "trigger": "표준원가·가격/임률차이·능률/수량차이",
+        "relatedPatterns": [
+          "ACC_GEN_001"
+        ],
+        "status": "PROMOTED_PENDING_MAPPING",
+        "frequency": 0,
+        "relatedQuestions": []
+      },
+      "promotionReason": "표준원가 가격/임률·능률/수량 차이분석이 독립 Algorithm이다. FA Pattern으로 설명 불가. 2020·2024·2025 반복(09D PROCESS 오분류 이관분 포함).",
+      "humanApprovalReference": {
+        "sprint": "Sprint-09E",
+        "file": "data/pattern-taxonomy-cost-review-flags.json",
+        "decision": "APPROVE_CANDIDATE",
+        "confidence": "high",
+        "approvedEvidenceQuestions": [
+          "ACC_2020_Q075",
+          "ACC_2024_Q074",
+          "ACC_2025_Q075"
+        ],
+        "processDetailForPROCESS": null
+      },
+      "questionMappingChanged": false
+    },
+    {
+      "patternId": "COST_CVP_001",
+      "beforePattern": null,
+      "afterPattern": {
+        "patternId": "COST_CVP_001",
+        "domain": "cost_accounting",
+        "chapter": "관리회계",
+        "title": "CVP·전부/변동원가 분석",
+        "algorithm": "CVP 분석",
+        "trigger": "변동/전부원가·공헌이익·손익분기·제약자원",
+        "relatedPatterns": [
+          "ACC_INV_006",
+          "ACC_TAX_001",
+          "ACC_REV_001",
+          "ACC_GEN_001"
+        ],
+        "status": "PROMOTED_PENDING_MAPPING",
+        "frequency": 0,
+        "relatedQuestions": []
+      },
+      "promotionReason": "변동/전부원가·CVP·제약자원 의사결정의 공통 Trigger와 독립 Algorithm이 명확하다. INV/TAX/REV 오매핑이 FA로 해소되지 않는다. Source=Y 반복성 높음.",
+      "humanApprovalReference": {
+        "sprint": "Sprint-09E",
+        "file": "data/pattern-taxonomy-cost-review-flags.json",
+        "decision": "APPROVE_CANDIDATE",
+        "confidence": "high",
+        "approvedEvidenceQuestions": [
+          "ACC_2018_Q071",
+          "ACC_2018_Q075",
+          "ACC_2018_Q078",
+          "ACC_2020_Q076",
+          "ACC_2024_Q075",
+          "ACC_2024_Q077",
+          "ACC_2025_Q076",
+          "ACC_2025_Q077"
+        ],
+        "processDetailForPROCESS": null
+      },
+      "questionMappingChanged": false
+    },
+    {
+      "patternId": "COST_MFG_001",
+      "beforePattern": null,
+      "afterPattern": {
+        "patternId": "COST_MFG_001",
+        "domain": "cost_accounting",
+        "chapter": "제조원가",
+        "title": "제조원가 흐름·제품원가",
+        "algorithm": "제조원가 흐름",
+        "trigger": "제조원가 집계·재공/제품·매출원가·정상원가",
+        "relatedPatterns": [
+          "ACC_REV_001"
+        ],
+        "status": "PROMOTED_PENDING_MAPPING",
+        "frequency": 0,
+        "relatedQuestions": []
+      },
+      "promotionReason": "환산량 없는 제조원가 집계·재공/제품·매출원가 흐름은 PROCESS/STD와 분리되는 독립 Algorithm이다. REV Pattern으로 설명 불가. Source=Y 확정 2건으로 반복성은 medium.",
+      "humanApprovalReference": {
+        "sprint": "Sprint-09E",
+        "file": "data/pattern-taxonomy-cost-review-flags.json",
+        "decision": "APPROVE_CANDIDATE",
+        "confidence": "medium",
+        "approvedEvidenceQuestions": [
+          "ACC_2018_Q076",
+          "ACC_2018_Q080"
+        ],
+        "processDetailForPROCESS": null
+      },
+      "questionMappingChanged": false
+    }
+  ],
+  "nextSprint": {
+    "id": "09G",
+    "name": "Mapping Fix",
+    "order": [
+      "COST_PROCESS_001",
+      "COST_JOINT_001",
+      "COST_STD_001",
+      "COST_CVP_001",
+      "COST_MFG_001"
+    ],
+    "note": "Update Question primaryPattern/relatedPatterns or patternId only after explicit Mapping Fix Sprint approval. Keep frequency in sync with mapped question counts."
+  }
+}
