@@ -144,6 +144,17 @@ export function normalizeQuestionsPayload(payload) {
 }
 
 /**
+ * Taxonomy V2 — frequency / mapping 검증용 effective Pattern.
+ * primaryPattern 우선, 없으면 patternId. relatedPatterns는 count 대상이 아님.
+ * @param {object} question
+ * @returns {string|null|undefined}
+ */
+export function effectiveQuestionPatternId(question) {
+  if (!question || typeof question !== 'object') return null;
+  return question.primaryPattern ?? question.patternId;
+}
+
+/**
  * @param {typeof DB_PATH_SETS.mvp} dbSet
  * @param {object} data
  * @param {object} [options]
@@ -204,7 +215,10 @@ function validateDatabasePayload(dbSet, data, options = {}) {
   }
 
   for (const p of patterns || []) {
-    const cnt = (questions || []).filter((q) => q.patternId === p.patternId).length;
+    /* Taxonomy V2: primaryPattern ?? patternId — relatedPatterns 제외 */
+    const cnt = (questions || []).filter(
+      (q) => effectiveQuestionPatternId(q) === p.patternId,
+    ).length;
     if (p.frequency !== cnt) {
       errors.push(`${p.patternId}: frequency(${p.frequency}) != questions(${cnt})`);
     }
