@@ -28,7 +28,10 @@ npm-debug.log*
 # Build output
 dist/
 build/
+
+# Analysis / temporary artifacts
 data/analysis/
 data/analysis/tmp/
 *.tmp.json
 temp-*.json
+temp-question.json
