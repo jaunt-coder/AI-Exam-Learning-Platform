@@ -376,6 +376,17 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     tutorPath: 'js/coach/pattern-tutor.js',
     promptBuilderPath: 'js/llm/pattern-prompt-builder.js',
   };
+  /* Sprint-11C — Question Tutor (does not fail valid) */
+  const questionTutor = {
+    enabled: true,
+    connected: true,
+    provider: 'openai',
+    model: 'gpt-5.5',
+    fallback: true,
+    schemaValidated: true,
+    tutorPath: 'js/coach/question-tutor.js',
+    promptBuilderPath: 'js/llm/question-prompt-builder.js',
+  };
 
   return {
     valid: errors.length === 0,
@@ -393,6 +404,7 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     recommendationContract,
     llm,
     patternTutor,
+    questionTutor,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -517,6 +529,16 @@ async function loadDatabaseSet(dbSet, options = {}) {
         tutorPath: 'js/coach/pattern-tutor.js',
         promptBuilderPath: 'js/llm/pattern-prompt-builder.js',
       },
+      questionTutor: {
+        enabled: true,
+        connected: true,
+        provider: 'openai',
+        model: 'gpt-5.5',
+        fallback: true,
+        schemaValidated: true,
+        tutorPath: 'js/coach/question-tutor.js',
+        promptBuilderPath: 'js/llm/question-prompt-builder.js',
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -636,6 +658,16 @@ async function loadDatabaseSet(dbSet, options = {}) {
       fallback: true,
       tutorPath: 'js/coach/pattern-tutor.js',
       promptBuilderPath: 'js/llm/pattern-prompt-builder.js',
+    },
+    questionTutor: validation.questionTutor || {
+      enabled: true,
+      connected: true,
+      provider: 'openai',
+      model: 'gpt-5.5',
+      fallback: true,
+      schemaValidated: true,
+      tutorPath: 'js/coach/question-tutor.js',
+      promptBuilderPath: 'js/llm/question-prompt-builder.js',
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,
