@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sprint-06 Study Session — Pattern First inside Today's Study">
+  <meta name="description" content="Sprint-08 Session UX — Learning Flow First">
   <title>오늘 공부 | AI Exam Learning Platform</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/learning-loop.css">
@@ -30,10 +30,10 @@
   <main class="site-main" role="main">
     <div class="container study-layout study-layout--wide">
 
+      <!-- Today's Study: Progress → Preview → Mode → Start -->
       <section class="card study-card study-home" id="screen-home" aria-labelledby="home-heading">
         <p class="edu-kicker">Today's Study <span class="sync-mini-badge" id="home-sync-badge" aria-live="polite">Local Mode</span></p>
         <h2 id="home-heading" class="study-card__title edu-hero-title">오늘 Pattern을 익히러 왔습니다</h2>
-        <p class="section-desc">Session 안에 Pattern을 여러 개 담을 수 있습니다. 문제는 Pattern을 강화하는 수단입니다.</p>
 
         <div id="resume-host" class="resume-host" hidden></div>
 
@@ -41,37 +41,47 @@
           <p>현재 Beta에서는 검증 완료된 Pattern만 학습할 수 있습니다.</p>
         </aside>
 
-        <section class="session-progress-card" id="session-progress-home" aria-labelledby="session-progress-heading">
+        <!-- Single Session Progress (home) — compact -->
+        <section class="session-progress-card session-progress-card--compact" id="session-progress-home" aria-labelledby="session-progress-heading">
           <h3 id="session-progress-heading" class="session-progress-card__title">Session Progress</h3>
-          <dl class="edu-facts session-progress-facts">
-            <div><dt>Pattern</dt><dd id="home-prog-pattern">0 / 0</dd></div>
-            <div><dt>Question</dt><dd id="home-prog-question">0 / 0</dd></div>
-            <div><dt>Evidence</dt><dd id="home-prog-evidence">0</dd></div>
-            <div><dt>Retrieval</dt><dd id="home-prog-retrieval">0</dd></div>
+          <dl class="edu-facts session-progress-facts" id="session-progress-facts">
+            <div><dt>Pattern</dt><dd data-sp="pattern">0 / 0</dd></div>
+            <div><dt>Question</dt><dd data-sp="question">0 / 0</dd></div>
+            <div><dt>Evidence</dt><dd data-sp="evidence">0</dd></div>
+            <div><dt>Retrieval</dt><dd data-sp="retrieval">0</dd></div>
           </dl>
           <p class="ll-hint" id="home-session-hint">아직 오늘 공부를 시작하지 않았습니다.</p>
         </section>
 
-        <article class="today-pattern-card" id="today-pattern-card" aria-labelledby="today-pattern-name">
-          <p class="today-pattern-card__label">다음에 익힐 Pattern</p>
-          <h3 id="today-pattern-name" class="today-pattern-card__name">—</h3>
-          <dl class="edu-facts" id="today-pattern-facts">
-            <div><dt>중요도</dt><dd id="today-grade">—</dd></div>
-            <div><dt>예상 학습시간</dt><dd id="today-time">—</dd></div>
-            <div><dt>대표 문제 수</dt><dd id="today-qcount">—</dd></div>
-          </dl>
+        <!-- Pattern Preview (above Start) -->
+        <article class="pattern-preview-card" id="today-pattern-card" aria-labelledby="today-pattern-name">
+          <p class="pattern-preview-card__label">Pattern Preview</p>
+          <h3 id="today-pattern-name" class="pattern-preview-card__name">—</h3>
+          <div class="edu-block">
+            <h3>왜 배우는가</h3>
+            <p id="today-why">—</p>
+          </div>
+          <div class="edu-block">
+            <h3>시험장에서 언제 쓰는가</h3>
+            <p id="today-when">—</p>
+          </div>
           <div class="edu-block">
             <h3>오늘 목표</h3>
             <p id="today-goal">—</p>
           </div>
+          <dl class="edu-facts pattern-preview-card__facts">
+            <div><dt>예상 시간</dt><dd id="today-time">—</dd></div>
+            <div><dt>대표 문제 수</dt><dd id="today-qcount">—</dd></div>
+          </dl>
         </article>
 
+        <!-- Pattern Master / Exam — below Preview, above Start -->
         <div class="mode-options mode-options--compact" role="radiogroup" aria-label="학습 모드">
           <label class="mode-option is-selected">
             <input type="radio" name="study-mode" value="pattern_master" checked>
             <span class="mode-option__body">
               <strong>Pattern Master</strong>
-              <em>Pattern을 먼저 익힌 뒤 문제를 적용합니다.</em>
+              <em>Preview를 확인한 뒤 문제에 적용합니다.</em>
             </span>
           </label>
           <label class="mode-option">
@@ -83,34 +93,26 @@
           </label>
         </div>
 
-        <div class="ll-actions">
-          <button type="button" class="button button--primary" id="btn-start-today">이 Pattern 학습 시작</button>
-          <button type="button" class="button button--ghost" id="btn-pick-pattern">다른 Pattern 고르기</button>
+        <div class="ll-actions home-start-actions">
+          <button type="button" class="button button--primary button--touch" id="btn-start-today">Start · 문제 풀기</button>
+          <button type="button" class="button button--ghost button--touch" id="btn-pick-pattern">다른 Pattern 고르기</button>
         </div>
         <p class="ll-hint learner-status" id="home-status" aria-live="polite"></p>
       </section>
 
       <section class="card study-card" id="screen-pattern-pick" hidden aria-labelledby="pick-heading">
         <h2 id="pick-heading" class="study-card__title">오늘 익힐 Pattern</h2>
-        <p class="section-desc">검증된 Pattern만 표시합니다. Session 안에서 이어서 고를 수 있습니다.</p>
+        <p class="section-desc">검증된 Pattern만 표시합니다.</p>
         <div id="pattern-pick-list" class="pattern-pick-list"></div>
         <div class="ll-actions">
-          <button type="button" class="button button--ghost" id="btn-back-home">오늘의 학습으로</button>
+          <button type="button" class="button button--ghost button--touch" id="btn-back-home">오늘의 학습으로</button>
         </div>
       </section>
 
       <div id="screen-flow" class="study-flow" hidden>
         <div class="study-flow__nav card">
-          <header class="session-header" id="session-header" aria-label="Session 진행">
-            <p class="session-header__kicker">현재 학습 중</p>
-            <p class="session-header__pattern" id="session-header-pattern">—</p>
-            <dl class="session-header__meta">
-              <div><dt>남은 Pattern</dt><dd id="session-header-remaining">—</dd></div>
-              <div><dt>진행률</dt><dd id="session-header-pct">0%</dd></div>
-            </dl>
-          </header>
           <div class="progress-stack">
-            <p class="study-progress" id="stage-label">Pattern Preview</p>
+            <p class="study-progress" id="stage-label">문제 적용</p>
             <p class="study-progress study-progress--pattern" id="study-progress-pattern">Pattern —</p>
             <p class="study-progress study-progress--question" id="study-progress-question">Question —</p>
           </div>
@@ -136,7 +138,7 @@
               <legend class="visually-hidden">선지 선택</legend>
             </fieldset>
             <div class="ll-actions">
-              <button type="button" class="button button--primary" id="btn-submit">제출</button>
+              <button type="button" class="button button--primary button--touch" id="btn-submit">제출</button>
             </div>
           </section>
 
@@ -153,48 +155,54 @@
           <section class="card study-card edu-panel" id="panel-review" hidden></section>
           <section class="card study-card edu-panel" id="panel-retrieval" hidden aria-labelledby="rt-heading"></section>
 
-          <div class="ll-actions flow-actions">
-            <button type="button" class="button button--ghost" id="btn-prev-stage">이전</button>
-            <button type="button" class="button button--primary" id="btn-next-stage">다음</button>
-            <button type="button" class="button button--ghost" id="btn-change-pattern">다른 Pattern</button>
-            <button type="button" class="button button--ghost dev-only" id="btn-reset-demo">학습 기록 초기화</button>
+          <!-- Flow actions: only during active study (question+) -->
+          <div class="ll-actions flow-actions" id="flow-actions" hidden>
+            <button type="button" class="button button--ghost button--touch" id="btn-prev-stage">이전</button>
+            <button type="button" class="button button--primary button--touch" id="btn-next-stage">다음</button>
+            <button type="button" class="button button--ghost button--touch" id="btn-change-pattern">다른 Pattern</button>
+            <button type="button" class="button button--ghost button--touch dev-only" id="btn-reset-demo">학습 기록 초기화</button>
           </div>
         </div>
 
-        <aside class="study-side-col" aria-label="학습 현황">
-          <section class="card study-card" aria-labelledby="dashboard-heading">
-            <h2 id="dashboard-heading" class="study-card__title">Session Progress</h2>
-            <dl class="ll-dash learner-dash" id="dashboard">
-              <div><dt>현재 Pattern</dt><dd id="d-pattern">—</dd></div>
-              <div><dt>Pattern</dt><dd id="d-patterns-learned">0 / 0</dd></div>
-              <div><dt>Question</dt><dd id="d-questions">0 / 0</dd></div>
-              <div><dt>Evidence</dt><dd id="d-evidence">0</dd></div>
-              <div><dt>Retrieval</dt><dd id="d-retrieval">0</dd></div>
-              <div><dt>공부 시간</dt><dd id="d-time">0분</dd></div>
-              <div class="dash-secondary"><dt>복습한 Pattern</dt><dd id="d-patterns-reviewed">0</dd></div>
-              <div class="dash-secondary"><dt>Mastery</dt><dd id="d-mastery">unknown</dd></div>
-              <div class="dash-secondary"><dt>Recommendation</dt><dd id="d-reco">absent</dd></div>
-            </dl>
-            <p class="ll-hint learner-status" id="loop-status">Pattern을 중심으로 학습하세요.</p>
+        <aside class="study-side-col" id="study-side-col" aria-label="학습 현황">
+          <section class="card study-card dash-panel" id="dash-panel" aria-labelledby="dashboard-heading">
+            <div class="dash-panel__head">
+              <h2 id="dashboard-heading" class="study-card__title">Session Progress</h2>
+              <button type="button" class="button button--ghost button--touch dash-toggle" id="btn-dash-toggle" aria-expanded="true" aria-controls="dashboard-body">접기</button>
+            </div>
+            <div id="dashboard-body" class="dash-panel__body">
+              <dl class="ll-dash learner-dash" id="dashboard">
+                <div><dt>현재 Pattern</dt><dd id="d-pattern">—</dd></div>
+                <div><dt>Pattern</dt><dd id="d-patterns-learned">0 / 0</dd></div>
+                <div><dt>Question</dt><dd id="d-questions">0 / 0</dd></div>
+                <div><dt>Evidence</dt><dd id="d-evidence">0</dd></div>
+                <div><dt>Retrieval</dt><dd id="d-retrieval">0</dd></div>
+                <div><dt>공부 시간</dt><dd id="d-time">0분</dd></div>
+                <div class="dash-secondary"><dt>복습한 Pattern</dt><dd id="d-patterns-reviewed">0</dd></div>
+                <div class="dash-secondary"><dt>Mastery</dt><dd id="d-mastery">unknown</dd></div>
+                <div class="dash-secondary"><dt>Recommendation</dt><dd id="d-reco">absent</dd></div>
+              </dl>
+              <p class="ll-hint learner-status" id="loop-status">Pattern을 중심으로 학습하세요.</p>
+            </div>
           </section>
 
           <div id="evidence-pad-root" hidden></div>
         </aside>
       </div>
 
-      <!-- Pattern Closing: choice only, no Export -->
+      <!-- Pattern Closing: Next Pattern choice · no Export -->
       <section class="card study-card session-closing" id="screen-closing" hidden aria-labelledby="closing-heading">
         <p class="edu-kicker">Pattern 완료</p>
         <h2 id="closing-heading" class="study-card__title edu-hero-title">이 Pattern을 익혔습니다</h2>
         <div id="closing-body"></div>
         <div class="pattern-choice-actions ll-actions">
-          <button type="button" class="button button--primary" id="btn-continue-learning">Continue Learning</button>
-          <button type="button" class="button button--ghost" id="btn-finish-today">Finish Today's Study</button>
+          <button type="button" class="button button--primary button--touch" id="btn-continue-learning">Next Pattern</button>
+          <button type="button" class="button button--ghost button--touch" id="btn-finish-today">Finish Today's Study</button>
         </div>
-        <p class="ll-hint">다음 Pattern을 이어가거나, 오늘 공부를 끝낼 수 있습니다. Export는 오늘 공부 종료 시에만 합니다.</p>
+        <p class="ll-hint">다음 Pattern으로 이어가거나 오늘 공부를 종료하세요. Export는 Session 종료 시에만 표시됩니다.</p>
       </section>
 
-      <!-- Session Summary: Export only here -->
+      <!-- Session Summary + Export -->
       <section class="card study-card session-summary" id="screen-session-summary" hidden aria-labelledby="summary-heading">
         <p class="edu-kicker">Study Session</p>
         <h2 id="summary-heading" class="study-card__title edu-hero-title">오늘 공부 요약</h2>
@@ -202,7 +210,7 @@
         <div id="session-summary-body"></div>
         <div id="session-export-slot"></div>
         <div class="ll-actions">
-          <button type="button" class="button button--primary" id="btn-summary-home">오늘의 학습으로</button>
+          <button type="button" class="button button--primary button--touch" id="btn-summary-home">오늘의 학습으로</button>
         </div>
       </section>
     </div>
@@ -210,7 +218,7 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-row">
-      <p>Pattern First · Session Architecture · No AI</p>
+      <p>Pattern First · Learning Flow · No AI</p>
       <button type="button" class="footer-dev-toggle" id="btn-toggle-dev" aria-pressed="false" title="개발자 보기">···</button>
     </div>
   </footer>

@@ -123,6 +123,9 @@ RC2-E8 read-only 회귀/게이트: `scripts/regression/` · `docs/release/RC2-E8
 | [sync-policy.md](docs/sync-policy.md) | Sync · Conflict Policy |
 | [storage-adapter-design.md](docs/storage-adapter-design.md) | Storage Adapter 설계 |
 | [sprint-07-report.md](docs/sprint-07-report.md) | Sprint-07 보고서 |
+| [session-learning-flow.md](docs/session-learning-flow.md) | Session Learning Flow (Sprint-08) |
+| [mobile-layout-guideline.md](docs/mobile-layout-guideline.md) | Mobile Layout Guideline |
+| [sprint-08-session-ux-refactor.md](docs/sprint-08-session-ux-refactor.md) | Sprint-08 보고서 |
 | [10-development-roadmap-spec.md](docs/10-development-roadmap-spec.md) | 개발 로드맵 |
 | [20-final-implementation-plan.md](docs/20-final-implementation-plan.md) | 최종 실행 계획 |
 | [23-development-environment-spec.md](docs/23-development-environment-spec.md) | 개발 환경 |
@@ -132,16 +135,18 @@ RC2-E8 read-only 회귀/게이트: `scripts/regression/` · `docs/release/RC2-E8
 | [33-ai-exam-coach-agent-spec.md](docs/33-ai-exam-coach-agent-spec.md) | AI Exam Coach Agent |
 | [34-truth-split-migration-plan.md](docs/34-truth-split-migration-plan.md) | Emit→MVP Promotion / Truth Split 해소 |
 
-## Study Session (Sprint-06)
+## Study Session (Sprint-06 · Sprint-08 UX)
 
 학습 단위: `Question ⊂ Pattern ⊂ Study Session`
 
 - 진입점: `learning-loop.html`
-- Pattern 종료 시 Export하지 않음 → **Continue Learning** / **Finish Today's Study** 선택
-- Export(JSON·Markdown v3)는 **오늘 공부 종료(Session Summary)** 에서만
+- 화면 순서: **Today's Study → Preview → Pattern Master → Start → Question → … → Closing → Next Pattern**
+- Preview는 Start 위 · Start 시 Question 자동 진입
+- Pattern 종료 시 Export 없음 → **Next Pattern** / **Finish Today's Study**
+- Export는 **Session Summary** 에서만 · Dashboard는 collapse (모바일 기본 숨김)
 - Question / Answer / Pattern / Knowledge DB 무변경 · AI·Recommendation·Mastery 미사용
 
-상세: [docs/session-architecture.md](docs/session-architecture.md)
+상세: [docs/session-architecture.md](docs/session-architecture.md) · [docs/session-learning-flow.md](docs/session-learning-flow.md) · [docs/sprint-08-session-ux-refactor.md](docs/sprint-08-session-ux-refactor.md)
 
 ## Cloud Study Foundation (Sprint-07)
 

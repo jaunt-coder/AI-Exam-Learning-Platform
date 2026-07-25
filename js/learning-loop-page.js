@@ -1,6 +1,6 @@
 /**
- * Sprint-06 Study Session Architecture
- * Presentation layer only — Pattern ⊂ Session. Export on Session Finish only.
+ * Sprint-08 Session UX Refactor — Learning Flow First
+ * Presentation layer only. No Runtime / Storage / DB / AI changes.
  */
 
 import { runLearningLoopCycle } from '../runtime/learning-loop.js';
@@ -84,27 +84,27 @@ const els = {
   screenSummary: document.getElementById('screen-session-summary'),
   pickList: document.getElementById('pattern-pick-list'),
   todayName: document.getElementById('today-pattern-name'),
-  todayGrade: document.getElementById('today-grade'),
+  todayWhy: document.getElementById('today-why'),
+  todayWhen: document.getElementById('today-when'),
   todayTime: document.getElementById('today-time'),
   todayQcount: document.getElementById('today-qcount'),
   todayGoal: document.getElementById('today-goal'),
   homeStatus: document.getElementById('home-status'),
-  homeProgPattern: document.getElementById('home-prog-pattern'),
-  homeProgQuestion: document.getElementById('home-prog-question'),
-  homeProgEvidence: document.getElementById('home-prog-evidence'),
-  homeProgRetrieval: document.getElementById('home-prog-retrieval'),
   homeSessionHint: document.getElementById('home-session-hint'),
+  sessionProgressHome: document.getElementById('session-progress-home'),
   closingBody: document.getElementById('closing-body'),
   summaryBody: document.getElementById('session-summary-body'),
   summaryLead: document.getElementById('summary-lead'),
   sessionExportSlot: document.getElementById('session-export-slot'),
-  sessionHeaderPattern: document.getElementById('session-header-pattern'),
-  sessionHeaderRemaining: document.getElementById('session-header-remaining'),
-  sessionHeaderPct: document.getElementById('session-header-pct'),
   stageLabel: document.getElementById('stage-label'),
   progressPattern: document.getElementById('study-progress-pattern'),
   progressQuestion: document.getElementById('study-progress-question'),
   stageDots: document.getElementById('stage-dots'),
+  flowActions: document.getElementById('flow-actions'),
+  dashPanel: document.getElementById('dash-panel'),
+  dashBody: document.getElementById('dashboard-body'),
+  btnDashToggle: document.getElementById('btn-dash-toggle'),
+  studySideCol: document.getElementById('study-side-col'),
   panels: {
     preview: document.getElementById('panel-preview'),
     intro: document.getElementById('panel-intro'),
@@ -177,6 +177,8 @@ let evidencePad = null;
 let retrievalMount = null;
 let retrievalSavedForQuestion = false;
 let evidenceSavedForQuestion = false;
+/** Dashboard open state — desktop default open, tablet/mobile start collapsed */
+let dashExpanded = null;
 
 function sessionIdForExport() {
   const d = new Date(sessionStartedAt || Date.now());
@@ -360,8 +362,19 @@ function setLearnerStatus(msg) {
   if (els.homeStatus && !els.screenHome.hidden) els.homeStatus.textContent = msg;
 }
 
-function refreshDashboard() {
-  const m = sessionMetrics();
+/** Single Session Progress data source (WP-07) */
+function applySessionProgress(m) {
+  const root = els.sessionProgressHome;
+  if (root) {
+    const set = (key, val) => {
+      const el = root.querySelector(`[data-sp="${key}"]`);
+      if (el) el.textContent = val;
+    };
+    set('pattern', `${m.patternDone} / ${m.patternTotal}`);
+    set('question', `${m.qDone} / ${m.qTotal}`);
+    set('evidence', String(m.evidenceCount));
+    set('retrieval', String(m.retrievalCount));
+  }
   if (els.dPatternsLearned) {
     els.dPatternsLearned.textContent = `${m.patternDone} / ${m.patternTotal}`;
   }
@@ -380,18 +393,6 @@ function refreshDashboard() {
   if (els.dMastery) els.dMastery.textContent = 'unknown';
   if (els.dReco) els.dReco.textContent = 'absent';
 
-  if (els.homeProgPattern) {
-    els.homeProgPattern.textContent = `${m.patternDone} / ${m.patternTotal}`;
-  }
-  if (els.homeProgQuestion) {
-    els.homeProgQuestion.textContent = `${m.qDone} / ${m.qTotal}`;
-  }
-  if (els.homeProgEvidence) {
-    els.homeProgEvidence.textContent = String(m.evidenceCount);
-  }
-  if (els.homeProgRetrieval) {
-    els.homeProgRetrieval.textContent = String(m.retrievalCount);
-  }
   if (els.homeSessionHint) {
     if (m.patternDone === 0) {
       els.homeSessionHint.textContent =
@@ -402,21 +403,55 @@ function refreshDashboard() {
       els.homeSessionHint.textContent = `Session 진행 중 · Pattern ${m.patternDone} / ${m.patternTotal}`;
     }
   }
-
-  updateSessionHeader(m);
 }
 
-function updateSessionHeader(metrics) {
-  const m = metrics || sessionMetrics();
-  if (els.sessionHeaderPattern) {
-    els.sessionHeaderPattern.textContent = lesson?.name || '—';
+function refreshDashboard() {
+  applySessionProgress(sessionMetrics());
+}
+
+function preferredDashExpanded() {
+  if (typeof window === 'undefined') return true;
+  const w = window.innerWidth;
+  if (w <= 768) return false; /* mobile: hidden/collapsed */
+  if (w <= 1024) return false; /* tablet: default collapse */
+  return true; /* desktop: open, collapsible */
+}
+
+function applyDashExpanded(expanded) {
+  dashExpanded = expanded;
+  const panel = els.dashPanel;
+  const body = els.dashBody;
+  const btn = els.btnDashToggle;
+  const side = els.studySideCol;
+  if (panel) panel.classList.toggle('is-collapsed', !expanded);
+  if (body) body.hidden = !expanded;
+  if (btn) {
+    btn.setAttribute('aria-expanded', String(expanded));
+    btn.textContent = expanded ? '접기' : '펼치기';
   }
-  if (els.sessionHeaderRemaining) {
-    els.sessionHeaderRemaining.textContent = String(m.remaining);
+  /* Mobile: hide side column when collapsed */
+  if (side && window.innerWidth <= 768) {
+    side.classList.toggle('is-mobile-hidden', !expanded);
+  } else if (side) {
+    side.classList.remove('is-mobile-hidden');
   }
-  if (els.sessionHeaderPct) {
-    els.sessionHeaderPct.textContent = `${m.pct}%`;
-  }
+}
+
+function initDashboardCollapse() {
+  applyDashExpanded(preferredDashExpanded());
+  els.btnDashToggle?.addEventListener('click', () => {
+    applyDashExpanded(!dashExpanded);
+  });
+  window.addEventListener('resize', () => {
+    /* Only auto-adjust when user hasn't forced open on mobile via toggle mid-session —
+       keep current if already set; on first paint use preferred. */
+    if (dashExpanded === null) applyDashExpanded(preferredDashExpanded());
+    else if (window.innerWidth > 768 && els.studySideCol) {
+      els.studySideCol.classList.remove('is-mobile-hidden');
+    } else if (!dashExpanded) {
+      applyDashExpanded(false);
+    }
+  });
 }
 
 function refreshSyncBadge() {
@@ -485,10 +520,14 @@ function applyResumeSnapshot(snap) {
   if (list[stageIndex] === 'result') {
     stageIndex = list.indexOf('question');
   }
+  /* Skip pre-question lesson stages on resume (Preview is on home) */
+  const qIdx = list.indexOf('question');
+  if (qIdx >= 0 && stageIndex < qIdx) stageIndex = qIdx;
   evidencePad?.close();
   retrievalMount?.destroy?.();
   retrievalMount = null;
   showScreen('flow');
+  applyDashExpanded(preferredDashExpanded());
   setActiveStage();
   setLearnerStatus('이전 학습을 이어서 시작합니다.');
   return true;
@@ -1100,23 +1139,36 @@ function setActiveStage() {
   const atQuestion = stage === 'question';
   const atResult = stage === 'result';
   const atRetrieval = stage === 'retrieval';
+  const atReview = stage === 'review';
+  const studyActive =
+    atQuestion || atResult || atReview || atRetrieval;
+
+  /* WP-05: no Prev/Next/Other Pattern before study (Preview/Lesson) */
+  if (els.flowActions) els.flowActions.hidden = !studyActive;
+
   els.btnSubmit.hidden = !atQuestion;
-  els.btnNext.disabled = atQuestion && !submitted;
-  if (atResult) els.btnNext.disabled = false;
-  if (stage === 'review') {
-    els.btnNext.textContent = '회상으로';
-  } else if (atRetrieval) {
-    const pack = studyPatterns[patternIndex];
-    const qCount = pack?.questions?.length || 1;
-    els.btnNext.textContent =
-      questionIndex < qCount - 1 ? '다음 문제' : 'Pattern 완료';
-  } else if (atQuestion) {
-    els.btnNext.textContent = '결과로';
-  } else {
-    els.btnNext.textContent = '다음';
+  if (els.btnNext) {
+    els.btnNext.disabled = atQuestion && !submitted;
+    if (atResult) els.btnNext.disabled = false;
+    if (atReview) {
+      els.btnNext.textContent = '회상으로';
+    } else if (atRetrieval) {
+      const pack = studyPatterns[patternIndex];
+      const qCount = pack?.questions?.length || 1;
+      els.btnNext.textContent =
+        questionIndex < qCount - 1 ? '다음 문제' : 'Pattern 완료';
+    } else if (atQuestion) {
+      els.btnNext.textContent = '결과로';
+    } else {
+      els.btnNext.textContent = '다음';
+    }
   }
 
-  els.btnPrev.disabled = stageIndex === 0;
+  if (els.btnPrev) {
+    /* Do not walk back into Preview/Lesson stages from Question */
+    const qIdx = stages().indexOf('question');
+    els.btnPrev.disabled = stageIndex <= qIdx;
+  }
   refreshDashboard();
   captureResumeSnapshot();
   refreshSyncBadge();
@@ -1144,29 +1196,54 @@ function renderTodayHome() {
   if (els.betaScopeNotice) {
     els.betaScopeNotice.innerHTML = `
       <p><strong>Beta 범위 안내</strong> — 현재 Beta에서는 <strong>검증 완료된 Pattern만</strong> 학습할 수 있습니다.</p>
-      <p>지금 학습 가능 <strong>${available}</strong>개 · Master verified <strong>${verifiedMaster}</strong>개 중 나머지 <strong>${plannedOpen}</strong>개는 검증·매핑 후 순차 개방 예정입니다. 전 과목·전 Pattern이 아닙니다.</p>
+      <p>학습 가능 <strong>${available}</strong>개 · 나머지 <strong>${plannedOpen}</strong>개는 검증 후 개방 예정입니다.</p>
     `;
   }
 
+  refreshDashboard();
+
   if (!pack?.lesson) {
-    els.todayName.textContent = '학습 가능한 Pattern이 없습니다';
-    els.todayGrade.textContent = '—';
-    els.todayTime.textContent = '—';
-    els.todayQcount.textContent = '—';
-    els.todayGoal.textContent = '검증된 Pattern 매핑을 확인하세요.';
-    els.btnStartToday.disabled = true;
+    if (els.todayName) els.todayName.textContent = '학습 가능한 Pattern이 없습니다';
+    if (els.todayWhy) els.todayWhy.textContent = '—';
+    if (els.todayWhen) els.todayWhen.textContent = '—';
+    if (els.todayTime) els.todayTime.textContent = '—';
+    if (els.todayQcount) els.todayQcount.textContent = '—';
+    if (els.todayGoal) {
+      els.todayGoal.textContent = '검증된 Pattern 매핑을 확인하세요.';
+    }
+    if (els.btnStartToday) els.btnStartToday.disabled = true;
     return;
   }
+
   const L = pack.lesson;
-  els.todayName.textContent = L.name;
-  els.todayGrade.textContent = L.grade || '—';
-  els.todayTime.textContent = L.preview.estimated_time || '—';
-  els.todayQcount.textContent = `${pack.questions.length}문항`;
-  els.todayGoal.textContent = assetOr(
-    L.preview.learning_goal,
+  const I = L.introduction || {};
+  const why = assetOr(
+    I.summary || L.preview?.overview,
     '자산이 없습니다.'
   );
-  els.btnStartToday.disabled = false;
+  const whenParts = [];
+  if (I.when_appears) whenParts.push(I.when_appears);
+  if ((L.preview?.keywords || []).length) {
+    whenParts.push((L.preview.keywords || []).join(' · '));
+  }
+  const when = whenParts.length ? whenParts.join(' · ') : '자산이 없습니다.';
+
+  if (els.todayName) els.todayName.textContent = L.name;
+  if (els.todayWhy) els.todayWhy.textContent = why;
+  if (els.todayWhen) els.todayWhen.textContent = when;
+  if (els.todayTime) {
+    els.todayTime.textContent = L.preview?.estimated_time || '—';
+  }
+  if (els.todayQcount) {
+    els.todayQcount.textContent = `${pack.questions.length}문항`;
+  }
+  if (els.todayGoal) {
+    els.todayGoal.textContent = assetOr(
+      L.preview?.learning_goal,
+      '자산이 없습니다.'
+    );
+  }
+  if (els.btnStartToday) els.btnStartToday.disabled = false;
   setItem(KEY_TODAY_PATTERN, L.pattern_id);
 }
 
@@ -1246,15 +1323,22 @@ function startPatternFlow() {
   lastAttemptEvent = null;
   retrievalSavedForQuestion = false;
   evidenceSavedForQuestion = false;
-  stageIndex = 0;
+  /* WP-08: Start → Question (Preview already shown on Today's Study) */
+  const list = stages();
+  const qIdx = list.indexOf('question');
+  stageIndex = qIdx >= 0 ? qIdx : 0;
+  if (lesson.pattern_id) markPatternLearned(lesson.pattern_id);
   evidencePad?.close();
   retrievalMount?.destroy?.();
   retrievalMount = null;
   showScreen('flow');
+  /* Ensure dashboard available during study */
+  if (dashExpanded === null) applyDashExpanded(preferredDashExpanded());
+  else applyDashExpanded(dashExpanded);
   setActiveStage();
   setLearnerStatus(
     studyMode === 'pattern_master'
-      ? 'Pattern을 먼저 익힌 뒤 문제에 적용합니다.'
+      ? 'Preview를 확인했습니다. 문제에 Pattern을 적용하세요.'
       : 'Exam Mode — 제출 후 Pattern Review로 강화합니다.'
   );
   captureResumeSnapshot();
@@ -1352,7 +1436,7 @@ function onContinueLearning() {
   renderTodayHome();
   showScreen('home');
   setLearnerStatus(
-    'Today\'s Study로 돌아왔습니다. 다음 Pattern을 선택해 이어 학습하세요.'
+    'Next Pattern — Preview를 확인한 뒤 Start로 문제를 시작하세요.'
   );
   refreshDashboard();
   refreshSyncBadge();
@@ -1430,11 +1514,13 @@ function onNext() {
 }
 
 function onPrev() {
-  if (stageIndex <= 0) return;
+  const qIdx = stages().indexOf('question');
+  if (stageIndex <= Math.max(0, qIdx)) return;
   stageIndex -= 1;
   if (stages()[stageIndex] === 'result' && !submitted) {
     stageIndex -= 1;
   }
+  if (stageIndex < qIdx) stageIndex = qIdx;
   setActiveStage();
 }
 
@@ -1471,6 +1557,7 @@ async function init() {
   loadPrefs();
   applyViewMode();
   bindModeOptions();
+  initDashboardCollapse();
   saveLearningState(loadLearningState(STUDENT_ID));
 
   const radio = document.querySelector(
