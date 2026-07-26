@@ -8,6 +8,8 @@ import { buildCoachDashboard } from './coach/ai-coach-service.js';
 import { buildPatternTutorDashboardCard } from './coach/pattern-tutor.js';
 import { buildQuestionTutorDashboardCard } from './coach/question-tutor.js';
 
+const INTEGRITY_REPORT_URL = 'data/question-integrity-report.json';
+
 function applyTheme() {
   const theme = getItem(STORAGE_KEYS.THEME, 'light') || 'light';
   document.documentElement.setAttribute('data-theme', theme);
@@ -248,6 +250,57 @@ function renderQuestionTutorCard(card, tutor) {
   `;
 }
 
+async function loadIntegrityReport() {
+  try {
+    const res = await fetch(INTEGRITY_REPORT_URL, { cache: 'no-store' });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (_err) {
+    return null;
+  }
+}
+
+function renderIntegrityCard(card, report) {
+  if (!card) return;
+  if (!report) {
+    card.innerHTML =
+      '<p class="ld-empty">Integrity Report를 불러오지 못했습니다.</p>';
+    return;
+  }
+  const mismatch = Number(report.mismatchCount) || 0;
+  const high = Array.isArray(report.highRiskQuestions)
+    ? report.highRiskQuestions
+    : [];
+  const review = Array.isArray(report.reviewRequired)
+    ? report.reviewRequired
+    : [];
+  const highIds = high
+    .slice(0, 8)
+    .map((v) => escapeHtml(v.questionId))
+    .join(', ');
+  const reviewIds = review
+    .slice(0, 8)
+    .map((v) => escapeHtml(v.questionId))
+    .join(', ');
+
+  card.innerHTML = `
+    <dl class="ld-dl">
+      <div><dt>분류 오류 개수</dt><dd>${mismatch}</dd></div>
+      <div><dt>Human Review 필요</dt><dd>${review.length}</dd></div>
+      <div><dt>High Confidence mismatch</dt><dd>${high.length}</dd></div>
+      <div><dt>Checked</dt><dd>${Number(report.totalChecked) || 0}</dd></div>
+    </dl>
+    <div class="ld-tutor-block">
+      <h4>High Confidence mismatch</h4>
+      <p class="ld-coach-text">${highIds || '—'}</p>
+    </div>
+    <div class="ld-tutor-block">
+      <h4>Human Review 필요 문항</h4>
+      <p class="ld-coach-text">${reviewIds || '—'}</p>
+    </div>
+  `;
+}
+
 function renderDashboard(dashboard) {
   renderTodayStudy(el('card-today-study'), dashboard.todayStudy);
   renderCountList(el('card-mastery'), dashboard.masterySummary, [
@@ -298,14 +351,20 @@ async function main() {
     const questionTutor = await buildQuestionTutorDashboardCard();
     renderQuestionTutorCard(el('card-question-tutor'), questionTutor);
 
+    const integrity = await loadIntegrityReport();
+    renderIntegrityCard(el('card-integrity'), integrity);
+
     if (status) {
-      status.textContent = questionTutor?.fallback
-        ? 'Learning Dashboard 준비 완료 · Question Tutor fallback'
-        : patternTutor?.fallback
-          ? 'Learning Dashboard 준비 완료 · Pattern Tutor fallback'
-          : coach.today?.fallback
-            ? 'Learning Dashboard 준비 완료 · Rule Coach fallback'
-            : 'Learning Dashboard 준비 완료 · AI Question Tutor ready';
+      const mismatch = Number(integrity?.mismatchCount) || 0;
+      status.textContent = integrity
+        ? `Learning Dashboard 준비 완료 · Integrity mismatch ${mismatch}`
+        : questionTutor?.fallback
+          ? 'Learning Dashboard 준비 완료 · Question Tutor fallback'
+          : patternTutor?.fallback
+            ? 'Learning Dashboard 준비 완료 · Pattern Tutor fallback'
+            : coach.today?.fallback
+              ? 'Learning Dashboard 준비 완료 · Rule Coach fallback'
+              : 'Learning Dashboard 준비 완료 · AI Question Tutor ready';
     }
   } catch (err) {
     if (status) {

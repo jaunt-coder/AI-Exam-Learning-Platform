@@ -1,0 +1,729 @@
+{
+  "generatedAt": "2026-07-26T00:49:05Z",
+  "totalChecked": 240,
+  "mismatchCount": 37,
+  "highRiskQuestions": [
+    {
+      "questionId": "ACC_2015_Q045",
+      "currentChapter": "ACC_REV",
+      "currentPattern": "ACC_REV_001",
+      "detectedChapter": "ACC_INV",
+      "detectedPatternFamily": "ACC_INV",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "재고자산",
+          "매출원가",
+          "상품매입"
+        ],
+        "patternFamily": [
+          "재고자산",
+          "매출원가"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2015_Q075",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "ACC_INV_006",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "종합원가계산",
+          "완성품환산량",
+          "가중평균법",
+          "선입선출법",
+          "환산량",
+          "기초재공품",
+          "기말재공품",
+          "당기투입량",
+          "당기완성량",
+          "가공원가",
+          "전환원가"
+        ],
+        "patternFamily": [
+          "종합원가계산",
+          "완성품환산량",
+          "가중평균법",
+          "선입선출법",
+          "환산량"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2017_Q068",
+      "currentChapter": "ACC_REV",
+      "currentPattern": "ACC_REV_001",
+      "detectedChapter": "ACC_INV",
+      "detectedPatternFamily": "ACC_INV",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "재고자산",
+          "매출원가",
+          "상품매입"
+        ],
+        "patternFamily": [
+          "재고자산",
+          "매출원가"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2017_Q077",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "ACC_INV_006",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "종합원가계산",
+          "선입선출법",
+          "기초재공품",
+          "기말재공품",
+          "가공원가",
+          "전환원가"
+        ],
+        "patternFamily": [
+          "종합원가계산",
+          "선입선출법"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2018_Q079",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "COST_PROCESS_001",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "종합원가계산",
+          "완성품환산량",
+          "가중평균법",
+          "선입선출법",
+          "환산량",
+          "기초재공품"
+        ],
+        "patternFamily": [
+          "종합원가계산",
+          "완성품환산량",
+          "가중평균법",
+          "선입선출법",
+          "환산량"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2020_Q073",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "COST_PROCESS_001",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "종합원가계산",
+          "선입선출법",
+          "기초재공품",
+          "기말재공품",
+          "가공원가"
+        ],
+        "patternFamily": [
+          "종합원가계산",
+          "선입선출법"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2024_Q073",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "COST_PROCESS_001",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "종합원가계산",
+          "선입선출법",
+          "기초재공품",
+          "기말재공품",
+          "가공원가",
+          "전환원가"
+        ],
+        "patternFamily": [
+          "종합원가계산",
+          "선입선출법"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q072",
+      "currentChapter": "ACC_REV",
+      "currentPattern": "ACC_REV_001",
+      "detectedChapter": "ACC_INV",
+      "detectedPatternFamily": "ACC_INV",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "재고자산",
+          "매출원가",
+          "원재료"
+        ],
+        "patternFamily": [
+          "재고자산",
+          "매출원가"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q073",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "COST_PROCESS_001",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "종합원가계산",
+          "선입선출법",
+          "기초재공품",
+          "기말재공품",
+          "당기완성량",
+          "가공원가",
+          "전환원가"
+        ],
+        "patternFamily": [
+          "종합원가계산",
+          "선입선출법"
+        ]
+      }
+    }
+  ],
+  "reviewRequired": [
+    {
+      "questionId": "ACC_2015_Q045",
+      "currentChapter": "ACC_REV",
+      "currentPattern": "ACC_REV_001",
+      "detectedChapter": "ACC_INV",
+      "detectedPatternFamily": "ACC_INV",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "재고자산",
+          "매출원가",
+          "상품매입"
+        ],
+        "patternFamily": [
+          "재고자산",
+          "매출원가"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2015_Q075",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "ACC_INV_006",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "종합원가계산",
+          "완성품환산량",
+          "가중평균법",
+          "선입선출법",
+          "환산량",
+          "기초재공품",
+          "기말재공품",
+          "당기투입량",
+          "당기완성량",
+          "가공원가",
+          "전환원가"
+        ],
+        "patternFamily": [
+          "종합원가계산",
+          "완성품환산량",
+          "가중평균법",
+          "선입선출법",
+          "환산량"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2017_Q044",
+      "currentChapter": "ACC_INT",
+      "currentPattern": "ACC_INT_001",
+      "detectedChapter": "ACC_PPE",
+      "detectedPatternFamily": null,
+      "confidence": "medium",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "감가상각",
+          "잔존가치"
+        ],
+        "patternFamily": []
+      }
+    },
+    {
+      "questionId": "ACC_2017_Q049",
+      "currentChapter": "ACC_PPE",
+      "currentPattern": "ACC_PPE_001",
+      "detectedChapter": "ACC_PPE",
+      "detectedPatternFamily": "ACC_INV",
+      "confidence": "medium",
+      "flags": [
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "유형자산",
+          "감가상각"
+        ],
+        "patternFamily": [
+          "재고자산"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2017_Q068",
+      "currentChapter": "ACC_REV",
+      "currentPattern": "ACC_REV_001",
+      "detectedChapter": "ACC_INV",
+      "detectedPatternFamily": "ACC_INV",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "재고자산",
+          "매출원가",
+          "상품매입"
+        ],
+        "patternFamily": [
+          "재고자산",
+          "매출원가"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2017_Q075",
+      "currentChapter": "ACC_REV",
+      "currentPattern": "ACC_REV_001",
+      "detectedChapter": "ACC_INV",
+      "detectedPatternFamily": "ACC_INV",
+      "confidence": "medium",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "재고자산",
+          "매출원가"
+        ],
+        "patternFamily": [
+          "재고자산",
+          "매출원가"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2017_Q077",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "ACC_INV_006",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "종합원가계산",
+          "선입선출법",
+          "기초재공품",
+          "기말재공품",
+          "가공원가",
+          "전환원가"
+        ],
+        "patternFamily": [
+          "종합원가계산",
+          "선입선출법"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2017_Q080",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "ACC_INV_006",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": null,
+      "confidence": "medium",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "선입선출법",
+          "기말재공품"
+        ],
+        "patternFamily": []
+      }
+    },
+    {
+      "questionId": "ACC_2018_Q054",
+      "currentChapter": "ACC_PPE",
+      "currentPattern": "ACC_PPE_001",
+      "detectedChapter": "ACC_PPE",
+      "detectedPatternFamily": "ACC_INV",
+      "confidence": "medium",
+      "flags": [
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "유형자산",
+          "감가상각"
+        ],
+        "patternFamily": [
+          "재고자산"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2018_Q068",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "ACC_INV_006",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "medium",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "가중평균법",
+          "선입선출법"
+        ],
+        "patternFamily": [
+          "가중평균법",
+          "선입선출법"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2018_Q079",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "COST_PROCESS_001",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "종합원가계산",
+          "완성품환산량",
+          "가중평균법",
+          "선입선출법",
+          "환산량",
+          "기초재공품"
+        ],
+        "patternFamily": [
+          "종합원가계산",
+          "완성품환산량",
+          "가중평균법",
+          "선입선출법",
+          "환산량"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2018_Q080",
+      "currentChapter": "ACC_REV",
+      "currentPattern": "COST_MFG_001",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "ACC_INV",
+      "confidence": "medium",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "기초재공품",
+          "기말재공품"
+        ],
+        "patternFamily": [
+          "매출원가"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2020_Q064",
+      "currentChapter": "ACC_INT",
+      "currentPattern": "ACC_INT_001",
+      "detectedChapter": "ACC_PPE",
+      "detectedPatternFamily": null,
+      "confidence": "medium",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "감가상각",
+          "취득원가"
+        ],
+        "patternFamily": []
+      }
+    },
+    {
+      "questionId": "ACC_2020_Q073",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "COST_PROCESS_001",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "종합원가계산",
+          "선입선출법",
+          "기초재공품",
+          "기말재공품",
+          "가공원가"
+        ],
+        "patternFamily": [
+          "종합원가계산",
+          "선입선출법"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2020_Q074",
+      "currentChapter": "ACC_GEN",
+      "currentPattern": "COST_JOINT_001",
+      "detectedChapter": "ACC_INV",
+      "detectedPatternFamily": "ACC_INV",
+      "confidence": "medium",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "재고자산",
+          "원재료"
+        ],
+        "patternFamily": [
+          "재고자산"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2020_Q076",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "COST_CVP_001",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": null,
+      "confidence": "medium",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "선입선출법",
+          "기말재공품"
+        ],
+        "patternFamily": []
+      }
+    },
+    {
+      "questionId": "ACC_2024_Q073",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "COST_PROCESS_001",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "종합원가계산",
+          "선입선출법",
+          "기초재공품",
+          "기말재공품",
+          "가공원가",
+          "전환원가"
+        ],
+        "patternFamily": [
+          "종합원가계산",
+          "선입선출법"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q051",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "ACC_INV_003",
+      "detectedChapter": "ACC_PPE",
+      "detectedPatternFamily": null,
+      "confidence": "medium",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "취득원가",
+          "내용연수",
+          "잔존가치"
+        ],
+        "patternFamily": []
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q053",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "ACC_INV_003",
+      "detectedChapter": "ACC_PPE",
+      "detectedPatternFamily": null,
+      "confidence": "medium",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "취득원가",
+          "내용연수",
+          "잔존가치"
+        ],
+        "patternFamily": []
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q065",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "ACC_INV_003",
+      "detectedChapter": "ACC_PPE",
+      "detectedPatternFamily": null,
+      "confidence": "medium",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "내용연수",
+          "잔존가치"
+        ],
+        "patternFamily": []
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q072",
+      "currentChapter": "ACC_REV",
+      "currentPattern": "ACC_REV_001",
+      "detectedChapter": "ACC_INV",
+      "detectedPatternFamily": "ACC_INV",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH",
+        "PATTERN_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "재고자산",
+          "매출원가",
+          "원재료"
+        ],
+        "patternFamily": [
+          "재고자산",
+          "매출원가"
+        ]
+      }
+    },
+    {
+      "questionId": "ACC_2025_Q073",
+      "currentChapter": "ACC_INV",
+      "currentPattern": "COST_PROCESS_001",
+      "detectedChapter": "ACC_COST",
+      "detectedPatternFamily": "COST_PROCESS",
+      "confidence": "high",
+      "flags": [
+        "CHAPTER_MISMATCH"
+      ],
+      "keywordHits": {
+        "chapter": [
+          "종합원가계산",
+          "선입선출법",
+          "기초재공품",
+          "기말재공품",
+          "당기완성량",
+          "가공원가",
+          "전환원가"
+        ],
+        "patternFamily": [
+          "종합원가계산",
+          "선입선출법"
+        ]
+      }
+    }
+  ],
+  "schemaVersion": "v1",
+  "sprint": "Sprint-11D"
+}
