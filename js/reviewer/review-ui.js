@@ -16,7 +16,7 @@ import {
   exportReviewPack,
   importReviewPack,
 } from './review-service.js';
-import { getReviewHistory, undoReview } from './review-history.js';
+import { getReviewHistory, undoReview, appendReviewHistory } from './review-history.js';
 import { createTableEditor } from './table-editor.js';
 import { createChoiceEditor } from './choice-editor.js';
 import { createPatternEditor } from './pattern-editor.js';
@@ -77,6 +77,11 @@ export function mountReviewerButton(host, onClick) {
  *   panelEl: HTMLElement,
  *   originalQuestion: object,
  *   onResolved?: (resolved: object) => void,
+ *   entryMode?: boolean,
+ *   onApprove?: (resolved: object) => void,
+ *   onReject?: () => void,
+ *   onSkip?: () => void,
+ *   onNext?: () => void,
  * }} options
  */
 export function openReviewerPanel(options = {}) {
@@ -239,6 +244,15 @@ export function openReviewerPanel(options = {}) {
     <div class="rv-panel-footer">
       <button type="button" class="button button--primary" data-act="save">Override 저장</button>
       <button type="button" class="button button--ghost" data-act="apply-preview">Preview 적용</button>
+      ${
+        options.entryMode
+          ? `
+      <button type="button" class="button button--primary" data-act="approve">Approve</button>
+      <button type="button" class="button button--ghost" data-act="reject">Reject</button>
+      <button type="button" class="button button--ghost" data-act="skip">Skip</button>
+      <button type="button" class="button button--ghost" data-act="next">Next</button>`
+          : ''
+      }
     </div>
   `;
 
@@ -491,9 +505,10 @@ export function openReviewerPanel(options = {}) {
     closeReviewerPanel(panel);
   });
 
-  panel.querySelector('[data-act="save"]')?.addEventListener('click', () => {
+  function performSave(statusOverride) {
     const patch = buildPatch();
-    const status = statusSelect?.value || 'REVIEWED';
+    const status = statusOverride || statusSelect?.value || 'REVIEWED';
+    /* Approve path: saveOverride only — Question DB untouched */
     saveOverride(qid, patch, {
       status,
       reviewer: 'local',
@@ -515,7 +530,11 @@ export function openReviewerPanel(options = {}) {
     });
     patternEditor?.persist?.('local');
     renderHistory();
-    applyResolved();
+    return applyResolved();
+  }
+
+  panel.querySelector('[data-act="save"]')?.addEventListener('click', () => {
+    performSave();
   });
 
   panel.querySelector('[data-act="apply-preview"]')?.addEventListener('click', () => {
@@ -526,6 +545,28 @@ export function openReviewerPanel(options = {}) {
       changedFields: ['preview'],
     });
     applyResolved();
+  });
+
+  panel.querySelector('[data-act="approve"]')?.addEventListener('click', () => {
+    const resolved = performSave('APPROVED');
+    if (typeof options.onApprove === 'function') {
+      options.onApprove(resolved);
+    }
+  });
+
+  panel.querySelector('[data-act="reject"]')?.addEventListener('click', () => {
+    /* Reject: History only — no Question DB / no override write */
+    appendRejectHistory(qid, buildPatch());
+    renderHistory();
+    if (typeof options.onReject === 'function') options.onReject();
+  });
+
+  panel.querySelector('[data-act="skip"]')?.addEventListener('click', () => {
+    if (typeof options.onSkip === 'function') options.onSkip();
+  });
+
+  panel.querySelector('[data-act="next"]')?.addEventListener('click', () => {
+    if (typeof options.onNext === 'function') options.onNext();
   });
 
   panel.querySelector('[data-act="undo"]')?.addEventListener('click', () => {
@@ -555,7 +596,34 @@ export function openReviewerPanel(options = {}) {
     applyResolved();
   });
 
-  return { applyResolved, hasOverride: () => hasOverride(qid) };
+  return {
+    applyResolved,
+    hasOverride: () => hasOverride(qid),
+    save: performSave,
+    getDraftSnapshot: () => buildPatch(),
+    questionId: qid,
+    close: () => closeReviewerPanel(panel),
+  };
+}
+
+function appendRejectHistory(questionId, snapshot) {
+  try {
+    appendReviewHistory({
+      questionId,
+      reviewer: 'local',
+      changedFields: ['REJECT'],
+      overrideSnapshot: snapshot || null,
+      note: 'REJECT — history only',
+    });
+    upsertReviewRecord(questionId, {
+      status: 'REJECTED',
+      flags: ['HUMAN_REVIEW'],
+      note: 'Rejected via Review Entry',
+      reviewer: 'local',
+    });
+  } catch (_err) {
+    /* ignore */
+  }
 }
 
 export function closeReviewerPanel(panel) {

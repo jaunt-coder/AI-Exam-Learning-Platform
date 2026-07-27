@@ -82,6 +82,10 @@ const STORAGE_KEYS = {
   LEARNING_EVIDENCE_CACHE_V1: 'learning.evidence-cache.v1',
   LEARNING_EVIDENCE_HISTORY_V1: 'learning.evidence-history.v1',
   LEARNING_EVIDENCE_SUMMARY_V1: 'learning.evidence-summary.v1',
+  // Sprint-12F Reviewer Entry Integration (additive — do not rename)
+  LEARNING_REVIEW_DRAFT_V1: 'learning.review-draft.v1',
+  LEARNING_REVIEW_UI_V1: 'learning.review-ui.v1',
+  LEARNING_REVIEW_SHORTCUT_V1: 'learning.review-shortcut.v1',
 };
 
 /**

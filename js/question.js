@@ -35,13 +35,9 @@ import {
   mountQuestionTable,
   renderChoiceItems,
 } from './shared-renderer.js';
-import { mountSourceViewerButton } from './source-viewer.js';
+import { mountReviewEntry } from './reviewer/review-entry.js';
+import { closeReviewModal } from './reviewer/review-modal.js';
 import { studentQuestionForDisplay } from './student/student-workspace.js';
-import {
-  mountReviewerButton,
-  openReviewerPanel,
-  closeReviewerPanel,
-} from './reviewer/review-ui.js';
 import { onQuestionAnswered } from './learning-engine/learning-engine.js';
 import { explainQuestionRecommendation } from './evidence/evidence-engine.js';
 import {
@@ -270,12 +266,48 @@ function renderSolveView(question) {
   if (badgeHost) badgeHost.innerHTML = '';
   mountWhyRecommended(resolved);
   updateBookmarkButton(resolved);
-  mountSourceViewerButton(
-    document.getElementById('source-viewer-host'),
-    resolved.questionId
-  );
-  mountReviewerButton(document.getElementById('reviewer-btn-host'), () => {
-    toggleReviewerPanel();
+  mountReviewEntry({
+    toolbarHost: document.getElementById('review-entry-toolbar'),
+    getOriginal: () => state.originalQuestion,
+    onAi: () => {
+      show($('ai-tutor-panel'));
+      if (state.lastResult) runAiExplanation();
+      else {
+        const out = $('ai-explanation-output');
+        if (out) {
+          out.innerHTML =
+            '<p class="ai-tutor-intro">정답을 확인한 뒤 AI 설명을 받을 수 있습니다.</p>';
+          show(out);
+        }
+      }
+    },
+    onResolved: (student) => {
+      state.lastQuestion = student;
+      /* Refresh list so Resolved is used everywhere */
+      if (Array.isArray(state.originalQuestions)) {
+        state.questions = state.originalQuestions.map((q) =>
+          studentQuestionForDisplay(q),
+        );
+      }
+      renderSolveView(student);
+    },
+    onApprove: (student) => {
+      state.lastQuestion = student;
+      if (Array.isArray(state.originalQuestions)) {
+        state.questions = state.originalQuestions.map((q) =>
+          studentQuestionForDisplay(q),
+        );
+      }
+      renderSolveView(student);
+    },
+    onSkip: () => {
+      closeReviewModal();
+    },
+    onNext: () => {
+      closeReviewModal();
+      const nextBtn = $('next-btn');
+      if (nextBtn && !nextBtn.hidden) nextBtn.click();
+    },
   });
 
   mountQuestionStem(resolved, $('question-stem'));
@@ -342,30 +374,6 @@ function mountWhyRecommended(question) {
     panel.removeAttribute('hidden');
     btn.setAttribute('aria-expanded', 'true');
   });
-}
-
-function toggleReviewerPanel() {
-  const panel = document.getElementById('reviewer-panel');
-  const btn = document.getElementById('reviewer-mode-btn');
-  if (!panel || !state.originalQuestion) return;
-
-  if (state.reviewerOpen) {
-    closeReviewerPanel(panel);
-    state.reviewerOpen = false;
-    if (btn) btn.setAttribute('aria-expanded', 'false');
-    return;
-  }
-
-  openReviewerPanel({
-    panelEl: panel,
-    originalQuestion: state.originalQuestion,
-    onResolved: (resolved) => {
-      state.lastQuestion = resolved;
-      renderSolveView(resolved);
-    },
-  });
-  state.reviewerOpen = true;
-  if (btn) btn.setAttribute('aria-expanded', 'true');
 }
 
 function runAiExplanation() {

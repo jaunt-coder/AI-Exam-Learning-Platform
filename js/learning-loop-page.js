@@ -39,7 +39,12 @@ import {
   mountResumePrompt,
 } from './session-resume.js';
 import { exportSyncStateV4 } from './import-export-v4.js';
-import { mountSourceViewerButton } from './source-viewer.js';
+import {
+  mountReviewEntry,
+  applyResolvedToStudyQuestion,
+  toReviewOriginal,
+} from './reviewer/review-entry.js';
+import { studentQuestionForDisplay } from './student/student-workspace.js';
 import {
   enrichStudyQuestionsWithApproved,
   getApprovedSolution,
@@ -781,17 +786,52 @@ function renderChecklist(panel, L) {
 function renderQuestionPanel() {
   const q = currentQuestion;
   if (!q) return;
+
+  /* Sprint-12F — Student always sees Resolved Question (Override applied) */
+  const original = toReviewOriginal(q);
+  const resolved = studentQuestionForDisplay(original);
+  const display = applyResolvedToStudyQuestion(q, resolved);
+  const pack = studyPatterns[patternIndex];
+
   els.questionMeta.textContent =
     viewMode === 'developer'
-      ? `${q.questionId} · ${lesson.pattern_id}`
+      ? `${display.questionId} · ${lesson.pattern_id}`
       : `「${lesson.name}」 Pattern 적용`;
-  mountSourceViewerButton(
-    document.getElementById('loop-source-viewer-host'),
-    q.questionId
-  );
-  els.questionStem.innerHTML = renderQuestionStemHtml(q.stem);
+
+  mountReviewEntry({
+    toolbarHost: document.getElementById('review-entry-toolbar'),
+    getOriginal: () => toReviewOriginal(currentQuestion),
+    onResolved: (student) => {
+      currentQuestion = applyResolvedToStudyQuestion(currentQuestion, student);
+      if (pack?.questions && questionIndex >= 0) {
+        pack.questions[questionIndex] = currentQuestion;
+      }
+      renderQuestionPanel();
+    },
+    onApprove: (student) => {
+      currentQuestion = applyResolvedToStudyQuestion(currentQuestion, student);
+      if (pack?.questions && questionIndex >= 0) {
+        pack.questions[questionIndex] = currentQuestion;
+      }
+      renderQuestionPanel();
+    },
+    onSkip: () => {},
+    onNext: () => {
+      if (pack?.questions && questionIndex < pack.questions.length - 1) {
+        questionIndex += 1;
+        currentQuestion = pack.questions[questionIndex];
+        renderQuestionPanel();
+        updateProgressDisplay();
+      }
+    },
+  });
+
+  const legacyHost = document.getElementById('loop-source-viewer-host');
+  if (legacyHost) legacyHost.innerHTML = '';
+
+  els.questionStem.innerHTML = renderQuestionStemHtml(display.stem);
   els.questionChoices.innerHTML = '';
-  (q.choices || []).forEach((text, idx) => {
+  (display.choices || []).forEach((text, idx) => {
     const value = idx + 1;
     const id = `choice-${value}`;
     const label = document.createElement('label');
