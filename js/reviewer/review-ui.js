@@ -366,6 +366,7 @@ export function openReviewerPanel(options = {}) {
     root.innerHTML = `
       <div class="ocr-summary">
         <p><strong>Confidence</strong> ${escapeHtml(String(pack.confidence))} (${escapeHtml(pack.level)})</p>
+        <p><strong>Quality Score</strong> ${escapeHtml(pack.qualityScore ?? '—')} · ${escapeHtml(pack.qualityStatus || '—')}</p>
         <p><strong>Detections</strong> ${escapeHtml((pack.detections || []).join(', ') || '—')}</p>
         <dl class="rv-dl">
           <div><dt>Page</dt><dd>${escapeHtml(pdf.page ?? '—')}</dd></div>

@@ -52,6 +52,10 @@ const STORAGE_KEYS = {
   LEARNING_RECOVERY_V1: 'learning.recovery.v1',
   LEARNING_SUGGESTION_V1: 'learning.suggestion.v1',
   LEARNING_CONFIDENCE_V1: 'learning.confidence.v1',
+  // Sprint-12C Data Quality Center (additive — do not rename)
+  LEARNING_QUALITY_V1: 'learning.quality.v1',
+  QUALITY_HISTORY_V1: 'quality-history.v1',
+  QUALITY_REPORT_V1: 'quality-report.v1',
 };
 
 /**

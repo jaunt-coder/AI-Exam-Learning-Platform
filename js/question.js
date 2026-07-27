@@ -43,6 +43,10 @@ import {
   closeReviewerPanel,
   renderQuestionBadge,
 } from './reviewer/review-ui.js';
+import {
+  getCachedQualityScore,
+  scoreQuestion,
+} from './quality/quality-engine.js';
 
 const state = {
   master: null,
@@ -310,6 +314,13 @@ function runAiExplanation() {
   const questionForTutor = resolveQuestion(
     state.originalQuestion || state.lastQuestion,
   );
+  /* Sprint-12C — Quality Score 참고 (Tutor 엔진 파일 미수정, 메타만 첨부) */
+  const qScore =
+    getCachedQualityScore(questionForTutor.questionId) ||
+    scoreQuestion(state.originalQuestion || questionForTutor, {});
+  questionForTutor._qualityScore = qScore?.score ?? null;
+  questionForTutor._qualityStatus = qScore?.status ?? null;
+
   const pattern = getPatternById(state.patterns, questionForTutor.patternId);
   const stats = getStatisticsForPattern(state.statistics, questionForTutor.patternId);
 

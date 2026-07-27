@@ -467,6 +467,41 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     suggestionLayer: true,
     reviewerTab: 'AI Recovery',
   };
+  /* Sprint-12C — Data Quality Center (does not fail valid) */
+  const qualityContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.quality.v1',
+    servicePath: 'js/quality/quality-engine.js',
+  };
+  const qualityScoreContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    servicePath: 'js/quality/quality-score.js',
+  };
+  const qualityDashboardContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    pagePath: 'quality.html',
+    servicePath: 'js/quality/quality-dashboard.js',
+  };
+  const quality = {
+    enabled: true,
+    connected: true,
+    dashboard: true,
+    scoreRange: '0-100',
+  };
+  const qualityDashboard = {
+    enabled: true,
+    connected: true,
+  };
+  const qualityScore = {
+    enabled: true,
+    connected: true,
+  };
 
   return {
     valid: errors.length === 0,
@@ -497,6 +532,12 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     confidenceContract,
     approvalContract,
     aiRecovery,
+    qualityContract,
+    qualityScoreContract,
+    qualityDashboardContract,
+    quality,
+    qualityDashboard,
+    qualityScore,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -709,6 +750,40 @@ async function loadDatabaseSet(dbSet, options = {}) {
         suggestionLayer: true,
         reviewerTab: 'AI Recovery',
       },
+      qualityContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.quality.v1',
+        servicePath: 'js/quality/quality-engine.js',
+      },
+      qualityScoreContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        servicePath: 'js/quality/quality-score.js',
+      },
+      qualityDashboardContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        pagePath: 'quality.html',
+        servicePath: 'js/quality/quality-dashboard.js',
+      },
+      quality: {
+        enabled: true,
+        connected: true,
+        dashboard: true,
+        scoreRange: '0-100',
+      },
+      qualityDashboard: {
+        enabled: true,
+        connected: true,
+      },
+      qualityScore: {
+        enabled: true,
+        connected: true,
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -916,6 +991,40 @@ async function loadDatabaseSet(dbSet, options = {}) {
       connected: true,
       suggestionLayer: true,
       reviewerTab: 'AI Recovery',
+    },
+    qualityContract: validation.qualityContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.quality.v1',
+      servicePath: 'js/quality/quality-engine.js',
+    },
+    qualityScoreContract: validation.qualityScoreContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      servicePath: 'js/quality/quality-score.js',
+    },
+    qualityDashboardContract: validation.qualityDashboardContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      pagePath: 'quality.html',
+      servicePath: 'js/quality/quality-dashboard.js',
+    },
+    quality: validation.quality || {
+      enabled: true,
+      connected: true,
+      dashboard: true,
+      scoreRange: '0-100',
+    },
+    qualityDashboard: validation.qualityDashboard || {
+      enabled: true,
+      connected: true,
+    },
+    qualityScore: validation.qualityScore || {
+      enabled: true,
+      connected: true,
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,

@@ -1,0 +1,149 @@
+/* Sprint-12C — Data Quality Center */
+
+.qd-main {
+  padding-bottom: 3rem;
+}
+
+.qd-header {
+  margin-bottom: 1.25rem;
+}
+
+.qd-header h2 {
+  margin: 0 0 0.35rem;
+}
+
+.qd-desc,
+.qd-status,
+.qd-sub {
+  color: var(--color-text-muted, #666);
+  font-size: 0.92rem;
+}
+
+.qd-export-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.qd-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.qd-card {
+  border: 1px solid var(--color-border, #ddd);
+  border-radius: 0.45rem;
+  padding: 0.85rem;
+  background: var(--color-surface, #fff);
+}
+
+.qd-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+}
+
+.qd-metric {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.qd-panel {
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.qd-dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.55rem;
+}
+
+.qd-dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+}
+
+.qd-dl dt {
+  margin: 0;
+  color: var(--color-text-muted, #666);
+}
+
+.qd-dl dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.qd-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.65rem 0;
+}
+
+.qd-filters .is-active {
+  background: var(--color-primary, #1f4b7a);
+  color: #fff;
+  border-color: transparent;
+}
+
+.qd-table-wrap {
+  overflow: auto;
+}
+
+.qd-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.qd-table th,
+.qd-table td {
+  border-bottom: 1px solid var(--color-border, #eee);
+  padding: 0.45rem 0.5rem;
+  text-align: left;
+}
+
+.qd-status {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--color-border, #ccc);
+}
+
+.qd-status--BROKEN,
+.qd-status--VERIFY_REQUIRED {
+  color: #a33;
+  border-color: #e07474;
+}
+
+.qd-status--APPROVED,
+.qd-status--REVIEWED {
+  color: #0a7a32;
+  border-color: #3cb371;
+}
+
+.qd-status--AI_SUGGESTED,
+.qd-status--OVERRIDE {
+  color: #9a6b00;
+  border-color: #e0c060;
+}
+
+.qd-priority-list {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+  .qd-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}

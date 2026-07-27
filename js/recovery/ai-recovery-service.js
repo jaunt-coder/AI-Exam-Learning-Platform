@@ -27,6 +27,10 @@ import {
   exportSuggestionsJson,
   importSuggestionsJson,
 } from './recovery-cache.js';
+import {
+  scoreQuestion,
+  getCachedQualityScore,
+} from '../quality/quality-engine.js';
 
 /**
  * Build PDF compare metadata (open link only — no DB write).
@@ -67,6 +71,10 @@ export function runAiRecovery(question = {}) {
     detections: generated.detections,
   });
 
+  /* Sprint-12C — Quality Score 참고 (Coach 파일 미수정) */
+  const quality =
+    getCachedQualityScore(qid) || scoreQuestion(question, {});
+
   const pack = {
     questionId: generated.questionId,
     confidence: conf.confidence,
@@ -76,6 +84,8 @@ export function runAiRecovery(question = {}) {
     explains: conf.changes.map((c) => c.explain).filter(Boolean),
     diffs: conf.changes.map((c) => buildChangeDiff(c, question)),
     pdfMeta,
+    qualityScore: quality?.score ?? null,
+    qualityStatus: quality?.status ?? null,
     generatedAt: generated.generatedAt,
     engine: generated.engine,
     status: 'PENDING',
