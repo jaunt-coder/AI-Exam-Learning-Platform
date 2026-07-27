@@ -536,6 +536,48 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     connected: true,
     usesOverrideOnly: true,
   };
+  /* Sprint-12E — Reviewer Workspace (does not fail valid) */
+  const reviewWorkspaceContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.workspace.v1',
+    servicePath: 'js/review-workspace/workspace-service.js',
+    pagePath: 'review-workspace.html',
+  };
+  const quickFixContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.quick-fix.v1',
+    servicePath: 'js/review-workspace/quick-fix.js',
+  };
+  const reviewSessionContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.review-session.v1',
+    servicePath: 'js/review-workspace/review-session.js',
+  };
+  const focusModeContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.focus-mode.v1',
+    servicePath: 'js/review-workspace/focus-mode.js',
+  };
+  const bulkReviewContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    servicePath: 'js/review-workspace/bulk-review.js',
+  };
+  const reviewWorkspace = {
+    enabled: true,
+    connected: true,
+    oneClick: true,
+    usesOverrideOnly: true,
+  };
 
   return {
     valid: errors.length === 0,
@@ -577,6 +619,12 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     reviewDecisionContract,
     reviewAssignmentContract,
     reviewWorkflow,
+    reviewWorkspaceContract,
+    quickFixContract,
+    reviewSessionContract,
+    focusModeContract,
+    bulkReviewContract,
+    reviewWorkspace,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -856,6 +904,47 @@ async function loadDatabaseSet(dbSet, options = {}) {
         connected: true,
         usesOverrideOnly: true,
       },
+      reviewWorkspaceContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.workspace.v1',
+        servicePath: 'js/review-workspace/workspace-service.js',
+        pagePath: 'review-workspace.html',
+      },
+      quickFixContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.quick-fix.v1',
+        servicePath: 'js/review-workspace/quick-fix.js',
+      },
+      reviewSessionContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.review-session.v1',
+        servicePath: 'js/review-workspace/review-session.js',
+      },
+      focusModeContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.focus-mode.v1',
+        servicePath: 'js/review-workspace/focus-mode.js',
+      },
+      bulkReviewContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        servicePath: 'js/review-workspace/bulk-review.js',
+      },
+      reviewWorkspace: {
+        enabled: true,
+        connected: true,
+        oneClick: true,
+        usesOverrideOnly: true,
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -1129,6 +1218,47 @@ async function loadDatabaseSet(dbSet, options = {}) {
     reviewWorkflow: validation.reviewWorkflow || {
       enabled: true,
       connected: true,
+      usesOverrideOnly: true,
+    },
+    reviewWorkspaceContract: validation.reviewWorkspaceContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.workspace.v1',
+      servicePath: 'js/review-workspace/workspace-service.js',
+      pagePath: 'review-workspace.html',
+    },
+    quickFixContract: validation.quickFixContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.quick-fix.v1',
+      servicePath: 'js/review-workspace/quick-fix.js',
+    },
+    reviewSessionContract: validation.reviewSessionContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.review-session.v1',
+      servicePath: 'js/review-workspace/review-session.js',
+    },
+    focusModeContract: validation.focusModeContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.focus-mode.v1',
+      servicePath: 'js/review-workspace/focus-mode.js',
+    },
+    bulkReviewContract: validation.bulkReviewContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      servicePath: 'js/review-workspace/bulk-review.js',
+    },
+    reviewWorkspace: validation.reviewWorkspace || {
+      enabled: true,
+      connected: true,
+      oneClick: true,
       usesOverrideOnly: true,
     },
     dbSet: dbSet.id,

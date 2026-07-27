@@ -61,6 +61,11 @@ const STORAGE_KEYS = {
   LEARNING_REVIEW_QUEUE_V1: 'learning.review-queue.v1',
   LEARNING_REVIEW_HISTORY_V1: 'learning.review-history.v1',
   LEARNING_REVIEW_DECISION_V1: 'learning.review-decision.v1',
+  // Sprint-12E Reviewer Workspace (additive — do not rename)
+  LEARNING_WORKSPACE_V1: 'learning.workspace.v1',
+  LEARNING_REVIEW_SESSION_V1: 'learning.review-session.v1',
+  LEARNING_QUICK_FIX_V1: 'learning.quick-fix.v1',
+  LEARNING_FOCUS_MODE_V1: 'learning.focus-mode.v1',
 };
 
 /**

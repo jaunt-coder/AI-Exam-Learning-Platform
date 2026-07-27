@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reviewer Workspace — One-Click Review">
+  <title>Reviewer Workspace | AI Exam Learning Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/review-workspace.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <div>
+        <h1 class="site-title">
+          <a href="index.html" class="site-title-link">AI Exam Learning Platform</a>
+        </h1>
+        <p class="site-subtitle">Sprint-12E — Reviewer Workspace + One-Click Review</p>
+      </div>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a href="index.html" class="button button--ghost">홈</a>
+        <a href="quality.html" class="button button--ghost">Data Quality</a>
+        <a href="review.html" class="button button--ghost">Review</a>
+        <a href="review-workspace.html" class="button button--ghost" aria-current="page" data-focus-keep="true">Workspace</a>
+        <a href="dashboard.html" class="button button--ghost">Dashboard</a>
+        <a href="pattern.html" class="button button--ghost">Pattern</a>
+        <a href="question.html" class="button button--ghost">Question</a>
+        <a href="exam.html" class="button button--ghost">Exam</a>
+        <a href="tutor.html" class="button button--ghost">Tutor</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main rws-main" role="main">
+    <div class="container rws-container">
+      <header class="rws-header">
+        <h2>Reviewer Workspace</h2>
+        <p class="rws-muted">Queue → Fix → AI Suggestion → Approve 를 한 화면에서 처리합니다. Question/Pattern DB는 읽기 전용입니다.</p>
+        <p class="rws-status" id="rws-status" aria-live="polite">준비 중…</p>
+        <div class="rws-toolbar" role="toolbar" aria-label="One-Click Review">
+          <button type="button" class="button button--primary" id="rws-sync-btn">Sync Quality</button>
+          <button type="button" class="button button--ghost" id="rws-fix-ocr" title="Alt+1">Fix OCR</button>
+          <button type="button" class="button button--ghost" id="rws-fix-table" title="Alt+2">Fix Table</button>
+          <button type="button" class="button button--ghost" id="rws-fix-choices" title="Alt+3">Fix Choices</button>
+          <button type="button" class="button button--ghost" id="rws-fix-pattern" title="Alt+4">Fix Pattern</button>
+          <button type="button" class="button button--ghost" id="rws-fix-solution" title="Alt+5">Fix Solution</button>
+          <button type="button" class="button button--primary" id="rws-approve" title="Ctrl+Enter">Approve</button>
+          <button type="button" class="button button--ghost" id="rws-reject">Reject</button>
+          <button type="button" class="button button--ghost" id="rws-skip">Skip</button>
+          <button type="button" class="button button--ghost" id="rws-prev" title="Ctrl+Left">Previous</button>
+          <button type="button" class="button button--ghost" id="rws-next" title="Ctrl+Right">Next</button>
+          <button type="button" class="button button--ghost" id="rws-focus-btn">Focus Mode</button>
+        </div>
+        <div class="rws-toolbar rws-bulk" role="toolbar" aria-label="Bulk Review">
+          <button type="button" class="button button--ghost" id="rws-select10">Select 10</button>
+          <button type="button" class="button button--ghost" id="rws-bulk-approve">Approve All</button>
+          <button type="button" class="button button--ghost" id="rws-bulk-reject">Reject All</button>
+          <button type="button" class="button button--ghost" id="rws-bulk-json">Export JSON</button>
+          <button type="button" class="button button--ghost" id="rws-bulk-csv">Export CSV</button>
+          <button type="button" class="button button--ghost" id="rws-bulk-md">Export MD</button>
+        </div>
+        <div id="rws-session" class="rws-session" aria-label="오늘 검수 세션"></div>
+      </header>
+
+      <div class="rws-layout">
+        <aside class="rws-col rws-col--left card" aria-label="Queue">
+          <h3>Queue</h3>
+          <p class="rws-muted">현재 · 다음 · 체크(최대 10)</p>
+          <div id="rws-queue"></div>
+        </aside>
+        <section class="rws-col rws-col--center card" id="rws-center" aria-label="문항 원문">
+          <p class="rws-muted">문항을 선택하세요.</p>
+        </section>
+        <aside class="rws-col rws-col--right card" id="rws-right" aria-label="AI / Override / Quality">
+          <p class="rws-muted">AI Suggestion · Override · Quality · History</p>
+        </aside>
+      </div>
+
+      <p class="rws-keys rws-muted">
+        Keyboard: Ctrl+S 저장 · Ctrl+Enter Approve · Ctrl+←/→ 이동 · Alt+1~5 Fix OCR/Table/Choices/Pattern/Solution
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2026 AI Exam Learning Platform v2 · Reviewer Workspace (Sprint-12E)</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/review-workspace/workspace-page.js"></script>
+</body>
+</html>
