@@ -24,6 +24,7 @@ import { renderHeatmap } from './components/dashboard/heatmap.js';
 import { renderRecentGrowth, renderWeeklyStats } from './components/dashboard/chart.js';
 import { renderRecentActivity } from './components/dashboard/recent-activity.js';
 import { renderQuickStart } from './components/dashboard/quick-start.js';
+import { attachEvidenceToRecommendations } from './evidence/evidence-engine.js';
 
 const INTEGRITY_REPORT_URL = 'data/question-integrity-report.json';
 
@@ -402,6 +403,10 @@ function renderDashboard(dashboard) {
 
 function renderStudentWidgets(view) {
   showSkeletons();
+  const recommendations = attachEvidenceToRecommendations(
+    view.recommendations || [],
+    view._questions || [],
+  );
   mountWidgets(
     {
       todayStudy: (node) => {
@@ -410,7 +415,7 @@ function renderStudentWidgets(view) {
       },
       masterySummary: (node) => renderMasterySummary(node, view.masterySummary),
       weakPattern: (node) => renderWeakPattern(node, view.weakPatterns),
-      recommendation: (node) => renderRecommendationList(node, view.recommendations),
+      recommendation: (node) => renderRecommendationList(node, recommendations),
       todaysReview: (node) => renderReviewBoard(node, view.reviewBoard),
       heatmap: (node) => renderHeatmap(node, view.heatmapDays),
       recentGrowth: (node) => renderRecentGrowth(node, view),
@@ -452,6 +457,7 @@ async function main() {
     }
 
     const studentView = buildStudentDashboardView(questions, patterns);
+    studentView._questions = questions;
     renderStudentWidgets(studentView);
     renderDashboard(resolvedDashboard);
     if (status) status.textContent = 'Student Dashboard 준비 완료 · Coach 로딩…';

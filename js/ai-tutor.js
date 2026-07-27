@@ -16,6 +16,11 @@ import { generateTutorLesson } from './ai-tutor-engine.js';
 import { renderTutorLesson } from './ai-tutor-render.js';
 import { questionResolver } from './student/student-resolver.js';
 import { getTutorContext } from './learning-engine/learning-engine.js';
+import { buildTutorEvidenceContext } from './evidence/evidence-engine.js';
+import {
+  renderEvidenceDetail,
+  bindEvidenceAccordion,
+} from './evidence/evidence-renderer.js';
 
 function resolveForTutor(questionId) {
   const original = getQuestionById(state.questions, questionId);
@@ -75,9 +80,22 @@ function runTutorLesson() {
   };
 
   let learningContext = null;
+  let evidenceContext = null;
   try {
     learningContext = getTutorContext(question.questionId, question.patternId);
   } catch (_) { /* non-critical */ }
+  try {
+    evidenceContext = buildTutorEvidenceContext(
+      question.questionId,
+      question.patternId,
+      state.questions || [],
+    );
+    if (learningContext) {
+      learningContext.evidence = evidenceContext;
+    } else {
+      learningContext = { evidence: evidenceContext };
+    }
+  } catch (_) { /* Evidence non-critical */ }
 
   const lesson = generateTutorLesson({
     question,
@@ -91,6 +109,18 @@ function runTutorLesson() {
   });
 
   renderTutorLesson(lesson, $('ai-explanation-output'));
+  const out = $('ai-explanation-output');
+  if (out && evidenceContext?.evidence) {
+    const host = document.createElement('div');
+    host.className = 'ev-tutor-host';
+    host.innerHTML = renderEvidenceDetail(
+      evidenceContext.evidence,
+      evidenceContext.summary,
+      { expanded: true },
+    );
+    out.appendChild(host);
+    bindEvidenceAccordion(host);
+  }
   show($('ai-explanation-output'));
 }
 

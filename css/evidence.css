@@ -1,0 +1,134 @@
+/* Sprint-14C — Evidence System styles */
+
+.ev-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.ev-badge--green { color: #027a48; background: #ecfdf3; border-color: #abefc6; }
+.ev-badge--yellow { color: #b54708; background: #fffaeb; border-color: #fedf89; }
+.ev-badge--orange { color: #b93815; background: #fff6ed; border-color: #f9dbaf; }
+.ev-badge--red { color: #b42318; background: #fef3f2; border-color: #fecdca; }
+
+.ev-panel {
+  margin-top: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius, 8px);
+  padding: 0.85rem;
+  background: var(--color-bg);
+}
+
+.ev-panel--green { border-color: color-mix(in srgb, #12b76a 45%, var(--color-border)); }
+.ev-panel--yellow { border-color: color-mix(in srgb, #f79009 45%, var(--color-border)); }
+.ev-panel--orange { border-color: color-mix(in srgb, #ef6820 45%, var(--color-border)); }
+.ev-panel--red { border-color: color-mix(in srgb, #f04438 45%, var(--color-border)); }
+
+.ev-panel__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.ev-summary p {
+  margin: 0 0 0.4rem;
+  line-height: 1.55;
+  font-size: 0.92rem;
+}
+
+.ev-benefit {
+  color: var(--color-primary, #2f6fed);
+  font-weight: 700;
+}
+
+.ev-checklist {
+  list-style: none;
+  margin: 0.6rem 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.ev-check::before {
+  content: "✓ ";
+  color: #12b76a;
+  font-weight: 700;
+}
+
+.ev-score-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.25rem 0.75rem;
+  margin-bottom: 0.45rem;
+  font-size: 0.85rem;
+}
+
+.ev-score-bar {
+  grid-column: 1 / -1;
+  height: 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-border) 35%, transparent);
+}
+
+.ev-score-bar span {
+  display: block;
+  height: 100%;
+  background: var(--color-primary, #2f6fed);
+}
+
+.ev-score-total {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.ev-timeline {
+  margin-top: 0.75rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--color-border);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.ev-why-btn {
+  margin: 0.5rem 0;
+}
+
+.ev-why-panel {
+  margin-top: 0.5rem;
+}
+
+.ev-why-panel[hidden] {
+  display: none !important;
+}
+
+.ev-empty {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.ev-rec-evidence {
+  margin-top: 0.65rem;
+}
+
+.ev-toggle:focus-visible,
+.ev-why-btn:focus-visible {
+  outline: 2px solid var(--color-primary, #2f6fed);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .ev-panel__head {
+    flex-wrap: wrap;
+  }
+}

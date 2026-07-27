@@ -43,6 +43,12 @@ import {
   closeReviewerPanel,
 } from './reviewer/review-ui.js';
 import { onQuestionAnswered } from './learning-engine/learning-engine.js';
+import { explainQuestionRecommendation } from './evidence/evidence-engine.js';
+import {
+  renderWhyRecommendedButton,
+  renderEvidenceDetail,
+  bindEvidenceAccordion,
+} from './evidence/evidence-renderer.js';
 import {
   getCachedQualityScore,
   scoreQuestion,
@@ -262,6 +268,7 @@ function renderSolveView(question) {
   /* Sprint-13A — students must not see Original / Override status */
   const badgeHost = document.getElementById('review-badge-host');
   if (badgeHost) badgeHost.innerHTML = '';
+  mountWhyRecommended(resolved);
   updateBookmarkButton(resolved);
   mountSourceViewerButton(
     document.getElementById('source-viewer-host'),
@@ -286,6 +293,55 @@ function renderSolveView(question) {
   $('submit-btn').hidden = false;
   $('answer-form').reset();
   setChoiceStates(null, null, false);
+}
+
+function mountWhyRecommended(question) {
+  const meta = document.getElementById('question-meta') || document.getElementById('solve-meta');
+  let host = document.getElementById('why-recommended-host');
+  if (!host) {
+    host = document.createElement('div');
+    host.id = 'why-recommended-host';
+    host.className = 'ev-why-host';
+    const insertPoint =
+      document.getElementById('review-badge-host')
+      || document.getElementById('source-viewer-host')
+      || meta;
+    if (insertPoint?.parentElement) {
+      insertPoint.parentElement.insertBefore(host, insertPoint.nextSibling);
+    } else if (meta) {
+      meta.appendChild(host);
+    } else {
+      return;
+    }
+  }
+  host.innerHTML = renderWhyRecommendedButton();
+  const btn = host.querySelector('#why-recommended-btn');
+  const panel = host.querySelector('#why-recommended-panel');
+  if (!btn || !panel) return;
+  btn.addEventListener('click', () => {
+    const open = panel.hasAttribute('hidden');
+    if (!open) {
+      panel.setAttribute('hidden', '');
+      btn.setAttribute('aria-expanded', 'false');
+      return;
+    }
+    try {
+      const pack = explainQuestionRecommendation(
+        question.questionId,
+        state.originalQuestions || state.questions || [],
+      );
+      panel.innerHTML = renderEvidenceDetail(
+        pack?.evidence,
+        pack?.summary,
+        { expanded: true },
+      );
+      bindEvidenceAccordion(panel);
+    } catch (_err) {
+      panel.innerHTML = '<p class="ev-empty">Evidence를 불러오지 못했습니다.</p>';
+    }
+    panel.removeAttribute('hidden');
+    btn.setAttribute('aria-expanded', 'true');
+  });
 }
 
 function toggleReviewerPanel() {

@@ -78,6 +78,10 @@ const STORAGE_KEYS = {
   LEARNING_DASHBOARD_LAYOUT_V1: 'learning.dashboard-layout.v1',
   LEARNING_DASHBOARD_FILTER_V1: 'learning.dashboard-filter.v1',
   LEARNING_DASHBOARD_CACHE_V1: 'learning.dashboard-cache.v1',
+  // Sprint-14C Evidence System (additive — do not rename; PAD key remains Evidence Pad SoT)
+  LEARNING_EVIDENCE_CACHE_V1: 'learning.evidence-cache.v1',
+  LEARNING_EVIDENCE_HISTORY_V1: 'learning.evidence-history.v1',
+  LEARNING_EVIDENCE_SUMMARY_V1: 'learning.evidence-summary.v1',
 };
 
 /**
