@@ -60,6 +60,7 @@ export function scoreQuestion(question, ctx = {}) {
   return {
     questionId: flags.questionId,
     patternId: flags.patternId,
+    year: question.year || question.source?.year || null,
     score,
     status,
     confidence: flags.confidence,

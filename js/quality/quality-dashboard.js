@@ -76,7 +76,7 @@ function renderPriority(priority) {
   const items = (priority.todayReview || priority.top10 || [])
     .map(
       (r) =>
-        `<li><a href="question.html?id=${encodeURIComponent(r.questionId)}">${escapeHtml(r.questionId)}</a> · ${escapeHtml(r.score)} · ${escapeHtml(r.status)}</li>`,
+        `<li><a href="review.html?id=${encodeURIComponent(r.questionId)}&sync=1">${escapeHtml(r.questionId)}</a> · ${escapeHtml(r.score)} · ${escapeHtml(r.status)}</li>`,
     )
     .join('');
   host.innerHTML = `

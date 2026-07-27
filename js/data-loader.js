@@ -502,6 +502,40 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     enabled: true,
     connected: true,
   };
+  /* Sprint-12D — Human Review Workflow (does not fail valid) */
+  const reviewWorkflowContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.review-workflow.v1',
+    servicePath: 'js/review-workflow/workflow-service.js',
+    pagePath: 'review.html',
+  };
+  const reviewQueueContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.review-queue.v1',
+    servicePath: 'js/review-workflow/review-queue.js',
+  };
+  const reviewDecisionContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.review-decision.v1',
+    servicePath: 'js/review-workflow/review-decision.js',
+  };
+  const reviewAssignmentContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    servicePath: 'js/review-workflow/review-assignment.js',
+  };
+  const reviewWorkflow = {
+    enabled: true,
+    connected: true,
+    usesOverrideOnly: true,
+  };
 
   return {
     valid: errors.length === 0,
@@ -538,6 +572,11 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     quality,
     qualityDashboard,
     qualityScore,
+    reviewWorkflowContract,
+    reviewQueueContract,
+    reviewDecisionContract,
+    reviewAssignmentContract,
+    reviewWorkflow,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -784,6 +823,39 @@ async function loadDatabaseSet(dbSet, options = {}) {
         enabled: true,
         connected: true,
       },
+      reviewWorkflowContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.review-workflow.v1',
+        servicePath: 'js/review-workflow/workflow-service.js',
+        pagePath: 'review.html',
+      },
+      reviewQueueContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.review-queue.v1',
+        servicePath: 'js/review-workflow/review-queue.js',
+      },
+      reviewDecisionContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.review-decision.v1',
+        servicePath: 'js/review-workflow/review-decision.js',
+      },
+      reviewAssignmentContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        servicePath: 'js/review-workflow/review-assignment.js',
+      },
+      reviewWorkflow: {
+        enabled: true,
+        connected: true,
+        usesOverrideOnly: true,
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -1025,6 +1097,39 @@ async function loadDatabaseSet(dbSet, options = {}) {
     qualityScore: validation.qualityScore || {
       enabled: true,
       connected: true,
+    },
+    reviewWorkflowContract: validation.reviewWorkflowContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.review-workflow.v1',
+      servicePath: 'js/review-workflow/workflow-service.js',
+      pagePath: 'review.html',
+    },
+    reviewQueueContract: validation.reviewQueueContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.review-queue.v1',
+      servicePath: 'js/review-workflow/review-queue.js',
+    },
+    reviewDecisionContract: validation.reviewDecisionContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.review-decision.v1',
+      servicePath: 'js/review-workflow/review-decision.js',
+    },
+    reviewAssignmentContract: validation.reviewAssignmentContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      servicePath: 'js/review-workflow/review-assignment.js',
+    },
+    reviewWorkflow: validation.reviewWorkflow || {
+      enabled: true,
+      connected: true,
+      usesOverrideOnly: true,
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,

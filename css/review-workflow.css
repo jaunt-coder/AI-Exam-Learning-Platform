@@ -1,0 +1,118 @@
+/* Sprint-12D — Human Review Workflow */
+
+.rw-main { padding-bottom: 2.5rem; }
+.rw-header { margin-bottom: 1rem; }
+.rw-header h2 { margin: 0 0 0.35rem; }
+.rw-desc, .rw-status, .rw-sub, .rw-empty {
+  color: var(--color-text-muted, #666);
+  font-size: 0.92rem;
+}
+.rw-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.55rem 0;
+}
+.rw-dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+}
+.rw-dl dt { display: inline; margin: 0; color: var(--color-text-muted, #666); }
+.rw-dl dd { display: inline; margin: 0 0 0 0.35rem; font-weight: 700; }
+
+.rw-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) 1fr;
+  gap: 0.85rem;
+  align-items: start;
+}
+.rw-queue, .rw-detail { padding: 0.85rem; }
+.rw-queue-item {
+  display: grid;
+  gap: 0.15rem;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--color-border, #ddd);
+  background: var(--color-surface, #fff);
+  border-radius: 0.35rem;
+  padding: 0.5rem 0.55rem;
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+}
+.rw-queue-item.is-active {
+  border-color: var(--color-primary, #1f4b7a);
+  box-shadow: inset 3px 0 0 var(--color-primary, #1f4b7a);
+}
+.rw-pri { font-weight: 700; font-size: 0.8rem; }
+.rw-qid { font-weight: 700; }
+.rw-meta, .rw-reasons { font-size: 0.78rem; color: var(--color-text-muted, #666); }
+
+.rw-ws-header h3 { margin: 0 0 0.25rem; }
+.rw-assign {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: end;
+  margin: 0.75rem 0;
+}
+.rw-assign label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.85rem;
+}
+.rw-assign input {
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: 0.3rem;
+}
+.rw-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.rw-grid section {
+  border: 1px dashed var(--color-border, #ccc);
+  border-radius: 0.35rem;
+  padding: 0.55rem;
+  background: var(--color-bg, #f7f7f7);
+}
+.rw-grid h4 { margin: 0.35rem 0; font-size: 0.85rem; }
+.rw-grid pre {
+  margin: 0 0 0.45rem;
+  white-space: pre-wrap;
+  font-size: 0.78rem;
+  font-family: inherit;
+  max-height: 220px;
+  overflow: auto;
+}
+.rw-decisions { margin: 0.85rem 0; }
+.rw-decision-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+}
+#rw-comment {
+  width: 100%;
+  font: inherit;
+  padding: 0.45rem;
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: 0.3rem;
+}
+.rw-history {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.82rem;
+}
+.rw-history li {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--color-border, #eee);
+}
+
+@media (max-width: 900px) {
+  .rw-layout, .rw-grid { grid-template-columns: 1fr; }
+}

@@ -56,6 +56,11 @@ const STORAGE_KEYS = {
   LEARNING_QUALITY_V1: 'learning.quality.v1',
   QUALITY_HISTORY_V1: 'quality-history.v1',
   QUALITY_REPORT_V1: 'quality-report.v1',
+  // Sprint-12D Human Review Workflow (additive — do not rename)
+  LEARNING_REVIEW_WORKFLOW_V1: 'learning.review-workflow.v1',
+  LEARNING_REVIEW_QUEUE_V1: 'learning.review-queue.v1',
+  LEARNING_REVIEW_HISTORY_V1: 'learning.review-history.v1',
+  LEARNING_REVIEW_DECISION_V1: 'learning.review-decision.v1',
 };
 
 /**
