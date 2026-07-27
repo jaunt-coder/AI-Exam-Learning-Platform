@@ -20,6 +20,16 @@ import { getReviewHistory, undoReview } from './review-history.js';
 import { createTableEditor } from './table-editor.js';
 import { createChoiceEditor } from './choice-editor.js';
 import { createPatternEditor } from './pattern-editor.js';
+import {
+  runAiRecovery,
+  approveByField,
+  approveAll,
+  rejectChanges,
+  skipChanges,
+  exportSuggestionsJson,
+  importSuggestionsJson,
+} from '../recovery/ai-recovery-service.js';
+import { diffToneClass } from '../recovery/diff-engine.js';
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -148,6 +158,7 @@ export function openReviewerPanel(options = {}) {
       <button type="button" class="rv-tab" data-tab="pattern">Pattern</button>
       <button type="button" class="rv-tab" data-tab="source">PDF</button>
       <button type="button" class="rv-tab" data-tab="flags">Flags</button>
+      <button type="button" class="rv-tab" data-tab="ai-recovery">AI Recovery</button>
       <button type="button" class="rv-tab" data-tab="history">History</button>
     </div>
 
@@ -204,6 +215,12 @@ export function openReviewerPanel(options = {}) {
           <textarea id="rv-note" rows="5" placeholder="메모">${escapeHtml(draftNote)}</textarea>
         </label>
         <div class="rv-preview rv-md-preview" id="rv-note-preview"></div>
+      </section>
+
+      <section class="rv-tab-panel" data-panel="ai-recovery" hidden>
+        <div id="rv-ai-recovery-root">
+          <p class="rv-empty">AI Recovery를 실행하려면 탭을 다시 선택하세요.</p>
+        </div>
       </section>
 
       <section class="rv-tab-panel" data-panel="history" hidden>
@@ -304,6 +321,115 @@ export function openReviewerPanel(options = {}) {
   }
   renderHistory();
 
+  let recoveryPack = null;
+
+  function renderAiRecoveryTab() {
+    const root = panel.querySelector('#rv-ai-recovery-root');
+    if (!root) return;
+    root.innerHTML = '<p class="rv-empty">AI Recovery 실행 중…</p>';
+    try {
+      recoveryPack = runAiRecovery(original);
+    } catch (err) {
+      root.innerHTML = `<p class="rv-empty">Recovery 실패: ${escapeHtml(err?.message || 'unknown')}</p>`;
+      return;
+    }
+    const pack = recoveryPack;
+    const pdf = pack.pdfMeta || {};
+    const changeBlocks = (pack.changes || [])
+      .map((c, idx) => {
+        const diff = (pack.diffs || [])[idx];
+        return `
+        <article class="ocr-change-card" data-change-idx="${idx}">
+          <header>
+            <strong>${escapeHtml(c.field)}</strong>
+            <span class="ocr-conf ocr-conf--${escapeHtml(c.level || 'LOW')}">${escapeHtml(String(c.confidence ?? ''))} · ${escapeHtml(c.level || '')}</span>
+          </header>
+          <p class="ocr-explain">${escapeHtml(c.explain || '')}</p>
+          <div class="ocr-compare">
+            <div class="ocr-pane">
+              <h5>Current</h5>
+              <pre>${escapeHtml(formatChangeValue(c.before))}</pre>
+            </div>
+            <div class="ocr-pane">
+              <h5>AI Suggestion</h5>
+              <pre>${escapeHtml(formatChangeValue(c.after))}</pre>
+            </div>
+          </div>
+          ${renderDiffHtml(diff)}
+          <div class="rv-actions">
+            <button type="button" class="button button--ghost" data-approve-field="${escapeHtml(c.field)}">Approve ${escapeHtml(c.field)}</button>
+          </div>
+        </article>`;
+      })
+      .join('');
+
+    root.innerHTML = `
+      <div class="ocr-summary">
+        <p><strong>Confidence</strong> ${escapeHtml(String(pack.confidence))} (${escapeHtml(pack.level)})</p>
+        <p><strong>Detections</strong> ${escapeHtml((pack.detections || []).join(', ') || '—')}</p>
+        <dl class="rv-dl">
+          <div><dt>Page</dt><dd>${escapeHtml(pdf.page ?? '—')}</dd></div>
+          <div><dt>Question Number</dt><dd>${escapeHtml(pdf.questionNumber ?? '—')}</dd></div>
+          <div><dt>PDF</dt><dd>${
+            pdf.pdfUrl
+              ? `<a href="${escapeHtml(pdf.pdfUrl)}" target="_blank" rel="noopener">원본 PDF 열기</a>`
+              : '—'
+          }</dd></div>
+        </dl>
+      </div>
+      <div class="rv-actions">
+        <button type="button" class="button button--primary" data-ocr-act="approve-all">Approve All</button>
+        <button type="button" class="button button--ghost" data-ocr-act="reject">Reject</button>
+        <button type="button" class="button button--ghost" data-ocr-act="skip">Skip</button>
+        <button type="button" class="button button--ghost" data-ocr-act="export">Export Suggestions</button>
+        <label class="button button--ghost rv-import-label">
+          Import Suggestions
+          <input type="file" id="rv-recovery-import" accept="application/json,.json" hidden>
+        </label>
+      </div>
+      <div class="ocr-change-list">${changeBlocks || '<p class="rv-empty">제안 없음</p>'}</div>
+    `;
+
+    root.querySelectorAll('[data-approve-field]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const field = btn.getAttribute('data-approve-field');
+        approveByField(qid, pack, field, pack.confidence);
+        applyResolved();
+        renderAiRecoveryTab();
+      });
+    });
+    root.querySelector('[data-ocr-act="approve-all"]')?.addEventListener('click', () => {
+      approveAll(qid, pack, pack.confidence);
+      applyResolved();
+      renderAiRecoveryTab();
+    });
+    root.querySelector('[data-ocr-act="reject"]')?.addEventListener('click', () => {
+      rejectChanges({ questionId: qid, confidence: pack.confidence });
+      renderAiRecoveryTab();
+    });
+    root.querySelector('[data-ocr-act="skip"]')?.addEventListener('click', () => {
+      skipChanges({ questionId: qid });
+      renderAiRecoveryTab();
+    });
+    root.querySelector('[data-ocr-act="export"]')?.addEventListener('click', () => {
+      const blob = new Blob([exportSuggestionsJson()], {
+        type: 'application/json',
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'learning.suggestion.v1.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+    root.querySelector('#rv-recovery-import')?.addEventListener('change', async (ev) => {
+      const file = ev.target?.files?.[0];
+      if (!file) return;
+      importSuggestionsJson(await file.text());
+      renderAiRecoveryTab();
+    });
+  }
+
   panel.querySelectorAll('.rv-tab').forEach((tab) => {
     tab.addEventListener('click', () => {
       const name = tab.getAttribute('data-tab');
@@ -315,6 +441,7 @@ export function openReviewerPanel(options = {}) {
         p.classList.toggle('is-active', on);
       });
       if (name === 'history') renderHistory();
+      if (name === 'ai-recovery') renderAiRecoveryTab();
     });
   });
 
@@ -444,6 +571,52 @@ function simpleMarkdown(src) {
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
     .replace(/`(.+?)`/g, '<code>$1</code>')
     .replace(/\n/g, '<br>');
+}
+
+function formatChangeValue(value) {
+  if (value == null) return '(null)';
+  if (typeof value === 'string') return value;
+  try {
+    return JSON.stringify(value, null, 2);
+  } catch (_err) {
+    return String(value);
+  }
+}
+
+function renderDiffHtml(diff) {
+  if (!diff) return '';
+  if (diff.kind === 'text' && Array.isArray(diff.lines)) {
+    const rows = diff.lines
+      .map((line) => {
+        const cls = diffToneClass(line.type);
+        if (line.type === 'add') {
+          return `<div class="${cls}">+ ${escapeHtml(line.after || '')}</div>`;
+        }
+        if (line.type === 'delete') {
+          return `<div class="${cls}">− ${escapeHtml(line.before || '')}</div>`;
+        }
+        if (line.type === 'change') {
+          return `<div class="${cls}">~ ${escapeHtml(line.before || '')} → ${escapeHtml(line.after || '')}</div>`;
+        }
+        return `<div class="${cls}">  ${escapeHtml(line.after || line.before || '')}</div>`;
+      })
+      .join('');
+    return `<div class="ocr-diff" aria-label="Diff">${rows}</div>`;
+  }
+  if (diff.kind === 'table' && diff.table) {
+    return `<div class="ocr-diff"><span class="ocr-diff--add">table headers/rows reconstructed</span></div>`;
+  }
+  if (diff.kind === 'choices' && Array.isArray(diff.choices)) {
+    const rows = diff.choices
+      .filter((c) => c.type !== 'equal')
+      .map((c) => {
+        const cls = diffToneClass(c.type);
+        return `<div class="${cls}">[${c.index}] ${escapeHtml(c.before ?? '')} → ${escapeHtml(c.after ?? '')}</div>`;
+      })
+      .join('');
+    return `<div class="ocr-diff">${rows || '<div class="ocr-diff--equal">choices unchanged</div>'}</div>`;
+  }
+  return '';
 }
 
 export default {

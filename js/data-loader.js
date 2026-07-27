@@ -432,6 +432,41 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     spreadsheet: true,
     undoRedo: true,
   };
+  /* Sprint-12B — AI Recovery Assistant (does not fail valid; 12A contracts unchanged) */
+  const aiRecoveryContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.recovery.v1',
+    servicePath: 'js/recovery/ai-recovery-service.js',
+  };
+  const suggestionContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.suggestion.v1',
+    servicePath: 'js/recovery/suggestion-engine.js',
+  };
+  const confidenceContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.confidence.v1',
+    servicePath: 'js/recovery/confidence-engine.js',
+  };
+  const approvalContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    servicePath: 'js/recovery/approval-engine.js',
+    usesOverrideApi: true,
+  };
+  const aiRecovery = {
+    enabled: true,
+    connected: true,
+    suggestionLayer: true,
+    reviewerTab: 'AI Recovery',
+  };
 
   return {
     valid: errors.length === 0,
@@ -457,6 +492,11 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     review,
     override,
     tableEditor,
+    aiRecoveryContract,
+    suggestionContract,
+    confidenceContract,
+    approvalContract,
+    aiRecovery,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -635,6 +675,40 @@ async function loadDatabaseSet(dbSet, options = {}) {
         spreadsheet: true,
         undoRedo: true,
       },
+      aiRecoveryContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.recovery.v1',
+        servicePath: 'js/recovery/ai-recovery-service.js',
+      },
+      suggestionContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.suggestion.v1',
+        servicePath: 'js/recovery/suggestion-engine.js',
+      },
+      confidenceContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.confidence.v1',
+        servicePath: 'js/recovery/confidence-engine.js',
+      },
+      approvalContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        servicePath: 'js/recovery/approval-engine.js',
+        usesOverrideApi: true,
+      },
+      aiRecovery: {
+        enabled: true,
+        connected: true,
+        suggestionLayer: true,
+        reviewerTab: 'AI Recovery',
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -808,6 +882,40 @@ async function loadDatabaseSet(dbSet, options = {}) {
       connected: true,
       spreadsheet: true,
       undoRedo: true,
+    },
+    aiRecoveryContract: validation.aiRecoveryContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.recovery.v1',
+      servicePath: 'js/recovery/ai-recovery-service.js',
+    },
+    suggestionContract: validation.suggestionContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.suggestion.v1',
+      servicePath: 'js/recovery/suggestion-engine.js',
+    },
+    confidenceContract: validation.confidenceContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.confidence.v1',
+      servicePath: 'js/recovery/confidence-engine.js',
+    },
+    approvalContract: validation.approvalContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      servicePath: 'js/recovery/approval-engine.js',
+      usesOverrideApi: true,
+    },
+    aiRecovery: validation.aiRecovery || {
+      enabled: true,
+      connected: true,
+      suggestionLayer: true,
+      reviewerTab: 'AI Recovery',
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,

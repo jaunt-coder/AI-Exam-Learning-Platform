@@ -48,6 +48,10 @@ const STORAGE_KEYS = {
   LEARNING_REVIEW_V1: 'learning.review.v1',
   QUESTION_OVERRIDES_V1: 'question-overrides.v1',
   REVIEW_HISTORY_V1: 'review-history.v1',
+  // Sprint-12B AI Recovery Assistant (additive — do not rename)
+  LEARNING_RECOVERY_V1: 'learning.recovery.v1',
+  LEARNING_SUGGESTION_V1: 'learning.suggestion.v1',
+  LEARNING_CONFIDENCE_V1: 'learning.confidence.v1',
 };
 
 /**

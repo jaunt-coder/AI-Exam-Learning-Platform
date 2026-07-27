@@ -8,6 +8,7 @@ import { buildCoachDashboard } from './coach/ai-coach-service.js';
 import { buildPatternTutorDashboardCard } from './coach/pattern-tutor.js';
 import { buildQuestionTutorDashboardCard } from './coach/question-tutor.js';
 import { buildReviewerDashboardCard } from './reviewer/review-service.js';
+import { buildRecoveryDashboardCard } from './recovery/ai-recovery-service.js';
 
 const INTEGRITY_REPORT_URL = 'data/question-integrity-report.json';
 
@@ -321,6 +322,24 @@ function renderReviewerCard(card, reviewer) {
   `;
 }
 
+function renderRecoveryCard(card, recovery) {
+  if (!card) return;
+  if (!recovery) {
+    card.innerHTML = '<p class="ld-empty">Recovery Summary를 불러오지 못했습니다.</p>';
+    return;
+  }
+  card.innerHTML = `
+    <dl class="ld-dl">
+      <div><dt>Today's Suggestions</dt><dd>${Number(recovery.todaysSuggestions) || 0}</dd></div>
+      <div><dt>Pending</dt><dd>${Number(recovery.pending) || 0}</dd></div>
+      <div><dt>Approved</dt><dd>${Number(recovery.approved) || 0}</dd></div>
+      <div><dt>Rejected</dt><dd>${Number(recovery.rejected) || 0}</dd></div>
+      <div><dt>Average Confidence</dt><dd>${escapeHtml(recovery.averageConfidence ?? 0)}</dd></div>
+    </dl>
+    <p class="ld-card-desc">Storage: ${(recovery.storageKeys || []).join(' · ')}</p>
+  `;
+}
+
 function renderDashboard(dashboard) {
   renderTodayStudy(el('card-today-study'), dashboard.todayStudy);
   renderCountList(el('card-mastery'), dashboard.masterySummary, [
@@ -377,10 +396,14 @@ async function main() {
     const reviewer = buildReviewerDashboardCard();
     renderReviewerCard(el('card-reviewer'), reviewer);
 
+    const recovery = buildRecoveryDashboardCard();
+    renderRecoveryCard(el('card-recovery'), recovery);
+
     if (status) {
       const mismatch = Number(integrity?.mismatchCount) || 0;
       const overrides = Number(reviewer?.totalOverrides) || 0;
-      status.textContent = `Learning Dashboard 준비 완료 · Integrity ${mismatch} · Overrides ${overrides}`;
+      const pending = Number(recovery?.pending) || 0;
+      status.textContent = `Learning Dashboard 준비 완료 · Integrity ${mismatch} · Overrides ${overrides} · Recovery pending ${pending}`;
     }
   } catch (err) {
     if (status) {

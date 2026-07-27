@@ -244,8 +244,101 @@
   font-size: 0.9rem;
 }
 
+/* Sprint-12B — AI Recovery tab */
+.ocr-summary {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.ocr-change-card {
+  border: 1px solid var(--color-border, #ddd);
+  border-radius: 0.4rem;
+  padding: 0.65rem;
+  margin-bottom: 0.65rem;
+}
+
+.ocr-change-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.ocr-conf {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.ocr-conf--HIGH { color: #0a7a32; }
+.ocr-conf--MEDIUM { color: #9a6b00; }
+.ocr-conf--LOW { color: #a33; }
+
+.ocr-explain {
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #555);
+  margin: 0 0 0.5rem;
+}
+
+.ocr-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+  margin-bottom: 0.45rem;
+}
+
+.ocr-pane {
+  border: 1px dashed var(--color-border, #ccc);
+  border-radius: 0.3rem;
+  padding: 0.4rem;
+  background: var(--color-bg, #f7f7f7);
+}
+
+.ocr-pane h5 {
+  margin: 0 0 0.3rem;
+  font-size: 0.78rem;
+}
+
+.ocr-pane pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 0.78rem;
+  font-family: inherit;
+}
+
+.ocr-diff {
+  font-size: 0.8rem;
+  margin-bottom: 0.45rem;
+}
+
+.ocr-diff--add {
+  background: #e8f8ef;
+  color: #0a7a32;
+  padding: 0.15rem 0.3rem;
+}
+
+.ocr-diff--change {
+  background: #fff8e1;
+  color: #9a6b00;
+  padding: 0.15rem 0.3rem;
+}
+
+.ocr-diff--delete {
+  background: #fdecea;
+  color: #a33;
+  padding: 0.15rem 0.3rem;
+}
+
+.ocr-diff--equal {
+  color: var(--color-text-muted, #777);
+  padding: 0.1rem 0.3rem;
+}
+
 @media (max-width: 768px) {
   .rv-panel {
     width: 100vw;
+  }
+
+  .ocr-compare {
+    grid-template-columns: 1fr;
   }
 }
