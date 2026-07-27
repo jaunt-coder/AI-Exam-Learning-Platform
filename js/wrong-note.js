@@ -5,6 +5,7 @@
 
 import { loadPhase1Database, getPatternById } from './data-loader.js';
 import { getItem, STORAGE_KEYS } from './storage.js';
+import { questionResolver } from './student/student-resolver.js';
 import {
   buildWrongNoteSummary,
   filterEntriesByPattern,
@@ -186,7 +187,7 @@ async function init() {
     }
 
     state.patterns = db.patterns;
-    state.questions = db.questions;
+    state.questions = db.questions.map((q) => questionResolver(q));
     state.summary = buildWrongNoteSummary(state.questions, state.patterns);
 
     hide($('loading-state'));

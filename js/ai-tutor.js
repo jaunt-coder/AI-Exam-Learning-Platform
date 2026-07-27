@@ -14,6 +14,13 @@ import { getStatisticsForPattern } from './pattern-engine.js';
 import { getWrongAnswerEntries, buildRetryUrl } from './wrong-note-engine.js';
 import { generateTutorLesson } from './ai-tutor-engine.js';
 import { renderTutorLesson } from './ai-tutor-render.js';
+import { questionResolver } from './student/student-resolver.js';
+import { getTutorContext } from './learning-engine/learning-engine.js';
+
+function resolveForTutor(questionId) {
+  const original = getQuestionById(state.questions, questionId);
+  return original ? questionResolver(original) : null;
+}
 
 const state = {
   questions: [],
@@ -54,7 +61,7 @@ function firstWrongChoice(question) {
 }
 
 function runTutorLesson() {
-  const question = getQuestionById(state.questions, state.selectedQuestionId);
+  const question = resolveForTutor(state.selectedQuestionId);
   if (!question || !state.selectedWrongChoice) return;
 
   const pattern = getPatternById(state.patterns, question.patternId);
@@ -67,6 +74,11 @@ function runTutorLesson() {
     correctAnswer: correct,
   };
 
+  let learningContext = null;
+  try {
+    learningContext = getTutorContext(question.questionId, question.patternId);
+  } catch (_) { /* non-critical */ }
+
   const lesson = generateTutorLesson({
     question,
     pattern,
@@ -75,6 +87,7 @@ function runTutorLesson() {
     allQuestions: state.questions,
     allPatterns: state.patterns,
     level: state.aiLevel,
+    learningContext,
   });
 
   renderTutorLesson(lesson, $('ai-explanation-output'));
@@ -116,7 +129,7 @@ function renderChoices(question) {
 
 function selectQuestion(questionId) {
   state.selectedQuestionId = questionId;
-  const question = getQuestionById(state.questions, questionId);
+  const question = resolveForTutor(questionId);
   if (!question) return;
 
   document.querySelectorAll('.ai-wrong-item-btn').forEach((btn) => {
@@ -200,10 +213,10 @@ async function init() {
       return;
     }
 
-    state.questions = db.questions;
+    state.questions = db.questions.map((q) => questionResolver(q));
     state.patterns = db.patterns;
     state.statistics = db.statistics;
-    state.entries = getWrongAnswerEntries(db.questions, db.patterns);
+    state.entries = getWrongAnswerEntries(state.questions, db.patterns);
 
     hide($('loading-state'));
 
@@ -226,7 +239,7 @@ async function init() {
       });
     }
 
-    const targetId = urlId && getQuestionById(state.questions, urlId) ? urlId : state.entries[0].questionId;
+    const targetId = urlId && resolveForTutor(urlId) ? urlId : state.entries[0].questionId;
     if (urlSelected) {
       state.selectedWrongChoice = Number(urlSelected);
     }

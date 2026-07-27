@@ -36,13 +36,13 @@ import {
   renderChoiceItems,
 } from './shared-renderer.js';
 import { mountSourceViewerButton } from './source-viewer.js';
-import { resolveQuestion } from './reviewer/override-service.js';
+import { studentQuestionForDisplay } from './student/student-workspace.js';
 import {
   mountReviewerButton,
   openReviewerPanel,
   closeReviewerPanel,
-  renderQuestionBadge,
 } from './reviewer/review-ui.js';
+import { onQuestionAnswered } from './learning-engine/learning-engine.js';
 import {
   getCachedQualityScore,
   scoreQuestion,
@@ -59,6 +59,7 @@ const state = {
   currentIndex: -1,
   lastQuestion: null,
   lastResult: null,
+  originalQuestions: [],
   originalQuestion: null,
   reviewerOpen: false,
   aiLevel: 'beginner',
@@ -230,16 +231,18 @@ function updateBookmarkButton(question) {
 }
 
 function renderSolveView(question) {
-  /* Keep DB original immutable; resolve Override Layer for display / coach */
+  /* Keep DB original immutable; Student Resolver applies Override for display */
   const original =
-    question?._resolvedFrom
+    question?._resolvedFrom || question?._snapshotFrozen
       ? state.originalQuestion || question
       : question;
-  state.originalQuestion = original && !original._resolvedFrom
+  const lookupId = question?.questionId || question?.id;
+  state.originalQuestion = original && !original._resolvedFrom && !original._snapshotFrozen
     ? original
-    : state.questions.find((q) => q.questionId === (question?.questionId || question?.id)) ||
-      original;
-  const resolved = resolveQuestion(state.originalQuestion || question);
+    : state.originalQuestions.find((q) => q.questionId === lookupId) || original;
+  const resolved = studentQuestionForDisplay(
+    state.originalQuestion || question,
+  );
 
   const pool = state.filteredQuestions.length
     ? state.filteredQuestions
@@ -256,7 +259,9 @@ function renderSolveView(question) {
   $('back-to-list').href = `question.html?pattern=${encodeURIComponent(resolved.patternId)}`;
 
   renderQuestionMeta(resolved);
-  renderQuestionBadge(document.getElementById('review-badge-host'), resolved);
+  /* Sprint-13A — students must not see Original / Override status */
+  const badgeHost = document.getElementById('review-badge-host');
+  if (badgeHost) badgeHost.innerHTML = '';
   updateBookmarkButton(resolved);
   mountSourceViewerButton(
     document.getElementById('source-viewer-host'),
@@ -310,8 +315,8 @@ function toggleReviewerPanel() {
 function runAiExplanation() {
   if (!state.lastQuestion || !state.lastResult) return;
 
-  /* Override 존재 시 resolveQuestion 결과를 Tutor에 전달 (AI Coach 파일 미수정) */
-  const questionForTutor = resolveQuestion(
+  /* Sprint-13A — Tutor는 Resolved Question 기반 (AI Coach 파일 미수정) */
+  const questionForTutor = studentQuestionForDisplay(
     state.originalQuestion || state.lastQuestion,
   );
   /* Sprint-12C — Quality Score 참고 (Tutor 엔진 파일 미수정, 메타만 첨부) */
@@ -452,11 +457,11 @@ function bindSolveEvents() {
 function onSubmit(e) {
   e.preventDefault();
   const id = getQueryParam('id');
-  const original = getQuestionById(state.questions, id);
+  const original = getQuestionById(state.originalQuestions, id);
   if (!original) return;
 
   state.originalQuestion = original;
-  const question = resolveQuestion(original);
+  const question = studentQuestionForDisplay(original);
 
   const selected = document.querySelector('input[name="answer"]:checked');
   if (!selected) return;
@@ -467,6 +472,16 @@ function onSubmit(e) {
     usedTutor: state.tutorViewed,
   });
   updateSessionScore(state.session, result.correct);
+
+  try {
+    onQuestionAnswered({
+      questionId: question.questionId,
+      patternId: question.patternId || question.primaryPattern,
+      chapterId: question.chapterId,
+      correct: result.correct,
+    }, state.originalQuestions || []);
+  } catch (_) { /* Learning Engine non-critical */ }
+
   showResult(question, result);
 }
 
@@ -501,7 +516,8 @@ async function init() {
       questions: db.questions,
       statistics: db.statistics,
     });
-    state.questions = scoped.questions;
+    state.originalQuestions = scoped.questions;
+    state.questions = scoped.questions.map((q) => studentQuestionForDisplay(q));
     state.patterns = scoped.patterns;
     state.statistics = scoped.statistics;
 
@@ -517,7 +533,7 @@ async function init() {
     const questionId = getQueryParam('id');
 
     if (questionId) {
-      const question = getQuestionById(state.questions, questionId);
+      const question = getQuestionById(state.originalQuestions, questionId);
       if (!question) {
         showError(`재고자산 MVP 범위 밖이거나 없는 문항입니다: ${questionId}`);
         return;

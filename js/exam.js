@@ -11,6 +11,7 @@ import {
   filterInventoryScope,
 } from './data-loader.js';
 import { getItem, STORAGE_KEYS } from './storage.js';
+import { onExamComplete } from './learning-engine/learning-engine.js';
 import {
   EXAM_CONFIG,
   getPresetById,
@@ -34,15 +35,24 @@ import {
   renderChoiceItems,
 } from './shared-renderer.js';
 import { mountSourceViewerButton } from './source-viewer.js';
+import {
+  createExamResolvedSnapshot,
+  getExamSnapshotQuestion,
+  getExamSnapshotQuestions,
+  compareExamSnapshotWithLatest,
+} from './student/student-session.js';
+import { questionResolver } from './student/student-resolver.js';
 
 const state = {
   master: null,
+  originalQuestions: [],
   questions: [],
   patterns: [],
   session: null,
   selectedPresetId: EXAM_CONFIG.defaultPresetId,
   timerId: null,
   lastAnalysis: null,
+  lastOverrideCompare: null,
 };
 
 function applyTheme() {
@@ -149,7 +159,7 @@ function checkResumePanel() {
 
 function startNewExam(presetId) {
   const preset = getPresetById(presetId);
-  const selected = selectRandomQuestions(state.questions, preset.questionCount);
+  const selected = selectRandomQuestions(state.originalQuestions, preset.questionCount);
   if (!selected.length) {
     alert('출제 가능한 문항이 없습니다.');
     return;
@@ -157,6 +167,8 @@ function startNewExam(presetId) {
 
   clearActiveExamSession();
   state.session = createExamSession(preset, selected);
+  /* Sprint-13A — exam start: freeze Resolved Question Snapshot (UI layer) */
+  createExamResolvedSnapshot(state.session.sessionId, selected);
   saveActiveExamSession(state.session);
   enterExamMode();
 }
@@ -259,7 +271,11 @@ function renderExamNav() {
 
 function getCurrentQuestion() {
   const qid = state.session.questionIds[state.session.currentIndex];
-  return getQuestionById(state.questions, qid);
+  /* Prefer frozen snapshot; never re-resolve mid-exam */
+  const frozen = getExamSnapshotQuestion(state.session.sessionId, qid);
+  if (frozen) return frozen;
+  const original = getQuestionById(state.originalQuestions, qid);
+  return original ? questionResolver(original) : null;
 }
 
 function renderCurrentQuestion() {
@@ -329,10 +345,21 @@ function finalizeExam(fromTimeout = false) {
   if (!fromTimeout && !confirmSubmit()) return;
 
   state.session.timedOut = fromTimeout || state.session.timedOut;
-  state.lastAnalysis = gradeExamSession(state.session, state.questions, state.patterns);
-  submitExamSession(state.session, state.lastAnalysis, state.questions);
+  const snapshotQuestions = getExamSnapshotQuestions(state.session.sessionId);
+  const gradePool =
+    snapshotQuestions.length > 0 ? snapshotQuestions : state.questions;
+  state.lastAnalysis = gradeExamSession(state.session, gradePool, state.patterns);
+  submitExamSession(state.session, state.lastAnalysis, gradePool);
   trackExamComplete(state.session, state.lastAnalysis);
   state.session.status = 'submitted';
+  state.lastOverrideCompare = compareExamSnapshotWithLatest(
+    state.session.sessionId,
+    state.originalQuestions,
+  );
+  try {
+    onExamComplete(state.lastAnalysis, state.originalQuestions || []);
+  } catch (_) { /* Learning Engine non-critical */ }
+
   renderResult(state.lastAnalysis);
   showView('result-section');
 }
@@ -410,6 +437,37 @@ function renderResult(analysis) {
     `;
     recList.appendChild(li);
   });
+
+  /* Sprint-13A — post-exam: compare frozen snapshot vs latest Override */
+  let compareHost = $('exam-override-compare');
+  if (!compareHost) {
+    compareHost = document.createElement('div');
+    compareHost.id = 'exam-override-compare';
+    compareHost.className = 'exam-override-compare';
+    const resultSection = $('result-section');
+    if (resultSection) resultSection.appendChild(compareHost);
+  }
+  const cmp = state.lastOverrideCompare;
+  if (cmp?.ok) {
+    if (!cmp.diffCount) {
+      compareHost.innerHTML =
+        '<p class="section-desc">시험 스냅샷과 최신 Override가 동일합니다.</p>';
+    } else {
+      compareHost.innerHTML = `
+        <h3>최신 Override 비교</h3>
+        <p class="section-desc">시험 중 고정된 문항과 종료 후 Override ${cmp.diffCount}건이 다릅니다.</p>
+        <ul>${cmp.diffs
+          .map(
+            (d) =>
+              `<li><strong>${escapeHtml(d.questionId)}</strong> · ${escapeHtml(
+                (d.changedFields || []).join(', '),
+              )}</li>`,
+          )
+          .join('')}</ul>`;
+    }
+  } else {
+    compareHost.innerHTML = '';
+  }
 }
 
 function bindEvents() {
@@ -455,7 +513,8 @@ async function init() {
       questions: db.questions,
       statistics: db.statistics,
     });
-    state.questions = scoped.questions;
+    state.originalQuestions = scoped.questions;
+    state.questions = scoped.questions.map((q) => questionResolver(q));
     state.patterns = scoped.patterns;
 
     if (!state.questions.length) {

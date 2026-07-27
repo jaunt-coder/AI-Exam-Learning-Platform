@@ -4,7 +4,13 @@
  */
 
 import { loadPhase1Database, getPatternById, getQuestionById, filterInventoryScope } from './data-loader.js';
+import {
+  questionResolver,
+  resolveQuestionsForPattern,
+  patternResolver,
+} from './student/student-resolver.js';
 import { getItem, STORAGE_KEYS } from './storage.js';
+import { computePatternMastery } from './learning-engine/mastery-engine.js';
 import { loadProgress, getBookmarkCount } from './question-engine.js';
 import {
   buildDashboardSummary,
@@ -22,6 +28,7 @@ import {
 const state = {
   master: null,
   patterns: [],
+  originalQuestions: [],
   questions: [],
   statistics: [],
 };
@@ -268,10 +275,16 @@ function renderDetail(patternId) {
     ${statsRow?.recentYears?.length ? `<span class="meta-pill">최근 ${statsRow.recentYears.join(', ')}</span>` : ''}
   `;
 
+  const qidsForMastery = state.questions
+    .filter((q) => (q.patternId || q.primaryPattern) === patternId)
+    .map((q) => q.questionId);
+  const patternMasteryData = computePatternMastery(patternId, qidsForMastery);
+
   $('detail-progress').innerHTML = `
     ${renderProgressBar(prog.progressPercent, '풀이 진행률')}
     ${renderProgressBar(prog.correctPercent, '정답률 (풀이 완료 기준)')}
-    <p class="pattern-card-meta" style="margin-top:0.75rem">${prog.correct}/${prog.answered} 정답 · ${prog.total}문항 중 ${prog.answered} 풀이</p>
+    ${renderProgressBar(patternMasteryData.score, `Pattern Mastery (${patternMasteryData.masteryLevel})`)}
+    <p class="pattern-card-meta" style="margin-top:0.75rem">${prog.correct}/${prog.answered} 정답 · ${prog.total}문항 중 ${prog.answered} 풀이 · Mastery ${patternMasteryData.score}점</p>
   `;
 
   const wrongEl = $('detail-wrong-note');
@@ -288,9 +301,17 @@ function renderDetail(patternId) {
     wrongEl.textContent = '이 Pattern의 오답 기록이 없습니다.';
   }
 
-  const related = pattern.relatedQuestions
-    .map((qid) => getQuestionById(state.questions, qid))
-    .filter(Boolean);
+  /* Sprint-13A — Pattern UI uses Resolved Question (표/보기/해설/Pattern 자동 반영) */
+  const relatedFromPattern = (pattern.relatedQuestions || [])
+    .map((qid) => getQuestionById(state.originalQuestions, qid))
+    .filter(Boolean)
+    .map((q) => questionResolver(q));
+  const remapped = resolveQuestionsForPattern(patternId, state.originalQuestions);
+  const seen = new Set(relatedFromPattern.map((q) => q.questionId));
+  const related = [
+    ...relatedFromPattern,
+    ...remapped.filter((q) => !seen.has(q.questionId)),
+  ];
 
   const firstUnanswered = related.find((q) => !progress.answered[q.questionId]) || related[0];
   $('start-solving-btn').href = firstUnanswered
@@ -303,6 +324,11 @@ function renderDetail(patternId) {
   related.forEach((q) => {
     const attempt = progress.answered[q.questionId];
     const wrongItem = wrong?.items.find((i) => i.questionId === q.questionId);
+    const resolvedMeta = patternResolver(
+      getQuestionById(state.originalQuestions, q.questionId),
+      state.patterns,
+    );
+    const linkPattern = resolvedMeta?.patternId || patternId;
 
     const li = document.createElement('li');
     li.className = 'related-item';
@@ -310,7 +336,7 @@ function renderDetail(patternId) {
     else if (attempt?.correct) li.classList.add('is-correct');
 
     li.innerHTML = `
-      <a href="question.html?pattern=${encodeURIComponent(patternId)}&id=${encodeURIComponent(q.questionId)}">
+      <a href="question.html?pattern=${encodeURIComponent(linkPattern)}&id=${encodeURIComponent(q.questionId)}">
         <span class="q-badge">${q.year}년 · ${q.source?.questionNumber ?? '?'}번</span>
         ${wrongItem ? `<span class="q-badge" style="color:var(--color-error)">오답 ${wrongItem.wrongCount}회</span>` : ''}
         ${attempt?.correct ? '<span class="q-badge" style="color:var(--color-success)">정답</span>' : ''}
@@ -346,7 +372,8 @@ async function init() {
       statistics: db.statistics,
     });
     state.patterns = scoped.patterns;
-    state.questions = scoped.questions;
+    state.originalQuestions = scoped.questions;
+    state.questions = scoped.questions.map((q) => questionResolver(q));
     state.statistics = scoped.statistics;
 
     if (!state.patterns.length || !state.questions.length) {
