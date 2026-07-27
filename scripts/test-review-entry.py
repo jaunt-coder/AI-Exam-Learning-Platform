@@ -89,9 +89,11 @@ check("saveOverride only approve", "saveOverride" in ui and "performSave" in ui)
 print("\n[4] Student Resolved immediate reflect")
 qjs = read("js/question.js") or ""
 lljs = read("js/learning-loop-page.js") or ""
-check("question uses mountReviewEntry", "mountReviewEntry" in qjs)
+check("question uses initReviewEntry", "initReviewEntry" in qjs)
+check("question uses renderReviewToolbar", "renderReviewToolbar" in qjs)
 check("question studentQuestionForDisplay", "studentQuestionForDisplay" in qjs)
-check("learning-loop mountReviewEntry", "mountReviewEntry" in lljs)
+check("learning-loop initReviewEntry", "initReviewEntry" in lljs)
+check("learning-loop renderReviewToolbar", "renderReviewToolbar" in lljs)
 check("learning-loop Resolved display", "studentQuestionForDisplay" in lljs)
 check("applyResolvedToStudyQuestion", "applyResolvedToStudyQuestion" in entry)
 

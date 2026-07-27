@@ -5,8 +5,8 @@
  */
 
 import {
-  mountReviewToolbar,
   setEditButtonExpanded,
+  renderReviewToolbar as renderToolbarButtons,
 } from './review-toolbar.js';
 import {
   openReviewModal,
@@ -14,6 +14,14 @@ import {
   isReviewModalOpen,
 } from './review-modal.js';
 import { studentQuestionForDisplay } from '../student/student-workspace.js';
+
+const TOOLBAR_HOST_ID = 'review-entry-toolbar';
+const LOG_PREFIX = '[ReviewEntry]';
+
+/** @type {object|null} */
+let pageOptions = null;
+/** @type {object|null} */
+let lastQuestion = null;
 
 /**
  * Map study-loop compact question → Reviewer original shape.
@@ -65,34 +73,164 @@ export function applyResolvedToStudyQuestion(studyQuestion, resolved) {
 }
 
 /**
- * Mount toolbar + wire Reviewer Modal for a page.
- * @param {{
- *   toolbarHost: HTMLElement|null,
- *   getOriginal: () => object|null,
- *   onResolved?: (resolved: object) => void,
- *   onApprove?: (resolved: object) => void,
- *   onReject?: () => void,
- *   onSkip?: () => void,
- *   onNext?: () => void,
- *   onAi?: () => void,
- *   onPdf?: () => void,
- * }} options
+ * Ensure toolbar host exists in DOM (create if missing).
+ * @param {string} [hostId]
+ * @returns {HTMLElement|null}
  */
-export function mountReviewEntry(options = {}) {
-  const host = options.toolbarHost;
-  const original = typeof options.getOriginal === 'function'
-    ? options.getOriginal()
-    : null;
-  const qid = original?.questionId || original?.id || '';
+export function ensureToolbarHost(hostId = TOOLBAR_HOST_ID) {
+  let host = document.getElementById(hostId);
+  if (host) {
+    host.hidden = false;
+    host.removeAttribute('aria-hidden');
+    host.classList.remove('visually-hidden');
+    return host;
+  }
 
-  const { editBtn } = mountReviewToolbar(host, {
+  const solveHeader =
+    document.querySelector('#panel-question .study-card__header') ||
+    document.querySelector('#question-solve-section .question-meta-row') ||
+    document.querySelector('#question-solve-section header') ||
+    document.querySelector('#panel-question');
+
+  if (!solveHeader) {
+    console.warn(`${LOG_PREFIX} toolbar host not found and no header to attach`);
+    return null;
+  }
+
+  let toolbarWrap = solveHeader.querySelector('.question-toolbar');
+  if (!toolbarWrap) {
+    toolbarWrap = document.createElement('div');
+    toolbarWrap.className = 'question-toolbar ll-question-toolbar';
+    solveHeader.appendChild(toolbarWrap);
+  }
+
+  host = document.createElement('div');
+  host.id = hostId;
+  host.className = 'rv-entry-toolbar';
+  host.setAttribute('aria-label', '문제 도구');
+  toolbarWrap.prepend(host);
+  console.log(`${LOG_PREFIX} created missing #${hostId}`);
+  return host;
+}
+
+/**
+ * Render [PDF] [AI] [수정] for a question. Always runs after question render.
+ * @param {object|null} question
+ * @param {object} [options] — merges with pageOptions from initReviewEntry
+ * @returns {{ pdfBtn: HTMLElement|null, aiBtn: HTMLElement|null, editBtn: HTMLElement|null, reportBtn: HTMLElement|null, host: HTMLElement|null }}
+ */
+export function renderReviewToolbar(question, options = {}) {
+  const merged = {
+    ...(pageOptions || {}),
+    ...options,
+    getOriginal:
+      options.getOriginal ||
+      pageOptions?.getOriginal ||
+      (() => toReviewOriginal(question || lastQuestion)),
+  };
+
+  lastQuestion = question || lastQuestion;
+
+  const host =
+    merged.toolbarHost ||
+    ensureToolbarHost(merged.toolbarHostId || TOOLBAR_HOST_ID);
+
+  if (!host) {
+    console.warn(`${LOG_PREFIX} Review Toolbar Mount FAILED — no host`);
+    return {
+      pdfBtn: null,
+      aiBtn: null,
+      editBtn: null,
+      reportBtn: null,
+      host: null,
+    };
+  }
+
+  const original =
+    typeof merged.getOriginal === 'function'
+      ? merged.getOriginal()
+      : toReviewOriginal(question);
+  const qid = original?.questionId || original?.id || question?.questionId || '';
+
+  const buttons = renderToolbarButtons(host, {
     questionId: qid,
-    onPdf: options.onPdf,
-    onAi: options.onAi,
-    onEdit: () => toggleReviewEntry(options, editBtn),
+    onPdf: merged.onPdf,
+    onAi: merged.onAi,
+    onEdit: () => toggleReviewEntry(merged, null),
+    onReport: merged.onReport,
   });
 
-  return { editBtn, open: () => openEntry(options, editBtn) };
+  /* Rebind edit with actual editBtn reference */
+  if (buttons.editBtn) {
+    const fresh = buttons.editBtn.cloneNode(true);
+    buttons.editBtn.replaceWith(fresh);
+    buttons.editBtn = fresh;
+    fresh.addEventListener('click', () => toggleReviewEntry(merged, fresh));
+  }
+
+  host.dataset.reviewToolbarMounted = 'true';
+  host.dataset.questionId = qid || '';
+  console.log('Review Toolbar Mounted', {
+    questionId: qid,
+    hostId: host.id,
+    buttons: ['PDF', 'AI', '수정', 'Report Issue'],
+  });
+
+  return { ...buttons, host };
+}
+
+/**
+ * Alias used by pages — mount entry + toolbar for current question context.
+ * @param {object} options
+ */
+export function mountReviewEntry(options = {}) {
+  pageOptions = { ...(pageOptions || {}), ...options };
+  const question =
+    typeof options.getOriginal === 'function'
+      ? options.getOriginal()
+      : lastQuestion;
+  const result = renderReviewToolbar(question, options);
+  return {
+    editBtn: result.editBtn,
+    open: () => openEntry(pageOptions, result.editBtn),
+    host: result.host,
+  };
+}
+
+/**
+ * DOM Ready init — register page callbacks and mount empty/ready toolbar shell.
+ * Must run after DOM is ready.
+ * @param {object} [options]
+ */
+export function initReviewEntry(options = {}) {
+  const run = () => {
+    pageOptions = { ...(pageOptions || {}), ...options };
+    const host = ensureToolbarHost(options.toolbarHostId || TOOLBAR_HOST_ID);
+    if (host && !host.dataset.reviewToolbarMounted) {
+      /* Mount visible shell immediately so buttons exist before first question */
+      renderReviewToolbar(null, {
+        ...pageOptions,
+        getOriginal: () =>
+          typeof pageOptions.getOriginal === 'function'
+            ? pageOptions.getOriginal()
+            : lastQuestion
+              ? toReviewOriginal(lastQuestion)
+              : { questionId: '', question: '', choices: [] },
+      });
+    }
+    console.log(`${LOG_PREFIX} initReviewEntry ready`, {
+      host: Boolean(host),
+      page: document.body?.dataset?.page || location.pathname,
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run, { once: true });
+  } else {
+    run();
+  }
+
+  return { renderReviewToolbar, mountReviewEntry, openReviewModal };
 }
 
 function toggleReviewEntry(options, editBtn) {
@@ -106,8 +244,11 @@ function toggleReviewEntry(options, editBtn) {
 
 function openEntry(options, editBtn) {
   const raw =
-    typeof options.getOriginal === 'function' ? options.getOriginal() : null;
-  if (!raw) return null;
+    typeof options.getOriginal === 'function' ? options.getOriginal() : lastQuestion;
+  if (!raw || !(raw.questionId || raw.id || raw.stem || raw.question)) {
+    console.warn(`${LOG_PREFIX} openEntry: no question context`);
+    return null;
+  }
   const original = toReviewOriginal(raw);
 
   setEditButtonExpanded(editBtn, true);
@@ -115,15 +256,15 @@ function openEntry(options, editBtn) {
   return openReviewModal({
     originalQuestion: original,
     onResolved: (resolved) => {
-      /* Student display path — Resolved only */
       const student = studentQuestionForDisplay(original) || resolved;
       if (typeof options.onResolved === 'function') {
         options.onResolved(student, resolved);
       }
+      console.log(`${LOG_PREFIX} resolved rerender`, original.questionId);
     },
     onApprove: (resolved) => {
-      /* After saveOverride — re-resolve from original so student never sees raw override meta */
       const student = studentQuestionForDisplay(original) || resolved;
+      console.log(`${LOG_PREFIX} Approve → saveOverride applied`, original.questionId);
       if (typeof options.onApprove === 'function') {
         options.onApprove(student, resolved);
       } else if (typeof options.onResolved === 'function') {
@@ -150,7 +291,6 @@ function openEntry(options, editBtn) {
 }
 
 /**
- * Convenience: resolve for student display after Approve.
  * @param {object} original
  * @returns {object}
  */
@@ -159,10 +299,13 @@ export function resolveForStudentDisplay(original) {
 }
 
 export default {
+  initReviewEntry,
+  renderReviewToolbar,
   mountReviewEntry,
   toReviewOriginal,
   applyResolvedToStudyQuestion,
   resolveForStudentDisplay,
+  ensureToolbarHost,
   openReviewModal,
   closeReviewModal,
   isReviewModalOpen,

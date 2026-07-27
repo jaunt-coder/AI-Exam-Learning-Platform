@@ -345,11 +345,24 @@
 
 /* Sprint-12F — Review Entry Modal + Toolbar */
 .rv-entry-toolbar {
-  display: flex;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   flex-wrap: wrap;
-  align-items: center;
   gap: 0.35rem;
+  align-items: center;
+  min-height: 2.5rem;
 }
+.rv-entry-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  font-weight: 700;
+}
+#panel-question .rv-entry-toolbar,
+#question-solve-section .rv-entry-toolbar {
+  display: flex !important;
+}
+
 
 .rv-entry-btn.is-active,
 .rv-entry-btn--edit[aria-expanded='true'] {

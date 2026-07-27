@@ -40,7 +40,8 @@ import {
 } from './session-resume.js';
 import { exportSyncStateV4 } from './import-export-v4.js';
 import {
-  mountReviewEntry,
+  initReviewEntry,
+  renderReviewToolbar,
   applyResolvedToStudyQuestion,
   toReviewOriginal,
 } from './reviewer/review-entry.js';
@@ -787,44 +788,56 @@ function renderQuestionPanel() {
   const q = currentQuestion;
   if (!q) return;
 
-  /* Sprint-12F — Student always sees Resolved Question (Override applied) */
-  const original = toReviewOriginal(q);
-  const resolved = studentQuestionForDisplay(original);
-  const display = applyResolvedToStudyQuestion(q, resolved);
   const pack = studyPatterns[patternIndex];
+
+  /* Sprint-12F — toolbar FIRST (before resolver/meta so buttons always mount) */
+  try {
+    renderReviewToolbar(q, {
+      toolbarHost: document.getElementById('review-entry-toolbar'),
+      getOriginal: () => toReviewOriginal(currentQuestion),
+      onResolved: (student) => {
+        currentQuestion = applyResolvedToStudyQuestion(currentQuestion, student);
+        if (pack?.questions && questionIndex >= 0) {
+          pack.questions[questionIndex] = currentQuestion;
+        }
+        renderQuestionPanel();
+      },
+      onApprove: (student) => {
+        currentQuestion = applyResolvedToStudyQuestion(currentQuestion, student);
+        if (pack?.questions && questionIndex >= 0) {
+          pack.questions[questionIndex] = currentQuestion;
+        }
+        renderQuestionPanel();
+      },
+      onSkip: () => {},
+      onNext: () => {
+        if (pack?.questions && questionIndex < pack.questions.length - 1) {
+          questionIndex += 1;
+          currentQuestion = pack.questions[questionIndex];
+          renderQuestionPanel();
+          updateProgressDisplay();
+        }
+      },
+    });
+  } catch (err) {
+    console.error('[LearningLoop] Review Toolbar mount failed:', err);
+  }
+
+  /* Sprint-12F — Student always sees Resolved Question (Override applied) */
+  let display = q;
+  try {
+    const original = toReviewOriginal(q);
+    const resolved = studentQuestionForDisplay(original);
+    display = applyResolvedToStudyQuestion(q, resolved);
+  } catch (err) {
+    console.error('[LearningLoop] Resolved display failed:', err);
+    display = q;
+  }
 
   els.questionMeta.textContent =
     viewMode === 'developer'
-      ? `${display.questionId} · ${lesson.pattern_id}`
-      : `「${lesson.name}」 Pattern 적용`;
-
-  mountReviewEntry({
-    toolbarHost: document.getElementById('review-entry-toolbar'),
-    getOriginal: () => toReviewOriginal(currentQuestion),
-    onResolved: (student) => {
-      currentQuestion = applyResolvedToStudyQuestion(currentQuestion, student);
-      if (pack?.questions && questionIndex >= 0) {
-        pack.questions[questionIndex] = currentQuestion;
-      }
-      renderQuestionPanel();
-    },
-    onApprove: (student) => {
-      currentQuestion = applyResolvedToStudyQuestion(currentQuestion, student);
-      if (pack?.questions && questionIndex >= 0) {
-        pack.questions[questionIndex] = currentQuestion;
-      }
-      renderQuestionPanel();
-    },
-    onSkip: () => {},
-    onNext: () => {
-      if (pack?.questions && questionIndex < pack.questions.length - 1) {
-        questionIndex += 1;
-        currentQuestion = pack.questions[questionIndex];
-        renderQuestionPanel();
-        updateProgressDisplay();
-      }
-    },
-  });
+      ? `${display.questionId || q.questionId} · ${lesson?.pattern_id || '—'}`
+      : `「${lesson?.name || 'Pattern'}」 Pattern 적용`;
 
   const legacyHost = document.getElementById('loop-source-viewer-host');
   if (legacyHost) legacyHost.innerHTML = '';
@@ -1677,6 +1690,10 @@ function restorePatternIndex() {
 }
 
 async function init() {
+  initReviewEntry({
+    toolbarHostId: 'review-entry-toolbar',
+    getOriginal: () => (currentQuestion ? toReviewOriginal(currentQuestion) : null),
+  });
   setAdapter(createLocalStorageAdapter());
   ensureProgress();
   loadPrefs();

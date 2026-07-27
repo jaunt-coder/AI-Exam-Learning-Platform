@@ -83,6 +83,15 @@ export function mountReviewToolbar(host, options = {}) {
 }
 
 /**
+ * Alias — Sprint-12F renderReviewToolbar(question) pipeline uses this name.
+ * @param {HTMLElement|null} host
+ * @param {object} [options]
+ */
+export function renderReviewToolbar(host, options = {}) {
+  return mountReviewToolbar(host, options);
+}
+
+/**
  * @param {HTMLElement|null} editBtn
  * @param {boolean} expanded
  */
@@ -94,5 +103,6 @@ export function setEditButtonExpanded(editBtn, expanded) {
 
 export default {
   mountReviewToolbar,
+  renderReviewToolbar,
   setEditButtonExpanded,
 };

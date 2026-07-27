@@ -509,6 +509,7 @@ export function openReviewerPanel(options = {}) {
     const patch = buildPatch();
     const status = statusOverride || statusSelect?.value || 'REVIEWED';
     /* Approve path: saveOverride only — Question DB untouched */
+    console.log('[ReviewEntry] saveOverride()', { questionId: qid, status });
     saveOverride(qid, patch, {
       status,
       reviewer: 'local',

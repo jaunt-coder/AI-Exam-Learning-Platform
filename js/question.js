@@ -35,7 +35,10 @@ import {
   mountQuestionTable,
   renderChoiceItems,
 } from './shared-renderer.js';
-import { mountReviewEntry } from './reviewer/review-entry.js';
+import {
+  initReviewEntry,
+  renderReviewToolbar,
+} from './reviewer/review-entry.js';
 import { closeReviewModal } from './reviewer/review-modal.js';
 import { studentQuestionForDisplay } from './student/student-workspace.js';
 import { onQuestionAnswered } from './learning-engine/learning-engine.js';
@@ -264,9 +267,8 @@ function renderSolveView(question) {
   /* Sprint-13A — students must not see Original / Override status */
   const badgeHost = document.getElementById('review-badge-host');
   if (badgeHost) badgeHost.innerHTML = '';
-  mountWhyRecommended(resolved);
-  updateBookmarkButton(resolved);
-  mountReviewEntry({
+  try {
+    renderReviewToolbar(state.originalQuestion || resolved, {
     toolbarHost: document.getElementById('review-entry-toolbar'),
     getOriginal: () => state.originalQuestion,
     onAi: () => {
@@ -309,6 +311,12 @@ function renderSolveView(question) {
       if (nextBtn && !nextBtn.hidden) nextBtn.click();
     },
   });
+  } catch (err) {
+    console.error('[Question] Review Toolbar mount failed:', err);
+  }
+
+  mountWhyRecommended(resolved);
+  updateBookmarkButton(resolved);
 
   mountQuestionStem(resolved, $('question-stem'));
   renderQuestionTable(resolved);
@@ -565,6 +573,14 @@ function hideAllViews() {
 }
 
 async function init() {
+  initReviewEntry({
+    toolbarHostId: 'review-entry-toolbar',
+    getOriginal: () => state.originalQuestion,
+    onAi: () => {
+      const panel = $('ai-tutor-panel');
+      if (panel) show(panel);
+    },
+  });
   applyTheme();
 
   try {

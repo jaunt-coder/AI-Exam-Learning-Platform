@@ -73,7 +73,12 @@
             <div id="review-badge-host" class="rv-badge-host" aria-label="Review status"></div>
             <div class="question-meta" id="question-meta"></div>
             <div class="question-toolbar">
-              <div id="review-entry-toolbar" class="rv-entry-toolbar" aria-label="문제 도구"></div>
+              <div id="review-entry-toolbar" class="rv-entry-toolbar" aria-label="문제 도구" data-review-toolbar="shell">
+  <button type="button" class="button button--ghost button--touch rv-entry-btn" data-rv-tool="pdf">PDF</button>
+  <button type="button" class="button button--ghost button--touch rv-entry-btn" data-rv-tool="ai">AI</button>
+  <button type="button" class="button button--ghost button--touch rv-entry-btn rv-entry-btn--edit" data-rv-tool="edit" aria-expanded="false">수정</button>
+  <button type="button" class="button button--ghost button--touch rv-entry-btn rv-entry-btn--report" data-rv-tool="report">Report Issue</button>
+</div>
               <button type="button" class="button button--ghost button--touch" id="bookmark-btn" aria-pressed="false">북마크</button>
             </div>
           </div>

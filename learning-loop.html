@@ -136,7 +136,12 @@
                 <p class="section-desc" id="question-meta">Pattern을 적용해 보세요</p>
               </div>
               <div class="question-toolbar ll-question-toolbar">
-                <div id="review-entry-toolbar" class="rv-entry-toolbar" aria-label="문제 도구"></div>
+                <div id="review-entry-toolbar" class="rv-entry-toolbar" aria-label="문제 도구" data-review-toolbar="shell">
+  <button type="button" class="button button--ghost button--touch rv-entry-btn" data-rv-tool="pdf">PDF</button>
+  <button type="button" class="button button--ghost button--touch rv-entry-btn" data-rv-tool="ai">AI</button>
+  <button type="button" class="button button--ghost button--touch rv-entry-btn rv-entry-btn--edit" data-rv-tool="edit" aria-expanded="false">수정</button>
+  <button type="button" class="button button--ghost button--touch rv-entry-btn rv-entry-btn--report" data-rv-tool="report">Report Issue</button>
+</div>
                 <div id="loop-source-viewer-host" class="source-viewer-host visually-hidden" aria-hidden="true"></div>
               </div>
             </header>
