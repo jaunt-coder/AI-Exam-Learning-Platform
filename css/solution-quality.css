@@ -1,0 +1,97 @@
+/* Sprint-15C — Solution Quality */
+
+.sq-kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  opacity: 0.75;
+}
+
+.sq-student-card,
+.sq-reviewer-panel,
+.sq-dash-card {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.sq-score {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.sq-score span,
+.sq-score small {
+  font-size: 0.9rem;
+  opacity: 0.65;
+  font-weight: 500;
+}
+
+.sq-marks,
+.sq-needs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.sq-mark {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  font-size: 0.92rem;
+}
+
+.sq-mark.is-ok .sq-mark__icon {
+  color: var(--color-success, #1a7f37);
+}
+
+.sq-mark.is-mid .sq-mark__icon {
+  color: var(--color-warning, #c47f17);
+}
+
+.sq-mark.is-bad .sq-mark__icon {
+  color: var(--color-error, #c62828);
+}
+
+.sq-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: color-mix(in srgb, var(--color-warning, #c47f17) 18%, transparent);
+}
+
+.sq-block h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+}
+
+.sq-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.sq-status.is-ok {
+  color: var(--color-success, #1a7f37);
+}
+
+.sq-status.is-err {
+  color: var(--color-error, #c62828);
+}
+
+.sq-needs li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+}
+
+.sq-bp {
+  border: 1px solid var(--color-border, #e4e7ec);
+  border-radius: var(--radius, 6px);
+  padding: 0.45rem 0.6rem;
+}

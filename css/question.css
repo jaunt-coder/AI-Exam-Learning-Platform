@@ -557,6 +557,36 @@
   background: rgba(0, 0, 0, 0.02);
 }
 
+.question-solution {
+  margin: 0.85rem 0 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius, 8px);
+  background: color-mix(in srgb, var(--color-bg, #f8fafc) 80%, transparent);
+}
+
+.question-solution__title {
+  margin: 0 0 0.45rem;
+  font-size: 0.95rem;
+}
+
+.question-solution__text {
+  margin: 0;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.question-solution__steps {
+  margin: 0.55rem 0 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.question-solution__steps p {
+  margin: 0.2rem 0 0;
+}
+
 [data-theme='dark'] .question-table tbody tr:nth-child(even) {
   background: rgba(255, 255, 255, 0.03);
 }

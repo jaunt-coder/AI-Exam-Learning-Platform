@@ -88,9 +88,11 @@ export function enrichDashboardWithResolved(dashboard, originals = []) {
 
 /**
  * Ensure a single original is resolved for Tutor / Question UI.
+ * @param {object|null} original
+ * @param {{ useCache?: boolean }} [options]
  */
-export function studentQuestionForDisplay(original) {
-  return questionResolver(original);
+export function studentQuestionForDisplay(original, options = {}) {
+  return questionResolver(original, options);
 }
 
 export default {

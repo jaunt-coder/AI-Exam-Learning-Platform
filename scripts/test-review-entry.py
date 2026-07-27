@@ -96,6 +96,10 @@ check("learning-loop initReviewEntry", "initReviewEntry" in lljs)
 check("learning-loop renderReviewToolbar", "renderReviewToolbar" in lljs)
 check("learning-loop Resolved display", "studentQuestionForDisplay" in lljs)
 check("applyResolvedToStudyQuestion", "applyResolvedToStudyQuestion" in entry)
+check("applyResolved copies table", "table" in entry and "hasTable" in entry)
+check("applyResolved copies solution", "solution" in entry)
+check("resolveFreshForStudent", "resolveFreshForStudent" in entry)
+check("invalidateStudentCache on approve path", "invalidateStudentCache" in entry)
 
 print("\n[5] Draft / Keyboard")
 draft = read("js/reviewer/review-draft.js") or ""

@@ -17,6 +17,7 @@ import { renderTutorLesson } from './ai-tutor-render.js';
 import { questionResolver } from './student/student-resolver.js';
 import { getTutorContext } from './learning-engine/learning-engine.js';
 import { buildTutorEvidenceContext } from './evidence/evidence-engine.js';
+import { buildExamTutorContext } from './exam-goal/exam-goal-engine.js';
 import {
   renderEvidenceDetail,
   bindEvidenceAccordion,
@@ -96,6 +97,22 @@ function runTutorLesson() {
       learningContext = { evidence: evidenceContext };
     }
   } catch (_) { /* Evidence non-critical */ }
+
+  /* Sprint-16B — attach exam goal context only; do not change tutor generation */
+  try {
+    const examCtx = buildExamTutorContext({
+      questions: state.questions || [],
+      patterns: state.patterns || [],
+    });
+    if (learningContext) {
+      learningContext.examGoal = examCtx.examGoal;
+      learningContext.examPhase = examCtx.examPhase;
+      learningContext.riskPatterns = examCtx.riskPatterns;
+      learningContext.todayTasks = examCtx.todayTasks;
+    } else {
+      learningContext = examCtx;
+    }
+  } catch (_) { /* Exam Goal non-critical */ }
 
   const lesson = generateTutorLesson({
     question,

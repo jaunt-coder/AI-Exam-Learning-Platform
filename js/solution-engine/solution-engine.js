@@ -25,8 +25,14 @@ import {
   buildMistakeHeatmap,
   loadMistakeProfile,
 } from './cache.js';
+import {
+  enrichWithSmartTutor,
+  mountSmartTutorResult,
+} from '../smart-tutor/smart-tutor.js';
 
 export const SOLUTION_ENGINE_VERSION = '15A+';
+/** Sprint-15B Result layer (Smart Tutor) — additive, does not change pack formulas */
+export const SMART_RESULT_VERSION = '15B';
 
 /**
  * Lazy-generate full tutor pack for Result screen.
@@ -446,12 +452,23 @@ export function mountSolutionAccordion(host, pack, options = {}) {
 
 /**
  * Lazy entry used by Result screen (requestAnimationFrame friendly).
+ * Sprint-15B: mounts Smart Tutor Learning Loop Result (keeps 15A+ pack generation).
  */
 export function lazyGenerateAndMount(host, input, options = {}) {
   const run = () => {
     const pack = generateSolutionPack(input);
-    mountSolutionAccordion(host, pack, options);
-    return pack;
+    const smart = enrichWithSmartTutor(pack, input);
+    mountSmartTutorResult(host, smart, {
+      ...options,
+      onPromoteRequest: (req) => {
+        /* Keep 15A+ promote contract visible */
+        const base = requestPromoteToOfficial(pack);
+        if (typeof options.onPromoteRequest === 'function') {
+          options.onPromoteRequest({ ...base, ...req, autoPromote: false });
+        }
+      },
+    });
+    return smart;
   };
   if (typeof requestAnimationFrame === 'function' && options.defer !== false) {
     let pack = null;
@@ -466,6 +483,7 @@ export function lazyGenerateAndMount(host, input, options = {}) {
 
 export default {
   SOLUTION_ENGINE_VERSION,
+  SMART_RESULT_VERSION,
   generateSolutionPack,
   requestPromoteToOfficial,
   getDashboardMistakeData,

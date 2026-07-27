@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/learning-dashboard.css">
   <link rel="stylesheet" href="css/evidence.css">
+  <link rel="stylesheet" href="css/exam-strategy.css">
+  <link rel="stylesheet" href="css/exam-goal.css">
+  <link rel="stylesheet" href="css/solution-quality.css">
 </head>
 <body>
   <header class="site-header" role="banner">
@@ -16,7 +19,7 @@
         <h1 class="site-title">
           <a href="index.html" class="site-title-link">AI Exam Learning Platform</a>
         </h1>
-        <p class="site-subtitle">Sprint-14B — Student Learning Dashboard</p>
+        <p class="site-subtitle">Sprint-16B — Exam Mode · Goal Management · Student Dashboard</p>
       </div>
       <nav class="header-nav" aria-label="주요 메뉴">
         <a href="index.html" class="button button--ghost">홈</a>
@@ -41,62 +44,146 @@
       </header>
 
       <div class="ld-grid ld-student-grid" aria-labelledby="dashboard-heading">
+        <section class="ld-card card ld-card--wide" aria-labelledby="exam-mode-heading">
+          <h3 id="exam-mode-heading">Exam Mode</h3>
+          <p class="ld-card-desc">D-Day · Readiness · 목표 · 오늘 TOP 3</p>
+          <div id="widget-exam-mode-card" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="exam-goal-form-heading">
+          <h3 id="exam-goal-form-heading">시험 목표</h3>
+          <p class="ld-card-desc">시험일 · 목표 점수 · 공부 시간</p>
+          <div id="widget-exam-goal-form" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="exam-countdown-heading">
+          <h3 id="exam-countdown-heading">① Exam Countdown</h3>
+          <p class="ld-card-desc">D-Day · Phase</p>
+          <div id="widget-exam-countdown" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="exam-goal-progress-heading">
+          <h3 id="exam-goal-progress-heading">② Goal Progress</h3>
+          <p class="ld-card-desc">현재 / 목표 · 갭</p>
+          <div id="widget-exam-goal-progress" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card ld-card--wide" aria-labelledby="exam-mission-heading">
+          <h3 id="exam-mission-heading">③ Today's Mission</h3>
+          <p class="ld-card-desc">완료 체크 · 완료율</p>
+          <div id="widget-exam-today-mission" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="exam-risk-alert-heading">
+          <h3 id="exam-risk-alert-heading">④ Risk Alert</h3>
+          <p class="ld-card-desc">위험 Pattern 알림</p>
+          <div id="widget-exam-risk-alert" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="exam-streak-heading">
+          <h3 id="exam-streak-heading">⑤ Completion Streak</h3>
+          <p class="ld-card-desc">연속 완료일</p>
+          <div id="widget-exam-completion-streak" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card ld-card--wide" aria-labelledby="solution-quality-heading">
+          <h3 id="solution-quality-heading">AI 해설 품질</h3>
+          <p class="ld-card-desc">평균 품질 · 개선 필요 TOP 10</p>
+          <div id="widget-solution-quality" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card ld-card--wide" aria-labelledby="exam-daily-heading">
+          <h3 id="exam-daily-heading">오늘 학습 (Strategy)</h3>
+          <p class="ld-card-desc">Today Plan · 예상 시간</p>
+          <div id="widget-exam-daily-plan" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="exam-map-heading">
+          <h3 id="exam-map-heading">② Mastery Map</h3>
+          <p class="ld-card-desc">나의 회계학 상태</p>
+          <div id="widget-exam-mastery-map" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="exam-danger-heading">
+          <h3 id="exam-danger-heading">③ 위험 Pattern</h3>
+          <p class="ld-card-desc">위험 Pattern TOP 5</p>
+          <div id="widget-exam-danger" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="exam-ready-heading">
+          <h3 id="exam-ready-heading">④ 시험 준비도</h3>
+          <p class="ld-card-desc">Exam Readiness Score 0–100</p>
+          <div id="widget-exam-readiness" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card ld-card--wide" aria-labelledby="exam-strategy-heading">
+          <h3 id="exam-strategy-heading">⑤ AI 전략</h3>
+          <p class="ld-card-desc">상태 분석 · 보완 순위 · Exam Mode</p>
+          <div id="widget-exam-strategy" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card ld-card--wide" aria-labelledby="exam-risk-heading">
+          <h3 id="exam-risk-heading">Pattern Risk Score</h3>
+          <p class="ld-card-desc">Mastery · 최근 오류 · 복습 · Risk</p>
+          <div id="widget-exam-pattern-risk" tabindex="-1"></div>
+        </section>
+
         <section class="ld-card card ld-card--wide" aria-labelledby="today-study-heading">
-          <h3 id="today-study-heading">① Today's Study</h3>
+          <h3 id="today-study-heading">⑥ Today's Study</h3>
           <p class="ld-card-desc">오늘 복습 · 추천 · 시험 · 목표</p>
           <div id="widget-today-study" tabindex="-1"></div>
         </section>
 
         <section class="ld-card card" aria-labelledby="mastery-heading">
-          <h3 id="mastery-heading">② Mastery Summary</h3>
+          <h3 id="mastery-heading">⑦ Mastery Summary</h3>
           <p class="ld-card-desc">Question · Pattern · Chapter</p>
           <div id="widget-mastery-summary" tabindex="-1"></div>
         </section>
 
         <section class="ld-card card" aria-labelledby="weak-heading">
-          <h3 id="weak-heading">③ Weak Pattern</h3>
+          <h3 id="weak-heading">⑧ Weak Pattern</h3>
           <p class="ld-card-desc">Top 10 · Review</p>
           <div id="widget-weak-pattern" tabindex="-1"></div>
         </section>
 
         <section class="ld-card card ld-card--wide" aria-labelledby="rec-heading">
-          <h3 id="rec-heading">④ Recommendation</h3>
+          <h3 id="rec-heading">⑨ Recommendation</h3>
           <p class="ld-card-desc">Learning Engine 추천</p>
           <div id="widget-recommendation" tabindex="-1"></div>
         </section>
 
         <section class="ld-card card ld-card--wide" aria-labelledby="review-heading">
-          <h3 id="review-heading">⑤ Today's Review</h3>
+          <h3 id="review-heading">⑩ Today's Review</h3>
           <p class="ld-card-desc">Review Scheduler</p>
           <div id="widget-todays-review" tabindex="-1"></div>
         </section>
 
         <section class="ld-card card ld-card--wide" aria-labelledby="heatmap-heading">
-          <h3 id="heatmap-heading">⑥ Learning Heatmap</h3>
+          <h3 id="heatmap-heading">⑪ Learning Heatmap</h3>
           <p class="ld-card-desc">최근 365일 풀이량</p>
           <div id="widget-heatmap" tabindex="-1"></div>
         </section>
 
         <section class="ld-card card" aria-labelledby="growth-heading">
-          <h3 id="growth-heading">⑦ Recent Growth</h3>
+          <h3 id="growth-heading">⑫ Recent Growth</h3>
           <p class="ld-card-desc">최근 30일 Line Chart</p>
           <div id="widget-recent-growth" tabindex="-1"></div>
         </section>
 
         <section class="ld-card card" aria-labelledby="weekly-heading">
-          <h3 id="weekly-heading">⑧ Weekly Statistics</h3>
+          <h3 id="weekly-heading">⑬ Weekly Statistics</h3>
           <p class="ld-card-desc">문항 · 시간 · 정답률 · Radar</p>
           <div id="widget-weekly-stats" tabindex="-1"></div>
         </section>
 
         <section class="ld-card card ld-card--wide" aria-labelledby="activity-heading">
-          <h3 id="activity-heading">⑨ Recent Activity</h3>
+          <h3 id="activity-heading">⑭ Recent Activity</h3>
           <p class="ld-card-desc">최근 풀이 기록</p>
           <div id="widget-recent-activity" tabindex="-1"></div>
         </section>
 
         <section class="ld-card card ld-card--wide" aria-labelledby="quick-heading">
-          <h3 id="quick-heading">⑩ Quick Start</h3>
+          <h3 id="quick-heading">⑮ Quick Start</h3>
           <p class="ld-card-desc">바로 학습 시작</p>
           <div id="widget-quick-start" tabindex="-1"></div>
         </section>

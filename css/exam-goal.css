@@ -1,0 +1,134 @@
+/* Sprint-16B — Exam Goal / Exam Mode UI */
+
+.eg-kicker {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  opacity: 0.75;
+}
+
+.eg-mode-card,
+.eg-countdown,
+.eg-goal-progress,
+.eg-today-mission,
+.eg-risk-alert,
+.eg-streak {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.eg-dday {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.eg-pass,
+.eg-target,
+.eg-remain {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.eg-top3,
+.eg-mission-list,
+.eg-risk-alert-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.eg-rank {
+  font-weight: 800;
+  margin-right: 0.25rem;
+}
+
+.eg-progress-score {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.eg-progress-bar {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-border, #d0d5dd) 70%, transparent);
+  overflow: hidden;
+}
+
+.eg-progress-bar > i {
+  display: block;
+  height: 100%;
+  background: var(--color-primary, #2f6fed);
+}
+
+.eg-mission-item label {
+  display: flex;
+  gap: 0.45rem;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.eg-mission-item.is-done span {
+  text-decoration: line-through;
+  opacity: 0.65;
+}
+
+.eg-forbid {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-error, #c62828);
+}
+
+.eg-streak-num {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.eg-goal-form {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.eg-goal-form label {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.eg-goal-form input {
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--color-border, #d0d5dd);
+  border-radius: var(--radius, 6px);
+  font: inherit;
+}
+
+.eg-form-status {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.eg-form-status.is-ok {
+  color: var(--color-success, #1a7f37);
+}
+
+.eg-form-status.is-err {
+  color: var(--color-error, #c62828);
+}
+
+.st-why-exam {
+  margin-top: 0.5rem;
+  padding: 0.55rem 0.7rem;
+  border-left: 3px solid var(--color-warning, #c47f17);
+  background: color-mix(in srgb, var(--color-warning, #c47f17) 10%, transparent);
+  font-size: 0.9rem;
+}
+
+.st-why-exam__title {
+  margin: 0 0 0.25rem;
+  font-weight: 800;
+  font-size: 0.82rem;
+}

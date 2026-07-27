@@ -88,6 +88,27 @@ const STORAGE_KEYS = {
   LEARNING_MISTAKE_PROFILE_V1: 'learning.mistake-profile.v1',
   LEARNING_DIAGNOSIS_V1: 'learning.diagnosis.v1',
   LEARNING_PRESCRIPTION_V1: 'learning.prescription.v1',
+  // Sprint-15B AI Learning Loop & Smart Tutor (additive — do not rename)
+  LEARNING_SMART_REVIEW_V1: 'learning.smart-review.v1',
+  LEARNING_WEAK_MEMORY_V1: 'learning.weak-memory.v1',
+  LEARNING_FORMULA_CARD_V1: 'learning.formula-card.v1',
+  LEARNING_MINI_RETRY_V1: 'learning.mini-retry.v1',
+  LEARNING_SMART_TUTOR_V1: 'learning.smart-tutor.v1',
+  // Sprint-16A AI Exam Strategy (additive — do not rename)
+  LEARNING_EXAM_READINESS_V1: 'learning.exam-readiness.v1',
+  LEARNING_STRATEGY_STATE_V1: 'learning.strategy-state.v1',
+  LEARNING_DAILY_PLAN_V1: 'learning.daily-plan.v1',
+  LEARNING_PATTERN_RISK_V1: 'learning.pattern-risk.v1',
+  LEARNING_EXAM_MODE_V1: 'learning.exam-mode.v1',
+  // Sprint-16B Exam Mode & Goal Management (additive — do not rename)
+  LEARNING_EXAM_GOAL_V1: 'learning.exam-goal.v1',
+  LEARNING_EXAM_PROGRESS_V1: 'learning.exam-progress.v1',
+  LEARNING_EXAM_PHASE_V1: 'learning.exam-phase.v1',
+  // Sprint-15C AI Solution Quality (additive — do not rename)
+  LEARNING_SOLUTION_QUALITY_V1: 'learning.solution-quality.v1',
+  LEARNING_SOLUTION_BLUEPRINT_V1: 'learning.solution-blueprint.v1',
+  LEARNING_SOLUTION_REVIEW_V1: 'learning.solution-review.v1',
+  LEARNING_SOLUTION_IMPROVEMENT_V1: 'learning.solution-improvement.v1',
   // Sprint-12F Reviewer Entry Integration (additive — do not rename)
   LEARNING_REVIEW_DRAFT_V1: 'learning.review-draft.v1',
   LEARNING_REVIEW_UI_V1: 'learning.review-ui.v1',

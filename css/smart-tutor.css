@@ -1,0 +1,313 @@
+/* Sprint-15B — Smart Tutor / AI Learning Loop */
+
+.st-root {
+  margin-top: 0.25rem;
+}
+
+.st-weak-banner {
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem;
+  border-left: 4px solid var(--color-warning, #c47f17);
+  background: color-mix(in srgb, var(--color-warning, #c47f17) 12%, var(--color-surface, #fff));
+  border-radius: 0 var(--radius, 8px) var(--radius, 8px) 0;
+}
+
+.st-weak-banner__kicker {
+  margin: 0 0 0.25rem;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--color-warning, #9a5f00);
+}
+
+.st-weak-banner__message {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.st-weak-banner__meta {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.st-expl-block {
+  margin: 0 0 0.85rem;
+}
+
+.st-expl-block h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+}
+
+.st-expl-block p,
+.st-expl-block ul {
+  margin: 0;
+}
+
+.st-expl-block ul {
+  padding-left: 1.2rem;
+}
+
+.st-review-card {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
+  border: 1px dashed var(--color-border, #d0d5dd);
+  border-radius: var(--radius, 8px);
+  background: color-mix(in srgb, var(--color-primary, #2f6fed) 4%, transparent);
+}
+
+.st-review-card__headline {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.st-review-bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.st-review-bullets li {
+  display: flex;
+  gap: 0.45rem;
+  align-items: flex-start;
+}
+
+.st-check {
+  color: var(--color-success, #1a7f37);
+  font-weight: 700;
+}
+
+.st-review-timer {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.9rem;
+  border-top: 1px solid var(--color-border, #e4e7ec);
+  padding-top: 0.5rem;
+}
+
+.st-formula-card {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.st-formula-card__kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+.st-formula-card__headline {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.st-formula-chain {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.15rem;
+  justify-items: start;
+}
+
+.st-formula-node {
+  display: grid;
+  gap: 0.1rem;
+  justify-items: center;
+  min-width: 8rem;
+}
+
+.st-formula-node__label {
+  display: inline-block;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--color-border, #d0d5dd);
+  border-radius: var(--radius, 8px);
+  background: var(--color-surface, #fff);
+  font-weight: 700;
+  text-align: center;
+}
+
+.st-formula-arrow {
+  opacity: 0.55;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.st-formula-list {
+  margin: 0.25rem 0 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.st-formula-item code {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+}
+
+.st-mistake-list {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.st-mistake-item.is-primary {
+  font-weight: 700;
+}
+
+.st-exam-tutor__flow {
+  margin: 0 0 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  font-size: 1.05rem;
+}
+
+.st-exam-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.st-exam-steps li {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+}
+
+.st-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary, #2f6fed) 14%, transparent);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.st-tutor-warn {
+  margin: 0 0 0.75rem;
+  padding: 0.65rem 0.8rem;
+  border-left: 3px solid var(--color-warning, #c47f17);
+  background: color-mix(in srgb, var(--color-warning, #c47f17) 10%, transparent);
+}
+
+.st-tutor-warn__kicker {
+  margin: 0 0 0.2rem;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.st-mini {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.st-mini__label {
+  margin: 0;
+  font-weight: 700;
+}
+
+.st-mini__link {
+  justify-self: start;
+}
+
+.st-mini__preview {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.st-promote-pipeline {
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.st-promote-stage {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--color-border, #d0d5dd);
+  border-radius: var(--radius, 6px);
+  font-size: 0.78rem;
+  min-width: 5.5rem;
+}
+
+.st-promote-stage.is-done {
+  border-color: var(--color-success, #1a7f37);
+  background: color-mix(in srgb, var(--color-success, #1a7f37) 10%, transparent);
+}
+
+.st-promote-stage.is-ready,
+.st-promote-stage.is-pending,
+.st-promote-stage.is-candidate {
+  border-color: var(--color-primary, #2f6fed);
+}
+
+.st-promote-stage.is-locked {
+  opacity: 0.55;
+}
+
+.st-promote-stage__label {
+  font-weight: 700;
+}
+
+.st-promote-stage__status {
+  opacity: 0.7;
+  text-transform: lowercase;
+}
+
+.st-loop-status {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.st-done-msg {
+  margin: 0;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .st-formula-node {
+    min-width: 100%;
+  }
+
+  .st-promote-pipeline {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .st-weak-banner,
+  .st-review-card,
+  .st-tutor-warn {
+    background: color-mix(in srgb, var(--color-warning, #c47f17) 16%, transparent);
+  }
+}

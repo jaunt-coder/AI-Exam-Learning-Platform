@@ -25,6 +25,34 @@ import { renderRecentGrowth, renderWeeklyStats } from './components/dashboard/ch
 import { renderRecentActivity } from './components/dashboard/recent-activity.js';
 import { renderQuickStart } from './components/dashboard/quick-start.js';
 import { attachEvidenceToRecommendations } from './evidence/evidence-engine.js';
+import { generateExamStrategy } from './exam-strategy/strategy-engine.js';
+import {
+  buildExamGoalDashboard,
+  saveExamGoal,
+  setTaskCompleted,
+  getExamGoal,
+} from './exam-goal/exam-goal-engine.js';
+import {
+  renderMasteryMap,
+  renderDangerPatterns,
+  renderDailyPlanCard,
+  renderReadinessCard,
+  renderStrategyCard,
+  renderPatternRiskList,
+} from './components/dashboard/exam-strategy.js';
+import {
+  renderExamModeCard,
+  renderExamCountdown,
+  renderGoalProgress,
+  renderTodayMission,
+  renderRiskAlert,
+  renderCompletionStreak,
+  renderExamGoalForm,
+} from './components/dashboard/exam-goal.js';
+import {
+  getDashboardSolutionQuality,
+  renderDashboardQualityCard,
+} from './solution-quality/solution-quality-engine.js';
 
 const INTEGRITY_REPORT_URL = 'data/question-integrity-report.json';
 
@@ -407,8 +435,61 @@ function renderStudentWidgets(view) {
     view.recommendations || [],
     view._questions || [],
   );
+  const strategy = view.examStrategy || null;
+  const goalDash = view.examGoalDashboard || null;
+
+  const remountGoal = () => {
+    try {
+      view.examGoalDashboard = buildExamGoalDashboard({
+        questions: view._questions || [],
+        patterns: view._patterns || [],
+      });
+      view.examStrategy = view.examGoalDashboard?.modeStrategy?.strategy || strategy;
+      renderStudentWidgets(view);
+    } catch (err) {
+      console.warn('[exam-goal] remount failed', err?.message || err);
+    }
+  };
+
   mountWidgets(
     {
+      examModeCard: (node) => renderExamModeCard(node, goalDash?.examModeCard),
+      examGoalForm: (node) =>
+        renderExamGoalForm(node, getExamGoal(), (payload) => {
+          const result = saveExamGoal(payload);
+          const status = node.querySelector('[data-eg-status]');
+          if (status) {
+            status.hidden = false;
+            if (result.ok) {
+              status.className = 'eg-form-status is-ok';
+              status.textContent = '목표가 저장되었습니다.';
+              remountGoal();
+            } else {
+              status.className = 'eg-form-status is-err';
+              status.textContent = `저장 실패: ${(result.errors || []).join(', ')}`;
+            }
+          }
+        }),
+      examCountdown: (node) => renderExamCountdown(node, goalDash?.countdown),
+      examGoalProgress: (node) => renderGoalProgress(node, goalDash?.goalProgress),
+      examTodayMission: (node) =>
+        renderTodayMission(node, goalDash?.todayMission, (taskId, completed) => {
+          setTaskCompleted(taskId, completed);
+          remountGoal();
+        }),
+      examRiskAlert: (node) => renderRiskAlert(node, goalDash?.riskAlert),
+      examCompletionStreak: (node) =>
+        renderCompletionStreak(node, goalDash?.completionStreak),
+      solutionQuality: (node) => {
+        const dash = getDashboardSolutionQuality();
+        node.innerHTML = renderDashboardQualityCard(dash.aggregate || dash);
+      },
+      examDailyPlan: (node) => renderDailyPlanCard(node, strategy?.dailyPlan),
+      examMasteryMap: (node) => renderMasteryMap(node, strategy?.masteryMap),
+      examDangerPatterns: (node) => renderDangerPatterns(node, strategy?.dangerTop5),
+      examReadiness: (node) => renderReadinessCard(node, strategy?.readiness),
+      examStrategy: (node) => renderStrategyCard(node, strategy),
+      examPatternRisk: (node) => renderPatternRiskList(node, strategy?.riskMap?.list),
       todayStudy: (node) => {
         node.innerHTML = renderTodayStudyCards(view.todayStudy);
         mountAnimatedBars(node);
@@ -458,6 +539,22 @@ async function main() {
 
     const studentView = buildStudentDashboardView(questions, patterns);
     studentView._questions = questions;
+    studentView._patterns = patterns;
+    try {
+      studentView.examStrategy = generateExamStrategy({ questions, patterns });
+    } catch (err) {
+      console.warn('[exam-strategy]', err?.message || err);
+      studentView.examStrategy = null;
+    }
+    try {
+      studentView.examGoalDashboard = buildExamGoalDashboard({ questions, patterns });
+      if (studentView.examGoalDashboard?.modeStrategy?.strategy) {
+        studentView.examStrategy = studentView.examGoalDashboard.modeStrategy.strategy;
+      }
+    } catch (err) {
+      console.warn('[exam-goal]', err?.message || err);
+      studentView.examGoalDashboard = null;
+    }
     renderStudentWidgets(studentView);
     renderDashboard(resolvedDashboard);
     if (status) status.textContent = 'Student Dashboard 준비 완료 · Coach 로딩…';

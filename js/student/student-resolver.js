@@ -36,6 +36,21 @@ export function toStudentQuestion(resolved) {
 }
 
 /**
+ * Drop cached student projection so next resolve reads fresh Override.
+ * @param {string|null} [questionId] — omit to clear all
+ */
+export function invalidateStudentCache(questionId = null) {
+  const doc = loadStudentCacheDoc();
+  if (!questionId) {
+    doc.byQuestion = {};
+  } else if (doc.byQuestion?.[questionId]) {
+    delete doc.byQuestion[questionId];
+  }
+  saveStudentCacheDoc(doc);
+  return true;
+}
+
+/**
  * @param {object|null} original — DB question (read-only input)
  * @param {{ useCache?: boolean }} [options]
  */
@@ -58,6 +73,7 @@ export function questionResolver(original, options = {}) {
   if (qid) {
     const ov = getOverride(qid);
     const doc = loadStudentCacheDoc();
+    if (!doc.byQuestion) doc.byQuestion = {};
     doc.byQuestion[qid] = {
       student,
       overrideUpdatedAt: ov?.override?.reviewDate || null,
@@ -147,6 +163,7 @@ export function getResolvedQuestionById(originals, questionId) {
 
 export default {
   toStudentQuestion,
+  invalidateStudentCache,
   questionResolver,
   patternResolver,
   tableResolver,

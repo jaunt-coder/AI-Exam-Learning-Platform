@@ -33,6 +33,7 @@ import { trackQuestionStart, trackTutorView } from './learning-event.js';
 import {
   mountQuestionStem,
   mountQuestionTable,
+  mountQuestionSolution,
   renderChoiceItems,
 } from './shared-renderer.js';
 import {
@@ -41,6 +42,7 @@ import {
 } from './reviewer/review-entry.js';
 import { closeReviewModal } from './reviewer/review-modal.js';
 import { studentQuestionForDisplay } from './student/student-workspace.js';
+import { invalidateStudentCache } from './student/student-resolver.js';
 import { onQuestionAnswered } from './learning-engine/learning-engine.js';
 import { explainQuestionRecommendation } from './evidence/evidence-engine.js';
 import {
@@ -53,6 +55,8 @@ import {
   scoreQuestion,
 } from './quality/quality-engine.js';
 import { lazyGenerateAndMount } from './solution-engine/solution-engine.js';
+import { mountWeakBanner } from './smart-tutor/weak-memory.js';
+import { buildExamTutorContext } from './exam-goal/exam-goal-engine.js';
 
 const state = {
   master: null,
@@ -119,6 +123,39 @@ function gradeClass(grade) {
 
 function renderQuestionTable(question) {
   mountQuestionTable(question, $('question-table'));
+}
+
+function renderQuestionSolution(question) {
+  mountQuestionSolution(question, $('question-solution'));
+}
+
+/**
+ * Always resolve from immutable DB original — never treat Resolved as original.
+ * @param {object|null} question
+ * @returns {object|null}
+ */
+function lookupDbOriginal(question) {
+  const id = question?.questionId || question?.id;
+  if (id && Array.isArray(state.originalQuestions)) {
+    const hit = state.originalQuestions.find((q) => q.questionId === id);
+    if (hit) return hit;
+  }
+  if (
+    state.originalQuestion
+    && !state.originalQuestion._resolvedFrom
+    && !state.originalQuestion._snapshotFrozen
+    && (!id || state.originalQuestion.questionId === id)
+  ) {
+    return state.originalQuestion;
+  }
+  return question;
+}
+
+function refreshResolvedQuestionList(force = false) {
+  if (!Array.isArray(state.originalQuestions)) return;
+  state.questions = state.originalQuestions.map((q) =>
+    studentQuestionForDisplay(q, { useCache: !force }),
+  );
 }
 
 function renderPatternList() {
@@ -236,19 +273,18 @@ function updateBookmarkButton(question) {
   btn.classList.toggle('is-active', on);
 }
 
-function renderSolveView(question) {
+function renderSolveView(question, options = {}) {
   /* Keep DB original immutable; Student Resolver applies Override for display */
-  const original =
-    question?._resolvedFrom || question?._snapshotFrozen
-      ? state.originalQuestion || question
-      : question;
-  const lookupId = question?.questionId || question?.id;
-  state.originalQuestion = original && !original._resolvedFrom && !original._snapshotFrozen
-    ? original
-    : state.originalQuestions.find((q) => q.questionId === lookupId) || original;
-  const resolved = studentQuestionForDisplay(
-    state.originalQuestion || question,
-  );
+  const original = lookupDbOriginal(question);
+  state.originalQuestion = original;
+
+  if (options.forceRefresh && original?.questionId) {
+    invalidateStudentCache(original.questionId);
+  }
+
+  const resolved = studentQuestionForDisplay(original, {
+    useCache: !options.forceRefresh,
+  });
 
   const pool = state.filteredQuestions.length
     ? state.filteredQuestions
@@ -284,24 +320,14 @@ function renderSolveView(question) {
         }
       }
     },
-    onResolved: (student) => {
-      state.lastQuestion = student;
-      /* Refresh list so Resolved is used everywhere */
-      if (Array.isArray(state.originalQuestions)) {
-        state.questions = state.originalQuestions.map((q) =>
-          studentQuestionForDisplay(q),
-        );
-      }
-      renderSolveView(student);
+    onResolved: () => {
+      refreshResolvedQuestionList(true);
+      renderSolveView(state.originalQuestion, { forceRefresh: true });
     },
-    onApprove: (student) => {
-      state.lastQuestion = student;
-      if (Array.isArray(state.originalQuestions)) {
-        state.questions = state.originalQuestions.map((q) =>
-          studentQuestionForDisplay(q),
-        );
-      }
-      renderSolveView(student);
+    onApprove: () => {
+      /* Approve 직후: 캐시 무효화 → Resolved 재생성 → 새로고침 없이 즉시 재렌더 */
+      refreshResolvedQuestionList(true);
+      renderSolveView(state.originalQuestion, { forceRefresh: true });
     },
     onSkip: () => {
       closeReviewModal();
@@ -319,9 +345,18 @@ function renderSolveView(question) {
   mountWhyRecommended(resolved);
   updateBookmarkButton(resolved);
 
+  /* Sprint-15B — Weak Point Memory banner (before question start) */
+  try {
+    mountWeakBanner($('weak-memory-banner'), resolved.patternId);
+  } catch (_err) {
+    /* non-critical */
+  }
+
+  /* Student screen: Resolved Question only — question / table / choices / solution / pattern */
   mountQuestionStem(resolved, $('question-stem'));
   renderQuestionTable(resolved);
   renderChoices(resolved);
+  renderQuestionSolution(resolved);
 
   hide($('result-panel'));
   hide($('ai-tutor-panel'));
@@ -402,6 +437,14 @@ function runAiExplanation() {
   const pattern = getPatternById(state.patterns, questionForTutor.patternId);
   const stats = getStatisticsForPattern(state.statistics, questionForTutor.patternId);
 
+  let learningContext = null;
+  try {
+    learningContext = buildExamTutorContext({
+      questions: state.questions || [],
+      patterns: state.patterns || [],
+    });
+  } catch (_) { /* Exam Goal non-critical */ }
+
   const lesson = generateTutorLesson({
     question: questionForTutor,
     pattern,
@@ -410,6 +453,7 @@ function runAiExplanation() {
     allQuestions: state.questions,
     allPatterns: state.patterns,
     level: state.aiLevel,
+    learningContext,
   });
 
   renderTutorLesson(lesson, $('ai-explanation-output'));
@@ -477,7 +521,7 @@ function showResult(question, result) {
   setChoiceStates(result.selectedAnswer, result.correctAnswer, true);
   runAiExplanation();
 
-  /* Sprint-15A+ Dynamic Solution Engine (lazy) */
+  /* Sprint-15A+ / 15B Dynamic Solution Engine + Smart Tutor (lazy) */
   try {
     lazyGenerateAndMount(
       $('solution-engine-host'),
@@ -490,6 +534,7 @@ function showResult(question, result) {
         },
         pattern,
         questions: state.questions,
+        patterns: state.patterns,
       },
       { showPromote: true },
     );

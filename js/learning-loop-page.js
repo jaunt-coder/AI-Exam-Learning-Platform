@@ -44,8 +44,13 @@ import {
   renderReviewToolbar,
   applyResolvedToStudyQuestion,
   toReviewOriginal,
+  resolveFreshForStudent,
 } from './reviewer/review-entry.js';
 import { studentQuestionForDisplay } from './student/student-workspace.js';
+import {
+  mountQuestionTable,
+  mountQuestionSolution,
+} from './shared-renderer.js';
 import {
   enrichStudyQuestionsWithApproved,
   getApprovedSolution,
@@ -53,6 +58,7 @@ import {
   resolveOverlayQuestionId,
 } from './solution-overlay.js';
 import { lazyGenerateAndMount } from './solution-engine/solution-engine.js';
+import { mountWeakBanner } from './smart-tutor/weak-memory.js';
 
 const STUDENT_ID = 'm1_demo_student';
 const KEY_MODE = 'learning.studyMode.v1';
@@ -792,6 +798,9 @@ function renderQuestionPanel() {
 
   const pack = studyPatterns[patternIndex];
 
+  /* Keep a DB/study original for Reviewer; display always from Resolved */
+  const studyOriginal = toReviewOriginal(q);
+
   /* Sprint-12F — toolbar FIRST (before resolver/meta so buttons always mount) */
   try {
     renderReviewToolbar(q, {
@@ -805,7 +814,9 @@ function renderQuestionPanel() {
         renderQuestionPanel();
       },
       onApprove: (student) => {
-        currentQuestion = applyResolvedToStudyQuestion(currentQuestion, student);
+        /* Approve 직후 캐시 bust + 전체 필드 반영 후 즉시 재렌더 (새로고침 없음) */
+        const fresh = resolveFreshForStudent(studyOriginal) || student;
+        currentQuestion = applyResolvedToStudyQuestion(currentQuestion, fresh);
         if (pack?.questions && questionIndex >= 0) {
           pack.questions[questionIndex] = currentQuestion;
         }
@@ -825,26 +836,61 @@ function renderQuestionPanel() {
     console.error('[LearningLoop] Review Toolbar mount failed:', err);
   }
 
-  /* Sprint-12F — Student always sees Resolved Question (Override applied) */
+  /* Student always sees Resolved Question (Override applied) — never raw DB */
   let display = q;
   try {
     const original = toReviewOriginal(q);
-    const resolved = studentQuestionForDisplay(original);
+    const resolved = studentQuestionForDisplay(original, { useCache: false });
     display = applyResolvedToStudyQuestion(q, resolved);
+    /* Prefer flat Resolved shape for render helpers */
+    display = {
+      ...display,
+      question: resolved.question || display.stem,
+      stem: resolved.question || resolved.stem || display.stem,
+      table: resolved.table,
+      hasTable: resolved.hasTable,
+      choices: resolved.choices,
+      solution: resolved.solution,
+      patternId: resolved.patternId,
+      answer: resolved.answer !== undefined ? resolved.answer : display.answer,
+    };
   } catch (err) {
     console.error('[LearningLoop] Resolved display failed:', err);
     display = q;
   }
 
+  const patternLabel =
+    display.patternId && display.patternId !== lesson?.pattern_id
+      ? display.patternId
+      : lesson?.name || 'Pattern';
+
   els.questionMeta.textContent =
     viewMode === 'developer'
-      ? `${display.questionId || q.questionId} · ${lesson?.pattern_id || '—'}`
-      : `「${lesson?.name || 'Pattern'}」 Pattern 적용`;
+      ? `${display.questionId || q.questionId} · ${display.patternId || lesson?.pattern_id || '—'}`
+      : `「${patternLabel}」 Pattern 적용`;
+
+  /* Sprint-15B — Weak Point Memory banner before question */
+  try {
+    mountWeakBanner(
+      document.getElementById('weak-memory-banner'),
+      display.patternId || lesson?.pattern_id || null,
+    );
+  } catch (_err) {
+    /* non-critical */
+  }
 
   const legacyHost = document.getElementById('loop-source-viewer-host');
   if (legacyHost) legacyHost.innerHTML = '';
 
-  els.questionStem.innerHTML = renderQuestionStemHtml(display.stem);
+  const stemText = display.question || display.stem || '';
+  els.questionStem.innerHTML = renderQuestionStemHtml(stemText);
+
+  const tableHost = document.getElementById('question-table');
+  mountQuestionTable(display, tableHost);
+
+  const solutionHost = document.getElementById('question-solution');
+  mountQuestionSolution(display, solutionHost);
+
   els.questionChoices.innerHTML = '';
   (display.choices || []).forEach((text, idx) => {
     const value = idx + 1;
@@ -1511,12 +1557,25 @@ function onSubmit() {
     return;
   }
 
+  /* Grade against Resolved Question answer (Override applied) — never raw DB alone */
+  let gradeQuestion = q;
+  try {
+    gradeQuestion =
+      studentQuestionForDisplay(toReviewOriginal(q), { useCache: false }) || q;
+  } catch (_err) {
+    gradeQuestion = q;
+  }
+  const correctAnswer =
+    gradeQuestion.answer !== undefined && gradeQuestion.answer !== null
+      ? gradeQuestion.answer
+      : q.answer;
+
   const result = runLearningLoopCycle({
     studentId: STUDENT_ID,
     questionId: q.questionId,
-    patternId: lesson.pattern_id,
+    patternId: gradeQuestion.patternId || lesson.pattern_id,
     selectedAnswer: selected,
-    correctAnswer: q.answer,
+    correctAnswer,
     correctAnswerReference: {
       source: q.sourcePath,
       question_id: q.questionId,
@@ -1533,7 +1592,7 @@ function onSubmit() {
   lastGradeResult = result.grade;
   lastAttemptEvent = result.event || null;
   els.panels.result.hidden = false;
-  els.rCorrect.textContent = `${choiceLabel(q.answer)} (${q.answer})`;
+  els.rCorrect.textContent = `${choiceLabel(correctAnswer)} (${correctAnswer})`;
   els.rSelected.textContent = `${choiceLabel(selected)} (${selected})`;
   els.rOutcome.textContent =
     result.grade.result === 'correct' ? '정답' : '오답';
@@ -1541,29 +1600,35 @@ function onSubmit() {
     result.grade.result === 'correct' ? 'is-ok' : 'is-bad';
   els.rPattern.textContent = lesson.name;
 
-  /* Sprint-15A+ — AI Dynamic Solution Engine (lazy, student-screen only) */
+  /* Sprint-15A+ / 15B — AI Dynamic Solution Engine + Smart Tutor Learning Loop */
   try {
     const allQuestions = studyPatterns.flatMap((sp) => sp.questions || []);
+    const packQs = studyPatterns[patternIndex]?.questions || [];
     lazyGenerateAndMount(
       els.solutionHost,
       {
-        question: q,
+        question: gradeQuestion,
         grade: {
           result: result.grade.result,
           selected,
           selectedAnswer: selected,
         },
         pattern: {
-          patternId: lesson.pattern_id,
+          patternId: gradeQuestion.patternId || lesson.pattern_id,
           name: lesson.name,
+          relatedQuestions: packQs.map((q) => q.questionId).filter(Boolean),
         },
         questions: allQuestions,
+        patterns: studyPatterns.map((sp) => ({
+          patternId: sp.lesson?.pattern_id || sp.patternId,
+          name: sp.lesson?.name || sp.name,
+        })),
       },
       {
         showPromote: true,
         onPromoteRequest: () => {
           setLearnerStatus(
-            '공식 해설 승격은 Reviewer 수동 검토만 가능합니다. 자동 승격되지 않습니다.',
+            'Candidate 승격 요청이 기록되었습니다. Reviewer·관리자 승인 후에만 Official로 반영됩니다. 자동 승격 없음.',
           );
         },
       },

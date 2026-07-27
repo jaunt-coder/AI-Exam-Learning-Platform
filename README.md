@@ -65,6 +65,10 @@ Dashboard / Tutor / Exam
 - **Sprint 13A**: Student Workspace, Resolved Question, Exam Snapshot, Tutor Resolver
 - **Sprint 13B**: Learning Engine, Mastery Engine, Recommendation, Review Scheduler, Learning Analyzer
 - **Sprint 15A+**: AI Dynamic Solution Engine, Mistake Diagnosis, Learning Prescription, Tutor Advice
+- **Sprint 15B**: AI Learning Loop & Smart Tutor (30초 복습, Formula Card, Mini Retry, Weak Memory)
+- **Sprint 15C**: AI Solution Quality Layer (품질 평가 · Missing · Reviewer 개선 루프)
+- **Sprint 16A**: AI Exam Strategy (Mastery Map, Readiness Score, Daily Plan, Exam Mode)
+- **Sprint 16B**: Exam Mode & Goal Management (D-Day, Goal, Phase, Mission, Streak)
 
 상세: [docs/SPRINT_HISTORY.md](docs/SPRINT_HISTORY.md)
 
@@ -85,6 +89,23 @@ Dashboard / Tutor / Exam
 - `learning.mistake-profile.v1`
 - `learning.diagnosis.v1`
 - `learning.prescription.v1`
+- `learning.smart-review.v1`
+- `learning.weak-memory.v1`
+- `learning.formula-card.v1`
+- `learning.mini-retry.v1`
+- `learning.smart-tutor.v1`
+- `learning.exam-readiness.v1`
+- `learning.strategy-state.v1`
+- `learning.daily-plan.v1`
+- `learning.pattern-risk.v1`
+- `learning.exam-mode.v1`
+- `learning.exam-goal.v1`
+- `learning.exam-progress.v1`
+- `learning.exam-phase.v1`
+- `learning.solution-quality.v1`
+- `learning.solution-blueprint.v1`
+- `learning.solution-review.v1`
+- `learning.solution-improvement.v1`
 
 ## 5) Contract 목록
 
@@ -103,6 +124,28 @@ Dashboard / Tutor / Exam
 - `diagnosisContract`
 - `prescriptionContract`
 - `validationSolutionEngine`
+- `smartReviewContract`
+- `formulaCardContract`
+- `miniRetryContract`
+- `weakMemoryContract`
+- `smartTutorContract`
+- `learningLoopContract`
+- `validationSmartTutor`
+- `examStrategyContract`
+- `readinessScoreContract`
+- `dailyPlanContract`
+- `patternRiskContract`
+- `examModeContract`
+- `validationExamStrategy`
+- `examGoalContract`
+- `examProgressContract`
+- `examPhaseContract`
+- `validationExamMode`
+- `solutionQualityContract`
+- `solutionBlueprintContract`
+- `solutionImprovementContract`
+- `solutionReviewContract`
+- `validationSolutionQuality`
 
 ## 6) Current Features
 
@@ -118,6 +161,10 @@ Dashboard / Tutor / Exam
 - [x] Student Workspace
 - [x] Learning Engine
 - [x] Dynamic Solution Engine (AI Tutor Layer)
+- [x] Smart Tutor Learning Loop (Result 화면 학습 완료)
+- [x] AI Exam Strategy (Mastery Map · Readiness · Daily Plan · Exam Mode)
+- [x] Exam Mode & Goal Management (D-Day · Mission · Streak)
+- [x] AI Solution Quality Layer (평가 → 개선 → Override 승인)
 
 ## 7) Current Folder Structure
 
@@ -136,6 +183,10 @@ AI Exam Learning Platform v2/
 │   ├── recovery/
 │   ├── coach/
 │   ├── solution-engine/
+│   ├── smart-tutor/
+│   ├── exam-strategy/
+│   ├── exam-goal/
+│   ├── solution-quality/
 │   └── llm/
 ├── data/
 ├── docs/
@@ -153,6 +204,10 @@ AI Exam Learning Platform v2/
 | `scripts/test-student-workspace.py` | PASS |
 | `scripts/test-learning-engine.py` | PASS |
 | `scripts/test-solution-engine.py` | PASS |
+| `scripts/test-smart-tutor.py` | PASS |
+| `scripts/test-exam-strategy.py` | PASS |
+| `scripts/test-exam-mode.py` | PASS |
+| `scripts/test-solution-quality.py` | PASS |
 
 ## 9) Project Status
 
@@ -171,6 +226,10 @@ AI Exam Learning Platform v2/
 - **Sprint 14B**: Learning Dashboard UI
 - **Sprint 14C**: Evidence System
 - **Sprint 15A+**: AI Dynamic Solution Engine (Tutor Layer · Mistake Diagnosis · Learning Prescription)
+- **Sprint 15B**: AI Learning Loop & Smart Tutor (Smart Explanation · 30초 복습 · Formula Card · Mini Retry · Weak Memory)
+- **Sprint 15C**: AI Solution Quality Layer (Quality Score · Blueprint · Improvement · Reviewer Override Loop)
+- **Sprint 16A**: AI Exam Strategy (Mastery Map · Readiness Score · Daily Plan · Pattern Risk · Exam Mode)
+- **Sprint 16B**: Exam Mode & Goal Management (Goal · Phase · Mission · Progress · Tutor Context)
 - **Sprint 15**: Production Ready
 
 ## Technology Stack

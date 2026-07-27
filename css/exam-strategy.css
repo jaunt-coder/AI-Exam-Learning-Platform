@@ -1,0 +1,221 @@
+/* Sprint-16A — Exam Strategy Dashboard */
+
+.es-kicker {
+  margin: 0 0 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  opacity: 0.75;
+}
+
+.es-mastery-map,
+.es-danger,
+.es-daily-plan,
+.es-readiness,
+.es-strategy,
+.es-pattern-risk {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.es-map-list,
+.es-danger-list,
+.es-plan-list,
+.es-factor-list,
+.es-risk-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.es-map-row {
+  display: grid;
+  grid-template-columns: minmax(5rem, 1.2fr) 1.5fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.92rem;
+}
+
+.es-map-bar {
+  display: block;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-border, #d0d5dd) 70%, transparent);
+  overflow: hidden;
+}
+
+.es-map-bar > i {
+  display: block;
+  height: 100%;
+  background: var(--color-primary, #2f6fed);
+}
+
+.es-map-row.is-warn .es-map-bar > i {
+  background: var(--color-warning, #c47f17);
+}
+
+.es-map-score {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.es-overall {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.es-danger-item {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr auto;
+  gap: 0.45rem;
+  align-items: baseline;
+}
+
+.es-danger-rank {
+  font-weight: 800;
+  color: var(--color-primary, #2f6fed);
+}
+
+.es-plan-item {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--color-border, #e4e7ec);
+  border-radius: var(--radius, 8px);
+  display: grid;
+  gap: 0.25rem;
+}
+
+.es-plan-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.es-stars {
+  color: var(--color-warning, #c47f17);
+  letter-spacing: 0.02em;
+}
+
+.es-plan-meta {
+  margin: 0;
+  font-size: 0.88rem;
+  opacity: 0.85;
+}
+
+.es-plan-link {
+  justify-self: start;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.es-plan-total {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.es-readiness-score {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.es-readiness-score span {
+  font-size: 1rem;
+  opacity: 0.6;
+  margin-left: 0.2rem;
+}
+
+.es-readiness-pass {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.es-factor-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.es-strategy-pass {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.es-strategy-rank {
+  margin: 0;
+}
+
+.es-strategy-reason {
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.es-exam-mode {
+  margin-top: 0.35rem;
+  padding: 0.65rem 0.75rem;
+  border-left: 3px solid var(--color-primary, #2f6fed);
+  background: color-mix(in srgb, var(--color-primary, #2f6fed) 6%, transparent);
+}
+
+.es-risk-item {
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--color-border, #e4e7ec);
+  border-radius: var(--radius, 8px);
+}
+
+.es-risk-item.is-high,
+.es-risk-item.is-critical {
+  border-color: color-mix(in srgb, var(--color-error, #c62828) 45%, var(--color-border));
+}
+
+.es-risk-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.es-risk-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.es-risk-reasons {
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+}
+
+.st-why-rec {
+  margin-top: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border-left: 3px solid var(--color-primary, #2f6fed);
+  background: color-mix(in srgb, var(--color-primary, #2f6fed) 7%, transparent);
+  display: grid;
+  gap: 0.3rem;
+}
+
+.st-why-rec__title {
+  margin: 0;
+  font-weight: 800;
+}
+
+.st-why-rec p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 768px) {
+  .es-map-row {
+    grid-template-columns: 1fr auto;
+  }
+
+  .es-map-bar {
+    grid-column: 1 / -1;
+  }
+}

@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="css/reviewer.css">
   <link rel="stylesheet" href="css/evidence.css">
   <link rel="stylesheet" href="css/solution-engine.css">
+  <link rel="stylesheet" href="css/smart-tutor.css">
+  <link rel="stylesheet" href="css/exam-strategy.css">
+  <link rel="stylesheet" href="css/exam-goal.css">
+  <link rel="stylesheet" href="css/solution-quality.css">
 </head>
 <body>
   <header class="site-header" role="banner">
@@ -86,9 +90,12 @@
           <h2 id="solve-heading" class="visually-hidden">문제 풀이</h2>
         </header>
 
+        <div id="weak-memory-banner" class="weak-memory-banner-host" hidden aria-live="polite"></div>
+
         <article class="card question-card" aria-labelledby="question-stem">
           <p class="question-stem" id="question-stem"></p>
           <div class="question-table-wrap" id="question-table" hidden aria-label="문제 표"></div>
+          <div class="question-solution" id="question-solution" hidden aria-label="해설"></div>
 
           <form id="answer-form" class="choices-form" novalidate>
             <fieldset class="choices-fieldset">

@@ -14,6 +14,7 @@ import {
   isReviewModalOpen,
 } from './review-modal.js';
 import { studentQuestionForDisplay } from '../student/student-workspace.js';
+import { invalidateStudentCache } from '../student/student-resolver.js';
 
 const TOOLBAR_HOST_ID = 'review-entry-toolbar';
 const LOG_PREFIX = '[ReviewEntry]';
@@ -46,17 +47,24 @@ export function toReviewOriginal(studyQuestion) {
       '',
     choices: Array.isArray(studyQuestion.choices) ? studyQuestion.choices : [],
     table: studyQuestion.table || '',
+    hasTable:
+      studyQuestion.hasTable !== undefined
+        ? Boolean(studyQuestion.hasTable)
+        : Boolean(studyQuestion.table),
     solution: studyQuestion.solution || {},
     patternId:
       studyQuestion.patternId ||
       studyQuestion.mapping?.pattern_id ||
       null,
+    answer: studyQuestion.answer,
+    answerIndex: studyQuestion.answerIndex,
     source: studyQuestion.source || {},
   };
 }
 
 /**
- * Apply Resolved fields onto a study-loop question (stem/choices).
+ * Apply full Resolved fields onto a study-loop question.
+ * Copies table / choices / solution / pattern / question (and answer).
  * @param {object} studyQuestion
  * @param {object} resolved
  * @returns {object}
@@ -64,12 +72,45 @@ export function toReviewOriginal(studyQuestion) {
 export function applyResolvedToStudyQuestion(studyQuestion, resolved) {
   if (!studyQuestion) return studyQuestion;
   const r = resolved || {};
+  const questionText =
+    r.question || r.originalQuestion || r.stem || studyQuestion.stem || '';
+  const table = r.table !== undefined ? r.table : studyQuestion.table;
   return {
     ...studyQuestion,
-    stem: r.question || r.originalQuestion || r.stem || studyQuestion.stem,
+    question: questionText,
+    originalQuestion: r.originalQuestion || questionText,
+    stem: questionText,
     choices: Array.isArray(r.choices) ? r.choices.slice() : studyQuestion.choices,
+    table,
+    hasTable:
+      r.hasTable !== undefined
+        ? Boolean(r.hasTable)
+        : table
+          ? true
+          : Boolean(studyQuestion.hasTable),
+    solution:
+      r.solution !== undefined && r.solution !== null
+        ? typeof r.solution === 'object'
+          ? { ...r.solution }
+          : r.solution
+        : studyQuestion.solution,
     patternId: r.patternId || studyQuestion.patternId,
+    answer: r.answer !== undefined ? r.answer : studyQuestion.answer,
+    answerIndex:
+      r.answerIndex !== undefined ? r.answerIndex : studyQuestion.answerIndex,
   };
+}
+
+/**
+ * Fresh student resolve after Override write (bust cache).
+ * @param {object} original
+ * @returns {object|null}
+ */
+export function resolveFreshForStudent(original) {
+  const base = toReviewOriginal(original);
+  const qid = base?.questionId || base?.id;
+  if (qid) invalidateStudentCache(qid);
+  return studentQuestionForDisplay(base, { useCache: false });
 }
 
 /**
@@ -256,14 +297,14 @@ function openEntry(options, editBtn) {
   return openReviewModal({
     originalQuestion: original,
     onResolved: (resolved) => {
-      const student = studentQuestionForDisplay(original) || resolved;
+      const student = resolveFreshForStudent(original) || resolved;
       if (typeof options.onResolved === 'function') {
         options.onResolved(student, resolved);
       }
       console.log(`${LOG_PREFIX} resolved rerender`, original.questionId);
     },
     onApprove: (resolved) => {
-      const student = studentQuestionForDisplay(original) || resolved;
+      const student = resolveFreshForStudent(original) || resolved;
       console.log(`${LOG_PREFIX} Approve → saveOverride applied`, original.questionId);
       if (typeof options.onApprove === 'function') {
         options.onApprove(student, resolved);
@@ -295,7 +336,7 @@ function openEntry(options, editBtn) {
  * @returns {object}
  */
 export function resolveForStudentDisplay(original) {
-  return studentQuestionForDisplay(toReviewOriginal(original));
+  return studentQuestionForDisplay(toReviewOriginal(original), { useCache: false });
 }
 
 export default {
@@ -304,6 +345,7 @@ export default {
   mountReviewEntry,
   toReviewOriginal,
   applyResolvedToStudyQuestion,
+  resolveFreshForStudent,
   resolveForStudentDisplay,
   ensureToolbarHost,
   openReviewModal,

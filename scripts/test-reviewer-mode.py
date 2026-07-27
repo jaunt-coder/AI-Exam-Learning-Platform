@@ -82,17 +82,23 @@ assert re.search(r"\breview\s*:", loader_js)
 assert re.search(r"\boverride\s*:", loader_js)
 assert re.search(r"\btableEditor\s*:", loader_js)
 
-# UI hooks
+# UI hooks (Sprint-12F+ review-entry toolbar host)
 q_html = (ROOT / "question.html").read_text(encoding="utf-8")
 assert "reviewer-panel" in q_html
-assert "reviewer-btn-host" in q_html
+assert "review-entry-toolbar" in q_html
 assert "review-badge-host" in q_html
 assert "reviewer.css" in q_html
 
 q_js = (ROOT / "js/question.js").read_text(encoding="utf-8")
-assert "resolveQuestion" in q_js
-assert "openReviewerPanel" in q_js
-assert "renderQuestionBadge" in q_js
+assert "initReviewEntry" in q_js
+assert "renderReviewToolbar" in q_js
+assert "review-entry.js" in q_js
+
+override_resolve = (ROOT / "js/reviewer/override-service.js").read_text(encoding="utf-8")
+assert "export function resolveQuestion" in override_resolve
+ui_js = (ROOT / "js/reviewer/review-ui.js").read_text(encoding="utf-8")
+assert "openReviewerPanel" in ui_js
+assert "renderQuestionBadge" in ui_js
 
 dash_html = (ROOT / "dashboard.html").read_text(encoding="utf-8")
 dash_page = (ROOT / "js/learning-dashboard-page.js").read_text(encoding="utf-8")

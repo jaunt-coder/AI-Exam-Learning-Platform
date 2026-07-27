@@ -30,6 +30,14 @@ import {
   importSuggestionsJson,
 } from '../recovery/ai-recovery-service.js';
 import { diffToneClass } from '../recovery/diff-engine.js';
+import {
+  evaluateSolutionQuality,
+  applyAiImprovementToOverride,
+  approveSolutionQuality,
+  renderReviewerQualityPanel,
+} from '../solution-quality/solution-quality-engine.js';
+import { loadSolutionCache } from '../solution-engine/cache.js';
+import { generateSolutionPack } from '../solution-engine/solution-engine.js';
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -164,6 +172,7 @@ export function openReviewerPanel(options = {}) {
       <button type="button" class="rv-tab" data-tab="source">PDF</button>
       <button type="button" class="rv-tab" data-tab="flags">Flags</button>
       <button type="button" class="rv-tab" data-tab="ai-recovery">AI Recovery</button>
+      <button type="button" class="rv-tab" data-tab="solution-quality">Solution Quality</button>
       <button type="button" class="rv-tab" data-tab="history">History</button>
     </div>
 
@@ -225,6 +234,12 @@ export function openReviewerPanel(options = {}) {
       <section class="rv-tab-panel" data-panel="ai-recovery" hidden>
         <div id="rv-ai-recovery-root">
           <p class="rv-empty">AI Recovery를 실행하려면 탭을 다시 선택하세요.</p>
+        </div>
+      </section>
+
+      <section class="rv-tab-panel" data-panel="solution-quality" hidden>
+        <div id="rv-solution-quality-root">
+          <p class="rv-empty">Solution Quality를 불러오려면 탭을 선택하세요.</p>
         </div>
       </section>
 
@@ -457,8 +472,80 @@ export function openReviewerPanel(options = {}) {
       });
       if (name === 'history') renderHistory();
       if (name === 'ai-recovery') renderAiRecoveryTab();
+      if (name === 'solution-quality') renderSolutionQualityTab();
     });
   });
+
+  function renderSolutionQualityTab() {
+    const root = panel.querySelector('#rv-solution-quality-root');
+    if (!root || !qid) return;
+    let pack = null;
+    try {
+      const cache = loadSolutionCache();
+      const keys = Object.keys(cache.byKey || {});
+      const hitKey = keys.find((k) => k.startsWith(`${qid}::`));
+      pack = hitKey ? cache.byKey[hitKey]?.pack : null;
+    } catch (_err) {
+      pack = null;
+    }
+    if (!pack) {
+      try {
+        pack = generateSolutionPack({
+          question: original,
+          grade: { result: 'wrong', selected: null },
+          pattern: { patternId: original.patternId },
+        });
+      } catch (_err) {
+        pack = null;
+      }
+    }
+    let report = null;
+    try {
+      report = evaluateSolutionQuality({
+        questionId: qid,
+        question: original,
+        resolvedQuestion: resolveQuestion(original),
+        pack,
+        patternId: original.patternId,
+      });
+    } catch (err) {
+      root.innerHTML = `<p class="rv-empty">Quality 평가 실패: ${escapeHtml(err?.message || err)}</p>`;
+      return;
+    }
+    root.innerHTML = renderReviewerQualityPanel(report);
+    const statusEl = root.querySelector('[data-sq-status]');
+    root.querySelector('[data-sq-act="apply-ai"]')?.addEventListener('click', () => {
+      const res = applyAiImprovementToOverride(qid, report);
+      if (statusEl) {
+        statusEl.hidden = false;
+        statusEl.className = res.ok ? 'sq-status is-ok' : 'sq-status is-err';
+        statusEl.textContent = res.ok
+          ? 'AI 개선 초안이 Override에 저장되었습니다. (NEEDS_VERIFY · 자동 승인 없음)'
+          : `적용 실패: ${res.error || ''}`;
+      }
+      if (typeof options.onResolved === 'function') {
+        options.onResolved(resolveQuestion(original));
+      }
+    });
+    root.querySelector('[data-sq-act="edit"]')?.addEventListener('click', () => {
+      panel.querySelector('[data-tab="solution"]')?.click();
+    });
+    root.querySelector('[data-sq-act="approve"]')?.addEventListener('click', () => {
+      const res = approveSolutionQuality(qid, report, { reviewer: 'reviewer' });
+      if (statusEl) {
+        statusEl.hidden = false;
+        statusEl.className = res.ok ? 'sq-status is-ok' : 'sq-status is-err';
+        statusEl.textContent = res.ok
+          ? '승인 완료 · Override Layer만 반영 (DB 미수정 · 자동 승인 아님)'
+          : `승인 실패: ${res.error || ''}`;
+      }
+      if (typeof options.onApprove === 'function') {
+        options.onApprove(resolveQuestion(original));
+      } else if (typeof options.onResolved === 'function') {
+        options.onResolved(resolveQuestion(original));
+      }
+    });
+  }
 
   function collectFlags() {
     return Array.from(panel.querySelectorAll('[data-flag]:checked')).map(

@@ -8,6 +8,20 @@ export const DASHBOARD_LAYOUT_KEY =
   STORAGE_KEYS.LEARNING_DASHBOARD_LAYOUT_V1 || 'learning.dashboard-layout.v1';
 
 export const DEFAULT_WIDGET_ORDER = Object.freeze([
+  'examModeCard',
+  'examGoalForm',
+  'examCountdown',
+  'examGoalProgress',
+  'examTodayMission',
+  'examRiskAlert',
+  'examCompletionStreak',
+  'solutionQuality',
+  'examDailyPlan',
+  'examMasteryMap',
+  'examDangerPatterns',
+  'examReadiness',
+  'examStrategy',
+  'examPatternRisk',
   'todayStudy',
   'masterySummary',
   'weakPattern',

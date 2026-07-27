@@ -192,6 +192,17 @@
   padding-left: 0.15rem;
 }
 
+.study-table,
+.question-table-wrap.study-table {
+  margin: 0.75rem 0 1rem;
+  overflow-x: auto;
+}
+
+.study-solution,
+.question-solution.study-solution {
+  margin-bottom: 1rem;
+}
+
 .study-nav-actions {
   margin-top: 0.25rem;
 }

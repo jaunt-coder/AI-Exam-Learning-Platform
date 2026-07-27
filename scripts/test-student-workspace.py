@@ -49,7 +49,13 @@ for key in (
     assert key in loader, key
 
 resolver = (ROOT / "js/student/student-resolver.js").read_text(encoding="utf-8")
-for key in ("questionResolver", "patternResolver", "tableResolver", "solutionResolver"):
+for key in (
+    "questionResolver",
+    "patternResolver",
+    "tableResolver",
+    "solutionResolver",
+    "invalidateStudentCache",
+):
     assert key in resolver, key
 assert "resolveQuestion(" in resolver
 assert "toStudentQuestion" in resolver
@@ -58,6 +64,33 @@ question_ui = (ROOT / "js/question.js").read_text(encoding="utf-8")
 assert "studentQuestionForDisplay" in question_ui
 assert "review-badge-host" in question_ui
 assert "badgeHost" in question_ui
+assert "mountQuestionSolution" in question_ui
+assert "forceRefresh" in question_ui
+assert "lookupDbOriginal" in question_ui
+
+shared = (ROOT / "js/shared-renderer.js").read_text(encoding="utf-8")
+assert "renderTableToHtml" in shared
+assert "mountQuestionSolution" in shared
+assert "<table" in shared
+assert "hasTableContent" in shared
+
+loop_ui = (ROOT / "js/learning-loop-page.js").read_text(encoding="utf-8")
+assert "mountQuestionTable" in loop_ui
+assert "mountQuestionSolution" in loop_ui
+assert "resolveFreshForStudent" in loop_ui
+
+ll_html = (ROOT / "learning-loop.html").read_text(encoding="utf-8")
+assert 'id="question-table"' in ll_html
+assert 'id="question-solution"' in ll_html
+
+q_html = (ROOT / "question.html").read_text(encoding="utf-8")
+assert 'id="question-solution"' in q_html
+
+entry = (ROOT / "js/reviewer/review-entry.js").read_text(encoding="utf-8")
+assert "applyResolvedToStudyQuestion" in entry
+assert "table" in entry
+assert "solution" in entry
+assert "resolveFreshForStudent" in entry
 
 pattern_ui = (ROOT / "js/pattern.js").read_text(encoding="utf-8")
 assert "resolveQuestionsForPattern" in pattern_ui

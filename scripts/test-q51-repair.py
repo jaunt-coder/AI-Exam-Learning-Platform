@@ -12,8 +12,8 @@ from scripts.exam_pipeline.question_parser import (
 )
 from scripts.exam_pipeline.text_postprocess import (
     collapse_soft_breaks,
-    fix_scattered_year_pairs,
     format_question_text,
+    normalize_rejoined_structure,
     rejoin_exam_line_fragments,
     remove_footer_noise,
 )
@@ -25,7 +25,7 @@ stem_raw = body[:choice_idx] if choice_idx >= 0 else body
 step1 = remove_footer_noise(stem_raw)
 step2 = rejoin_exam_line_fragments(step1)
 step3 = collapse_soft_breaks(step2)
-step4 = fix_scattered_year_pairs(step3)
+step4 = normalize_rejoined_structure(step3)
 formatted = format_question_text(stem_raw)
 stem = trim_stem_before_choice_grid(formatted)
 choices, table = extract_choice_grid_won(body)

@@ -16,6 +16,23 @@ export const WIDGET_IDS = Object.freeze({
   weeklyStats: 'widget-weekly-stats',
   recentActivity: 'widget-recent-activity',
   quickStart: 'widget-quick-start',
+  /* Sprint-16A Exam Strategy */
+  examDailyPlan: 'widget-exam-daily-plan',
+  examMasteryMap: 'widget-exam-mastery-map',
+  examDangerPatterns: 'widget-exam-danger',
+  examReadiness: 'widget-exam-readiness',
+  examStrategy: 'widget-exam-strategy',
+  examPatternRisk: 'widget-exam-pattern-risk',
+  /* Sprint-16B Exam Goal */
+  examModeCard: 'widget-exam-mode-card',
+  examGoalForm: 'widget-exam-goal-form',
+  examCountdown: 'widget-exam-countdown',
+  examGoalProgress: 'widget-exam-goal-progress',
+  examTodayMission: 'widget-exam-today-mission',
+  examRiskAlert: 'widget-exam-risk-alert',
+  examCompletionStreak: 'widget-exam-completion-streak',
+  /* Sprint-15C Solution Quality */
+  solutionQuality: 'widget-solution-quality',
 });
 
 export function showSkeletons(root = document) {
