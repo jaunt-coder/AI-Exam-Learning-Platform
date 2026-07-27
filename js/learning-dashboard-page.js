@@ -1,14 +1,29 @@
 /**
  * Sprint-10E — Learning Dashboard page controller (UI only).
+ * Sprint-14B — Student Learning Dashboard widgets (Learning Engine consume only).
  */
 
 import { getItem, STORAGE_KEYS } from './storage.js';
 import { loadDashboard } from './dashboard-service.js';
+import { loadPhase1Database } from './data-loader.js';
+import { enrichDashboardWithResolved } from './student/student-workspace.js';
+import { buildLearningDashboard } from './learning-engine/learning-engine.js';
 import { buildCoachDashboard } from './coach/ai-coach-service.js';
 import { buildPatternTutorDashboardCard } from './coach/pattern-tutor.js';
 import { buildQuestionTutorDashboardCard } from './coach/question-tutor.js';
 import { buildReviewerDashboardCard } from './reviewer/review-service.js';
 import { buildRecoveryDashboardCard } from './recovery/ai-recovery-service.js';
+import { buildStudentDashboardView } from './dashboard/dashboard-engine.js';
+import { mountWidgets, showSkeletons, widgetCount } from './dashboard/dashboard-widget.js';
+import { renderTodayStudyCards, mountAnimatedBars } from './components/dashboard/progress.js';
+import { renderMasterySummary } from './components/dashboard/mastery.js';
+import { renderWeakPattern } from './components/dashboard/weak-pattern.js';
+import { renderRecommendationList } from './components/dashboard/recommendation.js';
+import { renderReviewBoard } from './components/dashboard/review.js';
+import { renderHeatmap } from './components/dashboard/heatmap.js';
+import { renderRecentGrowth, renderWeeklyStats } from './components/dashboard/chart.js';
+import { renderRecentActivity } from './components/dashboard/recent-activity.js';
+import { renderQuickStart } from './components/dashboard/quick-start.js';
 
 const INTEGRITY_REPORT_URL = 'data/question-integrity-report.json';
 
@@ -116,6 +131,12 @@ function renderRecommendation(card, summary) {
     return;
   }
   const top = summary.highestPriority;
+  const studentResolved = window.__studentResolvedRecommendation || null;
+  const resolvedPreview = studentResolved?.questions?.length
+    ? `<p class="ld-card-desc" style="margin-top:0.5rem">추천 문항(Resolved): ${studentResolved.questions
+        .map((q) => `${q.questionId}`)
+        .join(', ')}</p>`
+    : '';
   card.innerHTML = `
     <dl class="ld-dl">
       <div><dt>Active</dt><dd>${Number(summary.active) || 0}</dd></div>
@@ -124,6 +145,7 @@ function renderRecommendation(card, summary) {
       <div><dt>Highest Priority</dt><dd>${escapeHtml(top?.reasonCode || '—')} · ${escapeHtml(top?.patternId || '')}</dd></div>
     </dl>
     <p class="ld-card-desc" style="margin-top:0.75rem">${escapeHtml(top?.reason || '')}</p>
+    ${resolvedPreview}
   `;
 }
 
@@ -135,6 +157,12 @@ function renderSession(card, studySession) {
     return;
   }
   const pct = progress.percent || 0;
+  const resolvedSession = window.__studentResolvedSession || [];
+  const sessionPreview = resolvedSession.length
+    ? `<p class="ld-card-desc" style="margin-top:0.6rem">남은 문항(Resolved): ${resolvedSession
+        .map((q) => q.questionId)
+        .join(', ')}</p>`
+    : '';
   card.innerHTML = `
     <div class="ld-progress-block">
       <p class="ld-progress-label"><strong>${escapeHtml(progress.label)}</strong> · ${pct}%</p>
@@ -148,6 +176,7 @@ function renderSession(card, studySession) {
         <div><dt>Status</dt><dd>${escapeHtml(progress.status || '—')}</dd></div>
       </dl>
     </div>
+    ${sessionPreview}
   `;
 }
 
@@ -341,6 +370,10 @@ function renderRecoveryCard(card, recovery) {
 }
 
 function renderDashboard(dashboard) {
+  window.__studentResolvedRecommendation =
+    dashboard.studentWorkspace?.recommendationResolved || null;
+  window.__studentResolvedSession =
+    dashboard.studentWorkspace?.sessionResolved || [];
   renderTodayStudy(el('card-today-study'), dashboard.todayStudy);
   renderCountList(el('card-mastery'), dashboard.masterySummary, [
     ['MASTERED', 'MASTERED'],
@@ -367,17 +400,61 @@ function renderDashboard(dashboard) {
   }
 }
 
+function renderStudentWidgets(view) {
+  showSkeletons();
+  mountWidgets(
+    {
+      todayStudy: (node) => {
+        node.innerHTML = renderTodayStudyCards(view.todayStudy);
+        mountAnimatedBars(node);
+      },
+      masterySummary: (node) => renderMasterySummary(node, view.masterySummary),
+      weakPattern: (node) => renderWeakPattern(node, view.weakPatterns),
+      recommendation: (node) => renderRecommendationList(node, view.recommendations),
+      todaysReview: (node) => renderReviewBoard(node, view.reviewBoard),
+      heatmap: (node) => renderHeatmap(node, view.heatmapDays),
+      recentGrowth: (node) => renderRecentGrowth(node, view),
+      weeklyStats: (node) => renderWeeklyStats(node, view.weeklyStats),
+      recentActivity: (node) => renderRecentActivity(node, view.recentActivity),
+      quickStart: (node) => renderQuickStart(node),
+    },
+    view,
+  );
+}
+
 async function main() {
   applyTheme();
   const status = el('dashboard-status');
+  const startedAt = performance.now();
   try {
+    showSkeletons();
     const { ok, dashboard } = loadDashboard();
     if (!ok || !dashboard) {
       if (status) status.textContent = 'Dashboard를 불러오지 못했습니다.';
       return;
     }
-    renderDashboard(dashboard);
-    if (status) status.textContent = 'Learning Dashboard 준비 완료 · Coach 로딩…';
+    let resolvedDashboard = dashboard;
+    let questions = [];
+    let patterns = [];
+    try {
+      const db = await loadPhase1Database();
+      if (db.valid) {
+        questions = db.questions || [];
+        patterns = db.patterns || [];
+        resolvedDashboard = enrichDashboardWithResolved(dashboard, questions);
+        try {
+          const leDashboard = buildLearningDashboard(questions, patterns);
+          resolvedDashboard.learningEngine = leDashboard;
+        } catch (_le) { /* Learning Engine non-critical */ }
+      }
+    } catch (_err) {
+      /* keep base dashboard when DB load fails */
+    }
+
+    const studentView = buildStudentDashboardView(questions, patterns);
+    renderStudentWidgets(studentView);
+    renderDashboard(resolvedDashboard);
+    if (status) status.textContent = 'Student Dashboard 준비 완료 · Coach 로딩…';
 
     const coach = await buildCoachDashboard();
     renderCoachCard(el('card-today-coach'), coach.today);
@@ -399,11 +476,16 @@ async function main() {
     const recovery = buildRecoveryDashboardCard();
     renderRecoveryCard(el('card-recovery'), recovery);
 
+    const elapsed = Math.round(performance.now() - startedAt);
     if (status) {
       const mismatch = Number(integrity?.mismatchCount) || 0;
       const overrides = Number(reviewer?.totalOverrides) || 0;
       const pending = Number(recovery?.pending) || 0;
-      status.textContent = `Learning Dashboard 준비 완료 · Integrity ${mismatch} · Overrides ${overrides} · Recovery pending ${pending}`;
+      status.textContent = `Student Dashboard 준비 완료 · Widgets ${widgetCount()} · ${elapsed}ms · Integrity ${mismatch} · Overrides ${overrides} · Recovery pending ${pending}`;
+    }
+    const meta = el('dashboard-meta');
+    if (meta) {
+      meta.textContent = `Sprint-14B · Widgets ${widgetCount()} · render ${elapsed}ms · Learning Engine consume only`;
     }
   } catch (err) {
     if (status) {

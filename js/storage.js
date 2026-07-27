@@ -66,6 +66,18 @@ const STORAGE_KEYS = {
   LEARNING_REVIEW_SESSION_V1: 'learning.review-session.v1',
   LEARNING_QUICK_FIX_V1: 'learning.quick-fix.v1',
   LEARNING_FOCUS_MODE_V1: 'learning.focus-mode.v1',
+  // Sprint-13A Student Learning Workspace (additive — do not rename)
+  LEARNING_STUDENT_SESSION_V1: 'learning.student-session.v1',
+  LEARNING_STUDENT_CACHE_V1: 'learning.student-cache.v1',
+  // Sprint-13B Learning Engine (additive — do not rename)
+  LEARNING_SCHEDULE_V1: 'learning.schedule.v1',
+  LEARNING_ENGINE_PROGRESS_V1: 'learning.engine-progress.v1',
+  LEARNING_REVIEW_CYCLE_V1: 'learning.review-cycle.v1',
+  // Sprint-14B Student Learning Dashboard (additive — do not rename)
+  LEARNING_DASHBOARD_STATE_V1: 'learning.dashboard-state.v1',
+  LEARNING_DASHBOARD_LAYOUT_V1: 'learning.dashboard-layout.v1',
+  LEARNING_DASHBOARD_FILTER_V1: 'learning.dashboard-filter.v1',
+  LEARNING_DASHBOARD_CACHE_V1: 'learning.dashboard-cache.v1',
 };
 
 /**

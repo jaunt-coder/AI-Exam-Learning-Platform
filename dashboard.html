@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Learning Dashboard — Attempt부터 Study Session까지 학습 현황">
-  <title>Learning Dashboard | AI Exam Learning Platform</title>
+  <meta name="description" content="Student Learning Dashboard — Today's Study, Mastery, Weak Pattern, Recommendation, Review, Heatmap">
+  <title>Student Learning Dashboard | AI Exam Learning Platform</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/learning-dashboard.css">
 </head>
@@ -15,7 +15,7 @@
         <h1 class="site-title">
           <a href="index.html" class="site-title-link">AI Exam Learning Platform</a>
         </h1>
-        <p class="site-subtitle">Sprint-10E — Learning Dashboard</p>
+        <p class="site-subtitle">Sprint-14B — Student Learning Dashboard</p>
       </div>
       <nav class="header-nav" aria-label="주요 메뉴">
         <a href="index.html" class="button button--ghost">홈</a>
@@ -31,112 +31,147 @@
   <main class="site-main ld-main" role="main">
     <div class="container">
       <header class="ld-header">
-        <h2 id="dashboard-heading">Learning Dashboard</h2>
+        <h2 id="dashboard-heading">Student Learning Dashboard</h2>
         <p class="ld-desc">
-          LocalStorage 학습 Runtime 현황을 읽기 전용으로 표시합니다.
-          Question / Pattern / Master DB는 변경하지 않습니다.
+          Learning Engine 결과를 시각화합니다. Question / Pattern DB와 Learning Logic은 변경하지 않습니다.
         </p>
         <p class="ld-status" id="dashboard-status" aria-live="polite">불러오는 중…</p>
         <p class="ld-meta" id="dashboard-meta"></p>
       </header>
 
-      <div class="ld-grid" aria-labelledby="dashboard-heading">
-        <section class="ld-card card" aria-labelledby="today-study-heading">
-          <h3 id="today-study-heading">Today's Study</h3>
-          <p class="ld-card-desc">learning.session.v1</p>
-          <div id="card-today-study"></div>
+      <div class="ld-grid ld-student-grid" aria-labelledby="dashboard-heading">
+        <section class="ld-card card ld-card--wide" aria-labelledby="today-study-heading">
+          <h3 id="today-study-heading">① Today's Study</h3>
+          <p class="ld-card-desc">오늘 복습 · 추천 · 시험 · 목표</p>
+          <div id="widget-today-study" tabindex="-1"></div>
         </section>
 
         <section class="ld-card card" aria-labelledby="mastery-heading">
-          <h3 id="mastery-heading">Mastery Summary</h3>
-          <p class="ld-card-desc">learning.mastery.v1</p>
-          <div id="card-mastery"></div>
+          <h3 id="mastery-heading">② Mastery Summary</h3>
+          <p class="ld-card-desc">Question · Pattern · Chapter</p>
+          <div id="widget-mastery-summary" tabindex="-1"></div>
         </section>
 
-        <section class="ld-card card" aria-labelledby="weakness-heading">
-          <h3 id="weakness-heading">Weakness Summary</h3>
-          <p class="ld-card-desc">learning.weakness.v1</p>
-          <div id="card-weakness"></div>
+        <section class="ld-card card" aria-labelledby="weak-heading">
+          <h3 id="weak-heading">③ Weak Pattern</h3>
+          <p class="ld-card-desc">Top 10 · Review</p>
+          <div id="widget-weak-pattern" tabindex="-1"></div>
         </section>
 
-        <section class="ld-card card" aria-labelledby="plans-heading">
-          <h3 id="plans-heading">Today's Plans</h3>
-          <p class="ld-card-desc">learning.plan.v1 · Active · Priority순</p>
-          <div id="card-plans"></div>
+        <section class="ld-card card ld-card--wide" aria-labelledby="rec-heading">
+          <h3 id="rec-heading">④ Recommendation</h3>
+          <p class="ld-card-desc">Learning Engine 추천</p>
+          <div id="widget-recommendation" tabindex="-1"></div>
         </section>
 
-        <section class="ld-card card" aria-labelledby="strategies-heading">
-          <h3 id="strategies-heading">Today's Strategies</h3>
-          <p class="ld-card-desc">learning.strategy.v1</p>
-          <div id="card-strategies"></div>
+        <section class="ld-card card ld-card--wide" aria-labelledby="review-heading">
+          <h3 id="review-heading">⑤ Today's Review</h3>
+          <p class="ld-card-desc">Review Scheduler</p>
+          <div id="widget-todays-review" tabindex="-1"></div>
         </section>
 
-        <section class="ld-card card" aria-labelledby="recommendation-heading">
-          <h3 id="recommendation-heading">Recommendation Summary</h3>
-          <p class="ld-card-desc">learning.recommendation.v1</p>
-          <div id="card-recommendation"></div>
+        <section class="ld-card card ld-card--wide" aria-labelledby="heatmap-heading">
+          <h3 id="heatmap-heading">⑥ Learning Heatmap</h3>
+          <p class="ld-card-desc">최근 365일 풀이량</p>
+          <div id="widget-heatmap" tabindex="-1"></div>
         </section>
 
-        <section class="ld-card card ld-card--wide" aria-labelledby="session-heading">
-          <h3 id="session-heading">Today's Session</h3>
-          <p class="ld-card-desc">진행률 · 남은 문제 · 예상 시간</p>
-          <div id="card-session"></div>
+        <section class="ld-card card" aria-labelledby="growth-heading">
+          <h3 id="growth-heading">⑦ Recent Growth</h3>
+          <p class="ld-card-desc">최근 30일 Line Chart</p>
+          <div id="widget-recent-growth" tabindex="-1"></div>
         </section>
 
-        <section class="ld-card card" aria-labelledby="today-coach-heading">
-          <h3 id="today-coach-heading">Today's Coach</h3>
-          <p class="ld-card-desc">AI Coach · LLM Adapter</p>
-          <div id="card-today-coach"></div>
+        <section class="ld-card card" aria-labelledby="weekly-heading">
+          <h3 id="weekly-heading">⑧ Weekly Statistics</h3>
+          <p class="ld-card-desc">문항 · 시간 · 정답률 · Radar</p>
+          <div id="widget-weekly-stats" tabindex="-1"></div>
         </section>
 
-        <section class="ld-card card" aria-labelledby="pattern-coach-heading">
-          <h3 id="pattern-coach-heading">Pattern Coach</h3>
-          <p class="ld-card-desc">AI Coach · Pattern focus</p>
-          <div id="card-pattern-coach"></div>
+        <section class="ld-card card ld-card--wide" aria-labelledby="activity-heading">
+          <h3 id="activity-heading">⑨ Recent Activity</h3>
+          <p class="ld-card-desc">최근 풀이 기록</p>
+          <div id="widget-recent-activity" tabindex="-1"></div>
         </section>
 
-        <section class="ld-card card ld-card--wide" aria-labelledby="recommendation-coach-heading">
-          <h3 id="recommendation-coach-heading">Recommendation Coach</h3>
-          <p class="ld-card-desc">Explainable coaching · Runtime 추천 불변</p>
-          <div id="card-recommendation-coach"></div>
-        </section>
-
-        <section class="ld-card card ld-card--wide" aria-labelledby="pattern-tutor-heading">
-          <h3 id="pattern-tutor-heading">AI Pattern Tutor</h3>
-          <p class="ld-card-desc">Pattern Detail · Mastery · Weakness · Checklist</p>
-          <div id="card-pattern-tutor"></div>
-        </section>
-
-        <section class="ld-card card ld-card--wide" aria-labelledby="question-tutor-heading">
-          <h3 id="question-tutor-heading">AI Question Tutor</h3>
-          <p class="ld-card-desc">Question Result Panel · 오답 원인 · Step by Step</p>
-          <div id="card-question-tutor"></div>
-        </section>
-
-        <section class="ld-card card ld-card--wide" aria-labelledby="integrity-heading">
-          <h3 id="integrity-heading">Integrity Monitor</h3>
-          <p class="ld-card-desc">Question Classification Integrity Gate · read-only</p>
-          <div id="card-integrity"></div>
-        </section>
-
-        <section class="ld-card card" aria-labelledby="reviewer-heading">
-          <h3 id="reviewer-heading">Reviewer Mode</h3>
-          <p class="ld-card-desc">Override Layer · learning.review.v1</p>
-          <div id="card-reviewer"></div>
-        </section>
-
-        <section class="ld-card card" aria-labelledby="recovery-heading">
-          <h3 id="recovery-heading">Recovery Summary</h3>
-          <p class="ld-card-desc">AI Recovery · learning.suggestion.v1</p>
-          <div id="card-recovery"></div>
+        <section class="ld-card card ld-card--wide" aria-labelledby="quick-heading">
+          <h3 id="quick-heading">⑩ Quick Start</h3>
+          <p class="ld-card-desc">바로 학습 시작</p>
+          <div id="widget-quick-start" tabindex="-1"></div>
         </section>
       </div>
+
+      <details class="ld-legacy" id="legacy-dashboard">
+        <summary>기존 Runtime Dashboard (Sprint-10E+)</summary>
+        <div class="ld-grid" aria-label="Legacy Runtime Cards">
+          <section class="ld-card card" aria-labelledby="legacy-today-heading">
+            <h3 id="legacy-today-heading">Session Today's Study</h3>
+            <div id="card-today-study"></div>
+          </section>
+          <section class="ld-card card" aria-labelledby="legacy-mastery-heading">
+            <h3 id="legacy-mastery-heading">Runtime Mastery</h3>
+            <div id="card-mastery"></div>
+          </section>
+          <section class="ld-card card" aria-labelledby="legacy-weakness-heading">
+            <h3 id="legacy-weakness-heading">Weakness Summary</h3>
+            <div id="card-weakness"></div>
+          </section>
+          <section class="ld-card card" aria-labelledby="legacy-plans-heading">
+            <h3 id="legacy-plans-heading">Today's Plans</h3>
+            <div id="card-plans"></div>
+          </section>
+          <section class="ld-card card" aria-labelledby="legacy-strategies-heading">
+            <h3 id="legacy-strategies-heading">Today's Strategies</h3>
+            <div id="card-strategies"></div>
+          </section>
+          <section class="ld-card card" aria-labelledby="legacy-rec-heading">
+            <h3 id="legacy-rec-heading">Recommendation Summary</h3>
+            <div id="card-recommendation"></div>
+          </section>
+          <section class="ld-card card ld-card--wide" aria-labelledby="legacy-session-heading">
+            <h3 id="legacy-session-heading">Today's Session</h3>
+            <div id="card-session"></div>
+          </section>
+          <section class="ld-card card" aria-labelledby="today-coach-heading">
+            <h3 id="today-coach-heading">Today's Coach</h3>
+            <div id="card-today-coach"></div>
+          </section>
+          <section class="ld-card card" aria-labelledby="pattern-coach-heading">
+            <h3 id="pattern-coach-heading">Pattern Coach</h3>
+            <div id="card-pattern-coach"></div>
+          </section>
+          <section class="ld-card card ld-card--wide" aria-labelledby="recommendation-coach-heading">
+            <h3 id="recommendation-coach-heading">Recommendation Coach</h3>
+            <div id="card-recommendation-coach"></div>
+          </section>
+          <section class="ld-card card ld-card--wide" aria-labelledby="pattern-tutor-heading">
+            <h3 id="pattern-tutor-heading">AI Pattern Tutor</h3>
+            <div id="card-pattern-tutor"></div>
+          </section>
+          <section class="ld-card card ld-card--wide" aria-labelledby="question-tutor-heading">
+            <h3 id="question-tutor-heading">AI Question Tutor</h3>
+            <div id="card-question-tutor"></div>
+          </section>
+          <section class="ld-card card ld-card--wide" aria-labelledby="integrity-heading">
+            <h3 id="integrity-heading">Integrity Monitor</h3>
+            <div id="card-integrity"></div>
+          </section>
+          <section class="ld-card card" aria-labelledby="reviewer-heading">
+            <h3 id="reviewer-heading">Reviewer Mode</h3>
+            <div id="card-reviewer"></div>
+          </section>
+          <section class="ld-card card" aria-labelledby="recovery-heading">
+            <h3 id="recovery-heading">Recovery Summary</h3>
+            <div id="card-recovery"></div>
+          </section>
+        </div>
+      </details>
     </div>
   </main>
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>&copy; 2026 AI Exam Learning Platform v2 · Learning Dashboard (Sprint-10E)</p>
+      <p>&copy; 2026 AI Exam Learning Platform v2 · Student Learning Dashboard (Sprint-14B)</p>
     </div>
   </footer>
 
