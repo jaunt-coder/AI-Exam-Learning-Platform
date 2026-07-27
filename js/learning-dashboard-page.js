@@ -7,6 +7,7 @@ import { loadDashboard } from './dashboard-service.js';
 import { buildCoachDashboard } from './coach/ai-coach-service.js';
 import { buildPatternTutorDashboardCard } from './coach/pattern-tutor.js';
 import { buildQuestionTutorDashboardCard } from './coach/question-tutor.js';
+import { buildReviewerDashboardCard } from './reviewer/review-service.js';
 
 const INTEGRITY_REPORT_URL = 'data/question-integrity-report.json';
 
@@ -301,6 +302,25 @@ function renderIntegrityCard(card, report) {
   `;
 }
 
+function renderReviewerCard(card, reviewer) {
+  if (!card) return;
+  if (!reviewer) {
+    card.innerHTML = '<p class="ld-empty">Reviewer Mode 요약을 불러오지 못했습니다.</p>';
+    return;
+  }
+  const by = reviewer.byStatus || {};
+  card.innerHTML = `
+    <dl class="ld-dl">
+      <div><dt>Overrides</dt><dd>${Number(reviewer.totalOverrides) || 0}</dd></div>
+      <div><dt>Review Records</dt><dd>${Number(reviewer.reviewRecords) || 0}</dd></div>
+      <div><dt>Needs Verify</dt><dd>${Number(reviewer.needsVerify) || 0}</dd></div>
+      <div><dt>APPROVED</dt><dd>${Number(by.APPROVED) || 0}</dd></div>
+      <div><dt>REVIEWED</dt><dd>${Number(by.REVIEWED) || 0}</dd></div>
+    </dl>
+    <p class="ld-card-desc">Storage: ${(reviewer.storageKeys || []).join(' · ')}</p>
+  `;
+}
+
 function renderDashboard(dashboard) {
   renderTodayStudy(el('card-today-study'), dashboard.todayStudy);
   renderCountList(el('card-mastery'), dashboard.masterySummary, [
@@ -354,17 +374,13 @@ async function main() {
     const integrity = await loadIntegrityReport();
     renderIntegrityCard(el('card-integrity'), integrity);
 
+    const reviewer = buildReviewerDashboardCard();
+    renderReviewerCard(el('card-reviewer'), reviewer);
+
     if (status) {
       const mismatch = Number(integrity?.mismatchCount) || 0;
-      status.textContent = integrity
-        ? `Learning Dashboard 준비 완료 · Integrity mismatch ${mismatch}`
-        : questionTutor?.fallback
-          ? 'Learning Dashboard 준비 완료 · Question Tutor fallback'
-          : patternTutor?.fallback
-            ? 'Learning Dashboard 준비 완료 · Pattern Tutor fallback'
-            : coach.today?.fallback
-              ? 'Learning Dashboard 준비 완료 · Rule Coach fallback'
-              : 'Learning Dashboard 준비 완료 · AI Question Tutor ready';
+      const overrides = Number(reviewer?.totalOverrides) || 0;
+      status.textContent = `Learning Dashboard 준비 완료 · Integrity ${mismatch} · Overrides ${overrides}`;
     }
   } catch (err) {
     if (status) {

@@ -387,6 +387,51 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     tutorPath: 'js/coach/question-tutor.js',
     promptBuilderPath: 'js/llm/question-prompt-builder.js',
   };
+  /* Sprint-12A — Reviewer Mode / Override Layer (does not fail valid) */
+  const reviewContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'learning.review.v1',
+    servicePath: 'js/reviewer/review-service.js',
+  };
+  const overrideContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    storageKey: 'question-overrides.v1',
+    servicePath: 'js/reviewer/override-service.js',
+  };
+  const tableEditorContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    servicePath: 'js/reviewer/table-editor.js',
+  };
+  const questionOverrideContract = {
+    enabled: true,
+    schemaVersion: 'v1',
+    connected: true,
+    historyKey: 'review-history.v1',
+    resolver: 'resolveQuestion',
+  };
+  const review = {
+    enabled: true,
+    connected: true,
+    mode: 'reviewer',
+    overrideLayer: true,
+  };
+  const override = {
+    enabled: true,
+    connected: true,
+    readOnlyQuestionDb: true,
+  };
+  const tableEditor = {
+    enabled: true,
+    connected: true,
+    spreadsheet: true,
+    undoRedo: true,
+  };
 
   return {
     valid: errors.length === 0,
@@ -405,6 +450,13 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     llm,
     patternTutor,
     questionTutor,
+    reviewContract,
+    overrideContract,
+    tableEditorContract,
+    questionOverrideContract,
+    review,
+    override,
+    tableEditor,
     fallbackFrom: options.fallbackFrom || null,
   };
 }
@@ -539,6 +591,50 @@ async function loadDatabaseSet(dbSet, options = {}) {
         tutorPath: 'js/coach/question-tutor.js',
         promptBuilderPath: 'js/llm/question-prompt-builder.js',
       },
+      reviewContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'learning.review.v1',
+        servicePath: 'js/reviewer/review-service.js',
+      },
+      overrideContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        storageKey: 'question-overrides.v1',
+        servicePath: 'js/reviewer/override-service.js',
+      },
+      tableEditorContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        servicePath: 'js/reviewer/table-editor.js',
+      },
+      questionOverrideContract: {
+        enabled: true,
+        schemaVersion: 'v1',
+        connected: true,
+        historyKey: 'review-history.v1',
+        resolver: 'resolveQuestion',
+      },
+      review: {
+        enabled: true,
+        connected: true,
+        mode: 'reviewer',
+        overrideLayer: true,
+      },
+      override: {
+        enabled: true,
+        connected: true,
+        readOnlyQuestionDb: true,
+      },
+      tableEditor: {
+        enabled: true,
+        connected: true,
+        spreadsheet: true,
+        undoRedo: true,
+      },
       dbSet: dbSet.id,
       dbLabel: dbSet.label,
       paths: { master: MASTER_PATH, ...dbSet },
@@ -668,6 +764,50 @@ async function loadDatabaseSet(dbSet, options = {}) {
       schemaValidated: true,
       tutorPath: 'js/coach/question-tutor.js',
       promptBuilderPath: 'js/llm/question-prompt-builder.js',
+    },
+    reviewContract: validation.reviewContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'learning.review.v1',
+      servicePath: 'js/reviewer/review-service.js',
+    },
+    overrideContract: validation.overrideContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      storageKey: 'question-overrides.v1',
+      servicePath: 'js/reviewer/override-service.js',
+    },
+    tableEditorContract: validation.tableEditorContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      servicePath: 'js/reviewer/table-editor.js',
+    },
+    questionOverrideContract: validation.questionOverrideContract || {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      historyKey: 'review-history.v1',
+      resolver: 'resolveQuestion',
+    },
+    review: validation.review || {
+      enabled: true,
+      connected: true,
+      mode: 'reviewer',
+      overrideLayer: true,
+    },
+    override: validation.override || {
+      enabled: true,
+      connected: true,
+      readOnlyQuestionDb: true,
+    },
+    tableEditor: validation.tableEditor || {
+      enabled: true,
+      connected: true,
+      spreadsheet: true,
+      undoRedo: true,
     },
     dbSet: dbSet.id,
     dbLabel: dbSet.label,

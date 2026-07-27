@@ -36,6 +36,13 @@ import {
   renderChoiceItems,
 } from './shared-renderer.js';
 import { mountSourceViewerButton } from './source-viewer.js';
+import { resolveQuestion } from './reviewer/override-service.js';
+import {
+  mountReviewerButton,
+  openReviewerPanel,
+  closeReviewerPanel,
+  renderQuestionBadge,
+} from './reviewer/review-ui.js';
 
 const state = {
   master: null,
@@ -48,6 +55,8 @@ const state = {
   currentIndex: -1,
   lastQuestion: null,
   lastResult: null,
+  originalQuestion: null,
+  reviewerOpen: false,
   aiLevel: 'beginner',
   tutorViewed: false,
 };
@@ -217,29 +226,45 @@ function updateBookmarkButton(question) {
 }
 
 function renderSolveView(question) {
+  /* Keep DB original immutable; resolve Override Layer for display / coach */
+  const original =
+    question?._resolvedFrom
+      ? state.originalQuestion || question
+      : question;
+  state.originalQuestion = original && !original._resolvedFrom
+    ? original
+    : state.questions.find((q) => q.questionId === (question?.questionId || question?.id)) ||
+      original;
+  const resolved = resolveQuestion(state.originalQuestion || question);
+
   const pool = state.filteredQuestions.length
     ? state.filteredQuestions
-    : filterQuestionsByPattern(state.questions, question.patternId);
+    : filterQuestionsByPattern(state.questions, resolved.patternId);
 
-  state.currentPatternId = question.patternId;
+  state.currentPatternId = resolved.patternId;
   state.filteredQuestions = pool;
-  state.currentIndex = pool.findIndex((q) => q.questionId === question.questionId);
+  state.currentIndex = pool.findIndex((q) => q.questionId === resolved.questionId);
   state.tutorViewed = false;
+  state.lastQuestion = resolved;
 
-  trackQuestionStart(question);
+  trackQuestionStart(resolved);
 
-  $('back-to-list').href = `question.html?pattern=${encodeURIComponent(question.patternId)}`;
+  $('back-to-list').href = `question.html?pattern=${encodeURIComponent(resolved.patternId)}`;
 
-  renderQuestionMeta(question);
-  updateBookmarkButton(question);
+  renderQuestionMeta(resolved);
+  renderQuestionBadge(document.getElementById('review-badge-host'), resolved);
+  updateBookmarkButton(resolved);
   mountSourceViewerButton(
     document.getElementById('source-viewer-host'),
-    question.questionId
+    resolved.questionId
   );
+  mountReviewerButton(document.getElementById('reviewer-btn-host'), () => {
+    toggleReviewerPanel();
+  });
 
-  mountQuestionStem(question, $('question-stem'));
-  renderQuestionTable(question);
-  renderChoices(question);
+  mountQuestionStem(resolved, $('question-stem'));
+  renderQuestionTable(resolved);
+  renderChoices(resolved);
 
   hide($('result-panel'));
   hide($('ai-tutor-panel'));
@@ -254,14 +279,42 @@ function renderSolveView(question) {
   setChoiceStates(null, null, false);
 }
 
+function toggleReviewerPanel() {
+  const panel = document.getElementById('reviewer-panel');
+  const btn = document.getElementById('reviewer-mode-btn');
+  if (!panel || !state.originalQuestion) return;
+
+  if (state.reviewerOpen) {
+    closeReviewerPanel(panel);
+    state.reviewerOpen = false;
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    return;
+  }
+
+  openReviewerPanel({
+    panelEl: panel,
+    originalQuestion: state.originalQuestion,
+    onResolved: (resolved) => {
+      state.lastQuestion = resolved;
+      renderSolveView(resolved);
+    },
+  });
+  state.reviewerOpen = true;
+  if (btn) btn.setAttribute('aria-expanded', 'true');
+}
+
 function runAiExplanation() {
   if (!state.lastQuestion || !state.lastResult) return;
 
-  const pattern = getPatternById(state.patterns, state.lastQuestion.patternId);
-  const stats = getStatisticsForPattern(state.statistics, state.lastQuestion.patternId);
+  /* Override 존재 시 resolveQuestion 결과를 Tutor에 전달 (AI Coach 파일 미수정) */
+  const questionForTutor = resolveQuestion(
+    state.originalQuestion || state.lastQuestion,
+  );
+  const pattern = getPatternById(state.patterns, questionForTutor.patternId);
+  const stats = getStatisticsForPattern(state.statistics, questionForTutor.patternId);
 
   const lesson = generateTutorLesson({
-    question: state.lastQuestion,
+    question: questionForTutor,
     pattern,
     result: state.lastResult,
     statistics: stats,
@@ -388,8 +441,11 @@ function bindSolveEvents() {
 function onSubmit(e) {
   e.preventDefault();
   const id = getQueryParam('id');
-  const question = getQuestionById(state.questions, id);
-  if (!question) return;
+  const original = getQuestionById(state.questions, id);
+  if (!original) return;
+
+  state.originalQuestion = original;
+  const question = resolveQuestion(original);
 
   const selected = document.querySelector('input[name="answer"]:checked');
   if (!selected) return;

@@ -44,6 +44,10 @@ const STORAGE_KEYS = {
   LEARNING_RETRIEVAL_V1: 'learning.retrieval.v1',
   LEARNING_PROGRESS_V1: 'learning.progress.v1',
   LEARNING_SYNC_META_V1: 'learning.sync.meta.v1',
+  // Sprint-12A Reviewer Mode / Override Layer (additive — do not rename)
+  LEARNING_REVIEW_V1: 'learning.review.v1',
+  QUESTION_OVERRIDES_V1: 'question-overrides.v1',
+  REVIEW_HISTORY_V1: 'review-history.v1',
 };
 
 /**

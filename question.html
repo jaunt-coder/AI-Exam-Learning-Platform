@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/source-viewer.css">
   <link rel="stylesheet" href="css/question.css">
+  <link rel="stylesheet" href="css/reviewer.css">
 </head>
 <body>
   <header class="site-header" role="banner">
@@ -67,8 +68,10 @@
             <a href="#" class="breadcrumb-link" id="back-to-list">← 문제 목록</a>
           </nav>
           <div class="question-meta-row">
+            <div id="review-badge-host" class="rv-badge-host" aria-label="Review status"></div>
             <div class="question-meta" id="question-meta"></div>
             <div class="question-toolbar">
+              <div id="reviewer-btn-host" aria-label="Reviewer Mode"></div>
               <div id="source-viewer-host" class="source-viewer-host" aria-label="원본 PDF"></div>
               <button type="button" class="button button--ghost button--touch" id="bookmark-btn" aria-pressed="false">북마크</button>
             </div>
@@ -127,6 +130,8 @@
         <p id="error-message"></p>
       </div>
     </div>
+
+    <aside id="reviewer-panel" class="rv-panel" hidden aria-hidden="true" aria-label="Reviewer Mode Panel"></aside>
   </main>
 
   <footer class="site-footer" role="contentinfo">

@@ -1,0 +1,251 @@
+/* Sprint-12A — Reviewer Mode */
+
+.rv-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: 0.35rem;
+  margin-right: 0.5rem;
+}
+
+.rv-badge--reviewed { color: #0a7a32; border-color: #0a7a32; }
+.rv-badge--verify { color: #9a6b00; border-color: #c9a227; }
+.rv-badge--override { color: #b35c00; border-color: #e67e22; }
+.rv-badge--original { color: #1a5276; border-color: #3498db; }
+
+.question-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.question-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: auto;
+}
+
+.rv-badge-host {
+  order: -1;
+  margin-right: auto;
+}
+
+.rv-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(440px, 100vw);
+  height: 100vh;
+  z-index: 80;
+  background: var(--color-surface, #fff);
+  border-left: 1px solid var(--color-border, #ddd);
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.08);
+  overflow: auto;
+  padding: 1rem 1rem 5rem;
+}
+
+.rv-panel[hidden] {
+  display: none !important;
+}
+
+.rv-panel-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.35rem 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.rv-panel-header h3 {
+  margin: 0;
+  grid-column: 1;
+}
+
+.rv-panel-desc {
+  margin: 0;
+  grid-column: 1;
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #666);
+}
+
+.rv-panel-header [data-act="close"] {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  align-self: start;
+}
+
+.rv-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.rv-tab {
+  border: 1px solid var(--color-border, #ccc);
+  background: transparent;
+  padding: 0.3rem 0.55rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+.rv-tab.is-active {
+  background: var(--color-primary, #1f4b7a);
+  color: #fff;
+  border-color: transparent;
+}
+
+.rv-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.rv-field textarea,
+.rv-field input,
+.rv-field select {
+  width: 100%;
+  font: inherit;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: 0.3rem;
+}
+
+.rv-preview,
+.rv-table-preview,
+.rv-choice-preview,
+.rv-md-preview {
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  border: 1px dashed var(--color-border, #ccc);
+  border-radius: 0.35rem;
+  font-size: 0.88rem;
+  white-space: pre-wrap;
+  background: var(--color-bg, #f7f7f7);
+}
+
+.rv-table-toolbar,
+.rv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.rv-table-scroll {
+  overflow: auto;
+  margin-bottom: 0.5rem;
+}
+
+.rv-spreadsheet {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.85rem;
+}
+
+.rv-spreadsheet th,
+.rv-spreadsheet td {
+  border: 1px solid var(--color-border, #ccc);
+  padding: 0;
+}
+
+.rv-spreadsheet input {
+  width: 100%;
+  min-width: 4rem;
+  border: 0;
+  padding: 0.35rem;
+  font: inherit;
+  background: transparent;
+}
+
+.rv-choice-list {
+  list-style: none;
+  margin: 0 0 0.5rem;
+  padding: 0;
+}
+
+.rv-choice-row {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr auto auto auto;
+  gap: 0.3rem;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.rv-flags {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.rv-flag {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.rv-dl {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.rv-dl div {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.rv-dl dt {
+  font-weight: 700;
+  margin: 0;
+}
+
+.rv-dl dd {
+  margin: 0;
+}
+
+.rv-history {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.rv-history li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--color-border, #eee);
+}
+
+.rv-panel-footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  background: linear-gradient(transparent, var(--color-surface, #fff) 30%);
+}
+
+.rv-import-label {
+  cursor: pointer;
+}
+
+.rv-empty {
+  color: var(--color-text-muted, #666);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .rv-panel {
+    width: 100vw;
+  }
+}
