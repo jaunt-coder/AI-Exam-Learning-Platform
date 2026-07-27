@@ -798,6 +798,63 @@ function validateDatabasePayload(dbSet, data, options = {}) {
       modules: 8,
       storageKeys: 4,
     },
+    /* Sprint-15A+ — AI Dynamic Solution Engine (does not fail valid) */
+    solutionEngineContract: {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      servicePath: 'js/solution-engine/solution-engine.js',
+      modules: 11,
+      storageKeys: [
+        'learning.solution-cache.v1',
+        'learning.solution-history.v1',
+        'learning.mistake-profile.v1',
+        'learning.diagnosis.v1',
+        'learning.prescription.v1',
+      ],
+      dbWriteForbidden: true,
+      overrideForbidden: true,
+      autoPromoteForbidden: true,
+    },
+    explanationContract: {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      servicePath: 'js/solution-engine/explanation-generator.js',
+    },
+    diagnosisContract: {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      servicePath: 'js/solution-engine/mistake-diagnosis.js',
+      storageKey: 'learning.diagnosis.v1',
+    },
+    misconceptionContract: {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      servicePath: 'js/solution-engine/misconception-engine.js',
+    },
+    tutorAdviceContract: {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      servicePath: 'js/solution-engine/tutor-advice.js',
+    },
+    prescriptionContract: {
+      enabled: true,
+      schemaVersion: 'v1',
+      connected: true,
+      servicePath: 'js/solution-engine/learning-prescription.js',
+      storageKey: 'learning.prescription.v1',
+      learningEngineFormulasUnchanged: true,
+    },
+    validationSolutionEngine: {
+      enabled: true,
+      sprint: 'Sprint-15A+',
+      modules: 11,
+      storageKeys: 5,
+    },
     /* Sprint-12F — Reviewer Entry Integration (does not fail valid) */
     reviewEntryContract: {
       enabled: true,

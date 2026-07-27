@@ -12,6 +12,7 @@ import { loadRecommendations } from '../recommendation-service.js';
 import { dayKey, daysAgo, pct, clamp } from './dashboard-utils.js';
 import { saveDashboardCache, loadDashboardCache } from './dashboard-cache.js';
 import { loadDashboardFilter } from './dashboard-filter.js';
+import { getDashboardMistakeData } from '../solution-engine/solution-engine.js';
 
 export const DASHBOARD_STATE_KEY =
   STORAGE_KEYS.LEARNING_DASHBOARD_STATE_V1 || 'learning.dashboard-state.v1';
@@ -207,6 +208,8 @@ export function buildStudentDashboardView(questions = [], patterns = []) {
     weeklyStats: buildWeeklyStats(le || {}),
     recentActivity: buildRecentActivity(le || {}),
     learningEngine: le,
+    /* Sprint-15A+ — Mistake Profile heatmap (storage only; LE formulas untouched) */
+    mistakeHeatmap: getDashboardMistakeData(),
   };
 
   saveDashboardCache(view);

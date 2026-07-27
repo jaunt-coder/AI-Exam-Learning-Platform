@@ -52,6 +52,7 @@ import {
   getCachedQualityScore,
   scoreQuestion,
 } from './quality/quality-engine.js';
+import { lazyGenerateAndMount } from './solution-engine/solution-engine.js';
 
 const state = {
   master: null,
@@ -475,6 +476,26 @@ function showResult(question, result) {
 
   setChoiceStates(result.selectedAnswer, result.correctAnswer, true);
   runAiExplanation();
+
+  /* Sprint-15A+ Dynamic Solution Engine (lazy) */
+  try {
+    lazyGenerateAndMount(
+      $('solution-engine-host'),
+      {
+        question,
+        grade: {
+          result: result.correct ? 'correct' : 'wrong',
+          selected: result.selectedAnswer,
+          selectedAnswer: result.selectedAnswer,
+        },
+        pattern,
+        questions: state.questions,
+      },
+      { showPromote: true },
+    );
+  } catch (err) {
+    console.warn('[solution-engine]', err?.message || err);
+  }
 
   if (!result.correct) {
     const link = $('ai-standalone-link');

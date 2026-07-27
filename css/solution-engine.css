@@ -1,0 +1,224 @@
+/* Sprint-15A+ — Dynamic Solution Engine Accordion */
+
+.se-root {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.se-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.se-toolbar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.se-acc {
+  border: 1px solid var(--color-border, #d0d5dd);
+  border-radius: var(--radius, 8px);
+  background: var(--color-surface, #fff);
+  padding: 0;
+  overflow: hidden;
+}
+
+.se-acc > summary {
+  cursor: pointer;
+  list-style: none;
+  font-weight: 700;
+  padding: 0.75rem 0.9rem;
+  background: color-mix(in srgb, var(--color-primary, #2f6fed) 6%, transparent);
+  border-bottom: 1px solid transparent;
+}
+
+.se-acc > summary::-webkit-details-marker {
+  display: none;
+}
+
+.se-acc > summary::after {
+  content: "▾";
+  float: right;
+  opacity: 0.65;
+}
+
+.se-acc[open] > summary {
+  border-bottom-color: var(--color-border, #d0d5dd);
+}
+
+.se-acc[open] > summary::after {
+  content: "▴";
+}
+
+.se-acc:focus-within > summary {
+  outline: 2px solid color-mix(in srgb, var(--color-primary, #2f6fed) 55%, transparent);
+  outline-offset: -2px;
+}
+
+.se-acc__body {
+  padding: 0.85rem 0.95rem 1rem;
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.se-result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem 1rem;
+  margin: 0;
+}
+
+.se-result-grid div {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.se-result-grid dt {
+  font-size: 0.78rem;
+  color: var(--color-muted, #667085);
+}
+
+.se-result-grid dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.se-result-grid .is-ok { color: #027a48; }
+.se-result-grid .is-bad { color: #b42318; }
+
+.se-steps,
+.se-diag-list,
+.se-lines,
+.se-formula-list,
+.se-takeaway,
+.se-checklist,
+.se-rx-list,
+.se-next-list {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.se-diag-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.se-diag-item.is-primary {
+  font-weight: 700;
+}
+
+.se-mark {
+  display: inline-block;
+  width: 1.2rem;
+}
+
+.se-conf {
+  margin-left: 0.35rem;
+  color: var(--color-primary, #2f6fed);
+  font-size: 0.85rem;
+}
+
+.se-conf-line {
+  margin: 0.65rem 0 0;
+  font-weight: 700;
+}
+
+.se-summary {
+  margin: 0 0 0.5rem;
+}
+
+.se-step p {
+  margin: 0.25rem 0 0;
+}
+
+.se-calc-block {
+  margin-bottom: 0.85rem;
+}
+
+.se-calc-block h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+}
+
+.se-formula-item {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.se-formula-item code {
+  display: block;
+  padding: 0.35rem 0.5rem;
+  background: color-mix(in srgb, var(--color-border, #d0d5dd) 35%, transparent);
+  border-radius: 4px;
+  font-size: 0.88rem;
+  white-space: pre-wrap;
+}
+
+.se-formula-item small,
+.se-rx-item small,
+.se-next-list small {
+  color: var(--color-muted, #667085);
+}
+
+.se-table-wrap {
+  overflow-x: auto;
+  margin-top: 0.5rem;
+}
+
+.se-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.se-table th,
+.se-table td {
+  border: 1px solid var(--color-border, #d0d5dd);
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+}
+
+.se-check {
+  display: flex;
+  gap: 0.4rem;
+  align-items: flex-start;
+}
+
+.se-next-link {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.se-next-link:hover {
+  text-decoration: underline;
+}
+
+.se-promote {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border: 1px dashed var(--color-border, #d0d5dd);
+  border-radius: var(--radius, 8px);
+}
+
+.se-promote .ll-hint {
+  margin: 0.4rem 0 0;
+}
+
+@media (max-width: 768px) {
+  .se-result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .se-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -64,6 +64,7 @@ Dashboard / Tutor / Exam
 - **Sprint 12E**: Reviewer Workspace, One Click Fix, Bulk Review, Focus Mode
 - **Sprint 13A**: Student Workspace, Resolved Question, Exam Snapshot, Tutor Resolver
 - **Sprint 13B**: Learning Engine, Mastery Engine, Recommendation, Review Scheduler, Learning Analyzer
+- **Sprint 15A+**: AI Dynamic Solution Engine, Mistake Diagnosis, Learning Prescription, Tutor Advice
 
 상세: [docs/SPRINT_HISTORY.md](docs/SPRINT_HISTORY.md)
 
@@ -80,6 +81,10 @@ Dashboard / Tutor / Exam
 - `learning.schedule.v1`
 - `learning.engine-progress.v1`
 - `learning.quality.v1`
+- `learning.solution-cache.v1`
+- `learning.mistake-profile.v1`
+- `learning.diagnosis.v1`
+- `learning.prescription.v1`
 
 ## 5) Contract 목록
 
@@ -94,6 +99,10 @@ Dashboard / Tutor / Exam
 - `recommendationEngineContract`
 - `qualityContract`
 - `reviewWorkflowContract`
+- `solutionEngineContract`
+- `diagnosisContract`
+- `prescriptionContract`
+- `validationSolutionEngine`
 
 ## 6) Current Features
 
@@ -108,6 +117,7 @@ Dashboard / Tutor / Exam
 - [x] Quality Dashboard
 - [x] Student Workspace
 - [x] Learning Engine
+- [x] Dynamic Solution Engine (AI Tutor Layer)
 
 ## 7) Current Folder Structure
 
@@ -125,6 +135,7 @@ AI Exam Learning Platform v2/
 │   ├── quality/
 │   ├── recovery/
 │   ├── coach/
+│   ├── solution-engine/
 │   └── llm/
 ├── data/
 ├── docs/
@@ -141,6 +152,7 @@ AI Exam Learning Platform v2/
 | `scripts/test-review-workflow.py` | PASS |
 | `scripts/test-student-workspace.py` | PASS |
 | `scripts/test-learning-engine.py` | PASS |
+| `scripts/test-solution-engine.py` | PASS |
 
 ## 9) Project Status
 
@@ -158,6 +170,7 @@ AI Exam Learning Platform v2/
 
 - **Sprint 14B**: Learning Dashboard UI
 - **Sprint 14C**: Evidence System
+- **Sprint 15A+**: AI Dynamic Solution Engine (Tutor Layer · Mistake Diagnosis · Learning Prescription)
 - **Sprint 15**: Production Ready
 
 ## Technology Stack

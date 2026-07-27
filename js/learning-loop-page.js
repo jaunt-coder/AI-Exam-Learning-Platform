@@ -52,6 +52,7 @@ import {
   loadSolutionOverlay,
   resolveOverlayQuestionId,
 } from './solution-overlay.js';
+import { lazyGenerateAndMount } from './solution-engine/solution-engine.js';
 
 const STUDENT_ID = 'm1_demo_student';
 const KEY_MODE = 'learning.studyMode.v1';
@@ -148,6 +149,7 @@ const els = {
   rSelected: document.getElementById('r-selected'),
   rOutcome: document.getElementById('r-outcome'),
   rPattern: document.getElementById('r-pattern'),
+  solutionHost: document.getElementById('solution-engine-host'),
   dPatternsLearned: document.getElementById('d-patterns-learned'),
   dQuestions: document.getElementById('d-questions'),
   dPatternsReviewed: document.getElementById('d-patterns-reviewed'),
@@ -1538,6 +1540,37 @@ function onSubmit() {
   els.rOutcome.className =
     result.grade.result === 'correct' ? 'is-ok' : 'is-bad';
   els.rPattern.textContent = lesson.name;
+
+  /* Sprint-15A+ — AI Dynamic Solution Engine (lazy, student-screen only) */
+  try {
+    const allQuestions = studyPatterns.flatMap((sp) => sp.questions || []);
+    lazyGenerateAndMount(
+      els.solutionHost,
+      {
+        question: q,
+        grade: {
+          result: result.grade.result,
+          selected,
+          selectedAnswer: selected,
+        },
+        pattern: {
+          patternId: lesson.pattern_id,
+          name: lesson.name,
+        },
+        questions: allQuestions,
+      },
+      {
+        showPromote: true,
+        onPromoteRequest: () => {
+          setLearnerStatus(
+            '공식 해설 승격은 Reviewer 수동 검토만 가능합니다. 자동 승격되지 않습니다.',
+          );
+        },
+      },
+    );
+  } catch (err) {
+    console.warn('[solution-engine] lazy generate failed:', err?.message || err);
+  }
 
   const idx = stages().indexOf('result');
   if (idx >= 0) stageIndex = idx;

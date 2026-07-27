@@ -82,6 +82,12 @@ const STORAGE_KEYS = {
   LEARNING_EVIDENCE_CACHE_V1: 'learning.evidence-cache.v1',
   LEARNING_EVIDENCE_HISTORY_V1: 'learning.evidence-history.v1',
   LEARNING_EVIDENCE_SUMMARY_V1: 'learning.evidence-summary.v1',
+  // Sprint-15A+ AI Dynamic Solution Engine (additive — do not rename)
+  LEARNING_SOLUTION_CACHE_V1: 'learning.solution-cache.v1',
+  LEARNING_SOLUTION_HISTORY_V1: 'learning.solution-history.v1',
+  LEARNING_MISTAKE_PROFILE_V1: 'learning.mistake-profile.v1',
+  LEARNING_DIAGNOSIS_V1: 'learning.diagnosis.v1',
+  LEARNING_PRESCRIPTION_V1: 'learning.prescription.v1',
   // Sprint-12F Reviewer Entry Integration (additive — do not rename)
   LEARNING_REVIEW_DRAFT_V1: 'learning.review-draft.v1',
   LEARNING_REVIEW_UI_V1: 'learning.review-ui.v1',
