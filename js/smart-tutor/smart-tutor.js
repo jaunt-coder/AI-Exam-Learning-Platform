@@ -642,7 +642,7 @@ export function renderSmartTutorResult(pack, options = {}) {
     {
       id: 'ai-solution',
       open: true,
-      title: '② AI 풀이',
+      title: pack.geminiNative ? '② AI 풀이 · Gemini' : '② AI 풀이',
       body: smartSections || '<p class="ll-hint">풀이가 없습니다.</p>',
     },
     {
@@ -651,18 +651,20 @@ export function renderSmartTutorResult(pack, options = {}) {
       title: '②-1 AI 풀이 완성도',
       body: pack.solutionQuality
         ? renderStudentQualityCard(pack.solutionQuality)
-        : '<p class="ll-hint">완성도 평가가 없습니다.</p>',
+        : pack.geminiNative?.quality
+          ? `<p class="se-summary">Gemini Quality ${esc(pack.geminiNative.quality.score)}% · Missing ${esc(pack.geminiNative.quality.missingCount ?? 0)}</p>`
+          : '<p class="ll-hint">완성도 평가가 없습니다.</p>',
     },
     {
       id: 'calculation',
       open: false,
-      title: '③ 계산 과정',
+      title: pack.geminiNative ? '③ Gemini 계산 과정' : '③ 계산 과정',
       body: calc || '<p class="ll-hint">계산 과정이 없습니다.</p>',
     },
     {
       id: 'diagnosis',
       open: !r.isCorrect,
-      title: '④ 왜 틀렸는가',
+      title: pack.geminiNative ? '④ 왜 틀렸는가 · Gemini' : '④ 왜 틀렸는가',
       body: `
         <p class="se-summary">${esc(diag.summary || '')}</p>
         <ul class="se-diag-list">${diagCandidates || '<li>—</li>'}</ul>
@@ -670,32 +672,40 @@ export function renderSmartTutorResult(pack, options = {}) {
           diag.confidence
             ? `<p class="se-conf-line">종합 Confidence ${esc(diag.confidence.percent)}% (${esc(diag.confidence.level)})</p>`
             : ''
+        }
+        ${
+          pack.geminiNative?.misconception?.summary
+            ? `<p class="se-summary"><strong>오개념</strong> ${esc(pack.geminiNative.misconception.summary)}</p>`
+            : ''
         }`,
     },
     {
       id: 'mistake-type',
       open: !r.isCorrect,
-      title: '⑤ 실수 유형',
-      body: `
+      title: pack.geminiNative ? '⑤ 오개념 · Gemini' : '⑤ 실수 유형',
+      body: pack.geminiNative?.misconception?.summary
+        ? `<p class="se-summary">${esc(pack.geminiNative.misconception.summary)}</p>
+           <ul class="st-mistake-list">${mistakeList || ''}</ul>`
+        : `
         <p class="se-summary">${esc(mistake.summary || '')}</p>
         <ul class="st-mistake-list">${mistakeList || '<li>—</li>'}</ul>`,
     },
     {
       id: 'thirty-review',
       open: true,
-      title: '⑥ 30초 복습',
+      title: pack.geminiNative ? '⑥ 30초 복습 · Gemini' : '⑥ 30초 복습',
       body: thirtyHtml,
     },
     {
       id: 'formula-card',
       open: true,
-      title: '⑦ 공식 카드',
+      title: pack.geminiNative ? '⑦ 공식 카드 · Gemini' : '⑦ 공식 카드',
       body: renderFormulaCardHtml(pack.formulaCard, esc),
     },
     {
       id: 'exam-tutor',
       open: true,
-      title: '⑧ 시험장 체크리스트',
+      title: pack.geminiNative ? '⑧ 시험장 체크리스트 · Gemini' : '⑧ 시험장 체크리스트',
       body: `
         <div class="st-exam-tutor">
           <p class="st-exam-tutor__flow">
@@ -705,6 +715,11 @@ export function renderSmartTutorResult(pack, options = {}) {
           </p>
           ${examWarnings}
           <ol class="st-exam-steps">${examSteps}</ol>
+          ${
+            pack.geminiNative?.tutor?.advice
+              ? `<div class="st-tutor-warn"><p class="st-tutor-warn__kicker">AI 과외선생님</p><p>${esc(pack.geminiNative.tutor.advice)}</p></div>`
+              : ''
+          }
         </div>`,
     },
     {
@@ -742,9 +757,13 @@ export function renderSmartTutorResult(pack, options = {}) {
     .join('');
 
   return `
-    <div class="se-root st-root" data-solution-engine="15A+" data-smart-tutor="${SMART_TUTOR_VERSION}" data-from-cache="${pack.fromCache ? '1' : '0'}">
+    <div class="se-root st-root" data-solution-engine="15A+" data-smart-tutor="${SMART_TUTOR_VERSION}" data-gemini-solver="${pack.geminiNative ? '17A' : ''}" data-from-cache="${pack.fromCache ? '1' : '0'}" data-result-source="${esc(pack.resultSource || pack.geminiNative?.source || 'smart-tutor')}">
       <div class="se-toolbar">
-        <p class="edu-kicker">AI Learning Loop · Smart Tutor</p>
+        <p class="edu-kicker">${
+          pack.geminiNative
+            ? `Gemini Native Problem Solver${pack.geminiMeta?.cacheHit ? ' · Cache Hit' : ''}`
+            : 'AI Learning Loop · Smart Tutor'
+        }</p>
         <div class="se-toolbar__actions">
           <button type="button" class="button button--ghost button--sm" data-se-expand-all>모두 펼치기</button>
           <button type="button" class="button button--ghost button--sm" data-se-collapse-all>모두 접기</button>

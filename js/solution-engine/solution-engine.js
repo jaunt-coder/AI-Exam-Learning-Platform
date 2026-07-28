@@ -1,5 +1,7 @@
 /**
  * Sprint-15A+ — AI Dynamic Solution Engine (orchestrator)
+ * Sprint-17A — Gemini Native Problem Solver hooks (Problem First).
+ * Legacy Pattern-based generation remains available as fallback / Learning Engine inputs.
  *
  * Student-screen lazy generation + LocalStorage cache.
  * Never writes Question / Pattern / Statistics DB.
@@ -29,10 +31,17 @@ import {
   enrichWithSmartTutor,
   mountSmartTutorResult,
 } from '../smart-tutor/smart-tutor.js';
+import {
+  solveWithGemini,
+  mergeGeminiIntoPack,
+  applyGeminiToSmartPack,
+} from '../gemini-solver/gemini-orchestrator.js';
 
 export const SOLUTION_ENGINE_VERSION = '15A+';
 /** Sprint-15B Result layer (Smart Tutor) — additive, does not change pack formulas */
 export const SMART_RESULT_VERSION = '15B';
+/** Sprint-17A Problem First Gemini layer */
+export const GEMINI_RESULT_VERSION = '17A';
 
 /**
  * Lazy-generate full tutor pack for Result screen.
@@ -451,43 +460,110 @@ export function mountSolutionAccordion(host, pack, options = {}) {
 }
 
 /**
+ * Skeleton while Gemini Problem First pipeline runs (Lazy Loading).
+ */
+export function renderGeminiSkeleton() {
+  return `
+    <div class="se-root st-root gemini-skel" data-gemini-solver="${GEMINI_RESULT_VERSION}" aria-busy="true">
+      <div class="se-toolbar">
+        <p class="edu-kicker">Gemini Native Problem Solver · 생성 중</p>
+      </div>
+      <div class="se-acc__body">
+        <p class="ll-hint">문제를 직접 읽고 계산하는 AI 풀이를 준비합니다…</p>
+        <div class="gemini-skel__bars" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function mountPromoteOptions(pack, options) {
+  return {
+    ...options,
+    onPromoteRequest: (req) => {
+      const base = requestPromoteToOfficial(pack);
+      if (typeof options.onPromoteRequest === 'function') {
+        options.onPromoteRequest({ ...base, ...req, autoPromote: false });
+      }
+    },
+  };
+}
+
+/**
  * Lazy entry used by Result screen (requestAnimationFrame friendly).
  * Sprint-15B: mounts Smart Tutor Learning Loop Result (keeps 15A+ pack generation).
+ * Sprint-17A: Gemini Problem First fills Accordion content; Learning Engine keeps reco.
  */
 export function lazyGenerateAndMount(host, input, options = {}) {
-  const run = () => {
+  const useGemini = options.useGemini !== false;
+
+  const runLegacy = () => {
     const pack = generateSolutionPack(input);
     const smart = enrichWithSmartTutor(pack, input);
-    mountSmartTutorResult(host, smart, {
-      ...options,
-      onPromoteRequest: (req) => {
-        /* Keep 15A+ promote contract visible */
-        const base = requestPromoteToOfficial(pack);
-        if (typeof options.onPromoteRequest === 'function') {
-          options.onPromoteRequest({ ...base, ...req, autoPromote: false });
-        }
-      },
-    });
+    mountSmartTutorResult(host, smart, mountPromoteOptions(pack, options));
     return smart;
   };
-  if (typeof requestAnimationFrame === 'function' && options.defer !== false) {
-    let pack = null;
-    requestAnimationFrame(() => {
-      pack = run();
-      if (typeof options.onReady === 'function') options.onReady(pack);
-    });
-    return { deferred: true };
+
+  const runGeminiPipeline = async () => {
+    if (host) {
+      host.hidden = false;
+      host.innerHTML = renderGeminiSkeleton();
+    }
+    const pack = generateSolutionPack(input);
+    let gemini = null;
+    try {
+      gemini = await solveWithGemini({
+        question: input.question,
+        grade: input.grade,
+        pattern: input.pattern,
+        force: Boolean(input.force),
+      });
+    } catch (err) {
+      console.warn('[gemini-solver] pipeline failed — legacy pack used', err);
+    }
+    const merged = gemini ? mergeGeminiIntoPack(pack, gemini) : pack;
+    let smart = enrichWithSmartTutor(merged, input);
+    if (gemini) smart = applyGeminiToSmartPack(smart, gemini);
+    mountSmartTutorResult(host, smart, mountPromoteOptions(merged, options));
+    if (typeof options.onReady === 'function') options.onReady(smart);
+    return smart;
+  };
+
+  if (!useGemini) {
+    if (typeof requestAnimationFrame === 'function' && options.defer !== false) {
+      requestAnimationFrame(() => {
+        const smart = runLegacy();
+        if (typeof options.onReady === 'function') options.onReady(smart);
+      });
+      return { deferred: true, gemini: false };
+    }
+    return runLegacy();
   }
-  return run();
+
+  /* Background Generation — do not block Learning Engine path */
+  const pending = runGeminiPipeline();
+  if (typeof options.onReady !== 'function') {
+    pending.catch((err) => {
+      console.warn('[gemini-solver] background error', err);
+      try {
+        runLegacy();
+      } catch (_e) {
+        /* ignore */
+      }
+    });
+  }
+  return { deferred: true, gemini: true, pending };
 }
 
 export default {
   SOLUTION_ENGINE_VERSION,
   SMART_RESULT_VERSION,
+  GEMINI_RESULT_VERSION,
   generateSolutionPack,
   requestPromoteToOfficial,
   getDashboardMistakeData,
   renderSolutionAccordion,
   mountSolutionAccordion,
   lazyGenerateAndMount,
+  renderGeminiSkeleton,
 };

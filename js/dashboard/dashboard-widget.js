@@ -33,6 +33,8 @@ export const WIDGET_IDS = Object.freeze({
   examCompletionStreak: 'widget-exam-completion-streak',
   /* Sprint-15C Solution Quality */
   solutionQuality: 'widget-solution-quality',
+  /* Sprint-17A Gemini Native Problem Solver */
+  geminiSolver: 'widget-gemini-solver',
 });
 
 export function showSkeletons(root = document) {

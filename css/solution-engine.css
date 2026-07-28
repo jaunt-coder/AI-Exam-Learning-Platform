@@ -212,6 +212,46 @@
   margin: 0.4rem 0 0;
 }
 
+/* Sprint-17A — Gemini skeleton */
+.gemini-skel__bars {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.gemini-skel__bars span {
+  display: block;
+  height: 0.65rem;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-border, #e4e7ec) 0%,
+    var(--color-surface, #f8fafc) 50%,
+    var(--color-border, #e4e7ec) 100%
+  );
+  background-size: 200% 100%;
+  animation: gemini-skel-pulse 1.2s ease-in-out infinite;
+}
+
+.gemini-skel__bars span:nth-child(2) {
+  width: 85%;
+  animation-delay: 0.15s;
+}
+
+.gemini-skel__bars span:nth-child(3) {
+  width: 70%;
+  animation-delay: 0.3s;
+}
+
+@keyframes gemini-skel-pulse {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
 @media (max-width: 768px) {
   .se-result-grid {
     grid-template-columns: 1fr;

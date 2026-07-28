@@ -53,8 +53,32 @@ import {
   getDashboardSolutionQuality,
   renderDashboardQualityCard,
 } from './solution-quality/solution-quality-engine.js';
+import { getGeminiDashboardStats } from './gemini-solver/gemini-orchestrator.js';
 
 const INTEGRITY_REPORT_URL = 'data/question-integrity-report.json';
+
+function renderGeminiSolverCard(stats = {}) {
+  const rows = [
+    ['Cache Hit', stats.cacheHit ?? 0],
+    ['Cache Miss', stats.cacheMiss ?? 0],
+    ['Avg Generation Time (ms)', stats.averageGenerationTime ?? 0],
+    ['Avg Confidence', stats.averageConfidence ?? 0],
+    ['Avg Quality', stats.averageQuality ?? 0],
+    ['Missing Count', stats.missingCount ?? 0],
+  ];
+  return `
+    <div class="ld-gemini-stats" data-gemini-dashboard="17A">
+      <ul class="ld-stat-list">
+        ${rows
+          .map(
+            ([label, value]) =>
+              `<li><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></li>`,
+          )
+          .join('')}
+      </ul>
+      <p class="ld-card-desc">model ${escapeHtml(stats.modelVersion || '—')} · prompt ${escapeHtml(stats.promptVersion || '—')}</p>
+    </div>`;
+}
 
 function applyTheme() {
   const theme = getItem(STORAGE_KEYS.THEME, 'light') || 'light';
@@ -483,6 +507,10 @@ function renderStudentWidgets(view) {
       solutionQuality: (node) => {
         const dash = getDashboardSolutionQuality();
         node.innerHTML = renderDashboardQualityCard(dash.aggregate || dash);
+      },
+      geminiSolver: (node) => {
+        const stats = view.geminiSolver || getGeminiDashboardStats();
+        node.innerHTML = renderGeminiSolverCard(stats);
       },
       examDailyPlan: (node) => renderDailyPlanCard(node, strategy?.dailyPlan),
       examMasteryMap: (node) => renderMasteryMap(node, strategy?.masteryMap),

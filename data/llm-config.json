@@ -1,30 +1,34 @@
 {
   "schemaVersion": "v1",
-  "sprint": "Sprint-11A",
+  "sprint": "Sprint-17A",
   "enabled": true,
-  "provider": "OPENAI",
-  "model": "gpt-5.5",
+  "provider": "GEMINI",
+  "model": "gemini-2.0-flash",
   "adapter": true,
   "connected": true,
   "api": {
-    "baseUrl": "https://api.openai.com/v1",
-    "chatPath": "/chat/completions",
-    "timeoutMs": 30000
+    "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+    "chatPath": "/models/{model}:generateContent",
+    "timeoutMs": 45000
   },
   "cache": {
     "enabled": true,
-    "storageKey": "learning.llm.cache.v1"
+    "storageKey": "learning.gemini-cache.v1"
   },
   "fallback": {
     "enabled": true,
-    "mode": "RULE_COACH"
+    "mode": "LOCAL_PROBLEM_FIRST"
   },
   "providers": ["OPENAI", "GEMINI", "CLAUDE", "LOCAL"],
-  "implementedProviders": ["OPENAI"],
+  "implementedProviders": ["OPENAI", "GEMINI"],
+  "problemFirst": true,
   "nonGoals": [
     "runtime mutation",
     "recommendation mutation",
+    "mastery mutation",
     "question-db mutation",
-    "direct OpenAI calls from Runtime/Coach"
+    "pattern-db mutation",
+    "statistics-db mutation",
+    "direct Gemini calls from Runtime/Learning Engine"
   ]
 }

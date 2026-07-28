@@ -1,9 +1,10 @@
 /**
  * Sprint-11A — Provider Registry
- * Registers provider ids. Only OPENAI is implemented in 11A.
+ * Sprint-17A — GEMINI provider implemented (Problem First solver).
  */
 
 import { OpenAiProvider } from './openai-provider.js';
+import { GeminiProvider } from './gemini-provider.js';
 import { LlmProvider } from './llm-provider.js';
 
 /** Declared provider ids (future-ready) */
@@ -81,7 +82,7 @@ export function listImplementedProviders() {
 
 /* Default registration */
 registerProvider('OPENAI', () => new OpenAiProvider());
-registerProvider('GEMINI', () => new UnimplementedProvider('GEMINI'));
+registerProvider('GEMINI', () => new GeminiProvider());
 registerProvider('CLAUDE', () => new UnimplementedProvider('CLAUDE'));
 registerProvider('LOCAL', () => new UnimplementedProvider('LOCAL'));
 

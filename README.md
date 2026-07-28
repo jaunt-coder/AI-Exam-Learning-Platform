@@ -69,6 +69,7 @@ Dashboard / Tutor / Exam
 - **Sprint 15C**: AI Solution Quality Layer (품질 평가 · Missing · Reviewer 개선 루프)
 - **Sprint 16A**: AI Exam Strategy (Mastery Map, Readiness Score, Daily Plan, Exam Mode)
 - **Sprint 16B**: Exam Mode & Goal Management (D-Day, Goal, Phase, Mission, Streak)
+- **Sprint 17A**: Gemini Native Problem Solver (Problem First AI · Cache · 2-Pass Validation)
 
 상세: [docs/SPRINT_HISTORY.md](docs/SPRINT_HISTORY.md)
 
@@ -106,6 +107,10 @@ Dashboard / Tutor / Exam
 - `learning.solution-blueprint.v1`
 - `learning.solution-review.v1`
 - `learning.solution-improvement.v1`
+- `learning.gemini-cache.v1`
+- `learning.gemini-history.v1`
+- `learning.gemini-quality.v1`
+- `learning.gemini-version.v1`
 
 ## 5) Contract 목록
 
@@ -146,6 +151,9 @@ Dashboard / Tutor / Exam
 - `solutionImprovementContract`
 - `solutionReviewContract`
 - `validationSolutionQuality`
+- `geminiSolverContract`
+- `geminiCacheContract`
+- `validationGeminiSolver`
 
 ## 6) Current Features
 
@@ -187,6 +195,7 @@ AI Exam Learning Platform v2/
 │   ├── exam-strategy/
 │   ├── exam-goal/
 │   ├── solution-quality/
+│   ├── gemini-solver/
 │   └── llm/
 ├── data/
 ├── docs/
@@ -208,6 +217,7 @@ AI Exam Learning Platform v2/
 | `scripts/test-exam-strategy.py` | PASS |
 | `scripts/test-exam-mode.py` | PASS |
 | `scripts/test-solution-quality.py` | PASS |
+| `scripts/test-gemini-solver.py` | PASS |
 
 ## 9) Project Status
 
@@ -230,6 +240,7 @@ AI Exam Learning Platform v2/
 - **Sprint 15C**: AI Solution Quality Layer (Quality Score · Blueprint · Improvement · Reviewer Override Loop)
 - **Sprint 16A**: AI Exam Strategy (Mastery Map · Readiness Score · Daily Plan · Pattern Risk · Exam Mode)
 - **Sprint 16B**: Exam Mode & Goal Management (Goal · Phase · Mission · Progress · Tutor Context)
+- **Sprint 17A**: Gemini Native Problem Solver (Problem First · Cache · 2-Pass · Missing Recovery)
 - **Sprint 15**: Production Ready
 
 ## Technology Stack

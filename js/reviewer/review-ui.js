@@ -38,6 +38,14 @@ import {
 } from '../solution-quality/solution-quality-engine.js';
 import { loadSolutionCache } from '../solution-engine/cache.js';
 import { generateSolutionPack } from '../solution-engine/solution-engine.js';
+import {
+  solveWithGeminiSync,
+  approveGeminiToOverride,
+} from '../gemini-solver/gemini-orchestrator.js';
+import { peekCachedGemini, buildGeminiCacheKey } from '../gemini-solver/cache-manager.js';
+import { resolveOverrideVersion } from '../gemini-solver/problem-reader.js';
+import { MODEL_VERSION } from '../gemini-solver/problem-solver.js';
+import { PROMPT_VERSION } from '../gemini-solver/prompt-builder.js';
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -512,8 +520,93 @@ export function openReviewerPanel(options = {}) {
       root.innerHTML = `<p class="rv-empty">Quality 평가 실패: ${escapeHtml(err?.message || err)}</p>`;
       return;
     }
-    root.innerHTML = renderReviewerQualityPanel(report);
+    root.innerHTML = `${renderReviewerQualityPanel(report)}
+      <div class="rv-gemini-panel" data-gemini-reviewer="17A">
+        <h4>Gemini Native Problem Solver</h4>
+        <p class="rv-empty">Gemini 결과를 검토·수정 후 Approve하면 Override Layer에만 저장됩니다. Question DB는 수정하지 않습니다.</p>
+        <textarea id="rv-gemini-json" rows="10" class="rv-field" aria-label="Gemini JSON"></textarea>
+        <div class="rv-actions">
+          <button type="button" class="button button--ghost" data-gemini-act="load">Gemini 결과 불러오기</button>
+          <button type="button" class="button button--primary" data-gemini-act="approve">Gemini Approve → Override</button>
+        </div>
+        <p class="sq-status" data-gemini-status hidden></p>
+      </div>`;
     const statusEl = root.querySelector('[data-sq-status]');
+    const geminiStatus = root.querySelector('[data-gemini-status]');
+    const geminiTa = root.querySelector('#rv-gemini-json');
+
+    function loadGeminiPayload() {
+      try {
+        const ov = getOverride(qid);
+        if (ov?.override?.geminiNative?.payload) {
+          return ov.override.geminiNative.payload;
+        }
+      } catch (_err) {
+        /* ignore */
+      }
+      try {
+        const key = buildGeminiCacheKey(
+          qid,
+          resolveOverrideVersion(qid),
+          MODEL_VERSION,
+          PROMPT_VERSION,
+        );
+        const cached = peekCachedGemini(key);
+        if (cached?.payload) return cached.payload;
+      } catch (_err) {
+        /* ignore */
+      }
+      try {
+        const resolved = resolveQuestion(original);
+        const gemini = solveWithGeminiSync({
+          question: resolved,
+          grade: { result: 'wrong', selected: null },
+          pattern: { patternId: resolved.patternId || original.patternId },
+        });
+        return gemini?.payload || null;
+      } catch (_err) {
+        return null;
+      }
+    }
+
+    root.querySelector('[data-gemini-act="load"]')?.addEventListener('click', () => {
+      const payload = loadGeminiPayload();
+      if (geminiTa) geminiTa.value = payload ? JSON.stringify(payload, null, 2) : '';
+      if (geminiStatus) {
+        geminiStatus.hidden = false;
+        geminiStatus.className = payload ? 'sq-status is-ok' : 'sq-status is-err';
+        geminiStatus.textContent = payload
+          ? 'Gemini 결과를 불러왔습니다. 수정 후 Approve 하세요.'
+          : 'Gemini 결과를 찾지 못했습니다.';
+      }
+    });
+
+    root.querySelector('[data-gemini-act="approve"]')?.addEventListener('click', () => {
+      let payload = null;
+      try {
+        payload = geminiTa?.value ? JSON.parse(geminiTa.value) : loadGeminiPayload();
+      } catch (_err) {
+        payload = null;
+      }
+      const res = approveGeminiToOverride(qid, payload, { reviewer: 'reviewer' });
+      if (geminiStatus) {
+        geminiStatus.hidden = false;
+        geminiStatus.className = res.ok ? 'sq-status is-ok' : 'sq-status is-err';
+        geminiStatus.textContent = res.ok
+          ? 'Gemini Approve 완료 · Override Layer만 반영 (Question DB 미수정)'
+          : `Approve 실패: ${res.error || ''}`;
+      }
+      if (res.ok && typeof options.onApprove === 'function') {
+        options.onApprove(resolveQuestion(original));
+      } else if (res.ok && typeof options.onResolved === 'function') {
+        options.onResolved(resolveQuestion(original));
+      }
+    });
+
+    /* auto-load once */
+    const initial = loadGeminiPayload();
+    if (geminiTa && initial) geminiTa.value = JSON.stringify(initial, null, 2);
+
     root.querySelector('[data-sq-act="apply-ai"]')?.addEventListener('click', () => {
       const res = applyAiImprovementToOverride(qid, report);
       if (statusEl) {

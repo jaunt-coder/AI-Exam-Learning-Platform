@@ -109,6 +109,11 @@ const STORAGE_KEYS = {
   LEARNING_SOLUTION_BLUEPRINT_V1: 'learning.solution-blueprint.v1',
   LEARNING_SOLUTION_REVIEW_V1: 'learning.solution-review.v1',
   LEARNING_SOLUTION_IMPROVEMENT_V1: 'learning.solution-improvement.v1',
+  // Sprint-17A Gemini Native Problem Solver (additive — do not rename)
+  LEARNING_GEMINI_CACHE_V1: 'learning.gemini-cache.v1',
+  LEARNING_GEMINI_HISTORY_V1: 'learning.gemini-history.v1',
+  LEARNING_GEMINI_QUALITY_V1: 'learning.gemini-quality.v1',
+  LEARNING_GEMINI_VERSION_V1: 'learning.gemini-version.v1',
   // Sprint-12F Reviewer Entry Integration (additive — do not rename)
   LEARNING_REVIEW_DRAFT_V1: 'learning.review-draft.v1',
   LEARNING_REVIEW_UI_V1: 'learning.review-ui.v1',
