@@ -1,26 +1,39 @@
 {
   "schemaVersion": "v1",
-  "sprint": "Sprint-17A",
+  "sprint": "Sprint-17C",
   "enabled": true,
-  "provider": "GEMINI",
-  "model": "gemini-2.0-flash",
+  "provider": "OPENAI",
+  "model": "gpt-5.5",
   "adapter": true,
   "connected": true,
   "api": {
-    "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
-    "chatPath": "/models/{model}:generateContent",
-    "timeoutMs": 45000
+    "baseUrl": "https://api.openai.com/v1",
+    "chatPath": "/chat/completions",
+    "timeoutMs": 30000
   },
   "cache": {
     "enabled": true,
-    "storageKey": "learning.gemini-cache.v1"
+    "storageKey": "learning.llm.cache.v1"
   },
   "fallback": {
     "enabled": true,
-    "mode": "LOCAL_PROBLEM_FIRST"
+    "mode": "RULE_COACH"
   },
   "providers": ["OPENAI", "GEMINI", "CLAUDE", "LOCAL"],
   "implementedProviders": ["OPENAI", "GEMINI"],
+  "geminiSolver": {
+    "provider": "GEMINI",
+    "model": "gemini-2.0-flash",
+    "promptVersion": "17C.1",
+    "problemFirst": true,
+    "humanLevel": true
+  },
+  "geminiVision": {
+    "provider": "GEMINI",
+    "model": "gemini-2.0-flash",
+    "promptVersion": "17B.1",
+    "ocrThreshold": 70
+  },
   "problemFirst": true,
   "nonGoals": [
     "runtime mutation",
