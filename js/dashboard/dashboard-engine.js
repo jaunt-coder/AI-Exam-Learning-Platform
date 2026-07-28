@@ -14,6 +14,7 @@ import { saveDashboardCache, loadDashboardCache } from './dashboard-cache.js';
 import { loadDashboardFilter } from './dashboard-filter.js';
 import { getDashboardMistakeData } from '../solution-engine/solution-engine.js';
 import { getGeminiDashboardStats } from '../gemini-solver/gemini-orchestrator.js';
+import { getVisionDashboardStats } from '../gemini-vision/vision-recovery.js';
 
 export const DASHBOARD_STATE_KEY =
   STORAGE_KEYS.LEARNING_DASHBOARD_STATE_V1 || 'learning.dashboard-state.v1';
@@ -213,6 +214,8 @@ export function buildStudentDashboardView(questions = [], patterns = []) {
     mistakeHeatmap: getDashboardMistakeData(),
     /* Sprint-17A — Gemini Native Problem Solver metrics */
     geminiSolver: getGeminiDashboardStats(),
+    /* Sprint-17B — Vision OCR Recovery metrics */
+    visionOcr: getVisionDashboardStats(),
   };
 
   saveDashboardCache(view);

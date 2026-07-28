@@ -54,6 +54,7 @@ import {
   renderDashboardQualityCard,
 } from './solution-quality/solution-quality-engine.js';
 import { getGeminiDashboardStats } from './gemini-solver/gemini-orchestrator.js';
+import { getVisionDashboardStats, prewarmVisionCache } from './gemini-vision/vision-recovery.js';
 
 const INTEGRITY_REPORT_URL = 'data/question-integrity-report.json';
 
@@ -77,6 +78,35 @@ function renderGeminiSolverCard(stats = {}) {
           .join('')}
       </ul>
       <p class="ld-card-desc">model ${escapeHtml(stats.modelVersion || '—')} · prompt ${escapeHtml(stats.promptVersion || '—')}</p>
+    </div>`;
+}
+
+function renderVisionOcrCard(stats = {}) {
+  const rows = [
+    ['Vision Cache Hit', stats.visionCacheHit ?? 0],
+    ['Vision Cache Miss', stats.visionCacheMiss ?? 0],
+    ['Vision Recovery %', `${stats.visionRecoveryPct ?? 0}%`],
+    ['OCR Quality Average', stats.ocrQualityAverage ?? 0],
+    ['Vision Quality Average', stats.visionQualityAverage ?? 0],
+    ['Vision Calls', stats.visionCalls ?? 0],
+    ['API Saved', stats.apiSaved ?? 0],
+    ['이번 달 절감 호출', stats.monthApiSaved ?? 0],
+    ['예상 비용 절감 (USD)', stats.estimatedCostSavedUsd ?? 0],
+    ['이번 달 예상 절감 (USD)', stats.monthEstimatedCostSavedUsd ?? 0],
+    ['Table Recovery %', `${stats.tableRecoveryPct ?? 0}%`],
+    ['Formula Recovery %', `${stats.formulaRecoveryPct ?? 0}%`],
+  ];
+  return `
+    <div class="ld-vision-stats" data-vision-dashboard="17B">
+      <ul class="ld-stat-list">
+        ${rows
+          .map(
+            ([label, value]) =>
+              `<li><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></li>`,
+          )
+          .join('')}
+      </ul>
+      <p class="ld-card-desc">threshold ${escapeHtml(stats.ocrThreshold ?? 70)} · model ${escapeHtml(stats.visionModel || '—')} · prompt ${escapeHtml(stats.promptVersion || '—')}</p>
     </div>`;
 }
 
@@ -512,6 +542,10 @@ function renderStudentWidgets(view) {
         const stats = view.geminiSolver || getGeminiDashboardStats();
         node.innerHTML = renderGeminiSolverCard(stats);
       },
+      visionOcr: (node) => {
+        const stats = view.visionOcr || getVisionDashboardStats();
+        node.innerHTML = renderVisionOcrCard(stats);
+      },
       examDailyPlan: (node) => renderDailyPlanCard(node, strategy?.dailyPlan),
       examMasteryMap: (node) => renderMasteryMap(node, strategy?.masteryMap),
       examDangerPatterns: (node) => renderDangerPatterns(node, strategy?.dangerTop5),
@@ -585,6 +619,18 @@ async function main() {
     }
     renderStudentWidgets(studentView);
     renderDashboard(resolvedDashboard);
+    /* Sprint-17B — idle prewarm Vision cache for recommendations / today study */
+    try {
+      const recoQs = (studentView.recommendations || [])
+        .map((r) => questions.find((q) => q.questionId === r.questionId))
+        .filter(Boolean);
+      const warmList = recoQs.length
+        ? recoQs
+        : questions.slice(0, 5);
+      prewarmVisionCache(warmList, { limit: 6 });
+    } catch (_err) {
+      /* non-critical */
+    }
     if (status) status.textContent = 'Student Dashboard 준비 완료 · Coach 로딩…';
 
     const coach = await buildCoachDashboard();

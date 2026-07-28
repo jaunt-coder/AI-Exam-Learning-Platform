@@ -70,6 +70,7 @@ Dashboard / Tutor / Exam
 - **Sprint 16A**: AI Exam Strategy (Mastery Map, Readiness Score, Daily Plan, Exam Mode)
 - **Sprint 16B**: Exam Mode & Goal Management (D-Day, Goal, Phase, Mission, Streak)
 - **Sprint 17A**: Gemini Native Problem Solver (Problem First AI · Cache · 2-Pass Validation)
+- **Sprint 17B**: Gemini Vision OCR Recovery (Vision First · OCR Quality · Hybrid · Smart Cache)
 
 상세: [docs/SPRINT_HISTORY.md](docs/SPRINT_HISTORY.md)
 
@@ -111,6 +112,10 @@ Dashboard / Tutor / Exam
 - `learning.gemini-history.v1`
 - `learning.gemini-quality.v1`
 - `learning.gemini-version.v1`
+- `learning.vision-cache.v1`
+- `learning.vision-history.v1`
+- `learning.vision-quality.v1`
+- `learning.vision-config.v1`
 
 ## 5) Contract 목록
 
@@ -154,6 +159,12 @@ Dashboard / Tutor / Exam
 - `geminiSolverContract`
 - `geminiCacheContract`
 - `validationGeminiSolver`
+- `visionEngineContract`
+- `visionQualityContract`
+- `visionCacheContract`
+- `ocrQualityContract`
+- `visionRecoveryContract`
+- `validationVision`
 
 ## 6) Current Features
 
@@ -196,6 +207,7 @@ AI Exam Learning Platform v2/
 │   ├── exam-goal/
 │   ├── solution-quality/
 │   ├── gemini-solver/
+│   ├── gemini-vision/
 │   └── llm/
 ├── data/
 ├── docs/
@@ -218,6 +230,7 @@ AI Exam Learning Platform v2/
 | `scripts/test-exam-mode.py` | PASS |
 | `scripts/test-solution-quality.py` | PASS |
 | `scripts/test-gemini-solver.py` | PASS |
+| `scripts/test-gemini-vision.py` | PASS |
 
 ## 9) Project Status
 
@@ -241,7 +254,32 @@ AI Exam Learning Platform v2/
 - **Sprint 16A**: AI Exam Strategy (Mastery Map · Readiness Score · Daily Plan · Pattern Risk · Exam Mode)
 - **Sprint 16B**: Exam Mode & Goal Management (Goal · Phase · Mission · Progress · Tutor Context)
 - **Sprint 17A**: Gemini Native Problem Solver (Problem First · Cache · 2-Pass · Missing Recovery)
+- **Sprint 17B**: Gemini Vision OCR Recovery (Vision Architecture · OCR Quality Engine · Vision Cache · Hybrid OCR)
 - **Sprint 15**: Production Ready
+
+## Vision Architecture (Sprint-17B)
+
+```text
+PDF → Question Locator → PDF Crop → OCR Quality
+  ≥ threshold → OCR
+  < threshold → Gemini Vision → Vision JSON
+→ Resolved Question → Gemini Solver (17A) → Student
+```
+
+- Vision은 풀이하지 않고 복원만 수행한다.
+- OCR 품질이 높으면 Vision API를 호출하지 않는다.
+- Cache Key: `questionId + pdfHash + visionModel + promptVersion`
+- LocalStorage + IndexedDB 이중 캐시. Hit 시 API 호출 금지.
+- Vision 실패 시 OCR Fallback — 학생은 항상 문제를 볼 수 있다.
+- Reviewer Approve → `saveOverride()` + Vision Cache만 갱신 (Question DB 금지).
+
+### Production Guide
+
+1. `GEMINI_API_KEY` 또는 settings에 Gemini 키를 설정한다.
+2. `learning.vision-config.v1`에서 `ocrThreshold`(기본 70)를 조정한다.
+3. Dashboard에서 Vision Cache Hit / 이번 달 절감 호출 / 예상 비용 절감을 확인한다.
+4. 추천·오늘 학습 문제는 `requestIdleCallback`으로 Vision 캐시를 미리 생성한다.
+5. PDF 페이지 렌더러가 필요하면 `globalThis.__PDF_RENDER__` 훅을 주입한다.
 
 ## Technology Stack
 

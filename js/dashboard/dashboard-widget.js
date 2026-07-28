@@ -35,6 +35,8 @@ export const WIDGET_IDS = Object.freeze({
   solutionQuality: 'widget-solution-quality',
   /* Sprint-17A Gemini Native Problem Solver */
   geminiSolver: 'widget-gemini-solver',
+  /* Sprint-17B Gemini Vision OCR Recovery */
+  visionOcr: 'widget-vision-ocr',
 });
 
 export function showSkeletons(root = document) {

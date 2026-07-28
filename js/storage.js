@@ -114,6 +114,11 @@ const STORAGE_KEYS = {
   LEARNING_GEMINI_HISTORY_V1: 'learning.gemini-history.v1',
   LEARNING_GEMINI_QUALITY_V1: 'learning.gemini-quality.v1',
   LEARNING_GEMINI_VERSION_V1: 'learning.gemini-version.v1',
+  // Sprint-17B Gemini Vision OCR Recovery (additive — do not rename)
+  LEARNING_VISION_CACHE_V1: 'learning.vision-cache.v1',
+  LEARNING_VISION_HISTORY_V1: 'learning.vision-history.v1',
+  LEARNING_VISION_QUALITY_V1: 'learning.vision-quality.v1',
+  LEARNING_VISION_CONFIG_V1: 'learning.vision-config.v1',
   // Sprint-12F Reviewer Entry Integration (additive — do not rename)
   LEARNING_REVIEW_DRAFT_V1: 'learning.review-draft.v1',
   LEARNING_REVIEW_UI_V1: 'learning.review-ui.v1',

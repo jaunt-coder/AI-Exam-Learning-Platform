@@ -1,5 +1,6 @@
 /**
  * Sprint-13A — Student Resolver Layer
+ * Sprint-17B — Vision Cache overlay (additive; resolve formulas unchanged).
  * All student screens consume Resolved Question only (never raw DB for display).
  * Question DB remains read-only; uses Override Layer (12A) under the hood.
  */
@@ -9,6 +10,7 @@ import {
   loadStudentCacheDoc,
   saveStudentCacheDoc,
 } from './student-storage.js';
+import { applyVisionOverlaySync } from '../gemini-vision/vision-recovery.js';
 
 const META_KEYS = [
   '_resolvedFrom',
@@ -69,7 +71,15 @@ export function questionResolver(original, options = {}) {
   }
 
   const merged = resolveQuestion(original);
-  const student = toStudentQuestion(merged);
+  let student = toStudentQuestion(merged);
+  /* Sprint-17B — Vision Cache preferred when OCR quality is low (sync, no API) */
+  try {
+    if (options.skipVision !== true) {
+      student = applyVisionOverlaySync(student) || student;
+    }
+  } catch (_err) {
+    /* OCR fallback already inside overlay */
+  }
   if (qid) {
     const ov = getOverride(qid);
     const doc = loadStudentCacheDoc();

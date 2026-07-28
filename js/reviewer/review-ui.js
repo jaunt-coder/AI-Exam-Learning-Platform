@@ -46,6 +46,15 @@ import { peekCachedGemini, buildGeminiCacheKey } from '../gemini-solver/cache-ma
 import { resolveOverrideVersion } from '../gemini-solver/problem-reader.js';
 import { MODEL_VERSION } from '../gemini-solver/problem-solver.js';
 import { PROMPT_VERSION } from '../gemini-solver/prompt-builder.js';
+import {
+  recoverQuestionWithVision,
+  approveVisionToOverride,
+  scoreOcrQuality,
+} from '../gemini-vision/vision-recovery.js';
+import { peekVisionCache, buildVisionCacheKey } from '../gemini-vision/vision-cache.js';
+import { locateQuestionSync } from '../gemini-vision/question-locator.js';
+import { VISION_MODEL, VISION_PROMPT_VERSION } from '../gemini-vision/vision-utils.js';
+import { loadVisionConfig } from '../gemini-vision/vision-storage.js';
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -530,10 +539,34 @@ export function openReviewerPanel(options = {}) {
           <button type="button" class="button button--primary" data-gemini-act="approve">Gemini Approve → Override</button>
         </div>
         <p class="sq-status" data-gemini-status hidden></p>
+      </div>
+      <div class="rv-vision-panel" data-vision-reviewer="17B">
+        <h4>Gemini Vision OCR Recovery</h4>
+        <p class="rv-empty">Vision 복원 결과를 수정 후 Approve하면 Override + Vision Cache만 갱신됩니다. Question DB 수정 금지.</p>
+        <p class="ll-hint" data-ocr-score></p>
+        <textarea id="rv-vision-json" rows="10" class="rv-field" aria-label="Vision JSON"></textarea>
+        <div class="rv-actions">
+          <button type="button" class="button button--ghost" data-vision-act="run">Vision 복원 실행</button>
+          <button type="button" class="button button--ghost" data-vision-act="load">Cache 불러오기</button>
+          <button type="button" class="button button--primary" data-vision-act="approve">Vision Approve → Override</button>
+        </div>
+        <p class="sq-status" data-vision-status hidden></p>
       </div>`;
     const statusEl = root.querySelector('[data-sq-status]');
     const geminiStatus = root.querySelector('[data-gemini-status]');
     const geminiTa = root.querySelector('#rv-gemini-json');
+    const visionStatus = root.querySelector('[data-vision-status]');
+    const visionTa = root.querySelector('#rv-vision-json');
+    const ocrScoreEl = root.querySelector('[data-ocr-score]');
+
+    try {
+      const ocr = scoreOcrQuality(resolveQuestion(original) || original);
+      if (ocrScoreEl) {
+        ocrScoreEl.textContent = `OCR Quality ${ocr.score}/100 · threshold ${ocr.threshold} · ${ocr.useVision ? 'Vision 권장' : 'OCR 사용'}`;
+      }
+    } catch (_err) {
+      /* ignore */
+    }
 
     function loadGeminiPayload() {
       try {
@@ -603,9 +636,95 @@ export function openReviewerPanel(options = {}) {
       }
     });
 
+    function loadVisionPayload() {
+      try {
+        const ov = getOverride(qid);
+        if (ov?.override?.visionOcr?.payload) return ov.override.visionOcr.payload;
+      } catch (_err) {
+        /* ignore */
+      }
+      try {
+        const locate = locateQuestionSync(original);
+        const config = loadVisionConfig();
+        const key = buildVisionCacheKey(
+          qid,
+          locate.pdfHash,
+          config.visionModel || VISION_MODEL,
+          config.promptVersion || VISION_PROMPT_VERSION,
+        );
+        return peekVisionCache(key)?.payload || null;
+      } catch (_err) {
+        return null;
+      }
+    }
+
+    root.querySelector('[data-vision-act="load"]')?.addEventListener('click', () => {
+      const payload = loadVisionPayload();
+      if (visionTa) visionTa.value = payload ? JSON.stringify(payload, null, 2) : '';
+      if (visionStatus) {
+        visionStatus.hidden = false;
+        visionStatus.className = payload ? 'sq-status is-ok' : 'sq-status is-err';
+        visionStatus.textContent = payload
+          ? 'Vision Cache/Override를 불러왔습니다.'
+          : 'Vision 결과를 찾지 못했습니다.';
+      }
+    });
+
+    root.querySelector('[data-vision-act="run"]')?.addEventListener('click', () => {
+      if (visionStatus) {
+        visionStatus.hidden = false;
+        visionStatus.textContent = 'Vision 복원 실행 중…';
+      }
+      recoverQuestionWithVision(resolveQuestion(original) || original, { forceLocal: true })
+        .then((res) => {
+          if (visionTa && res?.payload) {
+            visionTa.value = JSON.stringify(res.payload, null, 2);
+          }
+          if (visionStatus) {
+            visionStatus.className = res?.ok ? 'sq-status is-ok' : 'sq-status is-err';
+            visionStatus.textContent = res?.ok
+              ? `복원 완료 · decision ${res.decision}${res.fallback ? ' (OCR fallback)' : ''}`
+              : '복원 실패';
+          }
+        })
+        .catch((err) => {
+          if (visionStatus) {
+            visionStatus.className = 'sq-status is-err';
+            visionStatus.textContent = `복원 오류: ${err?.message || err}`;
+          }
+        });
+    });
+
+    root.querySelector('[data-vision-act="approve"]')?.addEventListener('click', () => {
+      let payload = null;
+      try {
+        payload = visionTa?.value ? JSON.parse(visionTa.value) : loadVisionPayload();
+      } catch (_err) {
+        payload = null;
+      }
+      const res = approveVisionToOverride(qid, payload, {
+        reviewer: 'reviewer',
+        question: original,
+      });
+      if (visionStatus) {
+        visionStatus.hidden = false;
+        visionStatus.className = res.ok ? 'sq-status is-ok' : 'sq-status is-err';
+        visionStatus.textContent = res.ok
+          ? 'Vision Approve 완료 · Override + Vision Cache 반영 (Question DB 미수정)'
+          : `Approve 실패: ${res.error || ''}`;
+      }
+      if (res.ok && typeof options.onApprove === 'function') {
+        options.onApprove(resolveQuestion(original));
+      } else if (res.ok && typeof options.onResolved === 'function') {
+        options.onResolved(resolveQuestion(original));
+      }
+    });
+
     /* auto-load once */
     const initial = loadGeminiPayload();
     if (geminiTa && initial) geminiTa.value = JSON.stringify(initial, null, 2);
+    const initialVision = loadVisionPayload();
+    if (visionTa && initialVision) visionTa.value = JSON.stringify(initialVision, null, 2);
 
     root.querySelector('[data-sq-act="apply-ai"]')?.addEventListener('click', () => {
       const res = applyAiImprovementToOverride(qid, report);
