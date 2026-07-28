@@ -1,6 +1,6 @@
 {
   "schemaVersion": "v1",
-  "sprint": "Sprint-17C",
+  "sprint": "Sprint-17D",
   "enabled": true,
   "provider": "OPENAI",
   "model": "gpt-5.5",
@@ -24,9 +24,19 @@
   "geminiSolver": {
     "provider": "GEMINI",
     "model": "gemini-2.0-flash",
-    "promptVersion": "17C.1",
+    "promptVersion": "17D.1",
     "problemFirst": true,
-    "humanLevel": true
+    "humanLevel": true,
+    "professorLevel": true
+  },
+  "professorExplanation": {
+    "provider": "GEMINI",
+    "model": "gemini-2.0-flash",
+    "promptVersion": "17D.1",
+    "manualTriggerOnly": true,
+    "qualityApproveThreshold": 90,
+    "qualityPartialThreshold": 70,
+    "evaluationSet": "data/professor-evaluation-test.json"
   },
   "geminiVision": {
     "provider": "GEMINI",
@@ -42,6 +52,7 @@
     "question-db mutation",
     "pattern-db mutation",
     "statistics-db mutation",
-    "direct Gemini calls from Runtime/Learning Engine"
+    "direct Gemini calls from Runtime/Learning Engine",
+    "auto bulk professor cache generation"
   ]
 }

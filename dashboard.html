@@ -26,6 +26,7 @@
         <a href="learning-loop.html" class="button button--ghost">학습 루프</a>
         <a href="question.html" class="button button--ghost">문제 풀이</a>
         <a href="dashboard.html" class="button button--ghost" aria-current="page">Dashboard</a>
+        <a href="pattern-intelligence.html" class="button button--ghost">Pattern Intelligence</a>
         <a href="quality.html" class="button button--ghost">Data Quality</a>
         <a href="settings.html" class="button button--ghost">설정</a>
       </nav>
@@ -39,6 +40,13 @@
         <p class="ld-desc">
           Learning Engine 결과를 시각화합니다. Question / Pattern DB와 Learning Logic은 변경하지 않습니다.
         </p>
+        <nav class="ld-subject-switch" id="subject-switch" aria-label="과목 전환" data-sprint="19A">
+          <button type="button" class="ld-subject-btn" data-subject="accounting" aria-pressed="true">회계</button>
+          <button type="button" class="ld-subject-btn" data-subject="economics" aria-pressed="false">경제학</button>
+          <button type="button" class="ld-subject-btn" data-subject="civil" aria-pressed="false">민법</button>
+          <button type="button" class="ld-subject-btn" data-subject="realestate" aria-pressed="false">부동산학</button>
+          <button type="button" class="ld-subject-btn" data-subject="law" aria-pressed="false">관계법규</button>
+        </nav>
         <p class="ld-status" id="dashboard-status" aria-live="polite">불러오는 중…</p>
         <p class="ld-meta" id="dashboard-meta"></p>
       </header>
@@ -98,10 +106,58 @@
           <div id="widget-gemini-solver" tabindex="-1"></div>
         </section>
 
+        <section class="ld-card card ld-card--wide" aria-labelledby="professor-quality-heading">
+          <h3 id="professor-quality-heading">AI Explanation Quality</h3>
+          <p class="ld-card-desc">Professor 평균 점수 · 낮은 품질 TOP10 · 재생성 많은 문제</p>
+          <div id="widget-professor-quality" tabindex="-1"></div>
+        </section>
+
         <section class="ld-card card ld-card--wide" aria-labelledby="vision-ocr-heading">
           <h3 id="vision-ocr-heading">Gemini Vision OCR Recovery</h3>
           <p class="ld-card-desc">Cache · Recovery · OCR/Vision Quality · API Saved · 이번 달 비용 절감</p>
           <div id="widget-vision-ocr" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card ld-card--wide" aria-labelledby="personal-textbook-heading">
+          <h3 id="personal-textbook-heading">Personal Textbook</h3>
+          <p class="ld-card-desc">총 페이지 · 저장 문제 · 즐겨찾기 · AI Summary · Weak Pattern · 최근 업데이트</p>
+          <div id="widget-personal-textbook" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card ld-card--wide" aria-labelledby="final-revision-heading">
+          <h3 id="final-revision-heading">Final Revision Book</h3>
+          <p class="ld-card-desc">생성일 · 페이지 · Weak Pattern · Weak Formula · 마지막 업데이트</p>
+          <div id="widget-final-revision" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card ld-card--wide" aria-labelledby="import-progress-heading">
+          <h3 id="import-progress-heading">Import Progress</h3>
+          <p class="ld-card-desc">총 PDF · 완료 · 실패 · OCR Quality · Question Count · Subject Count</p>
+          <div id="widget-import-progress" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="pass60-heading">
+          <h3 id="pass60-heading">Pass60</h3>
+          <p class="ld-card-desc">합격 핵심 Pattern · 남은 Pattern · 예상 점수</p>
+          <div id="widget-pass60" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="roi-gauge-heading">
+          <h3 id="roi-gauge-heading">ROI Gauge</h3>
+          <p class="ld-card-desc">ROI TOP · Study Time · Expected Gain</p>
+          <div id="widget-roi-gauge" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="expected-score-heading">
+          <h3 id="expected-score-heading">Expected Score</h3>
+          <p class="ld-card-desc">Pass60 예상 점수</p>
+          <div id="widget-expected-score" tabindex="-1"></div>
+        </section>
+
+        <section class="ld-card card" aria-labelledby="remaining-pattern-heading">
+          <h3 id="remaining-pattern-heading">Remaining Pattern</h3>
+          <p class="ld-card-desc">먼저 끝내야 할 Pattern 수</p>
+          <div id="widget-remaining-pattern" tabindex="-1"></div>
         </section>
 
         <section class="ld-card card ld-card--wide" aria-labelledby="exam-daily-heading">

@@ -32,6 +32,45 @@
   margin-bottom: 1.5rem;
 }
 
+.ld-subject-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.85rem 0 0.5rem;
+}
+
+.ld-subject-btn {
+  appearance: none;
+  border: 1px solid var(--border-color, #c9d2dc);
+  background: var(--surface, #fff);
+  color: var(--text-primary, #1a2332);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.88rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ld-subject-btn:hover,
+.ld-subject-btn:focus-visible {
+  border-color: var(--accent, #2f5d8c);
+  outline: 2px solid transparent;
+}
+
+.ld-subject-btn.is-active,
+.ld-subject-btn[aria-pressed="true"] {
+  background: var(--accent, #2f5d8c);
+  border-color: var(--accent, #2f5d8c);
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .ld-subject-btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
 .ld-header h2 {
   font-size: 1.5rem;
   margin-bottom: 0.35rem;

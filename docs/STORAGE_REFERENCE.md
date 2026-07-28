@@ -53,3 +53,21 @@
 | `learning.schedule.v1` | Learning Engine 일정 |
 | `learning.engine-progress.v1` | Learning Engine 진행도 |
 | `learning.review-cycle.v1` | Learning Review Cycle |
+| `learning.personal-textbook.v1` | Personal AI Textbook 항목 (Sprint-18A) |
+| `learning.personal-note.v1` | 개인 메모 |
+| `learning.personal-summary.v1` | Pattern/단원 AI Summary + Version History |
+| `learning.personal-tag.v1` | 개인 태그 |
+| `learning.personal-bookmark.v1` | 즐겨찾기 문항 |
+| `learning.personal-favorite.v1` | Favorite Formula |
+| `learning.final-book.v1` | AI Final Revision Book |
+| `learning.final-summary.v1` | Final condensed AI Summary |
+| `learning.final-formula.v1` | Formula Ranking 캐시 |
+| `learning.current-subject.v1` | 현재 Subject Plugin id (Sprint-19A) |
+| `learning.subject-config.v1` | Subject 설정 캐시 |
+| `learning.subject-history.v1` | Subject 전환 이력 |
+| `learning.import-history.v1` | Universal Import 실행 이력 (Sprint-19B) |
+| `learning.import-cache.v1` | Import Progress / 연도·과목 캐시 |
+| `learning.pattern-map.v1` | Pattern Intelligence Map 스냅샷 (Sprint-19C) |
+| `learning.pattern-priority.v1` | Pattern Priority 랭킹 |
+| `learning.pass60.v1` | Pass60 계획 |
+| `learning.roi.v1` | ROI TOP / Today·Week Mission |

@@ -1,0 +1,135 @@
+[
+  {
+    "questionId": "ACC-2018-Q41",
+    "subject": "accounting",
+    "source": "subjects/accounting/question-db.json",
+    "expectedConcept": "재무정보의 질적특성(개념체계)",
+    "qualityCriteria": [
+      "problemReflection",
+      "theoryLink",
+      "choiceAnalysis",
+      "reusableKnowledge",
+      "examStrategy"
+    ]
+  },
+  {
+    "questionId": "ACC-2018-Q42",
+    "subject": "accounting",
+    "source": "subjects/accounting/question-db.json",
+    "expectedConcept": "재고자산 범위(FOB·적송·시송)",
+    "qualityCriteria": [
+      "problemReflection",
+      "theoryLink",
+      "numberUsage",
+      "choiceAnalysis",
+      "reusableKnowledge",
+      "examStrategy"
+    ]
+  },
+  {
+    "questionId": "ACC-2018-Q43",
+    "subject": "accounting",
+    "source": "subjects/accounting/question-db.json",
+    "expectedConcept": "유형자산 재평가·손상",
+    "qualityCriteria": [
+      "problemReflection",
+      "theoryLink",
+      "numberUsage",
+      "choiceAnalysis",
+      "reusableKnowledge",
+      "examStrategy"
+    ]
+  },
+  {
+    "questionId": "ECO-2018-Q41",
+    "subject": "economics",
+    "source": "subjects/economics/question-db.json",
+    "expectedConcept": "시장 균형가격·균형거래량",
+    "qualityCriteria": [
+      "problemReflection",
+      "theoryLink",
+      "numberUsage",
+      "choiceAnalysis",
+      "reusableKnowledge",
+      "examStrategy"
+    ]
+  },
+  {
+    "questionId": "ECO-2018-Q42",
+    "subject": "economics",
+    "source": "subjects/economics/question-db.json",
+    "expectedConcept": "노동시장 수요·공급 충격",
+    "qualityCriteria": [
+      "problemReflection",
+      "theoryLink",
+      "choiceAnalysis",
+      "reusableKnowledge",
+      "examStrategy"
+    ]
+  },
+  {
+    "questionId": "CIV-2018-Q05",
+    "subject": "civil",
+    "source": "subjects/civil/question-db.json",
+    "expectedConcept": "법인의 불법행위책임",
+    "qualityCriteria": [
+      "problemReflection",
+      "theoryLink",
+      "choiceAnalysis",
+      "reusableKnowledge",
+      "examStrategy"
+    ]
+  },
+  {
+    "questionId": "CIV-2018-Q06",
+    "subject": "civil",
+    "source": "subjects/civil/question-db.json",
+    "expectedConcept": "법인 정관",
+    "qualityCriteria": [
+      "problemReflection",
+      "theoryLink",
+      "choiceAnalysis",
+      "reusableKnowledge",
+      "examStrategy"
+    ]
+  },
+  {
+    "questionId": "REA-2018-Q81",
+    "subject": "realestate",
+    "source": "subjects/realestate/question-db.json",
+    "expectedConcept": "토지의 특성(임장·외부효과·국지화)",
+    "qualityCriteria": [
+      "problemReflection",
+      "theoryLink",
+      "choiceAnalysis",
+      "reusableKnowledge",
+      "examStrategy"
+    ]
+  },
+  {
+    "questionId": "REA-2018-Q82",
+    "subject": "realestate",
+    "source": "subjects/realestate/question-db.json",
+    "expectedConcept": "후보지·소지 등 용도전환 용어",
+    "qualityCriteria": [
+      "problemReflection",
+      "theoryLink",
+      "choiceAnalysis",
+      "reusableKnowledge",
+      "examStrategy"
+    ]
+  },
+  {
+    "questionId": "LAW-2018-Q01",
+    "subject": "law",
+    "source": "subjects/law/question-db.json",
+    "expectedConcept": "도시·군기본계획(국토계획법)",
+    "qualityCriteria": [
+      "problemReflection",
+      "theoryLink",
+      "choiceAnalysis",
+      "reusableKnowledge",
+      "examStrategy"
+    ]
+  }
+]

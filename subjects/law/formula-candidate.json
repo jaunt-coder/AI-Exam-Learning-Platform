@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "v1",
+  "subjectId": "law",
+  "generatedAt": "2026-07-28T15:29:31.927761+00:00",
+  "importVersion": "19B",
+  "status": "candidate",
+  "officialFormulaDbWriteForbidden": true,
+  "count": 1,
+  "formulas": [
+    {
+      "formulaCandidateId": "FC-law-1",
+      "subjectId": "law",
+      "name": "공시지가",
+      "formula": "공시지가 = 표준지 단위면적당 적정가격",
+      "questionIds": [
+        "LAW-2018-Q17",
+        "LAW-2018-Q18",
+        "LAW-2018-Q19",
+        "LAW-2020-Q17",
+        "LAW-2020-Q18",
+        "LAW-2020-Q19",
+        "LAW-2024-Q08",
+        "LAW-2024-Q14",
+        "LAW-2024-Q15",
+        "LAW-2024-Q16",
+        "LAW-2025-Q14",
+        "LAW-2025-Q15",
+        "LAW-2025-Q16"
+      ],
+      "hitCount": 13,
+      "status": "candidate",
+      "officialFormulaDbWriteForbidden": true
+    }
+  ]
+}

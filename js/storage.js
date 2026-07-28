@@ -114,11 +114,38 @@ const STORAGE_KEYS = {
   LEARNING_GEMINI_HISTORY_V1: 'learning.gemini-history.v1',
   LEARNING_GEMINI_QUALITY_V1: 'learning.gemini-quality.v1',
   LEARNING_GEMINI_VERSION_V1: 'learning.gemini-version.v1',
+  // Sprint-17D Professor Explanation (additive — do not rename)
+  LEARNING_PROFESSOR_CACHE_V1: 'learning.professor-cache.v1',
+  LEARNING_PROFESSOR_QUALITY_V1: 'learning.professor-quality.v1',
+  LEARNING_PROFESSOR_HISTORY_V1: 'learning.professor-history.v1',
   // Sprint-17B Gemini Vision OCR Recovery (additive — do not rename)
   LEARNING_VISION_CACHE_V1: 'learning.vision-cache.v1',
   LEARNING_VISION_HISTORY_V1: 'learning.vision-history.v1',
   LEARNING_VISION_QUALITY_V1: 'learning.vision-quality.v1',
   LEARNING_VISION_CONFIG_V1: 'learning.vision-config.v1',
+  // Sprint-18A Personal AI Textbook (additive — do not rename)
+  LEARNING_PERSONAL_TEXTBOOK_V1: 'learning.personal-textbook.v1',
+  LEARNING_PERSONAL_NOTE_V1: 'learning.personal-note.v1',
+  LEARNING_PERSONAL_SUMMARY_V1: 'learning.personal-summary.v1',
+  LEARNING_PERSONAL_TAG_V1: 'learning.personal-tag.v1',
+  LEARNING_PERSONAL_BOOKMARK_V1: 'learning.personal-bookmark.v1',
+  LEARNING_PERSONAL_FAVORITE_V1: 'learning.personal-favorite.v1',
+  // Sprint-18A AI Final Revision Book (additive — do not rename)
+  LEARNING_FINAL_BOOK_V1: 'learning.final-book.v1',
+  LEARNING_FINAL_SUMMARY_V1: 'learning.final-summary.v1',
+  LEARNING_FINAL_FORMULA_V1: 'learning.final-formula.v1',
+  // Sprint-19A Subject Adapter Layer (additive — do not rename)
+  LEARNING_CURRENT_SUBJECT_V1: 'learning.current-subject.v1',
+  LEARNING_SUBJECT_CONFIG_V1: 'learning.subject-config.v1',
+  LEARNING_SUBJECT_HISTORY_V1: 'learning.subject-history.v1',
+  // Sprint-19B Universal Import Engine (additive — do not rename)
+  LEARNING_IMPORT_HISTORY_V1: 'learning.import-history.v1',
+  LEARNING_IMPORT_CACHE_V1: 'learning.import-cache.v1',
+  // Sprint-19C Pattern Intelligence Map + Pass60 + ROI (additive — do not rename)
+  LEARNING_PATTERN_MAP_V1: 'learning.pattern-map.v1',
+  LEARNING_PATTERN_PRIORITY_V1: 'learning.pattern-priority.v1',
+  LEARNING_PASS60_V1: 'learning.pass60.v1',
+  LEARNING_ROI_V1: 'learning.roi.v1',
   // Sprint-12F Reviewer Entry Integration (additive — do not rename)
   LEARNING_REVIEW_DRAFT_V1: 'learning.review-draft.v1',
   LEARNING_REVIEW_UI_V1: 'learning.review-ui.v1',

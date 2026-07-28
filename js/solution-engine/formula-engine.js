@@ -1,5 +1,6 @@
 /**
  * Sprint-15A+ — Formula Engine
+ * Sprint-19A — formulas load from Subject Plugin formula-db.json (auto by subjectId).
  * Generates core formulas for the current Pattern / question (student screen only).
  */
 
@@ -11,8 +12,15 @@ import {
   CALCULATION_TEMPLATES,
   getCalculationTemplate,
 } from '../ai-tutor-content/calculation-templates.js';
+import {
+  getSubjectFormulas,
+  getSubjectFormulaExtras,
+  resolveSubjectIdForQuestion,
+  getCurrentSubjectId,
+} from '../subject/subject-adapter.js';
 
-const FALLBACK_FORMULAS = {
+/** @deprecated Prefer Subject Plugin formula-db; kept as offline mirror for accounting. */
+export const FALLBACK_FORMULAS = {
   ACC_INV_001: {
     name: '기말재고 포함 여부',
     formula: '기말재고 = 실사액 ± 소유권 조정(FOB·위탁·적송·시송)',
@@ -52,10 +60,18 @@ const FALLBACK_FORMULAS = {
  */
 export function generateFormulas(question = {}, pattern = null) {
   const patternId = question.patternId || pattern?.patternId || '';
+  const subjectId =
+    question.subjectPluginId
+    || resolveSubjectIdForQuestion(question)
+    || getCurrentSubjectId();
+  const subjectFormulas = getSubjectFormulas(subjectId);
   const profile = PATTERN_TUTOR_PROFILES[patternId] || null;
   const templateId = profile?.defaultTemplateId || null;
   const template = templateId ? getCalculationTemplate(templateId) : null;
-  const fallback = FALLBACK_FORMULAS[patternId] || null;
+  const fallback =
+    subjectFormulas[patternId]
+    || FALLBACK_FORMULAS[patternId]
+    || null;
   const patternName = pattern?.name || PATTERN_NAMES[patternId] || patternId || '재고자산';
 
   const list = [];
@@ -67,6 +83,7 @@ export function generateFormulas(question = {}, pattern = null) {
       when: `${patternName} Pattern에서 ${template.title}을(를) 적용할 때`,
       patternId,
       templateId: template.id,
+      subjectId,
     });
   }
 
@@ -77,23 +94,20 @@ export function generateFormulas(question = {}, pattern = null) {
       when: fallback.when,
       patternId,
       templateId: templateId || null,
+      subjectId,
     });
   }
 
-  if (patternId === 'ACC_INV_006') {
+  const extras = getSubjectFormulaExtras(patternId, subjectId);
+  for (const extra of extras) {
+    if (list.some((x) => x.formula === extra.formula)) continue;
     list.push({
-      name: 'FIFO 매출원가',
-      formula: '매출원가 = 먼저 입고된 원가부터 출고 수량만큼 배분한 합계',
-      when: '물가 변동 하에서 FIFO 기말재고·매출원가를 구할 때',
+      name: extra.name,
+      formula: extra.formula,
+      when: extra.when,
       patternId,
-      templateId: 'fifo_avg',
-    });
-    list.push({
-      name: '기말재고·매출원가',
-      formula: '기말재고 = 판매가능원가 − 매출원가',
-      when: '평균단가 또는 FIFO 출고 후 잔액을 확정할 때',
-      patternId,
-      templateId: 'fifo_avg',
+      templateId: extra.templateId || templateId || null,
+      subjectId,
     });
   }
 
@@ -104,6 +118,7 @@ export function generateFormulas(question = {}, pattern = null) {
       when: '해당 Pattern 문항을 풀 때',
       patternId,
       templateId: null,
+      subjectId,
     });
   }
 

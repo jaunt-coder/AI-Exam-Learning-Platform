@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "v1",
+  "subjectId": "accounting",
+  "status": "active",
+  "patternPrefix": "ACC_",
+  "chapters": ["재고자산"],
+  "primaryPatterns": [
+    "ACC_INV_001",
+    "ACC_INV_003",
+    "ACC_INV_004",
+    "ACC_INV_005",
+    "ACC_INV_006",
+    "ACC_INV_007"
+  ]
+}

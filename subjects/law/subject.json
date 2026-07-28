@@ -1,0 +1,19 @@
+{
+  "id": "law",
+  "name": "관계법규",
+  "shortName": "관계법규",
+  "examId": "APPRAISER",
+  "order": 5,
+  "enabled": true,
+  "status": "skeleton",
+  "category": "general",
+  "promptRole": "당신은 감정평가사 관계법규 강사입니다.",
+  "features": [],
+  "requiredContents": [],
+  "paths": {
+    "formulaDb": "formula-db.json",
+    "patternConfig": "pattern-config.json",
+    "prompt": "prompt.md",
+    "memoryConfig": "memory-config.json"
+  }
+}

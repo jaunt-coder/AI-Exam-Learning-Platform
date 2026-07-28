@@ -1,7 +1,10 @@
 /**
  * Sprint-11A — Prompt Builder
+ * Sprint-19A — Subject Prompt (회계 하드코딩 제거)
  * Builds prompts from Runtime Snapshot only (never full Question/Pattern DB).
  */
+
+import { buildSubjectCoachPrompt } from '../subject/subject-prompt-builder.js';
 
 /**
  * Normalize runtime snapshot (read-only projection).
@@ -69,7 +72,7 @@ export function extractPromptFacts(snapshot = {}) {
 
 /**
  * Build coaching prompt from task + snapshot.
- * @param {{ task?: string, snapshot?: object }} input
+ * @param {{ task?: string, snapshot?: object, subjectId?: string }} input
  * @returns {{ prompt: string, facts: object, snapshot: object }}
  */
 export function buildPrompt(input = {}) {
@@ -77,30 +80,20 @@ export function buildPrompt(input = {}) {
   const snapshot = normalizeSnapshot(input.snapshot || {});
   const facts = extractPromptFacts(snapshot);
 
-  const prompt = [
-    '너는 감정평가사 회계학 AI 학습코치이다.',
-    '학생 상태는 다음과 같다.',
-    '',
-    `Task: ${task}`,
-    `Pattern: ${facts.patternId}`,
-    `Mastery: ${facts.masteryLevel}`,
-    `Weakness: ${facts.weaknessType}`,
-    `Recommendation: ${facts.recommendationType}`,
-    `Today's Goal: ${facts.todayGoal}`,
-    '',
-    '반드시',
-    '왜 추천하는지',
-    '오늘 어떻게 공부하는지',
-    '주의할 점',
-    '격려',
-    '를',
-    '300~500자',
-    '한국어로 작성하라.',
-    '',
-    'Runtime Recommendation을 수정하지 말라.',
-    '새로운 Pattern을 추천하지 말라.',
-    'Question DB / Pattern DB 전체를 요구하거나 가정하지 말라.',
-  ].join('\n');
+  let prompt = buildSubjectCoachPrompt({
+    task,
+    facts,
+    subjectId: input.subjectId,
+  });
+
+  // Preserve Sprint-11A closing constraints
+  if (!prompt.includes('새로운 Pattern을 추천하지 말라')) {
+    prompt = [
+      prompt,
+      '새로운 Pattern을 추천하지 말라.',
+      'Question DB / Pattern DB 전체를 요구하거나 가정하지 말라.',
+    ].join('\n');
+  }
 
   return { prompt, facts, snapshot };
 }

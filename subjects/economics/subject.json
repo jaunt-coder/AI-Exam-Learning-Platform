@@ -1,0 +1,19 @@
+{
+  "id": "economics",
+  "name": "경제학",
+  "shortName": "경제학",
+  "examId": "APPRAISER",
+  "order": 2,
+  "enabled": true,
+  "status": "skeleton",
+  "category": "general",
+  "promptRole": "당신은 감정평가사 경제학 강사입니다.",
+  "features": [],
+  "requiredContents": [],
+  "paths": {
+    "formulaDb": "formula-db.json",
+    "patternConfig": "pattern-config.json",
+    "prompt": "prompt.md",
+    "memoryConfig": "memory-config.json"
+  }
+}

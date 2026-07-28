@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "v1",
+  "subjectId": "civil",
+  "generatedAt": "2026-07-28T15:29:31.927761+00:00",
+  "importVersion": "19B",
+  "status": "candidate",
+  "officialFormulaDbWriteForbidden": true,
+  "count": 1,
+  "formulas": [
+    {
+      "formulaCandidateId": "FC-civil-1",
+      "subjectId": "civil",
+      "name": "소멸시효",
+      "formula": "권리 불행사 기간 경과 → 소멸시효 완성",
+      "questionIds": [
+        "CIV-2018-Q16",
+        "CIV-2018-Q17",
+        "CIV-2018-Q24",
+        "CIV-2018-Q25",
+        "CIV-2018-Q28",
+        "CIV-2018-Q35",
+        "CIV-2018-Q38",
+        "CIV-2020-Q18",
+        "CIV-2020-Q19",
+        "CIV-2020-Q20",
+        "CIV-2020-Q21",
+        "CIV-2020-Q23",
+        "CIV-2020-Q30",
+        "CIV-2020-Q35",
+        "CIV-2024-Q08",
+        "CIV-2024-Q18",
+        "CIV-2024-Q19",
+        "CIV-2024-Q21",
+        "CIV-2024-Q27",
+        "CIV-2024-Q29",
+        "CIV-2025-Q01",
+        "CIV-2025-Q16",
+        "CIV-2025-Q18",
+        "CIV-2025-Q23",
+        "CIV-2025-Q29",
+        "CIV-2025-Q30",
+        "CIV-2025-Q33"
+      ],
+      "hitCount": 27,
+      "status": "candidate",
+      "officialFormulaDbWriteForbidden": true
+    }
+  ]
+}

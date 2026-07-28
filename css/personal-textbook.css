@@ -1,0 +1,211 @@
+/* Sprint-18A — Personal AI Textbook / Final Revision Book */
+
+.tb-main {
+  padding-block: 1.5rem 3rem;
+}
+
+.tb-header {
+  margin-bottom: 1.25rem;
+}
+
+.tb-desc {
+  color: var(--color-muted, #5c6570);
+  margin: 0.35rem 0 0.75rem;
+}
+
+.tb-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.tb-search {
+  flex: 1 1 220px;
+}
+
+.tb-search input,
+#tb-filter,
+#tb-tags,
+#tb-note {
+  width: 100%;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--color-border, #d0d5dc);
+  border-radius: 6px;
+  background: var(--color-surface, #fff);
+  color: inherit;
+  font: inherit;
+}
+
+.tb-status {
+  font-size: 0.9rem;
+  color: var(--color-muted, #5c6570);
+}
+
+.tb-layout {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr) minmax(200px, 280px);
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+.tb-pane {
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #d0d5dc);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  min-height: 320px;
+}
+
+.tb-pane h3,
+.tb-pane h4 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.tb-tree__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  padding: 0.35rem 0.2rem;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.tb-tree__btn:hover,
+.tb-tree__btn:focus-visible {
+  background: var(--color-bg-soft, #f3f5f8);
+  outline: none;
+}
+
+.tb-tree__meta {
+  font-size: 0.8rem;
+  color: var(--color-muted, #5c6570);
+}
+
+.tb-entry section {
+  margin-top: 1rem;
+}
+
+.tb-entry__head h3 {
+  margin-bottom: 0.25rem;
+}
+
+.tb-meta {
+  font-size: 0.9rem;
+  color: var(--color-muted, #5c6570);
+}
+
+.tb-history pre {
+  white-space: pre-wrap;
+  font-family: inherit;
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+}
+
+.tb-right-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.tb-final {
+  padding: 1.25rem;
+}
+
+.tb-final__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.fb-panel {
+  margin-bottom: 1rem;
+}
+
+.fb-quick {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.fb-quick__card {
+  border: 1px solid var(--color-border, #d0d5dc);
+  border-radius: 12px;
+  padding: 1.5rem 1.25rem;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(160deg, #f7f9fc 0%, #eef2f7 100%);
+}
+
+.fb-quick__title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted, #5c6570);
+  margin: 0 0 0.5rem;
+}
+
+.fb-quick__body {
+  font-size: 1.15rem;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.fb-quick__nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.85rem;
+}
+
+.fb-quick__meta {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-muted, #5c6570);
+}
+
+.st-textbook-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 1024px) {
+  .tb-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tb-pane--right {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .tb-layout {
+    grid-template-columns: 1fr;
+  }
+  .fb-quick__card {
+    min-height: 220px;
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "accounting",
+  "name": "회계학",
+  "shortName": "회계",
+  "examId": "APPRAISER",
+  "order": 1,
+  "enabled": true,
+  "status": "active",
+  "category": "calculation",
+  "promptRole": "당신은 감정평가사 회계학 강사입니다.",
+  "features": [
+    "calculation",
+    "journalEntry",
+    "financialStatement"
+  ],
+  "requiredContents": [
+    "solutionAlgorithm",
+    "calculationProcess",
+    "wrongAnswerAnalysis",
+    "memorizationPoint"
+  ],
+  "paths": {
+    "formulaDb": "formula-db.json",
+    "patternConfig": "pattern-config.json",
+    "prompt": "prompt.md",
+    "memoryConfig": "memory-config.json"
+  }
+}

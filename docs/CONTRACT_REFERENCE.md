@@ -40,6 +40,27 @@
 | `reviewCycleContract` | Review Cycle 계약 |
 | `scheduleContract` | Scheduler 계약 |
 | `validationLearningEngine` | Sprint-13B 검증 요약 계약 |
+| `personalTextbookContract` | Personal AI Textbook 계약 (Sprint-18A) |
+| `personalSummaryContract` | Pattern/단원 Summary 계약 |
+| `personalExportContract` | Textbook Export 계약 |
+| `personalBookmarkContract` | Bookmark / Favorite Formula 계약 |
+| `validationPersonalTextbook` | Sprint-18A Textbook 검증 |
+| `finalRevisionBookContract` | AI Final Revision Book 계약 |
+| `finalSummaryContract` | Condensed Final Summary 계약 |
+| `validationFinalRevisionBook` | Sprint-18A Final Book 검증 |
+| `subjectAdapterContract` | Subject Adapter Layer 계약 (Sprint-19A) |
+| `subjectRegistryContract` | Subject Registry / Switch 계약 |
+| `subjectPromptContract` | Subject Prompt 조합 계약 |
+| `validationSubjectAdapter` | Sprint-19A 검증 요약 |
+| `importEngineContract` | Universal Import Engine 계약 (Sprint-19B) |
+| `questionImportContract` | Question Import 필드 계약 |
+| `answerImportContract` | Answer Match 계약 |
+| `subjectDetectContract` | exam_1/exam_2 Subject Detect 계약 |
+| `validationImportEngine` | Sprint-19B 검증 요약 |
+| `patternMapContract` | Pattern Intelligence Map 계약 (Sprint-19C) |
+| `pass60Contract` | Pass60 합격 최적화 계약 |
+| `roiContract` | ROI / Priority 계산 계약 |
+| `validationPatternMap` | Sprint-19C 검증 요약 |
 
 ## Runtime Projection (참고)
 

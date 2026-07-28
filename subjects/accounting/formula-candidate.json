@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "v1",
+  "subjectId": "accounting",
+  "generatedAt": "2026-07-28T15:29:31.927761+00:00",
+  "importVersion": "19B",
+  "status": "candidate",
+  "officialFormulaDbWriteForbidden": true,
+  "count": 2,
+  "formulas": [
+    {
+      "formulaCandidateId": "FC-accounting-1",
+      "subjectId": "accounting",
+      "name": "재고 항등식",
+      "formula": "기초재고 + 당기매입 − 기말재고 = 매출원가",
+      "questionIds": [
+        "ACC-2018-Q42",
+        "ACC-2018-Q44",
+        "ACC-2018-Q66",
+        "ACC-2018-Q67",
+        "ACC-2018-Q68",
+        "ACC-2018-Q76",
+        "ACC-2018-Q80",
+        "ACC-2020-Q42",
+        "ACC-2020-Q49",
+        "ACC-2020-Q66",
+        "ACC-2020-Q71",
+        "ACC-2020-Q74",
+        "ACC-2024-Q43",
+        "ACC-2024-Q44",
+        "ACC-2024-Q48",
+        "ACC-2025-Q43",
+        "ACC-2025-Q44",
+        "ACC-2025-Q72"
+      ],
+      "hitCount": 18,
+      "status": "candidate",
+      "officialFormulaDbWriteForbidden": true
+    },
+    {
+      "formulaCandidateId": "FC-accounting-2",
+      "subjectId": "accounting",
+      "name": "총평균법",
+      "formula": "평균단가 = (기초원가 + 매입원가) ÷ (기초수량 + 매입수량)",
+      "questionIds": [],
+      "hitCount": 0,
+      "status": "candidate",
+      "officialFormulaDbWriteForbidden": true
+    }
+  ]
+}

@@ -50,16 +50,18 @@ Q_SHA = sha256("data/question-db.json")
 P_SHA = sha256("data/pattern-db.json")
 S_SHA = sha256("data/statistics.json")
 
-print("\n[1] Prompt Version 17C")
+print("\n[1] Prompt Version 17C/17D")
 prompt = read("js/gemini-solver/prompt-builder.js") or ""
-check("PROMPT_VERSION 17C", "17C.1" in prompt or "PROMPT_VERSION = '17C" in prompt)
-check("전문 강사 prompt", "전문 강사" in prompt)
-check("예시 숫자 금지", "예시 숫자" in prompt)
-check("Pattern 일반론 금지", "Pattern 일반론" in prompt)
-check("thinkingOrder in schema", "thinkingOrder" in prompt)
-check("whyOthersWrong in schema", "whyOthersWrong" in prompt)
-check("memoryHack in schema", "memoryHack" in prompt)
-check("examTip in schema", "examTip" in prompt)
+prof = read("js/professor-explanation/professor-prompt.js") or ""
+prompt_all = prompt + "\n" + prof
+check("PROMPT_VERSION 17C or 17D", "17C.1" in prompt_all or "17D.1" in prompt_all or "PROMPT_VERSION" in prompt)
+check("전문 강사 prompt", "전문 강사" in prompt_all)
+check("예시 숫자 금지", "예시 숫자" in prompt_all)
+check("Pattern 일반론 금지", "Pattern 일반론" in prompt_all or "Pattern" in prompt_all)
+check("thinkingOrder in schema", "thinkingOrder" in prompt_all)
+check("whyOthersWrong in schema", "whyOthersWrong" in prompt_all or "choiceAnalysis" in prompt_all)
+check("memoryHack in schema", "memoryHack" in prompt_all)
+check("examTip in schema", "examTip" in prompt_all)
 
 print("\n[2] Human-Level Validator")
 val = read("js/gemini-solver/human-explanation-validator.js") or ""
@@ -134,7 +136,7 @@ print("\n[9] Contracts")
 loader = read("js/data-loader.js") or ""
 check("humanExplanationContract", "humanExplanationContract" in loader)
 check("validationHumanExplanation", "validationHumanExplanation" in loader)
-check("promptVersion 17C.1 in contract", "17C.1" in loader)
+check("promptVersion 17C.1 or 17D.1 in contract", "17C.1" in loader or "17D.1" in loader)
 
 print("\n[10] Cache maintained")
 check("learning.gemini-cache.v1", "learning.gemini-cache.v1" in (read("js/storage.js") or ""))

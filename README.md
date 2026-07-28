@@ -72,6 +72,10 @@ Dashboard / Tutor / Exam
 - **Sprint 17A**: Gemini Native Problem Solver (Problem First AI · Cache · 2-Pass Validation)
 - **Sprint 17B**: Gemini Vision OCR Recovery (Vision First · OCR Quality · Hybrid · Smart Cache)
 - **Sprint 17C**: Human-Level AI Explanation Engine (Thinking Order · 상세 계산 · 오답 분석)
+- **Sprint 18A**: Personal AI Textbook · AI Final Revision Book (자동 해설집 · 시험 직전 정리집)
+- **Sprint 19A**: Subject Adapter Layer (Multi Subject Platform · Accounting Plugin · Subject Switch)
+- **Sprint 19B**: Universal Import Engine (past-exams → Subject Candidate JSON)
+- **Sprint 19C**: Pattern Intelligence Map · Pass60 · ROI Engine
 
 상세: [docs/SPRINT_HISTORY.md](docs/SPRINT_HISTORY.md)
 
@@ -117,6 +121,24 @@ Dashboard / Tutor / Exam
 - `learning.vision-history.v1`
 - `learning.vision-quality.v1`
 - `learning.vision-config.v1`
+- `learning.personal-textbook.v1`
+- `learning.personal-note.v1`
+- `learning.personal-summary.v1`
+- `learning.personal-tag.v1`
+- `learning.personal-bookmark.v1`
+- `learning.personal-favorite.v1`
+- `learning.final-book.v1`
+- `learning.final-summary.v1`
+- `learning.final-formula.v1`
+- `learning.current-subject.v1`
+- `learning.subject-config.v1`
+- `learning.subject-history.v1`
+- `learning.import-history.v1`
+- `learning.import-cache.v1`
+- `learning.pattern-map.v1`
+- `learning.pattern-priority.v1`
+- `learning.pass60.v1`
+- `learning.roi.v1`
 
 ## 5) Contract 목록
 
@@ -162,6 +184,27 @@ Dashboard / Tutor / Exam
 - `validationGeminiSolver`
 - `humanExplanationContract`
 - `validationHumanExplanation`
+- `personalTextbookContract`
+- `personalSummaryContract`
+- `personalExportContract`
+- `personalBookmarkContract`
+- `validationPersonalTextbook`
+- `finalRevisionBookContract`
+- `finalSummaryContract`
+- `validationFinalRevisionBook`
+- `subjectAdapterContract`
+- `subjectRegistryContract`
+- `subjectPromptContract`
+- `validationSubjectAdapter`
+- `importEngineContract`
+- `questionImportContract`
+- `answerImportContract`
+- `subjectDetectContract`
+- `validationImportEngine`
+- `patternMapContract`
+- `pass60Contract`
+- `roiContract`
+- `validationPatternMap`
 - `visionEngineContract`
 - `visionQualityContract`
 - `visionCacheContract`
@@ -187,6 +230,11 @@ Dashboard / Tutor / Exam
 - [x] AI Exam Strategy (Mastery Map · Readiness · Daily Plan · Exam Mode)
 - [x] Exam Mode & Goal Management (D-Day · Mission · Streak)
 - [x] AI Solution Quality Layer (평가 → 개선 → Override 승인)
+- [x] Personal AI Textbook (자동 해설집 · Summary · Bookmark · Export)
+- [x] AI Final Revision Book (시험 직전 정리집 · Exam Day Sheet · Quick Review)
+- [x] Subject Adapter Layer (Multi Subject · Accounting Plugin · Subject Switch)
+- [x] Universal Import Engine (past-exams · Subject Detect · Candidate JSON)
+- [x] Pattern Intelligence Map (Pass60 · ROI · Today Mission · D-Day)
 
 ## 7) Current Folder Structure
 
@@ -210,8 +258,22 @@ AI Exam Learning Platform v2/
 │   ├── exam-goal/
 │   ├── solution-quality/
 │   ├── gemini-solver/
+│   ├── professor-explanation/
 │   ├── gemini-vision/
+│   ├── personal-textbook/
+│   ├── final-revision/
+│   ├── subject/
+│   ├── import-engine/
+│   ├── pattern-map/
 │   └── llm/
+├── subjects/
+│   ├── accounting/
+│   ├── economics/
+│   ├── civil/
+│   ├── realestate/
+│   └── law/
+├── source/
+│   └── past-exams/
 ├── data/
 ├── docs/
 ├── scripts/
@@ -235,6 +297,12 @@ AI Exam Learning Platform v2/
 | `scripts/test-gemini-solver.py` | PASS |
 | `scripts/test-gemini-vision.py` | PASS |
 | `scripts/test-gemini-explanation.py` | PASS |
+| `scripts/test-professor-explanation.py` | PASS |
+| `scripts/test-personal-textbook.py` | PASS |
+| `scripts/test-final-revision-book.py` | PASS |
+| `scripts/test-subject-adapter.py` | PASS |
+| `scripts/test-import-engine.py` | PASS |
+| `scripts/test-pattern-map.py` | PASS |
 
 ## 9) Project Status
 
@@ -260,6 +328,10 @@ AI Exam Learning Platform v2/
 - **Sprint 17A**: Gemini Native Problem Solver (Problem First · Cache · 2-Pass · Missing Recovery)
 - **Sprint 17B**: Gemini Vision OCR Recovery (Vision Architecture · OCR Quality Engine · Vision Cache · Hybrid OCR)
 - **Sprint 17C**: Human-Level AI Explanation (Thinking Order · Calculation · Why Others Wrong · Memory Hack · Exam Tip)
+- **Sprint 18A**: Personal AI Textbook · AI Final Revision Book
+- **Sprint 19A**: Subject Adapter Layer (Multi Subject Platform)
+- **Sprint 19B**: Universal Import Engine (Multi Subject PDF Import)
+- **Sprint 19C**: Pattern Intelligence Map + Pass60 + ROI Engine
 - **Sprint 15**: Production Ready
 
 ## Vision Architecture (Sprint-17B)
@@ -295,6 +367,48 @@ Accordion: 문제 접근 순서 → 단계별 계산 → 정답 이유 → 오�
 - Prompt Version `17C.1` — 변경 시에만 Cache Miss
 - Pattern은 참고용만, 문제 숫자로만 계산
 - Reviewer는 Markdown으로만 수정 후 Override 저장
+
+## Professor-Level Explanation (Sprint-17D)
+
+Gemini를 “문제 풀이 생성기”가 아니라 **감정평가사 시험 전문 강사**로 운용한다.
+
+```text
+Question → OCR/Resolved → Gemini 문제 분석 → 개념 탐색 → 풀이
+```
+
+- Prompt Version `17D.1` (`js/professor-explanation/`)
+- Output: 문제 이해 · 핵심 개념 · 풀이 전략 · 실제 풀이 · 계산 · 보기 분석 · 공식 · 30초 암기 · 시험장 전략 · AI Tutor
+- Quality Reviewer: 100점 기준, **90 이상 승인** / 70–89 부분 재생성 / 70 미만 전체 재생성
+- **Manual Trigger만** 허용 (`AI 강사 해설 생성` 버튼) — 자동 Cache 대량 생성 금지
+- Cache Key: `questionId + overrideVersion + geminiModel + professorPromptVersion`
+- Personal Textbook: Question별 Professor Explanation 전체 저장
+- Final Revision: 핵심 개념 · 실수 포인트 · 암기 · 시험장 Tip 추출
+- Phase 1 평가 세트: `data/professor-evaluation-test.json` (대표 10문)
+- 테스트: `python scripts/test-professor-explanation.py`
+
+DB(Question/Pattern/Statistics)·Learning/Recommendation/Mastery·Override·Vision 계산식은 변경하지 않는다.
+
+## Personal AI Textbook (Sprint-18A)
+
+학생 제출 → Result → AI Explanation 이후 **자동**으로 개인 해설집에 저장한다.
+
+```text
+Student Solve → Result → AI Explanation → Personal AI Textbook → Learning Engine
+```
+
+- Pattern 3문제 이상 → AI Summary 자동 생성 (Version History 유지, 삭제 금지)
+- Bookmark ★ · Favorite Formula · Weak Collection · Search/Filter
+- Export: PDF / Markdown / HTML
+- UI: `textbook.html` (Pattern Tree · 해설 · 메모)
+
+## AI Final Revision Book (Sprint-18A)
+
+시험 직전 자동/수동으로 최종 정리집을 생성한다. Gemini에는 **요약 데이터만** 전달한다 (전체 Textbook 금지, 출제 예측 금지).
+
+- 자동: D-30 / D-14 / D-7 / D-3 / D-1
+- ①~⑩ 섹션 · Exam Day Sheet · Memory Sheet · Quick Review
+- Formula Ranking = 사용빈도 × 오답률 × 최근학습
+- Weak Pattern Ranking = 오답 · Mastery · Confidence · Review Delay
 
 ## Technology Stack
 

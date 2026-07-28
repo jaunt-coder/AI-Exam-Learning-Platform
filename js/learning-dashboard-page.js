@@ -54,9 +54,163 @@ import {
   renderDashboardQualityCard,
 } from './solution-quality/solution-quality-engine.js';
 import { getGeminiDashboardStats } from './gemini-solver/gemini-orchestrator.js';
+import { getProfessorDashboardStats } from './professor-explanation/professor-engine.js';
 import { getVisionDashboardStats, prewarmVisionCache } from './gemini-vision/vision-recovery.js';
+import { getTextbookDashboardCard } from './personal-textbook/textbook-engine.js';
+import {
+  getFinalBookDashboardCard,
+  maybeAutoCreateFinalBook,
+} from './final-revision/final-book-engine.js';
+import {
+  ensureBuiltinSubjectsRegistered,
+  getCurrentSubjectId,
+  switchSubject,
+  SUBJECT_LABELS,
+} from './subject/subject-adapter.js';
+import { getImportDashboardCard } from './import-engine/import-engine.js';
+import { updateImportProgress } from './import-engine/import-storage.js';
+import {
+  buildPatternIntelligence,
+  getPass60DashboardCard,
+  getRoiDashboardCard,
+} from './pattern-map/pattern-map-engine.js';
 
 const INTEGRITY_REPORT_URL = 'data/question-integrity-report.json';
+
+function syncSubjectSwitchUI() {
+  const nav = document.getElementById('subject-switch');
+  if (!nav) return;
+  const current = getCurrentSubjectId();
+  nav.querySelectorAll('[data-subject]').forEach((btn) => {
+    const id = btn.getAttribute('data-subject');
+    const pressed = id === current;
+    btn.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+    btn.classList.toggle('is-active', pressed);
+  });
+}
+
+function mountSubjectSwitch(onChanged) {
+  ensureBuiltinSubjectsRegistered();
+  const nav = document.getElementById('subject-switch');
+  if (!nav) return;
+  syncSubjectSwitchUI();
+  nav.addEventListener('click', async (ev) => {
+    const btn = ev.target.closest('[data-subject]');
+    if (!btn) return;
+    const id = btn.getAttribute('data-subject');
+    if (!id || id === getCurrentSubjectId()) return;
+    const result = await switchSubject(id);
+    if (!result.ok) return;
+    syncSubjectSwitchUI();
+    const status = document.getElementById('dashboard-status');
+    if (status) {
+      status.textContent = `과목 전환: ${SUBJECT_LABELS[id] || id}`;
+    }
+    if (typeof onChanged === 'function') onChanged(result);
+  });
+}
+
+function renderPersonalTextbookCard(card = {}) {
+  const rows = [
+    ['총 페이지', card.pageCount ?? 0],
+    ['저장 문제', card.savedQuestions ?? 0],
+    ['즐겨찾기', card.bookmarks ?? 0],
+    ['AI Summary', card.aiSummary ?? 0],
+    ['Weak Pattern', card.weakPattern ?? '—'],
+    ['최근 업데이트', card.lastUpdated ?? '—'],
+  ];
+  return `
+    <div class="ld-textbook-stats" data-personal-textbook="18A">
+      <ul class="ld-stat-list">
+        ${rows.map(([k, v]) => `<li><span>${k}</span><strong>${v}</strong></li>`).join('')}
+      </ul>
+      <p class="ld-card-desc"><a href="textbook.html">AI 해설집 열기</a></p>
+    </div>`;
+}
+
+function renderFinalRevisionCard(card = {}) {
+  const rows = [
+    ['생성일', card.createdAt ?? '—'],
+    ['페이지', card.pageCount ?? 0],
+    ['Weak Pattern', card.weakPattern ?? '—'],
+    ['Weak Formula', card.weakFormula ?? '—'],
+    ['마지막 업데이트', card.lastUpdated ?? '—'],
+  ];
+  return `
+    <div class="ld-final-stats" data-final-revision="18A">
+      <ul class="ld-stat-list">
+        ${rows.map(([k, v]) => `<li><span>${k}</span><strong>${v}</strong></li>`).join('')}
+      </ul>
+      <p class="ld-card-desc"><a href="textbook.html#fb-heading">Final Revision Book</a></p>
+    </div>`;
+}
+
+function renderImportProgressCard(card = {}) {
+  const rows = [
+    ['총 PDF', card.totalPdf ?? 0],
+    ['완료', card.completed ?? 0],
+    ['실패', card.failed ?? 0],
+    ['OCR Quality', card.ocrQuality ?? 0],
+    ['Question Count', card.questionCount ?? 0],
+    ['Subject Count', card.subjectCount ?? 0],
+  ];
+  return `
+    <div class="ld-import-stats" data-import-progress="19B">
+      <ul class="ld-stat-list">
+        ${rows.map(([k, v]) => `<li><span>${k}</span><strong>${v}</strong></li>`).join('')}
+      </ul>
+      <p class="ld-card-desc">Universal Import Engine · subjects/*/question-db.json (candidate)</p>
+    </div>`;
+}
+
+function renderPass60Card(card = {}) {
+  const rows = [
+    ['전체 Pattern', card.totalPatterns ?? 0],
+    ['합격 핵심', card.corePatterns ?? 0],
+    ['현재 Master', card.masteredCore ?? 0],
+    ['남은 Pattern', card.remainingPatterns ?? 0],
+    ['예상 점수', card.expectedScore ?? 0],
+  ];
+  return `
+    <div class="ld-pass60-stats" data-pass60="19C">
+      <ul class="ld-stat-list">
+        ${rows.map(([k, v]) => `<li><span>${k}</span><strong>${v}</strong></li>`).join('')}
+      </ul>
+      <p class="ld-card-desc">${card.advice || ''}</p>
+      <p class="ld-card-desc"><a href="pattern-intelligence.html">Pattern Intelligence</a></p>
+    </div>`;
+}
+
+function renderRoiGaugeCard(card = {}) {
+  const rows = [
+    ['TOP Pattern', card.topPattern ?? '—'],
+    ['ROI', card.topRoi ?? 0],
+    ['Study Time', `${card.studyTime ?? 0}분`],
+    ['Expected Gain', `+${card.expectedGain ?? 0}`],
+  ];
+  return `
+    <div class="ld-roi-stats" data-roi-gauge="19C">
+      <ul class="ld-stat-list">
+        ${rows.map(([k, v]) => `<li><span>${k}</span><strong>${v}</strong></li>`).join('')}
+      </ul>
+    </div>`;
+}
+
+function renderExpectedScoreCard(card = {}) {
+  return `
+    <div class="ld-expected-score" data-expected-score="19C">
+      <p class="ld-metric-xl"><strong>${card.expectedScore ?? 0}</strong><span>점</span></p>
+      <p class="ld-card-desc">Pass60 예상 점수</p>
+    </div>`;
+}
+
+function renderRemainingPatternCard(card = {}) {
+  return `
+    <div class="ld-remaining-pattern" data-remaining-pattern="19C">
+      <p class="ld-metric-xl"><strong>${card.remainingPatterns ?? 0}</strong><span>개</span></p>
+      <p class="ld-card-desc">먼저 끝내야 할 Pattern</p>
+    </div>`;
+}
 
 function renderGeminiSolverCard(stats = {}) {
   const rows = [
@@ -82,6 +236,44 @@ function renderGeminiSolverCard(stats = {}) {
           .join('')}
       </ul>
       <p class="ld-card-desc">Human-Level · model ${escapeHtml(stats.modelVersion || '—')} · prompt ${escapeHtml(stats.promptVersion || '—')}</p>
+    </div>`;
+}
+
+function renderProfessorQualityCard(stats = {}) {
+  const low = (stats.lowQualityTop10 || [])
+    .slice(0, 10)
+    .map(
+      (r) =>
+        `<li><code>${escapeHtml(r.questionId)}</code> <strong>${escapeHtml(r.score ?? '—')}</strong></li>`,
+    )
+    .join('');
+  const regen = (stats.topRegenerated || [])
+    .slice(0, 10)
+    .map(
+      (r) =>
+        `<li><code>${escapeHtml(r.questionId)}</code> <strong>×${escapeHtml(r.regenCount ?? 0)}</strong></li>`,
+    )
+    .join('');
+  return `
+    <div class="ld-professor-stats" data-professor-dashboard="17D">
+      <ul class="ld-stat-list">
+        <li><span>평균 Quality Score</span><strong>${escapeHtml(stats.averageQuality ?? 0)}</strong></li>
+        <li><span>Cache Hit</span><strong>${escapeHtml(stats.cacheHit ?? 0)}</strong></li>
+        <li><span>Cache Miss</span><strong>${escapeHtml(stats.cacheMiss ?? 0)}</strong></li>
+        <li><span>생성 횟수</span><strong>${escapeHtml(stats.generations ?? 0)}</strong></li>
+        <li><span>재생성 횟수</span><strong>${escapeHtml(stats.regenerations ?? 0)}</strong></li>
+      </ul>
+      <div class="ld-prof-cols">
+        <div>
+          <p class="ld-card-desc">낮은 품질 TOP10</p>
+          <ul class="ld-stat-list">${low || '<li>—</li>'}</ul>
+        </div>
+        <div>
+          <p class="ld-card-desc">가장 많이 재생성된 문제</p>
+          <ul class="ld-stat-list">${regen || '<li>—</li>'}</ul>
+        </div>
+      </div>
+      <p class="ld-card-desc">Professor · model ${escapeHtml(stats.modelVersion || '—')} · prompt ${escapeHtml(stats.promptVersion || '—')}</p>
     </div>`;
 }
 
@@ -546,9 +738,41 @@ function renderStudentWidgets(view) {
         const stats = view.geminiSolver || getGeminiDashboardStats();
         node.innerHTML = renderGeminiSolverCard(stats);
       },
+      professorQuality: (node) => {
+        const stats = view.professorQuality || getProfessorDashboardStats();
+        node.innerHTML = renderProfessorQualityCard(stats);
+      },
       visionOcr: (node) => {
         const stats = view.visionOcr || getVisionDashboardStats();
         node.innerHTML = renderVisionOcrCard(stats);
+      },
+      personalTextbook: (node) => {
+        try {
+          maybeAutoCreateFinalBook();
+        } catch (_e) {
+          /* non-critical */
+        }
+        node.innerHTML = renderPersonalTextbookCard(getTextbookDashboardCard());
+      },
+      finalRevisionBook: (node) => {
+        node.innerHTML = renderFinalRevisionCard(getFinalBookDashboardCard());
+      },
+      importProgress: (node) => {
+        node.innerHTML = renderImportProgressCard(getImportDashboardCard());
+      },
+      pass60: (node) => {
+        node.innerHTML = renderPass60Card(getPass60DashboardCard());
+      },
+      roiGauge: (node) => {
+        node.innerHTML = renderRoiGaugeCard(getRoiDashboardCard());
+      },
+      expectedScore: (node) => {
+        const p = getPass60DashboardCard();
+        node.innerHTML = renderExpectedScoreCard(p);
+      },
+      remainingPattern: (node) => {
+        const p = getPass60DashboardCard();
+        node.innerHTML = renderRemainingPatternCard(p);
       },
       examDailyPlan: (node) => renderDailyPlanCard(node, strategy?.dailyPlan),
       examMasteryMap: (node) => renderMasteryMap(node, strategy?.masteryMap),
@@ -576,10 +800,55 @@ function renderStudentWidgets(view) {
 
 async function main() {
   applyTheme();
+  mountSubjectSwitch(async () => {
+    try {
+      await buildPatternIntelligence({ subjectId: getCurrentSubjectId(), availableMinutes: 180 });
+    } catch (_e) { /* ignore */ }
+    const tb = el('widget-personal-textbook');
+    if (tb) tb.innerHTML = renderPersonalTextbookCard(getTextbookDashboardCard());
+    const fb = el('widget-final-revision');
+    if (fb) fb.innerHTML = renderFinalRevisionCard(getFinalBookDashboardCard());
+    const p60 = el('widget-pass60');
+    if (p60) p60.innerHTML = renderPass60Card(getPass60DashboardCard());
+    const roi = el('widget-roi-gauge');
+    if (roi) roi.innerHTML = renderRoiGaugeCard(getRoiDashboardCard());
+    const exp = el('widget-expected-score');
+    if (exp) exp.innerHTML = renderExpectedScoreCard(getPass60DashboardCard());
+    const rem = el('widget-remaining-pattern');
+    if (rem) rem.innerHTML = renderRemainingPatternCard(getPass60DashboardCard());
+    const meta = el('dashboard-meta');
+    if (meta) {
+      meta.textContent = `Sprint-19C · Subject ${getCurrentSubjectId()} · ROI / Pass60`;
+    }
+  });
   const status = el('dashboard-status');
   const startedAt = performance.now();
   try {
     showSkeletons();
+    try {
+      const reportRes = await fetch('subjects/import-report.json', { cache: 'no-store' });
+      if (reportRes.ok) {
+        const report = await reportRes.json();
+        updateImportProgress({
+          totalPdf: report.totalPdf ?? 0,
+          completed: report.completed ?? 0,
+          failed: report.failed ?? 0,
+          ocrQualityAvg: report.ocrQualityAvg ?? 0,
+          questionCount: report.questionCount ?? 0,
+          subjectCount: report.subjectCount ?? 0,
+        });
+      }
+    } catch (_imp) {
+      /* import report optional */
+    }
+    try {
+      await buildPatternIntelligence({
+        subjectId: getCurrentSubjectId(),
+        availableMinutes: 180,
+      });
+    } catch (_pi) {
+      /* Pattern Intelligence optional on dashboard */
+    }
     const { ok, dashboard } = loadDashboard();
     if (!ok || !dashboard) {
       if (status) status.textContent = 'Dashboard를 불러오지 못했습니다.';

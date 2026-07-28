@@ -35,8 +35,20 @@ export const WIDGET_IDS = Object.freeze({
   solutionQuality: 'widget-solution-quality',
   /* Sprint-17A Gemini Native Problem Solver */
   geminiSolver: 'widget-gemini-solver',
+  /* Sprint-17D Professor Explanation Quality */
+  professorQuality: 'widget-professor-quality',
   /* Sprint-17B Gemini Vision OCR Recovery */
   visionOcr: 'widget-vision-ocr',
+  /* Sprint-18A Personal AI Textbook / Final Revision */
+  personalTextbook: 'widget-personal-textbook',
+  finalRevisionBook: 'widget-final-revision',
+  /* Sprint-19B Universal Import Engine */
+  importProgress: 'widget-import-progress',
+  /* Sprint-19C Pattern Intelligence / Pass60 / ROI */
+  pass60: 'widget-pass60',
+  roiGauge: 'widget-roi-gauge',
+  expectedScore: 'widget-expected-score',
+  remainingPattern: 'widget-remaining-pattern',
 });
 
 export function showSkeletons(root = document) {

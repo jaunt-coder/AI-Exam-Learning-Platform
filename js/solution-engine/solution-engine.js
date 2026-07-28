@@ -36,12 +36,21 @@ import {
   mergeGeminiIntoPack,
   applyGeminiToSmartPack,
 } from '../gemini-solver/gemini-orchestrator.js';
+import {
+  generateProfessorExplanation,
+  mergeProfessorIntoPack,
+  applyProfessorToSmartPack,
+  PROFESSOR_ENGINE_VERSION,
+} from '../professor-explanation/professor-engine.js';
+import { updateTextbookWithGemini } from '../personal-textbook/textbook-engine.js';
 
 export const SOLUTION_ENGINE_VERSION = '15A+';
 /** Sprint-15B Result layer (Smart Tutor) — additive, does not change pack formulas */
 export const SMART_RESULT_VERSION = '15B';
 /** Sprint-17A/17C Problem First Gemini layer */
 export const GEMINI_RESULT_VERSION = '17C';
+/** Sprint-17D Professor Explanation (manual trigger) */
+export const PROFESSOR_RESULT_VERSION = PROFESSOR_ENGINE_VERSION;
 
 /**
  * Lazy-generate full tutor pack for Result screen.
@@ -460,19 +469,40 @@ export function mountSolutionAccordion(host, pack, options = {}) {
 }
 
 /**
- * Skeleton while Gemini Problem First pipeline runs (Lazy Loading).
+ * Skeleton while Gemini / Professor pipeline runs (Lazy Loading).
  */
 export function renderGeminiSkeleton() {
   return `
-    <div class="se-root st-root gemini-skel" data-gemini-solver="${GEMINI_RESULT_VERSION}" aria-busy="true">
+    <div class="se-root st-root gemini-skel" data-gemini-solver="${GEMINI_RESULT_VERSION}" data-professor-engine="${PROFESSOR_RESULT_VERSION}" aria-busy="true">
       <div class="se-toolbar">
-        <p class="edu-kicker">Gemini Native Problem Solver · 생성 중</p>
+        <p class="edu-kicker">AI 전문 강사 해설 · 생성 중</p>
       </div>
       <div class="se-acc__body">
-        <p class="ll-hint">문제를 직접 읽고 계산하는 AI 풀이를 준비합니다…</p>
+        <p class="ll-hint">문제를 직접 읽고 사고 과정을 가르치는 강사 해설을 준비합니다…</p>
         <div class="gemini-skel__bars" aria-hidden="true">
           <span></span><span></span><span></span>
         </div>
+      </div>
+    </div>`;
+}
+
+/**
+ * Cost-protected gate — Manual Trigger only (Sprint-17D).
+ * Auto cache generation is forbidden until Quality 승인 후.
+ */
+export function renderProfessorManualGate(pack = {}) {
+  const qid = pack.questionId || pack.result?.questionId || '';
+  return `
+    <div class="se-root st-root professor-gate" data-professor-engine="${PROFESSOR_RESULT_VERSION}" data-manual-trigger="1">
+      <div class="se-toolbar">
+        <p class="edu-kicker">Professor-Level AI 강사 · Manual Trigger</p>
+      </div>
+      <div class="se-acc__body">
+        <p class="ll-hint">API 비용 보호를 위해 해설은 자동 생성되지 않습니다. 버튼을 누르면 이 문제만 강사 해설을 생성합니다.</p>
+        <p class="ll-hint">문제 ID: <code>${String(qid).replace(/</g, '')}</code></p>
+        <button type="button" class="button button--primary" data-professor-generate>
+          AI 강사 해설 생성
+        </button>
       </div>
     </div>`;
 }
@@ -493,9 +523,13 @@ function mountPromoteOptions(pack, options) {
  * Lazy entry used by Result screen (requestAnimationFrame friendly).
  * Sprint-15B: mounts Smart Tutor Learning Loop Result (keeps 15A+ pack generation).
  * Sprint-17A: Gemini Problem First fills Accordion content; Learning Engine keeps reco.
+ * Sprint-17D: Default = Manual Trigger only (no auto Gemini/Professor cache generation).
+ *   options.manualProfessor === false → legacy auto Gemini (17C)
+ *   options.autoProfessor === true → run Professor immediately (approved phase only)
  */
 export function lazyGenerateAndMount(host, input, options = {}) {
   const useGemini = options.useGemini !== false;
+  const manualProfessor = options.manualProfessor !== false && options.autoProfessor !== true;
 
   const runLegacy = () => {
     const pack = generateSolutionPack(input);
@@ -504,29 +538,85 @@ export function lazyGenerateAndMount(host, input, options = {}) {
     return smart;
   };
 
-  const runGeminiPipeline = async () => {
+  const runProfessorPipeline = async (force = false) => {
     if (host) {
       host.hidden = false;
       host.innerHTML = renderGeminiSkeleton();
     }
     const pack = generateSolutionPack(input);
-    let gemini = null;
+    let professor = null;
     try {
-      gemini = await solveWithGemini({
+      professor = await generateProfessorExplanation({
         question: input.question,
         grade: input.grade,
         pattern: input.pattern,
-        force: Boolean(input.force),
+        force: Boolean(force || input.force),
+        saveCache: true,
       });
     } catch (err) {
-      console.warn('[gemini-solver] pipeline failed — legacy pack used', err);
+      console.warn('[professor-explanation] pipeline failed — trying Gemini 17C', err);
+      try {
+        professor = await solveWithGemini({
+          question: input.question,
+          grade: input.grade,
+          pattern: input.pattern,
+          force: Boolean(force || input.force),
+        });
+      } catch (err2) {
+        console.warn('[gemini-solver] fallback failed', err2);
+      }
     }
-    const merged = gemini ? mergeGeminiIntoPack(pack, gemini) : pack;
-    let smart = enrichWithSmartTutor(merged, input);
-    if (gemini) smart = applyGeminiToSmartPack(smart, gemini);
+
+    let merged = pack;
+    let smart = enrichWithSmartTutor(pack, input);
+    if (professor?.professorLevel) {
+      merged = mergeProfessorIntoPack(pack, professor);
+      smart = enrichWithSmartTutor(merged, input);
+      smart = applyProfessorToSmartPack(smart, professor);
+    } else if (professor) {
+      merged = mergeGeminiIntoPack(pack, professor);
+      smart = enrichWithSmartTutor(merged, input);
+      smart = applyGeminiToSmartPack(smart, professor);
+    }
+
+    if (professor) {
+      try {
+        smart.personalTextbook = updateTextbookWithGemini({
+          question: input.question,
+          pattern: input.pattern,
+          grade: input.grade,
+          pack: smart,
+          gemini: professor,
+        });
+      } catch (_err) {
+        /* non-critical */
+      }
+    }
     mountSmartTutorResult(host, smart, mountPromoteOptions(merged, options));
     if (typeof options.onReady === 'function') options.onReady(smart);
     return smart;
+  };
+
+  const mountManualGate = () => {
+    const pack = generateSolutionPack(input);
+    const smart = enrichWithSmartTutor(pack, input);
+    if (host) {
+      host.hidden = false;
+      host.innerHTML = renderProfessorManualGate(smart);
+      const btn = host.querySelector('[data-professor-generate]');
+      btn?.addEventListener('click', () => {
+        runProfessorPipeline(true).catch((err) => {
+          console.warn('[professor-explanation] manual generate failed', err);
+          try {
+            runLegacy();
+          } catch (_e) {
+            /* ignore */
+          }
+        });
+      });
+    }
+    if (typeof options.onReady === 'function') options.onReady({ ...smart, awaitingProfessor: true });
+    return { deferred: true, gemini: false, professor: 'manual', pack: smart };
   };
 
   if (!useGemini) {
@@ -540,11 +630,20 @@ export function lazyGenerateAndMount(host, input, options = {}) {
     return runLegacy();
   }
 
-  /* Background Generation — do not block Learning Engine path */
-  const pending = runGeminiPipeline();
+  /* Sprint-17D cost protection — Manual Trigger gate */
+  if (manualProfessor) {
+    if (typeof requestAnimationFrame === 'function' && options.defer !== false) {
+      requestAnimationFrame(() => mountManualGate());
+      return { deferred: true, professor: 'manual' };
+    }
+    return mountManualGate();
+  }
+
+  /* Approved auto path */
+  const pending = runProfessorPipeline(false);
   if (typeof options.onReady !== 'function') {
     pending.catch((err) => {
-      console.warn('[gemini-solver] background error', err);
+      console.warn('[professor-explanation] background error', err);
       try {
         runLegacy();
       } catch (_e) {
@@ -552,13 +651,14 @@ export function lazyGenerateAndMount(host, input, options = {}) {
       }
     });
   }
-  return { deferred: true, gemini: true, pending };
+  return { deferred: true, gemini: true, professor: true, pending };
 }
 
 export default {
   SOLUTION_ENGINE_VERSION,
   SMART_RESULT_VERSION,
   GEMINI_RESULT_VERSION,
+  PROFESSOR_RESULT_VERSION,
   generateSolutionPack,
   requestPromoteToOfficial,
   getDashboardMistakeData,
@@ -566,4 +666,5 @@ export default {
   mountSolutionAccordion,
   lazyGenerateAndMount,
   renderGeminiSkeleton,
+  renderProfessorManualGate,
 };

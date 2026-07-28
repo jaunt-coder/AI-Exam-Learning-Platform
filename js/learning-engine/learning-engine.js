@@ -30,11 +30,12 @@ import { getPatternMastery } from '../mastery-service.js';
 /**
  * Called after student submits an answer.
  * Updates mastery, review cycle, weakness, recommendations.
+ * Learning Engine 계산식은 변경하지 않는다. subjectId는 전달만 한다 (Sprint-19A).
  * @param {object} params
  * @param {object[]} [allQuestions] — for recommendation rebuild
  */
 export function onQuestionAnswered(params, allQuestions = []) {
-  const { questionId, patternId, chapterId, correct, durationMs } = params;
+  const { questionId, patternId, chapterId, correct, durationMs, subjectId } = params;
 
   const mastery = recordQuestionAttempt({
     questionId, patternId, chapterId, correct, durationMs,
@@ -64,6 +65,7 @@ export function onQuestionAnswered(params, allQuestions = []) {
     reviewEntry,
     weakness,
     recommendations: recommendations?.summary || null,
+    subjectId: subjectId || null,
   };
 }
 

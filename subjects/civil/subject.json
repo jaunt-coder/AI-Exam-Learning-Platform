@@ -1,0 +1,19 @@
+{
+  "id": "civil",
+  "name": "민법",
+  "shortName": "민법",
+  "examId": "APPRAISER",
+  "order": 3,
+  "enabled": true,
+  "status": "skeleton",
+  "category": "general",
+  "promptRole": "당신은 감정평가사 민법 강사입니다.",
+  "features": [],
+  "requiredContents": [],
+  "paths": {
+    "formulaDb": "formula-db.json",
+    "patternConfig": "pattern-config.json",
+    "prompt": "prompt.md",
+    "memoryConfig": "memory-config.json"
+  }
+}

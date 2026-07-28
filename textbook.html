@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal AI Textbook — 나만의 AI 해설집 · Final Revision Book">
+  <title>나만의 AI 해설집 | AI Exam Learning Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/personal-textbook.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <div>
+        <h1 class="site-title">
+          <a href="index.html" class="site-title-link">AI Exam Learning Platform</a>
+        </h1>
+        <p class="site-subtitle">Sprint-18A — Personal AI Textbook · Final Revision Book</p>
+      </div>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a href="index.html" class="button button--ghost">홈</a>
+        <a href="question.html" class="button button--ghost">문제 풀이</a>
+        <a href="textbook.html" class="button button--ghost" aria-current="page">AI 해설집</a>
+        <a href="dashboard.html" class="button button--ghost">Dashboard</a>
+        <a href="settings.html" class="button button--ghost">설정</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main tb-main" role="main">
+    <div class="container">
+      <header class="tb-header">
+        <h2 id="tb-heading">나만의 AI 해설집</h2>
+        <p class="tb-desc">문제를 풀수록 자동으로 성장하는 개인 AI 교재입니다. (오답노트와 다릅니다)</p>
+        <div class="tb-toolbar" role="toolbar" aria-label="해설집 도구">
+          <label class="tb-search">
+            <span class="visually-hidden">검색</span>
+            <input type="search" id="tb-query" placeholder="Pattern · Keyword · Formula · Exam Tip" autocomplete="off">
+          </label>
+          <select id="tb-filter" aria-label="필터">
+            <option value="all">전체</option>
+            <option value="correct">Correct</option>
+            <option value="wrong">Wrong</option>
+            <option value="review">Review</option>
+            <option value="favorite">Favorite</option>
+            <option value="weak">Weak</option>
+            <option value="recent">Recent</option>
+          </select>
+          <button type="button" class="button button--ghost button--sm" id="tb-export-md">Markdown</button>
+          <button type="button" class="button button--ghost button--sm" id="tb-export-html">HTML</button>
+          <button type="button" class="button button--ghost button--sm" id="tb-export-pdf">PDF</button>
+        </div>
+        <p class="tb-status" id="tb-status" aria-live="polite"></p>
+      </header>
+
+      <div class="tb-layout" aria-labelledby="tb-heading">
+        <aside class="tb-pane tb-pane--left" aria-label="Pattern Tree">
+          <h3>Pattern Tree</h3>
+          <nav id="tb-tree" class="tb-tree"></nav>
+        </aside>
+
+        <section class="tb-pane tb-pane--center" aria-label="문제 · AI 해설">
+          <div id="tb-center" class="tb-center"></div>
+        </section>
+
+        <aside class="tb-pane tb-pane--right" aria-label="메모 · 즐겨찾기 · 태그">
+          <h3>메모 · ★ · 태그</h3>
+          <div id="tb-right" class="tb-right"></div>
+        </aside>
+      </div>
+
+      <section class="tb-final card" aria-labelledby="fb-heading">
+        <h3 id="fb-heading">시험 직전 AI 정리집</h3>
+        <p class="tb-desc">Personal AI Textbook 요약만으로 최종 정리집을 만듭니다. 출제 예측은 하지 않습니다.</p>
+        <div class="tb-final__actions">
+          <button type="button" class="button button--primary" id="fb-create">
+            시험 직전 AI 정리집 만들기
+          </button>
+          <button type="button" class="button button--ghost button--sm" id="fb-export-md">MD</button>
+          <button type="button" class="button button--ghost button--sm" id="fb-export-html">HTML</button>
+          <button type="button" class="button button--ghost button--sm" id="fb-export-pdf">PDF</button>
+        </div>
+        <div id="fb-panel" class="fb-panel" aria-live="polite"></div>
+        <div id="fb-quick" class="fb-quick-host" aria-label="Quick Review Mode"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>Sprint-18A Personal AI Textbook · Final Revision Book</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/personal-textbook-page.js"></script>
+</body>
+</html>

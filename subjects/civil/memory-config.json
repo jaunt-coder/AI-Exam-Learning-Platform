@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "v1",
+  "subjectId": "civil",
+  "sheetTitle": "30초 암기 Sheet",
+  "sheetSeconds": 30,
+  "templates": [
+    {
+      "id": "default",
+      "match": { "patternIds": ["*"] },
+      "messageTemplate": "{patternName}에서 「{label}」를 반복하고 있습니다."
+    }
+  ]
+}

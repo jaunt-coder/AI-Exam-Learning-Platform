@@ -1,0 +1,70 @@
+{
+  "sprint": "Sprint-19B",
+  "generatedAt": "2026-07-28T15:29:31.927761+00:00",
+  "yearFrom": 2018,
+  "yearTo": 2025,
+  "totalPdf": 24,
+  "completed": 16,
+  "failed": 0,
+  "ocrQualityAvg": 35,
+  "questionCount": 796,
+  "subjectCount": 5,
+  "subjects": {
+    "accounting": 160,
+    "economics": 160,
+    "civil": 156,
+    "realestate": 160,
+    "law": 160
+  },
+  "discovery": [
+    {
+      "year": 2018,
+      "exam_1": true,
+      "exam_2": true,
+      "answer": true
+    },
+    {
+      "year": 2019,
+      "exam_1": true,
+      "exam_2": true,
+      "answer": true
+    },
+    {
+      "year": 2020,
+      "exam_1": true,
+      "exam_2": true,
+      "answer": true
+    },
+    {
+      "year": 2021,
+      "exam_1": true,
+      "exam_2": true,
+      "answer": true
+    },
+    {
+      "year": 2022,
+      "exam_1": true,
+      "exam_2": true,
+      "answer": true
+    },
+    {
+      "year": 2023,
+      "exam_1": true,
+      "exam_2": true,
+      "answer": true
+    },
+    {
+      "year": 2024,
+      "exam_1": true,
+      "exam_2": true,
+      "answer": true
+    },
+    {
+      "year": 2025,
+      "exam_1": true,
+      "exam_2": true,
+      "answer": true
+    }
+  ],
+  "productDbWriteForbidden": true
+}

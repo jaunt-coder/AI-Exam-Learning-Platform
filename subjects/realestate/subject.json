@@ -1,0 +1,19 @@
+{
+  "id": "realestate",
+  "name": "부동산학",
+  "shortName": "부동산학",
+  "examId": "APPRAISER",
+  "order": 4,
+  "enabled": true,
+  "status": "skeleton",
+  "category": "general",
+  "promptRole": "당신은 감정평가사 부동산학 강사입니다.",
+  "features": [],
+  "requiredContents": [],
+  "paths": {
+    "formulaDb": "formula-db.json",
+    "patternConfig": "pattern-config.json",
+    "prompt": "prompt.md",
+    "memoryConfig": "memory-config.json"
+  }
+}

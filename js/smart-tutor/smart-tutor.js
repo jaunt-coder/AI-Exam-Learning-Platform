@@ -30,6 +30,12 @@ import {
   evaluateSolutionQuality,
   renderStudentQualityCard,
 } from '../solution-quality/solution-quality-engine.js';
+import {
+  autoSaveTextbookEntry,
+  isBookmarked,
+  toggleBookmark,
+} from '../personal-textbook/textbook-engine.js';
+import { maybeAutoCreateFinalBook } from '../final-revision/final-book-engine.js';
 
 export const SMART_TUTOR_VERSION = '15B';
 
@@ -357,6 +363,37 @@ export function enrichWithSmartTutor(pack, input = {}) {
     solutionQuality = null;
   }
 
+  /* Sprint-18A — Personal AI Textbook auto-save (additive) */
+  let personalTextbook = null;
+  try {
+    personalTextbook = autoSaveTextbookEntry({
+      question,
+      pattern,
+      grade,
+      pack: {
+        ...pack,
+        diagnosis: pack?.diagnosis,
+        calculation: pack?.calculation,
+        explanation: pack?.explanation,
+        tutor: pack?.tutor,
+        prescription: pack?.prescription,
+        formulas: pack?.formulas,
+        result: pack?.result,
+        geminiNative: pack?.geminiNative,
+        thinkingOrder: pack?.thinkingOrder,
+        whyOthersWrong: pack?.whyOthersWrong,
+        memoryHack: pack?.memoryHack,
+        examTipHuman: pack?.examTipHuman,
+        formulaHuman: pack?.formulaHuman,
+        geminiMeta: pack?.geminiMeta,
+        solutionQuality,
+      },
+    });
+    maybeAutoCreateFinalBook();
+  } catch (_err) {
+    personalTextbook = { ok: false };
+  }
+
   return {
     ...pack,
     engineVersion: SMART_TUTOR_VERSION,
@@ -368,6 +405,7 @@ export function enrichWithSmartTutor(pack, input = {}) {
     miniRetry,
     promotePipeline,
     learningLoop,
+    personalTextbook,
     examStrategy,
     examModeStrategy,
     solutionQuality,
@@ -605,16 +643,30 @@ export function renderSmartTutorResult(pack, options = {}) {
     )
     .join('');
 
+  const qid = pack.questionId || pack.result?.questionId || '';
+  const starred = qid ? isBookmarked(qid) : false;
+  const textbookActions = `
+      <div class="st-textbook-actions" data-personal-textbook="18A">
+        <a class="button button--primary button--sm" href="textbook.html${qid ? `?q=${encodeURIComponent(qid)}` : ''}" data-st-textbook-view>
+          AI 해설집 보기
+        </a>
+        <button type="button" class="button button--ghost button--sm" data-st-bookmark aria-pressed="${starred ? 'true' : 'false'}" title="즐겨찾기">
+          ${starred ? '★' : '☆'} 즐겨찾기
+        </button>
+        <p class="ll-hint">제출 시 AI 해설이 개인 해설집에 자동 저장됩니다.</p>
+      </div>`;
+
   const promoteBtn =
     options.showPromote !== false
       ? `<div class="se-promote st-promote">
+          ${textbookActions}
           <ol class="st-promote-pipeline">${pipelineHtml}</ol>
           <button type="button" class="button button--ghost button--sm" data-se-promote data-st-promote>
             Candidate 승격 요청
           </button>
           <p class="ll-hint">${esc(pipeline.message || '자동 승격 금지')}</p>
         </div>`
-      : '';
+      : `<div class="se-promote st-promote">${textbookActions}</div>`;
 
   const loopOk = pack.learningLoop?.ok
     ? `<ul class="st-loop-status">
@@ -628,9 +680,17 @@ export function renderSmartTutorResult(pack, options = {}) {
 
   const human = Boolean(
     pack.humanLevel
+    || pack.professorLevel
     || pack.geminiNative?.humanLevel
+    || pack.geminiNative?.professorLevel
     || (pack.thinkingOrder || []).length
     || (pack.geminiNative?.thinkingOrder || []).length,
+  );
+  const professor = Boolean(
+    pack.professorLevel
+    || pack.geminiNative?.professorLevel
+    || pack.professorExplanation
+    || pack.resultSource === 'professor-explanation',
   );
   const thinkingOrder =
     pack.thinkingOrder
@@ -662,6 +722,37 @@ export function renderSmartTutorResult(pack, options = {}) {
     || pack.geminiNative?.formula
     || pack.geminiNative?.payload?.formula
     || [];
+  const problemUnderstanding =
+    pack.problemUnderstanding
+    || pack.geminiNative?.problemUnderstanding
+    || pack.geminiNative?.payload?.problemUnderstanding
+    || '';
+  const coreConcept =
+    pack.coreConcept
+    || pack.geminiNative?.coreConcept
+    || pack.geminiNative?.payload?.coreConcept
+    || '';
+  const appliedTheory =
+    pack.appliedTheory
+    || pack.geminiNative?.appliedTheory
+    || pack.geminiNative?.payload?.appliedTheory
+    || '';
+  const solutionExplanation =
+    pack.solutionExplanation
+    || pack.geminiNative?.solution?.explanation
+    || pack.geminiNative?.payload?.solution?.explanation
+    || '';
+  const choiceAnalysis =
+    pack.choiceAnalysis
+    || pack.geminiNative?.choiceAnalysis
+    || pack.geminiNative?.payload?.choiceAnalysis
+    || [];
+  const tutorMessage =
+    pack.tutorMessage
+    || pack.geminiNative?.tutorMessage
+    || pack.geminiNative?.payload?.tutorMessage
+    || pack.tutor?.advice
+    || '';
 
   const listOl = (items) =>
     items?.length
@@ -672,7 +763,138 @@ export function renderSmartTutorResult(pack, options = {}) {
       ? `<ul class="st-human-list">${items.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>`
       : '<p class="ll-hint">—</p>';
 
-  const sections = human
+  const choiceHtml = choiceAnalysis.length
+    ? `<ul class="st-human-list st-choice-analysis">${choiceAnalysis
+        .map(
+          (c) =>
+            `<li><strong>${esc(c.choice)}</strong> ${
+              c.correct ? '<span class="is-ok">정답</span>' : '<span class="is-bad">오답</span>'
+            } — ${esc(c.reason || '')}</li>`,
+        )
+        .join('')}</ul>`
+    : listUl(whyOthersWrong);
+
+  const sections = professor
+    ? [
+        {
+          id: 'result',
+          open: true,
+          title: '① 결과',
+          body: `
+            <dl class="se-result-grid">
+              <div><dt>정답</dt><dd>${esc(r.correctAnswer)}</dd></div>
+              <div><dt>학생 답</dt><dd>${esc(r.selectedAnswer ?? '—')}</dd></div>
+              <div><dt>정오</dt><dd class="${r.isCorrect ? 'is-ok' : 'is-bad'}">${esc(r.outcome)}</dd></div>
+              <div><dt>Quality</dt><dd>${esc(pack.geminiMeta?.qualityScore ?? pack.geminiNative?.qualityScore ?? '—')}</dd></div>
+            </dl>`,
+        },
+        {
+          id: 'problem-understanding',
+          open: true,
+          title: '① 문제 이해',
+          body: problemUnderstanding
+            ? `<p class="se-summary">${esc(problemUnderstanding)}</p>`
+            : '<p class="ll-hint">—</p>',
+        },
+        {
+          id: 'core-concept',
+          open: true,
+          title: '② 핵심 개념',
+          body: `
+            <p class="se-summary"><strong>${esc(coreConcept || '—')}</strong></p>
+            ${appliedTheory ? `<p class="ll-hint">적용 이론: ${esc(appliedTheory)}</p>` : ''}`,
+        },
+        {
+          id: 'thinking-order',
+          open: true,
+          title: '③ 풀이 전략',
+          body: listOl(thinkingOrder),
+        },
+        {
+          id: 'solution-explanation',
+          open: true,
+          title: '④ 실제 풀이',
+          body: solutionExplanation
+            ? `<p class="se-summary">${esc(solutionExplanation)}</p>`
+            : listOl(whyAnswer),
+        },
+        {
+          id: 'calculation',
+          open: true,
+          title: '⑤ 계산 과정',
+          body: calc || listOl(pack.geminiNative?.payload?.calculation || pack.geminiNative?.solution?.calculation || []),
+        },
+        {
+          id: 'choice-analysis',
+          open: true,
+          title: '⑥ 보기 분석',
+          body: choiceHtml,
+        },
+        {
+          id: 'formula-card',
+          open: true,
+          title: '⑦ 공식',
+          body: formulaHuman.length
+            ? listUl(formulaHuman)
+            : renderFormulaCardHtml(pack.formulaCard, esc),
+        },
+        {
+          id: 'memory-hack',
+          open: true,
+          title: '⑧ 30초 암기',
+          body: memoryHack.length ? listUl(memoryHack) : thirtyHtml,
+        },
+        {
+          id: 'exam-tip',
+          open: true,
+          title: '⑨ 시험장 전략',
+          body: examTipHuman.length
+            ? listOl(examTipHuman)
+            : `
+            <div class="st-exam-tutor">
+              <ol class="st-exam-steps">${examSteps}</ol>
+            </div>`,
+        },
+        {
+          id: 'ai-tutor',
+          open: true,
+          title: '⑩ AI Tutor',
+          body: tutorMessage
+            ? `<div class="st-tutor-warn"><p class="st-tutor-warn__kicker">AI 전문 강사</p><p>${esc(tutorMessage)}</p></div>`
+            : '<p class="ll-hint">—</p>',
+        },
+        {
+          id: 'solution-quality',
+          open: false,
+          title: '완성도 · Quality Score',
+          body: pack.geminiNative?.quality
+            ? `<p class="se-summary">Quality ${esc(pack.geminiNative.quality.score ?? pack.geminiMeta?.qualityScore)} · Decision ${esc(pack.geminiNative.quality.decision || pack.geminiNative.qualityDecision || '—')} · Missing ${(pack.geminiNative.quality.missing || []).map(esc).join(', ') || '없음'}</p>`
+            : '<p class="ll-hint">—</p>',
+        },
+        {
+          id: 'mini-retry',
+          open: true,
+          title: '⑪ 같은 Pattern 미니문제',
+          body: `<div class="st-mini">${miniHtml}</div>`,
+        },
+        {
+          id: 'next',
+          open: true,
+          title: '⑫ 다음 추천 문제',
+          body: next
+            ? `<ul class="se-next-list">${next}</ul>`
+            : `${whyFallback || '<p class="ll-hint">추천 문제가 아직 없습니다.</p>'}`,
+        },
+        {
+          id: 'learning-done',
+          open: true,
+          title: '⑬ 학습 완료',
+          body: `
+            <p class="st-done-msg">Result 화면에서 학습 루프가 갱신되었습니다.</p>
+            ${loopOk}`,
+        },
+      ]
+    : human
     ? [
         {
           id: 'result',
@@ -904,10 +1126,12 @@ export function renderSmartTutorResult(pack, options = {}) {
     .join('');
 
   return `
-    <div class="se-root st-root" data-solution-engine="15A+" data-smart-tutor="${SMART_TUTOR_VERSION}" data-gemini-solver="${pack.geminiNative || pack.humanLevel ? '17C' : ''}" data-from-cache="${pack.fromCache ? '1' : '0'}" data-result-source="${esc(pack.resultSource || pack.geminiNative?.source || 'smart-tutor')}">
+    <div class="se-root st-root" data-solution-engine="15A+" data-smart-tutor="${SMART_TUTOR_VERSION}" data-gemini-solver="${pack.geminiNative || pack.humanLevel ? (pack.professorLevel || pack.geminiNative?.professorLevel ? '17D' : '17C') : ''}" data-professor-engine="${pack.professorLevel || pack.geminiNative?.professorLevel ? '17D' : ''}" data-from-cache="${pack.fromCache ? '1' : '0'}" data-result-source="${esc(pack.resultSource || pack.geminiNative?.source || 'smart-tutor')}">
       <div class="se-toolbar">
         <p class="edu-kicker">${
-          pack.geminiNative || pack.humanLevel
+          pack.professorLevel || pack.geminiNative?.professorLevel
+            ? `Professor-Level AI 강사${pack.geminiMeta?.cacheHit ? ' · Cache Hit' : ''} · ${esc(pack.geminiMeta?.professorPromptVersion || pack.geminiNative?.promptVersion || '17D.1')} · Q ${esc(pack.geminiMeta?.qualityScore ?? '—')}`
+            : pack.geminiNative || pack.humanLevel
             ? `Human-Level AI Explanation${pack.geminiMeta?.cacheHit ? ' · Cache Hit' : ''} · ${esc(pack.geminiMeta?.promptVersion || pack.geminiNative?.promptVersion || '17C')}`
             : 'AI Learning Loop · Smart Tutor'
         }</p>
@@ -961,6 +1185,15 @@ export function mountSmartTutorResult(host, pack, options = {}) {
           .join('');
       }
     }
+  });
+
+  root?.querySelector('[data-st-bookmark]')?.addEventListener('click', (ev) => {
+    const q = pack.questionId || pack.result?.questionId || '';
+    if (!q) return;
+    const res = toggleBookmark(q);
+    const btn = ev.currentTarget;
+    btn.setAttribute('aria-pressed', res.bookmarked ? 'true' : 'false');
+    btn.textContent = res.bookmarked ? '★ 즐겨찾기' : '☆ 즐겨찾기';
   });
 
   return root;

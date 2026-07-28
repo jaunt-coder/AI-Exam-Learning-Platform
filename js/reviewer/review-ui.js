@@ -49,6 +49,18 @@ import { MODEL_VERSION } from '../gemini-solver/problem-solver.js';
 import { PROMPT_VERSION } from '../gemini-solver/prompt-builder.js';
 import { normalizeGeminiPayload } from '../gemini-solver/response-parser.js';
 import {
+  generateProfessorExplanationSync,
+  approveProfessorToOverride,
+  professorPayloadToMarkdown,
+} from '../professor-explanation/professor-engine.js';
+import {
+  peekProfessorCache,
+  buildProfessorCacheKey,
+} from '../professor-explanation/professor-cache.js';
+import { PROFESSOR_PROMPT_VERSION } from '../professor-explanation/professor-prompt.js';
+import { reviewExplanationQuality } from '../professor-explanation/explanation-quality-reviewer.js';
+import { normalizeProfessorPayload } from '../professor-explanation/professor-normalize.js';
+import {
   recoverQuestionWithVision,
   approveVisionToOverride,
   scoreOcrQuality,
@@ -532,12 +544,14 @@ export function openReviewerPanel(options = {}) {
       return;
     }
     root.innerHTML = `${renderReviewerQualityPanel(report)}
-      <div class="rv-gemini-panel" data-gemini-reviewer="17C">
-        <h4>Human-Level AI Explanation</h4>
-        <p class="rv-empty">JSON이 아니라 Markdown으로 설명을 수정하세요. Approve 시 Override Layer에만 저장됩니다.</p>
-        <textarea id="rv-gemini-md" rows="14" class="rv-field" aria-label="Gemini Markdown"></textarea>
+      <div class="rv-gemini-panel" data-gemini-reviewer="17D" data-professor-reviewer="17D">
+        <h4>AI Explanation Quality · Professor</h4>
+        <p class="rv-empty">Quality Score / Missing Section / Regenerate. Markdown Override만 가능. 자동 승인 금지.</p>
+        <p class="ll-hint" data-professor-quality-score>—</p>
+        <textarea id="rv-gemini-md" rows="16" class="rv-field" aria-label="Professor Markdown"></textarea>
         <div class="rv-actions">
           <button type="button" class="button button--ghost" data-gemini-act="load">해설 불러오기</button>
+          <button type="button" class="button button--ghost" data-gemini-act="regen">Regenerate</button>
           <button type="button" class="button button--primary" data-gemini-act="approve">Markdown Approve → Override</button>
         </div>
         <p class="sq-status" data-gemini-status hidden></p>
@@ -557,6 +571,7 @@ export function openReviewerPanel(options = {}) {
     const statusEl = root.querySelector('[data-sq-status]');
     const geminiStatus = root.querySelector('[data-gemini-status]');
     const geminiTa = root.querySelector('#rv-gemini-md');
+    const qualityScoreEl = root.querySelector('[data-professor-quality-score]');
     const visionStatus = root.querySelector('[data-vision-status]');
     const visionTa = root.querySelector('#rv-vision-json');
     const ocrScoreEl = root.querySelector('[data-ocr-score]');
@@ -580,6 +595,18 @@ export function openReviewerPanel(options = {}) {
         /* ignore */
       }
       try {
+        const key = buildProfessorCacheKey(
+          qid,
+          resolveOverrideVersion(qid),
+          MODEL_VERSION,
+          PROFESSOR_PROMPT_VERSION,
+        );
+        const cached = peekProfessorCache(key);
+        if (cached?.payload) return cached.payload;
+      } catch (_err) {
+        /* ignore */
+      }
+      try {
         const key = buildGeminiCacheKey(
           qid,
           resolveOverrideVersion(qid),
@@ -593,14 +620,24 @@ export function openReviewerPanel(options = {}) {
       }
       try {
         const resolved = resolveQuestion(original);
-        const gemini = solveWithGeminiSync({
+        const professor = generateProfessorExplanationSync({
           question: resolved,
           grade: { result: 'wrong', selected: null },
           pattern: { patternId: resolved.patternId || original.patternId },
         });
-        return gemini?.payload || null;
+        return professor?.payload || null;
       } catch (_err) {
-        return null;
+        try {
+          const resolved = resolveQuestion(original);
+          const gemini = solveWithGeminiSync({
+            question: resolved,
+            grade: { result: 'wrong', selected: null },
+            pattern: { patternId: resolved.patternId || original.patternId },
+          });
+          return gemini?.payload || null;
+        } catch (_e2) {
+          return null;
+        }
       }
     }
 
@@ -612,38 +649,104 @@ export function openReviewerPanel(options = {}) {
       } catch (_err) {
         /* ignore */
       }
+      if (payload.professorLevel || payload.problemUnderstanding != null) {
+        return professorPayloadToMarkdown(normalizeProfessorPayload(payload));
+      }
       return payloadToMarkdown(normalizeGeminiPayload(payload));
+    }
+
+    function refreshQualityScore(payload) {
+      if (!qualityScoreEl) return;
+      if (!payload) {
+        qualityScoreEl.textContent = 'Quality Score —';
+        return;
+      }
+      try {
+        const q = reviewExplanationQuality(normalizeProfessorPayload(payload), {
+          questionText: original.question || original.originalQuestion || '',
+          tableHtml: original.tableHtml || original.table || '',
+          choices: original.choices || [],
+          correctAnswer: original.answer,
+        });
+        qualityScoreEl.textContent = `Quality Score ${q.score}/100 · ${q.decision} · Missing ${(q.missing || []).join(', ') || '없음'}`;
+      } catch (_err) {
+        qualityScoreEl.textContent = 'Quality Score —';
+      }
     }
 
     root.querySelector('[data-gemini-act="load"]')?.addEventListener('click', () => {
       const payload = loadGeminiPayload();
       if (geminiTa) geminiTa.value = toGeminiMarkdown(payload);
+      refreshQualityScore(payload);
       if (geminiStatus) {
         geminiStatus.hidden = false;
         geminiStatus.className = payload ? 'sq-status is-ok' : 'sq-status is-err';
         geminiStatus.textContent = payload
-          ? 'Markdown 해설을 불러왔습니다. 수정 후 Approve 하세요.'
-          : 'Gemini 결과를 찾지 못했습니다.';
+          ? 'Markdown 해설을 불러왔습니다. 수정 후 Approve 하세요. (자동 승인 금지)'
+          : 'Professor/Gemini 결과를 찾지 못했습니다.';
+      }
+    });
+
+    root.querySelector('[data-gemini-act="regen"]')?.addEventListener('click', () => {
+      try {
+        const resolved = resolveQuestion(original);
+        const professor = generateProfessorExplanationSync({
+          question: resolved,
+          grade: { result: 'wrong', selected: null },
+          pattern: { patternId: resolved.patternId || original.patternId },
+          force: true,
+        });
+        if (geminiTa) geminiTa.value = toGeminiMarkdown(professor?.payload);
+        refreshQualityScore(professor?.payload);
+        if (geminiStatus) {
+          geminiStatus.hidden = false;
+          geminiStatus.className = 'sq-status is-ok';
+          geminiStatus.textContent = `Regenerate 완료 · Score ${professor?.qualityScore ?? '—'} (Approve는 수동)`;
+        }
+      } catch (err) {
+        if (geminiStatus) {
+          geminiStatus.hidden = false;
+          geminiStatus.className = 'sq-status is-err';
+          geminiStatus.textContent = `Regenerate 실패: ${err?.message || err}`;
+        }
       }
     });
 
     root.querySelector('[data-gemini-act="approve"]')?.addEventListener('click', () => {
       const markdown = geminiTa?.value || '';
       const base = loadGeminiPayload() || {};
-      const res = approveGeminiToOverride(qid, base, {
+      const res = approveProfessorToOverride(qid, base, {
         reviewer: 'reviewer',
         markdown,
       });
+      if (!res.ok) {
+        const legacy = approveGeminiToOverride(qid, base, {
+          reviewer: 'reviewer',
+          markdown,
+        });
+        if (geminiStatus) {
+          geminiStatus.hidden = false;
+          geminiStatus.className = legacy.ok ? 'sq-status is-ok' : 'sq-status is-err';
+          geminiStatus.textContent = legacy.ok
+            ? 'Markdown Approve 완료 · Override Layer만 반영 (Question DB 미수정)'
+            : `Approve 실패: ${legacy.error || res.error || ''}`;
+        }
+        if (legacy.ok && typeof options.onApprove === 'function') {
+          options.onApprove(resolveQuestion(original));
+        } else if (legacy.ok && typeof options.onResolved === 'function') {
+          options.onResolved(resolveQuestion(original));
+        }
+        return;
+      }
       if (geminiStatus) {
         geminiStatus.hidden = false;
-        geminiStatus.className = res.ok ? 'sq-status is-ok' : 'sq-status is-err';
-        geminiStatus.textContent = res.ok
-          ? 'Markdown Approve 완료 · Override Layer만 반영 (Question DB 미수정)'
-          : `Approve 실패: ${res.error || ''}`;
+        geminiStatus.className = 'sq-status is-ok';
+        geminiStatus.textContent =
+          'Markdown Approve 완료 · Override Layer만 반영 (자동 승인 아님 · Question DB 미수정)';
       }
-      if (res.ok && typeof options.onApprove === 'function') {
+      if (typeof options.onApprove === 'function') {
         options.onApprove(resolveQuestion(original));
-      } else if (res.ok && typeof options.onResolved === 'function') {
+      } else if (typeof options.onResolved === 'function') {
         options.onResolved(resolveQuestion(original));
       }
     });

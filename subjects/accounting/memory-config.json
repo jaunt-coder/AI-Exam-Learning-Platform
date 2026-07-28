@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "v1",
+  "subjectId": "accounting",
+  "sheetTitle": "30초 암기 Sheet",
+  "sheetSeconds": 30,
+  "templates": [
+    {
+      "id": "fifo_avg_confuse",
+      "match": {
+        "patternIds": ["ACC_INV_006"],
+        "mistakeCodes": ["AVG", "FIFO", "METHOD"]
+      },
+      "message": "FIFO 평균단가와 자주 혼동합니다."
+    },
+    {
+      "id": "default",
+      "match": {
+        "patternIds": ["*"]
+      },
+      "messageTemplate": "{patternName}에서 「{label}」를 반복하고 있습니다."
+    }
+  ]
+}

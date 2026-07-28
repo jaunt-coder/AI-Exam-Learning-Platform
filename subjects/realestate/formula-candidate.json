@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "v1",
+  "subjectId": "realestate",
+  "generatedAt": "2026-07-28T15:29:31.927761+00:00",
+  "importVersion": "19B",
+  "status": "candidate",
+  "officialFormulaDbWriteForbidden": true,
+  "count": 1,
+  "formulas": [
+    {
+      "formulaCandidateId": "FC-realestate-1",
+      "subjectId": "realestate",
+      "name": "수익환원",
+      "formula": "가치 = 순영업이익 ÷ 환원율",
+      "questionIds": [
+        "REA-2018-Q90",
+        "REA-2018-Q92",
+        "REA-2018-Q93",
+        "REA-2018-Q94",
+        "REA-2018-Q95",
+        "REA-2018-Q112",
+        "REA-2018-Q120",
+        "REA-2020-Q85",
+        "REA-2020-Q86",
+        "REA-2020-Q87",
+        "REA-2020-Q90",
+        "REA-2020-Q93",
+        "REA-2020-Q97",
+        "REA-2020-Q107",
+        "REA-2020-Q108",
+        "REA-2020-Q111",
+        "REA-2024-Q91",
+        "REA-2024-Q94",
+        "REA-2024-Q96",
+        "REA-2024-Q98",
+        "REA-2024-Q101",
+        "REA-2024-Q111",
+        "REA-2024-Q113",
+        "REA-2024-Q114",
+        "REA-2024-Q116",
+        "REA-2024-Q118",
+        "REA-2025-Q96",
+        "REA-2025-Q97"
+      ],
+      "hitCount": 28,
+      "status": "candidate",
+      "officialFormulaDbWriteForbidden": true
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import {
   PATTERN_NAMES,
   PATTERN_TUTOR_PROFILES,
 } from '../ai-tutor-content/pattern-profiles.js';
+import { resolveMemoryMessage } from '../subject/subject-adapter.js';
 
 export const WEAK_MEMORY_THRESHOLD = 3;
 
@@ -18,11 +19,15 @@ function memoryKey(patternId, mistakeCode) {
 
 function defaultBannerMessage(patternId, mistakeCode, label) {
   const name = PATTERN_NAMES[patternId] || patternId || '이 Pattern';
-  const profile = PATTERN_TUTOR_PROFILES[patternId] || null;
+  const viaSubject = resolveMemoryMessage({
+    patternId,
+    mistakeCode,
+    label,
+    patternName: name,
+  });
+  if (viaSubject) return viaSubject;
 
-  if (patternId === 'ACC_INV_006' || /AVG|FIFO|METHOD/i.test(mistakeCode || '')) {
-    return 'FIFO 평균단가와 자주 혼동합니다.';
-  }
+  const profile = PATTERN_TUTOR_PROFILES[patternId] || null;
   if (profile?.frequentlyConfusedWith) {
     const tip = String(profile.frequentlyConfusedWith).split(/[.—]/)[0].trim();
     if (tip) return `${tip}와(과) 자주 혼동합니다.`;
