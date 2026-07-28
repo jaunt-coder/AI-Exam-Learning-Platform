@@ -1048,11 +1048,11 @@ function validateDatabasePayload(dbSet, data, options = {}) {
     /* Sprint-17A — Gemini Native Problem Solver (Problem First) */
     geminiSolverContract: {
       enabled: true,
-      schemaVersion: 'v1',
+      schemaVersion: '17C',
       connected: true,
-      sprint: 'Sprint-17A',
+      sprint: 'Sprint-17C',
       servicePath: 'js/gemini-solver/gemini-orchestrator.js',
-      modules: 14,
+      modules: 15,
       storageKeys: [
         'learning.gemini-cache.v1',
         'learning.gemini-history.v1',
@@ -1060,6 +1060,8 @@ function validateDatabasePayload(dbSet, data, options = {}) {
         'learning.gemini-version.v1',
       ],
       problemFirst: true,
+      humanLevel: true,
+      promptVersion: '17C.1',
       patternForRecommendationOnly: true,
       twoPassValidation: true,
       missingRecovery: true,
@@ -1070,6 +1072,24 @@ function validateDatabasePayload(dbSet, data, options = {}) {
       masteryUnchanged: true,
       runtimeUnchanged: true,
       resolverUnchanged: true,
+      visionUnchanged: true,
+    },
+    humanExplanationContract: {
+      enabled: true,
+      schemaVersion: '17C',
+      connected: true,
+      servicePath: 'js/gemini-solver/human-explanation-validator.js',
+      required: [
+        'thinkingOrder',
+        'calculation',
+        'summary',
+        'formula',
+        'examTip',
+        'memoryHack',
+        'whyOthersWrong',
+      ],
+      calculationMinLines: 5,
+      numberUsageConfidence: true,
     },
     geminiCacheContract: {
       enabled: true,
@@ -1078,14 +1098,21 @@ function validateDatabasePayload(dbSet, data, options = {}) {
       servicePath: 'js/gemini-solver/cache-manager.js',
       cacheKeyParts: ['questionId', 'overrideVersion', 'modelVersion', 'promptVersion'],
       hitSkipsGeminiCall: true,
+      promptVersionBustsCache: true,
     },
     validationGeminiSolver: {
       enabled: true,
-      sprint: 'Sprint-17A',
-      modules: 14,
+      sprint: 'Sprint-17C',
+      modules: 15,
       storageKeys: 4,
       dbWriteForbidden: true,
       learningEngineUnchanged: true,
+    },
+    validationHumanExplanation: {
+      enabled: true,
+      sprint: 'Sprint-17C',
+      calculationMinLines: 5,
+      dbWriteForbidden: true,
     },
     /* Sprint-17B — Gemini Vision OCR Recovery Layer */
     visionEngineContract: {

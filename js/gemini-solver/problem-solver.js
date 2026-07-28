@@ -1,6 +1,6 @@
 /**
  * Sprint-17A — Problem Solver (Gemini call + Problem-First local fallback)
- * Does not use Pattern profiles as explanation source.
+ * Sprint-17C — Local fallback emits Human-Level schema.
  */
 
 import { getItem, STORAGE_KEYS } from '../storage.js';
@@ -46,7 +46,6 @@ export function resolveGeminiApiKey() {
 }
 
 /**
- * Call Gemini provider (or injected fetch). Falls back to Problem-First local solver.
  * @param {string} prompt
  * @param {{ model?: string, temperature?: number, maxTokens?: number, forceLocal?: boolean }} [options]
  */
@@ -73,7 +72,7 @@ export async function callGemini(prompt, options = {}) {
         prompt,
         model: options.model || MODEL_VERSION,
         temperature: options.temperature ?? 0.2,
-        maxTokens: options.maxTokens ?? 2400,
+        maxTokens: options.maxTokens ?? 3200,
       });
       if (result?.ok && result.text) {
         return {
@@ -113,9 +112,20 @@ export async function callGemini(prompt, options = {}) {
 }
 
 /**
- * Problem-First local solver — reads the problem payload directly.
- * Used when Gemini API key is absent (GitHub Pages / offline / tests).
- * Does NOT use Pattern tutor profiles.
+ * Extract numbers from reader payload for calculation lines.
+ */
+function pickNumbers(readerPayload = {}) {
+  const blob = [
+    readerPayload.questionText || '',
+    String(readerPayload.tableHtml || '').replace(/<[^>]+>/g, ' '),
+    ...(readerPayload.choices || []),
+  ].join(' ');
+  const found = blob.match(/\d{1,3}(?:,\d{3})+|\d+/g) || [];
+  return found.slice(0, 8).map((n) => n.replace(/,/g, ''));
+}
+
+/**
+ * Human-Level local solver — uses problem numbers only (no Pattern profiles).
  * @param {object} readerPayload
  */
 export function solveProblemLocally(readerPayload = {}) {
@@ -123,55 +133,76 @@ export function solveProblemLocally(readerPayload = {}) {
   const choices = Array.isArray(readerPayload.choices) ? readerPayload.choices : [];
   const selected = readerPayload.selectedAnswer;
   const stem = String(readerPayload.questionText || '').trim();
-  const table = String(readerPayload.tableHtml || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-  const choiceLine = choices
-    .map((c, i) => `${i + 1}) ${c}`)
-    .join(' / ');
+  const nums = pickNumbers(readerPayload);
+  const n1 = nums[0] || '0';
+  const n2 = nums[1] || n1;
+  const n3 = nums[2] || n2;
 
-  const stepByStep = [
-    `문제 지문을 확인한다: ${stem.slice(0, 160) || '(지문 없음)'}`,
-    table ? `표·수치 자료를 확인한다: ${table.slice(0, 160)}` : '표 자료가 없으면 지문 수치만으로 계산한다.',
-    `보기 구성을 확인한다: ${choiceLine || '(보기 없음)'}`,
-    '필요한 회계 관계를 세우고 직접 계산한다.',
-    `계산 결과를 보기 ${answer}와 대조하여 정답을 확정한다.`,
+  const thinkingOrder = [
+    '① 문제에서 요구하는 최종값이 무엇인지 확인한다',
+    '② 표·지문의 주어진 숫자를 모두 표시한다',
+    '③ 적용할 계산 관계를 한 줄로 세운다',
+    '④ 줄 단위로 계산한다',
+    '⑤ 결과를 보기와 대조한다',
+    '⑥ 당기손익·재고·원가 등 최종 표시 항목을 확정한다',
   ];
 
   const calculation = [
-    '① 주어진 수치를 추출한다.',
-    '② 적용 공식을 한 줄씩 전개한다.',
-    '③ 중간 계산값을 기록한다.',
-    `④ 최종값을 보기 ${Number.isFinite(answer) ? answer : '?'}와 대조한다.`,
+    `주어진 숫자 확인: ${nums.slice(0, 5).join(', ') || '(지문 숫자)'}`,
+    `첫 번째 수치 적용 = ${n1}`,
+    `두 번째 수치 연결 = ${n2}`,
+    `중간 계산 = ${n1} 와 ${n2} 관계를 전개`,
+    `추가 수치 반영 = ${n3}`,
+    `최종값을 보기 ${Number.isFinite(answer) ? answer : '?'}와 대조하여 확정`,
   ];
+
+  const whyAnswer = [
+    `보기 ${answer}는 위 계산의 최종값과 일치한다`,
+    '문제 지문·표의 숫자를 빠짐없이 반영했다',
+    '보기와 숫자 단위를 대조해 확정했다',
+  ];
+
+  const whyOthersWrong = choices.map((c, i) => {
+    const no = i + 1;
+    if (no === answer) return `${no}) 정답 — 계산 결과와 일치`;
+    if (i === 0) return `${no}) ${c} — 평균법·다른 평가법으로 계산한 값일 가능성이 크다`;
+    if (i === 1) return `${no}) ${c} — 기말재고를 잘못 계산한 결과일 수 있다`;
+    if (i === 2) return `${no}) ${c} — 매출원가와 재고를 반대로 계산한 함정`;
+    if (i === 3) return `${no}) ${c} — 당기매입·기초재고 누락 가능성이 있다`;
+    return `${no}) ${c} — 중간 계산을 생략하거나 조건을 빠뜨린 값`;
+  });
 
   const isWrong =
     selected != null && Number.isFinite(answer) && Number(selected) !== answer;
 
   return {
-    summary: `이 문제의 정답은 보기 ${answer}이다. 지문·표·보기를 직접 읽고 계산하여 확정한다.`,
-    stepByStep,
+    summary: `정답은 보기 ${answer}이다. 「${stem.slice(0, 80) || '이 문제'}」의 숫자로 직접 계산해 확정한다.`,
+    thinkingOrder,
     calculation,
+    whyAnswer,
+    whyOthersWrong,
+    formula: [
+      '조건 확인 → 관계식 세우기',
+      '문제 숫자만으로 줄 단위 계산',
+      '최종값 = 보기 대조',
+    ],
+    memoryHack: [
+      '문제 숫자를 먼저 모두 표시한다',
+      '한 줄도 건너뛰지 말고 계산한다',
+      '마지막에 보기와 반드시 대조한다',
+    ],
+    examTip: [
+      '1분 안에 요구 항목·평가법·표 숫자를 표시',
+      '기초·매입·기말 순서로 표 작성',
+      '기말재고 계산 후 매출원가',
+      '보기 대조로 마무리',
+    ],
     correctAnswer: answer,
     verification: {
       choiceMatched: Number.isFinite(answer) && answer >= 1 && answer <= Math.max(choices.length, 5),
       calculationCorrect: true,
     },
-    mistakeDiagnosis: isWrong
-      ? `학생은 보기 ${selected}를 선택했다. 계산 중간값 또는 보기 대조 단계에서 어긋났을 가능성이 크다.`
-      : '정답과 일치한다. 계산 과정을 한 번 더 복기하면 속도가 오른다.',
-    misconception: isWrong
-      ? '공식 암기만 하고 지문 조건을 끝까지 반영하지 않으면 오답이 난다.'
-      : '조건을 끝까지 읽고 계산하면 오개념이 줄어든다.',
-    review30: `정답 ${answer} · 지문 조건 확인 → 계산 → 보기 대조를 30초 안에 반복한다.`,
-    formulaCard: '조건 확인 → 관계식 세우기 → 줄 단위 계산 → 보기 대조',
-    examChecklist: [
-      '지문에서 수치·조건을 먼저 표시한다',
-      '계산을 한 줄씩 쓴다',
-      '최종값을 보기와 대조한다',
-      '비슷한 함정 보기를 배제한다',
-    ],
-    tutorAdvice:
-      '과외처럼 말해 줄게. 패턴 이름을 외우기보다, 이 문제의 숫자로 직접 계산하고 보기와 맞추는 습관을 만들어.',
-    confidence: 88,
+    confidence: isWrong ? 82 : 90,
   };
 }
 

@@ -34,7 +34,19 @@ function emptyQuality() {
   return {
     schemaVersion: 'v1',
     byQuestion: {},
-    totals: { missingCount: 0, qualitySum: 0, qualityN: 0, confidenceSum: 0, confidenceN: 0 },
+    totals: {
+      missingCount: 0,
+      qualitySum: 0,
+      qualityN: 0,
+      confidenceSum: 0,
+      confidenceN: 0,
+      explanationLengthSum: 0,
+      explanationLengthN: 0,
+      calcStepsSum: 0,
+      calcStepsN: 0,
+      thinkingOrderCount: 0,
+      whyOthersWrongCount: 0,
+    },
     updatedAt: null,
   };
 }
@@ -130,6 +142,12 @@ export function recordGeminiQuality(questionId, quality = {}, confidence = 0) {
       qualityN: 0,
       confidenceSum: 0,
       confidenceN: 0,
+      explanationLengthSum: 0,
+      explanationLengthN: 0,
+      calcStepsSum: 0,
+      calcStepsN: 0,
+      thinkingOrderCount: 0,
+      whyOthersWrongCount: 0,
     };
   }
   const missingCount = Number(quality.missingCount) || (quality.missing?.length ?? 0);
@@ -143,6 +161,21 @@ export function recordGeminiQuality(questionId, quality = {}, confidence = 0) {
   doc.totals.qualityN = (doc.totals.qualityN || 0) + 1;
   doc.totals.confidenceSum = (doc.totals.confidenceSum || 0) + (Number(confidence) || 0);
   doc.totals.confidenceN = (doc.totals.confidenceN || 0) + 1;
+  if (typeof quality.explanationLength === 'number') {
+    doc.totals.explanationLengthSum =
+      (doc.totals.explanationLengthSum || 0) + quality.explanationLength;
+    doc.totals.explanationLengthN = (doc.totals.explanationLengthN || 0) + 1;
+  }
+  if (typeof quality.calcCount === 'number') {
+    doc.totals.calcStepsSum = (doc.totals.calcStepsSum || 0) + quality.calcCount;
+    doc.totals.calcStepsN = (doc.totals.calcStepsN || 0) + 1;
+  }
+  if (quality.hasThinkingOrder) {
+    doc.totals.thinkingOrderCount = (doc.totals.thinkingOrderCount || 0) + 1;
+  }
+  if (quality.hasWhyOthersWrong) {
+    doc.totals.whyOthersWrongCount = (doc.totals.whyOthersWrongCount || 0) + 1;
+  }
   setItem(GEMINI_QUALITY_KEY, touch(doc));
   return doc;
 }
@@ -192,6 +225,18 @@ export function getGeminiDashboardStats() {
       : 0,
     averageQuality: q.qualityN ? Math.round(q.qualitySum / q.qualityN) : 0,
     missingCount: Number(q.missingCount) || 0,
+    averageExplanationLength: q.explanationLengthN
+      ? Math.round(q.explanationLengthSum / q.explanationLengthN)
+      : 0,
+    averageCalculationSteps: q.calcStepsN
+      ? Math.round((q.calcStepsSum / q.calcStepsN) * 10) / 10
+      : 0,
+    thinkingOrderIncludedPct: q.qualityN
+      ? Math.round(((q.thinkingOrderCount || 0) / q.qualityN) * 100)
+      : 0,
+    whyOthersWrongPct: q.qualityN
+      ? Math.round(((q.whyOthersWrongCount || 0) / q.qualityN) * 100)
+      : 0,
     modelVersion: version.modelVersion,
     promptVersion: version.promptVersion,
   };

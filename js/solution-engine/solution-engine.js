@@ -40,8 +40,8 @@ import {
 export const SOLUTION_ENGINE_VERSION = '15A+';
 /** Sprint-15B Result layer (Smart Tutor) — additive, does not change pack formulas */
 export const SMART_RESULT_VERSION = '15B';
-/** Sprint-17A Problem First Gemini layer */
-export const GEMINI_RESULT_VERSION = '17A';
+/** Sprint-17A/17C Problem First Gemini layer */
+export const GEMINI_RESULT_VERSION = '17C';
 
 /**
  * Lazy-generate full tutor pack for Result screen.

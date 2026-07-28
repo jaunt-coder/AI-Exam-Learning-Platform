@@ -1,33 +1,37 @@
 /**
- * Sprint-17A — Formula Card Builder
- * Shape compatible with smart-tutor renderFormulaCardHtml.
+ * Sprint-17A/17C — Formula Card Builder (이 문제에서 사용한 공식만)
  */
 
 /**
  * @param {object} geminiPayload
  */
 export function buildFormulaCardFromGemini(geminiPayload = {}) {
-  const raw = String(geminiPayload.formulaCard || '').trim();
-  const lines = raw
-    ? raw
-        .split(/[\n→>]+/)
-        .map((s) => s.trim())
-        .filter(Boolean)
-    : ['조건 확인', '관계식', '계산', '보기 대조'];
+  const fromList = Array.isArray(geminiPayload.formula)
+    ? geminiPayload.formula.map((s) => String(s ?? '').trim()).filter(Boolean)
+    : [];
+  const raw = fromList.length
+    ? fromList.join(' → ')
+    : String(geminiPayload.formulaCard || '').trim();
+  const lines = fromList.length
+    ? fromList
+    : raw
+      ? raw
+          .split(/[\n→>]+/)
+          .map((s) => s.trim())
+          .filter(Boolean)
+      : ['조건 확인', '관계식', '계산', '보기 대조'];
 
   const formula = raw || lines.join(' → ');
 
   return {
-    title: '공식 카드',
-    purpose: '암기',
+    title: '공식',
+    purpose: '이 문제',
     headline: lines[0] || '공식',
     chain: lines.map((label, i) => ({ order: i + 1, label })),
-    formulas: [
-      {
-        name: '핵심 공식',
-        formula,
-      },
-    ],
+    formulas: lines.map((f, i) => ({
+      name: `공식 ${i + 1}`,
+      formula: f,
+    })),
     formula,
     lines,
     items: lines.map((line, i) => ({ order: i + 1, text: line })),
@@ -36,7 +40,7 @@ export function buildFormulaCardFromGemini(geminiPayload = {}) {
 }
 
 /**
- * Also map into solution-engine formulas array shape.
+ * @param {object} geminiPayload
  */
 export function buildFormulasFromGemini(geminiPayload = {}) {
   const card = buildFormulaCardFromGemini(geminiPayload);
@@ -44,7 +48,7 @@ export function buildFormulasFromGemini(geminiPayload = {}) {
     name: f.name,
     formula: f.formula,
     expression: f.formula,
-    when: '이 문제 직접 계산',
+    when: '이 문제에서 사용한 공식',
     source: 'gemini-native',
   }));
 }

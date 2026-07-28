@@ -41,11 +41,13 @@ import { generateSolutionPack } from '../solution-engine/solution-engine.js';
 import {
   solveWithGeminiSync,
   approveGeminiToOverride,
+  payloadToMarkdown,
 } from '../gemini-solver/gemini-orchestrator.js';
 import { peekCachedGemini, buildGeminiCacheKey } from '../gemini-solver/cache-manager.js';
 import { resolveOverrideVersion } from '../gemini-solver/problem-reader.js';
 import { MODEL_VERSION } from '../gemini-solver/problem-solver.js';
 import { PROMPT_VERSION } from '../gemini-solver/prompt-builder.js';
+import { normalizeGeminiPayload } from '../gemini-solver/response-parser.js';
 import {
   recoverQuestionWithVision,
   approveVisionToOverride,
@@ -530,13 +532,13 @@ export function openReviewerPanel(options = {}) {
       return;
     }
     root.innerHTML = `${renderReviewerQualityPanel(report)}
-      <div class="rv-gemini-panel" data-gemini-reviewer="17A">
-        <h4>Gemini Native Problem Solver</h4>
-        <p class="rv-empty">Gemini 결과를 검토·수정 후 Approve하면 Override Layer에만 저장됩니다. Question DB는 수정하지 않습니다.</p>
-        <textarea id="rv-gemini-json" rows="10" class="rv-field" aria-label="Gemini JSON"></textarea>
+      <div class="rv-gemini-panel" data-gemini-reviewer="17C">
+        <h4>Human-Level AI Explanation</h4>
+        <p class="rv-empty">JSON이 아니라 Markdown으로 설명을 수정하세요. Approve 시 Override Layer에만 저장됩니다.</p>
+        <textarea id="rv-gemini-md" rows="14" class="rv-field" aria-label="Gemini Markdown"></textarea>
         <div class="rv-actions">
-          <button type="button" class="button button--ghost" data-gemini-act="load">Gemini 결과 불러오기</button>
-          <button type="button" class="button button--primary" data-gemini-act="approve">Gemini Approve → Override</button>
+          <button type="button" class="button button--ghost" data-gemini-act="load">해설 불러오기</button>
+          <button type="button" class="button button--primary" data-gemini-act="approve">Markdown Approve → Override</button>
         </div>
         <p class="sq-status" data-gemini-status hidden></p>
       </div>
@@ -554,7 +556,7 @@ export function openReviewerPanel(options = {}) {
       </div>`;
     const statusEl = root.querySelector('[data-sq-status]');
     const geminiStatus = root.querySelector('[data-gemini-status]');
-    const geminiTa = root.querySelector('#rv-gemini-json');
+    const geminiTa = root.querySelector('#rv-gemini-md');
     const visionStatus = root.querySelector('[data-vision-status]');
     const visionTa = root.querySelector('#rv-vision-json');
     const ocrScoreEl = root.querySelector('[data-ocr-score]');
@@ -602,31 +604,41 @@ export function openReviewerPanel(options = {}) {
       }
     }
 
+    function toGeminiMarkdown(payload) {
+      if (!payload) return '';
+      try {
+        const ov = getOverride(qid);
+        if (ov?.override?.geminiNative?.markdown) return ov.override.geminiNative.markdown;
+      } catch (_err) {
+        /* ignore */
+      }
+      return payloadToMarkdown(normalizeGeminiPayload(payload));
+    }
+
     root.querySelector('[data-gemini-act="load"]')?.addEventListener('click', () => {
       const payload = loadGeminiPayload();
-      if (geminiTa) geminiTa.value = payload ? JSON.stringify(payload, null, 2) : '';
+      if (geminiTa) geminiTa.value = toGeminiMarkdown(payload);
       if (geminiStatus) {
         geminiStatus.hidden = false;
         geminiStatus.className = payload ? 'sq-status is-ok' : 'sq-status is-err';
         geminiStatus.textContent = payload
-          ? 'Gemini 결과를 불러왔습니다. 수정 후 Approve 하세요.'
+          ? 'Markdown 해설을 불러왔습니다. 수정 후 Approve 하세요.'
           : 'Gemini 결과를 찾지 못했습니다.';
       }
     });
 
     root.querySelector('[data-gemini-act="approve"]')?.addEventListener('click', () => {
-      let payload = null;
-      try {
-        payload = geminiTa?.value ? JSON.parse(geminiTa.value) : loadGeminiPayload();
-      } catch (_err) {
-        payload = null;
-      }
-      const res = approveGeminiToOverride(qid, payload, { reviewer: 'reviewer' });
+      const markdown = geminiTa?.value || '';
+      const base = loadGeminiPayload() || {};
+      const res = approveGeminiToOverride(qid, base, {
+        reviewer: 'reviewer',
+        markdown,
+      });
       if (geminiStatus) {
         geminiStatus.hidden = false;
         geminiStatus.className = res.ok ? 'sq-status is-ok' : 'sq-status is-err';
         geminiStatus.textContent = res.ok
-          ? 'Gemini Approve 완료 · Override Layer만 반영 (Question DB 미수정)'
+          ? 'Markdown Approve 완료 · Override Layer만 반영 (Question DB 미수정)'
           : `Approve 실패: ${res.error || ''}`;
       }
       if (res.ok && typeof options.onApprove === 'function') {
@@ -722,7 +734,7 @@ export function openReviewerPanel(options = {}) {
 
     /* auto-load once */
     const initial = loadGeminiPayload();
-    if (geminiTa && initial) geminiTa.value = JSON.stringify(initial, null, 2);
+    if (geminiTa && initial) geminiTa.value = toGeminiMarkdown(initial);
     const initialVision = loadVisionPayload();
     if (visionTa && initialVision) visionTa.value = JSON.stringify(initialVision, null, 2);
 

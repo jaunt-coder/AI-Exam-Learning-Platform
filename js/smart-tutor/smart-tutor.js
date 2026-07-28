@@ -626,7 +626,154 @@ export function renderSmartTutorResult(pack, options = {}) {
       </ul>`
     : '<p class="ll-hint">Learning Loop 스냅샷이 없습니다.</p>';
 
-  const sections = [
+  const human = Boolean(
+    pack.humanLevel
+    || pack.geminiNative?.humanLevel
+    || (pack.thinkingOrder || []).length
+    || (pack.geminiNative?.thinkingOrder || []).length,
+  );
+  const thinkingOrder =
+    pack.thinkingOrder
+    || pack.geminiNative?.thinkingOrder
+    || pack.geminiNative?.payload?.thinkingOrder
+    || [];
+  const whyAnswer =
+    pack.whyAnswer
+    || pack.geminiNative?.whyAnswer
+    || pack.geminiNative?.payload?.whyAnswer
+    || [];
+  const whyOthersWrong =
+    pack.whyOthersWrong
+    || pack.geminiNative?.whyOthersWrong
+    || pack.geminiNative?.payload?.whyOthersWrong
+    || [];
+  const memoryHack =
+    pack.memoryHack
+    || pack.geminiNative?.memoryHack
+    || pack.geminiNative?.payload?.memoryHack
+    || [];
+  const examTipHuman =
+    pack.examTipHuman
+    || pack.geminiNative?.examTip
+    || pack.geminiNative?.payload?.examTip
+    || [];
+  const formulaHuman =
+    pack.formulaHuman
+    || pack.geminiNative?.formula
+    || pack.geminiNative?.payload?.formula
+    || [];
+
+  const listOl = (items) =>
+    items?.length
+      ? `<ol class="st-human-list">${items.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>`
+      : '<p class="ll-hint">—</p>';
+  const listUl = (items) =>
+    items?.length
+      ? `<ul class="st-human-list">${items.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>`
+      : '<p class="ll-hint">—</p>';
+
+  const sections = human
+    ? [
+        {
+          id: 'result',
+          open: true,
+          title: '① 결과',
+          body: `
+            <dl class="se-result-grid">
+              <div><dt>정답</dt><dd>${esc(r.correctAnswer)}</dd></div>
+              <div><dt>학생 답</dt><dd>${esc(r.selectedAnswer ?? '—')}</dd></div>
+              <div><dt>정오</dt><dd class="${r.isCorrect ? 'is-ok' : 'is-bad'}">${esc(r.outcome)}</dd></div>
+              <div><dt>Pattern</dt><dd>${esc(r.patternName)} <code>${esc(r.patternId || '')}</code></dd></div>
+            </dl>
+            ${
+              pack.geminiNative?.summary || pack.summary
+                ? `<p class="se-summary">${esc(pack.geminiNative?.summary || pack.summary)}</p>`
+                : ''
+            }`,
+        },
+        {
+          id: 'thinking-order',
+          open: true,
+          title: '① 문제 접근 순서',
+          body: listOl(thinkingOrder),
+        },
+        {
+          id: 'calculation',
+          open: true,
+          title: '② 단계별 계산',
+          body: calc || listOl(pack.geminiNative?.payload?.calculation || []),
+        },
+        {
+          id: 'why-answer',
+          open: true,
+          title: '③ 정답이 되는 이유',
+          body: listOl(whyAnswer),
+        },
+        {
+          id: 'why-others-wrong',
+          open: !r.isCorrect,
+          title: '④ 다른 선택지가 틀린 이유',
+          body: listUl(whyOthersWrong),
+        },
+        {
+          id: 'formula-card',
+          open: true,
+          title: '⑤ 공식',
+          body: formulaHuman.length
+            ? listUl(formulaHuman)
+            : renderFormulaCardHtml(pack.formulaCard, esc),
+        },
+        {
+          id: 'memory-hack',
+          open: true,
+          title: '⑥ 30초 암기',
+          body: memoryHack.length ? listUl(memoryHack) : thirtyHtml,
+        },
+        {
+          id: 'exam-tip',
+          open: true,
+          title: '⑦ 시험장 풀이법',
+          body: examTipHuman.length
+            ? listOl(examTipHuman)
+            : `
+            <div class="st-exam-tutor">
+              <ol class="st-exam-steps">${examSteps}</ol>
+            </div>`,
+        },
+        {
+          id: 'solution-quality',
+          open: false,
+          title: '완성도 · Confidence',
+          body: pack.solutionQuality
+            ? renderStudentQualityCard(pack.solutionQuality)
+            : pack.geminiNative?.quality
+              ? `<p class="se-summary">Quality ${esc(pack.geminiNative.quality.score)}% · Confidence ${esc(pack.geminiNative.confidence ?? pack.geminiMeta?.confidence ?? '—')} · Calc ${esc(pack.geminiNative.quality.calcCount ?? '—')}줄</p>`
+              : '<p class="ll-hint">—</p>',
+        },
+        {
+          id: 'mini-retry',
+          open: true,
+          title: '⑨ 같은 Pattern 미니문제',
+          body: `<div class="st-mini">${miniHtml}</div>`,
+        },
+        {
+          id: 'next',
+          open: true,
+          title: '⑩ 다음 추천 문제',
+          body: next
+            ? `<ul class="se-next-list">${next}</ul>`
+            : `${whyFallback || '<p class="ll-hint">추천 문제가 아직 없습니다.</p>'}`,
+        },
+        {
+          id: 'learning-done',
+          open: true,
+          title: '⑪ 학습 완료',
+          body: `
+            <p class="st-done-msg">Result 화면에서 학습 루프가 갱신되었습니다.</p>
+            ${loopOk}`,
+        },
+      ]
+    : [
     {
       id: 'result',
       open: true,
@@ -757,11 +904,11 @@ export function renderSmartTutorResult(pack, options = {}) {
     .join('');
 
   return `
-    <div class="se-root st-root" data-solution-engine="15A+" data-smart-tutor="${SMART_TUTOR_VERSION}" data-gemini-solver="${pack.geminiNative ? '17A' : ''}" data-from-cache="${pack.fromCache ? '1' : '0'}" data-result-source="${esc(pack.resultSource || pack.geminiNative?.source || 'smart-tutor')}">
+    <div class="se-root st-root" data-solution-engine="15A+" data-smart-tutor="${SMART_TUTOR_VERSION}" data-gemini-solver="${pack.geminiNative || pack.humanLevel ? '17C' : ''}" data-from-cache="${pack.fromCache ? '1' : '0'}" data-result-source="${esc(pack.resultSource || pack.geminiNative?.source || 'smart-tutor')}">
       <div class="se-toolbar">
         <p class="edu-kicker">${
-          pack.geminiNative
-            ? `Gemini Native Problem Solver${pack.geminiMeta?.cacheHit ? ' · Cache Hit' : ''}`
+          pack.geminiNative || pack.humanLevel
+            ? `Human-Level AI Explanation${pack.geminiMeta?.cacheHit ? ' · Cache Hit' : ''} · ${esc(pack.geminiMeta?.promptVersion || pack.geminiNative?.promptVersion || '17C')}`
             : 'AI Learning Loop · Smart Tutor'
         }</p>
         <div class="se-toolbar__actions">

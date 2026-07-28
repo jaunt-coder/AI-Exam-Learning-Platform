@@ -71,6 +71,7 @@ Dashboard / Tutor / Exam
 - **Sprint 16B**: Exam Mode & Goal Management (D-Day, Goal, Phase, Mission, Streak)
 - **Sprint 17A**: Gemini Native Problem Solver (Problem First AI · Cache · 2-Pass Validation)
 - **Sprint 17B**: Gemini Vision OCR Recovery (Vision First · OCR Quality · Hybrid · Smart Cache)
+- **Sprint 17C**: Human-Level AI Explanation Engine (Thinking Order · 상세 계산 · 오답 분석)
 
 상세: [docs/SPRINT_HISTORY.md](docs/SPRINT_HISTORY.md)
 
@@ -159,6 +160,8 @@ Dashboard / Tutor / Exam
 - `geminiSolverContract`
 - `geminiCacheContract`
 - `validationGeminiSolver`
+- `humanExplanationContract`
+- `validationHumanExplanation`
 - `visionEngineContract`
 - `visionQualityContract`
 - `visionCacheContract`
@@ -231,6 +234,7 @@ AI Exam Learning Platform v2/
 | `scripts/test-solution-quality.py` | PASS |
 | `scripts/test-gemini-solver.py` | PASS |
 | `scripts/test-gemini-vision.py` | PASS |
+| `scripts/test-gemini-explanation.py` | PASS |
 
 ## 9) Project Status
 
@@ -255,6 +259,7 @@ AI Exam Learning Platform v2/
 - **Sprint 16B**: Exam Mode & Goal Management (Goal · Phase · Mission · Progress · Tutor Context)
 - **Sprint 17A**: Gemini Native Problem Solver (Problem First · Cache · 2-Pass · Missing Recovery)
 - **Sprint 17B**: Gemini Vision OCR Recovery (Vision Architecture · OCR Quality Engine · Vision Cache · Hybrid OCR)
+- **Sprint 17C**: Human-Level AI Explanation (Thinking Order · Calculation · Why Others Wrong · Memory Hack · Exam Tip)
 - **Sprint 15**: Production Ready
 
 ## Vision Architecture (Sprint-17B)
@@ -280,6 +285,16 @@ PDF → Question Locator → PDF Crop → OCR Quality
 3. Dashboard에서 Vision Cache Hit / 이번 달 절감 호출 / 예상 비용 절감을 확인한다.
 4. 추천·오늘 학습 문제는 `requestIdleCallback`으로 Vision 캐시를 미리 생성한다.
 5. PDF 페이지 렌더러가 필요하면 `globalThis.__PDF_RENDER__` 훅을 주입한다.
+
+## Human-Level Explanation (Sprint-17C)
+
+Resolved Question만 입력으로 받아 감정평가사 회계 강사형 풀이를 생성한다.
+
+Accordion: 문제 접근 순서 → 단계별 계산 → 정답 이유 → 오답 이유 → 공식 → 30초 암기 → 시험장 풀이법
+
+- Prompt Version `17C.1` — 변경 시에만 Cache Miss
+- Pattern은 참고용만, 문제 숫자로만 계산
+- Reviewer는 Markdown으로만 수정 후 Override 저장
 
 ## Technology Stack
 

@@ -1,14 +1,16 @@
 /**
- * Sprint-17A — Exam Tip / Checklist Builder
+ * Sprint-17A/17C — Exam Tip Builder
  */
 
 /**
  * @param {object} geminiPayload
  */
 export function buildExamTipsFromGemini(geminiPayload = {}) {
-  const checklist = Array.isArray(geminiPayload.examChecklist)
-    ? geminiPayload.examChecklist.map((s) => String(s ?? '').trim()).filter(Boolean)
-    : [];
+  const checklist = Array.isArray(geminiPayload.examTip) && geminiPayload.examTip.length
+    ? geminiPayload.examTip.map((s) => String(s ?? '').trim()).filter(Boolean)
+    : Array.isArray(geminiPayload.examChecklist)
+      ? geminiPayload.examChecklist.map((s) => String(s ?? '').trim()).filter(Boolean)
+      : [];
 
   const steps = (checklist.length ? checklist : ['조건 표시', '계산', '보기 대조']).map(
     (label, i) => ({
@@ -23,6 +25,7 @@ export function buildExamTipsFromGemini(geminiPayload = {}) {
     steps,
     warnings: [],
     checklist,
+    examTip: checklist,
     source: 'gemini-native',
   };
 }

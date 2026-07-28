@@ -66,9 +66,13 @@ function renderGeminiSolverCard(stats = {}) {
     ['Avg Confidence', stats.averageConfidence ?? 0],
     ['Avg Quality', stats.averageQuality ?? 0],
     ['Missing Count', stats.missingCount ?? 0],
+    ['Avg Explanation Length', stats.averageExplanationLength ?? 0],
+    ['Avg Calculation Steps', stats.averageCalculationSteps ?? 0],
+    ['Thinking Order Included %', `${stats.thinkingOrderIncludedPct ?? 0}%`],
+    ['Why Others Wrong %', `${stats.whyOthersWrongPct ?? 0}%`],
   ];
   return `
-    <div class="ld-gemini-stats" data-gemini-dashboard="17A">
+    <div class="ld-gemini-stats" data-gemini-dashboard="17C">
       <ul class="ld-stat-list">
         ${rows
           .map(
@@ -77,7 +81,7 @@ function renderGeminiSolverCard(stats = {}) {
           )
           .join('')}
       </ul>
-      <p class="ld-card-desc">model ${escapeHtml(stats.modelVersion || '—')} · prompt ${escapeHtml(stats.promptVersion || '—')}</p>
+      <p class="ld-card-desc">Human-Level · model ${escapeHtml(stats.modelVersion || '—')} · prompt ${escapeHtml(stats.promptVersion || '—')}</p>
     </div>`;
 }
 

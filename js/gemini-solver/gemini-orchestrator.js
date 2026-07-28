@@ -1,14 +1,15 @@
 /**
  * Sprint-17A — Gemini Native Problem Solver Orchestrator
- * Problem First AI Pipeline
+ * Sprint-17C — Human-Level AI Explanation Engine
  *
  * Legacy Pattern-based Solution Engine is preserved.
- * Gemini generates problem-specific solutions only.
+ * Gemini generates problem-specific human-level solutions only.
  * Pattern remains for Learning Recommendation only.
  *
  * Never writes Question / Pattern / Statistics DB.
  * Never mutates Learning / Recommendation / Mastery formulas.
  * Never mutates Runtime / Resolver / existing Override schema.
+ * Never mutates Vision Recovery.
  */
 
 import { readProblem, attachGrade } from './problem-reader.js';
@@ -27,6 +28,8 @@ import {
   parseGeminiJson,
   mergeMissingFragment,
   normalizeGeminiPayload,
+  payloadToMarkdown,
+  markdownToPayload,
 } from './response-parser.js';
 import { checkGeminiQuality } from './quality-checker.js';
 import { verifyAnswerLocally, applyPass2Validation } from './answer-verifier.js';
@@ -48,8 +51,8 @@ import {
 } from './cache-manager.js';
 import { saveOverride } from '../reviewer/override-service.js';
 
-export const GEMINI_SOLVER_VERSION = '17A';
-export { MODEL_VERSION, PROMPT_VERSION };
+export const GEMINI_SOLVER_VERSION = '17C';
+export { MODEL_VERSION, PROMPT_VERSION, payloadToMarkdown, markdownToPayload };
 
 /**
  * Full Problem First pipeline.
@@ -153,7 +156,12 @@ export async function solveWithGemini(input = {}) {
   payload = localVerify.payload;
 
   /* Quality check + Missing recovery (one retry, missing only) */
-  let quality = checkGeminiQuality(payload);
+  const qualityContext = {
+    questionText: reader.questionText,
+    tableHtml: reader.tableHtml,
+    choices: reader.choices,
+  };
+  let quality = checkGeminiQuality(payload, qualityContext);
   let missingRecovered = false;
   if (!quality.ok && quality.missing.length) {
     const recoveryPrompt = buildMissingRecoveryPrompt(
@@ -171,12 +179,16 @@ export async function solveWithGemini(input = {}) {
         missingRecovered = true;
       }
     } else if (provider === 'LOCAL_PROBLEM_FIRST') {
-      /* Local fill for missing keys only */
       const localFull = solveProblemLocally(reader);
       payload = mergeMissingFragment(payload, localFull, quality.missing);
       missingRecovered = true;
     }
-    quality = checkGeminiQuality(payload);
+    quality = checkGeminiQuality(payload, qualityContext);
+  }
+
+  /* Confidence decreases when problem numbers are missing from calculation */
+  if (typeof quality.confidence === 'number') {
+    payload = { ...payload, confidence: quality.confidence };
   }
 
   /* ---- Pass 2: Gemini validation ---- */
@@ -185,6 +197,8 @@ export async function solveWithGemini(input = {}) {
     const validationPrompt = buildValidationPrompt(payload, {
       correctAnswer: reader.correctAnswer,
       choices: reader.choices,
+      questionText: reader.questionText,
+      tableHtml: reader.tableHtml,
     });
     const pass2Call = await callGemini(validationPrompt, {
       forceLocal: input.forceLocal || provider === 'LOCAL_PROBLEM_FIRST',
@@ -194,10 +208,12 @@ export async function solveWithGemini(input = {}) {
       const pass2Parsed = parseGeminiJson(pass2Call.text);
       if (pass2Parsed.ok) {
         payload = applyPass2Validation(payload, pass2Parsed.data);
+        if (typeof pass2Parsed.data.confidence === 'number') {
+          payload.confidence = pass2Parsed.data.confidence;
+        }
         pass2Applied = true;
       }
     } else {
-      /* Local Pass-2: re-verify */
       const re = verifyAnswerLocally(payload, {
         correctAnswer: reader.correctAnswer,
         choices: reader.choices,
@@ -210,6 +226,11 @@ export async function solveWithGemini(input = {}) {
       });
       pass2Applied = true;
     }
+  }
+
+  quality = checkGeminiQuality(payload, qualityContext);
+  if (typeof quality.confidence === 'number') {
+    payload = { ...payload, confidence: quality.confidence };
   }
 
   const durationMs = Date.now() - started;
@@ -234,10 +255,17 @@ export async function solveWithGemini(input = {}) {
     confidence: payload.confidence,
     qualityScore: quality.score,
     missingCount: quality.missing.length,
+    calcCount: quality.calcCount,
     cacheHit: false,
   });
 
-  recordGeminiQuality(reader.questionId, quality.report, payload.confidence);
+  recordGeminiQuality(reader.questionId, {
+    ...quality.report,
+    explanationLength: JSON.stringify(payload).length,
+    calcCount: quality.calcCount || (payload.calculation || []).length,
+    hasThinkingOrder: Boolean((payload.thinkingOrder || []).length),
+    hasWhyOthersWrong: Boolean((payload.whyOthersWrong || []).length),
+  }, payload.confidence);
 
   return finalizeResult({
     payload,
@@ -286,9 +314,10 @@ function finalizeResult(ctx) {
   }));
 
   return {
-    schemaVersion: 'v1',
+    schemaVersion: '17C',
     engineVersion: GEMINI_SOLVER_VERSION,
     source: 'gemini-native',
+    humanLevel: true,
     questionId: reader.questionId,
     patternId: reader.patternMetadata?.patternId || null,
     cacheKey,
@@ -302,8 +331,15 @@ function finalizeResult(ctx) {
     missingRecovered: Boolean(missingRecovered),
     quality: quality.report || quality,
     payload,
+    markdown: payloadToMarkdown(payload),
     /* UI-ready slices */
     summary: payload.summary,
+    thinkingOrder: payload.thinkingOrder || [],
+    whyAnswer: payload.whyAnswer || [],
+    whyOthersWrong: payload.whyOthersWrong || [],
+    memoryHack: payload.memoryHack || [],
+    examTip: payload.examTip || [],
+    formula: payload.formula || [],
     explanation,
     smartExplanation,
     calculation,
@@ -370,6 +406,14 @@ export function applyGeminiToSmartPack(smartPack, gemini) {
   if (gemini.tutor) next.tutor = gemini.tutor;
 
   next.resultSource = 'gemini-native';
+  next.humanLevel = true;
+  next.thinkingOrder = gemini.thinkingOrder || gemini.payload?.thinkingOrder || [];
+  next.whyAnswer = gemini.whyAnswer || gemini.payload?.whyAnswer || [];
+  next.whyOthersWrong = gemini.whyOthersWrong || gemini.payload?.whyOthersWrong || [];
+  next.memoryHack = gemini.memoryHack || gemini.payload?.memoryHack || [];
+  next.examTipHuman = gemini.examTip || gemini.payload?.examTip || [];
+  next.formulaHuman = gemini.formula || gemini.payload?.formula || [];
+  next.geminiMarkdown = gemini.markdown || null;
   next.geminiMeta = {
     cacheHit: gemini.cacheHit,
     provider: gemini.provider,
@@ -377,29 +421,44 @@ export function applyGeminiToSmartPack(smartPack, gemini) {
     qualityScore: gemini.quality?.score ?? null,
     durationMs: gemini.durationMs,
     pass2Applied: gemini.pass2Applied,
+    promptVersion: gemini.promptVersion,
+    humanLevel: true,
   };
 
   return next;
 }
 
 /**
- * Reviewer Approve → Override Layer only (Question DB untouched).
- * Additive field: override.geminiNative
+ * Reviewer Approve — Markdown 편집본을 JSON으로 변환 후 Override만 저장.
+ * Reviewer는 JSON을 직접 수정하지 않는다.
  * @param {string} questionId
- * @param {object} geminiResultOrPayload
- * @param {{ reviewer?: string }} [meta]
+ * @param {object|string} geminiResultOrPayloadOrMarkdown
+ * @param {{ reviewer?: string, markdown?: string }} [meta]
  */
-export function approveGeminiToOverride(questionId, geminiResultOrPayload, meta = {}) {
-  const payload =
-    geminiResultOrPayload?.payload
-    || geminiResultOrPayload
-    || null;
+export function approveGeminiToOverride(questionId, geminiResultOrPayloadOrMarkdown, meta = {}) {
+  let payload = null;
+  if (typeof meta.markdown === 'string' && meta.markdown.trim()) {
+    const base =
+      geminiResultOrPayloadOrMarkdown?.payload
+      || (typeof geminiResultOrPayloadOrMarkdown === 'object'
+        ? geminiResultOrPayloadOrMarkdown
+        : {});
+    payload = markdownToPayload(meta.markdown, base);
+  } else if (typeof geminiResultOrPayloadOrMarkdown === 'string') {
+    payload = markdownToPayload(geminiResultOrPayloadOrMarkdown, {});
+  } else {
+    payload =
+      geminiResultOrPayloadOrMarkdown?.payload
+      || geminiResultOrPayloadOrMarkdown
+      || null;
+  }
   if (!questionId || !payload) {
     return { ok: false, error: 'missing_questionId_or_payload' };
   }
 
   const normalized = normalizeGeminiPayload(payload);
   const version = new Date().toISOString();
+  const markdown = payloadToMarkdown(normalized);
 
   return saveOverride(
     questionId,
@@ -408,9 +467,11 @@ export function approveGeminiToOverride(questionId, geminiResultOrPayload, meta 
         version,
         approvedAt: version,
         payload: normalized,
+        markdown,
         modelVersion: MODEL_VERSION,
         promptVersion: PROMPT_VERSION,
         source: 'gemini-native',
+        humanLevel: true,
       },
       reviewed: true,
       reviewer: meta.reviewer || 'reviewer',
@@ -463,11 +524,19 @@ export function solveWithGeminiSync(input = {}) {
     choices: reader.choices,
   });
   payload = localVerify.payload;
-  let quality = checkGeminiQuality(payload);
+  const qualityContext = {
+    questionText: reader.questionText,
+    tableHtml: reader.tableHtml,
+    choices: reader.choices,
+  };
+  let quality = checkGeminiQuality(payload, qualityContext);
   if (!quality.ok) {
     const localFull = solveProblemLocally(reader);
     payload = mergeMissingFragment(payload, localFull, quality.missing);
-    quality = checkGeminiQuality(payload);
+    quality = checkGeminiQuality(payload, qualityContext);
+  }
+  if (typeof quality.confidence === 'number') {
+    payload = { ...payload, confidence: quality.confidence };
   }
   payload = applyPass2Validation(payload, {
     calculationCorrect: true,
@@ -488,7 +557,13 @@ export function solveWithGeminiSync(input = {}) {
     missingRecovered: !quality.ok ? false : true,
     quality: quality.report,
   });
-  recordGeminiQuality(reader.questionId, quality.report, payload.confidence);
+  recordGeminiQuality(reader.questionId, {
+    ...quality.report,
+    explanationLength: JSON.stringify(payload).length,
+    calcCount: quality.calcCount || (payload.calculation || []).length,
+    hasThinkingOrder: Boolean((payload.thinkingOrder || []).length),
+    hasWhyOthersWrong: Boolean((payload.whyOthersWrong || []).length),
+  }, payload.confidence);
   appendGeminiHistory({
     questionId: reader.questionId,
     cacheKey,
