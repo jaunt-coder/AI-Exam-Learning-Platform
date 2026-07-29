@@ -98,3 +98,14 @@
 - Evaluation: `data/professor-evaluation-test.json` (대표 10문)
 - Test: `scripts/test-professor-explanation.py`
 - Frozen: Question/Pattern/Statistics DB · Learning/Recommendation/Mastery · Override · Vision
+
+## Sprint 17D.1
+
+- Gemini Connection Layer (`js/llm/ai-config.js`)
+- Storage: `learning.ai-config.v1`
+- Settings UI: API Key 저장 / 삭제 / 연결 테스트
+- Resolve 우선순위: ai-config → legacy settings → LOCAL
+- Missing Key: silent fallback 금지 · 설정 이동 게이트
+- Cache key + `providerVersion`
+- Result provider 표시: `GEMINI` / `LOCAL_PROFESSOR`
+- Test: `scripts/test-gemini-config.py`

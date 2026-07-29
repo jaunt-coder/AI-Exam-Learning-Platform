@@ -29,6 +29,45 @@
 
   <main class="site-main" role="main">
     <div class="container study-layout">
+      <section class="card study-card" aria-labelledby="gemini-config-heading" id="gemini-ai-config">
+        <p class="edu-kicker">Sprint-17D.1</p>
+        <h2 id="gemini-config-heading" class="study-card__title">Gemini AI Config</h2>
+        <p class="section-desc">
+          GitHub Pages 정적 환경용 API Key입니다. 키는 브라우저 LocalStorage
+          (<code>learning.ai-config.v1</code>)에만 저장되며 저장소에 커밋되지 않습니다.
+        </p>
+
+        <form id="gemini-config-form" class="gemini-config-form" autocomplete="off">
+          <label class="field">
+            <span class="field__label">Provider</span>
+            <input type="text" id="ai-provider" value="GEMINI" readonly>
+          </label>
+          <label class="field">
+            <span class="field__label">Model</span>
+            <input type="text" id="ai-model" name="model" value="gemini-2.0-flash" autocomplete="off">
+          </label>
+          <label class="field">
+            <span class="field__label">Gemini API Key</span>
+            <input type="password" id="ai-api-key" name="apiKey" placeholder="AIza…" autocomplete="off" spellcheck="false">
+          </label>
+          <label class="field field--inline">
+            <input type="checkbox" id="ai-enabled" checked>
+            <span>Enabled</span>
+          </label>
+          <div class="source-viewer__actions">
+            <button type="submit" class="button button--primary" id="ai-save-btn">저장</button>
+            <button type="button" class="button button--ghost" id="ai-test-btn">연결 테스트</button>
+            <button type="button" class="button button--ghost" id="ai-clear-btn">삭제</button>
+          </div>
+        </form>
+        <p class="ll-hint" id="ai-config-status" role="status" aria-live="polite"></p>
+        <dl class="edu-facts" id="ai-config-facts">
+          <div><dt>Has Key</dt><dd id="ai-has-key">no</dd></div>
+          <div><dt>Source</dt><dd id="ai-source">—</dd></div>
+          <div><dt>Updated</dt><dd id="ai-updated">—</dd></div>
+        </dl>
+      </section>
+
       <section class="card study-card" aria-labelledby="sync-heading">
         <p class="edu-kicker">Sprint-07</p>
         <h2 id="sync-heading" class="study-card__title">Cloud Study Foundation</h2>

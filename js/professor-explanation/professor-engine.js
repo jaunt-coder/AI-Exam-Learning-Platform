@@ -15,6 +15,10 @@ import {
   callGemini,
   resolveGeminiApiKey,
 } from '../gemini-solver/problem-solver.js';
+import {
+  resolveGeminiConnection,
+  PROVIDER_VERSION,
+} from '../llm/ai-config.js';
 import { parseGeminiJson } from '../gemini-solver/response-parser.js';
 import { verifyAnswerLocally, applyPass2Validation } from '../gemini-solver/answer-verifier.js';
 import {
@@ -69,6 +73,7 @@ export { professorPayloadToMarkdown, markdownToProfessorPayload, getProfessorDas
  *   pattern?: object|null,
  *   force?: boolean,
  *   forceLocal?: boolean,
+ *   allowLocal?: boolean,
  *   skipRegen?: boolean,
  *   saveCache?: boolean,
  * }} input
@@ -78,6 +83,10 @@ export async function generateProfessorExplanation(input = {}) {
   const question = input.question || {};
   const grade = input.grade || {};
   const pattern = input.pattern || null;
+  const connection = resolveGeminiConnection();
+  const providerVersion = connection.ok
+    ? PROVIDER_VERSION
+    : connection.providerVersion || `LOCAL-${PROVIDER_VERSION}`;
 
   const reader = attachGrade(readProblem(question, pattern), grade);
   const subjectId =
@@ -89,8 +98,9 @@ export async function generateProfessorExplanation(input = {}) {
   const cacheKey = buildProfessorCacheKey(
     reader.questionId,
     reader.overrideVersion,
-    MODEL_VERSION,
+    connection.model || MODEL_VERSION,
     PROFESSOR_PROMPT_VERSION,
+    providerVersion,
   );
 
   /* Reviewer-approved Override takes precedence */
@@ -112,6 +122,8 @@ export async function generateProfessorExplanation(input = {}) {
       quality,
       subjectId,
       analysis: null,
+      providerVersion,
+      connectionSource: 'override',
     });
   }
 
@@ -135,10 +147,39 @@ export async function generateProfessorExplanation(input = {}) {
         quality,
         subjectId,
         analysis: null,
+        providerVersion: cached.providerVersion || providerVersion,
+        connectionSource: cached.source || 'cache',
       });
     }
   } else {
     peekProfessorCache(cacheKey);
+  }
+
+  /* Sprint-17D.1 — missing API key: no silent Gemini fallback */
+  const allowLocal = Boolean(input.forceLocal || input.allowLocal);
+  if (!connection.ok && !allowLocal) {
+    return {
+      ok: false,
+      error: 'missing_api_key',
+      requireSetup: true,
+      schemaVersion: '17D.1',
+      engineVersion: PROFESSOR_ENGINE_VERSION,
+      source: 'professor-explanation',
+      professorLevel: true,
+      humanLevel: false,
+      questionId: reader.questionId,
+      subjectId,
+      cacheKey,
+      provider: 'LOCAL',
+      providerVersion,
+      modelVersion: connection.model || MODEL_VERSION,
+      promptVersion: PROFESSOR_PROMPT_VERSION,
+      professorPromptVersion: PROFESSOR_PROMPT_VERSION,
+      durationMs: Date.now() - started,
+      message: 'Gemini API Key 설정이 필요합니다.',
+      settingsHref: 'settings.html#gemini-ai-config',
+      hasApiKey: false,
+    };
   }
 
   const promptPayload = {
@@ -157,13 +198,38 @@ export async function generateProfessorExplanation(input = {}) {
   const strategy = ctx.strategy;
 
   let payload = null;
-  let provider = 'LOCAL_PROFESSOR';
+  let provider = allowLocal && !connection.ok ? 'LOCAL_PROFESSOR' : 'GEMINI';
   const solvePrompt = buildProfessorSolvePrompt(promptPayload);
   const pass1 = await callGemini(solvePrompt, {
     forceLocal: input.forceLocal,
     temperature: 0.35,
     maxTokens: 4096,
+    model: connection.model || MODEL_VERSION,
   });
+
+  if (pass1.requireSetup && !allowLocal) {
+    return {
+      ok: false,
+      error: 'missing_api_key',
+      requireSetup: true,
+      schemaVersion: '17D.1',
+      engineVersion: PROFESSOR_ENGINE_VERSION,
+      source: 'professor-explanation',
+      professorLevel: true,
+      humanLevel: false,
+      questionId: reader.questionId,
+      subjectId,
+      cacheKey,
+      provider: 'LOCAL',
+      providerVersion,
+      modelVersion: MODEL_VERSION,
+      promptVersion: PROFESSOR_PROMPT_VERSION,
+      durationMs: Date.now() - started,
+      message: 'Gemini API Key 설정이 필요합니다.',
+      settingsHref: 'settings.html#gemini-ai-config',
+      hasApiKey: false,
+    };
+  }
 
   if (pass1.ok && pass1.text) {
     const parsed = parseGeminiJson(pass1.text);
@@ -177,8 +243,47 @@ export async function generateProfessorExplanation(input = {}) {
   }
 
   if (!payload) {
-    payload = buildLocalProfessorPayload(reader, { analysis, concept, theory, strategy, subjectId });
-    provider = 'LOCAL_PROFESSOR';
+    if (!allowLocal && connection.ok) {
+      /* Gemini failed after key present — still surface error, optional local only if allowLocal */
+      payload = null;
+    }
+    if (!payload && allowLocal) {
+      payload = buildLocalProfessorPayload(reader, {
+        analysis,
+        concept,
+        theory,
+        strategy,
+        subjectId,
+      });
+      provider = 'LOCAL_PROFESSOR';
+    }
+  }
+
+  if (!payload) {
+    return {
+      ok: false,
+      error: pass1.error || 'gemini_generate_failed',
+      requireSetup: Boolean(pass1.requireSetup),
+      detail: pass1.detail || null,
+      schemaVersion: '17D.1',
+      engineVersion: PROFESSOR_ENGINE_VERSION,
+      source: 'professor-explanation',
+      professorLevel: true,
+      humanLevel: false,
+      questionId: reader.questionId,
+      subjectId,
+      cacheKey,
+      provider: pass1.provider || 'GEMINI',
+      providerVersion,
+      modelVersion: MODEL_VERSION,
+      promptVersion: PROFESSOR_PROMPT_VERSION,
+      durationMs: Date.now() - started,
+      message: pass1.requireSetup
+        ? 'Gemini API Key 설정이 필요합니다.'
+        : 'Gemini 해설 생성에 실패했습니다. 설정의 연결 테스트를 확인하세요.',
+      settingsHref: 'settings.html#gemini-ai-config',
+      hasApiKey: Boolean(connection.ok),
+    };
   }
 
   const localVerify = verifyAnswerLocally(payload, {
@@ -250,8 +355,10 @@ export async function generateProfessorExplanation(input = {}) {
     setProfessorCached(cacheKey, {
       payload,
       provider,
-      modelVersion: MODEL_VERSION,
+      modelVersion: connection.model || MODEL_VERSION,
       promptVersion: PROFESSOR_PROMPT_VERSION,
+      providerVersion,
+      source: connection.source,
       overrideVersion: reader.overrideVersion,
       questionId: reader.questionId,
       durationMs,
@@ -265,6 +372,7 @@ export async function generateProfessorExplanation(input = {}) {
     questionId: reader.questionId,
     cacheKey,
     provider,
+    providerVersion,
     durationMs,
     qualityScore: quality.score,
     decision: quality.decision,
@@ -288,6 +396,8 @@ export async function generateProfessorExplanation(input = {}) {
     concept,
     theory,
     strategy,
+    providerVersion,
+    connectionSource: connection.source,
   });
 }
 
@@ -407,6 +517,8 @@ function finalizeProfessor(ctx) {
     concept,
     theory,
     strategy,
+    providerVersion,
+    connectionSource,
   } = ctx;
 
   const explanation = buildExplanationFromGemini(payload);
@@ -431,8 +543,18 @@ function finalizeProfessor(ctx) {
     lines: [String(line)],
   }));
 
+  const resolvedProvider =
+    provider === 'GEMINI' || provider === 'override-approved' || provider === 'cache'
+      ? (provider === 'GEMINI' ? 'GEMINI' : provider)
+      : provider === 'LOCAL_PROFESSOR' || provider === 'LOCAL'
+        ? 'LOCAL_PROFESSOR'
+        : String(provider || 'LOCAL_PROFESSOR');
+
+  const isGeminiLive = resolvedProvider === 'GEMINI';
+
   return {
-    schemaVersion: '17D',
+    ok: true,
+    schemaVersion: '17D.1',
     engineVersion: PROFESSOR_ENGINE_VERSION,
     source: 'professor-explanation',
     humanLevel: true,
@@ -443,10 +565,14 @@ function finalizeProfessor(ctx) {
     cacheKey,
     fromCache: Boolean(fromCache),
     cacheHit: Boolean(cacheHit),
-    provider,
+    provider: resolvedProvider,
+    providerLabel: isGeminiLive ? 'GEMINI (실제 API)' : 'LOCAL_PROFESSOR (로컬)',
+    isGeminiLive,
     modelVersion: MODEL_VERSION,
     promptVersion: PROFESSOR_PROMPT_VERSION,
     professorPromptVersion: PROFESSOR_PROMPT_VERSION,
+    providerVersion: providerVersion || PROVIDER_VERSION,
+    connectionSource: connectionSource || null,
     durationMs,
     regenerated: Boolean(regenerated),
     quality: quality.report || quality,
@@ -511,11 +637,14 @@ export function generateProfessorExplanationSync(input = {}) {
     resolveSubjectIdForQuestion(question)
     || question.subjectPluginId
     || 'accounting';
+  const connection = resolveGeminiConnection();
+  const providerVersion = `LOCAL-${PROVIDER_VERSION}`;
   const cacheKey = buildProfessorCacheKey(
     reader.questionId,
     reader.overrideVersion,
     MODEL_VERSION,
     PROFESSOR_PROMPT_VERSION,
+    providerVersion,
   );
 
   if (!input.force) {
@@ -539,6 +668,8 @@ export function generateProfessorExplanationSync(input = {}) {
         quality,
         subjectId,
         analysis: null,
+        providerVersion,
+        connectionSource: 'cache',
       });
     }
   }
@@ -569,6 +700,7 @@ export function generateProfessorExplanationSync(input = {}) {
       provider: 'LOCAL_PROFESSOR',
       modelVersion: MODEL_VERSION,
       promptVersion: PROFESSOR_PROMPT_VERSION,
+      providerVersion,
       questionId: reader.questionId,
       durationMs: 0,
       quality: quality.report,
@@ -588,6 +720,8 @@ export function generateProfessorExplanationSync(input = {}) {
     quality,
     subjectId,
     ...ctx,
+    providerVersion,
+    connectionSource: connection.source || 'LOCAL',
   });
 }
 
@@ -657,11 +791,14 @@ export function applyProfessorToSmartPack(smartPack, professor) {
   next.geminiMeta = {
     cacheHit: professor.cacheHit,
     provider: professor.provider,
+    providerLabel: professor.providerLabel,
+    isGeminiLive: Boolean(professor.isGeminiLive),
     confidence: professor.confidence,
     qualityScore: professor.qualityScore ?? professor.quality?.score ?? null,
     durationMs: professor.durationMs,
     promptVersion: professor.promptVersion,
     professorPromptVersion: professor.professorPromptVersion,
+    providerVersion: professor.providerVersion,
     humanLevel: true,
     professorLevel: true,
   };

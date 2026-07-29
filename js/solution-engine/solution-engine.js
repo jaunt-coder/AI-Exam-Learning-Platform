@@ -507,6 +507,30 @@ export function renderProfessorManualGate(pack = {}) {
     </div>`;
 }
 
+/**
+ * Sprint-17D.1 — Missing API Key setup gate (no silent LOCAL fallback).
+ */
+export function renderProfessorSetupGate(result = {}) {
+  const msg = result.message || 'Gemini API Key 설정이 필요합니다.';
+  const href = result.settingsHref || 'settings.html#gemini-ai-config';
+  return `
+    <div class="se-root st-root professor-setup" data-professor-engine="${PROFESSOR_RESULT_VERSION}" data-require-setup="1">
+      <div class="se-toolbar">
+        <p class="edu-kicker">provider: LOCAL · Gemini 미연결</p>
+      </div>
+      <div class="se-acc__body">
+        <p class="se-summary">${String(msg).replace(/</g, '')}</p>
+        <p class="ll-hint">실제 Gemini 해설을 받으려면 Settings에서 API Key를 저장하고 연결 테스트를 통과하세요.</p>
+        <div class="se-toolbar__actions">
+          <a class="button button--primary" href="${href}">설정 이동</a>
+          <button type="button" class="button button--ghost" data-professor-generate>
+            다시 시도
+          </button>
+        </div>
+      </div>
+    </div>`;
+}
+
 function mountPromoteOptions(pack, options) {
   return {
     ...options,
@@ -567,19 +591,49 @@ export function lazyGenerateAndMount(host, input, options = {}) {
       }
     }
 
+    /* Sprint-17D.1 — missing key: show setup gate, never silent LOCAL as Gemini */
+    if (professor?.requireSetup || professor?.error === 'missing_api_key') {
+      if (host) {
+        host.innerHTML = renderProfessorSetupGate(professor);
+        const retry = host.querySelector('[data-professor-generate]');
+        retry?.addEventListener('click', () => {
+          runProfessorPipeline(true).catch((err) => {
+            console.warn('[professor-explanation] retry failed', err);
+          });
+        });
+      }
+      if (typeof options.onReady === 'function') options.onReady(professor);
+      return professor;
+    }
+
+    if (professor && professor.ok === false && !professor.payload) {
+      if (host) {
+        host.innerHTML = renderProfessorSetupGate({
+          ...professor,
+          message: professor.message || 'Gemini 해설 생성에 실패했습니다.',
+        });
+        const retry = host.querySelector('[data-professor-generate]');
+        retry?.addEventListener('click', () => {
+          runProfessorPipeline(true).catch(() => {});
+        });
+      }
+      if (typeof options.onReady === 'function') options.onReady(professor);
+      return professor;
+    }
+
     let merged = pack;
     let smart = enrichWithSmartTutor(pack, input);
-    if (professor?.professorLevel) {
+    if (professor?.professorLevel && professor?.payload) {
       merged = mergeProfessorIntoPack(pack, professor);
       smart = enrichWithSmartTutor(merged, input);
       smart = applyProfessorToSmartPack(smart, professor);
-    } else if (professor) {
+    } else if (professor?.payload || professor?.explanation) {
       merged = mergeGeminiIntoPack(pack, professor);
       smart = enrichWithSmartTutor(merged, input);
       smart = applyGeminiToSmartPack(smart, professor);
     }
 
-    if (professor) {
+    if (professor?.payload) {
       try {
         smart.personalTextbook = updateTextbookWithGemini({
           question: input.question,
@@ -667,4 +721,5 @@ export default {
   lazyGenerateAndMount,
   renderGeminiSkeleton,
   renderProfessorManualGate,
+  renderProfessorSetupGate,
 };

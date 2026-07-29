@@ -1,56 +1,19 @@
 /**
  * Sprint-17A — Gemini Provider (Google Generative Language API)
+ * Sprint-17D.1 — Uses unified AI Config resolver.
  * Adapter-internal only. Never called from Runtime / Learning Engine formulas.
  */
 
-import { getItem, STORAGE_KEYS } from '../storage.js';
 import { LlmProvider } from './llm-provider.js';
+import {
+  resolveGeminiApiKey,
+  resolveGeminiConnection,
+  DEFAULT_GEMINI_MODEL,
+  GEMINI_BASE_URL,
+} from './ai-config.js';
 
-export const GEMINI_DEFAULT_MODEL = 'gemini-2.0-flash';
-export const GEMINI_BASE_URL =
-  'https://generativelanguage.googleapis.com/v1beta';
-
-/**
- * Resolve API key without hardcoding.
- */
-export function resolveGeminiApiKey() {
-  try {
-    if (
-      typeof process !== 'undefined'
-      && process.env
-      && typeof process.env.GEMINI_API_KEY === 'string'
-      && process.env.GEMINI_API_KEY.trim()
-    ) {
-      return process.env.GEMINI_API_KEY.trim();
-    }
-  } catch (_err) {
-    /* ignore */
-  }
-  try {
-    if (
-      typeof globalThis !== 'undefined'
-      && typeof globalThis.__GEMINI_API_KEY__ === 'string'
-      && globalThis.__GEMINI_API_KEY__.trim()
-    ) {
-      return globalThis.__GEMINI_API_KEY__.trim();
-    }
-  } catch (_err) {
-    /* ignore */
-  }
-  const settings = getItem(STORAGE_KEYS.SETTINGS, {}) || {};
-  if (typeof settings.geminiApiKey === 'string' && settings.geminiApiKey.trim()) {
-    return settings.geminiApiKey.trim();
-  }
-  if (
-    settings.llm
-    && String(settings.llm.provider || '').toUpperCase() === 'GEMINI'
-    && typeof settings.llm.apiKey === 'string'
-    && settings.llm.apiKey.trim()
-  ) {
-    return settings.llm.apiKey.trim();
-  }
-  return '';
-}
+export const GEMINI_DEFAULT_MODEL = DEFAULT_GEMINI_MODEL;
+export { GEMINI_BASE_URL, resolveGeminiApiKey };
 
 export class GeminiProvider extends LlmProvider {
   /**
@@ -87,15 +50,21 @@ export class GeminiProvider extends LlmProvider {
    * @param {object} [options]
    */
   async chat(messages = [], options = {}) {
-    const apiKey = resolveGeminiApiKey();
+    const connection = resolveGeminiConnection();
+    const apiKey = connection.apiKey;
     if (!apiKey) {
-      return { ok: false, error: 'missing_api_key', provider: this.id };
+      return {
+        ok: false,
+        error: 'missing_api_key',
+        provider: this.id,
+        requireSetup: true,
+      };
     }
     if (typeof this.fetchImpl !== 'function') {
       return { ok: false, error: 'fetch_unavailable', provider: this.id };
     }
 
-    const model = options.model || this.model || GEMINI_DEFAULT_MODEL;
+    const model = options.model || this.model || connection.model || GEMINI_DEFAULT_MODEL;
     const url = `${this.baseUrl}/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`;
 
     const contents = (Array.isArray(messages) ? messages : []).map((m) => ({
@@ -120,13 +89,20 @@ export class GeminiProvider extends LlmProvider {
       });
 
       if (!res.ok) {
-        const errText = await res.text().catch(() => '');
+        let detail = '';
+        try {
+          const body = await res.json();
+          detail = body?.error?.message || JSON.stringify(body).slice(0, 240);
+        } catch (_e) {
+          detail = await res.text().catch(() => '');
+        }
         return {
           ok: false,
           error: `gemini_http_${res.status}`,
-          detail: errText.slice(0, 200),
+          detail: String(detail || '').slice(0, 200),
           provider: this.id,
           model,
+          status: res.status,
         };
       }
 
@@ -139,7 +115,13 @@ export class GeminiProvider extends LlmProvider {
       if (!text) {
         return { ok: false, error: 'empty_response', provider: this.id, model };
       }
-      return { ok: true, text: String(text).trim(), provider: this.id, model };
+      return {
+        ok: true,
+        text: String(text).trim(),
+        provider: this.id,
+        model,
+        source: connection.source,
+      };
     } catch (err) {
       return {
         ok: false,
@@ -160,4 +142,4 @@ export class GeminiProvider extends LlmProvider {
   }
 }
 
-export default { GeminiProvider, resolveGeminiApiKey, GEMINI_DEFAULT_MODEL };
+export default { GeminiProvider, resolveGeminiApiKey, GEMINI_DEFAULT_MODEL, GEMINI_BASE_URL };

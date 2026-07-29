@@ -1,12 +1,14 @@
 /**
  * Sprint-17D — Professor Explanation Cache
- * Key: questionId + overrideVersion + geminiModel + professorPromptVersion
+ * Sprint-17D.1 — Cache key includes providerVersion
+ * Key: questionId + overrideVersion + modelVersion + promptVersion + providerVersion
  * Auto bulk generation is forbidden — Manual Trigger only (engine respects saveCache flag).
  */
 
 import { getItem, setItem, STORAGE_KEYS } from '../storage.js';
 import { MODEL_VERSION } from '../gemini-solver/problem-solver.js';
 import { PROFESSOR_PROMPT_VERSION } from './professor-prompt.js';
+import { PROVIDER_VERSION } from '../llm/ai-config.js';
 
 export const PROFESSOR_CACHE_KEY =
   STORAGE_KEYS.LEARNING_PROFESSOR_CACHE_V1 || 'learning.professor-cache.v1';
@@ -17,7 +19,7 @@ export const PROFESSOR_HISTORY_KEY =
 
 function emptyCache() {
   return {
-    schemaVersion: '17D',
+    schemaVersion: '17D.1',
     byKey: {},
     stats: { hits: 0, misses: 0, generations: 0, regenerations: 0, totalMs: 0 },
     updatedAt: null,
@@ -53,18 +55,21 @@ function touch(doc) {
  * @param {string|number} overrideVersion
  * @param {string} [geminiModel]
  * @param {string} [professorPromptVersion]
+ * @param {string} [providerVersion]
  */
 export function buildProfessorCacheKey(
   questionId,
   overrideVersion,
   geminiModel = MODEL_VERSION,
   professorPromptVersion = PROFESSOR_PROMPT_VERSION,
+  providerVersion = PROVIDER_VERSION,
 ) {
   return [
     String(questionId || 'na'),
     String(overrideVersion ?? '0'),
     String(geminiModel || MODEL_VERSION),
     String(professorPromptVersion || PROFESSOR_PROMPT_VERSION),
+    String(providerVersion || PROVIDER_VERSION),
   ].join('::');
 }
 

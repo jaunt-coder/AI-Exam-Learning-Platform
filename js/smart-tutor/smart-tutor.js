@@ -786,7 +786,13 @@ export function renderSmartTutorResult(pack, options = {}) {
               <div><dt>학생 답</dt><dd>${esc(r.selectedAnswer ?? '—')}</dd></div>
               <div><dt>정오</dt><dd class="${r.isCorrect ? 'is-ok' : 'is-bad'}">${esc(r.outcome)}</dd></div>
               <div><dt>Quality</dt><dd>${esc(pack.geminiMeta?.qualityScore ?? pack.geminiNative?.qualityScore ?? '—')}</dd></div>
-            </dl>`,
+              <div><dt>provider</dt><dd><code>${esc(pack.geminiMeta?.provider || pack.geminiNative?.provider || '—')}</code></dd></div>
+            </dl>
+            <p class="ll-hint">${
+              pack.geminiMeta?.isGeminiLive || pack.geminiNative?.isGeminiLive
+                ? 'GEMINI — 실제 API 해설'
+                : 'LOCAL_PROFESSOR 또는 Cache/Override — 실제 Gemini 호출 여부는 provider 값을 확인하세요.'
+            }</p>`,
         },
         {
           id: 'problem-understanding',
@@ -1130,7 +1136,13 @@ export function renderSmartTutorResult(pack, options = {}) {
       <div class="se-toolbar">
         <p class="edu-kicker">${
           pack.professorLevel || pack.geminiNative?.professorLevel
-            ? `Professor-Level AI 강사${pack.geminiMeta?.cacheHit ? ' · Cache Hit' : ''} · ${esc(pack.geminiMeta?.professorPromptVersion || pack.geminiNative?.promptVersion || '17D.1')} · Q ${esc(pack.geminiMeta?.qualityScore ?? '—')}`
+            ? `Professor · provider: ${esc(pack.geminiMeta?.provider || pack.geminiNative?.provider || '—')}${
+                pack.geminiMeta?.isGeminiLive || pack.geminiNative?.isGeminiLive
+                  ? ' · GEMINI 실제 API'
+                  : pack.geminiMeta?.provider === 'LOCAL_PROFESSOR' || pack.geminiNative?.provider === 'LOCAL_PROFESSOR'
+                    ? ' · LOCAL_PROFESSOR'
+                    : ''
+              }${pack.geminiMeta?.cacheHit ? ' · Cache Hit' : ''} · ${esc(pack.geminiMeta?.professorPromptVersion || pack.geminiNative?.promptVersion || '17D.1')} · Q ${esc(pack.geminiMeta?.qualityScore ?? '—')}`
             : pack.geminiNative || pack.humanLevel
             ? `Human-Level AI Explanation${pack.geminiMeta?.cacheHit ? ' · Cache Hit' : ''} · ${esc(pack.geminiMeta?.promptVersion || pack.geminiNative?.promptVersion || '17C')}`
             : 'AI Learning Loop · Smart Tutor'

@@ -118,6 +118,8 @@ const STORAGE_KEYS = {
   LEARNING_PROFESSOR_CACHE_V1: 'learning.professor-cache.v1',
   LEARNING_PROFESSOR_QUALITY_V1: 'learning.professor-quality.v1',
   LEARNING_PROFESSOR_HISTORY_V1: 'learning.professor-history.v1',
+  // Sprint-17D.1 Gemini Connection Layer (additive — do not rename)
+  LEARNING_AI_CONFIG_V1: 'learning.ai-config.v1',
   // Sprint-17B Gemini Vision OCR Recovery (additive — do not rename)
   LEARNING_VISION_CACHE_V1: 'learning.vision-cache.v1',
   LEARNING_VISION_HISTORY_V1: 'learning.vision-history.v1',

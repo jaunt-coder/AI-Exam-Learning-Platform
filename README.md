@@ -298,6 +298,7 @@ AI Exam Learning Platform v2/
 | `scripts/test-gemini-vision.py` | PASS |
 | `scripts/test-gemini-explanation.py` | PASS |
 | `scripts/test-professor-explanation.py` | PASS |
+| `scripts/test-gemini-config.py` | PASS |
 | `scripts/test-personal-textbook.py` | PASS |
 | `scripts/test-final-revision-book.py` | PASS |
 | `scripts/test-subject-adapter.py` | PASS |
@@ -380,11 +381,14 @@ Question → OCR/Resolved → Gemini 문제 분석 → 개념 탐색 → 풀이
 - Output: 문제 이해 · 핵심 개념 · 풀이 전략 · 실제 풀이 · 계산 · 보기 분석 · 공식 · 30초 암기 · 시험장 전략 · AI Tutor
 - Quality Reviewer: 100점 기준, **90 이상 승인** / 70–89 부분 재생성 / 70 미만 전체 재생성
 - **Manual Trigger만** 허용 (`AI 강사 해설 생성` 버튼) — 자동 Cache 대량 생성 금지
-- Cache Key: `questionId + overrideVersion + geminiModel + professorPromptVersion`
+- Cache Key: `questionId + overrideVersion + modelVersion + promptVersion + providerVersion`
+- AI Config: `learning.ai-config.v1` — Settings에서 API Key 저장·삭제·연결 테스트
+- Missing Key: silent LOCAL 금지 → 「Gemini API Key 설정이 필요합니다」+ 설정 이동
+- Result에 `provider: GEMINI | LOCAL_PROFESSOR` 명시
 - Personal Textbook: Question별 Professor Explanation 전체 저장
 - Final Revision: 핵심 개념 · 실수 포인트 · 암기 · 시험장 Tip 추출
 - Phase 1 평가 세트: `data/professor-evaluation-test.json` (대표 10문)
-- 테스트: `python scripts/test-professor-explanation.py`
+- 테스트: `python scripts/test-professor-explanation.py` · `python scripts/test-gemini-config.py`
 
 DB(Question/Pattern/Statistics)·Learning/Recommendation/Mastery·Override·Vision 계산식은 변경하지 않는다.
 

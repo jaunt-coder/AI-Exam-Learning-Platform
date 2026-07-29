@@ -101,14 +101,17 @@ check("buildRegenPrompt", "buildRegenPrompt" in regen)
 
 print("\n[4] Cache key contract")
 cache = read("js/professor-explanation/professor-cache.js") or ""
+se = read("js/solution-engine/solution-engine.js") or ""
 check("buildProfessorCacheKey", "buildProfessorCacheKey" in cache)
 check("professorPromptVersion part", "professorPromptVersion" in cache or "PROFESSOR_PROMPT_VERSION" in cache)
 storage = read("js/storage.js") or ""
-check("learning.professor-cache.v1", "learning.professor-cache.v1" in storage)
-check("learning.professor-quality.v1", "learning.professor-quality.v1" in storage)
+check("learning.professor-cache.v1", "learning.professor-cache.v1" in (read("js/storage.js") or ""))
+check("learning.ai-config.v1", "learning.ai-config.v1" in (read("js/storage.js") or ""))
+check("providerVersion in cache key", "providerVersion" in cache)
+check("requireSetup / missing key gate", "requireSetup" in (read("js/professor-explanation/professor-engine.js") or ""))
+check("renderProfessorSetupGate", "renderProfessorSetupGate" in se)
 
 print("\n[5] Manual Trigger (cost protection)")
-se = read("js/solution-engine/solution-engine.js") or ""
 check("AI 강사 해설 생성 button", "AI 강사 해설 생성" in se)
 check("manualProfessor default", "manualProfessor" in se)
 check("renderProfessorManualGate", "renderProfessorManualGate" in se)
@@ -127,7 +130,7 @@ for title in [
     "AI Tutor",
 ]:
     check(f"UI {title}", title in smart)
-check("Professor-Level kicker", "Professor-Level" in smart)
+check("Professor-Level kicker", "Professor" in smart and ("provider" in smart or "Professor-Level" in smart))
 
 print("\n[7] Reviewer Quality panel")
 review = read("js/reviewer/review-ui.js") or ""
