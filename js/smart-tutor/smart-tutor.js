@@ -874,7 +874,12 @@ export function renderSmartTutorResult(pack, options = {}) {
           open: false,
           title: '완성도 · Quality Score',
           body: pack.geminiNative?.quality
-            ? `<p class="se-summary">Quality ${esc(pack.geminiNative.quality.score ?? pack.geminiMeta?.qualityScore)} · Decision ${esc(pack.geminiNative.quality.decision || pack.geminiNative.qualityDecision || '—')} · Missing ${(pack.geminiNative.quality.missing || []).map(esc).join(', ') || '없음'}</p>`
+            ? `<p class="se-summary">Quality ${esc(pack.geminiNative.quality.score ?? pack.geminiMeta?.qualityScore)} · Decision ${esc(pack.geminiNative.quality.decision || pack.geminiNative.qualityDecision || '—')} · ${esc(pack.geminiMeta?.durationMs ?? pack.geminiNative?.durationMs ?? '—')}ms · Missing ${(pack.geminiNative.quality.missing || []).map(esc).join(', ') || '없음'}</p>
+               ${
+                 Number(pack.geminiMeta?.qualityScore ?? pack.geminiNative?.quality?.score) < 90
+                   ? `<p class="ll-hint">품질 90 미만입니다. Reviewer에서 Regenerate로 보강할 수 있습니다. (학생 화면은 속도 우선 1회 생성)</p>`
+                   : ''
+               }`
             : '<p class="ll-hint">—</p>',
         },
         {
@@ -1142,7 +1147,7 @@ export function renderSmartTutorResult(pack, options = {}) {
                   : pack.geminiMeta?.provider === 'LOCAL_PROFESSOR' || pack.geminiNative?.provider === 'LOCAL_PROFESSOR'
                     ? ' · LOCAL_PROFESSOR'
                     : ''
-              }${pack.geminiMeta?.cacheHit ? ' · Cache Hit' : ''} · ${esc(pack.geminiMeta?.professorPromptVersion || pack.geminiNative?.promptVersion || '17D.1')} · Q ${esc(pack.geminiMeta?.qualityScore ?? '—')}`
+              }${pack.geminiMeta?.cacheHit ? ' · Cache Hit' : ''} · ${esc(pack.geminiMeta?.professorPromptVersion || pack.geminiNative?.promptVersion || '17D.2')} · Q ${esc(pack.geminiMeta?.qualityScore ?? '—')}`
             : pack.geminiNative || pack.humanLevel
             ? `Human-Level AI Explanation${pack.geminiMeta?.cacheHit ? ' · Cache Hit' : ''} · ${esc(pack.geminiMeta?.promptVersion || pack.geminiNative?.promptVersion || '17C')}`
             : 'AI Learning Loop · Smart Tutor'

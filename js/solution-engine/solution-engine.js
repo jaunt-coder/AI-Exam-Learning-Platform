@@ -475,10 +475,10 @@ export function renderGeminiSkeleton() {
   return `
     <div class="se-root st-root gemini-skel" data-gemini-solver="${GEMINI_RESULT_VERSION}" data-professor-engine="${PROFESSOR_RESULT_VERSION}" aria-busy="true">
       <div class="se-toolbar">
-        <p class="edu-kicker">AI 전문 강사 해설 · 생성 중</p>
+        <p class="edu-kicker">AI 전문 강사 해설 · Gemini 1회 호출 중</p>
       </div>
       <div class="se-acc__body">
-        <p class="ll-hint">문제를 직접 읽고 사고 과정을 가르치는 강사 해설을 준비합니다…</p>
+        <p class="ll-hint">문제를 직접 읽고 강사 해설을 생성합니다. 보통 10~30초 정도 걸립니다…</p>
         <div class="gemini-skel__bars" aria-hidden="true">
           <span></span><span></span><span></span>
         </div>
@@ -576,6 +576,8 @@ export function lazyGenerateAndMount(host, input, options = {}) {
         pattern: input.pattern,
         force: Boolean(force || input.force),
         saveCache: true,
+        fastMode: true,
+        skipRegen: true,
       });
     } catch (err) {
       console.warn('[professor-explanation] pipeline failed — trying Gemini 17C', err);

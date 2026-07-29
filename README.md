@@ -377,14 +377,14 @@ Gemini를 “문제 풀이 생성기”가 아니라 **감정평가사 시험 �
 Question → OCR/Resolved → Gemini 문제 분석 → 개념 탐색 → 풀이
 ```
 
-- Prompt Version `17D.1` (`js/professor-explanation/`)
+- Prompt Version `17D.2` (`js/professor-explanation/`) — 학생 Manual Trigger는 **Gemini 1회 호출** (품질 자동 재생성 생략, 속도 우선)
 - Output: 문제 이해 · 핵심 개념 · 풀이 전략 · 실제 풀이 · 계산 · 보기 분석 · 공식 · 30초 암기 · 시험장 전략 · AI Tutor
-- Quality Reviewer: 100점 기준, **90 이상 승인** / 70–89 부분 재생성 / 70 미만 전체 재생성
+- Quality Reviewer: 100점 기준, **90 이상 승인** / Reviewer에서만 70–89 부분·70 미만 전체 재생성 (`fastMode: false`)
 - **Manual Trigger만** 허용 (`AI 강사 해설 생성` 버튼) — 자동 Cache 대량 생성 금지
 - Cache Key: `questionId + overrideVersion + modelVersion + promptVersion + providerVersion`
 - AI Config: `learning.ai-config.v1` — Settings에서 API Key 저장·삭제·연결 테스트
 - Missing Key: silent LOCAL 금지 → 「Gemini API Key 설정이 필요합니다」+ 설정 이동
-- Result에 `provider: GEMINI | LOCAL_PROFESSOR` 명시
+- Result에 `provider: GEMINI | LOCAL_PROFESSOR` 명시 · 소요시간(ms) 표시
 - Personal Textbook: Question별 Professor Explanation 전체 저장
 - Final Revision: 핵심 개념 · 실수 포인트 · 암기 · 시험장 Tip 추출
 - Phase 1 평가 세트: `data/professor-evaluation-test.json` (대표 10문)

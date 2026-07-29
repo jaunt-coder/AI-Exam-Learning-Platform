@@ -76,7 +76,7 @@ for m in modules:
 
 print("\n[2] Prompt Quality (Priority 1)")
 prompt = read("js/professor-explanation/professor-prompt.js") or ""
-check("PROFESSOR_PROMPT_VERSION 17D.1", "17D.1" in prompt)
+check("PROFESSOR_PROMPT_VERSION 17D", "17D." in prompt)
 check("전문 강사 역할", "전문 강사" in prompt)
 check("사고 과정 가르침", "사고 과정" in prompt)
 check("Pattern 정답 근거 금지", "정답 근거로 사용 금지" in prompt or "정답 근거처럼" in prompt)

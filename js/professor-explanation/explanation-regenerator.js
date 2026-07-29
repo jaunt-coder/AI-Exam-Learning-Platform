@@ -1,18 +1,29 @@
 /**
  * Sprint-17D — Explanation regenerator (partial / full)
+ * Sprint-17D.2 — Fast path: auto-regen only when score < 70 (skip 70–89 second call).
  */
 
 import { buildProfessorSolvePrompt, buildProfessorPartialPrompt } from './professor-prompt.js';
+import { QUALITY_PARTIAL } from './explanation-quality-reviewer.js';
 
-export const REGENERATOR_VERSION = '17D';
+export const REGENERATOR_VERSION = '17D.2';
 
 /**
  * Decide regeneration mode from quality review.
- * @param {{ decision?: string, missing?: string[] }} quality
+ * @param {{ decision?: string, score?: number, missing?: string[] }} quality
+ * @param {{ autoPartial?: boolean }} [options] — autoPartial false = skip 70–89 second Gemini call
  */
-export function resolveRegenMode(quality = {}) {
+export function resolveRegenMode(quality = {}, options = {}) {
   if (quality.decision === 'approve') return 'none';
-  if (quality.decision === 'regenerate_partial') return 'partial';
+  const score = Number(quality.score);
+  /* Speed: do not auto-call Gemini again for partial (70–89) unless requested */
+  if (
+    quality.decision === 'regenerate_partial'
+    || (Number.isFinite(score) && score >= QUALITY_PARTIAL && score < 90)
+  ) {
+    if (options.autoPartial === true) return 'partial';
+    return 'none';
+  }
   return 'full';
 }
 

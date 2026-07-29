@@ -109,3 +109,11 @@
 - Cache key + `providerVersion`
 - Result provider 표시: `GEMINI` / `LOCAL_PROFESSOR`
 - Test: `scripts/test-gemini-config.py`
+
+## Sprint 17D.2
+
+- 학생 Manual Trigger 속도 최적화: Gemini **1회 호출** (`fastMode` / `skipRegen`)
+- 자동 partial regen(70–89)은 Reviewer opt-in만 (`autoPartial: true`)
+- Prompt 압축 · table 2500자 제한 · pass1 `maxTokens` 2800 · Prompt `17D.2`
+- Result에 소요시간(ms) 표시 · 품질 90 미만 시 Reviewer Regenerate 안내
+- Test: `scripts/test-professor-explanation.py`

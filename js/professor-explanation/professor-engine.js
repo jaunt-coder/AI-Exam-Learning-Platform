@@ -75,6 +75,8 @@ export { professorPayloadToMarkdown, markdownToProfessorPayload, getProfessorDas
  *   forceLocal?: boolean,
  *   allowLocal?: boolean,
  *   skipRegen?: boolean,
+ *   fastMode?: boolean,
+ *   autoPartial?: boolean,
  *   saveCache?: boolean,
  * }} input
  */
@@ -83,6 +85,9 @@ export async function generateProfessorExplanation(input = {}) {
   const question = input.question || {};
   const grade = input.grade || {};
   const pattern = input.pattern || null;
+  /* Student Manual Trigger default: one Gemini call (fast). Reviewer may set fastMode:false */
+  const fastMode = input.fastMode !== false;
+  const skipRegen = input.skipRegen != null ? Boolean(input.skipRegen) : fastMode;
   const connection = resolveGeminiConnection();
   const providerVersion = connection.ok
     ? PROVIDER_VERSION
@@ -202,8 +207,8 @@ export async function generateProfessorExplanation(input = {}) {
   const solvePrompt = buildProfessorSolvePrompt(promptPayload);
   const pass1 = await callGemini(solvePrompt, {
     forceLocal: input.forceLocal,
-    temperature: 0.35,
-    maxTokens: 4096,
+    temperature: 0.3,
+    maxTokens: fastMode ? 2800 : 3600,
     model: connection.model || MODEL_VERSION,
   });
 
@@ -297,9 +302,11 @@ export async function generateProfessorExplanation(input = {}) {
 
   let quality = reviewExplanationQuality(payload, qualityCtx(reader));
   let regenerated = false;
-  let regenMode = resolveRegenMode(quality);
+  let regenMode = resolveRegenMode(quality, {
+    autoPartial: input.autoPartial === true,
+  });
 
-  if (!input.skipRegen && regenMode !== 'none') {
+  if (!skipRegen && regenMode !== 'none') {
     const regenPrompt = buildRegenPrompt(
       regenMode,
       promptPayload,
@@ -308,8 +315,9 @@ export async function generateProfessorExplanation(input = {}) {
     );
     const regenCall = await callGemini(regenPrompt, {
       forceLocal: input.forceLocal || provider === 'LOCAL_PROFESSOR',
-      temperature: 0.3,
-      maxTokens: 4096,
+      temperature: 0.25,
+      maxTokens: regenMode === 'partial' ? 1600 : 2800,
+      model: connection.model || MODEL_VERSION,
     });
     if (regenCall.ok && regenCall.text) {
       const frag = parseGeminiJson(regenCall.text);
