@@ -200,6 +200,7 @@ export async function generateWithRuntime(input = {}) {
       cached: false,
       source: connection.source,
       providerVersion: connection.providerVersion,
+      requestUrl: result.requestUrl,
     };
   }
 
@@ -217,15 +218,16 @@ export async function generateWithRuntime(input = {}) {
     };
   }
 
-  return {
-    ...result,
-    ok: false,
-    provider: 'GEMINI',
-    model: primary,
-    runtimeVersion: RUNTIME_VERSION,
-    durationMs,
-  };
-}
+    return {
+      ...result,
+      ok: false,
+      provider: 'GEMINI',
+      model: primary,
+      runtimeVersion: RUNTIME_VERSION,
+      durationMs,
+      requestUrl: result.requestUrl,
+    };
+  }
 
 /**
  * Stream-friendly alias.
@@ -252,6 +254,7 @@ export async function healthWithRuntime(options = {}) {
 
   const model = resolvePrimaryModel(options.model || connection.model);
   const auth = { apiKey: connection.apiKey, fetchImpl: options.fetchImpl };
+  console.log('[responses-runtime] healthWithRuntime start', { model, RUNTIME_VERSION });
   const ping = await postInteractions(
     auth,
     {
@@ -261,6 +264,11 @@ export async function healthWithRuntime(options = {}) {
     },
     { stream: false },
   );
+  console.log('[responses-runtime] health ping', {
+    ok: ping.ok,
+    status: ping.status,
+    requestUrl: ping.requestUrl,
+  });
 
   if (ping.ok || ping.status === 200) {
     recordRuntimeHealth(true);
@@ -278,12 +286,14 @@ export async function healthWithRuntime(options = {}) {
       apiMode: 'interactions',
       runtimeVersion: RUNTIME_VERSION,
       urlHost: 'generativelanguage.googleapis.com',
+      requestUrl: ping.requestUrl,
     };
   }
 
   /* Fallback model health */
   const fb = resolveFallbackModel();
   if (fb && fb !== model) {
+    console.log('[responses-runtime] health fallback model', fb);
     const second = await postInteractions(
       auth,
       { model: fb, input: 'ping', store: false },
@@ -307,6 +317,7 @@ export async function healthWithRuntime(options = {}) {
         status: 200,
         apiMode: 'interactions',
         runtimeVersion: RUNTIME_VERSION,
+        requestUrl: second.requestUrl,
       };
     }
   }
@@ -320,6 +331,7 @@ export async function healthWithRuntime(options = {}) {
     provider: 'GEMINI',
     model,
     runtimeVersion: RUNTIME_VERSION,
+    requestUrl: ping.requestUrl,
   };
 }
 

@@ -76,6 +76,7 @@ export async function callGemini(prompt, options = {}) {
   }
 
   try {
+    console.log('[callGemini] → generateWithRuntime');
     const result = await generateWithRuntime({
       prompt,
       model: options.model || connection.model || MODEL_VERSION,
@@ -87,6 +88,12 @@ export async function callGemini(prompt, options = {}) {
       allowModelFallback: true,
       localText: options.allowLocalFallback ? options.localText : undefined,
       useCache: options.useCache === true,
+    });
+    console.log('[callGemini] result', {
+      ok: result.ok,
+      requestUrl: result.requestUrl,
+      provider: result.provider,
+      status: result.status,
     });
 
     if (result?.ok && result.text) {
@@ -102,6 +109,7 @@ export async function callGemini(prompt, options = {}) {
         fallbackUsed: Boolean(result.fallbackUsed),
         durationMs: result.durationMs,
         streamed: Boolean(result.streamed),
+        requestUrl: result.requestUrl,
       };
     }
 

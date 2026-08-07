@@ -34,12 +34,29 @@ export async function postInteractions(auth, body, options = {}) {
     return { ok: false, error: RESPONSES_ERROR.MISSING_API_KEY, requireSetup: true };
   }
 
-  const url = buildInteractionsUrl(cfg);
+  const baseUrl = buildInteractionsUrl(cfg);
+  /* Prefer ?key= like working GET /v1beta/models — fewer custom CORS headers */
+  const url =
+    cfg.apiKeyInQuery === false
+      ? baseUrl
+      : `${baseUrl}?key=${encodeURIComponent(auth.apiKey)}`;
+  console.log('Gemini URL =', url);
+  console.log('[responses-client] POST interactions', {
+    baseUrl,
+    path: cfg.interactionsPath,
+    apiMode: cfg.apiMode,
+    runtimeVersion: '17E.1',
+  });
+
   const headers = {
     'Content-Type': 'application/json',
-    [cfg.apiKeyHeader || 'x-goog-api-key']: auth.apiKey,
-    'Api-Revision': cfg.apiRevision || '2026-05-20',
   };
+  if (cfg.apiKeyInQuery === false) {
+    headers[cfg.apiKeyHeader || 'x-goog-api-key'] = auth.apiKey;
+  }
+  if (cfg.apiRevision) {
+    headers['Api-Revision'] = cfg.apiRevision;
+  }
 
   const payload = {
     store: cfg.store === true,
@@ -54,6 +71,7 @@ export async function postInteractions(auth, body, options = {}) {
       body: JSON.stringify(payload),
       signal: options.signal,
     });
+    console.log('[responses-client] interactions status =', res.status, url);
 
     if (!res.ok) {
       let detail = '';
@@ -76,6 +94,7 @@ export async function postInteractions(auth, body, options = {}) {
         modelFallback: classified.modelFallback,
         apiMode: 'interactions',
         urlHost: 'generativelanguage.googleapis.com',
+        requestUrl: url,
       };
     }
 
@@ -90,6 +109,7 @@ export async function postInteractions(auth, body, options = {}) {
         apiMode: 'interactions',
         status: 200,
         urlHost: 'generativelanguage.googleapis.com',
+        requestUrl: url,
       };
     }
 
@@ -104,16 +124,19 @@ export async function postInteractions(auth, body, options = {}) {
       status: 200,
       apiMode: 'interactions',
       urlHost: 'generativelanguage.googleapis.com',
+      requestUrl: url,
       raw: data,
       error: parsed.ok ? undefined : RESPONSES_ERROR.EMPTY,
     };
   } catch (err) {
+    console.warn('[responses-client] fetch failed', url, err);
     return {
       ok: false,
       error: RESPONSES_ERROR.NETWORK,
       detail: err?.message || String(err),
       retryable: true,
       apiMode: 'interactions',
+      requestUrl: url,
     };
   }
 }

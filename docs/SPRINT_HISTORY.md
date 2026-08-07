@@ -134,7 +134,7 @@
 
 - Gemini Responses (Interactions) Runtime — Universal LLM Runtime
 - Modules: `js/llm/runtime/responses-*.js` · `js/llm/model-registry.js` · `js/prompts/`
-- Endpoint config: `data/llm-config.json` → `runtime.interactionsPath` (`/v1beta2/interactions`)
+- Endpoint config: `data/llm-config.json` → `runtime.interactionsPath` (`/v1beta/interactions`)
 - GeminiProvider / callGemini / Professor Engine: Runtime only (직접 fetch 금지)
 - Retry: 429/500/503 Exponential Backoff 1·2·4·8 (최대 4회)
 - Fallback: Gemini model → Cache → LOCAL_PROFESSOR

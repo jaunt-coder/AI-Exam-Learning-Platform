@@ -13,7 +13,7 @@
     "version": "17E.1",
     "apiMode": "interactions",
     "host": "https://generativelanguage.googleapis.com",
-    "interactionsPath": "/v1beta2/interactions",
+    "interactionsPath": "/v1beta/interactions",
     "listModelsPath": "/v1beta/models",
     "generateContentPathTemplate": "/v1beta/models/{model}:generateContent",
     "apiRevision": "2026-05-20",

@@ -384,7 +384,7 @@ Question → OCR/Resolved → Gemini 문제 분석 → 개념 탐색 → 풀이
 - Cache Key: `questionId + overrideVersion + modelVersion + promptVersion + providerVersion`
 - AI Config: `learning.ai-config.v1` — Settings에서 API Key 저장·삭제·연결 테스트
 - **기본 모델 `gemini-3-flash`** · 미존재 시 `gemini-3-flash-preview` 자동 재시도 (404 / MODEL_NOT_FOUND)
-- **Responses Runtime (Sprint-17E)**: `POST /v1beta2/interactions` · Provider는 Runtime만 호출 (직접 fetch 금지)
+- **Responses Runtime (Sprint-17E)**: `POST /v1beta/interactions` · Provider는 Runtime만 호출 (직접 fetch 금지)
 - Connection Test: Responses API 실호출 · HTTP **200** 필수 · Dashboard AI Runtime 카드
 - Missing Key: silent LOCAL 금지 → 「Gemini API Key 설정이 필요합니다」+ 설정 이동
 - Result에 `provider: GEMINI | LOCAL_PROFESSOR` 명시 · 소요시간(ms) 표시

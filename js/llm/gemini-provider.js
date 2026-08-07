@@ -84,6 +84,12 @@ export class GeminiProvider extends LlmProvider {
       useCache: options.useCache === true,
       allowModelFallback: true,
     });
+    console.log('[GeminiProvider] generate/chat result', {
+      ok: result.ok,
+      model: result.model,
+      requestUrl: result.requestUrl,
+      runtimeVersion: result.runtimeVersion,
+    });
 
     return {
       ...result,

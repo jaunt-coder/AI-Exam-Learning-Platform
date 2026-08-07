@@ -215,6 +215,12 @@ export async function generateProfessorExplanation(input = {}) {
     stream: Boolean(input.stream),
     onDelta: input.onDelta,
   });
+  console.log('[professor-engine] pass1', {
+    ok: pass1.ok,
+    requestUrl: pass1.requestUrl,
+    provider: pass1.provider,
+    runtimeVersion: pass1.runtimeVersion || RUNTIME_VERSION,
+  });
 
   if (pass1.requireSetup && !allowLocal) {
     return {

@@ -71,7 +71,8 @@ client = read("js/llm/runtime/responses-client.js") or ""
 model = read("js/llm/runtime/responses-model.js") or ""
 runtime = read("js/llm/runtime/responses-runtime.js") or ""
 check("interactions path config", "interactionsPath" in model)
-check("v1beta2/interactions default", "/v1beta2/interactions" in model)
+check("v1beta/interactions default", "/v1beta/interactions" in model)
+check("no v1beta2 interactions", "/v1beta2/interactions" not in model)
 check("no hardcoded URL in professor-engine", "generativelanguage.googleapis.com" not in (read("js/professor-explanation/professor-engine.js") or ""))
 check("postInteractions", "postInteractions" in client)
 check("Api-Revision", "Api-Revision" in client or "apiRevision" in model)

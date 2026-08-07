@@ -356,9 +356,22 @@ export async function testGeminiConnection(options = {}) {
   }
 
   const { healthWithRuntime } = await import('./runtime/responses-runtime.js');
+  const { buildInteractionsUrl, getRuntimeConfig } = await import(
+    './runtime/responses-model.js'
+  );
+  const probeUrl = buildInteractionsUrl(getRuntimeConfig());
+  console.log('Gemini URL =', probeUrl);
+  console.log('[ai-config] Connection Test → healthWithRuntime', probeUrl);
+
   const result = await healthWithRuntime({
     model,
     fetchImpl: options.fetchImpl,
+  });
+  console.log('[ai-config] Connection Test result', {
+    ok: result.ok,
+    status: result.status,
+    requestUrl: result.requestUrl || probeUrl,
+    detail: result.detail,
   });
 
   if (result.ok) {
@@ -374,6 +387,7 @@ export async function testGeminiConnection(options = {}) {
       runtimeVersion: result.runtimeVersion,
       lastConnectedAt: new Date().toISOString(),
       urlHost: 'generativelanguage.googleapis.com',
+      requestUrl: result.requestUrl || probeUrl,
     };
   }
 
@@ -387,6 +401,7 @@ export async function testGeminiConnection(options = {}) {
     detail: result.detail,
     apiVersion: GEMINI_API_VERSION,
     apiMode: 'interactions',
+    requestUrl: result.requestUrl || probeUrl,
   };
 }
 

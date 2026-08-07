@@ -128,19 +128,27 @@ function wireAiConfig() {
     setStatus('연결 테스트 중… Responses API 호출');
     const model = document.getElementById('ai-model')?.value?.trim();
     const typed = document.getElementById('ai-api-key')?.value?.trim();
+    console.log('[settings] Connection Test clicked', { model });
     const result = await testGeminiConnection({
       model,
       apiKey: typed || undefined,
     });
+    console.log('[settings] Connection Test done', result);
     if (result.ok) {
       const fb = result.fallbackUsed
         ? ` · fallback ${result.model}`
         : ` · ${result.model}`;
-      setStatus(`Gemini Connected${fb} · HTTP ${result.status}`, 'ok');
+      setStatus(
+        `Gemini Connected${fb} · HTTP ${result.status} · ${result.requestUrl || result.urlHost || 'interactions'}`,
+        'ok',
+      );
     } else if (result.requireSetup) {
       setStatus('Gemini API Key 설정이 필요합니다.', 'err');
     } else {
-      setStatus(`API Key Invalid${result.detail ? ` · ${result.detail}` : ''}`, 'err');
+      setStatus(
+        `API Key Invalid${result.detail ? ` · ${result.detail}` : ''}${result.requestUrl ? ` · ${result.requestUrl}` : ''}`,
+        'err',
+      );
     }
     renderAiConfigPanel();
   });
