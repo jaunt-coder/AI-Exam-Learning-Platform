@@ -15,6 +15,9 @@ import { loadDashboardFilter } from './dashboard-filter.js';
 import { getDashboardMistakeData } from '../solution-engine/solution-engine.js';
 import { getGeminiDashboardStats } from '../gemini-solver/gemini-orchestrator.js';
 import { getVisionDashboardStats } from '../gemini-vision/vision-recovery.js';
+import { getAiConnectionStatus } from '../llm/ai-config.js';
+import { getAiRuntimeDashboardStats } from '../llm/runtime/responses-runtime.js';
+import { getProfessorDashboardStats } from '../professor-explanation/professor-cache.js';
 
 export const DASHBOARD_STATE_KEY =
   STORAGE_KEYS.LEARNING_DASHBOARD_STATE_V1 || 'learning.dashboard-state.v1';
@@ -214,6 +217,19 @@ export function buildStudentDashboardView(questions = [], patterns = []) {
     mistakeHeatmap: getDashboardMistakeData(),
     /* Sprint-17A — Gemini Native Problem Solver metrics */
     geminiSolver: getGeminiDashboardStats(),
+    /* Sprint-17D.3 — AI connection status card */
+    aiStatus: (() => {
+      const status = getAiConnectionStatus();
+      const gem = getGeminiDashboardStats();
+      const prof = getProfessorDashboardStats();
+      return {
+        ...status,
+        cacheHit: (gem.cacheHit || 0) + (prof.cacheHit || 0),
+        cacheMiss: (gem.cacheMiss || 0) + (prof.cacheMiss || 0),
+        lastApi: status.lastApiAt || status.lastConnectedAt || null,
+      };
+    })(),
+    aiRuntime: getAiRuntimeDashboardStats(),
     /* Sprint-17B — Vision OCR Recovery metrics */
     visionOcr: getVisionDashboardStats(),
   };

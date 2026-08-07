@@ -96,7 +96,7 @@ export function loadVisionConfig() {
   return {
     schemaVersion: 'v1',
     ocrThreshold: Number(raw?.ocrThreshold) || 70,
-    visionModel: raw?.visionModel || 'gemini-2.0-flash',
+    visionModel: raw?.visionModel || 'gemini-3-flash',
     promptVersion: raw?.promptVersion || '17B.1',
     backgroundPrewarm: raw?.backgroundPrewarm !== false,
     ...((raw && typeof raw === 'object') ? raw : {}),

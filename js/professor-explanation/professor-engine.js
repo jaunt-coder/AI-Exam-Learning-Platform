@@ -19,6 +19,7 @@ import {
   resolveGeminiConnection,
   PROVIDER_VERSION,
 } from '../llm/ai-config.js';
+import { RUNTIME_VERSION } from '../llm/runtime/responses-model.js';
 import { parseGeminiJson } from '../gemini-solver/response-parser.js';
 import { verifyAnswerLocally, applyPass2Validation } from '../gemini-solver/answer-verifier.js';
 import {
@@ -105,7 +106,8 @@ export async function generateProfessorExplanation(input = {}) {
     reader.overrideVersion,
     connection.model || MODEL_VERSION,
     PROFESSOR_PROMPT_VERSION,
-    providerVersion,
+    RUNTIME_VERSION,
+    subjectId,
   );
 
   /* Reviewer-approved Override takes precedence */
@@ -210,6 +212,8 @@ export async function generateProfessorExplanation(input = {}) {
     temperature: 0.3,
     maxTokens: fastMode ? 2800 : 3600,
     model: connection.model || MODEL_VERSION,
+    stream: Boolean(input.stream),
+    onDelta: input.onDelta,
   });
 
   if (pass1.requireSetup && !allowLocal) {
@@ -652,7 +656,8 @@ export function generateProfessorExplanationSync(input = {}) {
     reader.overrideVersion,
     MODEL_VERSION,
     PROFESSOR_PROMPT_VERSION,
-    providerVersion,
+    RUNTIME_VERSION,
+    subjectId,
   );
 
   if (!input.force) {

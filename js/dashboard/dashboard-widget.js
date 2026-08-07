@@ -33,6 +33,10 @@ export const WIDGET_IDS = Object.freeze({
   examCompletionStreak: 'widget-exam-completion-streak',
   /* Sprint-15C Solution Quality */
   solutionQuality: 'widget-solution-quality',
+  /* Sprint-17D.3 AI Connection Status */
+  aiStatus: 'widget-ai-status',
+  /* Sprint-17E AI Responses Runtime */
+  aiRuntime: 'widget-ai-runtime',
   /* Sprint-17A Gemini Native Problem Solver */
   geminiSolver: 'widget-gemini-solver',
   /* Sprint-17D Professor Explanation Quality */

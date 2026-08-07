@@ -2,16 +2,21 @@
  * Sprint-17A — Problem Solver (Gemini call + Problem-First local fallback)
  * Sprint-17C — Local fallback emits Human-Level schema.
  * Sprint-17D.1 — AI Config resolver (learning.ai-config.v1 priority).
+ * Sprint-17E — Routes through Universal Responses Runtime (no direct fetch).
  */
 
-import { getProvider } from '../llm/provider-registry.js';
 import {
   resolveGeminiApiKey as resolveFromAiConfig,
   resolveGeminiConnection,
   DEFAULT_GEMINI_MODEL,
 } from '../llm/ai-config.js';
+import {
+  generateWithRuntime,
+  RUNTIME_VERSION,
+} from '../llm/runtime/responses-runtime.js';
 
-export const MODEL_VERSION = DEFAULT_GEMINI_MODEL || 'gemini-2.0-flash';
+export const MODEL_VERSION = DEFAULT_GEMINI_MODEL || 'gemini-3-flash';
+export { RUNTIME_VERSION };
 
 /**
  * Resolve Gemini API key — Sprint-17D.1 unified resolver.
@@ -28,22 +33,36 @@ export function resolveGeminiApiKey() {
  *   maxTokens?: number,
  *   forceLocal?: boolean,
  *   allowLocalFallback?: boolean,
+ *   stream?: boolean,
+ *   onDelta?: Function,
+ *   localText?: string,
  * }} [options]
  */
 export async function callGemini(prompt, options = {}) {
   if (options.forceLocal) {
     return {
       ok: true,
-      text: '',
+      text: String(options.localText || ''),
       provider: 'LOCAL_PROBLEM_FIRST',
       model: MODEL_VERSION,
       local: true,
+      runtimeVersion: RUNTIME_VERSION,
     };
   }
 
   const connection = resolveGeminiConnection();
-  const apiKey = connection.apiKey;
-  if (!apiKey) {
+  if (!connection.apiKey) {
+    if (options.localText && options.allowLocalFallback) {
+      return {
+        ok: true,
+        text: String(options.localText),
+        provider: 'LOCAL_PROFESSOR',
+        model: 'local',
+        local: true,
+        requireSetup: true,
+        runtimeVersion: RUNTIME_VERSION,
+      };
+    }
     return {
       ok: false,
       error: 'missing_api_key',
@@ -52,38 +71,50 @@ export async function callGemini(prompt, options = {}) {
       requireSetup: true,
       localFallback: false,
       providerVersion: connection.providerVersion,
+      runtimeVersion: RUNTIME_VERSION,
     };
   }
 
   try {
-    const provider = getProvider('GEMINI');
-    if (provider && typeof provider.generate === 'function') {
-      const result = await provider.generate({
-        prompt,
-        model: options.model || connection.model || MODEL_VERSION,
-        temperature: options.temperature ?? 0.2,
-        maxTokens: options.maxTokens ?? 3200,
-      });
-      if (result?.ok && result.text) {
-        return {
-          ok: true,
-          text: result.text,
-          provider: result.provider || 'GEMINI',
-          model: result.model || connection.model || MODEL_VERSION,
-          providerVersion: connection.providerVersion,
-          source: connection.source,
-        };
-      }
+    const result = await generateWithRuntime({
+      prompt,
+      model: options.model || connection.model || MODEL_VERSION,
+      temperature: options.temperature ?? 0.2,
+      maxTokens: options.maxTokens ?? 3200,
+      stream: Boolean(options.stream),
+      onDelta: options.onDelta,
+      expectJson: options.expectJson !== false,
+      allowModelFallback: true,
+      localText: options.allowLocalFallback ? options.localText : undefined,
+      useCache: options.useCache === true,
+    });
+
+    if (result?.ok && result.text) {
       return {
-        ok: false,
-        error: result?.error || 'gemini_generate_failed',
-        detail: result?.detail,
-        provider: 'GEMINI',
-        model: MODEL_VERSION,
-        localFallback: Boolean(options.allowLocalFallback),
+        ok: true,
+        text: result.text,
+        provider: result.provider || 'GEMINI',
+        model: result.model || connection.model || MODEL_VERSION,
         providerVersion: connection.providerVersion,
+        runtimeVersion: result.runtimeVersion || RUNTIME_VERSION,
+        source: connection.source,
+        cached: Boolean(result.cached),
+        fallbackUsed: Boolean(result.fallbackUsed),
+        durationMs: result.durationMs,
+        streamed: Boolean(result.streamed),
       };
     }
+
+    return {
+      ok: false,
+      error: result?.error || 'gemini_generate_failed',
+      detail: result?.detail,
+      provider: result?.provider || 'GEMINI',
+      model: result?.model || MODEL_VERSION,
+      localFallback: Boolean(options.allowLocalFallback),
+      providerVersion: connection.providerVersion,
+      runtimeVersion: RUNTIME_VERSION,
+    };
   } catch (err) {
     return {
       ok: false,
@@ -93,17 +124,9 @@ export async function callGemini(prompt, options = {}) {
       model: MODEL_VERSION,
       localFallback: Boolean(options.allowLocalFallback),
       providerVersion: connection.providerVersion,
+      runtimeVersion: RUNTIME_VERSION,
     };
   }
-
-  return {
-    ok: false,
-    error: 'provider_unavailable',
-    provider: 'GEMINI',
-    model: MODEL_VERSION,
-    localFallback: Boolean(options.allowLocalFallback),
-    providerVersion: connection.providerVersion,
-  };
 }
 
 /**

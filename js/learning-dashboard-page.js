@@ -56,6 +56,8 @@ import {
 import { getGeminiDashboardStats } from './gemini-solver/gemini-orchestrator.js';
 import { getProfessorDashboardStats } from './professor-explanation/professor-engine.js';
 import { getVisionDashboardStats, prewarmVisionCache } from './gemini-vision/vision-recovery.js';
+import { getAiConnectionStatus } from './llm/ai-config.js';
+import { getAiRuntimeDashboardStats } from './llm/runtime/responses-runtime.js';
 import { getTextbookDashboardCard } from './personal-textbook/textbook-engine.js';
 import {
   getFinalBookDashboardCard,
@@ -236,6 +238,59 @@ function renderGeminiSolverCard(stats = {}) {
           .join('')}
       </ul>
       <p class="ld-card-desc">Human-Level · model ${escapeHtml(stats.modelVersion || '—')} · prompt ${escapeHtml(stats.promptVersion || '—')}</p>
+    </div>`;
+}
+
+function renderAiRuntimeCard(stats = {}) {
+  const rows = [
+    ['Provider', stats.provider || '—'],
+    ['Current Model', stats.currentModel || '—'],
+    ['Responses API', stats.responsesApi ? 'yes' : 'no'],
+    ['Latency', `${stats.latency ?? 0}ms`],
+    ['Average Time', `${stats.averageTime ?? 0}ms`],
+    ['Tokens', stats.tokens ?? 0],
+    ['Estimated Cost', stats.estimatedCost ?? 0],
+    ['Cache Hit', stats.cacheHit ?? 0],
+    ['Cache Miss', stats.cacheMiss ?? 0],
+    ['Streaming', stats.streaming ? 'yes' : 'no'],
+    ['Health', stats.health || '—'],
+  ];
+  return `
+    <div class="ld-ai-runtime" data-ai-runtime="17E">
+      <ul class="ld-stat-list">
+        ${rows
+          .map(
+            ([label, value]) =>
+              `<li><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></li>`,
+          )
+          .join('')}
+      </ul>
+      <p class="ld-card-desc">runtime ${escapeHtml(stats.runtimeVersion || '—')} · mode ${escapeHtml(stats.apiMode || '—')}</p>
+    </div>`;
+}
+
+function renderAiStatusCard(stats = {}) {
+  const rows = [
+    ['Provider', stats.provider || '—'],
+    ['Model', stats.model || '—'],
+    ['Connected', stats.connected ? 'yes' : 'no'],
+    ['Last API', stats.lastApi || stats.lastApiAt || stats.lastConnectedAt || '—'],
+    ['Cache Hit', stats.cacheHit ?? 0],
+    ['Cache Miss', stats.cacheMiss ?? 0],
+    ['API Version', stats.apiVersion || '—'],
+    ['Fallback', stats.fallbackModel || '—'],
+  ];
+  return `
+    <div class="ld-ai-status" data-ai-status="17D.3">
+      <ul class="ld-stat-list">
+        ${rows
+          .map(
+            ([label, value]) =>
+              `<li><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></li>`,
+          )
+          .join('')}
+      </ul>
+      <p class="ld-card-desc">providerVersion ${escapeHtml(stats.providerVersion || '—')}</p>
     </div>`;
 }
 
@@ -733,6 +788,23 @@ function renderStudentWidgets(view) {
       solutionQuality: (node) => {
         const dash = getDashboardSolutionQuality();
         node.innerHTML = renderDashboardQualityCard(dash.aggregate || dash);
+      },
+      aiStatus: (node) => {
+        const status = getAiConnectionStatus();
+        const gem = view.geminiSolver || getGeminiDashboardStats();
+        const prof = view.professorQuality || getProfessorDashboardStats();
+        node.innerHTML = renderAiStatusCard({
+          ...(view.aiStatus || status),
+          ...status,
+          cacheHit: (gem.cacheHit || 0) + (prof.cacheHit || 0),
+          cacheMiss: (gem.cacheMiss || 0) + (prof.cacheMiss || 0),
+          lastApi: status.lastApiAt || status.lastConnectedAt || null,
+        });
+      },
+      aiRuntime: (node) => {
+        node.innerHTML = renderAiRuntimeCard(
+          view.aiRuntime || getAiRuntimeDashboardStats(),
+        );
       },
       geminiSolver: (node) => {
         const stats = view.geminiSolver || getGeminiDashboardStats();

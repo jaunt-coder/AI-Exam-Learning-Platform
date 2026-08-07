@@ -1,8 +1,11 @@
 /**
  * Sprint-17B — Vision utils (hash, clamp, idle, cost estimate)
+ * Sprint-17D.3 — Model follows DEFAULT_GEMINI_MODEL (gemini-3-flash)
  */
 
-export const VISION_MODEL = 'gemini-2.0-flash';
+import { DEFAULT_GEMINI_MODEL } from '../llm/ai-config.js';
+
+export const VISION_MODEL = DEFAULT_GEMINI_MODEL || 'gemini-3-flash';
 export const VISION_PROMPT_VERSION = '17B.1';
 export const DEFAULT_OCR_THRESHOLD = 70;
 

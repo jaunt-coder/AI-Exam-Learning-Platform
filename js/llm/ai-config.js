@@ -1,5 +1,6 @@
 /**
  * Sprint-17D.1 — AI Config Storage + Provider Resolver
+ * Sprint-17D.3 — Gemini latest model migration (gemini-3-flash)
  * GitHub Pages safe: API key lives only in LocalStorage (never committed).
  *
  * Priority:
@@ -10,6 +11,7 @@
  *
  * Never writes Question / Pattern / Statistics DB.
  * Never mutates Learning / Recommendation / Mastery formulas.
+ * Storage key names unchanged.
  */
 
 import { getItem, setItem, removeItem, STORAGE_KEYS } from '../storage.js';
@@ -17,11 +19,39 @@ import { getItem, setItem, removeItem, STORAGE_KEYS } from '../storage.js';
 export const AI_CONFIG_KEY =
   STORAGE_KEYS.LEARNING_AI_CONFIG_V1 || 'learning.ai-config.v1';
 
-export const AI_CONFIG_VERSION = '17D.1';
-export const PROVIDER_VERSION = 'GEMINI-17D.1';
-export const DEFAULT_GEMINI_MODEL = 'gemini-2.0-flash';
+export const AI_CONFIG_VERSION = '17E.1';
+export const PROVIDER_VERSION = 'GEMINI-17E.1';
+
+/** Primary model (Google AI Studio / Gemini API) */
+export const DEFAULT_GEMINI_MODEL = 'gemini-3-flash';
+/** Auto-retry when primary is missing / retired */
+export const FALLBACK_GEMINI_MODEL = 'gemini-3-flash-preview';
+export const GEMINI_API_VERSION = 'v1beta';
 export const GEMINI_BASE_URL =
-  'https://generativelanguage.googleapis.com/v1beta';
+  `https://generativelanguage.googleapis.com/${GEMINI_API_VERSION}`;
+
+/** Retired IDs — auto-migrate to DEFAULT_GEMINI_MODEL on load */
+export const DEPRECATED_GEMINI_MODELS = Object.freeze([
+  'gemini-2.0-flash',
+  'gemini-2.0-flash-001',
+  'gemini-2.0-flash-lite',
+  'gemini-1.5-flash',
+  'gemini-1.5-flash-latest',
+  'gemini-1.5-pro',
+  'gemini-pro',
+]);
+
+/**
+ * Normalize model id — deprecated → primary default.
+ * @param {string} [model]
+ */
+export function normalizeGeminiModel(model) {
+  const m = String(model || '').trim();
+  if (!m || DEPRECATED_GEMINI_MODELS.includes(m)) {
+    return DEFAULT_GEMINI_MODEL;
+  }
+  return m;
+}
 
 /**
  * @returns {{
@@ -30,6 +60,10 @@ export const GEMINI_BASE_URL =
  *   apiKey: string,
  *   enabled: boolean,
  *   updatedAt: string|null,
+ *   lastConnectedAt: string|null,
+ *   lastConnectedModel: string|null,
+ *   lastApiAt: string|null,
+ *   apiVersion: string,
  *   schemaVersion: string,
  * }}
  */
@@ -41,24 +75,44 @@ export function emptyAiConfig() {
     apiKey: '',
     enabled: true,
     updatedAt: null,
+    lastConnectedAt: null,
+    lastConnectedModel: null,
+    lastApiAt: null,
+    apiVersion: GEMINI_API_VERSION,
   };
 }
 
 /**
- * Load AI config (never throws).
+ * Load AI config (never throws). Migrates retired model ids.
  */
 export function loadAiConfig() {
   const raw = getItem(AI_CONFIG_KEY, null);
   if (!raw || typeof raw !== 'object') return emptyAiConfig();
-  return {
+  const model = normalizeGeminiModel(raw.model || DEFAULT_GEMINI_MODEL);
+  const next = {
     ...emptyAiConfig(),
     provider: String(raw.provider || 'GEMINI').toUpperCase() || 'GEMINI',
-    model: String(raw.model || DEFAULT_GEMINI_MODEL).trim() || DEFAULT_GEMINI_MODEL,
+    model,
     apiKey: typeof raw.apiKey === 'string' ? raw.apiKey.trim() : '',
     enabled: raw.enabled !== false,
     updatedAt: raw.updatedAt || null,
+    lastConnectedAt: raw.lastConnectedAt || null,
+    lastConnectedModel: raw.lastConnectedModel
+      ? normalizeGeminiModel(raw.lastConnectedModel)
+      : null,
+    lastApiAt: raw.lastApiAt || raw.lastConnectedAt || null,
+    apiVersion: raw.apiVersion || GEMINI_API_VERSION,
     schemaVersion: raw.schemaVersion || AI_CONFIG_VERSION,
   };
+  /* Persist migration when stored model was retired (same storage key) */
+  if (raw.model && normalizeGeminiModel(raw.model) !== String(raw.model).trim()) {
+    try {
+      setItem(AI_CONFIG_KEY, { ...next });
+    } catch (_e) {
+      /* ignore */
+    }
+  }
+  return next;
 }
 
 /**
@@ -70,8 +124,9 @@ export function saveAiConfig(patch = {}) {
   const next = {
     ...prev,
     provider: String(patch.provider ?? prev.provider ?? 'GEMINI').toUpperCase(),
-    model: String(patch.model ?? prev.model ?? DEFAULT_GEMINI_MODEL).trim()
-      || DEFAULT_GEMINI_MODEL,
+    model: normalizeGeminiModel(
+      patch.model ?? prev.model ?? DEFAULT_GEMINI_MODEL,
+    ),
     apiKey:
       patch.apiKey === undefined
         ? prev.apiKey
@@ -79,9 +134,32 @@ export function saveAiConfig(patch = {}) {
     enabled: patch.enabled === undefined ? prev.enabled !== false : Boolean(patch.enabled),
     updatedAt: new Date().toISOString(),
     schemaVersion: AI_CONFIG_VERSION,
+    apiVersion: GEMINI_API_VERSION,
   };
   setItem(AI_CONFIG_KEY, next);
   return { ok: true, config: maskAiConfig(next) };
+}
+
+/**
+ * Record successful live API call (Connection Test / generateContent).
+ * @param {{ model?: string, status?: number }} [meta]
+ */
+export function recordAiConnectionSuccess(meta = {}) {
+  const prev = loadAiConfig();
+  const now = new Date().toISOString();
+  const next = {
+    ...prev,
+    lastConnectedAt: now,
+    lastApiAt: now,
+    lastConnectedModel: normalizeGeminiModel(
+      meta.model || prev.model || DEFAULT_GEMINI_MODEL,
+    ),
+    apiVersion: GEMINI_API_VERSION,
+    updatedAt: prev.updatedAt || now,
+    schemaVersion: AI_CONFIG_VERSION,
+  };
+  setItem(AI_CONFIG_KEY, next);
+  return next;
 }
 
 /**
@@ -114,6 +192,8 @@ export function maskAiConfig(config = loadAiConfig()) {
       ? `${key.slice(0, 4)}…${key.slice(-4)} (${key.length} chars)`
       : '',
     hasApiKey: Boolean(key),
+    defaultModel: DEFAULT_GEMINI_MODEL,
+    fallbackModel: FALLBACK_GEMINI_MODEL,
   };
 }
 
@@ -169,30 +249,22 @@ export function resolveLegacySettingsApiKey() {
 
 /**
  * Resolve Gemini credentials with Sprint-17D.1 priority.
- * @returns {{
- *   ok: boolean,
- *   apiKey: string,
- *   provider: string,
- *   model: string,
- *   enabled: boolean,
- *   source: string,
- *   providerVersion: string,
- *   requireSetup?: boolean,
- *   error?: string,
- * }}
  */
 export function resolveGeminiConnection() {
   const cfg = loadAiConfig();
+  const model = normalizeGeminiModel(cfg.model || DEFAULT_GEMINI_MODEL);
 
   if (cfg.enabled !== false && cfg.apiKey) {
     return {
       ok: true,
       apiKey: cfg.apiKey,
       provider: 'GEMINI',
-      model: cfg.model || DEFAULT_GEMINI_MODEL,
+      model,
+      fallbackModel: FALLBACK_GEMINI_MODEL,
       enabled: true,
       source: AI_CONFIG_KEY,
       providerVersion: PROVIDER_VERSION,
+      apiVersion: GEMINI_API_VERSION,
     };
   }
 
@@ -202,22 +274,25 @@ export function resolveGeminiConnection() {
       ok: true,
       apiKey: legacy.apiKey,
       provider: 'GEMINI',
-      model: cfg.model || DEFAULT_GEMINI_MODEL,
+      model,
+      fallbackModel: FALLBACK_GEMINI_MODEL,
       enabled: true,
       source: legacy.source,
       providerVersion: PROVIDER_VERSION,
+      apiVersion: GEMINI_API_VERSION,
     };
   }
 
-  /* llm-config.json is model/provider metadata only — no secrets in repo */
   return {
     ok: false,
     apiKey: '',
     provider: 'LOCAL',
-    model: cfg.model || DEFAULT_GEMINI_MODEL,
+    model,
+    fallbackModel: FALLBACK_GEMINI_MODEL,
     enabled: cfg.enabled !== false,
     source: 'LOCAL',
     providerVersion: `LOCAL-${AI_CONFIG_VERSION}`,
+    apiVersion: GEMINI_API_VERSION,
     requireSetup: true,
     error: 'missing_api_key',
   };
@@ -231,13 +306,35 @@ export function resolveGeminiApiKey() {
 }
 
 /**
- * Connection test against Gemini Generative Language API.
- * @param {{ apiKey?: string, model?: string }} [options]
+ * Detect model-missing HTTP / API errors for fallback retry.
+ * @param {number} [status]
+ * @param {string} [detail]
+ * @param {string} [errorCode]
+ */
+export function isGeminiModelNotFound(status, detail = '', errorCode = '') {
+  const blob = `${errorCode} ${detail}`.toUpperCase();
+  if (
+    blob.includes('MODEL_NOT_FOUND')
+    || blob.includes('INVALID_MODEL')
+    || blob.includes('NOT_FOUND')
+    || blob.includes('IS NOT FOUND')
+    || blob.includes('NOT SUPPORTED')
+  ) {
+    return true;
+  }
+  return Number(status) === 404;
+}
+
+/**
+ * Connection test — real Responses (Interactions) API call required (HTTP 200).
+ * @param {{ apiKey?: string, model?: string, fetchImpl?: typeof fetch }} [options]
  */
 export async function testGeminiConnection(options = {}) {
   const resolved = resolveGeminiConnection();
   const apiKey = String(options.apiKey || resolved.apiKey || '').trim();
-  const model = String(options.model || resolved.model || DEFAULT_GEMINI_MODEL).trim();
+  const model = normalizeGeminiModel(
+    options.model || resolved.model || DEFAULT_GEMINI_MODEL,
+  );
 
   if (!apiKey) {
     return {
@@ -246,78 +343,95 @@ export async function testGeminiConnection(options = {}) {
       requireSetup: true,
       message: 'Gemini API Key 설정이 필요합니다.',
       provider: 'LOCAL',
+      model,
+      apiVersion: GEMINI_API_VERSION,
     };
   }
 
-  if (typeof fetch !== 'function') {
+  const prev = loadAiConfig();
+  if (options.apiKey && options.apiKey !== prev.apiKey) {
+    saveAiConfig({ apiKey, model });
+  } else if (model && model !== prev.model) {
+    saveAiConfig({ model });
+  }
+
+  const { healthWithRuntime } = await import('./runtime/responses-runtime.js');
+  const result = await healthWithRuntime({
+    model,
+    fetchImpl: options.fetchImpl,
+  });
+
+  if (result.ok) {
     return {
-      ok: false,
-      error: 'fetch_unavailable',
-      message: 'fetch를 사용할 수 없습니다.',
+      ok: true,
+      message: result.message || 'Gemini Connected',
       provider: 'GEMINI',
+      model: result.model || model,
+      fallbackUsed: Boolean(result.fallbackUsed),
+      status: 200,
+      apiVersion: GEMINI_API_VERSION,
+      apiMode: result.apiMode || 'interactions',
+      runtimeVersion: result.runtimeVersion,
+      lastConnectedAt: new Date().toISOString(),
+      urlHost: 'generativelanguage.googleapis.com',
     };
   }
 
-  const url =
-    `${GEMINI_BASE_URL}/models/${encodeURIComponent(model)}:generateContent`
-    + `?key=${encodeURIComponent(apiKey)}`;
+  return {
+    ok: false,
+    error: result.error || 'api_key_invalid',
+    message: 'API Key Invalid',
+    provider: 'GEMINI',
+    model,
+    status: result.status,
+    detail: result.detail,
+    apiVersion: GEMINI_API_VERSION,
+    apiMode: 'interactions',
+  };
+}
 
-  try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ role: 'user', parts: [{ text: 'ping' }] }],
-        generationConfig: { maxOutputTokens: 8, temperature: 0 },
-      }),
-    });
-
-    if (res.ok) {
-      return {
-        ok: true,
-        message: 'Gemini Connected',
-        provider: 'GEMINI',
-        model,
-        status: res.status,
-      };
-    }
-
-    let detail = '';
-    try {
-      const body = await res.json();
-      detail = body?.error?.message || JSON.stringify(body).slice(0, 200);
-    } catch (_e) {
-      detail = await res.text().catch(() => '');
-    }
-
-    return {
-      ok: false,
-      error: 'api_key_invalid',
-      message: 'API Key Invalid',
-      provider: 'GEMINI',
-      status: res.status,
-      detail: String(detail || '').slice(0, 300),
-    };
-  } catch (err) {
-    return {
-      ok: false,
-      error: 'network_error',
-      message: 'API Key Invalid',
-      provider: 'GEMINI',
-      detail: err?.message || String(err),
-    };
-  }
+/**
+ * Settings / Dashboard projection (no secrets).
+ */
+export function getAiConnectionStatus() {
+  const cfg = loadAiConfig();
+  const conn = resolveGeminiConnection();
+  const hasKey = Boolean(conn.apiKey);
+  const connected = Boolean(hasKey && cfg.lastConnectedAt);
+  return {
+    provider: conn.ok ? 'GEMINI' : 'LOCAL',
+    model: normalizeGeminiModel(cfg.model || DEFAULT_GEMINI_MODEL),
+    defaultModel: DEFAULT_GEMINI_MODEL,
+    fallbackModel: FALLBACK_GEMINI_MODEL,
+    apiVersion: cfg.apiVersion || GEMINI_API_VERSION,
+    providerVersion: conn.providerVersion || PROVIDER_VERSION,
+    connected,
+    hasApiKey: hasKey,
+    lastConnectedAt: cfg.lastConnectedAt || null,
+    lastConnectedModel: cfg.lastConnectedModel || null,
+    lastApiAt: cfg.lastApiAt || cfg.lastConnectedAt || null,
+    source: conn.source || '—',
+  };
 }
 
 export default {
   AI_CONFIG_KEY,
   AI_CONFIG_VERSION,
   PROVIDER_VERSION,
+  DEFAULT_GEMINI_MODEL,
+  FALLBACK_GEMINI_MODEL,
+  GEMINI_API_VERSION,
+  GEMINI_BASE_URL,
+  DEPRECATED_GEMINI_MODELS,
+  normalizeGeminiModel,
+  isGeminiModelNotFound,
   loadAiConfig,
   saveAiConfig,
   clearAiConfig,
   maskAiConfig,
+  recordAiConnectionSuccess,
   resolveGeminiConnection,
   resolveGeminiApiKey,
   testGeminiConnection,
+  getAiConnectionStatus,
 };

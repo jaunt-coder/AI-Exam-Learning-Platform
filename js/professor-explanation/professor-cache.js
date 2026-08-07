@@ -1,7 +1,7 @@
 /**
  * Sprint-17D — Professor Explanation Cache
  * Sprint-17D.1 — Cache key includes providerVersion
- * Key: questionId + overrideVersion + modelVersion + promptVersion + providerVersion
+ * Sprint-17E — Cache key: questionId + model + promptVersion + runtimeVersion + subjectId + overrideVersion
  * Auto bulk generation is forbidden — Manual Trigger only (engine respects saveCache flag).
  */
 
@@ -9,6 +9,8 @@ import { getItem, setItem, STORAGE_KEYS } from '../storage.js';
 import { MODEL_VERSION } from '../gemini-solver/problem-solver.js';
 import { PROFESSOR_PROMPT_VERSION } from './professor-prompt.js';
 import { PROVIDER_VERSION } from '../llm/ai-config.js';
+import { RUNTIME_VERSION } from '../llm/runtime/responses-model.js';
+import { getCurrentSubjectId } from '../subject/subject-context.js';
 
 export const PROFESSOR_CACHE_KEY =
   STORAGE_KEYS.LEARNING_PROFESSOR_CACHE_V1 || 'learning.professor-cache.v1';
@@ -19,7 +21,7 @@ export const PROFESSOR_HISTORY_KEY =
 
 function emptyCache() {
   return {
-    schemaVersion: '17D.1',
+    schemaVersion: '17E.1',
     byKey: {},
     stats: { hits: 0, misses: 0, generations: 0, regenerations: 0, totalMs: 0 },
     updatedAt: null,
@@ -51,26 +53,54 @@ function touch(doc) {
 }
 
 /**
+ * Universal cache key (Sprint-17E).
  * @param {string} questionId
  * @param {string|number} overrideVersion
  * @param {string} [geminiModel]
  * @param {string} [professorPromptVersion]
- * @param {string} [providerVersion]
+ * @param {string} [runtimeVersion]
+ * @param {string} [subjectId]
  */
 export function buildProfessorCacheKey(
   questionId,
   overrideVersion,
   geminiModel = MODEL_VERSION,
   professorPromptVersion = PROFESSOR_PROMPT_VERSION,
-  providerVersion = PROVIDER_VERSION,
+  runtimeVersion = RUNTIME_VERSION,
+  subjectId = '',
 ) {
+  const sid = subjectId || (() => {
+    try {
+      return getCurrentSubjectId() || 'na';
+    } catch (_e) {
+      return 'na';
+    }
+  })();
   return [
     String(questionId || 'na'),
-    String(overrideVersion ?? '0'),
     String(geminiModel || MODEL_VERSION),
     String(professorPromptVersion || PROFESSOR_PROMPT_VERSION),
-    String(providerVersion || PROVIDER_VERSION),
+    String(runtimeVersion || RUNTIME_VERSION),
+    String(sid || 'na'),
+    String(overrideVersion ?? '0'),
   ].join('::');
+}
+
+/** @deprecated providerVersion retained for older call sites — mapped into runtime slot */
+export function buildProfessorCacheKeyLegacy(
+  questionId,
+  overrideVersion,
+  geminiModel,
+  professorPromptVersion,
+  providerVersion = PROVIDER_VERSION,
+) {
+  return buildProfessorCacheKey(
+    questionId,
+    overrideVersion,
+    geminiModel,
+    professorPromptVersion,
+    providerVersion || RUNTIME_VERSION,
+  );
 }
 
 export function loadProfessorCache() {
@@ -182,6 +212,7 @@ export function getProfessorDashboardStats() {
     topRegenerated: quality.topRegenerated || [],
     promptVersion: PROFESSOR_PROMPT_VERSION,
     modelVersion: MODEL_VERSION,
+    runtimeVersion: RUNTIME_VERSION,
   };
 }
 

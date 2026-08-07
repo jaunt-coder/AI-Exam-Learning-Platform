@@ -383,12 +383,15 @@ Question → OCR/Resolved → Gemini 문제 분석 → 개념 탐색 → 풀이
 - **Manual Trigger만** 허용 (`AI 강사 해설 생성` 버튼) — 자동 Cache 대량 생성 금지
 - Cache Key: `questionId + overrideVersion + modelVersion + promptVersion + providerVersion`
 - AI Config: `learning.ai-config.v1` — Settings에서 API Key 저장·삭제·연결 테스트
+- **기본 모델 `gemini-3-flash`** · 미존재 시 `gemini-3-flash-preview` 자동 재시도 (404 / MODEL_NOT_FOUND)
+- **Responses Runtime (Sprint-17E)**: `POST /v1beta2/interactions` · Provider는 Runtime만 호출 (직접 fetch 금지)
+- Connection Test: Responses API 실호출 · HTTP **200** 필수 · Dashboard AI Runtime 카드
 - Missing Key: silent LOCAL 금지 → 「Gemini API Key 설정이 필요합니다」+ 설정 이동
 - Result에 `provider: GEMINI | LOCAL_PROFESSOR` 명시 · 소요시간(ms) 표시
 - Personal Textbook: Question별 Professor Explanation 전체 저장
 - Final Revision: 핵심 개념 · 실수 포인트 · 암기 · 시험장 Tip 추출
 - Phase 1 평가 세트: `data/professor-evaluation-test.json` (대표 10문)
-- 테스트: `python scripts/test-professor-explanation.py` · `python scripts/test-gemini-config.py`
+- 테스트: `python scripts/test-professor-explanation.py` · `python scripts/test-gemini-config.py` · `python scripts/test-gemini-model.py` · `python scripts/test-responses-runtime.py`
 
 DB(Question/Pattern/Statistics)·Learning/Recommendation/Mastery·Override·Vision 계산식은 변경하지 않는다.
 

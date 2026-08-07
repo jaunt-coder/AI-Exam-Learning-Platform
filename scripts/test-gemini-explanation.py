@@ -136,7 +136,7 @@ print("\n[9] Contracts")
 loader = read("js/data-loader.js") or ""
 check("humanExplanationContract", "humanExplanationContract" in loader)
 check("validationHumanExplanation", "validationHumanExplanation" in loader)
-check("promptVersion 17C.1 or 17D.1 in contract", "17C.1" in loader or "17D.1" in loader)
+check("promptVersion 17C.1 or 17D.x in contract", "17C.1" in loader or "17D.1" in loader or "17D.2" in loader or "17D.3" in loader)
 
 print("\n[10] Cache maintained")
 check("learning.gemini-cache.v1", "learning.gemini-cache.v1" in (read("js/storage.js") or ""))

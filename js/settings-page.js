@@ -2,6 +2,7 @@
  * Sprint-07 Settings — Cloud Ready badge + Import/Export v4
  * Sprint-09A — Problem Reports dashboard (stats + export only)
  * Sprint-17D.1 — Gemini AI Config (LocalStorage key management)
+ * Sprint-17D.3 — Latest Gemini model + live Connection Test status
  */
 
 import {
@@ -28,7 +29,13 @@ import {
   maskAiConfig,
   resolveGeminiConnection,
   testGeminiConnection,
+  getAiConnectionStatus,
+  DEFAULT_GEMINI_MODEL,
+  FALLBACK_GEMINI_MODEL,
+  GEMINI_API_VERSION,
 } from './llm/ai-config.js';
+import { listModels } from './llm/model-registry.js';
+import { RUNTIME_VERSION } from './llm/runtime/responses-model.js';
 
 function applyTheme() {
   const theme = getItem(STORAGE_KEYS.THEME, 'light') || 'light';
@@ -46,10 +53,11 @@ function renderAiConfigPanel() {
   const cfg = loadAiConfig();
   const masked = maskAiConfig(cfg);
   const connection = resolveGeminiConnection();
+  const status = getAiConnectionStatus();
   const modelEl = document.getElementById('ai-model');
   const keyEl = document.getElementById('ai-api-key');
   const enabledEl = document.getElementById('ai-enabled');
-  if (modelEl) modelEl.value = cfg.model || 'gemini-2.0-flash';
+  if (modelEl) modelEl.value = status.model || DEFAULT_GEMINI_MODEL;
   if (keyEl) {
     keyEl.value = '';
     keyEl.placeholder = cfg.apiKey ? '•••• 저장됨 (변경 시 새로 입력)' : 'AIza…';
@@ -60,16 +68,45 @@ function renderAiConfigPanel() {
     const el = document.getElementById(id);
     if (el) el.textContent = String(v);
   };
+  set('ai-current-model', status.model || DEFAULT_GEMINI_MODEL);
+  set('ai-current-provider', status.provider || '—');
+  set(
+    'ai-api-version',
+    `${status.apiVersion || GEMINI_API_VERSION} · runtime ${RUNTIME_VERSION}`,
+  );
+  set(
+    'ai-last-connected',
+    status.lastConnectedAt
+      ? `${status.lastConnectedAt}${status.connected ? '' : ''}`
+      : '—',
+  );
   set('ai-has-key', masked.hasApiKey ? 'yes' : 'no');
   set('ai-source', connection.source || '—');
   set('ai-updated', cfg.updatedAt || '—');
+  set('ai-fallback-model', FALLBACK_GEMINI_MODEL);
+  void refreshModelList();
+}
+
+async function refreshModelList() {
+  const list = document.getElementById('ai-model-list');
+  if (!list) return;
+  try {
+    const res = await listModels({ providerId: 'GEMINI' });
+    const models = res.models || [];
+    list.innerHTML = models
+      .map((id) => `<option value="${String(id).replace(/"/g, '')}"></option>`)
+      .join('');
+  } catch (_e) {
+    list.innerHTML = `<option value="${DEFAULT_GEMINI_MODEL}"></option><option value="${FALLBACK_GEMINI_MODEL}"></option>`;
+  }
 }
 
 function wireAiConfig() {
   const form = document.getElementById('gemini-config-form');
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const model = document.getElementById('ai-model')?.value?.trim() || 'gemini-2.0-flash';
+    const model =
+      document.getElementById('ai-model')?.value?.trim() || DEFAULT_GEMINI_MODEL;
     const apiKeyInput = document.getElementById('ai-api-key')?.value?.trim() || '';
     const enabled = Boolean(document.getElementById('ai-enabled')?.checked);
     const patch = { provider: 'GEMINI', model, enabled };
@@ -88,7 +125,7 @@ function wireAiConfig() {
   });
 
   document.getElementById('ai-test-btn')?.addEventListener('click', async () => {
-    setStatus('연결 테스트 중…');
+    setStatus('연결 테스트 중… Responses API 호출');
     const model = document.getElementById('ai-model')?.value?.trim();
     const typed = document.getElementById('ai-api-key')?.value?.trim();
     const result = await testGeminiConnection({
@@ -96,12 +133,16 @@ function wireAiConfig() {
       apiKey: typed || undefined,
     });
     if (result.ok) {
-      setStatus('Gemini Connected', 'ok');
+      const fb = result.fallbackUsed
+        ? ` · fallback ${result.model}`
+        : ` · ${result.model}`;
+      setStatus(`Gemini Connected${fb} · HTTP ${result.status}`, 'ok');
     } else if (result.requireSetup) {
       setStatus('Gemini API Key 설정이 필요합니다.', 'err');
     } else {
       setStatus(`API Key Invalid${result.detail ? ` · ${result.detail}` : ''}`, 'err');
     }
+    renderAiConfigPanel();
   });
 }
 

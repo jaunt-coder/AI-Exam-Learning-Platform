@@ -475,10 +475,12 @@ export function renderGeminiSkeleton() {
   return `
     <div class="se-root st-root gemini-skel" data-gemini-solver="${GEMINI_RESULT_VERSION}" data-professor-engine="${PROFESSOR_RESULT_VERSION}" aria-busy="true">
       <div class="se-toolbar">
-        <p class="edu-kicker">AI 전문 강사 해설 · Gemini 1회 호출 중</p>
+        <p class="edu-kicker">AI 전문 강사 해설 · Responses Runtime</p>
       </div>
       <div class="se-acc__body">
-        <p class="ll-hint">문제를 직접 읽고 강사 해설을 생성합니다. 보통 10~30초 정도 걸립니다…</p>
+        <p class="ll-hint">계산과정 → 이론 → 시험팁 → 암기법 순으로 생성합니다…</p>
+        <p class="ll-hint" data-professor-stream-phase>준비 중</p>
+        <pre class="ll-hint" data-professor-stream-text style="white-space:pre-wrap;max-height:12rem;overflow:auto"></pre>
         <div class="gemini-skel__bars" aria-hidden="true">
           <span></span><span></span><span></span>
         </div>
@@ -568,6 +570,24 @@ export function lazyGenerateAndMount(host, input, options = {}) {
       host.innerHTML = renderGeminiSkeleton();
     }
     const pack = generateSolutionPack(input);
+    const streamTextEl = host?.querySelector('[data-professor-stream-text]');
+    const streamPhaseEl = host?.querySelector('[data-professor-stream-phase]');
+    let streamed = '';
+    const onDelta = (delta) => {
+      streamed += String(delta || '');
+      if (streamTextEl) streamTextEl.textContent = streamed.slice(-1200);
+      if (streamPhaseEl) {
+        const phase =
+          /memoryHack|암기/i.test(streamed)
+            ? '암기법'
+            : /examTip|시험/i.test(streamed)
+              ? '시험팁'
+              : /coreConcept|appliedTheory|이론|개념/i.test(streamed)
+                ? '이론'
+                : '계산과정';
+        streamPhaseEl.textContent = `스트리밍 · ${phase}`;
+      }
+    };
     let professor = null;
     try {
       professor = await generateProfessorExplanation({
@@ -578,6 +598,8 @@ export function lazyGenerateAndMount(host, input, options = {}) {
         saveCache: true,
         fastMode: true,
         skipRegen: true,
+        stream: true,
+        onDelta,
       });
     } catch (err) {
       console.warn('[professor-explanation] pipeline failed — trying Gemini 17C', err);

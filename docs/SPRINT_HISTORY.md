@@ -117,3 +117,29 @@
 - Prompt 압축 · table 2500자 제한 · pass1 `maxTokens` 2800 · Prompt `17D.2`
 - Result에 소요시간(ms) 표시 · 품질 90 미만 시 Reviewer Regenerate 안내
 - Test: `scripts/test-professor-explanation.py`
+
+## Sprint 17D.3
+
+- Gemini 최신 모델 마이그레이션 (`gemini-2.0-flash` 종료 대응)
+- Primary: `gemini-3-flash` · Fallback: `gemini-3-flash-preview` (404 / MODEL_NOT_FOUND / INVALID_MODEL)
+- llm-config: `model` / `defaultModel` / `fallbackModel` 갱신
+- Connection Test: `generateContent` 실호출 · HTTP 200 → Connected · `lastConnectedAt` 기록
+- Settings: 현재 모델 · Provider · API Version · 마지막 연결 성공 시간
+- Dashboard: AI 상태 카드 (Provider / Model / Connected / Last API / Cache Hit·Miss)
+- ProviderVersion `GEMINI-17D.3` (캐시 키 무효화)
+- Frozen: Question/Pattern/Statistics · Learning/Recommendation/Mastery · Override · Runtime · Storage Key
+- Test: `scripts/test-gemini-model.py`
+
+## Sprint 17E
+
+- Gemini Responses (Interactions) Runtime — Universal LLM Runtime
+- Modules: `js/llm/runtime/responses-*.js` · `js/llm/model-registry.js` · `js/prompts/`
+- Endpoint config: `data/llm-config.json` → `runtime.interactionsPath` (`/v1beta2/interactions`)
+- GeminiProvider / callGemini / Professor Engine: Runtime only (직접 fetch 금지)
+- Retry: 429/500/503 Exponential Backoff 1·2·4·8 (최대 4회)
+- Fallback: Gemini model → Cache → LOCAL_PROFESSOR
+- Streaming: Professor 계산과정 → 이론 → 시험팁 → 암기법 UI append
+- Cache key: questionId + model + promptVersion + runtimeVersion + subjectId + overrideVersion
+- Dashboard: AI Runtime Card
+- Frozen: Question/Pattern/Statistics · Learning/Recommendation/Mastery · Override · Storage Key
+- Test: `scripts/test-responses-runtime.py`

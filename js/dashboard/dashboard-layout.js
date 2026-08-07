@@ -15,6 +15,8 @@ export const DEFAULT_WIDGET_ORDER = Object.freeze([
   'examTodayMission',
   'examRiskAlert',
   'examCompletionStreak',
+  'aiStatus',
+  'aiRuntime',
   'solutionQuality',
   'geminiSolver',
   'professorQuality',

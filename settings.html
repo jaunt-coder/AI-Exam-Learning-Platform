@@ -30,11 +30,12 @@
   <main class="site-main" role="main">
     <div class="container study-layout">
       <section class="card study-card" aria-labelledby="gemini-config-heading" id="gemini-ai-config">
-        <p class="edu-kicker">Sprint-17D.1</p>
+        <p class="edu-kicker">Sprint-17D.3</p>
         <h2 id="gemini-config-heading" class="study-card__title">Gemini AI Config</h2>
         <p class="section-desc">
           GitHub Pages 정적 환경용 API Key입니다. 키는 브라우저 LocalStorage
           (<code>learning.ai-config.v1</code>)에만 저장되며 저장소에 커밋되지 않습니다.
+          기본 모델: <code>gemini-3-flash</code> · 미존재 시 <code>gemini-3-flash-preview</code> 자동 재시도.
         </p>
 
         <form id="gemini-config-form" class="gemini-config-form" autocomplete="off">
@@ -44,7 +45,8 @@
           </label>
           <label class="field">
             <span class="field__label">Model</span>
-            <input type="text" id="ai-model" name="model" value="gemini-2.0-flash" autocomplete="off">
+            <input type="text" id="ai-model" name="model" value="gemini-3-flash" list="ai-model-list" autocomplete="off">
+            <datalist id="ai-model-list"></datalist>
           </label>
           <label class="field">
             <span class="field__label">Gemini API Key</span>
@@ -62,9 +64,14 @@
         </form>
         <p class="ll-hint" id="ai-config-status" role="status" aria-live="polite"></p>
         <dl class="edu-facts" id="ai-config-facts">
+          <div><dt>현재 사용 모델</dt><dd id="ai-current-model">gemini-3-flash</dd></div>
+          <div><dt>현재 Provider</dt><dd id="ai-current-provider">—</dd></div>
+          <div><dt>API Version</dt><dd id="ai-api-version">v1beta</dd></div>
+          <div><dt>마지막 연결 성공 시간</dt><dd id="ai-last-connected">—</dd></div>
           <div><dt>Has Key</dt><dd id="ai-has-key">no</dd></div>
           <div><dt>Source</dt><dd id="ai-source">—</dd></div>
           <div><dt>Updated</dt><dd id="ai-updated">—</dd></div>
+          <div><dt>Fallback</dt><dd id="ai-fallback-model">gemini-3-flash-preview</dd></div>
         </dl>
       </section>
 
