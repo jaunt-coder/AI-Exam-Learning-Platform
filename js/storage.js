@@ -125,6 +125,8 @@ const STORAGE_KEYS = {
   LEARNING_VISION_HISTORY_V1: 'learning.vision-history.v1',
   LEARNING_VISION_QUALITY_V1: 'learning.vision-quality.v1',
   LEARNING_VISION_CONFIG_V1: 'learning.vision-config.v1',
+  // Sprint-17D.6 Exam Reconstruction overlay (additive — do not rename)
+  LEARNING_EXAM_RECONSTRUCTION_V1: 'learning.exam-reconstruction.v1',
   // Sprint-18A Personal AI Textbook (additive — do not rename)
   LEARNING_PERSONAL_TEXTBOOK_V1: 'learning.personal-textbook.v1',
   LEARNING_PERSONAL_NOTE_V1: 'learning.personal-note.v1',

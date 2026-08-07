@@ -53,13 +53,18 @@ function touch(doc) {
 }
 
 /**
- * Universal cache key (Sprint-17E).
+ * Universal cache key (Sprint-17E + 17D.5).
+ * LOCAL / GEMINI collision 방지:
+ *   PROVIDER_VERSION + QUESTION_ID + LEVEL (+ model/prompt/runtime/subject/override)
+ *
  * @param {string} questionId
  * @param {string|number} overrideVersion
  * @param {string} [geminiModel]
  * @param {string} [professorPromptVersion]
  * @param {string} [runtimeVersion]
  * @param {string} [subjectId]
+ * @param {string} [level]
+ * @param {string} [providerVersion]
  */
 export function buildProfessorCacheKey(
   questionId,
@@ -68,6 +73,8 @@ export function buildProfessorCacheKey(
   professorPromptVersion = PROFESSOR_PROMPT_VERSION,
   runtimeVersion = RUNTIME_VERSION,
   subjectId = '',
+  level = 'intermediate',
+  providerVersion = PROVIDER_VERSION,
 ) {
   const sid = subjectId || (() => {
     try {
@@ -77,7 +84,9 @@ export function buildProfessorCacheKey(
     }
   })();
   return [
+    String(providerVersion || PROVIDER_VERSION),
     String(questionId || 'na'),
+    String(level || 'intermediate'),
     String(geminiModel || MODEL_VERSION),
     String(professorPromptVersion || PROFESSOR_PROMPT_VERSION),
     String(runtimeVersion || RUNTIME_VERSION),
@@ -86,7 +95,7 @@ export function buildProfessorCacheKey(
   ].join('::');
 }
 
-/** @deprecated providerVersion retained for older call sites — mapped into runtime slot */
+/** @deprecated older call sites — maps into 17D.5 key shape */
 export function buildProfessorCacheKeyLegacy(
   questionId,
   overrideVersion,
@@ -99,7 +108,10 @@ export function buildProfessorCacheKeyLegacy(
     overrideVersion,
     geminiModel,
     professorPromptVersion,
-    providerVersion || RUNTIME_VERSION,
+    RUNTIME_VERSION,
+    '',
+    'intermediate',
+    providerVersion || PROVIDER_VERSION,
   );
 }
 

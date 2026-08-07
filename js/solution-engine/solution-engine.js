@@ -600,6 +600,7 @@ export function lazyGenerateAndMount(host, input, options = {}) {
         skipRegen: true,
         stream: true,
         onDelta,
+        level: input.level || 'intermediate',
       });
     } catch (err) {
       console.warn('[professor-explanation] pipeline failed — trying Gemini 17C', err);

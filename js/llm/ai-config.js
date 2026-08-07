@@ -248,6 +248,35 @@ export function resolveLegacySettingsApiKey() {
 }
 
 /**
+ * Sprint-17D.5 — Gemini Runtime 사용 가능 여부 (enabled + apiKey).
+ * Professor / AI Tutor 라우팅 진입점.
+ * @returns {{
+ *   ok: boolean,
+ *   enabled: boolean,
+ *   hasApiKey: boolean,
+ *   provider: string,
+ *   model: string,
+ *   providerVersion: string,
+ *   runtime: 'INTERACTIONS'|null,
+ *   source: string|null,
+ * }}
+ */
+export function checkAIConfig() {
+  const conn = resolveGeminiConnection();
+  const ok = Boolean(conn.ok && conn.apiKey && conn.enabled !== false);
+  return {
+    ok,
+    enabled: conn.enabled !== false,
+    hasApiKey: Boolean(conn.apiKey),
+    provider: ok ? 'GEMINI' : 'LOCAL_PROFESSOR',
+    model: conn.model || DEFAULT_GEMINI_MODEL,
+    providerVersion: conn.providerVersion || PROVIDER_VERSION,
+    runtime: ok ? 'INTERACTIONS' : null,
+    source: conn.source || null,
+  };
+}
+
+/**
  * Resolve Gemini credentials with Sprint-17D.1 priority.
  */
 export function resolveGeminiConnection() {
@@ -444,6 +473,7 @@ export default {
   maskAiConfig,
   recordAiConnectionSuccess,
   resolveGeminiConnection,
+  checkAIConfig,
   resolveGeminiApiKey,
   testGeminiConnection,
   getAiConnectionStatus,

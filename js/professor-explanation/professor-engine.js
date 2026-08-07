@@ -17,6 +17,7 @@ import {
 } from '../gemini-solver/problem-solver.js';
 import {
   resolveGeminiConnection,
+  checkAIConfig,
   PROVIDER_VERSION,
 } from '../llm/ai-config.js';
 import { RUNTIME_VERSION } from '../llm/runtime/responses-model.js';
@@ -61,13 +62,26 @@ import {
 } from './professor-normalize.js';
 import { saveOverride } from '../reviewer/override-service.js';
 import { resolveSubjectIdForQuestion } from '../subject/subject-router.js';
+import {
+  prepareProfessorReconstructionInput,
+  prepareProfessorReconstructionInputSync,
+} from '../exam-reconstruction/reconstruction-engine.js';
+import { reviewReconstructionQuality } from '../exam-reconstruction/reconstruction-quality.js';
 
-export const PROFESSOR_ENGINE_VERSION = '17D';
+export const PROFESSOR_ENGINE_VERSION = '17D.5';
 export { PROFESSOR_PROMPT_VERSION, MODEL_VERSION, QUALITY_APPROVE };
 export { professorPayloadToMarkdown, markdownToProfessorPayload, getProfessorDashboardStats };
 
+export const PROFESSOR_RUNTIME = 'INTERACTIONS';
+
 /**
  * Manual Professor Explanation generation.
+ *
+ * Sprint-17D.5 routing:
+ *   checkAIConfig()
+ *     → YES: Prompt → Runtime generate/stream → Quality → Cache → UI
+ *     → NO:  LOCAL_PROFESSOR fallback (when allowLocal / forceLocal)
+ *
  * @param {{
  *   question: object,
  *   grade?: object,
@@ -79,6 +93,9 @@ export { professorPayloadToMarkdown, markdownToProfessorPayload, getProfessorDas
  *   fastMode?: boolean,
  *   autoPartial?: boolean,
  *   saveCache?: boolean,
+ *   level?: string,
+ *   stream?: boolean,
+ *   onDelta?: Function,
  * }} input
  */
 export async function generateProfessorExplanation(input = {}) {
@@ -86,15 +103,20 @@ export async function generateProfessorExplanation(input = {}) {
   const question = input.question || {};
   const grade = input.grade || {};
   const pattern = input.pattern || null;
+  const level = String(input.level || 'intermediate');
   /* Student Manual Trigger default: one Gemini call (fast). Reviewer may set fastMode:false */
   const fastMode = input.fastMode !== false;
   const skipRegen = input.skipRegen != null ? Boolean(input.skipRegen) : fastMode;
-  const connection = resolveGeminiConnection();
-  const providerVersion = connection.ok
-    ? PROVIDER_VERSION
-    : connection.providerVersion || `LOCAL-${PROVIDER_VERSION}`;
 
-  const reader = attachGrade(readProblem(question, pattern), grade);
+  /* Sprint-17D.5 — Runtime-first gate */
+  const aiCheck = checkAIConfig();
+  const connection = resolveGeminiConnection();
+  const geminiRuntimeEnabled = Boolean(aiCheck.ok);
+  const providerVersion = geminiRuntimeEnabled
+    ? (aiCheck.providerVersion || PROVIDER_VERSION)
+    : (connection.providerVersion || `LOCAL-${PROVIDER_VERSION}`);
+
+  let reader = attachGrade(readProblem(question, pattern), grade);
   const subjectId =
     resolveSubjectIdForQuestion(question)
     || question.subjectPluginId
@@ -108,6 +130,8 @@ export async function generateProfessorExplanation(input = {}) {
     PROFESSOR_PROMPT_VERSION,
     RUNTIME_VERSION,
     subjectId,
+    level,
+    providerVersion,
   );
 
   /* Reviewer-approved Override takes precedence */
@@ -131,6 +155,9 @@ export async function generateProfessorExplanation(input = {}) {
       analysis: null,
       providerVersion,
       connectionSource: 'override',
+      model: connection.model || MODEL_VERSION,
+      runtime: null,
+      level,
     });
   }
 
@@ -142,13 +169,14 @@ export async function generateProfessorExplanation(input = {}) {
         correctAnswer: reader.correctAnswer,
       });
       const quality = reviewExplanationQuality(payload, qualityCtx(reader));
+      const cachedProvider = cached.provider || 'cache';
       return finalizeProfessor({
         payload,
         reader,
         cacheKey,
         fromCache: true,
         cacheHit: true,
-        provider: cached.provider || 'cache',
+        provider: cachedProvider,
         durationMs: Date.now() - started,
         regenerated: false,
         quality,
@@ -156,20 +184,63 @@ export async function generateProfessorExplanation(input = {}) {
         analysis: null,
         providerVersion: cached.providerVersion || providerVersion,
         connectionSource: cached.source || 'cache',
+        model: cached.modelVersion || connection.model || MODEL_VERSION,
+        runtime: cachedProvider === 'GEMINI' ? PROFESSOR_RUNTIME : null,
+        level,
       });
     }
   } else {
     peekProfessorCache(cacheKey);
   }
 
-  /* Sprint-17D.1 — missing API key: no silent Gemini fallback */
   const allowLocal = Boolean(input.forceLocal || input.allowLocal);
-  if (!connection.ok && !allowLocal) {
+
+  /* Sprint-17D.6 — Exam Reconstruction overlay (before Professor prompt) */
+  let reconstructionBundle = null;
+  try {
+    reconstructionBundle = input.skipReconstruction
+      ? null
+      : input.forceLocal || input.syncReconstruction
+        ? prepareProfessorReconstructionInputSync(question, reader, {
+          force: Boolean(input.force),
+          forceLocal: true,
+        })
+        : await prepareProfessorReconstructionInput(question, reader, {
+          force: Boolean(input.force),
+          forceLocal: Boolean(input.forceLocal),
+          skipVision: Boolean(input.skipVision),
+          imageBase64: input.imageBase64,
+          dataUrl: input.dataUrl,
+        });
+    if (reconstructionBundle?.reader) {
+      reader = reconstructionBundle.reader;
+    }
+  } catch (err) {
+    console.warn('[professor-engine] reconstruction skipped', err);
+    reconstructionBundle = null;
+  }
+
+  /* Sprint-17D.5 — no Gemini Runtime → LOCAL_PROFESSOR when allowLocal */
+  if (!geminiRuntimeEnabled && allowLocal) {
+    return generateLocalProfessorResult({
+      input,
+      reader,
+      subjectId,
+      cacheKey,
+      providerVersion,
+      level,
+      started,
+      connection,
+    });
+  }
+
+  /* Sprint-17D.1 — missing API key: no silent Gemini fallback */
+  if (!geminiRuntimeEnabled && !allowLocal) {
     return {
       ok: false,
       error: 'missing_api_key',
       requireSetup: true,
-      schemaVersion: '17D.1',
+      schemaVersion: '17D.5',
       engineVersion: PROFESSOR_ENGINE_VERSION,
       source: 'professor-explanation',
       professorLevel: true,
@@ -177,9 +248,12 @@ export async function generateProfessorExplanation(input = {}) {
       questionId: reader.questionId,
       subjectId,
       cacheKey,
-      provider: 'LOCAL',
+      provider: 'LOCAL_PROFESSOR',
       providerVersion,
+      model: connection.model || MODEL_VERSION,
       modelVersion: connection.model || MODEL_VERSION,
+      runtime: null,
+      level,
       promptVersion: PROFESSOR_PROMPT_VERSION,
       professorPromptVersion: PROFESSOR_PROMPT_VERSION,
       durationMs: Date.now() - started,
@@ -196,6 +270,8 @@ export async function generateProfessorExplanation(input = {}) {
     choices: reader.choices,
     correctAnswer: reader.correctAnswer,
     patternMetadata: reader.patternMetadata,
+    reconstruction: reconstructionBundle?.layout || reader.reconstruction || null,
+    reconstructionQuality: reconstructionBundle?.quality || null,
   };
 
   const ctx = buildProfessorContext(promptPayload);
@@ -205,15 +281,23 @@ export async function generateProfessorExplanation(input = {}) {
   const strategy = ctx.strategy;
 
   let payload = null;
-  let provider = allowLocal && !connection.ok ? 'LOCAL_PROFESSOR' : 'GEMINI';
+  let provider = 'GEMINI';
+  let usedModel = connection.model || MODEL_VERSION;
+  let runtimeMeta = PROFESSOR_RUNTIME;
   const solvePrompt = buildProfessorSolvePrompt(promptPayload);
+  console.log('[professor-engine] → Gemini Runtime', {
+    model: usedModel,
+    runtime: PROFESSOR_RUNTIME,
+    level,
+  });
   const pass1 = await callGemini(solvePrompt, {
     forceLocal: input.forceLocal,
     temperature: 0.3,
     maxTokens: fastMode ? 2800 : 3600,
-    model: connection.model || MODEL_VERSION,
+    model: usedModel,
     stream: Boolean(input.stream),
     onDelta: input.onDelta,
+    allowLocalFallback: allowLocal,
   });
   console.log('[professor-engine] pass1', {
     ok: pass1.ok,
@@ -227,7 +311,7 @@ export async function generateProfessorExplanation(input = {}) {
       ok: false,
       error: 'missing_api_key',
       requireSetup: true,
-      schemaVersion: '17D.1',
+      schemaVersion: '17D.5',
       engineVersion: PROFESSOR_ENGINE_VERSION,
       source: 'professor-explanation',
       professorLevel: true,
@@ -235,9 +319,12 @@ export async function generateProfessorExplanation(input = {}) {
       questionId: reader.questionId,
       subjectId,
       cacheKey,
-      provider: 'LOCAL',
+      provider: 'LOCAL_PROFESSOR',
       providerVersion,
+      model: MODEL_VERSION,
       modelVersion: MODEL_VERSION,
+      runtime: null,
+      level,
       promptVersion: PROFESSOR_PROMPT_VERSION,
       durationMs: Date.now() - started,
       message: 'Gemini API Key 설정이 필요합니다.',
@@ -254,23 +341,31 @@ export async function generateProfessorExplanation(input = {}) {
         correctAnswer: reader.correctAnswer,
       });
       provider = pass1.provider || 'GEMINI';
+      usedModel = pass1.model || usedModel;
+      if (provider === 'LOCAL_PROFESSOR' || provider === 'LOCAL' || pass1.local) {
+        provider = 'LOCAL_PROFESSOR';
+        runtimeMeta = null;
+      }
     }
   }
 
   if (!payload) {
-    if (!allowLocal && connection.ok) {
-      /* Gemini failed after key present — still surface error, optional local only if allowLocal */
-      payload = null;
-    }
-    if (!payload && allowLocal) {
-      payload = buildLocalProfessorPayload(reader, {
+    if (allowLocal) {
+      return generateLocalProfessorResult({
+        input,
+        reader,
+        subjectId,
+        cacheKey,
+        providerVersion: connection.providerVersion || `LOCAL-${PROVIDER_VERSION}`,
+        level,
+        started,
+        connection,
         analysis,
         concept,
         theory,
         strategy,
-        subjectId,
+        failDetail: pass1?.detail || pass1?.error || null,
       });
-      provider = 'LOCAL_PROFESSOR';
     }
   }
 
@@ -280,7 +375,7 @@ export async function generateProfessorExplanation(input = {}) {
       error: pass1.error || 'gemini_generate_failed',
       requireSetup: Boolean(pass1.requireSetup),
       detail: pass1.detail || null,
-      schemaVersion: '17D.1',
+      schemaVersion: '17D.5',
       engineVersion: PROFESSOR_ENGINE_VERSION,
       source: 'professor-explanation',
       professorLevel: true,
@@ -290,7 +385,10 @@ export async function generateProfessorExplanation(input = {}) {
       cacheKey,
       provider: pass1.provider || 'GEMINI',
       providerVersion,
-      modelVersion: MODEL_VERSION,
+      model: usedModel,
+      modelVersion: usedModel,
+      runtime: PROFESSOR_RUNTIME,
+      level,
       promptVersion: PROFESSOR_PROMPT_VERSION,
       durationMs: Date.now() - started,
       message: pass1.requireSetup
@@ -327,7 +425,8 @@ export async function generateProfessorExplanation(input = {}) {
       forceLocal: input.forceLocal || provider === 'LOCAL_PROFESSOR',
       temperature: 0.25,
       maxTokens: regenMode === 'partial' ? 1600 : 2800,
-      model: connection.model || MODEL_VERSION,
+      model: usedModel,
+      allowLocalFallback: allowLocal,
     });
     if (regenCall.ok && regenCall.text) {
       const frag = parseGeminiJson(regenCall.text);
@@ -338,6 +437,7 @@ export async function generateProfessorExplanation(input = {}) {
         );
         regenerated = true;
         if (regenCall.provider) provider = regenCall.provider;
+        if (regenCall.model) usedModel = regenCall.model;
       }
     } else if (provider === 'LOCAL_PROFESSOR') {
       payload = buildLocalProfessorPayload(reader, {
@@ -366,16 +466,22 @@ export async function generateProfessorExplanation(input = {}) {
   quality = reviewExplanationQuality(payload, qualityCtx(reader));
 
   const durationMs = Date.now() - started;
+  const resolvedProvider =
+    provider === 'GEMINI' ? 'GEMINI' : provider === 'LOCAL_PROFESSOR' || provider === 'LOCAL'
+      ? 'LOCAL_PROFESSOR'
+      : String(provider || 'GEMINI');
+  if (resolvedProvider !== 'GEMINI') runtimeMeta = null;
 
-  /* Cache write only when explicitly allowed (Manual Trigger path sets saveCache true) */
   const saveCache = input.saveCache !== false;
   if (saveCache) {
     setProfessorCached(cacheKey, {
       payload,
-      provider,
-      modelVersion: connection.model || MODEL_VERSION,
+      provider: resolvedProvider,
+      modelVersion: usedModel,
       promptVersion: PROFESSOR_PROMPT_VERSION,
       providerVersion,
+      runtime: runtimeMeta,
+      level,
       source: connection.source,
       overrideVersion: reader.overrideVersion,
       questionId: reader.questionId,
@@ -389,8 +495,11 @@ export async function generateProfessorExplanation(input = {}) {
   appendProfessorHistory({
     questionId: reader.questionId,
     cacheKey,
-    provider,
+    provider: resolvedProvider,
     providerVersion,
+    model: usedModel,
+    runtime: runtimeMeta,
+    level,
     durationMs,
     qualityScore: quality.score,
     decision: quality.decision,
@@ -405,7 +514,7 @@ export async function generateProfessorExplanation(input = {}) {
     cacheKey,
     fromCache: false,
     cacheHit: false,
-    provider,
+    provider: resolvedProvider,
     durationMs,
     regenerated,
     quality,
@@ -416,6 +525,114 @@ export async function generateProfessorExplanation(input = {}) {
     strategy,
     providerVersion,
     connectionSource: connection.source,
+    model: usedModel,
+    runtime: runtimeMeta,
+    level,
+  });
+}
+
+/**
+ * LOCAL_PROFESSOR path (Sprint-17D.5 fallback).
+ */
+function generateLocalProfessorResult({
+  input,
+  reader,
+  subjectId,
+  cacheKey,
+  providerVersion,
+  level,
+  started,
+  connection,
+  analysis = null,
+  concept = null,
+  theory = null,
+  strategy = null,
+  failDetail = null,
+}) {
+  const promptPayload = {
+    subjectId,
+    questionText: reader.questionText,
+    tableHtml: reader.tableHtml,
+    choices: reader.choices,
+    correctAnswer: reader.correctAnswer,
+    patternMetadata: reader.patternMetadata,
+  };
+  const ctx = analysis
+    ? { analysis, concept, theory, strategy }
+    : buildProfessorContext(promptPayload);
+  let payload = buildLocalProfessorPayload(reader, {
+    ...ctx,
+    subjectId,
+    enrich: true,
+  });
+  const localVerify = verifyAnswerLocally(payload, {
+    correctAnswer: reader.correctAnswer,
+    choices: reader.choices,
+  });
+  payload = normalizeProfessorPayload(localVerify.payload, {
+    choices: reader.choices,
+    correctAnswer: reader.correctAnswer,
+  });
+  const quality = reviewExplanationQuality(payload, qualityCtx(reader));
+  const durationMs = Date.now() - started;
+
+  if (input.saveCache !== false) {
+    setProfessorCached(cacheKey, {
+      payload,
+      provider: 'LOCAL_PROFESSOR',
+      modelVersion: 'local',
+      promptVersion: PROFESSOR_PROMPT_VERSION,
+      providerVersion,
+      runtime: null,
+      level,
+      source: 'LOCAL_PROFESSOR',
+      overrideVersion: reader.overrideVersion,
+      questionId: reader.questionId,
+      durationMs,
+      regenerated: false,
+      quality: quality.report,
+      failDetail,
+    }, { allowWrite: true });
+  }
+
+  recordProfessorQuality(reader.questionId, quality.report, { regenerated: false });
+  appendProfessorHistory({
+    questionId: reader.questionId,
+    cacheKey,
+    provider: 'LOCAL_PROFESSOR',
+    providerVersion,
+    model: 'local',
+    runtime: null,
+    level,
+    durationMs,
+    qualityScore: quality.score,
+    decision: quality.decision,
+    regenerated: false,
+    cacheHit: false,
+    manual: true,
+    fallback: Boolean(failDetail),
+  });
+
+  return finalizeProfessor({
+    payload,
+    reader,
+    cacheKey,
+    fromCache: false,
+    cacheHit: false,
+    provider: 'LOCAL_PROFESSOR',
+    durationMs,
+    regenerated: false,
+    quality,
+    subjectId,
+    analysis: ctx.analysis,
+    concept: ctx.concept,
+    theory: ctx.theory,
+    strategy: ctx.strategy,
+    providerVersion,
+    connectionSource: 'LOCAL_PROFESSOR',
+    model: 'local',
+    runtime: null,
+    level,
   });
 }
 
@@ -425,6 +642,8 @@ function qualityCtx(reader) {
     tableHtml: reader.tableHtml,
     choices: reader.choices,
     correctAnswer: reader.correctAnswer,
+    reconstruction: reader.reconstruction || null,
+    reconstructionQuality: reader.reconstructionQuality || null,
   };
 }
 
@@ -537,6 +756,9 @@ function finalizeProfessor(ctx) {
     strategy,
     providerVersion,
     connectionSource,
+    model,
+    runtime,
+    level,
   } = ctx;
 
   const explanation = buildExplanationFromGemini(payload);
@@ -569,10 +791,14 @@ function finalizeProfessor(ctx) {
         : String(provider || 'LOCAL_PROFESSOR');
 
   const isGeminiLive = resolvedProvider === 'GEMINI';
+  const resolvedModel = model || MODEL_VERSION;
+  const resolvedRuntime = isGeminiLive
+    ? (runtime || PROFESSOR_RUNTIME)
+    : (resolvedProvider === 'LOCAL_PROFESSOR' ? null : runtime || null);
 
   return {
     ok: true,
-    schemaVersion: '17D.1',
+    schemaVersion: '17D.5',
     engineVersion: PROFESSOR_ENGINE_VERSION,
     source: 'professor-explanation',
     humanLevel: true,
@@ -586,7 +812,10 @@ function finalizeProfessor(ctx) {
     provider: resolvedProvider,
     providerLabel: isGeminiLive ? 'GEMINI (실제 API)' : 'LOCAL_PROFESSOR (로컬)',
     isGeminiLive,
-    modelVersion: MODEL_VERSION,
+    model: isGeminiLive ? resolvedModel : undefined,
+    modelVersion: resolvedModel,
+    runtime: isGeminiLive ? (resolvedRuntime || PROFESSOR_RUNTIME) : undefined,
+    level: level || 'intermediate',
     promptVersion: PROFESSOR_PROMPT_VERSION,
     professorPromptVersion: PROFESSOR_PROMPT_VERSION,
     providerVersion: providerVersion || PROVIDER_VERSION,
@@ -650,13 +879,14 @@ export function generateProfessorExplanationSync(input = {}) {
   const question = input.question || {};
   const grade = input.grade || {};
   const pattern = input.pattern || null;
-  const reader = attachGrade(readProblem(question, pattern), grade);
+  let reader = attachGrade(readProblem(question, pattern), grade);
   const subjectId =
     resolveSubjectIdForQuestion(question)
     || question.subjectPluginId
     || 'accounting';
   const connection = resolveGeminiConnection();
   const providerVersion = `LOCAL-${PROVIDER_VERSION}`;
+  const level = String(input.level || 'intermediate');
   const cacheKey = buildProfessorCacheKey(
     reader.questionId,
     reader.overrideVersion,
@@ -664,7 +894,21 @@ export function generateProfessorExplanationSync(input = {}) {
     PROFESSOR_PROMPT_VERSION,
     RUNTIME_VERSION,
     subjectId,
+    level,
+    providerVersion,
   );
+
+  if (!input.skipReconstruction) {
+    try {
+      const recon = prepareProfessorReconstructionInputSync(question, reader, {
+        force: Boolean(input.force),
+        forceLocal: true,
+      });
+      if (recon?.reader) reader = recon.reader;
+    } catch (_err) {
+      /* non-critical */
+    }
+  }
 
   if (!input.force) {
     const cached = peekProfessorCache(cacheKey);
@@ -689,6 +933,9 @@ export function generateProfessorExplanationSync(input = {}) {
         analysis: null,
         providerVersion,
         connectionSource: 'cache',
+        model: 'local',
+        runtime: null,
+        level,
       });
     }
   }
@@ -717,9 +964,11 @@ export function generateProfessorExplanationSync(input = {}) {
     setProfessorCached(cacheKey, {
       payload,
       provider: 'LOCAL_PROFESSOR',
-      modelVersion: MODEL_VERSION,
+      modelVersion: 'local',
       promptVersion: PROFESSOR_PROMPT_VERSION,
       providerVersion,
+      runtime: null,
+      level,
       questionId: reader.questionId,
       durationMs: 0,
       quality: quality.report,
@@ -741,6 +990,9 @@ export function generateProfessorExplanationSync(input = {}) {
     ...ctx,
     providerVersion,
     connectionSource: connection.source || 'LOCAL',
+    model: 'local',
+    runtime: null,
+    level,
   });
 }
 

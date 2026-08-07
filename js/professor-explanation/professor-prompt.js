@@ -112,6 +112,19 @@ export function buildProfessorSolvePrompt(payload = {}) {
     .filter(Boolean)
     .join('\n');
 
+  const recon = payload.reconstruction || null;
+  const reconBlock = recon
+    ? [
+      '[Exam Reconstruction — 시험지 복원 구조, 정답 근거로 Pattern 사용 금지]',
+      `questionText: ${String(recon.questionText || '').slice(0, 1200)}`,
+      `tables: ${(recon.tables || []).length}개`,
+      (recon.tables || []).slice(0, 2).map((t) => t.html).join('\n').slice(0, 2000),
+      `formulaBlocks: ${JSON.stringify(recon.formulaBlocks || []).slice(0, 500)}`,
+      `figureReferences: ${(recon.figureReferences || []).length}`,
+      `sourceFile: ${recon.sourceFile || ''} · page: ${recon.sourcePage ?? ''}`,
+    ].join('\n')
+    : '';
+
   return [
     '너는 감정평가사 시험 전문 강사이다.',
     roleLine,
@@ -133,6 +146,8 @@ export function buildProfessorSolvePrompt(payload = {}) {
     '[Correct Answer]',
     String(ctx.correctAnswer ?? ''),
     '',
+    reconBlock,
+    reconBlock ? '' : null,
     '[Pattern Metadata — 참고만, 정답 근거로 사용 금지]',
     metaBlock || '(없음)',
     '',
@@ -149,7 +164,7 @@ export function buildProfessorSolvePrompt(payload = {}) {
     '',
     'JSON만 반환:',
     PROFESSOR_OUTPUT_SCHEMA,
-  ].join('\n');
+  ].filter((line) => line != null).join('\n');
 }
 
 /**

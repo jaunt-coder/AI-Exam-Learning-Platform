@@ -55,6 +55,25 @@ export function reviewExplanationQuality(payload = {}, context = {}) {
       : [];
   const tutorMessage = String(payload.tutorMessage || payload.tutorAdvice || '').trim();
 
+  /* 0. Reconstruction integrity (informational + soft penalty) — Sprint-17D.6 */
+  const reconIssues = [];
+  if (context.reconstruction) {
+    const rq = context.reconstructionQuality
+      || {
+        issues: [],
+        accuracy: 100,
+      };
+    const issues = rq.issues || [];
+    if (issues.includes('table_missing')) reconIssues.push('table_missing');
+    if (issues.includes('number_corruption')) reconIssues.push('number_corruption');
+    if (issues.includes('choice_mismatch')) reconIssues.push('choice_mismatch');
+    if (issues.includes('formula_corruption')) reconIssues.push('formula_corruption');
+    details.reconstruction = {
+      accuracy: rq.accuracy ?? null,
+      issues: reconIssues,
+      ok: reconIssues.length === 0,
+    };
+  }
   /* 1. Problem reflection (20) */
   let problemScore = 0;
   const qSnippet = String(context.questionText || '').slice(0, 40);
@@ -112,14 +131,21 @@ export function reviewExplanationQuality(payload = {}, context = {}) {
   else missing.push('examTip/tutorMessage');
   details.examStrategy = { score: examScore, max: 10, ok: examScore >= 8 };
 
-  const score = Math.max(
+  const scoreRaw = Math.max(
     0,
     Math.min(100, problemScore + theoryScore + numberScore + choiceScore + reusableScore + examScore),
   );
+  /* Soft penalty when reconstruction reported structural issues */
+  const reconPenalty = Math.min(8, reconIssues.length * 2);
+  const score = Math.max(0, scoreRaw - reconPenalty);
 
   let decision = 'regenerate_full';
   if (score >= QUALITY_APPROVE) decision = 'approve';
   else if (score >= QUALITY_PARTIAL) decision = 'regenerate_partial';
+
+  if (reconIssues.length) {
+    missing.push(...reconIssues.map((i) => `reconstruction:${i}`));
+  }
 
   return {
     ok: score >= QUALITY_APPROVE,
@@ -136,6 +162,7 @@ export function reviewExplanationQuality(payload = {}, context = {}) {
       missing,
       details,
       ok: score >= QUALITY_APPROVE,
+      reconstructionIssues: reconIssues,
     },
   };
 }

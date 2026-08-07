@@ -143,3 +143,36 @@
 - Dashboard: AI Runtime Card
 - Frozen: Question/Pattern/Statistics · Learning/Recommendation/Mastery · Override · Storage Key
 - Test: `scripts/test-responses-runtime.py`
+
+## Sprint 17D.5
+
+- Professor Explanation Runtime Adapter (`js/professor-explanation/professor-runtime-adapter.js`)
+- AI Tutor (`ai-tutor.html`) LOCAL 고정 해제 → `checkAIConfig()` 후 Gemini Runtime 우선
+- Routing: Gemini enabled → Prompt → Runtime (`/v1beta/interactions`) → Quality → Cache → UI
+- Fallback: API key 없음 / Gemini 실패 → `LOCAL_PROFESSOR` (8단계 로컬 과외 유지)
+- Result metadata: `{ provider:"GEMINI", model, runtime:"INTERACTIONS" }` / `{ provider:"LOCAL_PROFESSOR" }`
+- Cache key: `PROVIDER_VERSION + QUESTION_ID + LEVEL` (+ model/prompt/runtime/subject/override)
+- UI: `AI 과외 v2` 유지 + `provider: GEMINI | LOCAL_PROFESSOR`
+- Frozen: Question/Pattern/Statistics · Learning/Recommendation/Mastery · Override
+- Test: `scripts/test-professor-runtime-routing.py`
+
+## Sprint 17D.5.1
+
+- Professor → Tutor data-flow clean: `mapProfessorToTutorLesson`가 LOCAL `generateTutorLesson` scaffold 제거
+- Professor payload를 8-section Lesson SSOT로 직접 생성 (`renderTutorLesson` contract 유지)
+- provider 실전달: `GEMINI` / `LOCAL_PROFESSOR` / `CACHE` / `OVERRIDE_APPROVED` (cache hit → `GEMINI` + `cacheStatus:HIT`)
+- `lesson.metadata`: `{ provider, runtime, model, cacheStatus, generatedAt }`
+- Test: `scripts/test-professor-runtime-routing.py` Case Gemini / Cache HIT / Local fallback
+
+## Sprint 17D.6
+
+- Exam Reconstruction Layer (`js/exam-reconstruction/`)
+- Pipeline: PDF Source → Question Locator → Vision Reconstruction → `question-layout` JSON → Professor Input
+- Schema: `data/question-layout.json` (`questionText`, `tables[]`, `formulaBlocks[]`, `figureReferences[]`, `choices[]`, `sourcePage`, `sourceFile`)
+- Overlay only — Question / Pattern / Statistics DB · Learning Engine 미변경
+- Storage: `learning.exam-reconstruction.v1`
+- Vision prompt: 풀이 금지 · 표/숫자/보기/수식/띄어쓰기 복원 · JSON only
+- Professor: Resolved Question + Reconstruction Payload
+- Quality: `table_missing` · `number_corruption` · `choice_mismatch` · `formula_corruption`
+- Evaluation: `data/reconstruction-evaluation-test.json` (대표 10문) · Accuracy target ≥95%
+- Test: `scripts/test-exam-reconstruction.py`

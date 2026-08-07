@@ -71,3 +71,4 @@
 | `learning.pattern-priority.v1` | Pattern Priority 랭킹 |
 | `learning.pass60.v1` | Pass60 계획 |
 | `learning.roi.v1` | ROI TOP / Today·Week Mission |
+| `learning.exam-reconstruction.v1` | Exam Reconstruction overlay cache (Sprint-17D.6) |

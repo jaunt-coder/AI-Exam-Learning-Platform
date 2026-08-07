@@ -14,6 +14,7 @@ import { getStatisticsForPattern } from './pattern-engine.js';
 import { getWrongAnswerEntries, buildRetryUrl } from './wrong-note-engine.js';
 import { generateTutorLesson } from './ai-tutor-engine.js';
 import { renderTutorLesson } from './ai-tutor-render.js';
+import { generateTutorLessonWithRuntime } from './professor-explanation/professor-runtime-adapter.js';
 import { questionResolver } from './student/student-resolver.js';
 import { getTutorContext } from './learning-engine/learning-engine.js';
 import { buildTutorEvidenceContext } from './evidence/evidence-engine.js';
@@ -36,6 +37,7 @@ const state = {
   selectedQuestionId: null,
   selectedWrongChoice: null,
   aiLevel: 'beginner',
+  lessonToken: 0,
 };
 
 function applyTheme() {
@@ -66,13 +68,14 @@ function firstWrongChoice(question) {
   return 1;
 }
 
-function runTutorLesson() {
+async function runTutorLesson() {
   const question = resolveForTutor(state.selectedQuestionId);
   if (!question || !state.selectedWrongChoice) return;
 
   const pattern = getPatternById(state.patterns, question.patternId);
   const stats = getStatisticsForPattern(state.statistics, question.patternId);
   const correct = Number(question.answer);
+  const token = ++state.lessonToken;
 
   const result = {
     correct: false,
@@ -114,19 +117,47 @@ function runTutorLesson() {
     }
   } catch (_) { /* Exam Goal non-critical */ }
 
-  const lesson = generateTutorLesson({
-    question,
-    pattern,
-    result,
-    statistics: stats,
-    allQuestions: state.questions,
-    allPatterns: state.patterns,
-    level: state.aiLevel,
-    learningContext,
-  });
-
-  renderTutorLesson(lesson, $('ai-explanation-output'));
   const out = $('ai-explanation-output');
+  if (out) {
+    out.hidden = false;
+    out.setAttribute('aria-busy', 'true');
+    out.innerHTML = '<p class="ll-hint">AI 과외 생성 중… Runtime 우선</p>';
+  }
+  updateProviderBadge('…');
+
+  let lesson;
+  try {
+    /* Sprint-17D.5 — Professor Runtime Adapter (Gemini Runtime → LOCAL fallback) */
+    lesson = await generateTutorLessonWithRuntime({
+      question,
+      pattern,
+      result,
+      statistics: stats,
+      allQuestions: state.questions,
+      allPatterns: state.patterns,
+      level: state.aiLevel,
+      learningContext,
+    });
+  } catch (err) {
+    console.warn('[ai-tutor] runtime adapter failed — local lesson', err);
+    lesson = generateTutorLesson({
+      question,
+      pattern,
+      result,
+      statistics: stats,
+      allQuestions: state.questions,
+      allPatterns: state.patterns,
+      level: state.aiLevel,
+      learningContext,
+    });
+    lesson.provider = 'LOCAL_PROFESSOR';
+  }
+
+  if (token !== state.lessonToken) return;
+
+  updateProviderBadge(lesson.provider || 'LOCAL_PROFESSOR');
+  renderTutorLesson(lesson, out);
+  if (out) out.setAttribute('aria-busy', 'false');
   if (out && evidenceContext?.evidence) {
     const host = document.createElement('div');
     host.className = 'ev-tutor-host';
@@ -138,7 +169,15 @@ function runTutorLesson() {
     out.appendChild(host);
     bindEvidenceAccordion(host);
   }
-  show($('ai-explanation-output'));
+  show(out);
+}
+
+function updateProviderBadge(provider) {
+  const el = $('ai-tutor-provider');
+  if (!el) return;
+  const label = String(provider || 'LOCAL_PROFESSOR');
+  el.textContent = `provider: ${label}`;
+  el.dataset.provider = label;
 }
 
 function renderChoices(question) {

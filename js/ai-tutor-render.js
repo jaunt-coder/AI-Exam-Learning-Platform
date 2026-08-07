@@ -12,11 +12,21 @@
 export function renderTutorLesson(lesson, container) {
   container.innerHTML = '';
 
+  const provider = lesson.provider || 'LOCAL_PROFESSOR';
   const header = document.createElement('div');
   header.className = 'tutor-lesson-header';
   header.innerHTML = `
     <span class="ai-tutor-badge">AI 과외 선생님</span>
-    <span class="tutor-lesson-meta">${lesson.patternName} · ${lesson.levelLabel}</span>
+    <span class="ai-tutor-provider" data-provider="${escAttr(provider)}">provider: ${escAttr(provider)}</span>
+    <span class="tutor-lesson-meta">${escAttr(lesson.patternName)} · ${escAttr(lesson.levelLabel)}${
+      lesson.model && (provider === 'GEMINI' || provider === 'CACHE')
+        ? ` · ${escAttr(lesson.model)}`
+        : ''
+    }${lesson.runtime ? ` · ${escAttr(lesson.runtime)}` : ''}${
+      lesson.cacheStatus === 'HIT' || lesson.metadata?.cacheStatus === 'HIT'
+        ? ' · Cache Hit'
+        : ''
+    }</span>
   `;
   container.appendChild(header);
 
@@ -112,4 +122,12 @@ export function renderTutorLesson(lesson, container) {
  */
 export function renderAiExplanation(lesson, container) {
   renderTutorLesson(lesson, container);
+}
+
+function escAttr(v) {
+  return String(v ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }

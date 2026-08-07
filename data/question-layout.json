@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "question-layout.json",
+  "title": "Exam Question Layout (Sprint-17D.6)",
+  "description": "Overlay reconstruction of past-exam PDF structure. Never written into Question DB.",
+  "type": "object",
+  "required": [
+    "questionText",
+    "tables",
+    "formulaBlocks",
+    "figureReferences",
+    "choices",
+    "sourcePage",
+    "sourceFile"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "17D.6" },
+    "questionId": { "type": ["string", "null"] },
+    "questionText": {
+      "type": "string",
+      "description": "Restored stem with spacing preserved"
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["html"],
+        "properties": {
+          "id": { "type": "string" },
+          "html": { "type": "string" },
+          "caption": { "type": "string" }
+        }
+      }
+    },
+    "formulaBlocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "latex": { "type": "string" },
+          "text": { "type": "string" }
+        }
+      }
+    },
+    "figureReferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "html": { "type": "string" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "choices": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "sourcePage": { "type": ["integer", "null"] },
+    "sourceFile": { "type": ["string", "null"] },
+    "footnote": { "type": "string" },
+    "reconstructedAt": { "type": "string" },
+    "provider": { "type": "string" }
+  },
+  "additionalProperties": true
+}

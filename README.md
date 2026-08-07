@@ -121,6 +121,7 @@ Dashboard / Tutor / Exam
 - `learning.vision-history.v1`
 - `learning.vision-quality.v1`
 - `learning.vision-config.v1`
+- `learning.exam-reconstruction.v1`
 - `learning.personal-textbook.v1`
 - `learning.personal-note.v1`
 - `learning.personal-summary.v1`
@@ -381,17 +382,19 @@ Question → OCR/Resolved → Gemini 문제 분석 → 개념 탐색 → 풀이
 - Output: 문제 이해 · 핵심 개념 · 풀이 전략 · 실제 풀이 · 계산 · 보기 분석 · 공식 · 30초 암기 · 시험장 전략 · AI Tutor
 - Quality Reviewer: 100점 기준, **90 이상 승인** / Reviewer에서만 70–89 부분·70 미만 전체 재생성 (`fastMode: false`)
 - **Manual Trigger만** 허용 (`AI 강사 해설 생성` 버튼) — 자동 Cache 대량 생성 금지
-- Cache Key: `questionId + overrideVersion + modelVersion + promptVersion + providerVersion`
-- AI Config: `learning.ai-config.v1` — Settings에서 API Key 저장·삭제·연결 테스트
+- Cache Key: `PROVIDER_VERSION + QUESTION_ID + LEVEL` (+ model/prompt/runtime/subject/override) — LOCAL/GEMINI 충돌 방지
+- AI Config: `learning.ai-config.v1` — Settings에서 API Key 저장·삭제·연결 테스트 · `checkAIConfig()`
 - **기본 모델 `gemini-3-flash`** · 미존재 시 `gemini-3-flash-preview` 자동 재시도 (404 / MODEL_NOT_FOUND)
 - **Responses Runtime (Sprint-17E)**: `POST /v1beta/interactions` · Provider는 Runtime만 호출 (직접 fetch 금지)
+- **AI Tutor Runtime (Sprint-17D.5 / 17D.5.1)**: `ai-tutor.html` → Professor Runtime Adapter → Gemini Runtime 우선 / `LOCAL_PROFESSOR` fallback · Professor payload를 Tutor Lesson으로 직접 매핑(LOCAL scaffold 제거) · `lesson.metadata` · UI `provider:` 표시
+- **Exam Reconstruction (Sprint-17D.6)**: PDF → Locator → Vision 복원 → `question-layout` overlay → Professor Input · Schema `data/question-layout.json` · Accuracy ≥95% (`scripts/test-exam-reconstruction.py`)
 - Connection Test: Responses API 실호출 · HTTP **200** 필수 · Dashboard AI Runtime 카드
-- Missing Key: silent LOCAL 금지 → 「Gemini API Key 설정이 필요합니다」+ 설정 이동
-- Result에 `provider: GEMINI | LOCAL_PROFESSOR` 명시 · 소요시간(ms) 표시
+- Missing Key: silent LOCAL 금지 (Result Manual) → 「Gemini API Key 설정이 필요합니다」+ 설정 이동 · AI Tutor는 LOCAL_PROFESSOR로 과외 유지
+- Result metadata: `{ provider:"GEMINI", model, runtime:"INTERACTIONS" }` / `{ provider:"LOCAL_PROFESSOR" }` · cache hit 시 `cacheStatus:"HIT"`
 - Personal Textbook: Question별 Professor Explanation 전체 저장
 - Final Revision: 핵심 개념 · 실수 포인트 · 암기 · 시험장 Tip 추출
 - Phase 1 평가 세트: `data/professor-evaluation-test.json` (대표 10문)
-- 테스트: `python scripts/test-professor-explanation.py` · `python scripts/test-gemini-config.py` · `python scripts/test-gemini-model.py` · `python scripts/test-responses-runtime.py`
+- 테스트: `python scripts/test-professor-explanation.py` · `python scripts/test-gemini-config.py` · `python scripts/test-gemini-model.py` · `python scripts/test-responses-runtime.py` · `python scripts/test-professor-runtime-routing.py` · `python scripts/test-exam-reconstruction.py`
 
 DB(Question/Pattern/Statistics)·Learning/Recommendation/Mastery·Override·Vision 계산식은 변경하지 않는다.
 
