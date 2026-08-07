@@ -241,7 +241,8 @@ export async function streamWithRuntime(input = {}) {
  */
 export async function healthWithRuntime(options = {}) {
   const connection = resolveGeminiConnection();
-  if (!connection.apiKey) {
+  const apiKey = String(options.apiKey || connection.apiKey || '').trim();
+  if (!apiKey) {
     recordRuntimeHealth(false);
     return {
       ok: false,
@@ -253,7 +254,7 @@ export async function healthWithRuntime(options = {}) {
   }
 
   const model = resolvePrimaryModel(options.model || connection.model);
-  const auth = { apiKey: connection.apiKey, fetchImpl: options.fetchImpl };
+  const auth = { apiKey, fetchImpl: options.fetchImpl };
   console.log('[responses-runtime] healthWithRuntime start', { model, RUNTIME_VERSION });
   const ping = await postInteractions(
     auth,

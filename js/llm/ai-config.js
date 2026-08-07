@@ -349,11 +349,8 @@ export async function testGeminiConnection(options = {}) {
   }
 
   const prev = loadAiConfig();
-  if (options.apiKey && options.apiKey !== prev.apiKey) {
-    saveAiConfig({ apiKey, model });
-  } else if (model && model !== prev.model) {
-    saveAiConfig({ model });
-  }
+  /* Connection Test never persists API keys — only Settings「저장」writes keys. */
+  void prev;
 
   const { healthWithRuntime } = await import('./runtime/responses-runtime.js');
   const { buildInteractionsUrl, getRuntimeConfig } = await import(
@@ -365,6 +362,7 @@ export async function testGeminiConnection(options = {}) {
 
   const result = await healthWithRuntime({
     model,
+    apiKey,
     fetchImpl: options.fetchImpl,
   });
   console.log('[ai-config] Connection Test result', {
